@@ -1,0 +1,1704 @@
+Experimental investigation of adsorption water desalination/cooling system using CPO-27Ni MOF
+
+Peter G. Youssef , Hassan Dakkama, Saad M. Mahmoud, Raya K. AL-Dadah
+
+School of Mechanical Engineering, University of Birmingham, Birmingham B15 2TT, UK
+
+H I G H L I G H T S
+
+ Experimental - numerical study of CPO-27Ni MOF for adsorption desalination/cooling
+ Effects of Condenser and evaporator water inlet temperatures are studied.
+ Simulink model is developed, validated and used to study other operating conditions.
+ CPO-27Ni produced water and cooing of 23m3/day & 216 Rton per ton﹞ads, respectively.
+
+article
+
+info
+
+Article history:
+Received 18 August 2016
+Received in revised form 7 September 2016
+Accepted 5 November 2016
+Available online 18 November 2016
+
+Keywords:
+Experimental
+Adsorption
+CPO-27(Ni)
+Desalination
+Cooling
+Seawater
+
+
+abstract
+
+Although many adsorbent materials have been used in adsorption systems, only silica-gel was tested experimen-
+tally for desalination applications. This work experimentally and numerically investigates the use of CPO-27(Ni)
+an advanced Metal Organic Framework-MOF adsorbent material in a 1-bed adsorption system for water desali-
+nation and cooling applications. Operating parameters as switching time, half cycle time, evaporator and con-
+denser water inlet temperatures were studied to investigate their effects on cycle water production and
+cooling. Moreover, a mathematical simulation model is developed, validated and used to predict cycle outputs
+at other operating conditions. Results showed that as evaporator temperature increases and condenser temper-
+ature decreases, cycle outputs increase. Also, it was shown that adsorption desalination cycles can work with con-
+denser pressure lower than evaporator pressure as the cycle is an open loop one (i.e. no refrigerant is owing
+back from condenser to evaporator). A water production of 22.8 m3/tonne﹞ads/day was achieved using 40 ～C
+evaporator temperature, 5 ～C condenser temperature and 95 ～C desorption temperature. Similar water produc-
+tion can be achieved using 30 ～C condensing temperature but at 120 ～C desorption temperature. For space cooling
+applications (Tevap b 20 ～C), cycle cooling produced was found to be 65 Rton/tonne﹞ads. This work highlights the
+potential of using advanced MOF materials for water desalination/ cooling applications.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Many countries depend on water desalination technologies to meet
+their potable water needs. Four water desalinating techniques are wide-
+ly used which are reverse osmosis (RO), multistage ash (MSF), multi-
+effect distillation (MED) and mechanical vapor compression (MVC)
+[1]. However, these techniques suffer from high power consumption
+which in turn increases CO2 emissions and water production costs
+[2,3]. Recently adsorption desalination technology was reported to out-
+perform the current conventional technologies in terms of high grade
+fresh potable water of salinity as low as 10 ppm, lower electric energy
+consumption of 1.38 kWh/m3 and CO2 emission of 0.6 kg/m3 while hav-
+ing lower water production cost of 0.2$/m3 [4].
+The adsorption water desalination cycle consists of three main com-
+ponents namely adsorption/desorption bed, evaporator and condenser
+producing desalinated water (from condenser) and cooling (from evap-
+orator) [5每9]. The desalination/refrigeration adsorption system de-
+pends on the combination of four processes; evaporation due to
+adsorption and condensation as a result of desorption. Seawater is fed
+into the evaporator where it is evaporated as a result of the associated
+adsorption process while extracting heat from the chilled water passing
+through the evaporator coil producing the cooling effect in this cycle [6,
+10]. In the adsorption process, water vapor is adsorbed by the adsorbent
+material while in the desorption process the water vapor is regenerated
+by heating and the desorbed water vapor is then condensed in the con-
+denser producing fresh water [11,12].
+Different adsorbent materials including silica-gel and zeolite have
+been reported for desalination applications using different cycle cong-
+urations. Thu et al.
+[13] experimentally tested an adsorption
+Nomenclature
+
+cp
+h
+M
+m.
+n
+P
+
+Qst
+
+SCP
+SDWP
+T
+W
+W
+X
+
+牟
+污
+而
+
+specic heat at constant pressure (kJ﹞kg 1﹞K 1)
+enthalpy (kJ﹞kg 1)
+mass (kg)
+mass ow rate (kg﹞s 1)
+adsorption/Desorption phase, ag ()
+pressure (kPa)
+isosteric heat of adsorption (kJ/kg)
+specic cooling power (Rton﹞t1)
+specic daily water production (m3﹞t 1﹞day 1)
+temperature (K)
+uptake (kg﹞kg 1)
+equilibrium uptake (kg﹞kg 1)
+salt concentration (ppm)
+seawater charging ag ()
+brine discharge ag ()
+no. of cycles per day ()
+
+Subscripts
+a
+ads
+b
+cond
+cw
+D
+d
+des
+evap
+f
+hw
+HX
+in
+ads
+des
+out
+s
+t
+
+adsorbent material
+adsorption
+brine
+condenser
+cooling water
+vapor
+distillate water
+desorption
+evaporator
+liquid
+heating water
+heat exchanger
+inlet
+adsorber bed
+desorber bed
+outlet
+seawater
+time
+
+desalination system operates in two and four bed modes. Heating
+source temperature and cycle time have been examined during their
+tests for the two operating modes. It was found that as heat source tem-
+perature decreases, longer cycle time is required to obtain the highest
+water production. In addition, in two bed mode, maximum water pro-
+duction reported was 8.7 m3/tonne of silica-gel/day when 85 ～C hot
+source temperature was used while for four bed mode, at the same
+heating temperature, 10 m3/tonne of silica-gel/day was produced.
+Ng et al. [8], have used a 215 m2 solar collector to obtain the required
+heating for regeneration of water vapor in a 2 bed silica-gel adsorption
+system for water desalination and cooling applications. The solar collec-
+tor produced heat source temperature varying from 65 to 80 ～C which
+used to produce 3每5 m3 of desalinated water and cooling in the range
+of 25每35 Rton/tonne of silica-gel at chilled water temperature of 7 to
+10 ～C.
+Mitra et al. [14], have introduced a new adsorption cycle for desali-
+nation and cooling. This system has 2 stages with 2 beds per stage. Sim-
+ulations as well as experiments have been carried out at different
+evaporator pressures and half cycle times to predict desalinated water
+output, cooling capacity and coefcient of performance (COP). Results
+showed that maximum produced desalinated water is 1 m3/tonne sili-
+ca-gel/day while cooling capacity is 7.5 Rton/tonne silica-gel with COP
+value of 0.25. These results were obtained at evaporator pressure of
+1.7 kPa and half cycle time of 1800 s. The authors attributed these low
+production capacities, compared to literature, to the quite high ambient
+
+temperature, 41 ～C, which affected the performance of the air cooled
+condenser. In addition, 2每3 times larger silica gel particle sizes than
+those reported in literature were used which resulted in slower adsorp-
+tion/desorption rates.
+Youssef et al. [15], have studied the use of advanced zeolite material,
+AQSOA-Z02, for adsorption desalination and cooling applications. In
+their work, a comparison between the AQSOA-ZO2 and silica-gel has
+been performed when operating in a two bed adsorption cycle for the
+production of desalinated water and cooling. The key parameters of
+the comparison are SDWP and specic cooling power (SCP) while dif-
+ferent heating source temperatures and evaporator water inlet temper-
+atures were applied. It was found that AQSOA-Z02 is less sensitive than
+silica gel to evaporator water temperature variations. Accordingly,
+AQSOA-Z02 outperformed silica-gel at lower evaporator water temper-
+atures b 25 ～C where at 10 ～C evaporator water temperature, AQSOA-
+Z02 cycle can produce 5.8 m3 water per day and 50.1 Rton of cooling
+while silica-gel cycle generate only SDWP of 2.8 m3 and SCP of
+17.2 Rton. On the other hand, at the same heating temperature of
+85 ～C but at 30 ～C evaporator water temperature silica-gel cycle pro-
+duces maximum SDWP of 8.4 m3 and 62.4 Rton of cooling.
+Youssef et al. [16], have investigated the use of AQSOA-Z02 in a novel
+adsorption system consisting of evaporator, condenser, integrated
+evaporator-condenser device and 4 adsorber beds. Results showed
+that by utilizing heat recovery between system components, water pro-
+duction can reach 12.4 m3/tonne adsorbent/day and cooling of
+32.4 Rton/tonne adsorbent at evaporator inlet water temperature of
+10 ～C. Also, results showed that this system can produce 15.4 m3/
+tonne adsorbent/day of desalinated water if no cooling is required.
+Ali et al. [17], have presented a double stage system to produce
+cooling through stage-1 and desalinated water from condensers of
+stages 1 and 2. AQSOA-Z02 and silica-gel were used as adsorbents in
+the two stages, 1 and 2 respectively. A heat recovery was implemented
+between condensers and evaporators of the system to reduce condenser
+pressure and increase evaporator pressure which resulted in increased
+cycle outputs. Results showed that this new conguration produced
+more water by 26% and 45% more cooling compared to the conventional
+adsorption desalination and cooling systems.
+Elsayed et al. [18] have investigated numerically the potential of
+using two metal organic framework adsorbent materials (MOF) for dif-
+ferent adsorption applications including water desalination and cooling.
+Isotherms, kinetics and cycle stability were measured for both CPO-
+27(Ni) and Aluminum fumarate MOF materials where the maximum
+uptake was 0.47 and 0.53 kgwater/kgadsorbent respectively. It was found
+that at high desorption temperatures (N 90 ～C) and low evaporation
+temperature (5 ～C), CPO-27(Ni) outperforms Al-Fumarate. However,
+Al-Fumarate resulted in better performance at high evaporation tem-
+perature of 20 ～C and/or low bed heating temperature of 70 ～C.
+All reviewed work on water adsorption desalination, showed that
+silica-gel/water is the only working pairs investigated experimentally.
+This work, experimentally investigates the use of an advanced metal or-
+ganic frameworks adsorbent material, (CPO-27Ni, produced by Johnson
+Matthey Ltd.) in a 1 bed adsorption cycle for production of fresh water
+and cooling. In addition, a numerical simulation is carried out, validated
+and used to predict the system performance at other operating
+conditions.
+
+2. Experimental test facility
+
+Fig. 1 shows a schematic diagram for a lab scale adsorption test facil-
+ity developed for the production of fresh water and cooling using CPO-
+27Ni MOF material as an adsorbent. The main components of this sys-
+tem are: adsorption bed, evaporator and condenser shown pictorially
+in Fig. 2.
+In such adsorption water desalination system, seawater is supplied
+to the evaporator where it evaporates during the adsorption half cycle
+while the adsorber bed is connected to the evaporator. During
+
+194
+
+P.G. Youssef et al. / Desalination 404 (2017) 192每199
+
+Condenser cooling 
+water in and out
+
+Condenser
+
+Fresh water out
+
+Bed water in
+
+Bed water out
+
+Adsorber bed
+
+Evaporator
+
+Fig. 1. Schematic diagram for a 1-bed adsorption.
+
+Vacuum Pump
+
+Condenser
+
+Cold water tank
+
+Temperature Controller
+
+Chiller water out
+
+Chiller water in
+
+Adsorber Bed
+
+Evaporator
+
+Fig. 2. Pictorial view for the single-bed adsorption test rig.
+
+adsorption time, cooling water is circulated in the adsorption bed to ab-
+sorb the released heat from the adsorbent material. Then, in the desorp-
+tion phase, the bed is heated by hot water and water vapor is
+regenerated. During this desorption process, the adsorber bed is con-
+nected to the condenser where the water vapor is condensed producing
+fresh water. As shown in Fig. 2, there are other auxiliary components in
+the system which are heating and cooling water systems for the bed and
+temperature controllers to supply constant water temperatures for the
+evaporator and condenser. In addition, there are vacuum pumps to gen-
+erate the required vacuum pressure in the system. Adsorber bed as
+shown in Fig. 3 is a rectangular nned tube heat exchanger with the ad-
+sorbent material packed between the ns and surrounded by a metal
+mesh to keep adsorbent particles in position. The evaporator and con-
+denser are cylindrical vacuum designed chambers with helically shaped
+cooling coil.
+The experimental test facility is equipped with TJC100-CPSS T-type
+thermocouples to measure the temperature of the evaporator liquid
+and gas, adsorbent material in bed and vapor in the bed space. In the
+condenser, RS-pro, K-type thermocouples are used for measuring
+vapor and condensed water temperatures. Platinum RTD temperature
+sensors were used to measure bed heating and cooling water inlet and
+outlet temperatures, evaporator and condenser circulating water inlet
+and outlet temperatures. The evaporator, condenser and adsorber bed
+
+pressures are measured using pressure transducers with an accuracy
+of ㊣ 0.01 kPa. Flowmeters of type FLC-H14 (0每57 LPM) are used to mea-
+sure the adsorber bed heating/cooling water owrate manually with an
+accuracy of ㊣ 1 L while owrates of condenser and evaporator water
+circuits are measured by Parker type owmeter (2每30 LPM) with an ac-
+curacy of ㊣ 5%. Details of the system component specications are pre-
+sented in Table 1.
+
+Unpacked 
+finned 
+tube heat exchanger 
+with fin pitch of 
+1.016mm 
+
+Packed 
+bed 
+and covered 
+with stainless
+steel mesh
+
+Fig. 3. Pictorial view for the adsorber bed.
+
+P.G. Youssef et al. / Desalination 404 (2017) 192每199
+
+195
+
+Table 2
+Physical Properties of CPO-27Ni.
+
+Property
+
+Pore mean diameter
+Surface area
+Total Pore volume
+
+Value
+
+0.7 nm
+299 m2/g
+217 cm3/kg
+
+Table 3
+Dubinin-Astakhov equation constants.
+
+Symbol
+W﹢
+E
+n
+R
+
+Value
+
+0.46826
+10.0887
+5.6476
+8314
+
+a Units are; kg = kilogram, K = Kelvin.
+
+Unita
+
+kg/kg of adsorbent
+kJ/mol
+()
+J/mol﹞K
+
+Table 4
+Linear driving force, LDF equation constants.
+
+Symbol
+
+ko
+Ea
+
+Pr b 0.2
+
+81.5615
+3.2006E4
+
+Pr N 0.2
+
+0.7779
+1.4806E4
+
+Unit
+
+1/s
+J/mol
+
+Pr is the pressure ratio between bed and heat exchanger.
+Units are; s = second, J = Joule, mol = mole.
+
+4) [24]. Tests using dynamic vapor sorption (DVS) machine have been
+carried out at university of Birmingham, UK to determine the relation
+between uptake and time. By tting the test results, the obtained con-
+stants of the LDF model are presented in Table 4 [23].
+For assessment of adsorption desalination/cooling cycle perfor-
+mance, two parameters are calculated which are Specic Daily Water
+Production (SDWP) and Specic Cooling Power (SCP). SDWP is the
+amount of water produced per tonne of adsorbent per day while SCP
+is the amount of produced cooling per unit mass of adsorbent material
+used. These parameters are calculated using Eqs. 5每8 [6]:
+
+SDWP 
+
+Zt cycle
+
+0
+
+Q cond  而
+hfgMa
+
+dt
+
+5
+
+6
+
+1
+
+2
+
+3
+
+4
+
+Table 1
+System specications.
+
+Property
+System specications
+Adsorbent mass
+Bed metal mass
+Evaporator metal mass
+Condenser metal mass
+Bed heat transfer area
+Evaporator heat transfer area
+Condenser heat transfer area
+
+3. Adsorbent material characteristics
+
+Value
+
+0.67 kg
+29.3 kg
+15.1 kg
+15.1 kg
+2.55 m2
+0.11 m2
+0.16 m2
+
+CPO-27Ni used in this work is an MOF adsorbent manufactured
+commercially by Johnson Matthey. Fig. 4 shows SEM image for this ad-
+sorbent material and its physical properties are listed in Table 2 [19每21].
+For prediction of adsorbent material performance, two parameters
+are required namely adsorption isotherms and kinetics. The maximum
+amount of adsorbate that can be adsorbed per unit mass of dry material
+at a certain pressure ratio is called ＆adsorption isotherms＊ while the rate
+of adsorption or desorption at the operating pressure ratio is called ＆ad-
+sorption kinetics＊. The pressure ratio is dened as the ratio between
+evaporator to bed pressures during adsorption process or ratio between
+condenser to bed pressure during desorption process. CPO-27Ni iso-
+therms are modelled using Dubinin-Astakhov (D-A) model (Eqs. 1 &
+2) [22] with the constants given in Table 3 [23].
+
+
+
+ n
+
+
+
+  W﹢ exp  A
+W
+E
+
+where W is the predicted equilibrium uptake, W﹢ is the adsorbed
+water vapor mass based on the total accessible pore volume [kgref/
+kgads], E is the characteristic energy [J/mol], n is an empirical constant
+and A, is the adsorption potential which is given by:
+
+A  RTln
+
+ 
+
+P
+P o
+
+ k W
+W
+
+
+
+
+
+dW
+dt
+k  ko e
+
+RT
+Ea
+
+
+
+where R is the universal gas constant, T is the temperature of the adsor-
+bent material and P
+is the partial pressure ratio.
+To determine adsorption kinetics, linear driving force (LDF) model
+commonly used to predict the rate of adsorption/desorption (Eqs. 3每
+
+P o
+
+SCP 
+
+Zt cycle
+
+0
+
+Q evap  而
+
+Ma
+
+dt
+
+Fig. 4. SEM image (a) and crystal structure (b) for CPO-27Ni.
+
+where:
+
+Q cond  m:
+cond cp T cond
+Q evap  m:
+chilled cp T evap
+
+
+
+ T cond;outT cond;in
+
+ 
+
+
+
+
+7
+
+ 
+
+T chilled;inT chilled;out
+
+ 
+
+
+
+8
+
+4. Results and discussion
+
+As discussed in Section 3, adsorbent material performance depends
+on the partial pressure ratio determined by the adsorber bed and heat
+exchanger temperatures. For the material to work at low partial pres-
+sure ratio during desorption time (P(Tcond)/P(Tdes)), this can be achieved
+either by increasing the heating uid temperature or decreasing the
+condenser cooling water temperature. The operating temperature con-
+ditions used in this paper were selected to achieve partial pressure ra-
+tios ranging from 0.01 to 0.05 corresponding to condensing
+temperature ranging from 5 ～C to 30 ～C at xed desorption temperature
+of 95 ～C while adsorber bed cooling water is supplied from the mains at
+average temperature of 15 ～C. Flowrates of water circuits in evaporator,
+condenser and adsorber beds are 4, 5 and 7.25 L/min respectively. Also,
+this work investigates the effect of other parameters like switching
+time, cycle time, evaporator water temperature and condenser water
+temperature on water production and cooling capacity.
+
+4.1. Switching time effect
+
+Switching time is the period of time when adsorbent bed is not con-
+nected neither to the evaporator nor to the condenser. During this time,
+adsorbent bed is either in precooling or in preheating process to be pre-
+pared for adsorption or desorption processes respectively. In this test,
+ve switching times are tested from 5 to 1 min. at constant half cycle
+time of 14 min. Heating and cooling water temperatures are 95 ～C and
+16 ～C while evaporator and condenser water temperatures are 10 ～C.
+Fig. 5, shows the adsorber bed temperature through 5 consecutive cy-
+cles with switching time decreasing by 1 min every cycle. It can be
+seen that as switching time decreases, bed temperature prole becomes
+more smooth (as indicated by the two circles) leading to reducing the
+energy demand for heating and cooling the bed. Therefore the one-min-
+ute switching time was selected to be the best switching time for all fur-
+ther investigations.
+
+4.2. Half cycle time effect
+
+Half cycle time is the time for adsorption or desorption processes
+during the cycle when the bed is either connected to the evaporator
+or to the condenser. In this test six half cycle times were investigated
+ranging from 8 to18 min and their results are shown in Figs. 6 & 7.
+
+Fig. 6 shows that as the half cycle time increases, the amount of water
+collected per cycle is increasing. However, by increasing cycle duration,
+number of cycles per day will decrease which adversely affects the daily
+water production. Results showed that half cycle time of 12 min can pro-
+duce the maximum amount of daily water production of 6.8 m3/
+tonne﹞ads/day. Regarding cooling output, Fig. 7 shows that as cycle time
+increases SCP decreases. This could be attributed to the evaporator tem-
+perature prole as it decreases at a higher rate at the beginning than at
+the end of the adsorption time which results in lower average evaporator
+temperature at shorter cycle times which in turn increases SCP. Although
+half cycle time of 10 min gives the highest SCP of 200 W/kg (57 Rton/
+tonne﹞ads), a time of 12 min is used for the rest of the experimental
+work since it results in maximum SDWP which is the main focus of this
+research.
+
+4.3. Evaporator and condenser water temperature effect
+
+Water desalination adsorption cycle is an open loop system which is
+characterized by seawater feed in the evaporator and desalinated fresh
+water extraction from the condenser. Accordingly, this cycle is unlike
+closed loop adsorption refrigeration systems which necessitate condenser
+pressure to be higher than evaporator pressure to allow owing of the re-
+frigerant from condenser to evaporator [25]. Different evaporator and
+condenser water inlet temperatures are investigated with the range of
+10每40 ～C and 5每30 ～C, respectively. As shown in Figs. 8 and 9, increasing
+evaporator water temperature increases daily water production and spe-
+cic cooling power. In contrast, decreasing condenser temperature in-
+creases cycle outputs due to the decrease in the operating partial
+pressure ratio thus allowing desorption process to reach low uptakes. By
+changing evaporator water inlet temperature from 10 to 40 ～C, water pro-
+duction increases by 202% from 6.8 to 20.6 m3/tonne﹞ads/day when oper-
+ating at 10 ～C condenser. On the other hand, decreasing condenser water
+inlet temperature from 30 to 5 ～C, increases cycle water outputs by 135%
+from 3.2 to 7.5 m3/tonne﹞ads/day at evaporator temperature of 10 ～C.
+
+90
+80
+70
+60
+50
+40
+30
+20
+10
+0
+
+0
+
+25
+
+50
+
+75
+100
+Time (min)
+
+125
+
+150
+
+175
+
+B
+
+e
+T
+d
+e
+
+m
+
+e
+p
+
+r
+
+a
+
+t
+
+u
+
+r
+
+e
+
+(
+
+o
+
+C
+
+)
+
+5 min        4 min        3 min       2 min      1 min
+
+Fig. 5. Adsorbent bed temperature through 5 cycles at different switching times.
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+6.9
+6.8
+6.7
+6.6
+6.5
+6.4
+6.3
+6.2
+6.1
+6
+5.9
+5.8
+
+6
+
+8
+
+10
+
+12
+14
+Half Cycle Time (min)
+
+16
+
+18
+
+20
+
+W
+
+a
+
+t
+
+e
+
+r
+
+C
+
+o
+
+l
+l
+
+c
+e
+
+t
+
+d
+e
+
+/
+
+C
+
+c
+y
+
+l
+
+e
+
+(
+
+m
+
+L
+
+)
+
+D
+S
+
+W
+
+P
+
+(
+
+m
+
+3
+
+t
+/
+
+e
+n
+n
+o
+
+.
+
+y
+a
+d
+
+)
+
+SDWP
+
+Cycle water Production
+
+Fig. 6. SDWP and amount of collected water per cycle at different half cycle times.
+
+43
+
+45
+
+47
+
+49
+
+51
+
+53
+
+55
+
+57
+
+59
+
+150
+
+160
+
+170
+
+180
+
+190
+
+200
+
+210
+
+6
+
+8
+
+10
+
+12
+14
+Half Cycle Time (min)
+
+16
+
+18
+
+20
+
+P
+C
+S
+
+(
+
+R
+
+t
+
+n
+o
+
+t
+/
+
+s
+d
+a
+e
+n
+n
+o
+
+)
+
+P
+C
+S
+
+(
+
+W
+
+/
+
+g
+k
+
+)
+
+SCP
+
+Fig. 7. SCP at different half cycle times.
+
+196
+
+P.G. Youssef et al. / Desalination 404 (2017) 192每199
+
+Produced chilled water from the adsorption system can be used for
+cooling applications like space, process or district cooling [6]. Fig. 9
+shows that this system can produce SCP of 225 W/kg for evaporator
+inlet temperature ranging from 10 ～C to 20 ～C suitable for space cooling.
+Also Fig. 9 shows that at evaporator inlet temperature ranging from 30
+to 40 ～C, SCP values can reach 750 W/kg which suitable for process
+cooling.
+Fig. 10 shows temperature proles of the main system components
+at two condenser temperatures of 5 and 30 ～C while evaporator water
+
+inlet temperature is constant at 10 ～C. Two line groups appear in these
+gures; the rst is denoted by (L) and the other is denoted by (H)
+which refer to temperature proles in case of low condenser tempera-
+ture of 5 ～C and high condenser temperature of 30 ～C respectively.
+As seen in Fig. 10-a, at lower condenser water inlet temperature of
+5 ～C with higher water production rates (i.e. higher uptake rate), bed
+temperature (point 1) cannot reach the low temperature of 22.8 ～C
+(point 2) at the end of adsorption process and the high temperature of
+84.9 ～C (point 4) like the case of higher condenser temperature. This is
+due to the larger amount of heat released and extracted during adsorp-
+tion and desorption processes respectively by the adsorbent material. In
+Fig. 10-b the hatched area represents the increase in cooling effect pro-
+duced in the evaporator due to decreasing the condenser water inlet
+temperature which resulted in low evaporator temperature of 8 ～C. In
+contrast, condenser temperature increases in case of 5 ～C more than in
+case of 30 ～C resulting in area ＆B＊ larger than area ＆A＊, Fig. 10-c, which
+is because of larger amount of water produced at lower condenser
+water inlet temperature.
+
+5. Numerical simulation and validation
+
+A Simulink model has been developed to simulate the adsorption
+water desalination/cooling system shown in Fig. 1. This model has
+been validated using the experimental results and then used to predict
+the system performance at other operating conditions.
+
+5.1. Numerical model
+
+In order to study the cycle, energy equations are solved for evapora-
+tor, condenser, adsorber/desorber bed in addition to mass and salt bal-
+ance equations for the evaporator [26] as shown in Eqs. 9每13:
+Evaporator mass balance equation:
+
+dMs;evap
+
+dt
+
+ 牟m:
+
+s;in
+
+污m:
+
+b
+
+n  dW ads
+dt
+
+Ma
+
+9
+
+Evaporator salt balance equation:
+
+Ms;evap
+
+dX s;evap
+
+dt
+
+ 牟X s;in m:
+s;in
+
+污X s;evap m:
+brine
+
+n  X D
+
+dW ads
+
+dt
+
+Ma
+
+10
+
+Evaporator energy balance equation:
+
+Ms;evap cp;s  T evap ; X s;evap
+ 牟  h f T evap ; X s;evap
+chilled cp T evap
+ T chilled in
+T chilled out
+
+ 
+
+  MHX ;Evap cp;HX
+ dT evap
+n  hfg T evap
+s;in
+
+
+
+ dW ads
+dt
+dt
+
+ 
+
+
+
+m:
+
+ 
+ 
+
+
+
+
+
+Ma
+
+ m:
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+污h f T evap ; X s;evap
+
+
+
+m:
+
+b
+
+11
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+10
+
+20
+30
+Evaporator inlet temperature (oC)
+
+40
+
+D
+S
+
+W
+
+P
+
+(
+
+m
+
+3
+
+t
+/
+
+y
+a
+d
+e
+n
+n
+o
+
+/
+
+)
+
+5Deg Cond
+20Deg Cond
+
+10Deg Cond.
+30Deg Cond
+
+Fig. 8. SDWP at different evaporator and condenser water temperatures.
+
+0
+
+25
+
+50
+
+75
+
+100
+
+125
+
+150
+
+175
+
+200
+
+225
+
+0
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+5
+
+15
+25
+35
+Evaporator inlet temperature (oC)
+
+45
+
+P
+C
+S
+
+(
+
+R
+
+t
+
+n
+o
+
+t
+/
+
+s
+d
+a
+e
+n
+n
+o
+
+)
+
+P
+C
+S
+
+(
+
+W
+
+/
+
+g
+k
+
+)
+
+5Deg Cond
+20Deg Cond
+
+10Deg Cond.
+30Deg Cond
+
+Fig. 9. SCP at different evaporator and condenser water temperatures.
+
+Fig. 10. Temperature prole at two condenser water inlet temperatures, 5 ～C (L) and 30 ～C (H) (a) Adsorber Bed (b) Evaporator (c) Condenser.
+
+197
+
+P.G. Youssef et al. / Desalination 404 (2017) 192每199
+
+P.G. Youssef et al. / Desalination 404 (2017) 192每199
+
+Bed (Exp.)
+Evap. (Exp.)
+Cond. (Exp)
+
+Bed (Num.)
+Evap. (Num.)
+Cond. (Num.)
+
+198
+
+)
+
+C
+
+o
+
+(
+
+e
+
+r
+
+u
+
+t
+
+a
+
+r
+
+e
+p
+
+m
+
+e
+T
+
+90
+80
+70
+60
+50
+40
+30
+20
+10
+0
+
+0
+
+200
+
+400
+
+600
+
+800
+1000
+Time (sec.)
+
+1200
+
+1400
+
+1600
+
+Fig. 11. Comparison of basic cycle components temperatures for numerical and
+experimental results of a single-bed adsorption desalination cycle.
+
+Fig. 12. Comparison of SDWP and SCP for numerical and experimental results for a single-
+bed adsorption desalination cycle.
+
+Adsorption/desorption bed, energy balance equation:
+
+  MHX c p;HX
+Ma c p;a
+
+ m:
+
+
+
+cw=hw
+
+ dT ads=des
+
+
+
+
+ cp T ∪
+
+  Mabe cp;abe
+T cw=hw;out
+
+cw=hw;in
+
+
+
+dt
+ z  Q stMa
+
+dW ads=des
+
+dt
+
+12
+
+
+
+
+
+where, z is a ag equals 0 in heat recovery phase and 1 in adsorption/de-
+sorption phase.
+Condenser energy balance equation:
+
+ dT cond
+
+
+
+
+
+
+
+  M HX ;Cond
+Mcond cp T cond
+ cp;HX
+ hfg T cond
+ T cond;inT cond;out
+
+dt
+Ma n  dW des
+dt
+
+dMd
+dt
+
+ h f
+
+
+
+ 
+
+
+
+
+
+ m:
+
+
+
+cond cp T cond
+
+
+
+13
+
+All energy and mass balance equations in addition to adsorbent
+characteristics equations (isotherms and kinetics) are solved by
+Simulink with tolerance value of 1 ℅ 10 6. In this simulation it was as-
+sumed that there is no heat loss from the bed and the temperature of all
+constituents of each component are kept at the same temperature
+momentarily.
+
+5.2. Validation of numerical model
+
+Results of an experimental test at the operating conditions described
+in Section 4 and at evaporator and condenser water temperatures of
+10 ～C were used for validation. Validation of the developed Simulink
+model is based on a comparison between experimental and numerical
+temperatures of bed, evaporator and condenser as shown in Fig. 11
+showing good agreement between the experimental and simulation re-
+sults with an error within ㊣ 10% which is presented on Table 5. Fig. 12
+compares the experimental and numerical results of daily water pro-
+duction and specic cooling power with an error of 7.3 and 6.3%
+respectively.
+The validated mathematical model was used to investigate the sys-
+tem performance at condensing temperature of 30 ～C and higher bed
+heating temperature of 120 ～C to achieve the same partial pressure as
+the case used in the model validation above. Fig. 13 compares the pre-
+dicted SDWP and SCP to those produced experimentally at condensing
+
+Table 5
+Error range for the validation of adsorption desalination cycle.
+
+Bed 1
+Condenser
+Evaporator
+
+Maximum (%)
+7.59
+0.44
+5.92
+
+Minimum (%)
+ 8.3
+ 6.1
+ 0.69
+
+Fig. 13. Comparison of SDWP and SCP for numerical (high desorption and condenser
+temperatures) and experimental (low desorption and condenser temperatures) results.
+
+temperature of 10 ～C and bed heating temperature of 95 ～C. It can be
+seen that they comparable with difference b 10%. This illustrates that
+as long as the partial pressure ratio is maintained, the performance of
+the system will be comparable.
+
+5.3. Condenser and desorption water temperature effect
+
+SDWP and SCP are shown on Figs. 14 and 15 respectively at further
+heating medium inlet temperatures for the range of 110每155 ～C at
+
+30 DegC Cond.
+10 DegC Cond.
+
+20 DegC Cond.
+5 DegC Cond
+
+)
+
+/
+
+y
+a
+d
+e
+n
+n
+o
+
+t
+/
+
+3
+
+m
+
+(
+
+P
+
+W
+
+D
+S
+
+20
+18
+16
+14
+12
+10
+8
+6
+4
+2
+0
+
+95
+
+110
+125
+140
+Desorption Inlet temperature (oC)
+
+155
+
+Fig. 14. SDWP at different desorption and condenser water inlet temperatures.
+
+P.G. Youssef et al. / Desalination 404 (2017) 192每199
+
+199
+
+30 DegC Cond.
+
+20 DegC Cond.
+
+10 DegC Cond.
+
+5 DegC Cond
+
+)
+
+g
+k
+
+/
+
+W
+
+(
+
+P
+C
+S
+
+600
+
+500
+
+400
+
+300
+
+200
+
+100
+
+0
+
+)
+
+s
+d
+a
+
+.
+
+e
+n
+n
+o
+
+t
+/
+
+n
+o
+
+t
+
+R
+
+(
+
+P
+C
+S
+
+160
+140
+120
+100
+80
+60
+40
+20
+0
+
+95
+
+110
+125
+140
+Desorption Inlet temperature (oC)
+
+155
+
+Fig. 15. SCP at different desorption and condenser water inlet temperatures.
+
+different condenser inlet water temperatures ranging from 5 to 30 ～C. As
+noticed from experimental results in Section 4.3, decreasing condenser
+water inlet temperature results in more cooling and water production
+where SDWP and SCP increase by 152% and 95% respectively when con-
+denser water inlet temperature decreases from 30 to 5 ～C at 110 ～C de-
+sorption temperature. However, increasing desorption temperature
+enhances cycle outputs as SDWP and SCP are increased by 195% and
+96% when desorption temperature increases from 110 to 155 ～C at the
+same condenser temperature of 30 ～C.
+
+6. Conclusions
+
+Adsorption water desalination outperforms conventional desalina-
+tion technologies in terms of energy consumption, CO2 emissions and
+water production cost. MOF is a new class of porous materials with ex-
+ceptionally high water adsorption capabilities. CPO-27Ni is a MOF mate-
+rial with higher water uptake value at low partial pressure ratio
+compared to silica gel leading to advantages in terms of water desalina-
+tion and cooling production. This work experimentally investigates the
+use of CPO-27Ni MOF adsorbent material for adsorption desalination/
+cooling applications. The effect of operating parameters like evaporator
+and condenser water inlet temperatures, half cycle and switching times
+on the system performance in terms of specic daily water production
+and specic cooling power were investigated. It was shown that a max-
+imum water production of 22.8 m3/tonne﹞ads/day was achieved as
+well as cooling of 215.9 Rton/tonne adsorbent at maximum evaporator
+water inlet temperature of 40 ～C and condenser water inlet temperature
+of 5 ～C. This is due to the nature of the isotherm curve of CPO-27Ni and
+the fact that reducing condenser temperature and increasing evaporator
+temperature, maximizes the cycle uptake and hence results in more
+cooling and water outputs. In addition, a numerical model was devel-
+oped and validated using the experimental results and then used to pre-
+dict cycle performance at other operating conditions. From this model, it
+was concluded that as long as the partial pressure ratio is maintained,
+the same cycle outputs could be obtained using different combinations
+between condenser and desorption temperatures.
+
+Acknowledgement
+
+The authors would like to thank Weatherite Holdings Ltd. for spon-
+soring the project.
+
+References
+
+[1] H. Ettouney, Seawater desalination, Conventional and Renewable Energ Processes,
+Springer, 2009.
+[2] P.G. Youssef, R.K. Al-Dadah, S.M. Mahmoud, Comparative analysis of desalination
+technologies, Energy Procedia 61 (2014) 2604每2607.
+[3] T. Mezher, H. Fath, Z. Abbas, A. Khaled, Techno-economic assessment and environ-
+mental impacts of desalination technologies, Desalination 266 (2011) 263每273.
+[4] K. Thu, Adsorption Desalination Theory and Experiment: National University of Sin-
+gapore, 2010.
+[5] J.W. Wu, E.J. Hu, M.J. Biggs, Thermodynamic cycles of adsorption desalination sys-
+tem, Appl. Energy 90 (2012) 316每322.
+[6] K.C. Ng, K. Thu, B.B. Saha, A. Chakraborty, Study on a waste heat-driven adsorption
+cooling cum desalination cycle, Int. J. Refrig. 35 (2012) 685每693.
+[7] A. Chakraborty, K. Thu, K.C. Ng, Advanced Adsorption Cooling Cum Desalination
+Cycle - A Thermodynamic Framework, ASME 2011 International Mechanical Engi-
+neering Congress & Exposition IMECE2011, Denver, Colorado, USA, 2011.
+[8] K.C. Ng, K. Thu, A. Chakraborty, B.B. Saha, W.G. Chun, Solar-assisted dual-effect ad-
+sorption cycle for the production of cooling effect and potable water, International
+Journal of Low-Carbon Technologies. 4 (2009) 61每67.
+[9] J.W. Wu, M.J. Biggs, E.J. Hu, Thermodynamic analysis of an adsorption-based desali-
+nation cycle, Chem. Eng. Res. Des. 88 (2010) 1541每1547.
+[10] T.X. Li, R.Z. Wang, H. Li, Progress in the development of solid每gas sorption refriger-
+ation thermodynamic cycle driven by low-grade thermal energy, Prog. Energy Com-
+bust. Sci. 40 (2014) 1每58.
+[11] X. Wang, K.C. Ng, Experimental investigation of an adsorption desalination plant
+using low-temperature waste heat, Appl. Therm. Eng. 25 (2005) 2780每2789.
+[12] K.C. Ng, X.-L. Wang, L. Gao, A. Chakraborty, B.B. Saha, S. Koyama, A. Akisawa, T.
+Kashiwagi, Apparatus and Method for Desalination, 2010.
+[13] K. Thu, K.C. Ng, B.B. Saha, A. Chakraborty, S. Koyama, Operational strategy of adsorp-
+tion desalination systems, Int. J. Heat Mass Transf. 52 (2009) 1811每1816.
+[14] S. Mitra, P. Kumar, K. Srinivasan, P. Dutta, Performance evaluation of a two-stage sil-
+ica gel + water adsorption based cooling-cum-desalination system, Int. J. Refrig.
+(2015).
+[15] P.G. Youssef, S.M. Mahmoud, R.K. Al-Dadah, Effect of evaporator temperature on the
+performance of water desalination / refrigeration adsorption system using AQSOA-
+ZO2, International Journal of Environment, Chemical, Ecological, Geological Engi-
+neering. 9 (2015) 679每683.
+[16] P.G. Youssef, S.M. Mahmoud, R.K. Al-Dadah, Numerical simulation of combined ad-
+sorption desalination and cooling cycles with integrated evaporator/condenser, De-
+salination 392 (2016) 14每24.
+[17] S.M. Ali, A. Chakraborty, Adsorption assisted double stage cooling and desalination
+employing silica gel + water and AQSOA-Z02 + water systems, Energy Convers.
+Manag. 117 (2016) 193每205.
+[18] E. Elsayed, R. Al-Dadah, S. Mahmoud, A. Elsayed, P.A. Anderson, Aluminium fuma-
+rate and CPO-27(Ni) MOFs: characterization and thermodynamic analysis for ad-
+sorption heat pump applications, Appl. Therm. Eng. 99 (2016) 802每812.
+[19] A. Elsayed, R. AL-Dadah, S. Mahmoud, B. Shi, P. Youssef, A. Elshaer, W. Kaialy, Char-
+acterisation of CPO-27Ni Metal Organic Framework Material for Water Adsorption,
+SUSTEM International ConferenceNewcastle Upon Tyne 2015, pp. 284每290.
+[20] A. Elsayed, E. Elsayed, R. Al-Dadah, S. Mahmoud, A. Elshaer, W. Kaialy, Thermal en-
+ergy storage using metal每organic framework materials, Appl. Energy (2016).
+[21] E. Elsayed, R. Al-Dadah, S. Mahmoud, P.A. Anderson, A. Elsayed, P.G. Youssef, CPO-
+27(Ni), aluminium fumarate and MIL-101(Cr) MOF materials for adsorption water
+desalination, Desalination (2016), http://dx.doi.org/10.1016/j.desal.2016.07.030.
+[22] S.K. Henninger, M. Schicktanz, P.P.C. H邦genell, H. Sievers, H.M. Henning, Evaluation
+of methanol adsorption on activated carbons for thermally driven chillers part I:
+thermophysical characterisation, Int. J. Refrig. 35 (2012) 543每553.
+[23] B. Shi, R. Al-Dadah, S. Mahmoud, A. Elsayed, E. Elsayed, CPO-27(Ni) metal每organic
+framework based adsorption system for automotive air conditioning, Appl. Therm.
+Eng. 106 (2016) 325每333.
+[24] L.X. Gong, R.Z. Wang, Z.Z. Xia, C.J. Chen, Design and performance prediction of a new
+generation adsorption chiller using composite adsorbent, Energy Convers. Manag.
+52 (2011) 2345每2350.
+[25] J.W. Wu, M.J. Biggs, P. Pendleton, A. Badalyan, E.J. Hu, Experimental implementation
+and validation of thermodynamic cycles of adsorption-based desalination, Appl. En-
+ergy 98 (2012) 190每197.
+[26] K.C. Ng, K. Thu, Y. Kim, A. Chakraborty, G. Amy, Adsorption desalination: an emerg-
+ing low-cost thermal desalination method, Desalination 308 (2013) 161每179.
+

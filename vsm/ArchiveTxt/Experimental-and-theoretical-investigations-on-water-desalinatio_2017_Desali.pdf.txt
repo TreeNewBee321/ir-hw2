@@ -1,0 +1,2791 @@
+Experimental and theoretical investigations on water desalination using direct contact membrane distillation
+
+A. Khalifa a,, H. Ahmad a, M. Antar a, T Laoui a, M. Khayet b,c
+
+a Mechanical Engineering Department, King Fahd University of Petroleum & Minerals, Dhahran 31261, Saudi Arabia
+b Department of Applied Physics I, Faculty of Physics, University Complutense of Madrid, Av. Complutense s/n, 28040 Madrid, Spain
+c Madrid Institute for Advanced Studies of Water (IMDEA Water Institute), Calle Punto Com No. 42, Alcal芍 de Henares, 28805 Madrid, Spain
+
+H I G H L I G H T S
+
+ Comprehensive experimental and theoretical studies on DCMD system
+ Effects of main operating variables and membrane degradation
+ Theoretical results agree with experimentally measured values.
+ Membrane characterization and SEM micrographs before and after use
+ Evaporation efciency and GOR values are calculated for energy efciency.
+
+article
+
+info 
+
+
+Article history:
+Received 12 July 2016
+Received in revised form 10 October 2016
+Accepted 14 October 2016
+Available online 2 November 2016
+
+Keywords:
+Water desalination
+Direct contact membrane distillation
+Performance investigation
+Experimental and theoretical studies
+Membrane characterization and degradation
+
+abstract
+
+
+Direct contact membrane distillation (DCMD) is one of the commonly used congurations of membrane distilla-
+tion technology for water desalination. In the present study, comprehensive investigations on different parame-
+ters affecting the performance of the DCMD system are presented. The investigated variables include the hot feed
+and the cold permeate temperatures, feed-permeate temperature difference and ratio, feed and permeate ow
+rates, feed-permeate ow rate ratio, feed concentration, membrane pore size, and membrane degradation
+with time, etc. An analytical model, based on the heat and mass transfer equations within the DCMD module,
+was used to predict the system performance at different operating conditions. The model was used to predict
+the temperature difference across the membrane surfaces and then calculating the vapor pressure difference
+leading to the permeate ux. The model was validated with the experimental measurements. The permeate
+ux increases with increasing the feed temperature, feed ow rate, permeate ow rate, and pore size, and de-
+creases with increasing the permeate temperature and feed concentration. The productivity of the system is
+very promising since a permeate ux of 100 kg/m2﹞h was achieved at 90 ～C for hot feed side and 5 ～C for cold
+side stream. The DCMD system is able to handle feeds with high salt concentration of 100 g/L with remarkably
+high salt rejection factor and low permeate total dissolved solids (TDS). The SEM micrographs showed the
+used polytetrauoroethylene (PTFE) membrane covered with a fouling layer, as compared to the as-received
+membrane, which attests the need for feed pretreatment and/or membrane washing to recover the membrane
+performance. The evaporative (thermal) efciency ranged from 70% to 95% and the GOR values ranged from
+0.8 to 1.2 corresponding to feed temperature from 40 ～C to 90 ～C, depending mainly on the feed temperature.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Many countries worldwide suffer from real water shortage caused
+by the rapid population growth, economic development, and
+diminishing nature water resources. Projections increase of N 2% in
+fresh water demand has been reported in many countries which is
+almost double their population growth rates [1]. It is predicted that
+some regions of the world will be plagued by water scarcity [2每5] main-
+ly due to the economic growth and development. Shortage of fresh
+water can be solved by desalination processes in which substantial
+amount of energy to be used [6,7]. Presently, 50% of the world's total de-
+salination capacity is based on membrane using the concept of reverse
+osmosis, and the remaining shares are by thermal processes such as
+the multi-stage ashing (MSF), the multi effect desalination (MED),
+vapor compression (VC) and adsorption desalination (AD). The
+thermally-based (non-membrane) desalination methods are domi-
+nantly used in the Arab Gulf Cooperation Council (GCC) countries [8,
+9]. The major reasons for adopting the thermal methods in the GCC
+countries are; rstly, the high feed salinity in the Gulf and the fouling
+susceptibility of membranes at high brine concentration limits the
+water recovery ratio of RO process. Secondly, the frequent occurrences
+of harmful algae blooms (HABs) in the water of Gulf tend to contain
+high concentration of toxins in seawater feed that may pass through
+the membrane pores, causing human illnesses and death if the toxins
+are ingested [3].
+There is a rapid growth in using membrane technologies for water
+desalination. Membrane distillation (MD) is one of those technologies
+that have a potential and can be applied to produce distillate water
+from seawater and brackish water. It involves a hydrophobic micropo-
+rous membrane that separates water vapor from the salty feed water.
+Hydrophobicity of membrane disallows water in liquid form because
+of surface tension but vapor can pass through. The driving force of per-
+meation across the membrane is the vapor partial pressure difference of
+the two streams on the membrane sides, which is a function of the tem-
+perature difference across the membrane. In direct contact membrane
+distillation (DCMD) design, vaporization takes place at the liquid-
+vapor interface at the membrane pore surface in the feed side. Vapor
+is then permeates through the pores from the hot side to the cold side
+due to the difference in vapor pressure across the membrane (capillary
+action). The permeated vapor is then condensed in the cold stream side
+of the membrane [10]. DCMD is not only limited to water purication
+but can also be used for treatment of very high concentrations such as
+oileld produced water [11]. Macedonio et el. reported that a good
+salt rejection factor can be obtained by desalinating water that is obtain-
+ed after oileld treatment by using Polypropylene (PP) and
+polyvinydene uoride (PVDF) membranes at high ow rates of feed
+and coolant. Manawi et al. [12] determined the effect of temperature
+polarization on the permeate ux by measuring intermediate tempera-
+tures on membrane surface. They developed a multi-dimensional
+model in order to estimate temperatures at different points on mem-
+brane surface, and optimized the permeate ux by minimizing temper-
+ature polarization coefcient. The effect of feed water salinity was
+studied by Hsu et al. [13], using a NaCl-H2O solution and seawater as
+feeds. They compared the performances of both systems, and they
+used ultrasonic technique for cleaning purpose.
+Boubakri et al. [14] performed DCMD experiments using PP mem-
+brane with a low pore size of 0.064 米m. They reported that the permeate
+ux reached 4.24 L/m2 h at a temperature difference of 60 ～C and Reyn-
+olds number (Re) of 3740. Lin et al. [15] presented a comprehensive en-
+ergy analysis of MD-HX system and dened optimum relative ow
+rates, mass recovery rates, and specic heat duty for the system. They
+coupled MD module with a heat exchanger in order to recover latent
+of condensation of vapors in the coolant stream using a circular module.
+Srisurichan et al. [16] investigated the mass transport and fouling mech-
+anism in DCMD system. They suggested that molecular diffusion model
+was the best one for diffusion in fouling related phenomenon. The effect
+of coolant velocity is not well explained in literature. Some researchers
+have a point of view of decreasing ux by increasing permeate velocity
+while others have an opposite viewpoint. Naidu et al. [17] reported that
+a velocity ranging between 0.8 and 1.2 m/s was optimum for feed and
+permeate sides. Ho et.al. [18] studied the effect of channel smoothness
+and ow direction and used eddy promoter to make roughened surface
+channels for feed and permeate. They reported that the counter-current
+direction ow resulted in higher permeate ux than concurrent ow ar-
+rangement. Qtaishat et al. [19]. presented a detailed analysis of the heat
+transfer in DCMD through a mathematical model. The coupled effect of
+mass and heat transfers was addressed and an experimental validation
+was presented. Performance indicators such as the temperature polari-
+zation coefcient, the membrane mass transfer coefcient and the
+evaporation efciency were discussed. Andrjesd車ttir [10] investigated
+a different forms of dusty gas model utilized for mass transfer. Different
+
+heat and mass transfer correlations were tested, and the transitional
+model was found to give the best correlation. The model was also
+used by Dahiru and Khalifa [20]. Depending upon the pore size, a
+three-parameter model namely Knudsen diffusion, Molecular diffusion,
+and Poiseullie ow is considered. Transition model (KMPT) was intro-
+duced by Ding et al. [21] to predict membrane distillation coefcient.
+For large pores, dominating Poiseullie ow was observed. Therefore,
+two or three of the three mechanisms (Knudsen, molecular, Poiseullie)
+could be present in a single membrane. Martinez and Diaz [22] devel-
+oped a model depending on dusty gas model of gas transport through
+membrane pores. The model showed a good agreement with the exper-
+imental values.
+In this paper, a comprehensive study on the main variables affecting
+the DCMD performance and degradation is presented, both experimen-
+tally and analytically. The investigated variables included feed tempera-
+ture, cold permeate temperature, feed-to-permeate temperature
+difference and ratio, feed ow rate, permeate ow rate, feed-to-perme-
+ate ow rate ratio, feed concentration up to 100 g/L, membrane pore
+size, and membrane degradation with time. The membranes used
+were characterized and the effects of continuous operation on the mem-
+brane surface and system performance were investigated. The analytical
+model is based on solving the equations of heat and mass transfer with-
+in the DCMD module.
+
+2. Mathematical modelling
+
+2.1. Mass transfer
+
+Fig. 1 shows the conguration of DCMD module. The hot feed stream
+ows over a hydrophobic membrane. On the other side of the mem-
+brane, cold permeate ows. The temperature difference between the
+membrane surfaces creates a difference of vapor pressure across the
+membrane that causes feed vapor permeate through membrane pores,
+and condense on the cold permeate side.
+
+Fig. 1. Schematic of DCMD process with temperature and concentration variations.
+
+24
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+The permeate mass ux through the membrane depends mainly on
+the difference of vapor pressure of water in feed and permeate sides.
+The permeate mass ux can be given as [23每25];
+Jw  De  忖pm  De  P o
+
+wf P o
+
+1
+
+
+
+ 
+
+wp
+
+where Jw is the mass ux of permeate, and De is the equivalent diffusion
+coefcient. 忖Pm is the vapor pressure difference at transmembrane sur-
+faces. Po
+wf and Po
+wp are the vapor pressures of feed and permeate sides at
+the membrane surfaces; respectively, and are calculated from Antoine
+equation as follows:
+
+p0
+
+p0
+
+wf  exp 23:1964
+ 3816:44
+T mf 46:13
+
+
+
+wp  exp 23:1964
+ 3816:44
+T mp46:13
+
+
+
+
+
+
+
+
+
+
+
+
+
+If we consider the effect of salinity in the feed solution then Eq. (1) is
+written as,
+
+Jw  De  po
+
+wf  污wf  xwf po
+
+wp
+
+where 污wfis activity coefcient and xwfis the mole fraction of water in
+feed. The activity coefcient represents the variation of substances
+from their ideal behavior due to impurities, and mole fraction is the
+ratio of numbers of moles of any specie to the total number of moles
+present in solution.
+For an aqueous solution of NaCl, the activity co-efcient is given as
+[24,26每28]
+污wf  1 0:5  xNaCl
+
+ 10  x2
+
+5
+
+
+
+ 
+
+NaCl
+
+
+
+where xNaClis the mole fraction of NaCl in water solution.
+Essalhi et al. [24] considered the combined effect of Knudsen and
+molecular diffusions by introducing a factor 汐 which is the ratio of
+Knudsen diffusion to mass diffusion and shows the dominance of phe-
+nomenon which is occurring in mass transfer. The value of 汐 can vary
+between 0 and 1,
+
+
+
+ 
+
+
+
+汐
+
+Dk
+
+ 1汐
+
+Dm
+
+
+
+1
+
+De 
+
+Dk and Dm represent Knudsen and molecular diffusion coefcients;
+respectively, and can be found by the following expressions,
+
+!1
+
+0:5
+
+
+
+
+
+
+
+3  汛  而
+
+ 羽  R  T m
+
+Dk 
+
+
+
+2  汍  dpore
+8  Molw
+Dm  R  T m  汛  而  P air;pore
+Molw  汍  PDw;a
+
+1
+
+where 汛 is the membrane thickness, 汍 is the membrane porosity, R is the
+universal gas constant, Tm is the mean or average temperature across
+membrane surfaces, dpore is the pore diameter, Molw is the molecular
+weight of water molecules, P is the total pressure inside the pore, and
+Dw,a is pressure independent molecular diffusion coefcient for water
+and air or simply the diffusivity of water vapors in air.
+而 is the membrane tortuosity which is given as [29];
+
+Diffusivity of water vapors produced through the static air inside the
+membrane pores can be calculated as [10,28,30];
+PDw;a  1:895  105  T m
+
+10
+
+2:072
+
+The total pressure inside the pores is assumed to be the average of
+feed and permeate side pressures; that is:
+
+Ppore  P f  Pp
+
+2
+
+11
+
+Considering air and water vapors lling the pores then the partial
+pressure of air inside the membrane pores can be written as,
+
+P air ;pore  PporePw;v;p
+
+12
+
+where Pw,v,p represents the partial pressure of water vapors inside the
+pores which can be calculated using.
+Antoine equation based on the mean temperature across the mem-
+brane surfaces, Tm, where
+T m  T mf  T mp
+2
+
+13
+
+2.2. Heat transfer
+
+Referring to DCMD conguration in Fig. 1, different modes of heat
+transfer are identied. In the feed side, uid is at high temperature,
+high salinity owing over the membrane surface. The heat transfer in
+this side will be due to convection. Then on the permeate side the
+uid is owing, causing convective heat transfer to occur. Through the
+membrane, the heat transfer is due conduction and mass ux. Thus,
+heat transfer in a DCMD module is occurring in three regions.
+(1) Convective heat transfer (Q, W/m2) from the feed stream to
+membrane surface, governed by Newton's law of cooling [18,
+24,30],
+
+ 
+
+Q f  h f  T bf T mf
+
+
+
+14
+
+where Tbf and Tmf are the feed temperature and membrane surface tem-
+perature in the feed side respectively. hfis the convective heat transfer
+coefcient in feed side that can be calculated by using different correla-
+tions depending on the ow type (laminar or turbulent).
+
+(2) Heat transfer through membrane material by conduction and
+through the pores by evaporative mass ux.
+
+Heat carried by the vapors (Evaporative heat transfer) is written as
+product of vapor mass ux (Jw) and enthalpy of vaporization (忖Hv);
+Q v  Jw  忖Hv
+
+15
+
+
+
+ 
+
+ 
+
+The Enthalpy of vaporization of water is taken as [31]
+  2024:3
+忖Hv  1:7535  T mf
+where Tmf is the temperature of the membrane surface at feed side. Con-
+ductive heat transfer through membrane matrix is calculated using
+Fourier's law of conduction as;
+
+16
+
+ 
+
+ 
+
+Q c  km
+
+汛
+
+ T mf T mp
+
+
+
+17
+
+2
+
+3
+
+4
+
+6
+
+7
+
+8
+
+而  1
+汍
+
+9
+
+where Tmf and Tmp are membrane surface temperatures in feed and per-
+meate side respectively. 汛 is membrane thickness and km is effective
+
+thermal conductivity of membrane. The membrane conductivity can be
+better predicted on volume average of both gas and polymer conductivi-
+ties [30,32]. Using isostress series model to determine the thermal con-
+ductivity of membrane matrix, the following relation can be considered
+[30,33].
+
+km 
+
+汍
+
+kgas
+
+
+
+
+
+ 1汍
+
+kmem
+
+
+
+
+
+
+
+1
+
+18
+
+The total heat transfer across the membrane is simply the addi-
+tion of the conduct ive and evaporative heat transfer through the
+membrane.
+Q m  Q c  Q v
+
+19
+
+(3) Convective heat transfer in boundary layer region from mem-
+brane surface to permeate stream;
+Q p  hp  T mpT bp
+
+ 
+
+
+
+20
+
+where Tmp is membrane surface temperature at permeate side, Tbp is the
+permeate stream temperature, and hp. is the convective heat transfer co-
+efcient in permeate side that can be calculated by using different cor-
+relations. Under steady state condition, the following conservation of
+energy is valid,
+Q f  Q m  Q p
+
+21
+
+The temperatures of the membrane surfaces at feed and permeate
+sides are calculated as [24,27] ;
+
+T mf 
+
+km  T bp  h f
+ T bf
+hp
+km
+
+
+
+
+
+
+
+
+ 汛  h f  T bf  Jw  忖Hv
+
+ 
+
+
+
+ 
+ 
+
+
+
+
+
+
+  h f  汛  km
+
+hp
+
+ 
+
+
+
+22
+
+T mp 
+
+km  T bf  hp
+ T bp
+h f
+km
+
+
+
+ 汛  hp  T bp  Jw  忖Hv
+
+ 
+
+
+
+ 
+
+
+
+
+
+ 
+
+  hp  汛  km
+
+h f
+
+ 
+
+
+
+
+23
+
+The values of these temperatures can be inserted back in Eqs. (2) and
+(3) to determine the vapor pressures and then calculate the ux from
+Eqs. (1) or (4).
+To account for the effect of feed concentration on permeate ux, we
+dene the concentration polarization coefcient as the ratio of salt con-
+centration at the membrane surface to the concentration of salt in the
+feed stream [24],
+
+汕  Cmf
+
+C bf
+
+24
+
+Whereas the concentration at membrane surface is calculated as [31,
+33];
+
+Cmf  C bf  exp
+
+Jw
+ks  老bf
+
+!
+
+25
+
+where 老bf is the density of feed stream and ks is the solute mass transfer
+coefcient for the diffusive mass transfer through the concentration
+boundary layer in the feed side and can be calculated as
+ks  Sh  De
+Dh
+
+26
+
+where Dh is hydraulic diameter of feed channel and Sh is the Sherwood
+number. Sherwood number is a dimensionless parameter representing
+
+the ratio of convective to diffusive mass transport, and it is a function
+of Reynolds number and Schmidt number. It is analogous to Nusselt
+number which is used for convective heat
+transfer [31]. For
+Laminar ow, Sherwood number is given by Graetz每L谷v那que equation
+[31,34,35]
+
+Sh  1:86  Re  Sc  Dh
+L
+
+
+
+1=3
+
+27
+
+where Re is the Reynolds number of the channel ow, the channel ow
+(internal ow) is laminar if Re b 2300 and is turbulent if Re N 2300. L is
+the channel length.
+Sc is the Schmidt number, which is the ratio of momentum diffusiv-
+ity to the mass diffusivity;
+Sc  米 mf
+老bf  De
+
+28
+
+where 米mf is the feed viscosity at membrane surface.
+For Turbulent ow, Sherwood number is calculated using Dittus每
+Boelter equation [31]
+0:8  Sc
+
+Sh  0:023  Re f
+
+ 
+
+0:33
+
+29
+
+By denition, the convective heat transfer coefcient is calculated as;
+h  Nu  k
+Dh
+
+30
+
+where k is the average thermal conductivity of uid in feed or per-
+mea te s ides , Dh is the hyd rau l ic d iame te rs o f ow channe ls , and
+Nu is the dimensionless Nusselt number. In case of laminar channel
+ow , Grae tz-L谷v谷que proposed the fo l low ing co rre la t ion fo r
+Nusse lt Number [35 ,36] , wh ich is va l id for ows in both feed and
+permeate sides:
+Nu  1:86  Re  Pr  Dh
+L
+
+
+
+0:33
+
+31
+
+where Dh is the channel hydraulic diameter, L is the channel length,
+and Pris Prandtl number; which is the ratio of viscous diffusion rate
+to thermal diffusion rate and is dened as;
+ 米  cp
+Pr  糸
+汐
+
+k
+
+32
+
+where 米 is the dynamic viscosity, k is the thermal conductivity, and
+Cp is the specic heat of the uid.
+In case of turbulent channel ow, the correlations for Nusselt num-
+ber of the feed (hot side) and permeate (cold side) streams can be
+given as [24,37];
+0:8  Pr f
+0:8  P rp
+
+Nu f  0:027  Re f
+
+ 
+
+ 
+
+0:4 
+0:33 
+
+米 bf
+米 mf
+
+ !
+
+!0:14
+!0:14
+
+33
+
+Nup  0:027  Rep
+
+ 
+
+ 
+
+米
+米
+
+mp
+
+bp
+
+!
+
+34
+
+The total heat transfer in the module membrane can be written in
+terms of the overall heat transfer coefcient, U, as
+Q m  U  T bf T bp
+
+ 
+
+
+
+35
+
+25
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+26
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+Fig. 2. Design and assembly of the DCMD module; (a) module assembly, (b) module ow channels (c) membrane supporting mesh spacer, (d) assembled module.
+
+The overall heat transfer coefcient is based on the difference in
+temperatures between feed and permeate streams and can be deter-
+mined as follows [38];
+
+36
+
+2
+64
+
+U  1
+h f
+
+3
+751
+
+
+
+ 
+
+km汛
+
+1
+
+
+
+ Jw 忖Hv
+
+T mf T mp
+
+ 1
+
+hp
+
+
+
+3. Experimental setup
+
+The DCMD module consists of a at-sheet membrane and a
+channeled MD module. The module is made up of two Plexiglas ow
+compartments [39]. Fig. 2a shows the module assembly where the
+membrane is sandwiched between the two ow compartments. Each
+ow compartment has dimensions of 160 mm long, 160 mm wide,
+and 25 mm thick as shown in Fig. 2b. One compartment is used for
+hot feed water; while the other compartment is used for permeate
+cold water. Water enters through header and distributed into three
+channels. After passing over the membrane surface, the uid is collected
+back into the exit header. Each ow compartment has three rectangular
+channel of the same dimensions of 66 mm in length, 24 mm in width
+and 5 mm in depth. A feed spacer, in the form of a mesh (net), is used
+between the feed stream and active side of membrane surface, as
+shown in Fig. 2c. The purpose of this spacer is to mechanically support
+the membrane in addition to enhance the turbulence level in the feed
+channel for better permeation ux. To avoid internal leakage, a rubber
+sheet of 2 mm thickness is used as a gasket.
+Internal leakage may happen because of membrane rupture at sharp
+edges during the module assembly. The assembled module is shown in
+Fig. 2d. The effective membrane area of permeation is 6.192E  2 m2.
+
+Insulated steel pipes are used for inlet and outlet uid transmission
+from heater and chiller. The water heater and chiller operate by con-
+trolled thermostat head (acquired from ThermoFisher), and are used
+to provide constant ow rates and constant temperatures for the feed
+and coolant streams. A oat ow meter is used to measure feed ow
+rate and a turbine ow meter is used to measure coolant ow rate.
+The feed and the permeate concentrations are measured using a cali-
+brated conductivity meter. Pressure gauges (max range of 2 bar) are
+used to measure and observe the inlet and outlet pressure of feed and
+permeate sides. Hi-Speed USB Carrier (National Instruments) is used
+for data acquisition. K-type thermocouples are used to monitor the
+inlet and outlet temperature of feed and permeate sides. The extra per-
+meate is collected from the chiller tank with time via a tube at its top.
+Fig. 3 shows a real photo of the instrumented DCMD module and a sche-
+matic of the experimental setup.
+In the experimental work, four levels of feed concentrations are test-
+ed: (1) Sweet tap water having concentration of 0.140 g/L, (2) Aqueous
+salt NaCl solution of 2 g/L, (3) Seawater collected from Arabian Gulf, Al-
+Khobar, Kingdom of Saudi Arabia with 43 g/L salt concentration (with-
+out any pre-treatment), and (4) Extreme lab NaCl-water salt solution
+of 100 g/L.
+
+4. Results and discussion
+
+The current investigation aimed to present a comprehensive exper-
+imental and analytical study on the variables that affect the perfor-
+mance of the DCMD system. In this section, the feed temperature is
+varied from 40 to 90 ～C. The cold permeate temperature is varied from
+5 ～C to 25 ～C. The feed ow rate and coolant ow rate are tested at
+three different levels. Different concentrations of the feed water of
+0.14, 2, 43 and 100 g/L are examined. PTFE membranes having two dif-
+ferent mean pore sizes of 0.45 米m and 0.22 米m are used.
+
+4.1. Effect of feed and permeate temperatures
+
+The effects of feed temperature on the permeate ux are studied
+over a range of temperatures from 40 ～C to 90 ～C with an increment of
+10 ～C. The ux change with feed temperature was observed at varying
+
+cold permeate temperatures of 5 ～C, 10 ～C, 15 ～C, 20 ～C, and 25 ～C; re-
+spectively, with feed concentration of 2 g/L. Experimental and theoreti-
+cal results are shown in Fig. 4(a) to (e) as separate sub-gures to avoid
+data clustering and to shed more light on the validation of the theoret-
+ical model. Increasing the feed temperature increases the permeate ux,
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+30
+
+40
+
+50
+60
+70
+80
+90 100
+Inlet Feed Temp ( C) 
+
+Tc
+=5 C
+
+Exp.
+Theo.
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+30
+
+40
+50
+60
+70
+80
+90 100
+Inlet feed temperature ( C) 
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+-
+2
+
+h
+
+)
+r
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+-
+2
+
+h
+
+)
+r
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+-
+2
+
+h
+
+)
+r
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+-
+2
+
+h
+
+)
+r
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+-
+2
+
+h
+
+)
+r
+
+Tc
+=10 C
+
+Exp.
+Theo.
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+30
+
+40
+50
+60
+70
+80
+90 100
+Inlet feed temperature ( C)
+
+Tc
+
+Exp.
+Theo
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+30
+
+40
+50
+60
+70
+80
+90 100
+Inlet feed temperature ( C)
+
+Tc
+
+Theo.
+Exp.
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+30
+
+40
+
+50
+60
+70
+80
+90
+Inlet feed temperature ( C)
+
+100
+
+Tc
+=25 C
+
+=15 C
+
+=20 C
+
+Exp.
+Theo
+
+Fig. 4. Effect of feed temperature on permeate ux at different cold permeate temperatures. Conditions: membrane PTFE 0.45 米m, feed concentration 2 g/L, feed ow rate 4.6 L/min, coolant
+ow rate 3.65 L/min.
+
+Fig. 3. The Instrumented DCMD module and a schematic diagram of the experimental setup.
+
+27
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+almost in an exponential way in agreement with Antoine Eq. (2). Ac-
+cording to this equation, the effect of temperature on vapor pressure
+is small at low feed temperature, and becomes very signicant at high
+feed temperature. The maximum permeate ux achieved at feed tem-
+perature of 90 ～C and cold permeate temperature of 5 ～C is about 100
+kg/m2﹞h. This high value of permeate ux is attributed to the high tem-
+perature difference across the membrane, the high porosity of the PTFE
+membrane, high contact angle, and large pore size. Increasing the tem-
+perature difference across the membrane increases the vapor pressure
+difference between the membrane sides. However, the thermal bound-
+ary layer increases and consequently the temperature polarization over
+the membrane.
+The theoretical model predictions of the permeate ux are in good
+agreement with the experimentally measured values at different tem-
+peratures. Maximum deviations between calculated and measured
+uxes are found at the lowest permeate temperature of 5 ～C. The effect
+of cold permeate temperature on ux is shown Fig. 5, where the perme-
+ate temperature is varied from 5 ～C to 25 ～C by an increment of 5 ～C, at
+selected feed temperatures. The ux increases as the cold permeate
+temperature decreases. Decreasing the permeate temperature increases
+the transmembrane vapor pressure difference; which leads to increas-
+ing the permeate ux. The model prediction of ux shows good agree-
+ment with the measured values.
+
+In order to assess the effects of operating the DCMD system at differ-
+ent temperatures, the percent change in measured ux is displayed in
+Fig. 6. Comparatively, from Fig. 6 (a) and (b), increasing the feed stream
+temperature is more effective in increasing the system ux as compared
+to decreasing the cold permeate stream temperature. Referring to
+Fig. 6a, the percentage increase in ux is reported at the corresponding
+feed temperatures when the cold permeate temperature is reduced
+from 25 ～C to 5 ～C. This plot enables us to monitor and justify the effec-
+tiveness of cooling the permeate stream down to 5 ～C, which consumes
+a lot of energy, compared to the use of near room temperature permeate
+stream. In general, reducing the temperature of the cold permeate
+stream improves the system ux at any given feed temperature. One
+can report about 35% increase in ux, on average, when reducing per-
+meate temperature from 25 ～C to 5 ～C, except for feed temperature of
+40 ～C where the ux increase is signicant (114%). Percentagewise, op-
+erating at lower permeate temperature is more effective in increasing
+the ux at low feed temperatures. On the other hand, Fig.6b shows
+the percentage increase in ux when the feed temperature increases
+from 50 to 90 ～C, at a given temperature of the cold permeate stream.
+Increasing the feed temperature from 50 to 90 ～C increases the ux by
+302 to 560%, depending on the temperature of cold permeate stream.
+However, the percentage increase in ux increases with increasing the
+cold permeate temperature. It may be understood that although operat-
+ing the DCMD system at low permeate temperature can yield higher
+values of ux, the percentage increase in ux is larger at high permeate
+temperature, for the same range of increased feed temperature.
+Since the operating temperatures for feed (Tf) and cold permeate
+(Tc) are the most affecting parameters on the DCMD system perfor-
+mance, Figs. 7 and 8 show, experimentally and theoretically, the effects
+of the temperature difference and temperature ratio between the hot
+feed and cold permeate streams; respectively. The operating conditions
+are; PTFE membrane with pore size of 0.45 米m, feed ow rate 4.65 L/
+min, cold permeate ow rate of 3.65 L/min. The feed is seawater with
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+0
+
+5
+
+10
+15
+20
+Cold permeate temperature ( C)
+
+25
+
+30
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+2
+
+-
+
+h
+
+)
+r
+
+Theo. at Tf=50 C
+Theo. at Tf=70 C
+Theo. at Tf=90 C
+Exp. at Tf=50 C
+Exp. at Tf=70 C
+Exp. at Tf=90 C
+
+Fig. 5. Effect of cold permeate temperature on permeate ux Conditions: membrane PTFE
+0.45 米m, feed salinity 2 g/L, feed ow rate 4.6 L/min, cold permeate ow rate 3.65 L/min.
+
+114
+
+43.2
+
+39.3
+
+33.9
+
+21.3
+
+30.6
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+40
+
+50
+
+60
+70
+Feed temperature ( C)
+
+80
+
+90
+
+%
+
+i
+
+c
+n
+
+r
+
+e
+s
+a
+e
+
+i
+
+n
+
+l
+f
+
+x
+u
+
+302
+
+393
+
+415
+
+420
+
+560
+
+0
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+5
+
+10
+15
+20
+Cold Permeate Temperature ( C)
+
+25
+
+%
+
+i
+
+c
+n
+
+r
+
+e
+s
+a
+e
+
+i
+
+n
+
+l
+f
+
+x
+u
+
+(a) Percentage increase in 
+flux when the cold 
+permeate temperature 
+is reduced from 25 C to 
+5 C, for a given feed 
+inlet temperature.
+
+(b) Percentage increase 
+in flux when the feed
+temperature is 
+increased from 50
+to 90 C, for a given
+cold permeate inlet 
+temperature.       
+
+Fig. 6. Percentage increase in ux due to changing the operating temperatures.
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+0
+
+10
+
+20
+30
+40
+50
+60
+70
+Temperature difference (Tf -Tc)
+
+80
+
+90
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+-
+2
+
+h
+
+)
+r
+
+Theo. @ Tc=25C
+Theo. @ Tc=15
+Theo. @ Tc=5 C
+Exp. @ Tc=25C
+Exp @ Tc=15 C
+Exp @ Tc=5C
+
+Fig. 7. Effect of operating temperature difference on ux.
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+0
+
+2
+
+4
+
+6
+8
+10
+12
+14
+Temperature Ratio (Tf/Tc)
+
+16
+
+18
+
+20
+
+x
+u
+F
+
+l
+
+(
+
+g
+k
+
+/
+
+m
+
+-
+2
+
+h
+
+)
+r
+
+Theo. @Tc=25C
+Theo. @ Tc=15 C
+Theo. @ Tc=5 C
+Exp @ Tc=25
+Exp @ Tc=15 C
+Exp @ Tc=5 C
+
+Fig. 8. Effect of operating temperature ratio on ux.
+
+28
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+29
+
+concentration of 43 g/L. The plots are produced for different selected
+cold permeate temperatures of 5, 15, and 25 ～C.
+From Figs. 7 and 8, good agreements are observed between theoret-
+ical and experimental values of ux at different operating combinations
+of feed and cold permeate temperatures differences and ratios. These
+good agreements attest the reliability of the analytical model to predict
+the system ux under different conditions. Of course, increasing the
+temperature difference increases the ux as shown in Fig. 7. However,
+at a given temperature difference, higher cold permeate temperature
+yields higher ux. This behavior may be attributed to the large conduc-
+tion heat loss across the membrane and from the module itself to the
+surroundings at lower temperature of the cold permeate stream. From
+Fig. 8, when the temperature ratio increases, the ux increase exponen-
+tially and the variation trends have different slopes corresponding to
+different temperatures of the cold permeate. The curves slopes tend to
+decrease as the cold permeate temperature decreases from 25 ～C to
+5 ～C. It is interesting to know that in order to produce 60 kg/m2﹞h of dis-
+tillate, for example from Fig. 8, one needs to set the feed temperature at
+80 ～C if the cold side temperature is 25 ～C, 70 ～C if the cold side is at
+15 ～C, and 64 ～C if the cold side is at 5 ～C. One may conclude that utilizing
+energy for heating the feed side water is more efcient (produces more
+ux) than utilizing the same amount of energy for cooling the cold
+stream. More specically, use energy for heating while using room tem-
+perature water for the cold permeate stream.
+
+4.2. Effect of feed and cold permeate ow rates
+
+When the ow rate increases the channel ow Reynolds number in-
+creases, and hence the turbulence level. The direct outcome is to en-
+hance the mixing in the boundary layer adjacent to the membrane
+surface leading to higher heat and mass transfer coefcients. In DCMD
+modules, both feed and permeate streams are in direct contact with
+the membrane and thus the ow rates on both membrane sides are ex-
+pected to be effective on permeation process. Fig. 9 shows the effect of
+feed ow rate on the system permeate ux. The increase in ux is prom-
+inent with increasing the feed ow rate. For instant, at feed temperature
+of 90 ～C, permeate ux increases from 55 to 72 kg/m2﹞h, by increasing
+the ow rate from 2.5 to 4.6 L/min, which is about 31% increase. The cor-
+responding percentage increase in ux, for the same change in feed ow
+rate, at feed temperatures of 50 ～C and 70 ～C is found to be about 28%. If
+one looks from the feed temperature point of view, increasing the feed
+temperature from 50 ～C to 90 ～C yields about 260% increase in ux at
+feed ow rate of 2.5 L/min and about 290% at feed ow rate of 4.6 L/
+min. This result indicates that increasing the feed ow rate is more ef-
+fective in improving the ux at higher feed temperatures in particular.
+The channel ow Reynolds number in feed side was found to be turbu-
+lent (N 2300) for the considered conditions of feed ow rate and tem-
+perature. On the other hand, increasing the turbulence level reduces
+the residence time of the feed water in the feed channel. The effect of
+
+100
+
+80
+
+60
+
+40
+
+20
+
+)
+r
+
+h
+
+-
+2
+
+m
+
+/
+
+g
+k
+
+(
+
+x
+u
+F
+
+l
+
+0
+
+1
+
+Exp. at Tf=90 C
+Exp. at Tf=70 C
+Exp. at Tf=50 C
+Theo. at Tf=90 C
+Theo. at Tf=70 C
+Theo. at Tf=50 C
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+Cold permeate Flow rate (L/min)
+
+Fig. 10. Effect of coolant ow rate on permeate ux. Operating conditions: PTFE
+membrane, 0.45 米m, permeate temperature 25 ～C, feed ow rate 4.65 L/min, feed
+concentration 2 g/L.
+
+residence time on permeate ux is implanted in the ow rate and turbu-
+lence effects and needs more investigations in future.
+Fig. 10 shows that permeate ux increases with increasing the ow
+rate of the cold permeate stream, at selected different feed tempera-
+tures of 50, 70, and 90 ～C. Increasing the coolant ow rate from 2 to
+3.65 L/min (laminar channel ow, Re b 2300 for all tested cases) result-
+ed in only 4.6% increase in permeate ux at feed temperature of 90 ～C
+and this percentage increases to 11% for feed temperature of 50 ～C. In-
+creasing the cold permeate ow rate is less effective on the permeate
+ux as compared to the effect of increasing the feed ow rate. The
+feed side is always more effective on the permeate ux since it is the
+source vaporization and controlling the permeation process.
+Fig. 11 shows the effect of the ratio between feed ow rate and cold
+permeate ow rate (Vf/Vp) on ux both experimentally and theoretical-
+ly, for selected permeate ow rates (namely, Vp = 2, 2.9 and 3.65 L/
+min). The test conditions are: PTFE 0.45 米m membrane, inlet feed tem-
+perature of 90 ～C, inlet permeate temperature of 25 ～C, feed concentra-
+tion of 43 g/L, and the feed ow rate is varied from 2.5 L/min to 4.65 L/
+min. It is observed that increasing the ow ratio (Vf/Vp) increases the
+ux at any cold permeate ow rate in a parabolic manner. For a given
+ratio, higher permeate ow rate yields considerable increase in ux out-
+put. In addition, a good coherence is observed between theoretical
+values and experimental values of ux at all permeate ow rate.
+
+4.3. Effect of feed concentration
+
+To study the effect of feed concentration on the ux of the DCMD
+system, four levels of feed concentrations are tested as mentioned
+above in Section 3, namely 0.14, 2, 43, and 100 g/L. these values were se-
+lected to cover a wide range of feed concentrations from very low to
+very high values including the seawater of 43 g/L. The test conditions
+are: feed ow rate 4.65 L/min, coolant ow rate 3.65 L/min, and cold
+permeate temperature of 25 ～C. Fig. 12 shows that the permeate ux
+is continuously decreasing as the feed salinity increases. The ux
+
+80
+
+70
+
+60
+
+50
+
+40
+
+30
+
+20
+
+10
+
+0
+
+)
+r
+
+h
+
+-
+2
+
+m
+
+/
+
+g
+k
+
+(
+
+x
+u
+F
+
+l
+
+Exp. at Tf = 90 C
+Theo at Tf= 70 C
+Theo at Tf=50 C
+Theo. at Tf=90 C
+Exp. at Tf=70 C
+Exp at Tf= 50 C
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+Feed flow rate (L/min)
+
+Fig. 9. Effect of feed ow rate on the permeate ux. Operating conditions: coolant ow rate
+3.65 L/min, feed temperature 90 ～C, coolant temperature 25 ～C.
+
+120
+
+100
+
+80
+
+60
+
+40
+
+20
+
+)
+r
+
+h
+
+-
+2
+
+m
+
+/
+
+g
+k
+
+(
+
+x
+u
+F
+
+l
+
+0
+
+0
+
+Exp @ Vp=3.65Lmin
+
+Exp @ Vp=2.9L/min
+
+Exp @ Vp=2L/min
+
+Theo @ Vp=3.65L/min
+
+Theo @ Vp=2.9L/min
+
+Theo @ Vp=2L/min
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+Volume flow rate ratio (Vf/Vp)
+
+Fig. 11. Effect of ow rate ratio (feed/permeate) on ux.
+
+30
+
+=
+
+90
+80
+70
+60
+50
+40
+30
+20
+10
+0
+
+)
+r
+
+h
+
+-
+2
+
+m
+
+/
+
+g
+k
+
+(
+
+x
+u
+L
+F
+
+Theo. flux at Tf=90 C
+Theo. at Tf=70 C
+Theo. at Tf = 50 C
+Exp. at Tf=90 C
+Exp. at Tf =70 C
+Theo. at Tf=50 C
+
+0
+
+20
+
+40
+60
+80
+Feed Concentration (g/L) 
+
+100
+
+120
+
+Fig. 12. Inuence of feed concentration of ux. Conditions: membrane PTFE 0.45 米m, cold
+permeate temperature 25 ～C, feed ow rate 4.65 L/min, cold permeate ow rate 3.65 L/
+min.
+
+reduction with increasing the feed concentration is mainly due to the
+increasing effect of the salt concentration polarization, which adds
+more resistance to vapor permeation across the membrane. In addition,
+scaling and fouling on the membrane surface due to salts and impurities
+tend to cover some effective area of membrane that retards the evapo-
+ration process and reduces the vapor pressure difference across the
+membrane, so ultimately the ux decreases. Few conclusions may be
+extracted from Fig. 12: The decrease in ux follows linear decreasing
+trend with increasing the feed concentration. The DCMD system is
+able to handle feed solutions with high concentration of 100 g/L,
+which attests its ability to desalinate brine solutions of high concentra-
+tion, like oileld produced water for example, as mentioned by [11]. In
+calculating the percentage reduction in ux when increasing the feed
+concentration from 0.14 to 100 g/L, about 50% reduction in ux at feed
+temperature of 50 ～C, 22% reduction at 70 ～C, and 17.5% reduction at
+90 ～C is achieved. Therefore, it is obvious that the effect of feed concen-
+tration is becoming less signicant at high feed temperature as com-
+pared to operating at low feed temperature.
+Salt rejection factor (SRF) is a measure of the quality of the ux and
+the efciency of separation process. It is dened as;
+
+SRF  Feed ConcentrationPermeate Concentration
+Feed Concentration
+
+ 100
+
+37
+
+Fig. 13 shows the SRF values for different feed concentrations at dif-
+ferent feed temperatures. Four levels of feed concentrations, 0.140, 2, 43
+and 100 g/L are tested. For low feed concentration of 0.14 g/L, the salt re-
+jection factor was 97.8%. As the feed concentration increases from 0.14
+to 2 g/L, the SRF increased to 99.15%. When seawater (43 g/L) and the
+extreme concentration NaCl solution of 100 g/L are used as feed, the
+salt rejection factor was 99.96%. These high values of the SRF indicate
+
+4.4. Effect of membrane pore size and degradation
+
+The MD separation performance is directly associated with the over-
+all membrane morphology, which is considered the most important
+component of the MD process. Therefore, the successful application of
+MD may be aided by a good knowledge of the different membrane pa-
+rameters. Two polytetrauoroethylene (PTFE) membranes, acquired
+from Tisch Scientic Corporation, with different pore sizes were used
+in the present study, namely PTFE SF17385 and SF17386 membranes
+with mean pore sizes of 0.22 米m and 0.45 米m; respectively as reported
+by the manufacturer. It is worth noting that PTFE membrane is com-
+posed of two layers, a thin active layer and a support layer. The charac-
+terization of the two membranes used in the present work was carried
+out in our labs and the measured values are listed in Table 1. The mea-
+sured properties included the actual overall thickness (汛membrane), the
+active layer thickness (汛active), the mean pore size (dp), the porosity
+(汍), the water contact angle (牟), and the liquid water entry pressure
+(LEP). More details on membrane characterization can be found in
+Khalifa et al. [41].
+Fig. 14 shows SEM micrographs of top (active) surface taken from
+both PTFE (0.22 米m) and PTFE (0.45 米m) membranes, while Fig. 15 dis-
+plays SEM micrographs of their respective cross sections. The active
+layer of both membranes is of about the same thickness, as well as
+their overall thickness. Moreover, they also display similar values of
+the porosity and degree of hydrophobicity, rendering the comparison
+useful with respect to their ux performance. It is worth indicating
+that according to our measurements, the PTFE (0.45 米m) membrane ex-
+hibits an overall lower average pore size than that reported by the sup-
+plier that is roughly 0.38 米m (measured) compared to 0.45 米m
+(reported). As expected, the LEP of PTFE (0.22 米m) membrane is slightly
+higher than that of PTFE (0.45 米m).
+Membrane pore size is an important property of the membrane
+morphology. Bigger pore size means less resistance to mass transfer
+and hence higher driving force for permeation across the membrane.
+Fig. 16 shows that the PTFE (0.45 米m) membrane produces a relatively
+higher ux compared to PTFE (0.22 米m) membrane. Regarding the ef-
+fect of feed temperature (40 to 90 ～C) on the percentage ux increase
+between the two membranes, there is an average of 7 to 9% ux in-
+crease, except for a jump of 20% ux increase at 80 ～C. This indicates a
+general consistent percentage ux increase for the larger pore size at
+different feed temperatures. Another important note from Fig. 16 is
+that almost doubling the membrane pore size does not lead to doubling
+the ux, indicating the nonlinearity behavior between the ux and pore
+size. As mentioned earlier, both membranes have similar active layer
+and overall thicknesses, close values of the porosity, and similar degrees
+of hydrophobicity. Usually, the pore size of commercial membranes is
+not exceeding 1 米m. For pore sizes N 1 米m, surface energy of membrane
+materials decreases, and hydrophobicity decreases, leading to pore wet-
+ting phenomenon and hence deteriorating the MD process performance
+[27]. The theoretical model results indicate a consistent ux
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+100
+
+(37)
+
+the effectiveness of the DCMD systems in handling seawater and high
+concentrations feeds for water desalination. More details and discussion
+on this point are presented later in Section 4.4, Fig. 19.
+
+)
+
+%
+
+(
+
+r
+
+o
+
+t
+
+c
+a
+
+f
+
+n
+o
+
+i
+t
+
+c
+e
+e
+
+j
+
+r
+
+t
+l
+
+a
+
+S
+
+100
+99.5
+99
+98.5
+98
+97.5
+97
+96.5
+96
+95.5
+95
+
+Tf=50 C
+Tf=70 C
+Tf=90 C
+
+Table 1
+Measured properties of the PTFE membranes.
+
+Membrane
+type
+
+Membrane characteristics
+
+汛membrane
+
+(米m)
+
+汛active
+
+(米m)
+
+dp
+(nm)
+
+汍
+(%)
+
+牟
+(～)
+
+LEP
+(bar)
+
+8 ㊣ 2
+
+236 ㊣ 6
+
+76 ㊣ 5
+
+159 ㊣ 18
+
+PTFE-SF17385
+(0.22 米m)
+PTFE-SF17386
+(0.45 米m)
+(汛membrane: membrane thickness, 汛active: thickness of membrane active layer, dp: mean pore
+size, 汍: porosity, 牟: water contact angle, LEP: liquid water entry pressure).
+
+154 ㊣ 14
+
+3.3 ㊣ 0.1
+
+138 ㊣ 2
+
+7 ㊣ 2
+
+379 ㊣ 8
+
+80 ㊣ 9
+
+139 ㊣ 3
+
+2.4 ㊣ 0.1
+
+0
+
+20
+
+40
+60
+80
+Feed Concentration (g/L)
+
+100
+
+120
+
+Fig. 13. Inuence of feed concentration on quality of permeate. Operating conditions: PTFE
+0.45 米m, feed ow rate 4.65 L/min, cold permeate ow rate 3.65 L/min.
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+31
+
+(a) PTFE 0.22m membrane
+
+(b) PTFE 0.45m membrane
+
+Fig. 14. SEM micrographs of top surface taken from as-received PTFE (0.22 米m) and PTFE (0.45 米m) membranes.
+
+(a) PTFE 0.22 m membrane
+
+(b) PTFE 0.45 m membrane
+
+Fig. 15. SEM micrographs of cross sections taken from PTFE (0.22 米m) and PTFE (0.45 米m) membranes.
+
+enhancement when using larger pore size for the whole range of feed
+temperatures and agree well with the experimental results.
+A continuous 48-h experiment was conducted to investigate the ef-
+fect of continuous operation of the system on permeate ux and mem-
+brane degradation. Fig. 17 shows the variation in permeate ux with
+time over the 48 h. The experiment was performed using the PTFE
+0.45 membrane, with two types of feed water of different concentra-
+tions, namely sweet tap water (0.14 g/L) and seawater (43 g/L). Feed
+ow rate is set at 3.75 L/min and cold permeate ow rate at 3.65 L/
+min. For the tap water, the maximum ux is obtained at the start of
+the experiment, followed by a noticeable decrease in ux after 3 h,
+
+thereafter remaining almost constant for the rest of the test period
+with minor perturbations. In general, about 15% reduction in ux was
+recorded over the 48 h period. On the other hand, the use of seawater
+as feed gave different results. First, as expected, the seawater ux is
+lower than that of tap water due to its higher concentration. Second, a
+sharp and continuous reduction in ux was recorded after 20 h, yielding
+an average percentage reduction in ux after of 42% after 48 h. This large
+reduction in ux with time for seawater can be attributed to the effect of
+salt precipitation and fouling on the membrane surface, in addition to
+
+)
+r
+
+h
+
+-
+2
+
+m
+
+/
+
+g
+k
+
+(
+
+x
+u
+L
+F
+
+80
+70
+60
+50
+40
+30
+20
+10
+0
+
+h
+
+-
+
+2
+
+m
+
+)
+r
+
+/
+
+g
+k
+
+(
+
+Theo. 0.45 microns
+Theo. 0.22 microns
+Exp. 0.45 microns
+Exp. 0.22 microns
+
+x
+u
+F
+
+l
+
+35
+
+30
+
+25
+
+20
+
+15
+
+10
+
+5
+
+0
+
+Tap water
+Seawater
+
+30
+
+40
+
+50
+60
+70
+80
+Inlet feed temperature ( C)
+
+90
+
+100
+
+0
+
+4
+
+8
+
+12 16 20 24 28 32 36 40 44 48
+Time [h]
+
+Fig. 16. Effect of membrane pore size on permeate ux Conditions: permeate temperature
+25 ～C, feed ow rate 4.65 L/min, cold permeate ow rate 3.65 L/min, and feed
+concentration 43 g/L.
+
+Fig. 17. Seawater and tap water ux variation versus time Conditions: PTFE 0.45 米m, feed
+ow rate 3.75 L/m, coolant ow rate3.65 L/min, feed temperature 60 ～C, coolant
+temperature 20～.
+
+32
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+(a) New PTFE 0.45 m membrane
+
+(b) Used PTFE 0.45 m membrane
+
+Fig. 18. SEM micrographs of PTFE (0.45 米m) membrane, (a) as-received, and (b) after 48 h continuous ow test operation.
+
+the concentration polarization. Indeed, the membrane degradation after
+the 48 h continuous ow operation is clearly visible in Fig. 18b which
+displays the SEM image of the used PTFE (0.45 米m) membrane covered
+with a fouling layer, as compared to the as-received membrane shown
+in Fig. 18a. According to the ux results shown in Fig. 17, the fouling
+layer may have started its formation (most probably covering a large
+portion of the membrane surface) after about 20 h ow test operation
+due to the noticeable decrease in the ux. Longer testing led to further
+membrane degradation resulting in almost 50% ux decrease after
+48 h. Longer testing data are not available.
+Fig. 19a shows the variation of salt rejection factor with time. For tap
+water, at the beginning of the experiment the salt rejection factor is al-
+most 98% and went on decreasing with the passage of time reaching
+96.7% at the end of the experiment. In agreement with Fig. 17, the salt
+
+)
+
+%
+
+(
+
+r
+
+o
+
+t
+
+c
+a
+
+f
+
+n
+o
+
+i
+t
+
+c
+e
+e
+
+j
+
+r
+
+t
+l
+
+a
+
+S
+
+100
+
+99.5
+
+99
+
+98.5
+
+98
+
+97.5
+
+97
+
+96.5
+
+Tap water
+Seawater
+
+0
+
+4
+
+8
+
+12 16 20 24 28 32 36 40 44 48
+Time [h]
+
+(a) Variation of salt rejection factor with experimental time
+
+Sea water
+tap water
+
+]
+
+L
+
+/
+
+g
+
+m
+
+[
+
+S
+D
+
+T
+e
+
+t
+
+a
+e
+
+m
+
+r
+
+e
+
+P
+
+25
+
+20
+
+15
+
+10
+
+5
+
+0
+
+0
+
+4
+
+8
+
+12 16 20 24 28 32 36 40 44 48
+Time [h]
+
+(b) Variation of permeate TDS with experimental time
+
+Fig. 19. Variations of ux quality measures of the DCMD system with time. (a) Variation of
+salt rejection factor with experimental time (b)Variation of permeate TDS with
+experimental time.
+
+rejection factor decreased in the rst few hours, remained constant for
+another 6 h, and repeated the same behavior as time advances. The
+change in the salt rejection factor in this case was 3.4%. For seawater,
+salt rejection factor started at 99.98% and became 99.956% at the end
+of the experiment, which is only 0.04% change in the rejection factor
+over 48 h. Fig. 19 proves the consistency of DCMD conguration for sea-
+water desalination. One may question the higher rejection factor for
+seawater compared to sweet tap water. It should be mentioned that
+the TDS of distillate water, used in the permeate side to start the exper-
+iment, is not exactly zero; it was measured to be about 2 to 3 mg/L. With
+operation, The TDS of the permeate side increases slightly with time; as
+shown in Fig. 19b. The permeate TDS for tap water may be considered
+constant in the range of 4 to 5 mg/L over the 48 h. On the other hand,
+the permeate TDS of seawater feed changed from 7 mg/L at the begin-
+ning of the experiment to 20 mg/L after 48 h. However, the TDS of
+feed seawater (43,000 mg/L) is very high compared to the TDS of tap
+water (140 mg/L) and the ratio in the denition of the salt rejection fac-
+tor presented in Eq. (37) yields the results shown in Fig. 19a.
+
+4.5. Energy analysis
+
+The evaporative (thermal) efciency, EE, is dened as the ratio of
+evaporative heat transfer to the total heat transferred to the membrane
+(or through MD module) and is be given as [40,41]
+  100
+
+ 
+
+ 100 
+
+38
+
+!
+
+%EE  Q v
+Q m
+
+ 
+
+Jw  忖Hv
+
+U  T b; f T b;p
+
+From Fig. 20, the evaporative efciency ranged from 70% to 95% cor-
+responding to feed temperature from 40 ～C to 90 ～C. Increasing the inlet
+feed temperature increases the evaporative efciency due to ux in-
+creasing. Another interesting behavior shown in Fig. 20 is that the evap-
+orative efciency is higher at higher cold permeate temperature, for a
+given feed temperature. In terms of percentage change it can be ob-
+served that at 40 ～C, the increase in evaporative efciency is 12.63%
+when the bulk coolant (permeate) temperature, Tbc, is changed from
+5 ～C to 25 ～C. However, as the inlet feed temperature increases, the dif-
+ferences in the efciency values diminish, and at 90 ～C, it is 2% only.
+Thus, when operating the DCMD system at higher feed temperature,
+the effect of inlet coolant temperature on the efciency is not signicant.
+However, if the system is running at low inlet feed temperature then
+higher inlet coolant temperature is preferred for higher evaporative
+efciency.
+The gain output ratio (GOR) is another performance measure that is
+used extensively in thermal desalination to assess the thermal process
+energy efciency. The MD technique is mainly thermal (evaporation
+
+100
+
+%
+
+5. Conclusion
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+33
+
+y
+c
+n
+e
+c
+
+i
+
+i
+f
+f
+
+e
+
+e
+v
+
+i
+t
+
+a
+
+r
+
+o
+p
+a
+v
+
+E
+
+90
+
+80
+
+70
+
+60
+
+50
+
+40
+
+At Tbc= 25 C
+At Tbc=15 C
+At Tbc=5 C
+
+40
+
+50
+
+60
+70
+80
+Bulk feed temperature (C)
+
+90
+
+100
+
+Fig. 20. Effect of feed temperature on evaporative efciency. Operating conditions: PTFE
+0.45 米m, feed ow rate 4.65 L/m, coolant ow rate 3.65 L/m, feed concentration 140 mg/
+L, coolant temperature Tbc = 5,15,25 ～C.
+
+in the feed side and condensation in the permeate/cold side) and the
+permeation is mainly due to the applied temperature difference across
+the membrane. Thus, GOR denition can be applied to MD systems
+[43,44]. The GOR value may be of interest with MD practically to com-
+pare its progress with other common desalination techniques like ther-
+mal ones. The GOR denition is even used with the RO system which is
+not thermal in nature, when combined with MD system, [45]. It is de-
+ned as the ratio of latent heat of vaporization of the distillate produced
+to the heat input to the system with the feed stream [39,42每45];
+
+GOR 
+
+md  忖Hv
+
+f  cpf  忖T module
+
+m:
+
+39
+
+where mdis the mass of the produced permeate, 忖Hv is the latent heat of
+vaporization, m:
+f is mass ow rate of feed water, cpfis the specic heat of
+feed, and 忖Tmoduleis the temperature difference between inlet and outlet
+of hot side of module.
+Fig. 21 shows the variation of the GOR value with inlet feed temper-
+ature, at different cold permeate temperatures of 5, 15 and 25 ～C. The
+GOR calculated values increases with increasing the inlet feed tempera-
+ture up to 60 ～C then decreases with increasing feed inlet temperature
+up to 90 ～C. Experiments shows that working at higher cold permeate
+temperature results in higher values of GOR than operating at lower
+cold permeate temperatures. In addition, the temperature difference
+between inlet and outlet of hot side of module, 忖Tmodule, is increasing
+exponentially as the feed temperature increases, resulting in lower
+GOR values. The GOR values were between 0.8 and 1.2 for the tested
+range of feed temperature, for the used DCMD system.
+
+Fig. 21. Effect of feed inlet temperature on gain output ratio [39] Conditions: PTFE 0.45 米m
+membrane, feed ow rate 4.65 L/min, permeate ow rate 3.65 L/min, feed salinity 2 g/L.
+
+A comprehensive study of the performance of the DCMD system was
+presented. Details of the experimental setup and the DCMD module de-
+sign and assembly were provided. Main variables affecting the system
+performance and degradation were discussed both experimentally
+and analytically. The membranes used in the study were characterized
+and the effects of long-term operation on the membrane surface and
+system performance were studied. The analytical model is based on
+solving the equations of heat and mass transfer with the DCMD module.
+The developed model has proven its ability to predict the system perfor-
+mance at different operating conditions with maximum deviations of
+b 10% from experimental measurements. The investigated variables in-
+cluded feed temperature, cold permeate temperature, feed-permeate
+temperature difference and ratio, feed ow rate, permeate ow rate,
+feed-permeate ow rate ratio, feed concentration, membrane pore
+size, and membrane degradation with time. Permeate ux increases, al-
+most exponentially, as the feed temperature increases. Nevertheless, it
+increases almost linearly as the permeate temperature decreases. The
+effect of decreasing the permeate temperature is smaller than the effect
+of increasing the feed temperature. This indicates that the system is bet-
+ter operated at high feed temperatures while saving the cooling energy
+by running the permeate at ambient temperature. The permeate ux
+also increases with the ow rate of both feed and permeate. High ow
+rates generate more turbulence thus enhancing the heat and mass
+transfer. The effects of feed ow rate are more notable at high feed tem-
+perature. The DCMD system is able to handle feeds with high salt con-
+centration of 100 g/L with remarkably high salt rejection factor and
+low permeate TDS. However, the recorded ux reduction was between
+17 and 50% depending on the feed temperature, showing that operating
+at high feed temperature results in less reduction in ux when using
+high feed concentration. An average of about 8% increase in ux was ob-
+tained when the pore size of the PTFE membrane was increased from
+0.22 to 0.45 米m. The SEM micrographs revealed that the used PTFE
+membrane being covered with a fouling layer, as compared to the as-re-
+ceived (new) membrane, and the fouling phenomena may have started
+its formation after about 20 h ow test operation as indicated by the no-
+ticeable decrease in the ux. The evaporative efciency ranged from
+70% to 95% corresponding to feed temperature from 40 ～C to 90 ～C
+and the calculated GOR values were between 0.8 and 1.2 for the same
+range of feed temperature.
+
+Acknowledgement
+
+The authors acknowledge the support and fund received from the
+Deanship of Research, King Fahd University of Petroleum & Minerals
+(KFUPM) under Research Grant # IN141035.
+
+References
+
+[1] B.D. Negewo, Renewable Energy Desalination: An Emerging Solution to Close the
+Water Gap in the Middle East and North Africa, World Bank Publications, 2012.
+[2] http://environment.nationalgeographic.com/environment/freshwater/freshwater-
+crisis/,Fresh Water Crisis.
+[3] K.C. Ng, K. Thu, Y. Kim, A. Chakraborty, G. Amy, Adsorption desalination: an emerg-
+ing low-cost thermal desalination method, Desalination 308 (2013) 161每179.
+[4] K. Thu, A. Chakraborty, Y.D. Kim, A. Myat, B. Saha, K.C. Ng, Numerical simulation and
+performance investigation of an advanced adsorption desalination cycle, Desalina-
+tion 308 (2013) 209每218.
+[5] C.J. Vrsmarty, P.B. McIntyre, M.O. Gessner, D. Dudgeon, A. Prusevich, P. Green, P.M.
+Davies, Global threats to human water security and river biodiversity, Nature 467
+(7315) (2010) 555每561.
+[6] R. Smalley, N. Laureate, Seawater Desalination, Department of Chemical and Envi-
+ronmental Engineering, Yale University Menachem Elimelech, 2012.
+[7] R.P. Singh, Water desalination: the role of RO and MSF, IOSR J. Environ. Sci., Toxicol.
+Food Technol.(IOSR-JESTFT) (2013) 1每65.
+[8] A. Mabrouk, Techno-economic analysis of tube bundle orientation for high capacity
+brine recycle MSF desalination plants, Desalination 320 (2013) 24每32.
+[9] T. Mezher, H. Fath, Z. Abbas, A. Khaled, Techno-economic assessment and environ-
+mental impacts of desalination technologies, Desalination 266 (1) (2011) 263每273.
+
+34
+
+A. Khalifa et al. / Desalination 404 (2017) 22每34
+
+[10] . Andrjesd車ttir, C.L. Ong, M. Nabavi, S. Paredes, A.S.G. Khalil, B. Michel, D.
+Poulikakos, An experimentally optimized model for heat and mass transfer in direct
+contact membrane distillation, Int. J. Heat Mass Transf. 66 (2013) 855每867.
+[11] F. Macedonio, A. Ali, T. Poerio, E. El-Sayed, E. Drioli, M. Abdel-Jawad, Direct contact
+membrane distillation for treatment of oileld produced water, Sep. Purif. Technol.
+126 (2014) 69每81.
+[12] Y.M. Manawi, M.A. Khraisheh, A.K. Fard, F. Benyahia, S. Adham, A predictive model
+for the assessment of the temperature polarization effect in direct contact mem-
+brane distillation desalination of high salinity feed, Desalination 341 (2014) 38每49.
+[13] S.T. Hsu, K.T. Cheng, J.S. Chiou, Seawater desalination by direct contact membrane
+distillation, Desalination 143 (3) (2002) 279每287.
+[14] A. Boubakri, A. Haane, S. Bouguecha, Direct contact membrane distillation: capabil-
+ity to desalt raw water, Arab. J. Chem. (2014), http://dx.doi.org/10.1016/j.arabjc.
+2014.02.010.
+[15] S. Lin, N.Y. Yip, M. Elimelech, Direct contact membrane distillation with heat recov-
+ery: thermodynamic insights from module scale modeling, J. Membr. Sci. 453
+(2014) 498每515.
+[16] S. Srisurichan, R. Jiraratananon, A.G. Fane, Mass transfer mechanisms and transport
+resistances in direct contact membrane distillation process, J. Membr. Sci. 277 (1)
+(2006) 186每194.
+[17] G. Naidu, S. Jeong, S. Vigneswaran, Inuence of feed/permeate velocity on scaling
+development in a direct contact membrane distillation, Sep. Purif. Technol. 125
+(2014) 291每300.
+[18] C.D. Ho, C.H. Huang, F.C. Tsai, W.T. Chen, Performance improvement on distillate
+ux of countercurrent-ow direct contact membrane distillation systems, Desalina-
+tion 338 (2014) 26每32.
+[19] M. Qtaishat, T. Matsuura, B. Kruczek, M. Khayet, Heat and mass transfer analysis in
+direct contact membrane distillation, Desalination 219 (1) (2008) 272每292.
+[20] D. Lawal, A. Khalifa, Flux prediction in direct contact membrane distillation, Int. J.
+Mater. Mech. Manuf. 2 (4) (2014) 302每308.
+[21] Z. Ding, R. Ma, A.G. Fane, A new model for mass transfer in direct contact membrane
+distillation, Desalination 151 (3) (2003) 217每227.
+[22] L. Martinez, F.J. Florido-Diaz, Theoretical and experimental studies on desalination
+using membrane distillation, Desalination 139 (1) (2001) 373每379.
+[23] M. Khayet, Membranes and theoretical modeling of membrane distillation: a re-
+view, Adv. Colloid Interf. Sci. 164 (1) (2011) 56每88.
+[24] M. Essalhi, M. Khayet, Self-sustained webs of polyvinylidene uoride electrospun
+nanobers at different electrospinning times: 2. Theoretical analysis, polarization ef-
+fects and thermal efciency, J. Membr. Sci. 433 (2013) 180每191.
+[25] Z.W. Song, L.Y. Jiang, Optimization of morphology and perf ormance of PVDF hollow
+ber for direct contact membrane distillation using experimental design, Chem. Eng.
+Sci. 101 (2013) 130每143.
+[26] T.C. Chen, C.D. Ho, H.M. Yeh, Theoretical modeling and experimental analysis of di-
+rect contact membrane distillation, J. Membr. Sci. 330 (1) (2009) 279每287.
+[27] M. Khayet, T. Matsuura, Membrane Distillation: Principles and Applications, Elsevier,
+2011.
+[28] J. Phattaranawik, R. Jiraratananon, A.G. Fane, Effect of pore size distribution and air
+ux on mass transport in direct contact membrane distillation, J. Membr. Sci. 215
+(1) (2003) 75每85.
+[29] S.B. Iversen, V.K. Bhatia, K. Dam-Johansen, G. Jonsson, Characterization of micropo-
+rous membranes for use in membrane contactors, J. Membr. Sci. 130 (1) (1997)
+205每217.
+[30] A. Alkhudhiri, N. Darwish, N. Hilal, Membrane distillation: a comprehensive review,
+Desalination 287 (2012) 2每18.
+[31] Y. Yun, R. Ma, W. Zhang, A.G. Fane, J. Li, Direct contact membrane distillation mech-
+anism for high concentration NaCl solutions, Desalination 188 (1) (2006) 251每262.
+[32] J. Phattaranawik, R. Jiraratananon, A.G. Fane, Heat transport and membrane distilla-
+tion coefcients in direct contact membrane distillation, J. Membr. Sci. 212 (1)
+(2003) 177每193.
+[33] L. Francis, N. Ghaffour, A.A. Alsaadi, G.L. Amy, Material gap membrane distillation: a
+new design for water vapor ux enhancement, J. Membr. Sci. 448 (2013) 240每247.
+[34] L. Mart赤nez-D赤ez, F.J. Florido-D赤az, M.I. V芍zquez-Gonz芍lez, Study of polarization phe-
+nomena in membrane distillation of aqueous salt solutions, Sep. Sci. Technol. 35
+(10) (2000) 1485每1501.
+[35] L. Martnez-Dez, M.I. Vazquez-Gonzalez, Temperature and concentration polariza-
+tion in membrane distillation of aqueous salt solutions, J. Membr. Sci. 156 (2)
+(1999) 265每273.
+[36] S. Srisurichan, R. Jiraratananon, A.G. Fane, Mass transfer mechanisms and transport
+resistances in direct contact membrane distillation process, J. Membr. Sci. 277 (1)
+(2006) 186每194.
+[37] K.W. Lawson, D.R. Lloyd, Membrane distillation, J. Membr. Sci. 124 (1) (1997) 1每25.
+[38] Y.M. Manawi, M. Khraisheh, A.K. Fard, F. Benyahia, S. Adham, Effect of operational
+parameters on distillate ux in direct contact membrane distillation (DCMD): com-
+parison between experimental and model predicted performanc, Desalination 336
+(2014) 110每120.
+[39] H.M. Ahmad, A.E. Khalifa, M.A. Antar, Performance of direct contact membrane dis-
+tillation system for water desalination, ASME International Mechanical Engineering
+Congress & Exposition, IMECE-2015, Paper No. IMECE2015每50171 Houston, Texas,
+USA, November 13每19 2015.
+
+[40] J. Zhang, S. Gray, Predicting the inuence of operating conditions on DCMD ux and
+thermal efciency for incompressible and compressible membrane systems, Desali-
+nation 323 (2013) 142每149.
+[41] A. Khalifa, D. Lawal, M. Antar, M. Khayet, Experimental and theoretical investigation
+on water desalination using air gap membrane distillation, Desalination 376 (2015)
+94每108.
+[42] P.N. Govindan, Status of Humidication Dehumidication Desalination Technology,
+International Desalination Association Journal, World Water Congress, Perth, Aus-
+tralia, 2011.
+[43] R.B. Saffarini, E.K. Summers, H.A. Arafat, John H, Lienhard V, Technical evaluation of
+stand-alone solar powered membrane distillation systems, Desalination, Volume
+286 (2012) 332每341.
+[44] E.K. Summers, H.A. Arafat, J.H. Lienhard V, Energy efciency comparison of single-
+stage membrane distillation (MD) desalination cycles in different congurations,
+Desalination 290 (2012) 54每66.
+[45] H. Geng, J. Wang, C. Zhang, P. Li, H. Chang, High water recovery of RO brine using
+multi-stage air gap membrane distillation, Desalination 355 (1) (January 2015)
+178每185.
+
+Nomenclature
+
+A: Area, m2
+Cp: Specic heat J/kg-K
+Dh: Hydraulic diameter, m
+Dpore: Pore diameter, m
+De: Diffusion coefcient, m2/s
+%EE: Percent evaporative efciency
+h: Convective heat transfer coefcient W/m2-K
+忖H: Enthalpy or Latent Heat of vaporization of water, kJ/kg
+k: Thermal conductivity, W/m-K
+ks: Solute mass transfer coefcient, m/s
+Mol: Molecular weight g/mol
+Jw: Mass ux kg/m2-s
+kb: Boltzman constant, 1.3807 ℅ 10每23 J/K
+Kn: Knudsen number
+P: Pressure, Pa
+Q: Heat transfer, W/m2
+r: Radius of membrane pore, m
+R: Universal gas constant, 8314 J/kmol-K
+Nu: Nusselt number
+Re: Reynolds number
+Sc: Schmidt number
+Sh: Sherwood number
+T: Absolute temperature, K
+U: Overall heat transfer coefcient, W/m2-K
+x: Mole fraction
+
+Greek symbols
+
+汐: Contribution of knudsen diffusion to mass transfer
+汕: Concentration Polarization coefcient
+汛: Membrane thickness, m
+汍: Porosity, %
+米: Viscosity Pa-s
+老: Density kg/m3
+污: Salt activity coefcient
+而: Membrane tortuosity
+竹: Mean Free path of water molecule, (m)
+
+Subscripts
+
+Ch.: Channel
+F: Feed side
+p: Permeate side
+bf: bulk Feed
+bp: bulk Permeate
+mf: Membrane feed side
+mp: Membrane permeate side
+c: Conduction
+m: membrane
+mem.: membrane material
+k: Knudsen
+M: Molecular
+V: Vapors/Vaporization
+w: Water
+w-a: Water in Air
+w,v,p: Water Vapors inside the pores
+

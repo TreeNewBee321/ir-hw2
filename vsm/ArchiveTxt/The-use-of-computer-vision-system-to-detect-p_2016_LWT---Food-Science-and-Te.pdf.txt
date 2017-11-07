@@ -1,0 +1,1281 @@
+The use of computer vision system to detect pork defects
+
+Marta Chmiel*, Mirosaw Sowinski
+
+Warsaw University of Life Sciences-SGGW, Faculty of Food Sciences, Department of Food Technology, Division of Meat Technology, 159c Nowoursynowska
+Street, 02-787, Warsaw, Poland
+
+article
+
+info
+
+Article history:
+Received 7 April 2016
+Received in revised form
+15 June 2016
+Accepted 23 June 2016
+Available online 24 June 2016
+
+Keywords:
+Computer vision system
+Pork
+PSE defect
+Meat defects
+
+abstract
+
+The aim of this study was to determine the effectiveness of computer vision system (CVS) to detect meat
+defects of m. longissimus lumborum (LL) in industrial settings. The material consisted of 230 muscles.
+Based on pH1 (45 min) and pH2 (24 h post-mortem) meat classication into quality groups was con-
+ducted. To give more precise characterization of the raw material (proving the defect or not) the elec-
+trical conductivity (EC), drip loss, thermal drip and water holding capacity (WHC) were determined. The
+color of the meat in CIEL*a*b* and by CVS was measured and the study into how the CVS can be
+employed in meat defect detection was done. It was found that it is possible to employ the CVS to detect
+PSE (pale, soft, exudative) and DFD (dark, rm, dry) and to classify meat into quality groups. It was not
+possible to differentiate RSE (red, soft, exudative) from RFN (red, rm, normal) meat in this study. The
+highest accuracy of raw material classication using the CVS method was reported for the HSL (hue,
+saturation, lightness) color parameters at 81.7%. Therefore, the computer vision system can be employed
+for rapid analysis of the quality of pork m. longissimus lumborum under industrial conditions.
+ 2016 Elsevier Ltd. All rights reserved.
+
+1. Introduction
+
+Non-standard quality of the marketed pork causes signicant
+problems for the meat industry (Florowski, Florowska, Kur, &
+Pisula, 2013). The main issue associated with pork meat quality is
+a high PSE (pale, soft, exudative) occurrence. This phenomenon has
+drawn the attention of scientists and processors for many years
+(Barbut et al., 2008; Van De Perre, Ceustermans, Leyten, & Geers,
+2010). The PSE meat when compared to the normal meat (red,
+rm, normal; RFN) is characterized by a lighter, unnaturally pale
+color with varied saturation, deteriorated WHC, an increased meat
+drip loss and soft consistency (Van de Perre and Permentier, 2010).
+The product of such quality should not be used for the culinary
+meat production since an excessive meat drip loss is negatively
+perceived by the consumers. Moreover, the utilization of PSE meat
+is hampered (Florowski et al., 2013), causing, inter alia, lower yield
+of the nished product. The biggest disadvantage is that the PSE
+occurs in the biggest and the most valuable muscle groups such as
+
+Abbreviations: CVS, computer vision system; DFD, dark, rm, dry meat; EC,
+electrical conductivity; HSL, hue, saturation, lightness; HSV, hue, saturation, value;
+PSE, pale, soft, exudative meat; RFN, red, rm, normal meat; RGB, red, green, blue;
+RSE, red, soft, exudative meat; WHC, water holding capacity.
+m. longissimus dorsi, m. semimembranosus, m. semitendinosus and m.
+gluteus medius. The muscles of neck, shoulder and knuckle are less
+vulnerable. The fat cuts of half-carcass (belly, dewlap and groin) are
+not affected by PSE.
+Some authors (Barbut et al., 2008; Channon, Payne, & Warner,
+2000; Gajana, Nkukwana, Marume, & Muchenje, 2013; Gregory,
+2010) claim that the animal breeders and meat processors should
+give a special attention to the defect elimination through selective
+breeding and control of environmental factors inuencing the meat
+quality. However, in the foreseeable future it is rather unlikely to
+eradicate major meat defects, including PSE, using zootechnical
+methods. Thus, it is important to identify these defects, classify the
+raw material and determine its end-use (as a raw material for
+processing or culinary purposes) what, will result in its more
+rational utilization. Unfortunately, unambiguous identication of
+PSE and other meat defects is extremely difcult. In industrial
+practice the meat quality evaluation is performed either visually
+being encumbered with numerous errors or by means of apertures
+measuring the following attributes: pH, EC and color lightness
+(Brewer, Novakofski, & Freise, 2006; Warris, Brown, & Pasciak,
+2006). The above-mentioned instrumental analyzes are the ex-
+amples of
+contact methods, which may result
+in cross-
+contamination of the meat and besides it is difcult to use them
+directly on the meat dressing and fabrication line (Papadakis,
+Abdul-Malek, Kamdem, & Yam, 2000).
+One of the proposed methods in rapid on-line evaluation of
+meat quality is the computer vision system (CVS). This method has
+been successfully used in industrial practice to classify and assess
+the meatiness of large animal carcasses and to classify the poultry
+carcasses (Craigie et al., 2012; Fortin et al., 2003; Pabiou et al., 2011).
+The research has been undertaken to check the possibility of the
+CVS employment to evaluate the meat quality and many works
+have been written on beef (Jackman, Sun, Allen, Brandon, & White,
+2010; Sadkowski et al., 2014) and pork meat (Faucitano, Huff,
+Teuscher, Gariepy, & Wegner, 2005) marbling. Recently, the tech-
+nology based on the image analysis involves tracking the elements
+on the meat dressing and fabrication line (Larsen, Hviid, Jrgensen,
+Larsen, & Dahl, 2014). According to Girolami, Napolitano, Faraone,
+and Braghieri (2013) it is possible to use the CVS to evaluate the
+meat color parameters. In addition to being rapid and objective, this
+method can be used on-line directly on the meat dressing and
+fabrication line. Moreover, this technique is non-invasive and, as a
+consequence, does not pose a health hazard for the consumers
+(Papadakis et al., 2000; Salda ~na, Siche, Castro, Huaman, & Quevedo,
+2014; Trinderup, Dahl, Jensen, Carstensen, & Conradsen, 2015).
+The aim of this study was to determine the applicability of the
+CVS method to detect the m. longissimus lumborum defect in in-
+dustrial settings. Additionally, the accuracy of raw material classi-
+cation into quality groups by means of
+this method was
+determined.
+
+2. Material and methods
+
+2.1. Research material and organization
+
+The sampling material comprised 230 longissimus lumborum
+(LL) muscles dissected from 230 different right swine half-
+carcasses.
+The animal slaughtering was conducted in industrial environ-
+ment using a two step-chilling process (1st ambient temperature:
+ 10  C, time 1e2 h, 2nd ambient temperature: 0e4  C, time
+approx. 22 h, to reach an internal temperature no higher than 4  C
+in the muscle). The samples were obtained in 9 batches on 9 various
+slaughter days. For the analysis the longest muscle was selected as
+it is one of the biggest and most histologically homogenous muscle
+of the pork carcass (it constitutes 10% of the carcass weight). Most
+works on the PSE meat concern this type of muscle owing to its
+high susceptibility to wateriness
+and color
+changeability
+(Karamucki, Jakubowska, Rybarczyk, & Gardzielewska, 2013).
+At 45-min post-mortem the pH1 of the raw material was
+determined at the area of thoracic vertebra. At the same location
+electric conductivity (EC1) was determined at 90-min post-mortem.
+After the half-carcasses had been cooled for 24 h the pH2 and EC2
+measurements were retaken at the same location. Then the muscle
+with a bone was dissected from half-carcasses between 1st and 4th
+lumbar vertebra (weighing 1000 g) and, then, the EC3 was
+measured. Directly after that, using the CIEL*a*b* coordinates and
+the CVS method, the color of muscles on a freshly cut surface (after
+20 min blooming time) dissected from the lumbar side was deter-
+mined. The raw material classication into quality groups was
+conducted on the basis of pH1 and pH2 readings using the following
+criteria: RFN (normal meat) pH1 > 5.8, pH2 5.5e6.0; PSE (exudative
+meat) pH1  5.8, pH2  5.5; DFD pH1 > 6.0, pH2 > 6.0, RSE pH1 > 5.8,
+pH2  5.5 (Pospiech, Iwanowska, & Montowska, 2011).
+At 48 h post-mortem, in order to give more precise character-
+ization of the raw material, the selected parameters of its techno-
+logical quality were determined proving the defect or not. To do so,
+from each sample a slice was cut off (weighing around 100 g,
+boneless) used for the determination of
+the drip loss. The
+remaining part of raw material was deboned and then comminuted
+
+in the meat mincer (Diana 886.8, Zelmer, Rzeszow, Poland)
+equipped with  3 mm plate and the water holding capacity (WHC)
+and thermal drip was measured. The raw material was also
+described in terms of total heme pigments and the content of basic
+chemical components (water, total protein, collagen and fat). The
+captured photos of the analyzed pork muscles underwent image
+analysis.
+
+2.2. Methods
+
+2.2.1. The pH measurement
+The pH values were measured by inserting a spearhead elec-
+trode and a temperature sensor of pH-meter CP-411 (Elmetron,
+Zabrze, Poland) directly into the analyzed raw material. The device
+was calibrated with two buffers (pH 4 and 7). All measurements
+were analyzed in triplicates from which an average was calculated.
+
+2.2.2. Electrical conductivity (EC) measurement
+The electrical conductivity (EC) was measured using Pork
+Quality Meter (PQM MT-03, Zakad Techniki Mikroprocesorowej
+EXE, Poznan, Poland) by inserting its probe into the muscle cross-
+wise to the myocytes. The device was calibrated using a 5 and
+20 mS measurement standard provided by the producer (which
+also provided a PQM).
+
+2.2.3. CIEL*a*b* measurements
+The CIEL*a*b* coordinates were determined using a Konica
+Minolta CM2600d spectrophotometer (Minolta, Wrocaw, Poland).
+The following settings were chosen: illuminant D65, observer 10 ,
+aperture 8 mm, calibrated with a white plate (L* 99.18, a* 0.07,
+b* 0.05). The measurements were taken on a freshly cut surface of
+the analyzed muscle samples of the loin after 20-min bloom time at
+4e6  C. All measurements were analyzed in quintuplicate from
+which an average was calculated. Using a Konica Minolta apparatus
+the parameters of C* (Chroma) and h (hue angle) were calculated
+based on the a* and b* values.
+
+2.2.4.
+Image capture and analysis
+The photos of the meat samples were taken in accordance with
+the procedure described by Chmiel, Sowi nski, and Dasiewicz
+(2011) and Chmiel, Sowinski, Dasiewicz, and Florowski (2012).
+Briey, after 20 min of blooming, the samples were placed in front
+of a black background at a measurement station and images were
+taken. Standard conditions for obtaining images were provided:
+halogen lighting (4 matt bulbs, 18 W each, color temperature of
+2800 K, color rendering index of 90e100). Images were obtained
+using the following camera CANON EOS 350D with an EF-S 60-mm
+macro lens digital camera (Canon, USA), connected to the com-
+puter, vertical position at 500 mm distance between the lens and
+meat surface and an angle of 45 with the light source. Camera
+settings were as follow: manual mode with the f/4.0 aperture value,
+image exposure time 1/100 and ISO 200, zoom and ash off. Images
+were saved in RAW format. Then, the white balance was corrected
+and a color prole was selected (Adobe RGB) using Canon Utilities
+ZoomBrowser EX 5.6 (version 5.6.0.27; Canon).
+The processed images were saved in TIFF format and analyzed
+using Image Analyzer software (developed for the Division of Meat
+Technology, Warsaw University of Life Sciences, Warsaw, Poland).
+The detailed operation of this software has been previously
+described (Chmiel et al., 2011). Information regarding the color and
+lightness of each particular pixel was acquired from images. The
+software calculated the average color components of the meat sli-
+ces for RGB (red, green, blue), HSV (hue, saturation, value), and HSL
+(hue, saturation, lightness) models.
+
+M. Chmiel, M. Sowinski / LWT - Food Science and Technology 73 (2016) 473e480
+
+475
+
+2.2.5. Drip loss evaluation
+Each slice (weighing approx. 100 g) was weighed and sealed in a
+polyethylene bag. The samples were stored at 4e6  C for 24 h.
+Following this, the bags were opened, the exudative moisture was
+decanted and the samples were reweighed. The amount of
+exudation was expressed as a percent of the original weight and the
+following formula was tted:
+drip loss  [(weight before   weight after cooling storage) ¡Â weight
+before cooling storage]  100%
+
+2.2.6. Water holding capacity (WHC)
+Water holding capacity was determined according to Grau and
+Hamm (1952) method in modication by Pohja and Niinivaara
+(1957). A 0.3 g sample of meat placed on a lter paper (Whatman
+1) was put between two glass plates and loaded (2 kg). After 5 min,
+the surface areas occupied by meat and muscle juice was deter-
+mined. Results were presented as the area of the pressed muscle
+juice reduced by the surface occupied by meat, and expressed as
+area size per 1 g of raw material (cm2/g). The higher WHC value, the
+worse water holding capacity of meat.
+
+2.2.7. Thermal drip
+Thermal drip was determined according to Miazek and Mroczek
+(2013). Samples of 30 g (¡À0.1 g) of grinded meat were weighed into
+beakers (150 cm3). Meat was pressed at the bottom of the beaker
+and covered with foil. Heat treatment was conducted in a water
+bath with a temperature of 70 C (¡À2 C) for 30 min. The samples
+were cooled in air for 20 min to a temperature of 20  C, the drip
+(liquid fraction) was decanted and the sample weight was
+measured again. The thermal drip was determined according to the
+formula: TD  (a b)/(a c)  100%, where TD e thermal drip (%); a
+e weight of beaker with the sample before heat treatment (g); b e
+weight of beaker with the sample after heat treatment, after
+decanting the drip (g); and c e weight of empty beaker (g).
+
+2.2.8. Total heme pigment content
+The total heme pigments content was measured according to a
+method described by Hornsey (1956). The extraction of pigments
+was
+performed
+using
+acetone
+acid
+solution
+(acetone:HClconcentr  40:3). Previously thermically processed 5 g
+sample of comminuted meat, was weighed (with 0.01 g precision)
+and then placed into bottles made of dark glass. Following this,
+21.5 cm3 acidied acetone solution was added in two phases: 5 cm3
+(mixed in order to achieve homogenous consistency), and then the
+remaining solution (16.5 cm3). The whole mixture was stirred for
+3 min and, after that, it was left to cool down for 30 min in darkness.
+Next, the extract was ltered through a drain and the absorbance
+was measured with a HITACH-U-1100 (Hitachi Corporation, Ltd.,
+Tokyo, Japan) spectrophotometer using a wave length of 640 nm in
+relation to a reagent blank. This reagent blank was produced by
+decanting 21.5 cm3 acetone acid solution into a laboratory ask
+with 25 cm3 volume, which was relled with distilled water up to
+the mark. The total pigment content was calculated using the
+following formula: X  A640*680, where:, X e content of total
+heme pigments (hemin ppm), A640 e value of ltrate absorbance at
+640 nm wave length.
+
+2.2.9. Basic chemical composition
+The basic chemical composition was determined using a
+FoodScan meat analyzer (FOSS Denmark) according to PN-A-
+82109:2010 (PCS, 2010).
+
+2.2.10. Statistical analysis
+The obtained results were analyzed statistically by subjecting all
+the data to analysis of variance (One-Way ANOVA). Signicant
+differences between features were veried by HSD Tukey¡¯s test at a
+signicance level of a  0.05. The accuracy of the raw material
+classication was veried using discriminant analysis. The quality
+classication was tested by means of cross-validation using K-fold
+for K  1 (i.e. using leave-one-out method, Lachenbruch & Mickey,
+1968; Krzanowski, 2005). The dependencies between the analyzed
+parameters were calculated using Pearson (linear) correlation.
+Owing to numerous dependencies, their linearity was investigated
+using Kozak and Wnuk (2011) method. The correlation was
+described using, inter alia, so called correlogram, i.e., graphical
+display of correlation matrix developed by Friendly (2002). To
+make the correlation analysis easier, the order of parameters in the
+matrix was established using hierarchical clustering.
+
+3. Results and discussion
+
+3.1. Classication and characterization of raw material quality - the
+pH-based classication
+
+Out of 230 pork m. longissimus lumborum (LL) samples, 104 were
+classied as RFN, 102 as PSE and 24 did not satisfy the classication
+criteria for the given two quality groups. For the above-mentioned
+24 samples the pace of post-mortem changes and the pace of pH
+drop was characteristic neither of RFN meat nor of PSE meat. In
+spite of an initial high pH1 (>5.8), the pace of pH decrease in 11
+samples was slow whilst 24 h post-mortem pH2 was still elevated
+(>6.0). The samples were classied as DFD. The remaining 13
+samples were also characterized by pH1 attributed to the meat of
+normal quality however it dropped rapidly and 24 h after slaugh-
+tering pH2 was 5.5 (characteristic of PSE meat). The samples were
+classied as those belonging to RSE meat. As a result, the analyzed
+raw material was divided into 4 quality groups 1. RFN, 2. PSE, 3. DFD
+and 4. RSE.
+
+3.2. The characterization of raw material quality
+
+The m. longissimus lumborum classied as PSE was marked by a
+signicantly (P  0.05) higher electrical conductivity EC1, EC2 and
+EC3, when compared with the remaining quality groups (Table 1).
+Similar
+relationships were observed by Van de Perre and
+Permentier (2010b). Only upon measuring the electrical conduc-
+tivity on the muscles dissected from the carcass it was established
+that the EC3 of the DFD meat was signicantly lower when
+compared to the rest of meat quality groups (Table 1). The highest
+correlation coefcients were determined between pH1, pH2 and EC3
+of the analyzed meat (Fig. 1).
+The PSE and RSE meat had considerably (P  0.05) more profuse
+drip loss and thermal drip and deteriorated WHC when compared
+to the RFN and DFD meat. The DFD meat had signicantly (P  0.05)
+less drip loss and the best WHC (Table 1). Similar ndings were
+reported by other authors (Di Luca, Mullen, Elia, Davey, & Hamill,
+2011; Lee et al., 2012). Overabundant drip loss from the PSE meat
+limits its commercial application for culinary purposes. Excessive
+drip in a packaging is negatively perceived by the consumer. The
+worsened WHC of PSE meat in comparison with RFN and DFD meat
+was attributed to a low meat pH (close to isoelectric point (IP) of
+muscle proteins). The closer IP of muscle proteins, the worse water
+holding and binding capacity of meat. This dependency was
+conrmed in the subsequent correlation analysis. The computed
+correlation coefcients between pH1/pH2 and WHC were signi-
+cantly high (Fig. 1).
+The meat classied as PSE had signicantly lighter color
+
+476
+
+M. Chmiel, M. Sowinski / LWT - Food Science and Technology 73 (2016) 473e480
+
+Table 1
+The selected quality characteristics of the analyzed groups of m. longissimus lumborum.
+
+Characteristics
+
+pH1
+
+pH2
+
+Fat content (%)
+
+Drip loss (%)
+
+Thermal drip (%)
+
+WHC (cm2/g)
+
+EC1 (mS)
+
+EC2 (mS)
+
+EC3 (mS)
+
+x ¡À sd
+min¡Âmax
+x ¡À sd
+min¡Âmax
+x ¡À sd
+min¡Âmax
+x ¡À sd
+min¡Âmax
+x ¡À sd
+min¡Âmax
+x ¡À sd
+min¡Âmax
+
+Meat quality classes
+RFN (n  104)
+PSE (n  102)
+6.2a ¡À 0.3
+5.8b ¡À 0.1
+5.7¡Â6.8
+5.4¡Â5.9
+5.7a ¡À 0.1
+5.5b ¡À 0.1
+5.5¡Â6.1
+5.2¡Â5.5
+3.1a ¡À 1.1
+4.9b ¡À 2.3
+1.8¡Â6.0
+2.2¡Â13.0
+3.6a ¡À 1.2
+6.0b ¡À 2.7
+2.0¡Â7.0
+2.0¡Â10.0
+8.5a ¡À 2.4
+10.3b ¡À 1.6
+2.3¡Â11.9
+5.0¡Â13.8
+4.0a ¡À 2.4
+6.3b ¡À 1.7
+0.5¡Â8.9
+2.0¡Â12.0
+4.6a ¡À 2.4
+6.3b ¡À 3.1
+min¡Âmax
+0.5¡Â8.9
+1.8¡Â15.3
+x ¡À sd
+14.8a ¡À 4.6
+27.5b ¡À 5.2
+min
+7.2¡Â26.9
+15.0¡Â36.4
+x ¡À sd
+59.4a ¡À 9.1
+59.2a ¡À 9.4
+min¡Âmax
+41.5¡Â86.4
+40.1¡Â85.7
+x ¡À sd
+72.6a ¡À 1.1
+73.1a ¡À 1.1
+min¡Âmax
+70.3¡Â74.1
+71.0¡Â74.6
+x ¡À sd
+22.3a ¡À 1.1
+22.2a ¡À 0.8
+min¡Âmax
+20.1¡Â23.7
+21.0¡Â23.5
+x ¡À sd
+1.0a ¡À 0.2
+1.0a ¡À 0.2
+min¡Âmax
+0.8¡Â1.3
+0.6¡Â1.3
+x ¡À sd
+4.3a ¡À 1.2
+4.0a ¡À 1.2
+min¡Âmax
+2.3¡Â5.9
+2.3¡Â6.9
+a, b e means in columns with the same letters referring to the same characteristic do not differ signicantly (P > 0.05).
+x ¡À sd - average ¡À standard deviation, min¡Âmax - minimum and maximum values.
+
+Total heme pigment content (ppm hemin)
+
+Collagen content (%)
+
+Protein content (%)
+
+Water content (%)
+
+RSE (n  13)
+6.0a ¡À 0.1
+5.8¡Â6.2
+5.5b ¡À 0.01
+5.4¡Â5.5
+2.7a ¡À 0.9
+1.7¡Â4.9
+4.1a ¡À 1.8
+2.0¡Â7.2
+9.5ab ¡À 2.6
+6.3¡Â12.9
+5.9b ¡À 2.4
+3.6¡Â8.6
+6.3b ¡À 3.5
+1.3¡Â13.2
+20.7b ¡À 4.3
+13.3¡Â29.0
+57.6a ¡À 7.3
+49.6¡Â69.4
+72.6a ¡À 1.2
+70.8¡Â74.1
+22.1a ¡À 0.9
+20.2¡Â23.7
+1.2a ¡À 0.1
+1.0¡Â1.4
+4.4a ¡À 1.5
+2.4¡Â8.0
+
+DFD (n  11)
+6.5c ¡À 0.2
+6.1¡Â6.8
+6.3c ¡À 0.2
+6.0¡Â6.7
+2.9a ¡À 0.4
+2.4¡Â3.6
+3.6a ¡À 0.8
+2.4¡Â4.7
+6.1c ¡À 1.2
+4.2¡Â8.2
+0.8c ¡À 0.4
+0.1¡Â1.5
+1.6c ¡À 0.6
+0.2¡Â2.4
+3.8c ¡À 1.8
+0.5¡Â7.1
+56.9a ¡À 6.8
+49.6¡Â67.9
+73.1a ¡À 1.1
+70.9¡Â74.1
+22.2a ¡À 0.7
+21.4¡Â23.4
+1.2a ¡À 0.2
+0.8¡Â1.7
+4.0a ¡À 1.4
+1.9¡Â6.4
+
+Fig. 1. Correlation corrgram between the individual characteristics.
+
+expressed by L* (CIEL*a*b*) coordinate and those color parameters
+which directly characterize the lightness (V and L) determined by
+means of the CVS method when compared to the remaining meat
+
+quality groups. The DFD meat, in turn, was marked by the darkest
+color (Table 2). However different color of meat classied to
+different quality groups was not inuenced by different total heme
+
+Table 2
+The color coordinates of the analyzed groups of determined in the CIEL*a*b* scale and by means of the CVS method.
+
+M. Chmiel, M. Sowinski / LWT - Food Science and Technology 73 (2016) 473e480
+
+477
+
+L*
+
+a*
+
+b*
+
+H
+
+R
+
+G
+
+C*
+
+h
+
+CVS
+
+CIEL*a*b*
+
+Characteristics
+
+Meat quality classes
+RFN (n  104)
+PSE (n  102)
+x ¡À sd
+49.3a ¡À 2.9
+56.0b ¡À 3.1
+min¡Âmax
+43.4¡Â53.6
+50.2¡Â64.6
+x ¡À sd
+2.2a ¡À 1.4
+3.5b ¡À 2.0
+min¡Âmax
+0.1¡Â7.6
+0.3¡Â12.0
+x ¡À sd
+10.7a ¡À 1.4
+12.2b ¡À 1.8
+min¡Âmax
+7.2¡Â14.9
+9.1¡Â19.4
+x ¡À sd
+11.0a ¡À 1.6
+12.8b ¡À 2.3
+min¡Âmax
+7.2¡Â16.8
+9.2¡Â21.8
+x ¡À sd
+79.5a ¡À 6.7
+75.0b ¡À 6.1
+min¡Âmax
+63.3¡Â97.1
+56.0¡Â88.4
+x ¡À sd
+79.3a ¡À 5.6
+90.9b ¡À 4.7
+min¡Âmax
+62.7¡Â91.0
+82.0¡Â103.3
+x ¡À sd
+54.0a ¡À 5.7
+65.7b ¡À 5.1
+min
+38.0¡Â65.5
+55.6¡Â79.3
+x ¡À sd
+52.6a ¡À 5.1
+62.0b ¡À 4.5
+min¡Âmax
+37.0¡Â64.8
+52.6¡Â73.8
+x ¡À sd
+0.1a ¡À 0.1
+0.2b ¡À 0.1
+min¡Âmax
+ 0.1¡Â0.3
+0.0¡Â0.3
+x ¡À sd
+34.4a ¡À 2.8
+31.9b ¡À 2.8
+min¡Âmax
+28.4¡Â42.3
+26.9¡Â39.0
+x ¡À sd
+31.1a ¡À 2.2
+35.6b ¡À 1.9
+min¡Âmax
+24.6¡Â35.7
+32.2¡Â40.5
+x ¡À sd
+0.1a ¡À 0.1
+0.2b ¡À 0.1
+ 0.1¡Â0.3
+min¡Âmax
+0.0¡Â0.3
+x ¡À sd
+20.9a ¡À 2.1
+19.1b ¡À 2.0
+min¡Âmax
+16.6¡Â26.9
+15.6¡Â24.3
+x ¡À sd
+25.8a ¡À 2.1
+30.0b ¡À 1.7
+min¡Âmax
+19.5¡Â30.3
+26.5¡Â34.6
+a, b e means in columns with the same letters referring to the same characteristic do not differ signicantly (P > 0.05).
+x ¡À sd - average ¡À standard deviation, min¡Âmax - minimum and maximum values.
+
+S
+
+V
+
+B
+
+H
+
+S
+
+L
+
+RSE (n  13)
+48.8a ¡À 1.4
+46.5¡Â50.8
+1.9a ¡À 1.1
+0.1¡Â3.6
+10.9a ¡À 1.2
+8.5¡Â12.9
+11.1a ¡À 1.3
+8.8¡Â13.3
+80.5a ¡À 5.2
+71.7¡Â90.8
+80.7a ¡À 3.2
+76.4¡Â86.4
+55.0a ¡À 3.5
+49.0¡Â60.6
+53.7a ¡À 2.7
+48.5¡Â58.3
+0.1ac ¡À 0.05
+0.0¡Â0.1
+33.8ab ¡À 2.0
+30.4¡Â37.8
+31.6a ¡À 1.3
+30.0¡Â33.9
+0.1ac ¡À 0.05
+0.0¡Â0.1
+20.5ab ¡À 1.5
+17.9¡Â23.4
+26.3a ¡À 1.1
+24.6¡Â28.0
+
+DFD (n  11)
+39.3c ¡À 2.0
+36.2¡Â42.7
+1.7a ¡À 0.9
+0.5¡Â3.3
+10.4a ¡À 0.9
+8.3¡Â11.5
+10.5a ¡À 1.0
+8.4¡Â11.6
+81.2a ¡À 5.8
+72.7¡Â93.2
+63.9c ¡À 5.1
+54.0¡Â69.2
+39.2c ¡À 3.7
+32.4¡Â42.9
+39.7c ¡À 3.8
+33.0¡Â44.5
+ 0.03c ¡À 0.1
+ 0.1¡Â0.1
+39.8c ¡À 1.7
+38.1¡Â43.5
+25.0c ¡À 2.0
+21.2¡Â27.1
+ 0.03c ¡À 0.1
+ 0.1¡Â0.1
+25.0c ¡À 1.4
+23.7¡Â28.1
+20.1c ¡À 1.7
+16.8¡Â22.0
+
+pigment content (Table 1). Additionally, a small amount of fat e
+similar in all quality groups (approx. 4%, Table 1) - should not affect
+the meat lightness. Additionally, the analyzed raw material from
+different meat quality classes was characterized by similar water,
+protein, and collagen content. As for the parameters of RGB model,
+a concurrent increase in all three R, G, B parameters of PSE meat
+was reported when compared with the values of these parameters
+in normal meat (RFN). It leads to an increase in image lightness and,
+the PSE meat color expressed through values of parameters deter-
+mined by means of the CVS method was lighter than the normal
+meat. Similarly, a concurrent proportional drop in the values of all
+three color parameters of RGB model in the DFD meat was observed
+when compared with the values of the color coordinates of the
+normal meat (RFN) resulting in a drop of image lightness. The color
+of the DFD meat expressed through the RGB parameters was
+consequently darker than that of the RFN meat. The above-
+mentioned dependencies were reected in the subsequent corre-
+lation analysis (Fig. 1). The ndings obtained by many authors
+indicated that there exist correlations between meat pH and the
+lightness of its color. The PSE meat is lighter while the DFD is darker
+than the RFN meat (Brewer et al., 2006; Warris et al., 2006).
+No signicant differences in the lightness of RFN and RSE meat
+color were discovered (Table 2). No signicant differences in means
+of the remaining achromatic color components a* and b* were
+found in DFD, RSE and RFN meat, whilst the PSE meat had signi-
+cantly the highest values of these parameters (Table 2). The raw
+material classied as PSE was marked by signicantly the highest
+Chroma values determined both by means of CIEL*a*b* (C*) and the
+CVS method (S parameter) whereas the hue angle values were the
+lowest (h or H). The reverse dependency was observed in the DFD
+meat (Table 2). The described dependencies were consistent with
+the literature (Chmiel et al., 2011; Di Luca et al., 2011; Faucitano
+et al., 2010).
+
+3.3. Dependencies between quality and color parameters of meat
+
+The next stage of the current study involved determination of
+the dependency between the individual quality parameters of the
+analyzed m. longissimus lumborum and, inter alia, color coordinates
+determined by means of two methods. In order to do so, the cor-
+relation analysis was conducted. Due to numerous dependencies,
+their linearity was veried using the method developed by Kozak
+and Wnuk (2011). The correlation was presented using correlo-
+gram (Fig. 1) i.e., a graphic presentation of correlation matrix
+(Friendly, 2002). The key accompanying the gure shows the colors
+for the size of correlation (the positive dependencies were marked
+blue whilst the negative ones with red). Besides, the size of the
+point denotes the dependency strength e no linear dependency no
+such a point. It was established that there is a negative linear de-
+pendency between the pH of the analyzed LL (taken both at 45-min
+and 24-h post-slaughter) and L* color coordinate determined by
+means of CIEL*a*b* (Fig. 1, Table 3). The correlation and determi-
+nation coefcients between pH and the color lightness L* were
+higher for the pH measured at 24-h post-mortem than that of
+45 min indicating to a closer connection between the analyzed
+parameters. Over 50% of cases the color lightness was determined
+by pH2. These ndings are in accordance with the dependencies
+reported by Brewer et al. (2006), Warris et al. (2006) and Van De
+Perre and Permentier, (2010b) .
+The obtained correlation and determination coefcients be-
+tween the meat pH1 and pH2 and the color coordinates determined
+by means of the CVS method (R, G, B, V and L) were similar to those
+ones computed for the color lightness determined in the CIEL*a*b*
+scale (Table 3, Fig. 1). As a consequence, the color measurement
+using reection method might be replaced with the CVS method.
+Similar conclusions were made by Girolami et al. (2013). The results
+showed that
+the colorimeter did not generate coordinates
+
+478
+
+M. Chmiel, M. Sowinski / LWT - Food Science and Technology 73 (2016) 473e480
+
+Table 3
+Correlation and determination coefcients and regression equation between pH1 and pH2 and the color coordinates characterizing the lightness determined by means of the
+CVS method and in the CIEL*a*b* scale of the analyzed m. longissimus lumborum.
+
+Independent variable (x)
+
+Dependent variable (y)
+
+pH1
+
+pH2
+
+R (CVS)
+G (CVS)
+B (CVS)
+V (CVS)
+L (CVS)
+L*(CIEL*a*b*)
+R (CVS)
+G (CVS)
+B (CVS)
+V (CVS)
+L (CVS)
+L*(CIEL*a*b*)
+
+Correlation coefcient (r)
+ 0.59*
+ 0.58*
+ 0.56*
+ 0.59*
+ 0.58*
+ 0.62*
+ 0.74*
+ 0.72*
+ 0.71*
+ 0.74*
+ 0.73*
+ 0.73*
+
+Determination coefcient (R2) (%)
+
+34.8
+33.6
+31.4
+34.8
+33.6
+38.4
+54.8
+51.8
+50.4
+54.8
+53.3
+53.3
+
+Regression equation
+y   17.3267x  187.026
+y   17.0696x  160.244
+y   13.967x  139.498
+y   6.80699x  73.4143
+y   6.24605x  64.6177
+y   10.8085x  116.187
+y   27.7427x  239.407
+y   27.2157x  211.2
+y   22.7871x  186.5
+y   10.8867x  93.9234
+y   10.117x  84.1514
+y   16.4136x  143.855
+
+*signicant correlation at P  0.05.
+
+corresponding to the true color of meat. Instead, the CVS method
+gave valid measurements that reproduced a color very similar to
+the real one.
+In our study, also in this case the correlation and determination
+coefcients were higher for the pH taken at 24-h post-slaughter
+(pH2). As for the R, G, B, V and L coordinates in more 50% the co-
+lor lightness expressed by these coordinates was determined by
+pH1 or pH2. Concerning the rest of color coordinates: a* and b*
+(CIEL*a*b*) as well as H and S (CVS), the calculated correlation co-
+efcients between these coordinates and the meat pH were lower
+(Fig. 1). Higher than those obtained in the present studies corre-
+lation and determination coefcients between the pH and the color
+lightness determined by means of the CVS method were achieved
+by Chmiel et al. (2012) in their research into the employment of
+color coordinates determined by means of the CVS method to
+detect the DFD m. semimembranosus beef meat. It might have been
+attributed to a greater difference in the color of RFN and DFD beef
+meat.
+Summing up, the pH of the analyzed m. longissimus lumborum
+was signicantly correlated with most color coordinates while the
+highest correlation coefcients were obtained for the color light-
+ness L* (CIEL*a*b*) and color coordinates characterizing the light-
+ness (R, G, B, V and L) determined by means of the CVS method. Like
+the coordinates determined in CIEL*a*b* scale, the color co-
+ordinates determined by means of the CVS method might be used
+for the detection of the PSE and DFD meat along with the pH
+evaluation of the pork LL and the classication of raw material into
+the quality groups (RFN, PSE and DFD).
+
+3.4. The evaluation of classication accuracy of swine m.
+longissimus lumborum (LL) into quality groups using the CVS
+method
+
+In order to evaluate the accuracy of the analyzed m. longissimus
+lumborum into the quality groups based on the color coordinates
+determined by means of the CVS method, the discrimination
+analysis was performed. For comparison, an analogous analysis was
+carried out for color coordinates determined in CIEL*a*b* scale. The
+obtained results were presented in Table 4. The color coordinates of
+RGB, HSV and HSL had similar discrimination strength of the
+analyzed m. longissimus lumborum into quality groups. The classi-
+cation accuracy for RGB, HSV and HSL models was 80.0, 80.9 and
+81.7%, respectively (Table 4). The obtained results indicate that out
+of 230 samples of m. longissimus lumborum 184e188 were correctly
+classied into appropriate quality groups. As a comparison, the
+classication accuracy based on the color coordinates determined
+in the CIEL*a*b* scale was similar and reached 82.6%.
+
+Table 4
+Total error of raw material classication based on the color coordinates determined
+by the CVS method and in the CIEL*a*b* scale and on per-quality groups basis as well
+as the precise results of classication into the quality groups determined during the
+validation model of the discrimination analysis.
+
+Total classication error
+
+Classication
+
+RGB model
+20.0%
+
+HSV model
+19.1%
+
+HSL model
+18.3%
+
+CIEL*a*b* scale
+17.4%
+
+Group
+
+True rate
+
+Error rate
+
+(%)
+
+(Item)
+
+(%)
+
+(Item)
+
+RFN
+PSE
+RSE
+DFD
+
+RFN
+PSE
+RSE
+DFD
+
+RFN
+PSE
+RSE
+DFD
+
+RFN
+PSE
+RSE
+DFD
+
+84
+89
+0
+82
+
+82
+91
+0
+82
+
+84
+91
+0
+73
+
+88
+82
+0
+100
+
+87
+91
+0
+9
+
+85
+93
+0
+9
+
+87
+93
+0
+8
+
+92
+84
+0
+11
+
+16
+11
+100
+18
+
+18
+9
+100
+18
+
+16
+9
+100
+27
+
+12
+18
+0
+100
+
+17 (14 PSE, 3 DFD)
+11 (11 RFN)
+13 (12 RFN, 1 PSE)
+2 (2 RFN)
+
+19 (14 PSE, 5 DFD)
+9 (9 RFN)
+13 (12 RFN, 1 PSE)
+2 (2 DFD)
+
+17 (13 PSE, 4 DFD)
+9 (9 RFN)
+13 (12 RFN, 1 PSE)
+3 (3 RFN)
+
+12 (12 PSE)
+18 (18 RFN)
+13 (13 RFN)
+0
+
+Using the color coordinates of RGB model, the classication
+accuracy of the raw material into all quality groups was 80.0%, and
+on per-quality groups basis: 84% samples (87 items) were correctly
+classied as RFN meat whereas 16% (14 items as PSE and 3 items as
+DFD) were misclassied (Table 4). 89% of samples (91 items) were
+correctly classied as PSE whilst 11% of samples were incorrectly
+classied as RFN meat. As for the RSE meat, no sample was classi-
+ed (correctly or not) into this quality group, out of 13, almost all of
+them (12) were classied as the normal meat. The classication
+accuracy of raw material into the DFD group was 82% while 18% (2
+samples) were misclassied as the RFN meat (Table 4).
+Using the color coordinates of HSV model, 80.9% of m. long-
+issimus lumborum was classied correctly into appropriate quality
+groups, and on per-quality groups basis: 18% of RFN meat samples
+were misclassied (14 items as PSE and 5 as DFD). Regarding the
+PSE meat, the classication accuracy of the raw material was 91%
+with 9% being misclassied as RFN meat.
+The classication accuracy of the raw material into appropriate
+quality groups using the color coordinates of the HSL model was
+81.7%. On per-quality group basis: 84% of samples (87 items) were
+
+M. Chmiel, M. Sowinski / LWT - Food Science and Technology 73 (2016) 473e480
+
+479
+
+correctly classied as RFN meat whereas 16% was misclassied as
+PSE and DFD (13 and 4 samples, respectively). Like the color co-
+ordinates of HSV model, the classication accuracy for PSE meat
+based on the model HSL parameters was 91%, whereas 9% was
+incorrectly classied as RFN. Once more, no sample was classied
+(correctly or not) as RSE quality group and of 13 samples, 12 were
+classied as RFN meat and 1 as PSE meat. Out of 11 DFD samples 8
+were correctly classied and 3 of them were misclassied as RFN
+meat (Table 4).
+In comparison, the classication accuracy of the raw material
+based on the color coordinates determined in the CIEL*a*b* scale
+was 82.6%. Again for this color model, no sample was classied
+(correctly or not) as RSE meat and all the samples were incorrectly
+classied as RFN meat. All the DFD samples were correctly classied
+whilst the accuracy for RFN and PSE classication was 88 and 82%,
+respectively. 12 RFN meat samples were misclassied as PSE while
+18 RFN samples were incorrectly classied as PSE (Table 4).
+Chmiel et al. (2012) achieved higher classication accuracy of
+the CVS for RFN and DFD beef m. semimembranosus. As for the color
+coordinate L* (CIEL*a*b*), 91.8% of the analyzed samples were
+correctly classied into appropriate meat quality groups. And as far
+as the coordinates V and L (CVS) were concerned, the classication
+accuracy was also high and reached 90.0 and 88.4%, respectively.
+The obtained higher accuracy of raw material classication into
+individual beef meat quality groups might have been caused by
+bigger differences in the color of RFN and DFD meat. In the studies
+of Zapotoczny, Szczypi nski, and Daszkiewicz (2016) a method for
+evaluating the quality of medium-ground and nely-ground cold
+meats with the use of computer-assisted image analysis was
+developed. Statistical model used by authors discriminated cold
+meats with 89e100% accuracy, subject to product type. Also in the
+studies undertaken by Sun et al. (2016), the accuracy of CVS method
+was investigated. Eighteen color features were extracted from three
+different color spaces (RGB, HSI and L*a*b*) and were shown to
+have useful
+information regarding pork color. L*, a*, and b*
+extracted from images were signicantly correlated with Minolta
+colorimeter L*, a*, and b*, respectively. Additionally, a favorable
+coefcient of determination (R2  0.82) was achieved when using
+the linear regression method for predicting pork color score.
+
+4. Conclusions
+
+It may be inferred that there exists possibility of the CVS
+employment in detection of PSE and DFD m. longissimus lumborum
+as well as their classication into the quality groups. The accuracy
+of raw material classication was 80.0% for the RGB model and
+80.9% for the HSV model and 81.7% for the HSL model. This was
+similar to the classication accuracy based on the color coordinates
+in the CIEL*a*b* scale and reached 82.6%. Consequently, the CVS
+method can be used for a rapid quality evaluation of porcine m.
+longissiumus lumborum. One advantage of the CVS method is the
+fact that it gives the possibility to analyze the color of the whole
+meat surface in a non-invasive and on-line way while the area
+measured by means of a colorimeter or a spectrophotometer covers
+only the area of measurement head. In addition, this is a contact
+method and has to be used periodically. The implementation of the
+CVS into the industrial practice will allow evaluating the culinary
+and processing quality of the meat with a great accuracy and in this
+way will show an appropriate direction of its employment. The
+right selection of raw material and its optimal utilization will, in
+consequence, ensure the quality standardization and high con-
+sumer acceptability for the products. Thus, both producers and
+consumers will benet. This is especially important now when
+meat processing plants are competing for markets.
+
+Acknowledgements
+
+This work was nancially supported by Ministry of Science and
+Higher Education Republic of Poland by a grant number No. NN 312
+068739 in 2010e2012.
+
+References
+
+Barbut, S., Sosnicki, A. A., Lonergan, S. M., Knapp, T., Ciobanu, D. C., Gatcliffe, L. J.,
+et al. (2008). Progress in reducing the pale, soft and exudative (PSE) problem in
+pork and poultry meat. Meat Science, 79, 46e63.
+Brewer, M. S., Novakofski, J., & Freise, K. (2006). Instrumental evaluation of pH ef-
+fects on ability of pork chops to bloom. Meat Science, 72, 596e602.
+Channon, H. A., Payne, A. M., & Warner, R. D. (2000). Halothane genotype, pre-
+slaughter handling and stunning method all inuence pork quality. Meat Sci-
+ence, 56, 291e299.
+Chmiel, M., Sowinski, M., & Dasiewicz, K. (2011). Lightness of the color measured
+by computer image analysis as a factor for assessing the quality of pork meat.
+Meat Science, 88, 566e570.
+Chmiel, M., Sowinski, M., Dasiewicz, K., & Florowski, T. (2012). Application of a
+computer vision system (CVS) to classify beef as normal or DFD. Journal of
+Animal Science, 90, 4126e4130.
+Craigie, C. R., Navajas, E. A., Purchas, R. W., Maltin, C. A., B¨¹nger, L., Hoskin, S. O.,
+et al. (2012). A review of the development and use of video image analysis (VIA)
+for beef carcass evaluation as an alternative to the current EUROP system and
+other subjective systems. Meat Science, 92, 307e318.
+Di Luca, A., Mullen, A. M., Elia, G., Davey, G., & Hamill, R. M. (2011). Centrifugal drip
+is an accessible source for protein indicators of pork ageing and water-holding
+capacity. Meat Science, 88, 261e270.
+Faucitano, L., Huff, P., Teuscher, F., Gariepy, C., & Wegner, J. (2005). Application of
+computer image analysis to measure pork marbling characteristics. Meat Sci-
+ence, 69, 537e543.
+Faucitano, L., Ielo, M. C., Ster, C., Lo Fiego, D. P., Methot, S., et al. (2010). Shelf life of
+pork from ve different quality classes. Meat Science, 84, 466e469.
+Florowski, T., Florowska, A., Kur, A., & Pisula, A. (2013). Comparing effect of added
+collagen and soyabean proteins on quality of restructured cooked hams made
+from PSE meat. Food Science Technology Quality, 4(89), 90e99.
+Fortin, A., Tong, A. K. W., Robertson, W. M., Zawadski, S. M., Landry, S.
+J.,
+Robinson, D. J., et al. (2003). A novel approach to grading pork carcasses:
+Computer vision and ultrasound. Meat Science, 63, 451e462.
+Friendly, M. (2002). Corrgrams: Exploratory displays for correlation matrices.
+American Statistic, 56, 316e324.
+Gajana, C. S., Nkukwana, T. T., Marume, U., & Muchenje, V. (2013). Effects of
+transportation time, distance, stocking density, temperature and lairage time on
+incidences of pale soft exudative (PSE) and the physico-chemical characteristics
+of pork. Meat Science, 95, 520e525.
+Girolami, A., Napolitano, F., Faraone, D., & Braghieri, A. (2013). Measurement of meat
+color using a computer vision system. Meat Science, 93, 111e118.
+Grau, R., & Hamm, R. (1952). Eine einfache Methode zur Bestimmung der Was-
+serbindung Fleisch. Fleischwirtschaft, 4, 195e297.
+Gregory, N. G. (2010). How climatic changes could affect meat quality. Food Research
+International, 43, 1866e1873.
+Hornsey, H. C. (1956). The color of cooked cured pork. I. Estimation of the nitric
+oxide-haem 300 pigments. Journal of the Science of Food and Agriculture, 7,
+534e540.
+Jackman, P., Sun, D. W., Allen, P., Brandon, K., & White, A. M. (2010). Correlation of
+consumer assessment of longissimus dorsi beef palatability with image colour,
+marbling and surface texture features. Meat Science, 84, 564e568.
+Karamucki, T., Jakubowska, M., Rybarczyk, A., & Gardzielewska, J. (2013). The in-
+uence of myoglobin on the colour of minced pork loin. Meat Science, 94,
+234e238.
+Kozak, M., & Wnuk, A. (2011). Inspecting associations in multivariate data sets with
+an interactive modied Bland-Altman plot. Romanian Agricultural Research, 28,
+259e262.
+Krzanowski, W. J. (2005). Misclassication rates. In B. S. Everitt, & D. C. Howell
+(Eds.), Encyclopedia of statistics in behavioral science, 3 pp. 1229e1234). Chi-
+chester: John Wiley & Sons, Ltd.
+Lachenbruch, P. A., & Mickey, M. R. (1968). Estimation of error rates in discriminant
+analysis. Technometrics, 10, 1e11.
+Larsen, A. B. L., Hviid, M. S., Jrgensen, M. E., Larsen, R., & Dahl, A. L. (2014). Vision-
+based method for tracking meat cuts in slaughterhouses. Meat Science, 96,
+366e372.
+Lee, S. H., Choe, J. H., Choi, Y. M., Jung, K. C., Rhee, M. S., Hong, K. C., et al. (2012). The
+inuence of pork quality traits and muscle ber characteristics on the eating
+quality of pork from various breeds. Meat Science, 90, 284e291.
+Miazek, J., & Mroczek, J. (2013). Effect of Gel-fat additive and time of sterilization on
+properties of mode canned product. Food Science Technology Quality, 5(90),
+80e89.
+Pabiou, T., Fikse, W. F., Cromie, A. R., Keane, M. G., Nasholm, A., & Berry, D. P. (2011).
+Use of digital images to predict carcass cut yields in cattle. Livestock Science, 137,
+130e140.
+Papadakis, S. E., Abdul-Malek, S., Kamdem, R. E., & Yam, K. L. (2000). A versatile and
+
+480
+
+M. Chmiel, M. Sowinski / LWT - Food Science and Technology 73 (2016) 473e480
+
+inexpensive technique for measuring color of foods. Food Technology, 54, 48e51.
+PCS. (2010). Polish committee for standardization. Polish standard. In Meat and
+meat products. Determination of fat, protein and water content. Warsaw, PCS:
+Spectrometry method in near-infrared transmission (NIT) using the calibration
+on articial neural networks (ANN). PN-A-82109:2010.
+Pohja, N. S., & Niinivaara, F. P. (1957). Die Bestimmung des Wasserbindung des
+Fleisches mittels der Konstantdr¨¹ck methode. Fleischwirtschaft, 9, 193e195.
+Pospiech, E., Iwanowska, A., & Montowska, M. (2011). Meat defects and their
+characteristic. In A. Pisula, & E. Pospiech (Eds.), Meat - Science and technology
+base (pp. 233e243). Warsaw, Poland: SGGW Publisher.
+Sadkowski, T., Ciecierska, A., Majewska, A., Oprza dek, J., Dasiewicz, K., Ollik, M.,
+et al. (2014). Transcriptional background of beef marbling d Novel genes
+implicated in intramuscular fat deposition. Meat Science, 97, 32e41.
+Salda ~na, E., Siche, R., Castro, W., Huaman, R., & Quevedo, R. (2014). Measurement
+parameter of color on yacon (Smallanthus sonchifolius) slices using a computer
+vision system. LWT - Food Science and Technology, 59, 1220e1226.
+Sun, X., Young, J., Liu, J. H., Bachmeier, L., Somers, R. M., Chen, K. J., et al. (2016).
+
+Prediction of pork color attributes using computer vision system. Meat Science,
+113, 62e64.
+Trinderup, C. H., Dahl, A., Jensen, K., Carstensen, J. M., & Conradsen, K. (2015).
+Comparison of a multispectral vision system and a colorimeter for the assess-
+ment of meat color. Meat Science, 102, 1e7.
+Van De Perre, V., Ceustermans, A., Leyten, J., & Geers, R. (2010). The prevalence of
+PSE characteristics in pork loin and cooked ham e Effects of season and lairage
+time. Meat Science, 86, 391e397.
+Van De Perre, V., Permentier, L., De Bie, S., Verbeke, G., & Geers, R. (2010). Effect of
+unloading, lairage, pig handling, stunning and season on pH of pork. Meat
+Science, 86, 931e937.
+Warris, P. D., Brown, S. N., & Pasciak, P. (2006). The colour of the adductor as a
+predictor of pork quality in the loin. Meat Science, 73, 565e569.
+Zapotoczny, P., Szczypi nski, P. M., & Daszkiewicz, T. (2016). Evaluation of the quality
+of cold meats by computer-assisted image analysis. LWT - Food Science and
+Technology, 67, 37e49.
+

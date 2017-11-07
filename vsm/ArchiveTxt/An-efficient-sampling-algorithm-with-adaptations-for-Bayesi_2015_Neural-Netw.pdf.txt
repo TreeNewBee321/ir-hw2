@@ -1,0 +1,1447 @@
+An efficient sampling algorithm with adaptations for Bayesian variable selection
+
+Takamitsu Araki a, , Kazushi Ikeda b , Shotaro Akaho a
+
+a Human Technology Research Institute, National Institute of Advanced Industrial Science and Technology, Japan
+b Graduate School of Information Science, Nara Institute of Science and Technology, Japan
+
+article
+
+info
+
+Article history:
+Received 10 May 2014
+Received in revised form 8 September 2014
+Accepted 26 September 2014
+Available online 7 October 2014
+
+Keywords:
+Indicator model selection
+Gibbs variable selection
+Kuo and Mallick¡¯s method
+Adaptive Markov chain Monte Carlo
+Convergence
+Bayesian logistic regression model
+
+
+abstract
+
+In Bayesian variable selection, indicator model selection (IMS) is a class of well-known sampling algo-
+rithms, which has been used in various models. The IMS is a class of methods that uses pseudo-priors and
+it contains specific methods such as Gibbs variable selection (GVS) and Kuo and Mallick¡¯s (KM) method.
+However, the efficiency of the IMS strongly depends on the parameters of a proposal distribution and the
+pseudo-priors. Specifically, the GVS determines their parameters based on a pilot run for a full model and
+the KM method sets their parameters as those of priors, which often leads to slow mixings of them. In
+this paper, we propose an algorithm that adapts the parameters of the IMS during running. The parame-
+ters obtained on the fly provide an appropriate proposal distribution and pseudo-priors, which improve
+the mixing of the algorithm. We also prove the convergence theorem of the proposed algorithm, and con-
+firm that the algorithm is more efficient than the conventional algorithms by experiments of the Bayesian
+variable selection.
+
+ 2014 Elsevier Ltd. All rights reserved.
+
+1. Introduction
+
+Bayesian variable selection plays an important role in causal
+analysis, prediction and classification. It calculates a posterior dis-
+tribution of coefficients and inclusion of covariates in the statis-
+tical models. The posterior distribution is mainly used in the two
+Bayesian inferences. One is extraction of the important covariates,
+and the other is construction of a predictive distribution which is
+a powerful tool for various purposes such as pattern recognition
+and prediction. Since the posterior distribution cannot be obtained
+in a closed form, Markov chain Monte Carlo (MCMC) methods are
+applied to the estimation. The MCMC methods can efficiently gen-
+erate samples from such a complex distribution by simulating a
+Markov chain that converges to the target distribution and are of-
+ten used to calculate the statistics of the posterior distribution in
+the Bayesian analysis (Robert & Casella, 2004). However, the stan-
+dard MCMC methods cannot efficiently generate samples from the
+posterior distribution in the Bayesian variable selection due to its
+inherent complex structure.
+In order to generate samples from the posterior efficiently, in-
+dicator model selection (IMS; Dellaportas, Forster, & Ntzoufras,
+2002 and Kuo & Mallick, 1998) has been proposed. The IMS is a
+class of the MCMC methods which uses pseudo-priors and con-
+tains Gibbs variable selection (GVS; Dellaportas et al., 2002) and
+Kuo and Mallick¡¯s (KM) method (Kuo & Mallick, 1998). For con-
+ditionally non-conjugate models in particular, the IMS is more
+efficient than the other algorithms based on the MCMC meth-
+ods (O¡¯Hara & Sillanpaa, 2009) such as Stochastic Search Variable
+Selection (SSVS; George & McCullogh, 1993). The conditionally
+non-conjugate models such as generalized linear models and non-
+linear models have the conditional posterior densities that cannot
+be obtained in the closed form. Reversible jump MCMC (RJMCMC;
+Green, 1995), which is the well-known MCMC method for Bayesian
+model selection, is also applicable to the posterior of the Bayesian
+variable selection for the both conditionally conjugate and non-
+conjugate models, but is less efficient than the GVS, Dellaportas
+et al. (2002). From those reasons, the IMS seems to be widely used
+to the Bayesian variable selection in various models.
+The IMS introduces the pseudo-priors to improve sampling ef-
+ficiency, but each algorithm included in the IMS hardly obtains the
+appropriate pseudo-priors as follows. In the GVS, the parameters
+of the pseudo-priors are determined by a pilot run for a full model
+(Dellaportas et al., 2002). However, the pseudo-priors with the ob-
+tained parameters have different distribution properties, a position
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+23
+
+and a shape, from the marginal posteriors of coefficients due to
+the correlation of the posterior distribution of coefficient param-
+eters, which causes a slow mixing of the GVS. In the KM method,
+the pseudo-priors are the same distributions as the priors of the
+coefficients. When the priors are vague or non-informative priors,
+e.g., the Jeffreys prior, the pseudo-priors have also the different dis-
+tribution properties from the marginal posteriors of coefficients.
+The IMS typically uses a Metropolis algorithm as a sampling
+method of the coefficient parameters for the conditionally non-
+conjugate models. The covariance matrix of the proposal distribu-
+tion is also calculated by the samples from the pilot run for the full
+model (Paroli & Spezia, 2007). However, since the samples from the
+full model do not have enough information to estimate an appro-
+priate scale of the proposal distribution, the proposal covariances
+above often lead to a slow convergence of the IMS.
+The IMS can be regarded as a special case of auxiliary variable
+methods (AVMs). The AVMs are the advanced MCMC methods that
+use auxiliary distributions and contain also Parallel Tempering and
+cluster Monte Carlo method and so on. The AVMs were extended
+to an adaptive MCMC for AVMs that adapts the parameters of the
+AVMs while it runs (Araki & Ikeda, 2013), and the convergence of
+the algorithm was proved.
+To solve the parameter setting problems of the IMS, we propose
+an adaptive IMS that adapts the proposal covariances and pseudo-
+priors by learning the means and the covariances of the coefficient
+posterior and the scale of the proposal distribution while it runs.
+We prove the convergence of the proposed algorithm by using the
+convergence theorem of the adaptive MCMC for AVMs in Araki
+and Ikeda (2013), since our algorithm can be formulated as the
+adaptive MCMC for AVMs. We also show that our algorithm can
+obtain appropriate parameters during its run and is more efficient
+than the conventional algorithms through their applications to the
+Bayesian variable selection of a linear regression model and logistic
+regression models.
+The rest of this paper is organized as follows. The conventional
+IMS is described in Section 2. The adaptive IMS is proposed in
+Section 3 and its convergence theorem is proved in Section 4. In
+Section 5, performance of the proposed algorithm is evaluated
+through numerical experiments. Finally, we give conclusions in
+Section 6.
+
+2. Indicator model selection
+
+The IMS sets ¦Èj = ¦Ãj¦Âj , j = 1, . . . , p, where ¦Â = (¦Â1 , . . . , ¦Âp ) ¡Ê
+
+We consider the following formulation of statistical models as
+the models that apply the Bayesian variable selection in this pa-
+ter vector, ¦È = (¦È1 , . . . , ¦Èp ) ¡Ê ¦¨  Rp , associated with covariates
+per. The p-variate statistical models have the coefficient parame-
+plest multivariate models, is written as y = p
+xj , j = 1, . . . , p. For example, a regression model, one of the sim-
+j=1 xj ¦Èj +  , where
+y is the response to x and  is a noise.
+¦¨ , and ¦Ã = (¦Ã1 , . . . , ¦Ãp ) ¡Ê {0, 1}p is an indicator variable vector
+that represents which covariates are included in the model. That
+is, ¦Ãj takes one if the covariate xj is included, and zero otherwise.
+In order to generate samples from the posterior of ¦Ã , ¦È efficiently,
+the IMS generates the samples from the posterior of ¦Ã , ¦Â . If ¦Ãj takes
+one, ¦Âj is equal to the coefficient ¦Èj ; otherwise ¦Âj is distributed
+according to the pseudo-prior f¦Ëj
+(¦Âj ), where ¦Ëj is two dimensional
+value denoting the mean and the variance. The pseudo-priors are
+not included in the posterior of ¦È and ¦Ã , but facilitate to produce
+the sample sequence from the posterior of ¦Ã and ¦Â . The prior of ¦Âj
+given ¦Ãj is
+
+(¦Âj |¦Ãj ) = ¦Ãj fj (¦Âj ) + (1  ¦Ãj )f¦Ëj
+
+f¦Ëj
+
+where fj (¦Âj ) is a j-th coefficient prior.
+
+(¦Âj ),
+
+(1)
+
+The IMS conducts Gibbs sampling steps for ¦Ã and ¦Â¦Ã , and a
+Metropolis¨CHastings step for ¦Â\¦Ã by turns, where ¦Â¦Ã denotes the
+components of ¦Â included in the model, whose corresponding
+indicators, ¦Ãj , take one, and ¦Â\¦Ã consists of the others. The Gibbs
+sampling step produces samples from the conditional posterior
+distributions
+
+(¦Âk |¦Ãk )fk (¦Ãk ),
+
+f¦Ëk
+
+j = 1, . . . , p,
+
+p
+
+k=1
+
+f¦Ë (¦Â\¦Ã |¦Ã , ¦Â¦Ã , D) = 
+f¦Ë (¦Ãj |¦Ãj , ¦Â , D) ¡Ø f (D|¦Â , ¦Ã )
+
+f¦Ëj
+
+(¦Âj ),
+
+¦Âj ¡Ê¦Â\¦Ã
+
+where ¦Ë = (¦Ë1 , . . . , ¦Ëp ) ¡Ê ¦«  R2p , and ¦Ãj denotes the entries
+of ¦Ã except ¦Ãj , f (D|¦Â , ¦Ã ) is the likelihood of the observation data D
+with ¦Â and ¦Ã , and fk (¦Ãk ) is the prior of ¦Ãk . The Metropolis¨CHastings
+step executes the Metropolis¨CHastings update for
+
+f (¦Â¦Ã |¦Ã , ¦Â\¦Ã , D) ¡Ø f (D|¦Â , ¦Ã ) 
+
+fj (¦Âj ).
+
+(2)
+
+¦Âj ¡Ê¦Â¦Ã
+
+From the practical viewpoint, if this conditional distribution (2)
+can be obtained analytically, this step directly samples from the
+distribution, that is, the Gibbs sampling is conducted; otherwise
+the Metropolis sampling is applied. In this paper, we employ the
+Metropolis sampling because it can be applied to more various
+models.
+The GVS is a specific case of the IMS, in which the parameters
+of the pseudo-priors are estimated by the samples from the full
+model. On the other hand, the KM is a case in which the pseudo-
+priors are the same distribution as the coefficient priors.
+The pseudo-priors should well approximate the marginal coef-
+ficient posteriors, f (¦Âj |¦Ãj = 1, D), for the sake of a well mixing
+of the IMS. The pilot run in the GVS samples from the posterior of
+the coefficients of the full model, f (¦Â |¦Ã1 = ¡¤ ¡¤ ¡¤ = ¦Ãp = 1, D),
+ ¡Ê U  ¦¨ and ¦²  ¡Ê ¦® , are estimated by the sample means,
+and the means and the covariances of the coefficient posterior,
+, and the sample covariances, ¦² , respectively, where ¦® denotes
+a subset of p ¡Á p real positive definite symmetric matrices. The
+GVS employs the estimated parameters as those of the pseudo-
+priors (Dellaportas et al., 2002; Paroli & Spezia, 2007). However, the
+distribution properties, the shape and the position, of the pseudo-
+priors with the means j and variances ¦²jj are different from those
+of the marginal coefficient posteriors, f (¦Âj |¦Ãj = 1, D), because the
+distribution properties of the marginal coefficient posteriors are
+different from those of the marginal posterior of the full model
+from which the pilot run generates samples. The pseudo-priors in
+the KM method have also different distribution properties from
+the marginal coefficient posteriors, since the pseudo-priors corre-
+spond to the coefficient priors.
+The proposal distribution should provide an appropriate mean
+Metropolis-acceptance rate, typically 0.234 in multidimensional
+settings (Roberts, Gelman, & Gilks, 1997), for the sake of rapid mix-
+ing of the IMS. The IMS employs the covariances estimated by the
+samples from the posterior of the full model as those of the pro-
+posal distribution (Dellaportas et al., 2002; Paroli & Spezia, 2007).
+The covariances of the proposal distribution is typically set as c ¦²ij ,
+where c ¡Ê C  R+ is a scale parameter. Roberts et al. (1997) the-
+parameter c = (2.38)2 /p is appropriate, and the value has been
+oretically showed that if the model is high dimensional the scale
+used as a standard value. However, such proposal distribution of-
+ten brings about the inappropriate mean acceptance rate, because
+the scale of the proposal distribution that leads to the appropriate
+mean acceptance rate practically depends on the dimension and
+the shape of the coefficient posterior.
+
+24
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+3. Adaptive indicator model selection
+
+Algorithm 1 Adaptive IMS algorithm
+
+We propose the adaptive IMS that adapts the pseudo-prior pa-
+rameters and the proposal covariances by learning the covariances
+and the means of the coefficient posterior and the scale parame-
+ter while the IMS is running. The two learning algorithms are de-
+scribed below.
+Since the correlation of the proposal distribution, the variances
+and the means of the pseudo-priors should correspond with those
+of the coefficient posterior, the covariances and the means of the
+coefficient posterior, ¦²  and  , are necessary. To obtain ¦²  and
+ , the covariance parameters ¦² and the mean parameters 
+are updated by using only the samples ¦Â (n)
+from the coefficient
+posterior, f (¦Âj |D, ¦Ãj = 1). Thus, the updates use the number of
+sampling ¦Âj from the coefficient posterior, a(n)
+, but not the iteration
+number n. The update equations are as follows.
+
+j
+
+j
+
+h(a(n)
+
+(n+1)
+j ¡û (n)
+j + ¦Ã (n+1)
+j
+j
+¦² (n+1)
+ij ¡û ¦² (n)
+ij + ¦Ã (n+1)
+¦Ã (n+1)
+j
+i
+(¦Â (n+1)
+ (n)
+j
+j
+a(n+1)
+j ¡û a(n)
+j + ¦Ã (n+1)
+j
+
+)(¦Â (n+1)
+u(a(n)
+)(¦Â (n+1)
+)  ¦² (n)
+ij
+j = 1, . . . , p, i = 1, . . . , p,
+
+¡Á 
+
+),
+
+,
+
+i
+
+i
+
+j
+ (n)
+j
+, a(n)
+j
+ (n)
+i
+
+)
+
+
+
+,
+
+(3)
+
+i
+
+j
+
+j
+
+j = 1, and a(n)
+where a(0)
+from the coefficient posterior, f (¦Âj |D, ¦Ãj = 1). The learning co-
+is incremented when ¦Âj is sampled
+limn¡ú¡Þ h(n) = 0 and limn¡ú¡Þ,m¡ú¡Þ u(n, m) = 0, respectively.
+efficients h(n) and u(n, m) are decreasing functions that satisfy
+Note that j and ¦²ij are updated by only the samples ¦Â (n)
+from the
+coefficient posterior, f (¦Âj |D, ¦Ãj = 1), and the samples ¦Â (n)
+from f (¦Âi , ¦Âj |D, ¦Ãi = 1, ¦Ãj = 1), respectively.
+The proposal distribution should lead to the appropriate mean
+Metropolis acceptance rate, ¦Á ¡Ê (0, 1), 0.234 in many cases. To
+achieve the rate ¦Á , the scale parameter c is updated as
+
+, ¦Â (n)
+j
+
+c (n+1) ¡û c (n) + s(n)(ER(n+1)  ¦Á ),
+
+(4)
+where ER(n+1) is a variable that takes one if the proposal value in
+the Metropolis sampling of ¦Â¦Ã (n+1) is accepted at time n, and zero
+otherwise. The learning coefficient, s(n), is a decreasing function of
+n that satisfies limn¡ú¡Þ s(n) = 0.
+The learned parameters (n) , ¦² (n) , and c (n) are introduced
+to the pseudo-priors and the proposal distribution. That is, the
+pseudo-priors have the mean (n)
+and the variance ¦² (n)
+and the
+ij at the (n + 1)-
+covariance of the proposal distribution are c (n)¦² (n)
+th iteration.
+A pseudo code of the adaptive IMS is given in Algorithm 1.
+Numerically, the appropriate convergence order of the learning
+coefficients, h(n) and s(n),
+is O(1/n), and that of u(n, m) is
+O(1/
+nm).
+
+¡Ì
+
+jj
+
+j
+
+4. Convergence theorem
+
+We prove the convergence of the adaptive IMS by applying the
+theorem of Araki and Ikeda (2013) which assures the convergence
+of the adaptive MCMC for AVMs, since the adaptive IMS can be
+formulated as the adaptive MCMC for AVMs (See Appendix A for
+details).
+The target distribution of the adaptive IMS, formulated as the
+cator variables ¦Ãj and coefficients ¦Èj = (¦Ãj¦Âj ), f (¦È , ¦Ã |D). Here the
+adaptive MCMC for AVMs, is the posterior distribution of the indi-
+convergence of the adaptive IMS means that the adaptive IMS is
+ergodic, that is, the samples ¦Ã (n)
+generated by the adap-
+tive IMS converge in distribution to the posterior distribution f (¦È ,
+¦Ã |D). (The exact definition of the ergodicity is in Appendix B.) The
+convergence is assured as follows.
+
+and ¦È (n)
+
+j
+
+j
+
+¦Ã (n+1)
+j
+
+(¦Ãj |¦Ã (n)j , ¦Â (n) , D), where ¦Ë(n)
+and ¦Ã (n)j = (¦Ã (n+1)
+, . . . , ¦Ã (n+1)
+j+1 , . . . , ¦Ã (n)
+
+j = ((n)
+j
+p
+
+, ¦Ã (n)
+
+j1
+
+).
+
+1
+
+j
+
+, ¦² (n)
+j,j )
+
+Initialize ¦Â (0) , ¦Ã (0) , ¦² (0) , (0) and c (0) .
+
+for n = 0 to N  1 do
+for j = 1 to p do
+
+(Gibbs sampling step)
+ f¦Ë
+
+(n)
+
+end for
+
+¦Â (n+1)
+
+\¦Ã (n+1)  
+¦Âj ¡Ê¦Â\¦Ã (n+1) f¦Ë
+j
+¦Ã (n+1)
+
+(¦Âj ).
+
+(n)
+
+f (¦Â¦Ã (n+1) |¦Ã (n+1) , ¦Â (n+1)
+
+(Metropolis sampling step)
+Generate ¦Â (n+1)
+via
+the Metropolis
+algorithm for
+\¦Ã (n+1) , D), which has the proposal co-
+variance matrix c (n)¦² (n)
+¦Ã (n+1) , where ¦²¦Ã denotes the covariance
+matrix that consists of the covariances ¦²ij , where ¦Ãi = 1 and
+¦Ãj = 1.
+(Parameter learning step)
+Update ((n) , ¦² (n) ) to ((n+1) , ¦² (n+1) ) by the Eq. (3).
+Update c (n) to c (n+1) by Eq. (4).
+
+end for
+
+Theorem 1. The adaptive IMS is ergodic, if the following conditions
+hold:
+(s1) The support S ¡Á ¦£ of the posterior distribution of ¦Â and ¦Ã ,
+f¦Ë (¦Â , ¦Ã |D), is compact for ¦Ë ¡Ê ¦«, where S  ¦¨ , ¦£ = {0, 1}p
+and ¦« = U ¡Á [ ,  ¡ä ]p , where U is a bounded set on Rp and
+ > 0. For ¦Ã ¡Ê ¦£ , g¦Ã (¦Ë, ¦Â ) ¡Ô f¦Ë (¦Â , ¦Ã |D) is continuous and
+positive on ¦« ¡Á S .
+(s2) The family of proposal densities {q(¦² ,c ) }(¦² ,c )¡Ê¦® ¡ÁC is continuous
+on ¦¨ ¡Á ¦¨ ¡Á ¦® ¡Á C and positive on S 2 ¡Á ¦® ¡Á C , where C is a
+bounded set on R+ , S 2 = S ¡Á S and ¦® = {¦² | Ip ¡Ü ¦² ¡Ü  ¡ä Ip },
+where Ip denotes a p-dimensional identity matrix.
+Proof. See Appendix C. (cid:3)
+
+5. Numerical validations
+
+To compare numerically the convergence rates and the efficien-
+cies of the adaptive IMS and the conventional algorithms, these al-
+gorithms were applied to the Bayesian variable selection for two
+models. First, the Bayesian variable selection was applied to the
+normal linear regression model as the simplest example. For linear
+models, the performances among different methods are not much
+different in theory. Second, the logistic regression model was used
+because it is conditionally non-conjugate and the adaptive IMS is
+expected to improve the efficiency of sampling for the Bayesian
+variable selection of the conditionally non-conjugate model.
+The conventional algorithms used in the numerical experi-
+ments are the GVS, the KM method, the SSVS and the RJMCMC.
+The SSVS induces a spike prior, whose probability concentrates
+in neighborhood of 0. When ¦Ãj = 0, the prior of the coefficient
+¦Âj is the spike prior. The RJMCMC in the Bayesian variable se-
+lection, randomly chooses a covariate, and inverts a value of the
+corresponding indicator variable, and deletes or regenerates the
+corresponding coefficient parameter. All the conventional algo-
+rithms described above use the Metropolis sampling, and the co-
+variances of the proposal distribution are estimated by the samples
+from the full model, which is the same way as the IMS.
+Throughout the numerical experiments, we consistently used
+the setting for the algorithms described below.
+In our algorithm, the initial parameter values (0) , ¦² (0) and c (0)
+were set as follows. (0) was a mode of the full model posterior
+density of ¦Â , denoted by ¦Â . ¦² (0) was the inverse of the negative
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+25
+
+Table 1
+
+The learning coefficients and the target mean acceptance rate.
+h(n)
+u(n, m)
+s(n)
+1/(n + 50)
+(n + 50)(m + 50)
+1/(n + 500)
+1/
+
+¡Ì
+
+¦Á
+
+0.234
+
+Table 2
+
+The coefficients, ¦È 
+j , and the covariances, ¦Ò 
+ij , of the true distribution of the
+covariates.
+
+Hessian of the log full model posterior density at the mode ¦Â , and
+c (0) = (2.38)2 /p. The learning coefficients and the target mean
+acceptance rate are described in Table 1.
+In the conventional algorithms, the proposal scale was c =
+(2.38)2 /p. The initial sample values of the pilot runs were ¦Â .
+The adaptive IMS and all the conventional algorithms were
+given the same initial sample values ¦Â (0) and ¦Ã (0) and the same
+burn-in period. In the adaptive IMS, the GVS and the KM method,
+the sample sets used in estimation were chosen from every 10
+samples.
+We also compare the performance of the Bayesian variable se-
+lection using the MCMC method to that of the non-Bayesian vari-
+able selection, the stepwise forward/backward feature selection
+using Akaike¡¯s Information Criterion (SFS; Hastie & Pregibon, 1992)
+and sparse estimator via L1 -penalized likelihood called Lasso esti-
+mator (Tibshirani, 1996) with 10-fold cross validation.
+
+5.1. Normal linear regression model
+
+We estimated the marginal probability of inclusion for each of p
+covariates, xj , and the predictive distribution for the normal linear
+regression model using the synthetic data.
+(y  p
+The normal linear regression model is,
+
+xj¦Âj ¦Ãj )2
+
+f (y|x, ¦Â , ¦Ã , ¦Ò 2 ) =
+
+1¡Ì
+
+exp
+
+2¦Ð ¦Ò 2
+
+j=1
+
+2¦Ò 2
+
+
+
+ ,
+
+where y ¡Ê R is a response variable. The coefficient priors and the
+priors of ¦Ãj and the pseudo-priors are
+
+fj (¦Âj ) = N (¦Âj |¦Âj
+, ¦Ò 2
+),
+fj (¦Ãj ) = ¦Ó
+j (1  ¦Ój )1¦Ãj ,
+(¦Âj ) = N (¦Âj | j , ¦Ò 2
+j ), ¦Ëj = ( j , ¦Ò 2
+j ),
+
+f¦Ëj
+
+¦Âj
+
+¦Ãj
+
+where N (¡¤|, ¦Ò 2 ) is a Gaussian density with mean  and variance
+¦Ò 2 , and 0 < ¦Ój < 1. The prior of the noise variance ¦Ò 2 is
+
+f (¦Ò 2 ) = IG(¦Ò 2 |a¦Ò 2 , b¦Ò 2 ),
+
+where IG(¡¤|a, b) is an inverse-gamma density with shape a and rate
+b. The hyper-parameters were ¦Âj = 0, ¦Ò 2
+= 102 , ¦Ój = 0.5, a¦Ò 2 =
+0.1 and b¦Ò 2 = 0.1.
+The synthetic data of size 300 were independently identically
+has p = 100 covariates and the coefficients ¦È  (Table 2). The coef-
+distributed according to the normal linear regression model, which
+ficients ¦È  imply that the normal linear regression model depends
+
+¦Âj
+
+¦Ò 
+¦Ò 
+
+on the only 25 covariates. The covariates were generated from the
+normal distribution with mean 0 and variance 1 and covariances
+ij = 0.8 for i, j = 1, . . . , 30, ¦Ò 
+ij = 0.7 for i, j = 71, . . . , 100, and
+ij = 0 otherwise (Table 2).
+We generated samples from the posterior given the synthetic
+data and calculated the estimated marginal probabilities of inclu-
+sions P (n)
+and their mean absolute errors (Atchade,
+2011)
+
+j = 1
+n
+
+n
+
+i=1 ¦Ã (i)
+j
+
+j=1
+
+j |,
+
+j  P 
+
+EP(n) = 1
+| P (n)
+(5)
+p
+where P 
+j = 1 if xj is included in the true model, and P 
+j = 0 other-
+wise. In order to evaluate the properties of not only the samples
+¦Ã (n) but also ¦Â (n) , we also computed the estimated cross en-
+tropies between the estimated predictive distributions, f (n) (y|x) =
+i=1 f (y|x, ¦Â (i) , ¦Ã (i) , ¦Ò 2 (i) ), and the true model,
+
+n
+
+1
+n
+
+p
+
+log f (n) (y(i) |x(i) ),
+
+(6)
+
+103
+i=1
+
+CE(n) =  1
+103
+
+j  U (1, 1), ¦Ã (0)
+
+where x(i) , y(i) were generated from the true model independently
+of the training data.
+We ran the adaptive IMS, the GVS, the KM method and the SSVS
+for 3¡Á104 iterations 10 times independently. The RJMCMC was run
+for 99 ¡Á 104 iterations so that the computational times of the algo-
+rithms roughly correspond. We choose the samples of the RJMCMC
+every 330 iterations. Since the normal linear model is conditionally
+conjugate, all the algorithms do not use the Metropolis sampling
+and only the GVS conducts the pilot run to estimate the pseudo-
+priors. The GVS conducted its pilot runs for 50 and 100 iterations.
+j  Be(0.5)
+The initial sample values were ¦Â (0)
+and ¦Ò 2 (0)  U (0, 10) independently, where U (a, b) is the uniform
+distribution of the interval (a, b) and Be(a) is the Bernoulli distri-
+bution with success probability a.
+EP(n) and CE(n) of the algorithms except the RJMCMC converged
+at almost the same rates due to the following reasons (Fig. 1).
+The normal linear regression model is simple and conditionally
+conjugate, where the parameters can be directly sampled from
+the conditional distribution. The parameters that need to be tuned
+are only those of the pseudo-priors. Therefore, we proposed our
+algorithm for nonlinear models, which are conditionally non-
+conjugate. The RJMCMC was much slow, because it uses the general
+approach for the Bayesian model selection and may need the
+proposal distribution fitted by hand turning. EP(n) and CE(n) of the
+SSVS converged to different values from those of the adaptive IMS,
+the GVS and the KM method (Fig. 1), because it samples from the
+approximate distribution of the posterior.
+We calculated the mean absolute error of variable selection EP
+and the cross entropy CE of the models estimated by the SFS and
+the Lasso. The mean absolute error is EP = 1
+j |, where
+Pj = 1 if the corresponding covariate is included in the estimated
+model, and Pj = 0 otherwise. The estimated cross entropy between
+the true model and the estimated model, f (y|x, ¦È , ¦Ò 2 ), where ¦È and
+¦Ò 2 are estimated parameters, is CE =  1
+where x(i) , y(i) were generated from the true model as described
+above.
+Both the mean absolute error and the cross entropy for the
+Bayesian variable selection based on our algorithm (Eqs. (5) and
+(6)) were lower than those for the SFS and the Lasso (Table 3).
+
+i=1 log f (n) (y(i) |x(i) ),
+
+j=1 | Pj  P 
+
+103
+
+p
+
+103
+
+p
+
+26
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+Fig. 1. Trace plots of the EP(n) (a) and CE(n) (b) by the adaptive IMS (red line), the GVS with the pilot run of 50 iterations (gray dotted line) and 100 iterations (blue dotted
+pilot run completes. The computational time is transformed logarithmically as log10 (time + 1). Note that almost of the plot curves by the KM method are identical to those
+line), the KM method (purple dotted line), the SSVS (marigold dotted line) and the RJMCMC (green dotted line) in 10 runs. The EP(n) and CE(n) by the GVS are plotted after its
+of the adaptive IMS and overlapping together. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)
+
+Table 3
+
+The mean absolute errors and the cross entropies for the Lasso, the SFS and the
+Bayesian variable selection using the samples generated by the adaptive IMS. The
+values for the Bayesian variable selection were EP(N ) and CE(N ) obtained by the
+adaptive IMS, which were plotted in Fig. 1. Each value for the Bayesian variable
+selection is the worst value in the 10 runs of our algorithm.
+Mean absolute error
+0.192
+0.240
+0.270
+
+Bayesian variable selection
+Lasso
+SFS
+
+Cross entropy
+2.195
+2.200
+2.348
+
+5.2. Logistic regression model
+
+The Bayesian variable selection for the logistic regression model
+was conducted for synthetic data and cardiac arrhythmia data.
+Throughout the two numerical experiments, we consistently used
+the setting for the logistic regression model described below.
+The logistic regression model is,
+1
+
+f (y|x, ¦Â , ¦Ã ) =
+
+y
+
+1 + exp
+where y ¡Ê {1, 1} is a response variable. The priors and pseudo-
+priors are
+
+xj¦Âj ¦Ãj
+
+j=1
+
+
+
+ p
+
+ ,
+
+¦Ãj
+
+¦Âj
+
+fj (¦Âj ) = N (¦Âj |¦Âj
+, ¦Ò 2
+),
+fj (¦Ãj ) = ¦Ó
+j (1  ¦Ój )1¦Ãj ,
+(¦Âj ) = N (¦Âj |j , ¦Ò 2
+j ), ¦Ëj = (j , ¦Ò 2
+j ).
+
+The hyper-parameters were ¦Âj = 0, ¦Ò 2
+
+f¦Ëj
+
+= 9 and ¦Ój = 0.5.
+
+¦Âj
+
+5.2.1. Synthetic data
+We evaluated EP(n) and CE(n) defined in Eqs. (5) and (6) for the
+logistic regression using the synthetic data. We also compare these
+criteria for the Bayesian variable selection using our algorithm to
+those for the Lasso and the SFS.
+The synthetic data of size 103 were independently identically
+distributed to the logistic regression model, which has the same
+covariates and the coefficients ¦È  as those of the normal linear
+model above (Table 2).
+2 ¡Á 105 iterations, and the SSVS and the RJMCMC were run for 106
+The adaptive IMS, the GVS and the KM method were run for
+and 66 ¡Á 105 iterations, respectively. Each of these algorithms was
+run 10 times independently. The algorithms except the adaptive
+
+2 , ¦² (n)
+
+p
+
+IMS conducted its pilot runs for 103 , 2 ¡Á 103 , 5 ¡Á 103 and 104
+iterations. The initial sample values were independently randomly
+j  U (2 + ¦Âj , 2 + ¦Âj ) and ¦Ã (0)
+j  Be(0.5).
+chosen as ¦Â (0)
+EP(n) by the adaptive IMS converged fastest of those by all the
+algorithms for all pilot runs, and the variance of the errors by the
+adaptive IMS was the smallest (Fig. 2). CE(n) of the adaptive IMS also
+converged fastest and stablest of those of the other algorithms for
+all pilot runs (Fig. 3). The convergence rates and the stabilities of
+the conventional algorithms were inferior to those of the adaptive
+IMS regardless of the iteration number of their pilot runs.
+The learning parameters (n)
+22 and c (n) converged quickly
+and stably (Fig. 4), and the others also converged as fast and stable
+as them.
+sirable value ¦Á = 0.234, but those in the GVS and the KM method
+The mean acceptance rates in the adaptive IMS were close to de-
+were not (Table 4). This leads to well mixing of our algorithm and
+causes a slow convergence rate of the GVS and the KM method.
+To compare the learning accuracies of the variances and the
+means of the posterior of ¦È obtained by our algorithm and the pilot
+run of the GVS, we calculated their mean absolute errors
+E = 1
+| j  ¨Bj | and E¦² = 1
+p
+p
+where j and ¦²jj are (N )
+in the adaptive IMS, and j and
+¦²jj in the GVS, which are the mean and the variance of the pilot
+run samples. The target parameters ¨Bj and ¨B¦²jj represent the true
+means and variances of the posterior of coefficients, but were prac-
+tically estimated by averaging the 10 estimates of the coefficient¡¯s
+posterior means and variances. The estimates were computed from
+5 ¡Á 105 iterations and with the tuned scale parameter in which the
+the samples from the GVS for 106 iterations with the pilot run of
+mean acceptance rates were in (0.238, 0.241).
+were much closer to ¨Bj and ¨B¦²jj than those obtained by the pilot run
+The mean and variance parameters learned by the adaptive IMS
+of the GVS (Fig. 5). Thus, the pseudo-priors of our algorithm seem
+to have been also closer to the marginal posterior distributions of
+the coefficients than those of the GVS, which may have provided a
+better mixing of our algorithm than that of the GVS.
+We calculated the mean absolute error of variable selection
+EP and the cross entropy CE of the logistic models estimated by
+the SFS, the Lasso and the Bayesian variable selection. Both the
+mean absolute error and the cross entropy for the Bayesian variable
+selection based on our algorithm were lower than those for the SFS
+and the Lasso (Table 5).
+
+| ¦²jj  ¨B¦²jj |,
+
+and ¦² (N )
+jj
+
+p
+
+j=1
+
+j=1
+
+j
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+27
+
+Fig. 2. Trace plots of the EP(n) by the adaptive IMS (red line), the GVS (blue dotted line), the KM method (purple dotted line), the SSVS (marigold dotted line) and the RJMCMC
+(green dotted line) in 10 runs. The iteration numbers of the pilot runs of the conventional algorithms are (a) 103 (b) 2 ¡Á 103 (c) 5 ¡Á 103 (d) 104 . The EP(n) by the conventional
+algorithms are plotted after their pilot runs complete. The computational time is transformed logarithmically. (For interpretation of the references to color in this figure
+legend, the reader is referred to the web version of this article.)
+
+Fig. 3. Trace plots of CE(n) by the adaptive IMS (red line), the GVS (blue dotted line), the KM method (purple dotted line), the SSVS (marigold dotted line) and the RJMCMC
+(green dotted line) in 10 runs. The iteration numbers of the pilot runs of the conventional algorithms are (a) 103 (b) 2 ¡Á 103 (c) 5 ¡Á 103 (d) 104 . The computational time is
+transformed logarithmically. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)
+
+22 , (c) scale parameter c (n) . The solid line and the dotted line show mean and mean ¡À standard deviation
+Fig. 4. Trace plot (a) posterior mean (n)
+2 , (b) posterior variance ¦² (n)
+in 10 runs, respectively. The scale c (n) continued to slightly increase from about 2 ¡Á 104 to the last iteration, but the slight increase is negligible and does not depress the
+efficiency of the algorithm.
+
+28
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+Fig. 5. The averages of E (a) and E¦² (b) obtained by the 10 runs of the adaptive IMS (red ) and the pilot runs of the GVS (blue ¡Á) whose iteration numbers are 103 ,
+2 ¡Á 103 , 5 ¡Á 103 and 104 . All of the standard deviations are less than 3 ¡Á 104 and are negligible. (For interpretation of the references to color in this figure legend, the
+reader is referred to the web version of this article.)
+
+Table 4
+
+Averages and standard deviations of the mean acceptance rates in the adaptive IMS, the GVS and the KM method with
+every pilot run for the posterior of the logistic regression model given the synthetic data. The mean acceptance rates
+were calculated by Metropolis acceptance results after burn-in period, 2 ¡Á 104 iterations. The standard deviations are
+enclosed by parentheses.
+2 ¡Á 103
+5 ¡Á 103
+Iteration number of pilot run
+Adaptive IMS
+0.242
+(0.92 ¡Á 103 )
+(1.7 ¡Á 103 )
+0.864
+0.864
+(1.1 ¡Á 103 )
+0.864
+0.863
+(2.78 ¡Á 103 )
+(1.58 ¡Á 103 )
+
+0.864
+(2.3 ¡Á 103 )
+0.864
+(2.82 ¡Á 103 )
+
+0.864
+(1.4 ¡Á 103 )
+(1.33 ¡Á 103 )
+0.864
+
+KM method
+
+GVS
+
+103
+
+104
+
+Table 5
+
+The mean absolute errors and the cross entropies for the Lasso, the SFS and the
+Bayesian variable selection using the adaptive IMS. The values for the Bayesian
+variable selection were EP(N ) and CE(N ) obtained by the adaptive IMS (Figs. 2 and
+3). Each value for the Bayesian variable selection is the worst value in the 10 runs
+of our algorithm.
+
+Bayesian variable selection
+Lasso
+SFS
+
+Mean absolute error
+0.212
+0.380
+0.290
+
+Cross entropy
+0.316
+0.323
+0.340
+
+
+
+M
+
+ ¦Ñj (i),
+
+5.2.2. Cardiac arrhythmia data
+The cardiac arrhythmia data were measured from patients that
+have cardiac arrhythmia or not, and were used to classify them
+(Guvenir, Acar, Demiroz, & Cekin, 1997). The data consist of p =
+257 covariates and 452 instances. The 245 instances have not car-
+diac arrhythmia, y = 0, and the others have, y = 1. The covariates
+that contain missing values were excluded.
+To compare the efficiency of the algorithms, we calculated the
+estimated inefficiency factor
+IFj = 1 + 2
+1  i
+m
+where ¦Ñj (i) is an estimated autocorrelation of the sample ¦Ã (n)
+after
+burn-in, and M is a truncation point until which the estimated
+autocorrelation is significant, and m is the number of samples after
+burn-in. IFj is proportional to a variance estimator of the sample
+mean of ¦Ã (n)
+, which is also the estimate of the posterior probability
+of inclusion.
+4 ¡Á 105 iterations. To match the computational times roughly, the
+The adaptive IMS, the GVS and the KM method were run for
+SSVS and the RJMCMC were run for 16 ¡Á 105 and 4 ¡Á 258 ¡Á 105
+iterations, respectively (Table 6). We drew the samples of the SSVS
+
+i=1
+
+j
+
+j
+
+Table 6
+
+104
+
+105
+
+Adaptive IMS
+GVS
+
+Averages and standard deviations of the computational times (second) in the
+adaptive IMS, the GVS, the KM method, the SSVS and the RJMCMC with every pilot
+run.
+Iteration number of pilot run
+5 ¡Á 104
+72 ¡Á 103 (0.4 ¡Á 103 )
+82 ¡Á 103
+(1.5 ¡Á 103 )
+80 ¡Á 103
+(1.4 ¡Á 103 )
+75 ¡Á 103
+(0.3 ¡Á 103 )
+68 ¡Á 103
+(0.7 ¡Á 103 )
+
+86 ¡Á 103
+(2.4 ¡Á 103 )
+92 ¡Á 103
+(0.9 ¡Á 103 )
+81 ¡Á 103
+(0.4 ¡Á 103 )
+73 ¡Á 103
+(0.3 ¡Á 103 )
+
+77 ¡Á 103
+(2.6 ¡Á 103 )
+71 ¡Á 103
+(1.4 ¡Á 103 )
+70 ¡Á 103
+(0.3 ¡Á 103 )
+63 ¡Á 103
+(0.8 ¡Á 103 )
+
+KM method
+
+RJMCMC
+
+SSVS
+
+j 
+
+and the RJMCMC every 40 and 2580 iterations, respectively. All the
+algorithms were run for 104 , 5 ¡Á 104 and 105 iterations. The initial
+algorithms were run 10 times. The pilot runs of the conventional
+sample values were independently randomly chosen as ¦Â (0)
+U (1 + ¦Âj , 1 + ¦Âj ) and ¦Ã (0)
+j  Be(0.5).
+Fig. 6 shows IFj in the adaptive IMS and the GVS, the KM
+method, the SSVS and the RJMCMC with every pilot run except
+diverged estimates, whose corresponding ¦Ã (n)
+took the same value
+every iteration after the burn-in period. All IFj of our algorithm
+were lower than those of the conventional algorithms except the
+RJMCMC for every pilot run, and almost all IFj of our algorithm
+were lower than those of the RJMCMC. This indicates the adaptive
+IMS is more efficient than the conventional algorithms, even if they
+conduct their pilot runs for many iterations.
+The rates in the adaptive IMS were also close to desirable value
+¦Á = 0.234 (Table 7).
+
+j
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+29
+
+Fig. 6. The mean of IFj of the adaptive IMS (red points), the GVS (blue points), the KM method (purple points), the SSVS (marigold points) and the RJMCMC (green points)
+in 10 runs. The iteration number of the pilot runs of the conventional algorithms are (a) 104 (b) 5 ¡Á 104 (c) 105 . The IFj are transformed logarithmically as log10 (IFj ). (For
+interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)
+
+Table 7
+
+104
+
+Averages and standard deviations of the mean acceptance rates in the adaptive IMS,
+the GVS and the KM method with every pilot run for the posterior of the logistic
+regression model given the cardiac arrhythmia data. The mean acceptance rates
+were calculated by Metropolis acceptance results after burn-in period, 4 ¡Á 104
+iterations.
+5 ¡Á 104
+Iteration number of pilot run
+Adaptive IMS
+(0.2 ¡Á 103 )
+0.233
+0.743
+(4.5 ¡Á 103 )
+0.741
+(2.4 ¡Á 103 )
+
+0.739
+(2.3 ¡Á 103 )
+(1.7 ¡Á 103 )
+0.739
+
+0.740
+(4.7 ¡Á 103 )
+0.740
+(3.1 ¡Á 103 )
+
+KM method
+
+GVS
+
+105
+
+Table 8
+
+The 5-fold cross validation errors of the logistic regression probability for the
+Bayesian variable selection using the adaptive IMS and the RJMCMC, the Lasso and
+the SFS.
+
+Cross validation error
+
+Bayesian variable selection
+Adaptive IMS
+RJMCMC
+0.329
+0.343
+
+Lasso
+
+SFS
+
+0.354
+
+0.373
+
+We calculated 5-fold cross validation errors of the logistic
+regression probability for the Bayesian variable selection using
+the adaptive IMS and the RJMCMC, the Lasso and the SFS. The
+5-fold cross validation error is CV = 1
+k=1 Ek , where Ek = 1
+i  f (y = 1|x
+i )|, where {x
+i , y
+f is estimated logistic model by the training data. The cross vali-
+i=1 are validation data, and
+
+nk
+
+i=1 |y
+
+5
+
+i }nk
+5
+
+nk
+
+dation error for the Bayesian variable selection using the adaptive
+IMS is lower than those for the Lasso and the SFS (Table 8). The
+cross validation error obtained by the adaptive IMS is also lower
+even for 258 ¡Á 4 ¡Á 105 iterations.
+than that by the RJMCMC, because the RJMCMC could not converge
+
+6. Conclusions
+
+This paper proposed an adaptive algorithm that adapts param-
+eters of a proposal distribution and pseudo-priors during generat-
+ing samples to overcome the parameter setting problems of the
+IMS, and proved its convergence theorem. We also showed the
+proposed algorithm mixes faster than the conventional algorithms
+through experiments of the Bayesian variable selection of the lo-
+gistic regression models.
+The proposed algorithm enables us to perform the Bayesian
+variable selection faster than the conventional algorithms. The
+Bayesian variable selection has following advantages over non-
+Bayesian variable selection methods such as the Lasso estimator
+and the SFS. The Bayesian variable selection can estimate not
+only the important covariates and their coefficients but also the
+posterior probability that each covariate is included in the model
+and the predictive distribution. The predictive distribution is a
+powerful tool widely applied in the classification or the prediction
+problems. On the other hand, the non-Bayesian variable selection
+methods can only extract important covariates and estimate their
+coefficients. Practically, we showed the predictive distribution
+estimated by the Bayesian variable selection has higher variable
+selection and generalization ability than the model estimated
+
+30
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+by the Lasso and the SFS in the experiments of the normal
+linear model and the logistic regression model. Furthermore,
+Chakraborty (2009) showed that the classification model based on
+the predictive distribution has higher classification performance
+than the models estimated with L1 penalty in the classification of
+gene expression microarray data.
+The IMS will be efficient for the Bayesian variable selection of
+more complex models such as a structural equation model and
+a non-Gaussian graphical model. We will apply our algorithm to
+these models and enable more efficient sampling for the Bayesian
+variable selection of these models.
+
+Acknowledgment
+
+This study was supported by MEXT KAKENHI Grant Number
+25120011.
+
+Appendix A. Formulation of the adaptive IMS as the adaptive
+MCMC for AVMs
+
+The AVMs generate the samples from the joint distribution
+of the target distribution and the auxiliary distribution which
+improves the efficiency of sampling from the target distribution.
+First, we formulate the IMS as the AVMs, and then confirm the
+adaptive IMS is one of the adaptive MCMC for AVMs.
+To formulate the IMS as the AVMs, we regard the IMS generates
+the samples from the posterior distribution of ¦Ã , ¦Â and ¦Èj =
+¦Ãj¦Âj . Then the posterior distribution is represented as the joint
+distribution of the following target distribution and auxiliary
+distribution. The target distribution is the posterior distribution of
+
+¦Ãj and ¦Èj = ¦Ãj¦Âj ,
+f (¦È , ¦Ã |D) ¡Ø f (D|¦È )
+
+p
+
+j=1
+
+¦Ãj fj (¦Èj ) + (1  ¦Ãj )1{0} (¦Èj ) fj (¦Ãj ),
+
+(A.1)
+
+where 1{¡¤} (y) is an indicator function, and fj (¦Èj ) is the coefficient
+prior in Eq. (1). Note that this target distribution has no parameters.
+The auxiliary distribution is
+
+f¦Ë (¦Â |¦Ã , ¦È , D) ¡Ø p
+
+¦Ãj 1{¦Èj } (¦Â ) + (1  ¦Ãj )f¦Ëj
+
+(¦Âj ) .
+
+j=1
+
+Since the IMS produces the samples from the joint distribution
+of the target distribution and the auxiliary distribution, the IMS can
+be regarded as the AVMs.
+The adaptive MCMC for AVMs adapts the parameters of only
+the proposal distribution and the auxiliary distributions while it
+runs. The adaptive IMS also adapts the parameters of only those
+distributions, the means and the variances of the pseudo-priors
+and the covariance matrix of the proposal distribution, during
+running. Therefore, the adaptive IMS is included in the adaptive
+MCMC for AVMs.
+
+Appendix B. Ergodicity
+
+The parameters of the IMS, ¦µ = (¦² , , c ), are contained in the
+space  = ¦® ¡Á U ¡Á C . The adaptive IMS is ergodic if and only if
+lim
+
+n¡ú¡Þ ¡ÎA(n) ((¦Â , ¦Ã , ¦µ ), (d¦È , d¦Ã ))  F (d¦È , d¦Ã |D)¡Î = 0,
+(¦Â , ¦Ã ) ¡Ê ¦¨ ¡Á ¦£ , ¦µ ¡Ê  ,
+
+where ¦£ = {0, 1}p , ¡Î(d¦È , d¦Ã )  ¦Í (d¦È , d¦Ã )¡Î = supA¡ÊF¦¨¡Á¦£ |(A)
+ ¦Í (A)|, where F¦¨¡Á¦£ is ¦Ò -algebra on ¦¨ ¡Á ¦£ , F (d¦È , d¦Ã |D) is
+the posterior distribution of ¦È and ¦Ã whose density is f (¦È , ¦Ã |D),
+Eq. (A.1), and
+
+= P (¦È (n) , ¦Ã (n) ) ¡Ê B¦È ,¦Ã |¦Â (0) = ¦Â , ¦Ã (0) = ¦Ã , ¦µ (0) = ¦µ  ,
+A(n) ((¦Â , ¦Ã , ¦µ ), B¦È ,¦Ã )
+B¦È ,¦Ã ¡Ê F¦¨¡Á¦£ .
+
+Appendix C. Proof of Theorem 1
+
+Our proof makes use of Theorem 2 in Araki and Ikeda (2013),
+which implies that the adaptive IMS is ergodic if it satisfies the
+following three conditions.
+(a) Simultaneously strongly aperiodically geometrical ergodicity
+There exists C ¡Ê F¦¨¡Á¦£ ¡Á¦¨ , V : ¦¨ ¡Á ¦£ ¡Á ¦¨ ¡ú [1, ¡Þ),
+¦Ä > 0, ¦Ó < 1, and b < ¡Þ, such that supC V < ¡Þ, E [V (¦Â (0) ,
+¦Ã (0) , ¦È (0) )] < ¡Þ, and the following conditions hold for all
+¦µ ¡Ê  .
+(i) (Strongly aperiodic minorization condition)
+There exist a probability measure ¦Í¦µ (d¦Â , d¦Ã , d¦È ) on C
+such that
+
+P¦µ ((¦Â , ¦Ã , ¦È ), (d¦Â ¡ä , d¦Ã ¡ä , d¦È ¡ä ))
+¡Ý ¦Ä¦Í¦µ (d¦Â ¡ä , d¦Ã ¡ä , d¦È ¡ä ),
+
+for all ¦Â , ¦Ã , ¦È ¡Ê C ,
+where P¦µ is a transition kernel of the IMS with the param-
+eters ¦µ .
+(ii) (Geometric drift condition)
+for all ¦Â , ¦Ã , ¦È ¡Ê ¦¨ ¡Á ¦£ ¡Á ¦¨ ,
+
+(P¦µ V ) (¦Â , ¦Ã , ¦È ) ¡Ü ¦Ó V (¦Â , ¦Ã , ¦È ) + b1{C } (¦Â , ¦Ã , ¦È ),
+where (P¦µ V )(¦Â , ¦Ã , ¦È ) ¡Ô  P¦µ ((¦Â , ¦Ã , ¦È ), (d¦Â ¡ä , d¦Ã ¡ä ,
+d¦È ¡ä ))V (¦Â ¡ä , ¦Ã ¡ä , ¦È ¡ä ).
+¡ÎP¦µ (n+1) (¦Â , ¦Ã , ¦È ), (d¦Â ¡ä , d¦Ã ¡ä , d¦È ¡ä )
+P¦µ (n) (¦Â , ¦Ã , ¦È ), (d¦Â ¡ä , d¦Ã ¡ä , d¦È ¡ä ) ¡Î = 0
+
+(b) Diminishing adaptation
+lim
+sup
+
+(¦Â ,¦Ã ,¦È )¡Ê¦¨¡Á¦£ ¡Á¦¨
+
+n¡ú¡Þ
+
+in probability.
+
+(C.1)
+
+¦Âj ¡Ê¦Â¦Ã f¦Ëj
+
+By the condition (s1), we have d1 ¡Ô sup(¦Ë,¦Â ,¦Ã )¡Ê¦«¡ÁS¡Á¦£ f¦Ë (¦Â ,
+First, we prove the condition (a) holds.
+
+inf(¦Â ,¦Ë,¦Ã )¡ÊS¡Á¦«¡Á¦£\0 f¦Ë (¦Â¦Ã ) > 0, where f¦Ë (¦Â¦Ã ) = 
+¦Ã |D) < ¡Þ, d2 ¡Ô inf(¦Ë,¦Â ,¦Ã )¡Ê¦«¡ÁS¡Á¦£ f¦Ë (¦Â , ¦Ã |D) > 0 and ¦Äf ¡Ô
+(¦Âj ) and
+
+we have ¦Äq ¡Ô inf(¦Â ,¦Â ¡ä ,¦Ã ,¦² ,c )¡ÊS 2¡Á¦£\0¡Á¦® ¡ÁC q(¦²¦Ã ,c ) (¦Â ¡ä
+
+¦£\0 is the set of all elements of ¦£ except the vector whose all
+elements are 0. By the compactness of S and the condition (s2),
+¦Ã |¦Â¦Ã ) > 0. We
+For ¦Â ¡Ê S , denote R¦Â = 
+denote ¦Ä = min(¦Äf , ¦Äq , 1).
+¦Â ¡ä ¡Ê S , ¦Ã ¡ä ¡Ê ¦£ , ¦È ¡ä = (¦Â ¡ä ¡¤ ¦Ã ¡ä )
+, where (¦Â ¡ä ¡¤ ¦Ã ¡ä ) = (¦Â ¡ä
+
+p ) and
+For (¦Â , ¦Ã , ¦È ) ¡Ê W ¡Ô S ¡Á ¦£ ¡Á S , ¦µ ¡Ê  and B ¡Ê FW , where FW
+is ¦Ò -algebra on W , we have
+
+ f¦Ã ¡ä (¦Â ¡ä
+
+f¦Ã ¡ä (¦Â¦Ã ¡ä |¦Ã ¡ä ,D) ¡Ü 1
+¦Ã ¡ä |¦Ã ¡ä ,D)
+
+f¦Ã (¦Â¦Ã |¦Ã , D) = f (D|¦Â¦Ã , ¦Ã ) 
+P¦µ ((¦Â , ¦Ã , ¦È ), B) =  
+
+f¦Ë (¦Ã ¡ä |¦Ã , ¦Â , D)f¦Ë (¦Â ¡ä
+
+1 ¦Ã ¡ä
+1 , . . . , ¦Â ¡ä
+p ¦Ã ¡ä
+
+¦Âj ¡Ê¦Â¦Ã fj (¦Âj ).
+
+
+
+\¦Ã ¡ä )
+
+(¦Â ¡ä ,¦Ã ¡ä ,¦È ¡ä )¡ÊB
+
+
+
+
+
+¡Á
+
+q(¦²¦Ã ¡ä ,c ) (¦Â ¡ä
+
+¦Ã ¡ä |¦Â¦Ã ¡ä ) min
+
+1,
+
++ 1{B} ( ¨B¦Â ¡ä , ¦Ã ¡ä , (¦Ã ¡ä ¡¤ ¨B¦Â ¡ä ))
+
+
+
+
+
+{¦Â¦Ã ¡ä | ¨B¦Â ¡ä ¡Ê¦¨ }
+f¦Ã ¡ä ( ¦Â¦Ã ¡ä |¦Ã ¡ä , D)
+
+f¦Ã ¡ä (¦Â¦Ã ¡ä |¦Ã ¡ä , D)
+
+1  min
+
+1,
+
+
+
+f¦Ã ¡ä (¦Â ¡ä
+¦Ã ¡ä |¦Ã ¡ä , D)
+
+f¦Ã ¡ä (¦Â¦Ã ¡ä |¦Ã ¡ä , D)
+q(¦²¦Ã ¡ä ,c ) ( ¦Â¦Ã ¡ä |¦Â¦Ã ¡ä )
+
+
+
+d ¦Â¦Ã ¡ä
+
+d¦Â ¡ä d¦Ã ¡ä
+
+
+
+
+
+¡Á
+
+¡Ý 
+
+B
+
+p
+
++  d2
+
+2d1
+
+
+
+B
+
+¦Ä 2
+
+T. Araki et al. / Neural Networks 61 (2015) 22¨C31
+
+31
+

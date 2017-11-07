@@ -1,0 +1,2460 @@
+The Chow form of the essential variety in computer vision
+
+Gunnar Flystad a , Joe Kileel b , Giorgio Ottaviani c
+
+a Universitetet i Bergen, Norway
+b University of California, Berkeley, USA
+c Univsit¨¤ di Firenze, Italy
+
+article
+
+info
+
+Article history:
+Received 16 September 2016
+Accepted 16 March 2017
+Available online xxxx
+
+Keywords:
+Chow form
+Ulrich sheaf
+Pieri resolutions
+Calibrated cameras
+Essential variety
+
+abstract
+
+The Chow form of the essential variety in computer vision is 
+calculated. Our derivation uses secant varieties, Ulrich sheaves 
+and representation theory. Numerical experiments show that our 
+formula can detect noisy point correspondences
+ 2017 Elsevier Ltd. All rights reserved.
+
+
+1. Introduction
+The essential variety E is the variety of 3 ¡Á 3 real matrices with two equal singular values, and 
+the third one equal to zero (¦Ò1 = ¦Ò2 , ¦Ò3 = 0). It was introduced in the setting of computer vision; 
+see Hartley and Zisserman (2004, ¡ì9.6). Its elements, the so-called essential matrices, have the form 
+codimension 3 and degree 10 in the space of 3 ¡Á 3-matrices, dened by homogeneous cubic equations, 
+T R , where T is real skew-symmetric and R is real orthogonal. The essential variety is a cone of 
+that we recall in (2). The complex solutions of these cubic equations dene the complexication EC
+of the essential variety. While the real essential variety is smooth, its complexication has a singular 
+locus that we describe precisely in ¡ì2.
+The Chow form of a codimension c projective variety X  Pn is the equation Ch( X ) of the divisor 
+in the Grassmannian Gr(Pc1 , Pn ) given by those linear subspaces of dimension c  1 which meet X . 
+It is a basic and classical tool that allows one to recover much geometric information about X ; for 
+its main properties we refer to Gelfand et al. (1994, ¡ì4). In Agarwal et al. (2017, ¡ì4), the problem of 
+computing the Chow form of the essential variety was posed, while the analogous problem for the 
+fundamental variety was solved, another important variety in computer vision.
+The main goal of this paper is to explicitly nd the Chow form of the essential variety. This 
+provides an important tool for the problem of detecting if a set of image point correspondences 
+{(x(i ) , y (i ) ) ¡Ê R2 ¡Á R2 | i = 1, . . . , m} comes from m world points in R3 and two calibrated cameras. 
+It furnishes an exact solution for m = 6 and it behaves well given noisy input, as we will see in ¡ì4. 
+X (i ) ¡Ô (cid:4)
+Mathematically, we can consider the system of equations:
+X (i ) ¡Ô (cid:3)
+A
+Here (cid:4)
+: 1)T ¡Ê P2 and (cid:3)
+knowns are two 3 ¡Á 4 matrices A , B with rotations in their left 3 ¡Á 3 blocks and m = 6 points (cid:3)
+B
+: 1)T ¡Ê P2 are the given image points. The un-
+ized image coordinates, as explained in Hartley and Zisserman (2004, ¡ì8.5). Here ¡Ô denotes equality 
+These represent calibrated cameras and world points, respectively. A calibrated camera has normal-
+up to nonzero scale. From our calculation of Ch(EC ), we deduce:
+Theorem 1. There exists an explicit 20 ¡Á 20 skew-symmetric matrix M(x, y ) of degree ¡Ü (6, 6) polynomi-
+then M(x(i ) , y (i ) ) is rank-decient. Conversely, the variety of point correspondences (x(i ) , y (i ) ) such that 
+als over Z in the coordinates of (x(i ) , y (i ) ) with the following properties. If (1) admits a complex solution 
+M(x(i ) , y (i ) ) is rank-decient contains a dense open subset for which (1) admits a complex solution.
+
+x(i )
+y (i ) .
+: x(i )
+2
+
+x(i ) = (x(i )
+1
+
+y (i ) = ( y (i )
+1
+
+: y (i )
+2
+
+(cid:2)
+
+(cid:3)
+(cid:3)
+
+(1)
+
+X (i ) ¡Ê P3 . 
+
+In fact, we will produce two such matrices. Both of them, along with related formulas we derive, 
+are available in ancillary les accompanying the arXiv version of this paper, and we have posted 
+them at http://math.berkeley.edu/~jkileel/ChowFormulas.html.
+Our construction of the Chow form uses the technique of Ulrich sheaves introduced in Eisenbud 
+et al. (2003b). We construct rank 2 Ulrich sheaves on the essential variety EC . For an analogous 
+construction of the Chow form of K 3 surfaces, see Aprodu et al. (2012).
+From the point of view of computer vision, this paper contributes a complete characterization 
+for an ¡®almost-minimal¡¯ problem. Here the motivation is 3D reconstruction. Given multiple images of 
+a world scene, taken by cameras in an unknown conguration, we want to estimate the camera 
+conguration and a 3D model of the world scene. Algorithms for this are complex, and successful. See 
+Agarwal et al. (2009) for a reconstruction from 150,000 images.
+By contrast, the system (1) encodes a tiny reconstruction problem. Suppose we are given six point 
+correspondences in two calibrated pictures (the right-hand sides in (1)). We wish to reconstruct both 
+the two cameras and the six world points (the left-hand sides in (1)). If an exact solution exists then it 
+is typically unique, modulo the natural symmetries. However, an exact solution does not always exist. 
+In order for this to happen, a giant polynomial of degree 120 in the 24 variables on the right-hand 
+sides has to vanish. Theorem 1 gives an explicit matrix formula for that polynomial.
+The link between minimal or almost-minimal reconstructions and large-scale reconstructions is 
+surprisingly strong. Algorithms for the latter use the former reconstructions repeatedly as core sub-
+routines. In particular, solving the system (1) given m = 5 point pairs, instead of m = 6, is a subroutine 
+in Agarwal et al. (2009). This solver is optimized in Nist¨¦r (2004). It is used to generate hypotheses 
+inside random sampling consensus (RANSAC) (Fischler and Bolles, 1981) schemes for robust reconstruc-
+tion from pairs of calibrated images. See Hartley and Zisserman (2004) for more vision background.
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.3 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+3
+
+This paper is organized as follows. In ¡ì2, we prove that EC is a hyperplane section of the variety 
+4,2 of 4 ¡Á 4 symmetric matrices of rank ¡Ü 2. This implies a determinantal description of EC ; see 
+P X s
+Proposition 7. A side result of the construction is that EC is the secant variety of its singular locus, 
+which corresponds to pairs of isotropic vectors in C3 .
+In ¡ì3, we construct two Ulrich sheaves on the variety of 4 ¡Á 4 symmetric matrices of rank ¡Ü 2. 
+One of the constructions we propose is new to our knowledge. Both sheaves are GL(4)-equivariant, 
+and they admit ¡°Pieri resolutions¡± in the sense of Sam and Weyman (2011). We carefully analyze the 
+resolutions using representation theory, and in particular show that their middle differentials may be 
+represented by symmetric matrices; see Propositions 16 and 19.
+In ¡ì4, we combine the results of the previous sections and we construct the Chow form of the 
+and allows to dene two 20 ¡Á 20 matrices in the Pl¨¹cker coordinates of Gr(P2 , P8 ) each of which 
+essential variety. The construction from Eisenbud et al. (2003b) starts with our rank 2 Ulrich sheaves 
+drops rank exactly when the corresponding subspace P2 meets the essential variety EC . It requires 
+some technical effort to put these matrices in skew-symmetric form, and here our analysis from ¡ì3
+pays off. We conclude the paper with numerical experiments demonstrating the robustness to noise 
+that our matrix formulas in Theorem 1 enjoy.
+
+Acknowledgments The authors are grateful to Bernd Sturmfels for his interest and encouragement. 
+They thank Anton Fonarev pointing out the connection to Littlewood complexes in Remark 14. J.K. and 
+G.O. are grateful to Frank Schreyer for very useful conversations. G.F. and J.K. thank Steven Sam for 
+help with PieriMaps and for suggesting references to show that the middle maps ¦Õ are symmetric. 
+J.K. thanks Justin Chen for valuable comments. G.O. is a member of GNSAGA-INDAM.
+
+2. The essential variety is a determinantal variety
+
+2.1. Intrinsic description
+Let E  R3¡Á3 be the essential variety dened by the conditions:
+
+E := {M ¡Ê R3¡Á3 | ¦Ò1 (M ) = ¦Ò2 (M ), ¦Ò3 (M ) = 0}.
+
+(cid:5)
+
+(cid:6)
+
+The polynomial equations of E are (see Faugeras and Maybank, 1990, ¡ì4) as follows:
+
+E = {M ¡Ê R3¡Á3 | det(M ) = 0, 2(M M T )M  tr
+
+M M T
+
+M = 0}.
+
+(2)
+
+These 10 cubics minimally generate the real radical ideal (Bochnak et al., 1998, p. 85) of the 
+essential variety E , and that ideal is prime. Indeed, the real radical property follows from our Proposi-
+tion 2(i) and (Marshall, 2008, Theorem 12.6.1). We denote by EC the projective variety in P8
+the complex solutions of (2). The essential variety EC has codimension 3 and degree 10 (see Maybank, 
+C given by 
+1993, Theorem 5.16). In this section, we will prove that it is isomorphic to a hyperplane section of 
+4,2 of complex symmetric 4 ¡Á 4 matrices of rank ¡Ü 2. The rst step towards this is 
+Proposition 2 below, and that relies on the group symmetries of EC , which we now explain.
+the variety P X s
+Consider R3 with the standard inner product Q , and the corresponding action of SO(3, R)
+on R3 . Complexify R3 and consider C3 with the action of SO(3, C), which has universal cover 
+SL(2, C). It is technically simpler to work with the action of SL(2, C). Denoting by U the irreducible 
+2-dimensional representation of SL(2, C), we have the equivariant isomorphism C3 = S 2 U . Writing 
+Q also for the complexication of the Euclidean product, the projective space P( S 2 U ) divides into 
+two SL(2, C)-orbits, namely the isotropic quadric with equation Q (u ) = 0 and its complement. Let 
+V be another complex vector space of dimension 2. The essential variety EC is embedded into the 
+projective space of 3 ¡Á 3-matrices P( S 2 U  S 2 V ). Since the singular value conditions dening E are 
+SO(3, R) ¡Á SO(3, R)-invariant, it follows that EC is SL(U ) ¡Á SL(V )-invariant using Drusvyatski et al.
+(2016, Theorem 2.2).
+The following is a new geometric description of the essential variety. From the computer vision 
+application, we start with the set of real points E . However, below we see that the surface Sing(EC )
+
+JID:YJSCO AID:1781 /FLA
+
+4
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.4 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+inside EC , which has no real points, ¡®determines¡¯ the algebraic geometry. Part (i) of Proposition 2 is 
+proved also in Maybank (1993, Prop. 5.9).
+
+Proposition 2.
+(i) The singular locus of EC is the projective surface given by:
+
+(cid:7)
+
+(cid:10)
+
+(cid:8)
+
+.
+
+1
+
+(cid:9)
+
+Sing(EC ) =
+
+ab T ¡Ê P(C3¡Á3
+
+) | Q (a) = Q (b) = 0
+(ii) The second secant variety of Sing(EC ) equals EC .
+, and let (cid:11)S be the ane cone over 
+it. The line secant variety ¦Ò2 ((cid:11)S ) consists of elements of the form M = a1b T
+ab T ¡Ê P(C3¡Á3 ) | Q (a) = Q (b) = 0
+Proof. Denote by S the variety 
++ a2b T
+¡Ê C3¡Á3 such that 
+Q (ai ) = a T
+i ai = Q (b i ) = b T
+i b i = 0 for i = 1, 2. We compute that M M T = a1b T
++ a2b T
+tr(M M T ) = 2(b T
+1 a2 ). Moreover M M T M = a1b T
++ a2b T
+= (b T
+1 so that 
+Hence the equations (2) of EC are satised by M . This proves that ¦Ò2 ( S )  EC . S is a surface and 
+1 a2 )M . 
+¦Ò2 ( S ) has dimension 5 (see Chiantini and Ciliberto, 2002, Theorem 1.3). Since ¦Ò2 ( S ) and EC are both 
+of codimension 3 and EC is irreducible, the equality ¦Ò2 ( S ) = EC follows. It remains to prove (i). De-
+note by [ai ] the line generated by ai . Every element a1b T
++ a2b T
+Q (ai ) = Q (b i ) = 0 for i = 1, 2 can be taken by SL(U ) ¡Á SL(V ) to a scalar multiple of any other ele-
+ment of the same form. This is the open orbit of the action of SL(U ) ¡Á SL(V ) on EC . The remaining 
+orbits are the following:
+1. the surface S , with set-theoretic equations M M T = M T M = 0.
+2. T 1
+
+2 with [a1 ] (cid:8)= [a2 ], [b1 ] (cid:8)= [b2 ] and 
+
+1
+1 b2a T
+2
+2 b1a T
+1 a2b T
+2
+
+1 b2a T
+2 a1b T
+1
+
+2
+
+2 b1a T
+1 b2 )(a T
+
+1 b2 )(a T
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.5 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+5
+
+Remark 4. The surface Sing(EC ) is more familiar with the embedding by O(1, 1), when it is the 
+smooth quadric surface, doubly ruled by lines. In the embedding by O(2, 2), the two rulings are 
+given by conics. These observations suggests expressing EC as a determinantal variety, as we do next 
+in Proposition 5. Indeed, note that the smooth quadric surface embedded by O(2, 2) is isomorphic 
+to a linear section of the second Veronese embedding of P3 , which is the variety of 4 ¡Á 4 symmetric 
+matrices of rank 1.
+In the following note that S 2 (U  V ) is 10-dimensional and identies as the space of symmetric 
+4 ¡Á 4-matrices.
+Proposition 5. The essential variety EC is isomorphic to a hyperplane section of the variety of rank ¡Ü 2 ele-
+ments in P( S 2 (U  V )). Concretely, this latter variety identies as the projective variety of 4 ¡Á 4 symmetric 
+matrices of rank ¡Ü 2 (see also Subsection 3.2), and the section consists of traceless 4 ¡Á 4 symmetric matrices 
+of rank ¡Ü 2.
+Cauchy¡¯s formula states S 2 (U  V ) = ( S 2 (U )  S 2 (V )) ¨’ (cid:16)¡Ä2 U  ¡Ä2 V
+Proof. The embedding of P(U ) ¡Á P(V ) in P( S 2 (U )  S 2 (V )) is given by (u , v ) (cid:11)¡ú u 2  v 2 . Recall that 
+, where dim(U  V ) = 4. Hence, 
+P( S 2 (U )  S 2 (V )) is equivariantly embedded as a codimension one subspace in P( S 2 (U  V )). The 
+image is the subspace of traceless elements (since that is dimension 8 and invariant), and this map 
+sends u 2  v 2 (cid:11)¡ú (u  v )2 . By Proposition 2, we have shown that Sing(EC ) embeds into a hyperplane 
+section of the variety of rank 1 elements in P( S 2 (U  V )). So, EC = ¦Ò2 (Sing(EC )) embeds into that 
+hyperplane section of the variety of rank ¡Ü 2 elements. This last variety has degree 10 by Segre 
+formula (Harris and Tu, 1984, Proposition 12 (b)). Comparing dimensions and degrees, the result 
+follows. 2
+Draisma et al. (2016) that the Euclidean distance degree is EDdegree(EC ) = 6. This result has been 
+Remark 6. In light of the description in Proposition 5, it follows by Example 3.2 and Corollary 6.4 of 
+proved also in Drusvyatski et al. (2015), where the computation of EDdegree was performed in the 
+more general setting of orthogonally invariant varieties. This quantity measures the algebraic com-
+plexity of nding the nearest point on E to a given noisy data point in R3¡Á3 .
+
+(cid:17)
+
+2.2. Coordinate description
+We now make the determinantal description of EC in Proposition 5 explicit in coordinates. For 
+(cid:17)T where (u 1 , u 2 )T ¡Ê C2 . Let:
+this, denote a = (a1 , a2 , a3 )T ¡Ê C3 . We have Q (a) = a2
+¡Ì1(u 2
++ a2
++ a2
+3 . The SL(2, C)-orbit Q (a) = 0 is 
+ u 2
++ u 2
+parametrized by 
+u 2
+
+(cid:16)
+
+1
+
+2
+
+2 )
+
+ m11 m12 m13
+1
+2 , 2u 1 u 2 ,
+m21 m22 m23
+m31 m32 m33
+
+ ¡Ê C3¡Á3
+
+1
+
+,
+
+M =
+
+s(M ) := 1
+2
+
+ m11  m22  m33
+and dene the 4 ¡Á 4 traceless symmetric matrix s(M ) (depending linearly on M ):
+m11  m22 + m33
+This construction furnishes a new view on the essential variety E , as described in Proposition 7.
+Proposition 7. The linear map s in (3) is a real isometry from the space of 3 ¡Á 3 real matrices to the space of 
+traceless symmetric 4 ¡Á 4 real matrices. We have that:
+
+m23  m32
+m12  m21
+m11 + m22 + m33
+
+m11 + m22  m33
+m13 + m31
+
+m13 + m31
+m23 + m32
+m12  m21
+
+m13 + m31
+m12 + m21
+m23  m32
+
+m12 + m21
+m23 + m32
+
+m13 + m31
+
+ .
+
+(3)
+
+JID:YJSCO AID:1781 /FLA
+
+6
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.6 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+M ¡Ê E  rk(s(M )) ¡Ü 2.
+
+The complexication of s , denoted again by s , satises for any M ¡Ê C3¡Á3 :
+
+(4)
+
+(cid:5)
+
+1
+
+2
+
+M =
+
+(cid:5)
+
+k =
+
+1
+
+2 )
+
+(cid:6)
+
+.
+
+ v 2
+
+v 2
+
+1
+
+2 , 2 v 1 v 2 ,
+
++ v 2
+
+2 )
+
+1
+
+ ¡¤
+
+¡Ì1( v 2
+
+ u 2
+
+M ¡Ê Sing(EC )  rk(s(M )) ¡Ü 1,
+M ¡Ê EC  rk(s(M )) ¡Ü 2.
+Proof. We construct the correspondence over C at the level of Sing(EC ) and then we extend it by 
+linearity. Choose coordinates (u 1 , u 2 ) in U and coordinates ( v 1 , v 2 ) in V . Consider the following 
+parametrization of matrices M ¡Ê Sing(EC ):
+ u 2
+¡Ì1(u 2
+2u 1 u 2
++ u 2
+Consider also the following parametrization of the Euclidean quadric in U  V :
+u 2 v 2  u 1 v 1 , ¡Ì1(u 1 v 1 + u 2 v 2 ), (u 1 v 2 + u 2 v 1 ),
+¡Ì1(u 1 v 2  u 2 v 1 )
+The variety of rank 1 traceless 4 ¡Á 4 symmetric matrices is accordingly parametrized by k T k . Substi-
+tuting (4) into the right-hand side below, a computation veries that:
+k T k = s(M ).
+This proves the second equivalence in the statement above and explains the denition of s(M ), 
+alence follows because EC = ¦Ò2 (Sing(EC )), by Proposition 2(ii). For the rst equivalence, we note 
+namely that it is the equivariant embedding from Proposition 5 in coordinates. The third equiv-
+that s is dened over R and now a direct computation veries that tr
+M ¡Ê R3¡Á3 . 2
+M M T
+for 
+Note that the ideal of 3-minors of s(M ) is indeed generated by the ten cubics in (2).
+Remark 8. The critical points of the distance function from any data point M ¡Ê R3¡Á3 to E can be 
+computed by means of the SVD of s(M ), as in Draisma et al. (2016, Example 2.3).
+3. Ulrich sheaves on the variety of symmetric 4 ¡Á 4 matrices of rank ¡Ü 2
+
+(cid:17) = tr
+
+s(M )s(M )T
+
+(cid:6)
+
+.
+
+(cid:16)
+
+(cid:17)
+
+(cid:16)
+
+Our goal is to construct the Chow form of the essential variety. By the theory of Eisenbud et al.
+(2003b), this can be done provided one has an Ulrich sheaf on this variety. The notions of Ulrich 
+sheaf, Chow forms and the construction of Eisenbud et al. (2003b) will be explained below.
+As shown in ¡ì2, the essential variety EC is a linear section of the projective variety of symmetric 
+4 ¡Á 4 matrices of rank ¡Ü 2, which we denote as P X s
+4,2 . If we construct an Ulrich sheaf on P X s
+4,2 , then 
+a quotient of this sheaf by a linear form is an Ulrich sheaf on EC provided that linear form is regular 
+for the Ulrich sheaf on P X s
+4,2 . We will achieve this twice, in ¡ì3.4 and ¡ì3.5.
+
+3.1. Denition of Ulrich modules and sheaves
+Denition 9. A graded module M over a polynomial ring A = C[x0 , . . . , xn ] is an Ulrich module pro-
+vided:
+
+1. It is generated in degree 0 and has a linear minimal free resolution:
+0 ¡û M ¡û A ¦Â0 ¡û A (1)¦Â1 ¡û A (2)¦Â2
+
+d2¡û ¡¤ ¡¤ ¡¤ ¡û A (c )¦Âc ¡û 0.
+
+(5)
+
+c
+i
+
+(cid:17)
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.7 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+2¡¯ The Betti numbers are ¦Âi = (cid:16)
+2. The length of the resolution c equals the codimension of the support of the module M .
+¦Â0 for i = 0, . . . , c .
+One can use either (1) and (2), or equivalently, (1) and (2)¡¯ as the denition.
+A sheaf F on a projective space Pn with support of dimension ¡Ý 1 is an Ulrich sheaf provided 
+it is the sheacation of an Ulrich module. Equivalently, the module of twisted global sections M =
+d¡ÊZ H 0 (Pn , F (d)) is an Ulrich module over the polynomial ring A .
+Fact 10. If the support of an Ulrich sheaf F is a variety X of degree d , then ¦Â0 is a multiple of d , say rd . This 
+corresponds to F being a sheaf of rank r on X .
+
+(cid:20)
+
+7
+
+Since there is a one-to-one correspondence between Ulrich modules over A and Ulrich sheaves 
+on Pn , we interchangeably speak of both. But in our constructions we focus on Ulrich modules. 
+A prominent conjecture of Eisenbud et al. (2003b, p. 543) states that on any variety X in a projective 
+space, there is an Ulrich sheaf whose support is X .
+3.2. The variety of symmetric 4 ¡Á 4 matrices
+4 be the space of symmetric 4 ¡Á 4 matrices over the eld C. This identies 
+as C10 . Let xi j = x j i be the coordinate functions on X s
+We x notation. Let X s
+4 where 1 ¡Ü i ¡Ü j ¡Ü 4, so the coordinate ring of 
+X s
+4 is:
+
+A = C[xi j ]1¡Üi¡Ü j¡Ü4 .
+For 0 ¡Ü r ¡Ü 4, denote by X s
+4 consisting of matrices of rank ¡Ü r . The ideal 
+4,r the ane subvariety of X s
+4,r is generated by the (r + 1) ¡Á (r + 1)-minors of the generic 4 ¡Á 4 symmetric matrix (xi j ). This 
+of X s
+is in fact a prime ideal, by Weyman (2003, Theorem 6.3.1). The rank subvarieties have the following 
+degrees and codimensions by Harris and Tu (1984, Proposition 12 (b)):
+
+4,3
+
+4,4
+
+Variety
+X s
+X s
+X s
+X s
+X s
+
+4,2
+
+4,1
+
+4,0
+
+Degree
+1
+4
+10
+8
+1
+
+Codimension
+0
+1
+3
+6
+10
+
+4,r
+
+Since the varieties X s
+4,r are dened by homogeneous ideals, they give rise to projective varieties P X s
+in the projective space P9 . However, in ¡ì3.4 and ¡ì3.5 it will be convenient to work with ane vari-
+eties, and general (instead of special) linear group actions.
+4 . If M ¡Ê GL(4, C) and X ¡Ê X s
+The group GL(4, C) acts on X s
+4 , the action is as follows:
+M ¡¤ X = M ¡¤ X ¡¤ M T .
+Since any complex symmetric matrix can be diagonalized by a coordinate change, there are ve orbits 
+of the action of GL(4, C) on X s
+4 , one per rank of the symmetric matrix. Let:
+E = C4
+4 identies as A = Sym( S 2 ( E )). 
+be a four-dimensional complex vector space. The coordinate ring of X s
+ , so again we 
+The space of symmetric matrices X s
+4 may then be identied with the dual space S 2 ( E )
+see that GL( E ) = GL(4, C) acts on S 2 ( E )
+
+ .
+
+JID:YJSCO AID:1781 /FLA
+
+8
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.8 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+3.3. Representations and Pieri¡¯s rule
+
+We shall recall some basic representation theory of the general linear group GL(W ), where W
+is a n-dimensional complex vector space. The irreducible representations of GL(W ) are given by 
+Schur modules S ¦Ë (W ) where ¦Ë is a generalized partition: a sequence of integers ¦Ë1 ¡Ý ¦Ë2 ¡Ý ¡¤ ¡¤ ¡¤ ¡Ý ¦Ën . 
+When ¦Ë = d, 0, . . . , 0, then S ¦Ë (W ) is the dth symmetric power S d (W ). When ¦Ë = 1, . . . , 1, 0, . . . , 0, 
+with d 1¡¯s, then S ¦Ë (W ) is the exterior wedge ¡Äd W . For all partitions ¦Ë there are isomorphisms of 
+GL(W )-representations:
+r = S ¦Ë+r ¡¤1 (W )
+where 1 = 1, 1, . . . , 1. Here ¡Än W is the one-dimensional representation C of GL(W ) where a linear 
+map ¦Õ acts by its determinant.
+Denote by |¦Ë| := ¦Ë1 + ¡¤ ¡¤ ¡¤ + ¦Ën . Assume ¦Ën , ¦Ìn ¡Ý 0. The tensor product of two Schur modules 
+S ¦Ë (W )  S ¦Ì (W ) splits into irreducibles as a direct sum of Schur modules:
+
+ = S ¦Ën ,...,¦Ë1 (W )
+S ¦Ë (W )
+
+S ¦Ë (W )  (¡Än W )
+
+and
+
+(cid:21)
+
+¦Í
+
+u (¦Ë , ¦Ì; ¦Í ) S ¦Í (W )
+
+where the sum is over partitions with |¦Í | = |¦Ì| + |¦Ë|. The multiplicities u (¦Ë , ¦Ì; ¦Í ) ¡Ê Z¡Ý0 are deter-
+mined by the Littlewood¨CRichardson rule (Fulton and Harris, 1991, Appendix A). In one case, that will 
+(cid:20) and ¦Ë, 
+be important to us below, there is a particularly nice form of this rule. Given two partitions ¦Ë
+we say that ¦Ë
+/¦Ë is a horizontal strip if ¦Ë
+i+1 .
+
+¡Ý ¦Ëi ¡Ý ¦Ë
+
+(cid:20)
+
+(cid:20)
+
+(cid:20)
+
+i
+
+Fact 11 (Pieri¡¯s rule). As GL(W )-representations, we have the rule:
+
+(cid:21)
+
+(cid:20) (W ).
+
+S ¦Ë
+
+(cid:20) | = |¦Ë|+d
+
+|¦Ë
+
+/¦Ë is a horizontal strip
+
+S ¦Ë (W )  S d (W )
+
+=
+
+(cid:20)
+
+¦Ë
+
+3.4. The rst Ulrich sheaf
+
+We are now ready to describe our rst Ulrich sheaf on the projective variety P X s
+4,2 . We construct it 
+as an Ulrich module supported on the variety X s
+Consider S 3 ( E )  S 2 ( E ). By Pieri¡¯s rule this decomposes as:
+4,2 . We use notation from ¡ì3.2, so E is 4-dimensional. 
+
+S 5 ( E ) ¨’ S 4,1 ( E ) ¨’ S 3,2 ( E ).
+
+We therefore get a GL( E )-inclusion S 3,2 ( E ) ¡ú S 3 ( E )  S 2 ( E ) unique up to nonzero scale. Since 
+A 1 = S 2 ( E ) from ¡ì3.2, this extends uniquely to an A -module map:
+S 3 ( E )  A ¦Á¡û S 3,2 ( E )  A (1).
+This map can easily be programmed using Macaulay2 and the package PieriMaps (Sam, 2009):
+
+R=QQ[a..d]
+needsPackage "PieriMaps"
+f=pieri({3,2},{2,2},R)
+S=QQ[a..d,y_0..y_9]
+a2=symmetricPower(2,matrix{{a..d}})
+alpha=sum(10,i->contract(a2_(0,i),sub(f,S))*y_i)
+
+We can then compute the resolution of the cokernel of ¦Á in Macaulay2. It has the form:
+A 20 ¦Á¡û A (1)
+60 ¡û A (2)
+60 ¡û A (3)
+Thus the cokernel of ¦Á is an Ulrich module by (1) and (2)¡¯ in Denition 9. An important point is 
+that the res command in Macaulay2 computes differential matrices in unenlightening bases. We 
+completely and intrinsically describe the GL( E )-resolution below:
+
+20
+
+.
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.9 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+9
+
+Proposition 12. The cokernel of ¦Á is an Ulrich module M of rank 2 supported on the variety X s
+4,2 . The resolu-
+tion of M is GL( E )-equivariant and it is:
+
+F  : S 3 ( E )  A ¦Á¡û S 3,2 ( E )  A (1)
+
+¦Õ¡û S 3,3,1 ( E )  A (2)
+¦Â¡û S 3,3,3 ( E )  A (3)
+
+(6)
+
+with ranks 20, 60, 60, 20, and where all differential maps are induced by Pieri¡¯s rule. The dual complex of this 
+resolution is also a resolution, and these two resolutions are isomorphic up to twist. As in Sam and Weyman
+(2011), we can visualize the resolution by:
+
+0 ¡û M ¡û
+
+¡û
+
+¡û
+
+¡û
+
+¡û 0.
+
+Proof. Since M is the cokernel of a GL( E )-map, it is GL( E )-equivariant. So, the support of M is a 
+union of orbits. By Denition 9(2), M is supported in codimension 3. Since the only orbit of codi-
+mension 3 is X s
+
+4,2
+
+JID:YJSCO AID:1781 /FLA
+
+10
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.10 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+
+
+
+
+
+
+(8)
+
+
+
+
+
+).
+
+
+
+
+
+S 3,3,3 ( E
+
+) ¡û S 3,2 ( E
+
+) ¡û S 3,3,1 ( E
+
+) corresponds to a point in Spec( A ) and a homomorphism A ¡ú C. The 
+A symmetric form q in S 2 ( E
+ber of this complex over the point q is then an SO( E
+, q)-complex:
+) ¡û S 3 ( E
+When q is a nondegenerate form, this is the Littlewood complex L 3,3,3
+as dened in Sam et al. (2013, 
+partition ¦Ë = (3, 3, 3) is not admissible since 3 + 3 > 4, see (Sam et al., 2013, Section 4.1). The coho-
+¡ì4.2). (The terms of L 3,3,3 can be computed using the plethysm in ¡ì4.6 of Sam et al., 2013.) This 
+mology of (8) is then given by Sam et al. (2013, Theorem 4.4) and it vanishes (since here i 4 (¦Ë) = ¡Þ), 
+be thought of as a ¡°universal¡± Littlewood complex for the partition ¦Ë = (3, 3, 3). In other cases when 
+as it should in agreement with Proposition 12. The dual resolution (7) of the Ulrich sheaf can then 
+Littlewood complexes are exact, it would be an interesting future research topic to investigate the 
+sheaf that is resolved by the ¡°universal Littlewood complex¡±.
+To obtain nicer formulas for the Chow form of the essential variety EC in ¡ì4, we now prove that 
+the middle map ¦Õ in the resolution (6) is symmetric, in the following appropriate sense. In general, 
+ where L is a nite dimensional vector space. 
+suppose that we are given a linear map W
+Dualizing, we get a map W ¦ÌT¡û W
+  L which in turn gives a map W  L
+ . By denition, the 
+map ¦Ì is symmetric if ¦Ì = ¦Í and skew-symmetric if ¦Ì = ¦Í . If ¦Ì is symmetric and ¦Ì is represented 
+ with respect to dual bases of W and W
+ , then that matrix is symmetric, 
+as a matrix with entries in L
+and analogously when ¦Ì is skew-symmetric. Note that the map ¦Ì also induces a map L ¦Ç¡ú W  W .
+Fact 15. The map ¦Ì is symmetric if the image of ¦Ç is in the subspace S 2 (W )  W  W and it is skew-
+symmetric if the image is in the subspace ¡Ä2W  W  W .
+
+ ¦Ì¡ú W  L
+
+¦Í¡û W
+
+
+
+Proposition 16. The middle map ¦Õ in the resolution (6) is symmetric.
+
+Proof. Consider the map ¦Õ in degree 3. It is:
+
+S 3,2 ( E )  S 2 ( E ) ¡û S 3,3,1 ( E )
+
+and it induces the map:
+
+3
+
+  (¡Ä4 E )
+
+= S 3,2 ( E )
+3 = S 3,3,3,1 ( E ).
+
+S 3,2 ( E )  S 3,2 ( E ) ¡û S 2 ( E )
+
+  (¡Ä4 E )
+By the Littlewood¨CRichardson rule, the right representation above occurs with multiplicity 1 in the 
+left side. Now one can check that S 3,3,3,1 ( E ) occurs in S 2 ( S 3,2 ( E )). This follows by Corollary 5.5 
+in Carr¨¦ and Leclerc (1995) or one can use the package SchurRings (Stillman et al., 2011) in
+
+Macaulay2:
+
+needsPackage "SchurRings"
+S = schurRing(s,4,GroupActing=>"GL")
+plethysm(s_2,s_{3,2})
+
+Due to Fact 15, we can conclude that the map ¦Õ is symmetric. 2
+3.5. The second Ulrich sheaf
+
+a second formula for Ch(EC ) in ¡ì4. Consider S 2,2,1 ( E )  S 2 ( E ). By Pieri¡¯s rule:
+We construct another Ulrich sheaf on P X s
+4,2 and analyze it similarly to as above. This will lead to 
+
+S 2,2,1 ( E )  S 2 ( E )
+
+= S 4,2,1 ( E ) ¨’ S 3,2,2 ( E ) ¨’ S 3,2,1,1 ( E ) ¨’ S 2,2,2,1 ( E ).
+
+Thus there is a GL( E )-map, with nonzero degree 1 components unique up to scale:
+
+S 2,2,1 ( E )  A ¦Á¡û ( S 3,2,2 ( E ) ¨’ S 3,2,1,1 ( E ) ¨’ S 2,2,2,1 ( E ))  A (1).
+
+This map can be programmed in Macaulay2 using PieriMaps as follows:
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.11 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+11
+
+R=QQ[a..d]
+needsPackage "PieriMaps"
+f1= transpose pieri({3,2,2,0},{1,3},R)
+f2=transpose pieri({3,2,1,1},{1,4},R)
+f3=transpose pieri({2,2,2,1},{3,4},R)
+f = transpose (f1||f2||f3)
+S=QQ[a..d,y_0..y_9]
+a2=symmetricPower(2,matrix{{a..d}})
+alpha=sum(10,i->contract(a2_(0,i),sub(f,S))*y_i)
+
+We can then compute the resolution of coker(¦Á ) in Macaulay2. It has the form:
+A 20 ¦Á¡û A (1)
+60 ¡û A (2)
+60 ¡û A (3)
+Thus the cokernel of ¦Á is an Ulrich module, and moreover we have:
+
+20
+
+.
+
+Proposition 17. The cokernel of ¦Á is an Ulrich module M of rank 2 supported on the variety X s
+4,2 . The resolu-
+tion of M is GL( E )-equivariant and it is:
+
+F  : S 2,2,1 ( E )  A
+
+¦Á¡û ( S 3,2,2 ( E ) ¨’ S 3,2,1,1 ( E ) ¨’ S 2,2,2,1 ( E ))  A (1)
+¦Õ¡û ( S 4,2,2,1 ( E ) ¨’ S 3,3,2,1 ( E ) ¨’ S 3,2,2,2 ( E ))  A (2)
+¦Â¡û S 4,3,2,2 ( E )  A (3)
+
+(9)
+
+with ranks 20, 60, 60, 20. The dual complex of this resolution is also a resolution and these two resolutions are 
+isomorphic up to twist. We can visualize the resolution by:
+
+0 ¡û M ¡û
+
+¡û
+
+¨’
+
+¨’ ¡û
+
+¨’
+
+¨’
+
+¡û
+
+¡û 0.
+
+Proof. The argument concerning the support of M is exactly as in Proposition 12.
+Now we prove that the minimal free resolution of M is of the form above, differently than in 12. 
+To start, note that the module S 4,2,2,1 ( E ) occurs by Pieri once in each of:
+
+S 3,2,2 ( E )  S 2 ( E ),
+
+S 3,2,1,1 ( E )  S 2 ( E ),
+
+S 2,2,2,1 ( E )  S 2 ( E ).
+
+On the other hand, it occurs in:
+
+S 2,2,1 ( E )  S 2 ( S 2 ( E ))
+
+= S 2,2,1 ( E )  S 4 ( E ) ¨’ S 2,2,1 ( E )  S 2,2 ( E )
+
+only twice, as seen using Pieri¡¯s rule and the Littlewood¨CRichardson rule. Thus S 4,2,2,1 ( E ) occurs at 
+least once in the degree 2 part of ker(¦Á ). Similarly we see that each of S 3,3,2,1 ( E ) and S 3,2,2,2 ( E ) oc-
+curs at least once in ker(¦Á ) in degree 2. But by the Macaulay2 computation before this Proposition, 
+we know that ker(¦Á ) is a module with 60 generators in degree 2. And the sum of the dimensions of 
+these three representations is 60. Hence each of them occurs exactly once in ker(¦Á ) in degree 2, and 
+they generate ker(¦Á ).
+Now let C be the 20-dimensional vector space generating ker(¦Õ ). Since the resolution of M has 
+length equal to codim(M ), the module M is Cohen¨CMacaulay and the dual of its resolution, obtained 
+by applying Hom A (, ¦Ø A ) where ¦Ø A
+= A (4), is again a resolution of Ext3
+A (M , ¦Ø A ). Thus the map 
+from C  A (3) to each of:
+
+S 4,2,2,1 ( E )  A (2),
+
+S 3,3,2,1 ( E )  A (2),
+
+S 3,2,2,2 ( E )  A (2)
+
+is nonzero. In particular C maps nontrivially to:
+
+S 3,2,2,2 ( E )  S 2 ( E )
+
+= S 5,2,2,2 ( E ) ¨’ S 4,3,2,2 ( E ).
+
+JID:YJSCO AID:1781 /FLA
+
+12
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.12 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+Each of the right-hand side representations have dimension 20, so one of them equals C . However 
+only the last one occurs in S 3,3,2,1 ( E )  S 2 ( E ), and so C = S 4,3,2,2 ( E ). We have proven that the 
+GL( E )-equivariant minimal free resolution of M indeed has the form F  .
+nonzero. Also, as the dual complex is a resolution, here obtained by applying Hom A (, ¦Ø A ) with 
+For the statement about the dual, recall that each of the three components of ¦Á in degree 1 are 
+¦Ø A = A (10), all three degree 1 components of ¦Â are nonzero. If we twist this dual resolution with 
+4  A (7), the terms will be as in the original resolution. Because each of the three nonzero 
+components of the map ¦Á are uniquely determined up to scale, the resolution F  and its dual are 
+isomorphic up to twist. 2
+Remark 18. Again the GL( E )-representations in this resolution could have been computed using the
+
+(¡Ä4 E )
+
+Macaulay2 package HighestWeights.
+
+Proposition 19. The middle map ¦Õ in the resolution (9) is symmetric.
+
+Proof. We rst show that the three ¡®diagonal¡¯ components of ¦Õ in (9) are symmetric:
+
+S 3,2,2 ( E )  S 2 ( E )
+S 3,2,1,1 ( E )  S 2 ( E )
+S 2,2,2,1 ( E )  S 2 ( E )
+
+¦Õ1¡û S 4,2,2,1 ( E )
+¦Õ2¡û S 3,3,2,1 ( E )
+¦Õ3¡û S 3,2,2,2 ( E ).
+
+Twisting the third component ¦Õ3 with (¡Ä4 E
+  S 2 ( E ) ¡û E
+E
+and so ¦Õ3 is obviously symmetric. Twisting the second map ¦Õ2 with ¡Ä4 E
+
+2 , it identies as:
+
+
+
+)
+
+S 2,1 ( E )  S 2 ( E ) ¡û S 2,2,1 ( E ) = ( S 2,1 ( E )
+
+
+
+ it identies as:
+
+)  (¡Ä4 E )
+
+2
+
+,
+
+which induces the map:
+
+S 2,1 ( E )  S 2,1 ( E ) ¡û S 2 ( E )
+
+  (¡Ä4 E )
+By the Littlewood¨CRichardson rule, the left tensor product contains S 2,2,2 ( E ) with multiplicity 1. By 
+Corollary 5.5 in Carr¨¦ and Leclerc (1995) or SchurRings in Macaulay2, this is in S 2 ( S 2,1 ( E )):
+
+2 = S 2,2,2 ( E ).
+
+needsPackage "SchurRings"
+S = schurRing(s,4,GroupActing=>"GL")
+plethysm(s_2,s_{2,1})
+
+So by Fact 15, the component ¦Õ2 is symmetric. The rst map ¦Õ1 may be identied as:
+  (¡Ä4 E )
+
+S 3,2,2 ( E )  S 2 ( E ) ¡û ( S 3,2,2 ( E ))
+
+4
+
+,
+
+which induces the map:
+
+S 3,2,2 ( E )  S 3,2,2 ( E ) ¡û S 2 ( E )
+
+  (¡Ä4 E )
+Again by Littlewood¨CRichardson, S 4,4,4,2 ( E ) is contained with multiplicity 1 in the left side. By 
+Corollary 5.5 in Carr¨¦ and Leclerc (1995) or the package SchurRings in Macaulay2, this is in 
+
+4 = S 4,4,4,2 ( E ).
+
+S 2 ( S 3,2,2 ( E )):
+
+needsPackage "SchurRings"
+S = schurRing(s,4,GroupActing=>"GL")
+plethysm(s_2,s_{3,2,2})
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.13 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+13
+
+It is now convenient to tensor the resolution (9) by (¡Ä4 E
+
+
+
+2 , and to let:
+
+T 1 = S 1,0,0,2 ( E ),
+
+T 2 = S 1,0,1,1 ( E ),
+
+)
+T 3 = S 0,0,0,1 ( E ).
+
+We can then write the middle map as:
+
+T 1  A (1) ¨’ T 2  A (1) ¨’ T 3  A (1)
+
+ ¦Õ1 ¦Ì2 ¦Í2
+¦Í1
+
+¦Ì1 ¦Õ2
+
+¡û
+
+¦Õ3
+
+0
+
+0
+
+
+
+
+
+1
+
+T
+
+ A (2) ¨’ T
+
+
+
+2
+
+ A (2) ¨’ T
+
+
+
+3
+
+ A (2)
+(10)
+
+Note indeed that the component:
+
+3
+
+
+
+
+
+S 1,0,1,1 ( E )  S 2 ( E ) = T 2  S 2 ( E ) ¡û T
+
+= S 1 ( E )
+must be zero, since the left tensor product does not contain S 1 ( E ) by Pieri¡¯s rule. Similarly the map 
+T 3  S 2 ( E ) ¡û T
+2 is zero.
+We know the maps ¦Õ1 , ¦Õ2 and ¦Õ3 are symmetric. Consider:
+T 2  A (1)
+¦Ì1¡û T
+ A (2),
+T 1  A (1)
+¦Ì2¡û T
+ A (2).
+Since the resolution (9) is isomorphic to its dual, either both ¦Ì1 and ¦Ì2 are nonzero, or they are 
+both zero. Suppose both are nonzero. The dual of ¦Ì2 is (up to twist) T 2  A (1) ¦ÌT
+ A (2). But 
+can say that ¦Ì1 = c¦Ì¦ÌT
+such a GL( E )-map is unique up to scalar, as is easily seen by Pieri¡¯s rule. Thus whatever the case we 
+2 for some nonzero scalar c¦Ì . Similarly we get ¦Í1 = c¦Í ¦Í T
+2 . Composing the map 
+(10) with the automorphism on its right given by the block matrix:
+
+2¡û T
+
+
+
+
+
+
+
+1
+
+2
+
+1
+
+ 1
+
+ ,
+
+0
+0 c¦Ì
+0
+0
+
+0
+0
+c¦Í
+we get a middle map:
+
+ ¦Õ1 ¦Ì
+¦Í1
+
+¦Ì1 ¦Õ
+2
+
+(cid:20)
+(cid:20)
+
+0
+
+2 ¦Í
+
+2
+
+(cid:20)
+
+0
+
+(cid:20)
+
+
+
+T
+
+
+
+
+
+¦Õ
+3
+
+¡û
+
+ A (2) ¨’ T
+
+T 1  A (1) ¨’ T 2  A (1) ¨’ T 3  A (1)
+where the diagonal maps are still symmetric, and ¦Ì1 = (¦Ì
+map, and the result about ¦Õ follows. 2
+construction of Ulrich modules on the variety of symmetric n ¡Á n matrices of rank ¡Ü r ; see Weyman
+This second Ulrich module constructed above in Proposition 17 is a particular instance of a general 
+(2003), ¡ì6.3 and Exercise 34 in ¡ì6. We briey recall the general construction. Let W = Cn and G be 
+the Grassmannian Gr(n  r , W ) of (n  r )-dimensional subspaces of W . There is a tautological exact 
+sequence of algebraic vector bundles on G :
+
+2 )T . So we get a symmetric 
+
+2 )T and ¦Í1 = (¦Í
+
+ A (2) ¨’ T
+
+ A (2)
+
+
+
+1
+
+2
+
+3
+
+(cid:20)
+
+(cid:20)
+
+0 ¡ú K ¡ú W  OG ¡ú Q ¡ú 0,
+
+where r is the rank of Q. Let X = X s
+n be the ane space of symmetric n ¡Á n matrices, and dene Z
+to be the incidence subvariety of X ¡Á G given by:
+(cid:10)¡ú W )) ¡Ê X ¡Á G | ¦Õ  i = 0}.
+The variety Z is the ane geometric bundle VG ( S 2 (Q)) of the locally free sheaf S 2 (Q) on the Grass-
+mannian G . There is a commutative diagram:
+
+Z = {((W ¦Õ¡ú W ), (Cnr
+
+i
+
+JID:YJSCO AID:1781 /FLA
+
+14
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.14 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+(cid:23)
+
+Z ¡ú X ¡Á G
+
+(cid:23)
+
+¡ú X
+
+n,r
+
+X s
+n,r . For any locally free sheaf E , the Schur functor S ¦Ë applies to 
+in which Z is a desingularization of X s
+give a new locally free sheaf S ¦Ë (E ). Consider then the locally free sheaf:
+
+E (n, r ) = S (nr )r (Q)  S nr1,nr2,¡¤¡¤¡¤ ,1,0 (K)
+
+(cid:16)
+
+(cid:17)
+
+
+
+nr
+2
+
+on the Grassmannian Gr(n  r , W ). Note that S (nr )r (Q) = (det(Q))
+nr is a line bundle and E (n, r ) is 
+p¡ú G be the projection map. By pullback we get the locally 
+a locally free sheaf of rank 2
+(E (n, r )) on Z . The pushforward of this locally free sheaf down to X s
+. Let Z
+free sheaf p
+n,r is an Ulrich sheaf 
+ E ). The 
+Ulrich module in Proposition 17 is that module when n = 4 and r = 2. For our computational purposes 
+on this variety. Since X s
+n,r is ane this corresponds to the module of global sections H 0 ( Z , p
+realized in ¡ì4, we worked out the equivariant minimal free resolution as above. Interestingly, we do 
+not know yet whether the ¡®simpler¡¯ Ulrich sheaf presented in ¡ì3.4, which is new to our knowledge, 
+generalizes to a construction for other varieties.
+
+4. The Chow form of the essential variety
+
+(cid:16)
+
+(cid:17)
+
+(cid:16)
+
+n+1
+c
+
+(cid:16)
+
+n+1
+c
+
+n+1
+c
+
+(cid:17)1 . 
+
+4.1. Grassmannians and Chow divisors
+The Grassmannian variety Gr(c , n + 1) = Gr(Pc1 , Pn ) parametrizes the linear subspaces of dimen-
+sion c  1 in Pn , i.e. the Pc1 ¡¯s in Pn . Such a linear subspace may be given as the rowspace of a 
+c ¡Á (n + 1) matrix. The tuple of maximal minors of this matrix is uniquely determined by the linear 
+(cid:17)1 . This denes an embedding of the Grassmannian Gr(c , n + 1) into that pro-
+subspace up to scale. The number of such minors is 
+. Hence we get a well-dened point in the 
+projective space P
+jective space, called the Pl¨¹cker embedding. Somewhat more algebraically, let W be a vector space of 
+dimension n + 1 and let P(W ) be the space of lines in W through the origin. Then a linear subspace 
+V of dimension c in W denes a line ¡Äc V in ¡Äc W , and so it denes a point in P(¡Äc W ) = P
+Thus the Grassmannian Gr(c , W ) embeds into P(¡Äc W ).
+c  1 will typically not intersect X . The set of points in the Grassmannian Gr(c , n + 1) that do have 
+If X is a variety of codimension c in a projective space Pn , then a linear subspace of dimension 
+nonempty intersection with X forms a divisor in Gr(c , n + 1), called the Chow divisor. This is seen by 
+counting dimensions in the incidence diagram:
+X ¡û X = {(x, L ) ¡Ê X ¡Á Gr(Pc1 , Pn )
+In detail, the bers of the left projection are isomorphic to Gr(Pc2 , Pn1 ), so they have dimension 
+(c  1)(n  c + 1). So
+dim(X ) = (c  1)(n  c + 1) + (n  c ) = c (n + 1  c )  1.
+Since the right arrow is degree 1 onto its image, that image has dimension dim(X ), which is 1 less 
+(cid:17)1 , any hyperplane in the latter projective 
+than dim(Gr(c , n + 1)). Next recall that the divisor class group of Gr(c , n + 1) is isomorphic to Z. 
+Considering the Pl¨¹cker embedding Gr(c , n + 1)  P
+space intersects the Grassmannian in a divisor which generates the divisor class group of Gr(c , n + 1). 
+(cid:17)1 = P(¡Äc W ) is Sym(¡Äc W
+This follows from an application of Hartshorne (1977, Chapter II, Proposition 6.5(c)). The homogeneous 
+). Note that here ¡Äc W
+ are 
+coordinate ring of this projective space P
+the linear forms, i.e. the elements of degree 1. If X has degree d , then its Chow divisor is cut out by a 
+of the Grassmannian Sym(¡Äc W
+single form Ch( X ) of degree d unique up to nonzero scale, called the Chow form, in the coordinate ring 
+)/ I Gr(c ,n+1) . As the parameters n, c , d increase, Chow forms become 
+unwieldy to even store on a computer le. Arguably, the most ecient (and useful) representations of 
+Chow forms are as determinants or Pfaans of a matrix with entries in ¡Äc W
+ . As we explain next, 
+Ulrich sheaves can give such formulas.
+
+(cid:24)(cid:24) x ¡Ê L } ¡ú Gr(Pc1 , Pn ).
+
+n+1
+c
+
+n+1
+c
+
+(cid:16)
+
+(cid:16)
+
+
+
+
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.15 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+15
+
+4.2. Construction of Chow forms
+
+
+
+F whose support is X . The reference for this is Eisenbud et al. (2003b, pp. 552¨C553). Let M =
+We now explain how to obtain the Chow form Ch( X ) of a variety X from an Ulrich sheaf 
+¨’d¡ÊZ H 0 (Pn , F (d)) be the graded module of twisted global sections over the polynomial ring A =
+C[x0 , . . . , xn ]. We write W
+ for the vector space generated by the variables x0 , . . . , xn . Consider the 
+minimal free resolution (5) of M . The map d i may be represented by a matrix D i of size ¦Âi ¡Á ¦Âi+1 , 
+ . Since (5) is a complex the product of two successive matri-
+with entries in the linear space W
+ces D i1 D i
+multiplying elements in the ring A = Sym(W
+is the zero matrix. Note that when we multiply the entries of these matrices, we are 
+) = C[x0 , . . . , xn ].
+Now comes the shift of view: Let B = ¨’n
+¡Äi W
+ be the exterior algebra on the vector space W
+We now consider the entries in the D i (which are all degree one forms in A 1 = W
+ = B 1 ) to be in 
+the ring B instead. We then multiply together all the matrices D i corresponding to the maps d i . The 
+multiplications of the entries are performed in the skew-commutative ring B . We then get a product:
+D = D 0 ¡¤ D 1 ¡¤ ¡¤ ¡¤ D c1 ,
+where c is the codimension of the variety X which supports F . If F has rank r and the degree of X
+is d , the matrix D is a nonzero rd ¡Á rd matrix. The entries in the product D now lie in ¡Äc W
+ . Now 
+comes the second shift of view: We consider the entries of D to be linear forms in the polynomial 
+ring Sym(¡Äc W
+). Then we take the determinant of D , computed in this polynomial ring, and get 
+a form of degree rd in Sym(¡Äc W
+Sym(¡Äc W
+). When considered in the coordinate ring of the Grassmannian 
+)/ I G , then det(D ) equals the r th power of the Chow form of X . For more information 
+on the fascinating links between the symmetric and exterior algebras, the reader can start with the 
+Bernstein¨CGel¡¯fand¨CGel¡¯fand correspondence as treated in Eisenbud et al. (2003a).
+
+ . 
+
+i=0
+
+
+
+
+
+
+
+4.3. Skew-symmetry of the matrices computing the Chow form of P X s
+
+4,2
+
+In ¡ì3 we constructed two different Ulrich modules of rank 2 on the variety P X s
+4,2 of symmetric 
+4 ¡Á 4 matrices of rank ¡Ü 2. That variety has degree 10. The matrix D thus in both cases is 20 ¡Á 20, 
+and its determinant is a square in Sym(¡Äc W
+) as we now show. In fact, and here our analysis of 
+the equivariant resolutions pays off, the matrix D in both cases is skew-symmetric when we use the 
+bases distinguished by representation theory for the differential matrices:
+
+
+
+Lemma 20. Let A , B , C be matrices of linear forms in the exterior algebra. Their products behave as follows 
+under transposition:
+1. ( A ¡¤ B )T =  B T ¡¤ A T
+2. ( A ¡¤ B ¡¤ C )T = C T ¡¤ B T ¡¤ A T .
+is because u v w = w v u for linear forms in the exterior algebra. 2
+Proof. Part (1) is because u v =  v u when u and v are linear forms in the exterior algebra. Part (2) 
+The resolutions (6) and (9) of our two Ulrich sheaves, have the form:
+F ¦Á¡û G ¦Õ¡û G
+Dualizing and twisting we get the resolution:
+F ¦Â T¡û G ¦Õ T¡û G
+Since ¦Õ = ¦Õ T , both ¦Â and ¦Á T map isomorphically onto the same image. We can therefore replace the 
+map ¦Â in (11) with ¦Á T , and get the GL( E )-equivariant resolution:
+F ¦Á¡û G ¦Õ¡û G
+
+ ¦Á T¡û F
+
+ ¦Á T¡û F
+
+¦Â¡û F
+
+(11)
+
+
+
+
+
+
+
+.
+
+.
+
+
+
+.
+
+JID:YJSCO AID:1781 /FLA
+
+16
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.16 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+Let ¦Á , ¦Õ and ¦Á T be the maps in the resolution above, but now considered to live over the exterior 
+algebra. The Chow form associated to the two Ulrich sheaves is then the Pfaan of the matrix:
+
+¦Á ¦Õ ¦Á T .
+
+20 ¡Á 20 skew-symmetric matrix.
+Proposition 21. The Chow form Ch( P X s
+4,2 ) constructed from the Ulrich sheaf is, in each case, the Pfaan of a 
+
+Proof. The Chow form squared is the determinant of ¦Á ¦Õ ¦Á T and we have:
+
+(cid:16)
+
+¦Á ¦Õ ¦Á T
+
+(cid:17)T =  (¦Á T )T ¦Õ T ¦Á T =  ¦Á ¦Õ ¦Á T . 2
+
+4.4. Explicit matrices computing the Chow form of P X s
+
+4,2
+
+0 0 0
+1 1 1
+2 2 2
+3 3 3
+
+Even though our primary aim is to compute the Chow form of the essential variety, we get ex-
+plicit matrix formulas for the Chow form of P X s
+4,2 as a by-product of our method. We carried out 
+the computation in Proposition 21 in Macaulay2 for both Ulrich modules on P X s
+4,2 . We used the 
+package PieriMaps to make matrices D 1 and D 2 representing ¦Á and ¦Õ with respect to the built-in 
+choice of bases parametrized by semistandard tableaux. We had to multiply D 2 on the right by a 
+change of basis matrix to get a matrix representative with respect to dual bases, i.e. symmetric. For 
+pairing S 3,2 ( E )  S 3,3,1 ( E ) ¡ú (¡Ä4 E )
+example in the case of the rst Ulrich module (6) this change of basis matrix computes the perfect 
+3 . Let us describe the transposed inverse matrix that represents 
+the dual pairing. Columns are labeled by the semistandard Young tableaux S of shape (3, 2), and rows 
+obtained by tting together the tableau S and the tableau T rotated by 180 into a tableau of shape 
+are labeled by the semistandard Young tableaux T of shape (3, 3, 1). The ( S , T )-entry in the matrix is 
+(3, 3, 3, 3), straightening, and then taking the coecient of 
+. To nish for each Ulrich module, we 
+
+took the product D 1 D 2 D T
+The two resulting explicit 20 ¡Á 20 skew-symmetric matrices are available as arXiv ancillary 
+1 over the exterior algebra.
+les or at this paper¡¯s webpage.1 Their Pfaans equal the Chow form of P X s
+4,2 , which is an ele-
+ment in the homogeneous coordinate of the Gr(3, 10) = Gr(P2 , P9 ). To get a feel for the ¡®size¡¯ of 
+this Chow form, note that this ring is a quotient of the polynomial ring Sym(¡Ä3 Sym2 ( E )) in 120 
+Pl¨¹cker variables, denoted Q[ p {11,12,13} , . . . , p {33,34,44} ] on our website, by the ideal minimally gener-
+ated by 2310 Pl¨¹cker quadrics. We can compute that the degree 10 piece where Ch( P X s
+4,2 ) lives is a 
+108,284,013,552-dimensional vector space.
+Both 20 ¡Á 20 matrices afford extremely compact formulas for this special element. Their entries are 
+linear forms in p {11,12,13} , . . . , p {33,34,44} with one- and two-digit relatively prime integer coecients. 
+No more than 5 of the p -variables appear in any entry. In the rst matrix, 96 off-diagonal entries 
+equal 0. The matrices give new expressions for one of the two irreducible factors of a discriminant 
+studied since 1879 by Salmon (1960) and as recently as 2011 (Plaumann et al., 2011), as we see next 
+in Remark 22.
+Remark 22. From the subject of plane curves, it is classical that every ternary quartic form f ¡Ê
+C[x, y , z]4 can be written as f = det(x A + y B + zC ) for some 4 ¡Á 4 symmetric matrices A , B , C . 
+Geometrically, this expresses V( f ) inside the net of plane quadrics (cid:24) A , B , C (cid:25) as the locus of singular 
+quadrics. By Theorem 7.5 of Plaumann et al. (2011), that plane quartic curve V( f ) is singular if and 
+only if the Vinnikov discriminant:
+
+( A , B , C ) = M( A , B , C )P( A , B , C )
+2
+
+1 http://math.berkeley.edu/~jkileel/ChowFormulas.html.
+
+JID:YJSCO AID:1781 /FLA
+
+evaluates to 0. Here M is a degree (16, 16, 16) polynomial known as the tact invariant and P is 
+a degree (10, 10, 10) polynomial. The factor P equals the Chow form Ch( P X s
+4,2 ) after substituting 
+Pl¨¹cker coordinates for Stiefel coordinates:
+
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.17 (1-23)
+ ai 1 j1
+b i 1 j1
+c i 1 j1
+
+p {i 1 j1 ,i 2 j2 ,i 3 j3 } = det
+
+ .
+
+ai 2 j2
+b i 2 j2
+c i 2 j2
+
+ai 3 j3
+b i 3 j3
+c i 3 j3
+
+17
+
+4.5. Explicit matrices computing the Chow form of EC
+
+We now can put everything together and solve the problem raised by Agarwal, Lee, Sturmfels and 
+Thomas in Agarwal et al. (2017) of computing the Chow form of the essential variety. In Proposition 7, 
+we constructed a linear embedding s : P8 (cid:10)¡ú P9 that restricts to an embedding EC (cid:10)¡ú P X s
+4,2 . Both 
+4,2 pull back to Ulrich sheaves supported on EC , and their 
+of our Ulrich sheaves supported on P X s
+minimal free resolutions pull back to minimal free resolutions:
+
+
+
+
+
+¦Á¡û s
+
+s
+
+
+
+
+
+¦Õ¡û s
+
+s
+
+
+
+
+
+
+
+¦Á t¡û s
+
+s
+
+
+
+
+
+.
+
+s
+F
+G
+G
+F
+ quotients by a linear form that is a nonzero divisor for the 
+Here we veried in Macaulay2 that s
+two Ulrich modules. So, to get the Chow form Ch(EC ) from Propositions 12 and 17, we took matrices 
+ . That amounts to substituting xi j = s(M )i j , where 
+D 1 and D 2 symmetrized from above, and applied s
+1 , which is a product of a 20 ¡Á 60, a 60 ¡Á 60 and a 
+s(M ) is from ¡ì2.2. We then multiplied D 1 D 2 D T
+60 ¡Á 20 matrix, over the exterior algebra.
+The two resulting explicit 20 ¡Á 20 skew-symmetric matrices are available at the paper¡¯s web-
+page. Their Pfaans equal the Chow form of EC , which is an element in the homogeneous 
+coordinate of Gr(P2 , P8 ). We denote that ring as the polynomial ring in 84 (dual) Pl¨¹cker 
+variables Q[q{11,12,13} , . . . , q{31,32,33} ] modulo 1050 Pl¨¹cker quadrics. Here Ch(EC ) lives in the 
+9,386,849,472-dimensional subspace of degree 10 elements.
+Both matrices are excellent representations of Ch(EC ). Their entries are linear forms in q{11,12,13} ,
+. . . , q{31,32,33} with relatively prime integer coecients less than 216 in absolute value. In the rst 
+matrix, 96 off-diagonal entries vanish, and no entries have full support.
+Bringing this back to computer vision, we can now prove our main result stated in ¡ì1:
+Proof of Theorem 1. We rst construct M(x(i ) , y (i ) ), and then we prove that it has the desired prop-
+erties. For the construction, let Z denote the 6 ¡Á 9 matrix:
+
+
+
+y (1)
+1 x(1)
+1
+y (2)
+1 x(2)
+1
+y (3)
+1 x(3)
+1
+y (4)
+1 x(4)
+1
+y (5)
+1 x(5)
+1
+y (6)
+1 x(6)
+1
+
+y (1)
+1 x(1)
+2
+y (2)
+1 x(2)
+2
+y (3)
+1 x(3)
+2
+y (4)
+1 x(4)
+2
+y (5)
+1 x(5)
+2
+y (6)
+1 x(6)
+2
+
+y (1)
+1
+y (2)
+1
+y (3)
+1
+y (4)
+1
+y (5)
+1
+y (6)
+1
+
+y (1)
+2 x(1)
+1
+y (2)
+2 x(2)
+1
+y (3)
+2 x(3)
+1
+y (4)
+2 x(4)
+1
+y (5)
+2 x(5)
+1
+y (6)
+2 x(6)
+1
+
+y (1)
+2 x(1)
+2
+y (2)
+2 x(2)
+2
+y (3)
+2 x(3)
+2
+y (4)
+2 x(4)
+2
+y (5)
+2 x(5)
+2
+y (6)
+2 x(6)
+2
+
+y (1)
+2
+y (2)
+2
+y (3)
+2
+y (4)
+2
+y (5)
+2
+y (6)
+2
+
+x(1)
+1
+x(2)
+1
+x(3)
+1
+x(4)
+1
+x(5)
+1
+x(6)
+1
+
+x(1)
+2
+x(2)
+2
+x(3)
+2
+x(4)
+2
+x(5)
+2
+x(6)
+2
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+
+
+of Z with columns i , j , k removed, and substitute into either of 20 ¡Á 20 skew-symmetric matrices 
+where the columns of Z are labeled by 11, 12, . . . , 33 respectively. Now set q i jk to be the determinant 
+above that compute the Chow form Ch(EC ). This constructs M(x(i ) , y (i ) ).
+Observe that M(x(i ) , y (i ) ) drops rank if and only if the subspace ker( Z )  P8 intersects EC . This 
+follows by denition of the Chow form, since the Pl¨¹cker coordinates of ker( Z ) equal the maximal 
+minors of Z when Z is full-rank (Gelfand et al., 1994, p. 94). Said differently:
+
+JID:YJSCO AID:1781 /FLA
+
+18
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.18 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+1
+
+M
+
+(12)
+
+(cid:6)
+
+(cid:5)
+
+y (i )
+2
+
+y (i )
+1
+
+1
+x(i )
+2
+
+ = 0.
+
+ x(i )
+M(x(i ) , y (i ) ) drops rank  M ¡Ê EC such that i = 1, . . . 6
+1
+Indeed, (12) is a linear system for M ¡Ê EC , while Z is the coecient matrix of that system.
+then back. In the rst direction, given {(x(i ) , y (i ) )}, suppose that we have a solution A , B , (cid:3)X (1) , . . . , (cid:3)X (6)
+In the rest of the proof of Theorem 1, we relate solutions of (1) to solutions of (12). As goes 
+computer vision parlance, we will move between cameras and world points to relative poses, and 
+to (1). Note that the group:
+G := { g ¡Ê GL(4, C) | ( g i j )1¡Üi , j¡Ü3 ¡Ê SO(3, C) and g41 = g42 = g43 = 0}
+equals the stabilizer of the set of calibrated camera matrices inside C3¡Á4 , with respect to right mul-
+tiplication. We now make two simplifying assumptions about our solution to (1).
+1 (cid:3)X (6) is also a solution to (1).
+ Without loss of generality, A = [ id3¡Á3 | 0 ]. For otherwise, select g ¡Ê G so that A g = [ id3¡Á3 | 0 ], 
+wise, we may zero out the last coordinate of each (cid:3)
+and then A g , B g , g
+ Denoting B = [ R | t ] for R ¡Ê SO(3, C) and t ¡Ê C3 , then without loss of generality, t (cid:8)= 0. For other-
+. Set M = [ t ]¡Á R . Then M ¡Ê EC and M is a solution to (12), as 
+X (i ) and replace B by [ R | t
+(cid:20) ] for any t
+and then we still have a solution to the system (1).
+t3 t2
+t3
+0
+t1
+t2 t1
+ x(i )
+0
+for each i = 1, . . . , 6 we have:
+1
+
+1 (cid:3)X (1) , . . . , g
+
+Denote [ t ]¡Á :=
+
+ 0
+
+(cid:20) ¡Ê C3 , 
+
+(cid:3)
+
+1
+x(i )
+2
+
+M ( A
+
+X (i ) )
+
+X (i ) )
+
+y (i )
+1
+
+y (i )
+2
+
+(cid:6)
+
+(cid:5)
+
+1
+
+M
+
+T
+
+(cid:6) (cid:3)
+
+X (i )
+
+[ R | t ]T [ t ]¡Á R [ id3¡Á3 | 0 ]
+
+[ R | 0 ]T [ t ]¡Á [ R | 0 ]
+
+(cid:6) (cid:3)
+
+X (i )
+
+ ¡Ô ( B
+(cid:3)
+(cid:5)
+= (cid:3)
+(cid:5)
+= (cid:3)
+
+X (i )
+
+X (i )
+
+T
+
+T
+
+= 0.
+
+Here the second-to-last equality is because t T [ t ]¡Á = 0, and the last equality is because the matrix in 
+parentheses is skew-symmetric. We have shown the second sentence in Theorem 1.
+Conversely, given {(x(i ) , y (i ) }, let us start with a solution M ¡Ê EC to system (12). From this, we will 
+produce a solution to (1) provided that M is suciently nice. More precisely, assume:
+1. M may be factored as a skew-symmetric matrix times a rotation matrix, i.e. M = [ t ]¡Á R where 
+t ¡Ê C3 and R ¡Ê SO(3, C).
+2. For each i = 1, . . . , 6, we have that 
+M (cid:8)= 0 and M
+1
+1
+For readers of Hartley and Zisserman (2004, ¡ì9.2.4) condition 2 means that {(x(i ) , y (i ) )} avoids 
+Then there exists (cid:3)
+X (i ) ¡Ô (cid:4)
+X (i ) ¡Ô (cid:3)
+the epipoles of M . Supposing conditions 1 and 2 hold, we set A = [ id3¡Á3 | 0 ] and B = [ R | t ]. 
+nience), we take (cid:25)X = (cid:16)
+(cid:17)T where ¦Ë ¡Ê C satises R(cid:25)x + ¦Ët ¡Ô (cid:25)y . To nd such ¦Ë, we solve 
+X (i ) ¡Ê P3 such that A
+ = 0 for ¦Ë , ¦Ì ¡Ê C with ¦Ì (cid:8)= 0. These equations are soluble since:
+x(i ) and B
+y (i ) . Indeed (dropping i for conve-
+R(cid:25)x t (cid:25)y
+x1
+x2 1 ¦Ë
+
+(cid:6)T (cid:8)= 0.
+
+ 1
+
+(cid:3)
+
+(cid:3)
+
+y (i )
+1
+
+y (i )
+2
+
+x(i )
+1
+
+x(i )
+2
+
+(cid:5)
+
+(cid:6)
+
+(cid:5)
+
+(cid:16)
+
+(cid:17)
+
+3¡Á3
+
+¦Ë¦Ì
+
+(cid:17)
+
+(cid:16)
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.19 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+ 0 = (cid:25)y T M(cid:25)x = (cid:25)y T [ t ]¡Á R(cid:25)x = det
+
+R(cid:25)x t (cid:25)y
+ 0 (cid:8)= M(cid:25)x = t ¡Á R(cid:25)x  columns t and R(cid:25)x are linearly independent. Likewise, 0 (cid:8)= (cid:25)y T M =
+(cid:25)y T [ t ]¡Á R  columns (cid:25)y and t are linearly independent.
+by Laplace expansion along the third column.
+This produces cameras and world points A , B , (cid:25)X (1) , . . . , (cid:25)X (6) satisfying (1), given an essential ma-
+trix M satisfying the epipolar constraints (12) as well as the two regularity conditions above. To 
+complete the proof of Theorem 1, it is enough to show that in the variety of point correspondences 
+{(x(i ) , y (i ) )} where (12) is soluble, there is a dense, open subset of point correspondences where all 
+solutions M ¡Ê EC satisfy conditions 1 and 2 above.
+To this end, consider the diagram below, with projections ¦Ð1 and ¦Ð2 respectively:
+
+19
+
+(C2 ¡Á C2 )6 ¡û (C2 ¡Á C2 )6 ¡Á EC ¡ú EC .
+
+Inside (C2 ¡Á C2 )6 ¡Á EC with coordinates (x, y , M ), we consider three incidence varieties:
+
+x, y , M
+(cid:17)  (C2 ¡Á C2 )6 , while ¦Ð1 (I0 ) 
+So, ¦Ð1 (I0 ) is the variety of point correspondences where (12) is soluble, i.e. the hypersurface 
+
+det(M(x(i ) , y (i ) ))
+
+.
+
+(cid:16)
+
+V
+
+(cid:27)
+
+(cid:26) (cid:5)
+(cid:26) (cid:5)
+(cid:26) (cid:5)
+
+I0 :=
+
+I1 :=
+
+I2 :=
+
+x, y , M
+
+x, y , M
+
+(cid:4)
+
+y (i )
+
+(cid:6) (cid:24)(cid:24)(cid:24) (cid:3)
+(cid:6)
+(cid:6)
+(cid:24)(cid:24)(cid:24) M
+
+¡Ê I0
+
+¡Ê I0
+
+T
+
+(cid:24)(cid:24)(cid:24) M does not factor as M = [ t ]¡Á R for any t ¡Ê C3
+x(i ) = 0 for each i = 1, . . . , 6
+M
+x(i ) = 0 or (cid:3)
+M = 0 for some i = 1, . . . , 6
+
+(cid:4)
+
+y (i )
+
+T
+
+(cid:27)
+
+(cid:27)
+
+, R ¡Ê SO(3, C)
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.20 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+20
+
+(cid:28) (cid:3)
+
+X (i )
+
+ ,
+
+1 1
+0
+0
+2
+1
+0 2
+1
+1
+0 1 1
+4
+1
+3
+3 5
+2
+1
+7
+1
+7
+1
+
+ 1 0 0 0
+0 1 0 0
+0 0 1 0
+
+A =
+
+ 7
+
+9
+
+ 4
+
+9
+4
+9
+
+B =
+
+ .
+
+4
+9
+
+ 1
+ 8
+
+9
+
+9
+
+4
+
+8
+
+9 0
+9 0
+9 1
+
+1
+
+
+
+(cid:29) =
+
+
+0
+
+7
+22
+
+ 51
+20
+3
+14
+9
+4
+
+ ,
+ .
+
+To detect this, we form the 6 ¡Á 9 matrix Z from the proof of Theorem 1:
+
+Z =
+
+0
+
+ 7
+
+22
+
+0  4
+0
+
+29
+
+ 5
+
+14
+9
+28
+
+8
+11
+7
+22
+8
+29
+17
+20
+1
+7
+9
+4
+
+5
+22
+
+0
+
+0
+
+22
+
+16
+11
+5
+22
+34
+29
+
+ 5
+
+0
+0
+1
+1 1 1
+0  17
+0  1
+2 1
+0 1 3
+3
+0
+1
+2 1
+1
+
+ 5
+
+ 5
+
+29
+
+3
+2
+
+1
+
+14
+3
+28
+
+3
+14
+3
+4
+
+1
+7
+3
+4
+
+1
+7
+
+We substitute the maximal minors of Z into the matrices computing Ch(EC ) in Macaulay2. The 
+determinant command then outputs 0. This computation recovers the fact that the point correspon-
+dences are images of 6 world points under a pair of calibrated cameras.
+Example 24. Random data {(x(i ) , y (i ) ) ¡Ê R2 ¡Á R2 | i = 1, . . . , 6} is expected to land outside the Chow 
+divisor of EC . We made an instance using the random(QQ) command in Macaulay2 for each 
+coordinate of image point. The coordinates ranged from 1
+8 to 5 in absolute value. We carried out 
+the substitution from Example 23, and got two full-rank skew-symmetric matrices with Pfaans 
+¡Ö 5.5 ¡Á 1025 and ¡Ö 1.3 ¡Á 1022 , respectively. These matrices certied that the system (1) admits no 
+solutions for that random input.
+
+The following proposition is based on general properties of Chow forms, collectively known as 
+the U-resultant method to solve zero-dimensional polynomial systems. In our situation, it gives a 
+connection with the ¡®ve-point algorithm¡¯ for computing essential matrices. The proposition is compu-
+tationally inecient as-is for that purpose, but see Murao et al. (1993) for a more ecient algorithm 
+that would exploit our matrix formulas for Ch(EC ). Implementing the algorithms in Murao et al.
+(1993) for our matrices is one avenue for future work.
+Proposition 25. Given a generic 5-tuple {(x(i ) , y (i ) ) ¡Ê R2 ¡Á R2 | i = 1, . . . , 5}, if we make the substitution 
+from the proof of Theorem 1, then the Chow form Ch(EC ) specializes to a polynomial in R[x(6)
+Over C, this specialization completely splits as:
+
+1 , x(6)
+2 , y (6)
+1 , y (6)
+2
+
+]. 
+
+(cid:17)
+
+ .
+
+ x(6)
+1
+
+1
+x(6)
+2
+
+y (6)
+1
+
+y (6)
+2
+
+1
+
+M (i )
+
+(cid:16)
+
+10(cid:30)
+i=1
+
+Here M (1) , . . . , M (10) ¡Ê EC are the essential matrices determined by the given ve-tuple.
+
+Proof. By the proof of Theorem 1, any zero of the above product is a zero of the specialization of 
+Ch(EC ). By Hilbert¡¯s Nullstellensatz, this implies that the product divides the specialization. But both 
+polynomials are inhomogeneous of degree 20, so they are ¡Ô. 2
+4.6. Numerical experiments with noisy point correspondences
+
+In this nal subsection, we discuss how our Theorem 1 is actually resistant to a common compli-
+cation in concrete applications of algebra: noisy data. Indeed, on real image data, correctly matched 
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.21 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+21
+
+Fig. 1. Both matrices satisfying Theorem 1 detect approximately consistent point pairs.
+
+point pairs will only come to the computer vision practitioner with nite accuracy. In other words, 
+they differ from exact correspondences by some noise.
+Question 26. While in Theorem 1 the matrix M(x, y ) drops rank when there is an exact solution to (1), how 
+can we tell if there is an approximate solution?
+The answer is to calculate the Singular Value Decomposition of the matrices M(x, y ) from The-
+orem 1, when a noisy six-tuple of image point correspondences is plugged in. Since Singular Value 
+Decomposition is numerically stable (Demmel, 1997, ¡ì5.2), we expect approximately rank-decient 
+SVD¡¯s when there exists an approximate solution to (1). To summarize, since we have matrix formu-
+las, we can look at spectral gaps in the presence of noise.
+We offer experimental evidence that this works. For our experiments, we assumed uniform noise 
+from unif [10r , 10r ]; this arises in image processing from pixelation (Bovik, 2005, ¡ì4.5). For each 
+r = 1, 1.5, 2, . . . , 15, we executed ve hundred of the following trials:
+ Pseudo-randomly generate an exact six-tuple of image point correspondences
+
+{(x(i ) , y (i ) ) ¡Ê Q2 ¡Á Q2 | i = 1, . . . , 6}
+
+ Corrupt each image coordinate in the six-tuple by adding an independent and identically distributed sam-
+with coordinates of size O (1).
+ple from unif [10r , 10r ].
+ Compute the SVD¡¯s of both 20 ¡Á 20 matrices M(x, y ), derived from the rst and second Ulrich sheaf 
+respectively, with the above noisy image coordinates plugged in.
+
+These experiments were performed in Macaulay2 using double precision for all oating-point 
+arithmetic. Since it is a little subtle, we elaborate on our algorithm to pseudo-randomly generate 
+exact correspondences in the rst bullet. It breaks into three steps:
+1. Generate calibrated cameras A , B ¡Ê Q3¡Á4 . To do this, we sample twice from the Haar measure on 
+SO(3, R) and sample twice from the uniform measure on the radius 2 ball centered at the origin 
+nearby rotations, we pullback under R3 ¡ú S 3 \{N } ¡ú SO(3, R), we take nearby points in Q3 , 
+in R3 . Then we concatenate nearby points in SO(3, Q) and Q3 to obtain A and B . To nd the 
+and then we pushforward.
+
+JID:YJSCO AID:1781 /FLA
+
+22
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.22 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+(cid:3)
+
+2. Generate world points X (i ) ¡Ê Q3 (i = 1, . . . , 6). To do this, we sample six times from the uniform 
+3. Set (cid:4)
+X (i ) and (cid:3)
+measure on the radius 6 ball centered at the origin in R3 (a choice tting with some real-world 
+data) and then we replace those by nearby points in Q3 .
+x(i ) ¡Ô A
+y (i ) ¡Ô B
+bottom spectral gaps we observed. Bear in mind that since M(x, y ) is skew-symmetric, its singular 
+The most striking takeaway of our experiments is stated in the following result concerning the 
+values occur with multiplicity two, so ¦Ò19 (M(x, y )) = ¦Ò20 (M(x, y )).
+
+(cid:3)
+
+X (i ) .
+
+Empirical 27. In the experiments described above, we observed for both matrices:
+
+¦Ò18 (M(x, y ))
+¦Ò20 (M(x, y ))
+
+= O (10r ).
+
+(cid:6)
+
+(cid:5)
+
+¦Ò18 (M(x, y ))
+¦Ò20 (M(x, y ))
+
+Fig. 1 plots log10
+
+References
+
+Here M(x, y ) has r-noisy image coordinates, and ¦Òi denotes the i th largest singular value.
+
+averaged over the ve hundred trials against r .
+
+Agarwal, S., Lee, H.-L., Sturmfels, B., Thomas, R., 2017. On the existence of epipolar matrices. Int. J. Comput. Vis. 121, 403¨C415.
+Agarwal, S., Snavely, N., Simon, I., Seitz, S.M., Szeliski, R., 2009. Building Rome in a day. In: Proc. Int. Conf. on Comput. Vision, 
+pp. 72¨C79.
+Aprodu, M., Farkas, G., Ortega, A., 2012. Minimal resolutions, Chow forms and Ulrich bundles on K3 surfaces. J. Reine Angew. 
+Math. http://dx.doi.org/10.1515/crelle-2014-0124, in press. arXiv:1212.6248v4.
+Bochnak, J., Coste, M., Roy, M.-F., 1998. Real Algebraic Geometry. A Series of Modern Surveys in Mathematics, vol. 36. Springer-
+Verlag, Berlin.
+Bovik, A., 2005. Handbook of Image and Video Processing, 2nd ed. Academic Press, San Diego.
+Carr¨¦, C., Leclerc, B., 1995. Splitting the square of a Schur function into its symmetric and antisymmetric parts. J. Algebraic 
+Comb. 4 (3), 201¨C231.
+Chiantini, L., Ciliberto, C., 2002. Weakly defective varieties. Trans. Am. Math. Soc. 354, 151¨C178.
+Draisma, J., Horobe t, E., Ottaviani, G., Sturmfels, B., Thomas, R., 2016. The Euclidean distance degree of an algebraic variety. 
+Found. Comput. Math. 16 (1), 99¨C149. arXiv:1309.0049v3.
+Demmel, J., 1997. Applied Numerical Linear Algebra. Society for Industrial and Applied Mathematics, Philadelphia.
+Drusvyatski, D., Lee, H.-L., Thomas, R., 2015. Counting real critical points of the distance to orthogonally invariant matrix sets. 
+SIAM J. Matrix Anal. Appl. 36 (3), 1360¨C1380. arXiv:1502.02074v2.
+Drusvyatski, D., Lee, H.-L., Ottaviani, G., Thomas, R., 2016. The Euclidean distance degree of orthogonally invariant matrix vari-
+eties. Isr. J. Math., in press. arXiv:1601.07210v1.
+Eisenbud, D., Flystad, G., Schreyer, F., 2003a. Sheaf cohomology and free resolutions over exterior algebras. Trans. Am. Math. 
+Soc. 355 (11), 4397¨C4426. arXiv:math/0104203v2.
+Eisenbud, D., Schreyer, F., Weyman, J., 2003b. Resultants and Chow forms via exterior syzygies. J. Am. Math. Soc. 16 (3), 537¨C579. 
+arXiv:math/0111040v1.
+Fulton, W., Harris, J., 1991. Representation Theory: A First Course. Graduate Texts in Mathematics, vol. 129. Springer-Verlag, New 
+York.
+Faugeras, O.D., Maybank, S., 1990. Motion from point matches: multiplicity of solutions. Int. J. Comput. Vis. 4 (3), 225¨C246.
+Fischler, M., Bolles, R., 1981. Random sample consensus: a paradigm for model tting with application to image analysis and 
+automated cartography. Commun. ACM 24, 381¨C395.
+Galetto, F., 2015. Free resolutions and modules with a semisimple Lie group action. J. Softw. Algebra Geom. 7, 17¨C29.
+Gelfand, I.M., Kapranov, M.M., Zelevinsky, A.V., 1994. Discriminants, Resultants and Multidimensional Determinants, Mathemat-
+ics: Theory & Applications. Birkhuser, Boston.
+Grayson, D., Stillman, M. Macaulay2, a software system for research in algebraic geometry.
+Harris, J., Tu, L., 1984. On symmetric and skew-symmetric determinantal varieties. Topology 23, 71¨C84.
+Hartley, R.I., Zisserman, A., 2004. Multiple View Geometry in Computer Vision, 2nd ed. Cambridge University Press, Cambridge.
+Hartshorne, R., 1977. Algebraic Geometry. Graduate Texts in Mathematics, vol. 52. Springer, New York.
+Marshall, M., 2008. Positive Polynomials and Sums of Squares. Math. Surv. Monogr., vol. 146. American Mathematical Society, 
+Providence.
+Maybank, S., 1993. Theory of Reconstruction from Image Motion. Springer, Berlin.
+Murao, H., Kobayashi, H., Fujise, T., 1993. On factorizing the symbolic U-resultant ¨C application of the ddet operator. J. Symb. 
+Comput. 15 (2), 123¨C142.
+Nist¨¦r, D., 2004. An ecient solution to the ve-point relative pose problem. IEEE Trans. Pattern Anal. Mach. Intell. 26 (6), 
+756¨C770.
+
+JID:YJSCO AID:1781 /FLA
+
+[m1G; v1.212; Prn:5/04/2017; 12:35] P.23 (1-23)
+G. Flystad et al. / Journal of Symbolic Computation  () ¨C
+
+23
+
+Plaumann, D., Sturmfels, B., Vinzant, C., 2011. Quartic curves and their bitangents. J. Symb. Comput. 46 (6), 712¨C733. arXiv:1008.
+4104v2.
+Salmon, G., 1960. A Treatise on the Higher Plane Curves: Intended as a Sequel to ¡°A Treatise on Conic Sections¡±, 3rd ed. Dublin, 
+1879. Reprinted by Chelsea Publ. Co., New York, 1960.
+Sam, S., 2009. Computing inclusions of Schur modules. J. Softw. Algebra Geom. 1, 5¨C10. arXiv:0810.4666v2.
+Sam, S., Weyman, J., 2011. Pieri resolutions for classical groups. J. Algebra 329 (1), 222¨C259. arXiv:0907.4505v5.
+Sam, S., Snowden, A., Weyman, J., 2013. Homology of Littlewood complexes. Selecta Mathematica 19 (3), 655¨C698. 
+arXiv:1209.3509v2.
+Stillman, M., Schenck, H., Raicu, C., 2011. SchurRings, a package for Macaulay2. Available at: http://www.math.uiuc.edu/
+Macaulay2/doc/Macaulay2-1.8.2/share/doc/Macaulay2/SchurRings/html/.
+Weyman, J., 2003. Cohomology of Vector Bundles and Syzygies. Cambridge Tracts in Mathematics, vol. 149. Cambridge University 
+Press, Cambridge.
+

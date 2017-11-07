@@ -1,0 +1,2690 @@
+Techno-economic analysis of geothermal desalination using Hot Sedimentary Aquifers: A pre-feasibility study for Western Australia
+
+Alexander Christ b,c, Bijan Rahimi b,d, Klaus Regenauer-Lieb e, Hui Tong Chua a,b,
+
+a College of Environmental Science and Engineering, Taiyuan University of Technology, Taiyuan 030024, China
+b School of Mechanical and Chemical Engineering, The University of Western Australia, 35 Stirling Hwy, Perth, WA 6009, Australia
+c School of Earth and Environment, The University of Western Australia, 35 Stirling Hwy, Crawley, WA 6009, Australia
+d Institute of Water and Energy (IWE), Sharif University of Technology, Azadi Ave., Tehran, Iran
+e School of Petroleum Engineering, The University of New South Wales, 330 Anzac Parade, Kensington, NSW 2033, Australia
+
+H I G H L I G H T S
+
+ A validated techno-economic model for geothermal desalination has been developed.
+ The model incorporates a validated hydrodynamic pumping model for the geothermal uid.
+ The Preheated Boosted MED technology has been considered.
+ The economic viability of geothermal desalination in Western Australia has been demonstrated.
+
+article
+
+info
+Article history:
+Received 9 May 2016
+Received in revised form 26 October 2016
+Accepted 6 November 2016
+Available online 17 November 2016
+
+Keywords:
+Geothermal
+Desalination
+Cost
+MED
+Pumping power
+Aquifer
+
+abstract
+
+This work offers an extensive framework for the techno-economic evaluation of the subsurface and surface com-
+ponents of low-grade geothermal (b 100 ～C) desalination systems, that is based on validated hydrogeological,
+thermodynamic, and economic considerations. Additionally, this work incorporates a recently developed ad-
+vanced multi-effect distillation (MED) process for an improved utilisation of the geothermal heat sources.
+The analysis focuses on a pre-feasibility study for Western Australia, the inuence of the different cost drivers,
+especially the often overlooked geothermal well eld parameters like permeability, so as to permit rational as-
+sessments of potential application sites. For the surveyed area in Western Australia, the conuence of geothermal
+and desalination systems results in a promising and economically viable alternative water source.
+ 2016 Elsevier B.V. All rights reserved.
+
+
+1. Introduction
+
+Geothermal energy is a promising renewable energy. Its climatic, di-
+urnal and seasonal independent characteristic allows for a quantiable,
+reliable and extremely stable energy supply, which is perfect for
+desalination.
+In 1959 Bell [1] conducted an economic analysis of a 75 m3/day geo-
+thermal driven Multi-Effect-Evaporation plant. A decade later, the US
+Department of Reclamation in California attempted to generate fresh-
+water directly from high temperature (N 150 ～C) geothermal uid [2].
+Different desalination methods have since been evaluated [3,4], includ-
+ing a Multi Stage Flash (MSF) and a Vertical-Tube-Evaporator (VTE)
+pilot plant [5]. The rst patent of a desalination unit designed for
+high-enthalpy geothermal sites was issued in 1976 [6]. In 1982, Ophir
+[7] undertook a preliminary economic study of geothermal desalination
+between 100 and 150 ～C in Israel. Since 1990s, extensive research has
+been undertaken to utilise geothermal resources on the Cyclades Islands
+in Greece. This included the use of low-enthalpy (b 100 ～C) geothermal
+energy to power Multi-Effect-Distillation (MED) for seawater desalina-
+tion on the islands of Milos [8,9] and Kimolos [10每13], with recent plans
+being reported for Nisyros [14]. On the Baja California Peninsula, Mexi-
+co, potential geothermal resources suitable for desalination have been
+discovered [15]. The utilisation of low- and medium-enthalpy sources
+is considered for seawater desalination using a tailored 20 m3/day
+MED design [16每18]. More recently, Oman planned to tap into the ex-
+tensive low-enthalpy aquifer present in the Sultanate and the wider re-
+gion for geothermal desalination [19]. Current research also includes the
+coupling of geothermal sources with the emerging Membrane Distilla-
+tion (MD) [20,21], hybrid systems aiming toward polygeneration of
+water and energy [22], as well as the implementation of geothermal
+driven Reverse Osmosis (RO) systems [23,24].
+
+168
+
+Nomenclature
+
+A
+av
+C
+CPI
+c
+d
+D
+f
+g
+h
+hf
+hp
+忖 H
+i
+k
+L
+
+米
+
+_m
+p
+PR
+PRWH
+PHE
+忖 p
+肉
+
+r
+
+老
+
+S
+T
+t
+忖T
+_V
+v
+
+welec
+
+heat exchanger surface area (total), m2
+availability factor, 每
+cost (absolute), US$, A$
+consumer price index, 每
+cost (specic), U$/m3, A$/m3
+distance, m
+distillate production, m3/day
+friction factor, 每
+gravity, m/s2
+screen height, m
+enthalpy, kJ/kg
+pumping power, hp
+head, m
+interest rate, 每
+permeability, Darcy
+piping length, m
+dynamic viscosity, Pa﹞s, cP
+mass ow rate, kg/s
+pressure, bar, Pa
+performance ratio, 每
+waste heat performance ratio, 每
+plate heat exchanger, 每
+pressure differential, bar, Pa
+amortisation factor, 每
+radius, m
+density, kg/m3
+skin factor, 每
+temperature, K, ～C
+system lifetime, years
+temperature differential, ～C
+volumetric ow, kg/s
+velocity, m/s
+electrical load, kW
+
+Subscripts
+ad
+additional
+an
+annual
+aqui
+aquifer at injection depth
+CAP
+capital expenditures (total)
+cap
+capital expenditures annualised
+cond
+condenser of the desalination plant
+d
+dynamic pressure drawdown
+D
+distillate
+DESAL
+desalination system
+elec
+electric power
+ep
+excess pressure in the geothermal production line
+
+friction loss
+fresh
+produced water
+g
+geothermal uid
+GEO
+geothermal system
+HS
+heat source of the desalination plant
+inj
+injection well
+in
+inlet
+insurance insurance
+labour
+personnel
+maint
+maintenance
+MED
+multi-effect distillation plant
+Mod
+Modied MED system, e.g. Boosted MED
+operation expenditures
+op
+PHE
+plate heat exchanger
+prod
+production well
+se
+skin effect
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+sw
+treat
+ts
+w
+
+static wellhead
+pre-/posttreatment
+thermosiphon effect
+well head
+
+So far besides very general cost estimations for concrete applica-
+tions [9,11,14,18,25,26], very limited research has been undertaken
+on detailed techno-economic analysis for the geographically more
+prevalent low-enthalpy (b 100 ～C) systems [17 ,24] . Furthermore ,
+where such studies had been undertaken, they were invariably fo-
+cused on the above-ground infrastructure where the geotherma l
+source was simply cons idered as a xed source of energy for the
+matching of commercial desalination systems. Such an approach un-
+derestimates the full implications of geothermal desalination for two
+reasons.
+
+(1) In most cases, especially for deep low-enthalpy geothermal
+applications, the geothermal reservoir is not adequately
+characterised by a single pre-set point source. While its temper-
+ature can be fairly accurately predicted by the geothermal gradi-
+ent, parameters like permeability and transmissivity of the aquifer
+can vary considerably with depths thereby impacting the opera-
+tions and economics of the system. In fact, typically a system-
+specic optimum for the geothermal well eld and the desalina-
+tion plant exists, which requires both systems to be considered in
+tandem.
+
+(2) The cost structure of geothermal systems differs fundamental-
+ly from ※convent iona l§ energy sources . While typically the
+cost of energy occurs as operational expenditure by unit of en-
+ergy consumed, in geothermal systems this cost is replaced by
+the large cap ital expend itures for the geothermal resource ,
+e .g . exploration and provision of the we lls/infrastructure .
+The cost of a geothermal system lies with the provision of hot
+geothermal uid at the surface, which is almost independent
+of the extent of energy being extracted for downstream pro-
+cesses. For an economic operation of geothermal desalination
+systems a maximal energy extrac tion from the geothermal
+u id is therefore favourable [27] and the ir performance
+should be measured by the waste heat performance ratio [28].
+Established thermal desalination designs adopted from con-
+ventional applications are most often incapable of addressing
+this requirement sufciently , thereby resulting in unit pro-
+duction rates far below the potential of the geothermal source
+[28,29].
+
+This article aims to address these issues in the Western Australian
+context and provides tools to assess the potential of low-enthalpy geo-
+thermal resources for desalination in a more holistic way.
+In addition, this article will show that by considering thermal desa-
+lination technologies tailored for low-grade heat sources, like Boosted
+MED (B-MED) [28每31] and Preheated Boosted MED (PB-MED), an im-
+proved utilisation of the geothermal resource can be realised, and signif-
+icantly improve the economic prospects of the hydrothermal low-
+enthalpy geothermal desalination systems.
+
+1.1. Hydrothermal, low-enthalpy geothermal desalination
+
+This article focuses on the Hot Sedimentary Aquifer (HSA) geo-
+thermal reservoirs [32,33], which are prevalent in Australia.
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+169
+
+Feed
+
+35.0～C
+
+38.0～C
+
+Seawater 
+Output 
+
+35.0～C 
+
+25.0～C 
+
+Seawater 
+Input 
+
+Brine
+
+25.0～C
+
+Freshwater
+
+Injection Well
+
+50.0～C
+
+47.0～C
+
+44.0～C
+
+41.0～C
+
+51.8～C 
+
+Heating 
+Medium
+
+69.0～C
+
+50.6～C 
+
+47.6～C
+
+44.6～C
+
+41.6～C
+
+38.6～C
+
+Production Well
+
+72.0～C 
+
+Aquifer
+
+Fig. 1. Simplistic schematic of a low-enthalpy geothermal MED plant.
+
+From these low-enthalpy sources, the hot geothermal uid is ex-
+tracted from the deep sedimentary aquifer and conveyed to the surface
+under pressure, so as to prevent the onset of precipitation. Heat is then
+harvested whereupon the colder geothermal uid is re-injected into the
+aquifer [34,35]. The technology, reliability, economics, and environmen-
+tal acceptability of such direct-heat geothermal applications have been
+widely demonstrated for district heating or heated swimming pools, es-
+pecially in Western Australia [36].
+Where sufciently high reservoir temperatures are encountered, a
+conversion into mechanical work via Organic Rankine Cycles or Kalina
+processes is possible, which can be used to power RO units as demon-
+strated for example by Loutatidou and Arafat [24]. Stemming from the
+well known Carnot efciency, however, the strong dependence of the
+conversion efciency on the temperature differential between heat
+source and sink economically constraints these systems to a minimum
+temperature of about 100 ～C. Operating at a reservoir temperature of
+98 ～C the Birdsville geothermal power station in Queensland, Australia,
+for example, achieves a heat use efciency of 4% only [37]. In our context
+where a full re-injection of geothermal uid is mandated, this can barely
+compensate for the full pumping power of the geothermal uid, let
+alone supply power to a RO plant of practical capacity.
+Hence at economically accessible depths with temperature levels
+below 100 ～C, geothermal MED technology is offering a superior tech-
+no-economic solution.
+Fig. 1 depicts a simplied schematic of a conventional geothermal
+driven MED system to treat saline surface water. Depending on the geo-
+chemistry, the system can either be directly heated by the geothermal
+water as shown in the gure, or indirectly via a secondary heating me-
+dium cycle or ashing process so as to manage scaling and contamina-
+tion issues.
+Novel variations of the MED process particularly designed for such
+low grade heat applications, like the Boosted MED (B-MED) as in Fig. 2,
+
+have been developed that provide up to 30% more freshwater produc-
+tion over conventional MED systems [28].
+A Preheated Boosted MED (PB-MED) is shown in Fig. 3, which by
+using two preheaters the heat source energy can be recovered further,
+while the production rate is increased as compared to both convention-
+al and boosted MED systems. The impact of preheaters to improve the
+production rate of a conventional MED process has been widely
+discussed in [31]. With the same aim, we use preheaters to increase
+the production rate of the Boosted MED in this new layout (Fig. 3),
+while it is being coupled to a hydrothermal, low-enthalpy geothermal
+source. As shown in Fig. 3, the heat source outlet temperature is the low-
+est compared to both conventional and Boosted MED (Figs.1 and 2)
+which is translated into a better utilisation of heat source energy
+(Appendix C). Synergistically the further cooling down of the heat
+source medium by means of the booster unit (in B-MED process) or
+additional preheaters (in PB-MED) can be manifested into a reduced
+re-injection depth and therefore considerably decreased well costs
+(re fer to Section 2 .2) , prov ided that geo log ica l , geochem ica l , and
+environmental restrictions do not contradict such a reduction in re-
+injection depth.
+The viability of the abovementioned novel processes layouts have
+been demonstrated via a pilot plant incorporating key features of the
+Boosted MED technology (Fig. 4), which shows a 57% additional vapour
+production in the downstream evaporator compared with that of the
+primary MED [30].
+
+2. Techno-economic analysis of a low-enthalpy geothermal system
+
+A ho l ist ic approach that cons iders the fu l l imp l icat ions of a
+geothermal resource toward minimising the levelised cost of water
+requires a coupled analysis of both the geothermal system and desa-
+l inat ion plant subsect ions . The leve l ised cost of water can be
+
+expressed as the quotient of the total (annualised) costs, Can, and the
+annual water production, Dan:
+
+cfresh  C an
+Dan
+ C cap;DESAL  C op;DESAL
+
+
+
+  C cap;GEO  C op;GEO
+
+
+
+  C insurance
+
+av365D
+The techno-economic analysis is achieved by merging validated sub-
+models for each of the components into the global model, with further
+details about the economic integration of the parameters being provid-
+ed below and in the Appendix A.
+
+1
+
+2.1. Capital and operating expenditures of the desalination plant
+
+A reliable approximation of the capital expenditure, Ccap , DESAL, of de-
+salination plants is possible based on the GWI's Desalting Plant Invento-
+ry [38]. For conventional and Boosted MED plants up to a capacity of
+10,000 m3/day, the following conservative cost functions, in US$, can
+be applied, respectively [39].
+
+C CAP;MED  3018:8D0:9795
+MED
+
+2
+
+C CAP ;Mod  C CAP ;MED 0:31  0:4 AMod
+AMED
+
+ 0:29 DMod
+
+DMED
+
+
+
+
+
+3
+
+However, for the Preheated Boosted MED, the price of preheaters
+which is estimated based on the functions below for grade 1 titanium
+plate heat exchangers [40,41] is added to the relevant Boosted MED cap-
+ital cost function and adjusted by the producer price index.
+
+C CAP ;PHE  131APHE
+
+0:7514 ; APHE N200 ft2
+
+
+
+
+
+
+
+4
+
+C CAP ;PHE  612APHE
+
+0:4631 ; APHE b200 ft2
+
+5
+
+The sizing and pressure drop calculations of those preheaters follow
+the prescriptions of Polley and Haslego [40] and constrained by a max-
+imum heating medium pressure drop of 5 m as per Table B.2.
+The annualised capital cost of the desalination plant results from the
+amortisation factor, 肉.
+
+C CAP ;DESAL  C CAP;MED=Mod  肉  C CAP;MED=Mod 
+
+i 1  i
+1  i
+t1
+
+
+
+t
+
+
+
+6
+
+44.0～C
+
+NCG removal
+
+Seawater in
+
+Seawater out
+
+Freshwater out
+
+Brine out
+
+Heat Source in
+
+Heat Source out
+
+Feed
+
+Booster Module
+
+Basic MED
+
+to Brine out
+
+53.0～C
+
+69.0～C
+
+48.0～C
+
+45.0～C
+
+45.6～C
+
+53.6～C
+
+50.0～C
+
+50.6～C
+
+47.0～C
+
+47.6～C
+
+44.6～C
+
+41.0～C
+
+41.6～C
+
+38.0～C
+
+38.6～C
+
+25.0～C
+
+35.0～C
+
+35.0～C
+
+41.0～C
+
+PHE#2
+
+45.0～C
+
+45.0～C
+
+48.0～C
+
+42.0～C
+
+45.0～C
+
+48.0～C
+
+39.2～C
+
+44.9～C
+
+PHE#1
+
+55.5～C
+
+Fig. 3. The Preheated Boosted MED (PB-MED) system tailored to geothermal heat sources, exemplary temperature distribution for a heating medium temperature of 69 ～C is presented.
+
+44.0～C
+
+NCG removal
+
+Seawater in
+
+Seawater out
+
+Freshwater out
+
+Brine out
+
+Heat Source in
+
+Heat Source out
+
+Feed
+
+Booster Module
+
+Basic MED
+
+to Brine out
+
+53.0～C
+
+69.0～C
+
+47.7～C
+
+45.0～C
+
+45.6～C
+
+53.6～C
+
+50.0～C
+
+50.6～C
+
+47.0～C
+
+47.6～C
+
+44.6～C
+
+41.0～C
+
+41.6～C
+
+38.0～C
+
+38.6～C
+
+25.0～C
+
+35.0～C
+
+35.0～C
+
+44.0～C
+
+54.8～C
+
+Fig. 2. The Boosted MED (B-MED) system tailored to geothermal heat sources, exemplary temperature distribution for a heating medium temperature of 69 ～C.
+
+170
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+171
+
+Table 1
+Geothermal parameters.
+
+Geothermal target temperature
+Permeability at target depth
+Flow rate of geothermal uid
+Salinity of geothermal uid [71]
+Potentiometric height
+
+As per Fig. 8
+As per Fig. 8
+100
+~ 15,000
+ 5
+
+kg/s
+ppm
+m
+
+Production/injection wells
+Temperature drop due to heat losses along the well
+Casing
+
+2
+～C/km
+14∪/12∪ strings of equal
+length
+Screen height, h
+250
+Skin factor, S
+1
+Depth of submersible pump
+250
+Efciency of the submersible pump
+0.72
+Efciency of the injection pump
+0.80
+Pressure drop of heat exchangers
+0.5
+Overpressure for degassing/precipitation prevention 5
+CAPEX of geothermal wells
+1300
+Additional expenditures for well eld development
+500,000
+CAPEX of production pumpsa
+12,434  (hp)0.5
+CAPEX of injection pumpsa
+892  (hp)
+Lifetime of geothermal pumps
+15
+Maintenance of well eld (% of CAPEX of well eld)
+1
+a [47,48], producer price index adjusted [77].
+
+m
+[]
+m
+[]
+[]
+bar/each
+bar
+AUD/m
+AUD
+AUD
+AUD
+years
+[]
+
+2.2.2. Operational expenditures of the geothermal system, Cop , GEO
+The major operational expenditures of deep Hot Sedimentary Aqui-
+fer geothermal systems pertain to the energy required to pump the geo-
+thermal uid to the surface and the subsequent reinjection into the
+aquifer. This auxiliary power, welec , GEO, is heavily dependent on the
+characteristics of the well eld and may render an otherwise promising
+project uneconomical. Fig. 5 shows the sensitivity of the auxiliary
+pumping power as a function of the permeability of the reservoir
+based on the existing ※Cockburn 1§ well located in the Perth Metropol-
+itan Area, Australia.
+The conventional practice of assuming pre-set, xed well eld pa-
+rameters (or even ※typical§ pumping power data as adopted from differ-
+ent projects) commonly found in techno-economic studies for
+geothermal desalination is very prone to erroneous estimates for the
+pumping power, potentially putting the entire project at risk.
+In this paper, we have included this crucial auxiliary pumping power
+in our analyses. This has been done by adopting a facile hydrogeological
+pumping model [35,41,49,50]. For the present example in Western Aus-
+tralia, the model has been validated against operational data to within
+㊣ 10% from a local geothermal system (Fig. A.2). The detailed validation
+can be found in Appendix A.
+In this model, in addition to assuming a homogeneous permeability
+of the aquifer, we assume a horizontally isothermal behaviour, and ne-
+glect variations of the aquifer temperature over the well lifetime by ap-
+plying an average temperature prole.
+The wellhead pressure pw that determines the pumping data for the
+production pump can be expressed as [35]
+pw;prod  psw  忖pd  忖pse  忖pfl  忖pad  忖pep
+
+9
+
+and for the injection pump as
+pw;inj  psw  忖pd  忖pse  忖pfl忖pts
+
+10
+
+with psw= 忖 H  老g  g/105 being the static wellhead pressure [bar] where
+忖 H is the differential height of the water level [m], 老g the density of the
+geothermal uid [kg/m3], and g the gravity [m/s2].
+忖 pd represents the dynamic pressure drawdown of the reservoir. In
+applications involving the re-injection of the brine, or where a continu-
+ous recharge of the reservoir is provided so that the pressure can remain
+
+Fig. 4. Photograph of the pilot plant at the National Centre of Excellence in Desalination
+Australia Lab, Rockingham, Western Australia.
+
+The annual operational costs of the desalination plant can be deter-
+mined by considering the expenses for personnel, Clabour, auxiliary
+power consumption, welec , DESAL, electricity cost, Celec, pre and post treat-
+ment, Ctreat, and operation and maintenance, Cmaint , DESAL:
+
+ 
+
+C op;DESAL  Dan  welec;DESAL celec  ﹉ctreat  cmaint ;DESAL
+
+  ﹉C labour
+
+7
+
+2.2. Expenditures of the geothermal system
+
+2.2.1. Capital expenditures of the geothermal system, Ccap , GEO
+A major aspect in the economic feasibility of deep geothermal sys-
+tems is related to the development of the geothermal well eld. Due
+to the infancy of the industry and the geological uncertainty associated
+with drilling at specic sites, ascertaining these well costs tend to be
+very challenging [41].
+Besides technical reasons, e.g. varying diameters, lithology, un-
+planned events occurred during the well preparation process [42], the
+prevailing situation of the oil and gas market, availability of drilling rigs
+as well as geographical position of the well eld are regarded as main
+drivers [43]. Importantly, in areas where advantageous geological condi-
+tions require only drilling depths shallower than 2000 m, smaller drilling
+rigs commonly used for water wells may be used. This can signicantly
+reduce drilling costs to as low as 1000 US$ per meter [41,44].
+The annualised capital cost of the geothermal well eld, following
+from Eq. (6), can be expressed as:
+
+C cap;GEO  C CAP;GEO 肉  C CAP;GEO 
+
+
+
+
+
+t
+
+i 1  i
+1  i
+t1
+
+8
+
+The actual required well depth is determined by the average tem-
+perature of the aquifer at extraction depth. In conduction dominated
+reservoirs, this temperature can be estimated by the local average geo-
+thermal gradient. Where advantageous uid ows are present, signi-
+cantly increased temperatures can be encountered [45,46], thereby
+signicantly reducing the required well depth.
+Inevitably, the hot geothermal uid has to pass colder layers en route
+to the surface, thereby resulting in heat losses along the well. As an ap-
+proximation, the losses can be considered as a xed depth related value
+as shown in Table 1.
+Also, further capital expenditures related to the geothermal system,
+including the production and reinjection pumps [47,48] and the infra-
+structure preparation, which is location and application dependent,
+need to be considered. Exemplary gures are also included in Table 1.
+
+172
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+Fig. 5. Predicted pumping power as a function of permeability at a target temperature of 75 ～C, based on data from the ※Cockburn 1§ well, Perth Metropolitan Area, Western Australia
+(detailed data are provided in Appendix A).
+
+stable, the steady state reservoir dynamic pressure drawdown is
+given as [35]
+忖pd  _V g 米 g
+kh
+
+ 
+
+log10
+
+11
+
+d
+rB
+
+where _V g is the volumetric ow rate of the geothermal uid, 米g the dy-
+namic viscosity of the geothermal uid in [cP], k the intrinsic permeabil-
+ity of the reservoir [Darcy], h the penetrated aquifer height, rB the well
+radius at reservoir and d the distance between the production and injec-
+tion wells [m].
+The skin effect pressure drawdown 忖 pse considers effects occurring
+at the well-reservoir interface induced by either formation impairment
+(positive skin) or upgrading (negative skin).
+
+capital costs of the wells annually [52]. The main consideration here is
+to ensure that the aboveground geothermal loop is leak free, since any
+oxygen ingress or pressure drop may cause fouling and extra mainte-
+nance. To this end, we consider an aboveground overpressure of 5 bar
+as in Table 1 below. While the operation conditions can be variable, it
+is a good practice to factor in maintenance operations every seven
+years such as air lifting scalings on the drillhole screens and back ush-
+ing the heat exchanger. This can be monitored by the pumping pressure
+requirement.
+Consequently, the total operational expenditures of the geothermal
+system can be expressed as:
+
+C op;GEO  8760av﹉welec;GEO celec  Cmaint ;GEO
+
+15
+
+忖pse  0:44
+
+_V g 米 g S
+kh
+
+12
+
+2.3. Expected production rate of the MED plant
+
+The friction losses, 忖 p, of the casing strings, bends, etc. are calculat-
+ed as per standard internal ow within conduit,
+
+ 
+
+
+
+
+
+忖pfl  f 
+
+L
+2r
+
+
+
+老v2
+2
+
+13
+
+where L is the length of the casing section, 2r the hydraulic diameter of
+the pipe, and v the mean ow velocity.
+The additional pressure losses, 忖 pad, consider all additional pressure
+drops in the aboveground process, as induced for example by heat ex-
+changers and control devices, etc.
+忖 pep considers the requisite excess pressure within the piping sys-
+tem in order to maintain a stable operation as well as to avoid excessive
+degassing and precipitation from the geothermal uid.
+Whenever the temperature of the re-injected uid is lower than the
+aquifer temperature at the reinjection depth, the density differential as-
+sists the pumping process as ordained by the thermosiphon effect or
+忖 pts [35]
+
+忖pts  g  老g ;inj老g ;aqui
+
+HA;inj
+
+14
+
+
+
+
+
+The properties of the geothermal uid are approximated as a func-
+tion of temperature and salinity according to [51].
+Additional operational costs of the geothermal wells are included as
+maintenance cost, Cmaint , GEO. While the wells demand only minimal care
+during regular operation, over the lifetime of the eld unexpected issues
+can arise that can involve costly treatment (e.g. scaling or corrosion of
+the casing [32,35]). To cover such possibilities, we consider 1% of the
+
+The expected freshwater production rate, as well as the required
+heat exchanger surface area used for the capital cost estimation, are
+based on the detailed and validated thermodynamic optimisation
+model introduced in detail in [30,31]. For this model, which is partly
+adopted from El-Dessouky and Ettouney et al. [53每55] and has been val-
+idated against operational data from the pilot plant [30], the following
+standard engineering approximations are applied [56]:
+← Steady state operation.
+← Distillate is pure water.
+← No sub-cooling of the distillate occurs in the effects.
+← Losses due to Non-Equilibrium Allowance (NEA) and pressure drops
+from the demister etc. are negligible.
+← Energy losses to the environment are negligible.
+
+For the optimisation of geothermal heat applications, only the
+cooling water temperature, feed salinity, minimal allowable tempera-
+ture differential over the effects, top brine temperature and recovery
+ratio are used as input parameters. The temperature, specic heat ca-
+pacity and available mass ow rate of the heating medium input and
+output temperature are considered in tandem with the geothermal
+module, whereas for example the number of effects, and temperature
+gradient across the effects remain as independent variables.
+
+3. Exemplary techno-economic analysis for Western Australia
+
+Based on these considerations the techno-economic analysis is per-
+formed for Western Australia. As reference for the economic data like
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+173
+
+a
+
+Fig. 6. Onshore sedimentary basins in Western Australia [57].
+
+exchange rates, producer price indices, etc. the year 2013 is used, which
+is the year the project, which this analysis is part thereof, started.
+
+3.1. Geothermal potential
+
+In Western Australia, there are eight sedimentary basins with on-
+shore components (Fig. 6), of which the Canning, Carnarvon, Ofcer
+and Perth Basins are deep enough to have temperatures above 60 ～C
+[57].
+Geothermal investigations that have been performed in this area
+since 1950s [37,57每66] conclude that higher temperature applications
+are viable in the North Perth Basin and Western Canning Basin, while
+good reservoir properties for low-enthalpy applications requiring high
+ow rates are also found in the South Perth Basin, Carnarvon Basin, Of-
+cer Basin, and Western Canning Basin. Fig. 7 juxtaposes the geothermal
+prospects across Western Australia with local population densities.
+We undertake an exemplar case study in the Northern Perth Basin
+for the regional Centre of Geraldton. The City of Geraldton is located
+400 km north of Perth and has a population of around 37,000 [67]. It
+borders between a Mediterranean and semi-arid climate [68]. A sub-
+stantial portion of the city's water demand is covered by groundwater
+bores screened in the shallower areas of the Yarragadee Formation, at
+about 50 km south of the city and near the town of Dongarra [69].
+These well elds service also the water supply of the nearby towns of
+Port Denison, Walkaway, Dongarra, and Narngulu [70]. The population
+increase in this region is well over the Australian average, and for
+Geraldton a potentially doubling in population is anticipated until
+2020 [67,69]. Beside the signicant increase in demand, relatively high
+bore water salinities with a temporal increasing tendency due to salt-
+water intrusions is a major water issue [69].
+Fig. 8 depicts the borehole temperatures and measured permeabil-
+ities of several wells in the broader area within the North Perth Basin
+where the region concerned is located. Generally good reservoir
+
+Fig. 7. Geothermal prospects across Western Australia [57].
+
+174
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+0
+
+0
+
+]
+
+m
+
+[
+
+h
+
+t
+
+p
+e
+
+D
+
+500
+
+1000
+
+1500
+
+2000
+
+2500
+
+3000
+
+3500
+
+1
+
+Temperature [～C]
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+Target area
+
+10
+
+100
+
+1000
+
+Permeability [mD] 
+
+140
+
+0
+
+500
+
+1000
+
+1500
+
+Temperature
+
+Permeability
+
+2000
+
+2500
+
+3000
+
+3500
+10000
+
+Fig. 8. Borehole temperatures and permeabilities in the Yarragadee formation of the North Perth Basin, data adapted from [71].
+
+qualities have been reported in this area; but the co-location of highly
+permeable rocks and reservoir or rock formation at which high temper-
+atures are measured is somewhat uncertain [57]. Also some uncertainty
+is typically associated with the borehole temperatures. However the
+available data do provide a very good estimation of the geothermal pa-
+rameters needed.
+On account of the relatively high salinities as per Table 1 below,
+SS316 is typically selected as the casing material for the wells.
+
+3.2. Input parameter
+
+Due to various reasons, including high wages, and geographical re-
+moteness, several cost parameters stemming from generic global
+datasets have to be adjusted to reect the local conditions:
+
+3.2.1. Well eld development
+There are no deep geothermal wells in Western Australia and only a
+very small number of suitable rotary rigs have been employed in Austra-
+lia [72]. For projects outside the major metropolitan areas, the well eld
+development cost using conventional rigs employed in the oil and gas
+industry is estimated to be three times that of the international average.
+Among other reasons, this is due to the competing demand from the oil
+and gas sites of those suitable rigs that are already low in supply [72].
+Alternatively, locally available smaller rigs, typically used for water
+wells and shallower geothermal projects can offer a solution for this
+issue, provided the regulatory framework is addressed. Technically,
+some of the rigs are capable of drilling at the present lithology to as
+deep as 2000 m [44]. Based on experience with shallower geothermal
+projects in the Perth Metropolitan Area, well costs for these systems
+are estimated at 1300 AUD per meter [41,44]. This is the technology
+that we are adopting in this study.
+
+3.2.2. Desalination plant
+A similar situation applies to the capital expenditures of desalination
+plants. The capital costs of recent large scale RO plants in Australia have
+been two to four times above the estimations based on international
+data [73]. A number of factors have been cited for this escalating cost
+[73,74].
+including: (1) The emergency response nature of most
+Australian municipal SWRO projects resulting in ＆crisis prices＊ for the
+construction of those plants, (2) The political imperative to offset at
+
+least part of the carbon footprint by acquiring Renewable Energy Credits
+equivalent to the power consumption of the plant thereby involving ad-
+ditional capital expenditure, and (3) relatively high wage rates for desa-
+lination project construction workers in Australia. Apart from the high
+wage rates, which is by far the most important factor, most of these is-
+sues, only partially apply to smaller sized (up to ~ 5000 m3/day), renew-
+able energy driven systems, thereby resulting in an escalation factor
+that is far more subdued that those encountered in large RO plants for
+these signicantly smaller MED units. A larger degree of prefabrication
+and standardisation can therefore be expected, thereby dampening
+the magnitude of increase. Consequently, an estimated increase of 20%
+above the global average has been considered for the capital cost of
+the MED plants in this study. This has been independently benchmarked
+against quotations solicited in-condence from reputable suppliers.
+
+3.2.3. Labour cost
+The average annual cost for a skilled employee in the water industry
+in Australia is 97,900 AUD/year [75]. For remote locations and applica-
+tions proximate to mine sites, employment costs well above the
+Australian average can be expected.
+
+3.2.4. Electric power
+The Australian electricity prices are among the highest in developed
+countries [76]. Areas without access to the power grid have to endure
+even signicantly higher electricity costs and/or load limitations.
+
+Table 2
+Desalination parameters.
+
+Seawater temperature [78]
+Seawater salinity [79]
+Specic heat of geothermal uid
+Recovery ratio
+Maximum 忖 T of cooling water
+Maximum top-brine-temperature
+Minimum 忖 T of heat exchanger
+Pressure difference for steam injection, 忖 p, in B-MED and
+PB-MED
+Maintenance [80,81]
+Chemicals (pretreatment/potabilisation) [55,81]
+
+25
+～C
+35,500 ppm
+4.2
+kJ/kg K
+0.35
+[]
+10
+～C
+70
+～C
+3
+～C
+500
+Pa
+
+0.04
+0.02
+
+AUD/m3
+AUD/m3
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+175
+
+Table 3
+Economic considerations.
+
+Plant lifetime [81]
+Plant availability [81]
+Electrical power cost [82]
+Labour cost [75]
+Insurance (annual premium of total CAPEX)
+Interest rate
+Exchange rate US$/AUD [83]
+
+30
+years
+98
+%
+0.151
+AUD/kWh
+98,000
+AUD/employee
+0.25
+%
+7
+%
+1 US$ = 1 AUD
+
+3.3. General input parameters
+
+As general input parameters for the analysis, the data as presented in
+Tables 1 to 3 have been considered.
+
+3.4. Results
+
+Based on the above parameters and the geothermal parameters as in
+Fig. 8, the estimated water costs for different target depths, viz. 1500 m,
+1800 m and 2200 m derived from the techno-economic model are pre-
+sented in Table 4.
+The estimated cost of water ranges from 2.60 AUD/m3 for
+the shallower depths characterised by higher permeabilities, to
+1.89 AUD/m3 at around 1800 m. Due to the decrease in permeability,
+deeper systems again show an increasing cost of water, rendering sys-
+tems deeper than 2200 m not realistic at this location. The comparison
+between conventional MED and the Preheated Boosted MED (PB-MED)
+systems reveals that the latter can reduce the levelised cost of water
+by 16% over the surveyed application range. The same comparison be-
+tween the PB-MED and B-MED over the surveyed application range
+shows a 5% reduction in the levelised cost of water. The additional initial
+investment for both B-MED and PB-MED systems is higher than the con-
+ventional MED plant, mainly due to the additional booster effect and
+heat exchanger surface area. However as a whole both systems reduce
+the water price signicantly.
+The main drivers for this cost reduction by the Boosted and Preheated
+Boosted MED are (1) the increased freshwater yield stemming from the
+improved utilisation of the geothermal uid and (2) reduced well eld
+expenses due to a shallower re-injection well.
+
+Table 4
+Results for different target depths 每 MED, B-MED and PB-MED.
+
+Over the examined application range for the regional Centre of
+Geraldton, the Preheated Boosted MED system as applied to a well eld
+with an 1800 m deep production well is the most economic congura-
+tion. This conguration is therefore used as the basis for further para-
+metric studies.
+Fig. 9 shows a breakdown of the various costs for both conventional
+and Preheated Boosted MED systems. The geothermal system related ex-
+penditures (CAPEX and OPEX) contribute approximately 45% to the
+nal water cost. This is well within the typical range of energy related
+cost contribution to conventional desalination systems. One major dif-
+ference however is that in contrast to conventional fossil fuel driven sys-
+tems, where the energy costs primarily occur as ongoing fuel/energy
+expenditures, in the geothermal systems over 50% of that share incurs
+upfront.
+The largest uncertainties of this base case scenario are related to the
+geothermal parameters, in particular the ow rate and the reservoir
+permeability. In the absence of exact data for these parameters prior
+to the well eld development, only estimations are possible. Fig. 10 il-
+lustrates the respective impact of permeability and ow rate on water
+cost for the three systems.
+The ow rate of the hot geothermal uid is linearly related to the ex-
+tractable energy at the surface. Within the application range the well
+costs are predominantly a function of well depth, rather than well diam-
+eter. Lower geothermal ow rates translate directly to a reduced fresh-
+water production at an ostensibly unaltered capital cost. The immediate
+consequence is an increased specic water cost, as encountered in
+Fig. 10. This correlation is of particular interest, as in fact most often
+the actual geothermal ow rates remains unknown until a relatively
+late project stage of the well eld development.
+A similar situation applies to the permeability, which is directly re-
+lated to the pumping costs for the geothermal system. At permeabilities
+beyond 0.3 Darcy, its inuence on the overall water costs remains rela-
+tively stable. However, where lower permeabilities are encountered,
+the exponentially increasing power consumption enjoins a correspond-
+ing rise in operational cost for the well system, and consequently esca-
+lating water costs.
+Fig. 11 depicts the sensitivity of further key parameters on the spe-
+cic water cost in relation to the base case scenario. Besides the inu-
+ence of ow rate, permeability, and geothermal gradient, the water
+
+Target depth
+
+1500 m
+
+1800 m
+
+2200 m
+
+Geothermal target temperature (～C)
+Geothermal ow rate (kg/s)
+Permeability (Darcy)
+Desalination technology
+Geothermal well eld
+Production well (km)
+CAPEX (106 A$)
+Injection well (m)
+CAPEX (106 A$)
+Additional cost of well eld development (106 A$)
+Geothermal pumps (106 A$)
+Pumping power of geothermal pumps (kW)
+Maintenance of geothermal well eld (103 A$/year)
+Desalination plant
+Freshwater production (m3/day)
+Freshwater production (103 m3/year)
+CAPEX (106 A$)
+Chemicals (103 A$/year)
+Labour (103 A$/year)
+Maintenance (103 A$/year)
+Auxiliary electricity cost (103 A$/year)
+Insurance premium (103 A$/year)
+Discount rate (%)
+Plant lifetime (years)
+
+Levelised cost of water (A$/m3)
+
+72
+100
+0.90
+MED
+
+1500
+1.95
+920
+1.19
+0.50
+0.17
+133
+31
+
+1110
+397
+3.48
+9
+98
+16
+95
+18
+7
+30
+
+2.60
+
+B-MED
+
+PB-MED
+
+1500
+1.95
+800
+1.04
+0.50
+0.17
+140
+30
+
+1340
+478
+4.00
+11
+98
+19
+115
+19
+7
+30
+
+2.29
+
+1500
+1.95
+800
+1.04
+0.50
+0.17
+147
+30
+
+1470
+525
+4.30
+12
+98
+21
+129
+20
+7
+30
+
+2.19
+
+81
+100
+0.50
+MED
+
+1800
+2.34
+1010
+1.31
+0.50
+0.21
+179
+36
+
+1710
+611
+5.31
+13
+98
+24
+129
+24
+7
+30
+
+2.20
+
+B-MED
+
+PB-MED
+
+1800
+2.34
+810
+1.06
+0.50
+0.22
+195
+34
+
+2030
+726
+6.02
+16
+98
+29
+160
+25
+7
+30
+
+1.98
+
+1800
+2.34
+800
+1.04
+0.50
+0.23
+209
+34
+
+2270
+812
+6.61
+18
+98
+32
+184
+27
+7
+30
+
+1.89
+
+88
+100
+0.25
+MED
+
+2200
+2.86
+1090
+1.41
+0.50
+0.34
+323
+43
+
+2200
+788
+6.81
+17
+98
+32
+166
+30
+7
+30
+
+2.25
+
+B-MED
+
+PB-MED
+
+2200
+2.86
+890
+1.16
+0.50
+0.36
+350
+40
+
+2550
+912
+7.58
+20
+98
+36
+194
+31
+7
+30
+
+2.07
+
+2200
+2.86
+800
+1.04
+0.50
+0.39
+378
+39
+
+2870
+1026
+8.38
+23
+98
+41
+225
+33
+7
+30
+
+1.97
+
+176
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+Conventional MED
+
+Preheated Boosted MED
+
+MED Opex
+20%
+
+MED Opex
+21%
+
+Geothermal 
+Capex
+26%
+
+Geothermal 
+Capex
+22%
+
+MED Capex
+32%
+
+Geothermal 
+Opex
+
+20%
+
+MED Capex
+35%
+
+Insurance
+2%
+
+Geothermal
+Opex
+20%
+
+Insurance
+
+2%
+
+Fig. 9. Water cost breakdown for Conventional and Preheated Boosted MED systems, 1800 m target depth, (base case scenario).
+
+price is expectedly very sensitive to the well eld completion costs. Im-
+portantly due to the relatively high capital cost component, the specic
+water cost is very sensitive to the discount rate. This is particularly im-
+portant for the cross-comparison with other published cost estimates,
+as a broad range of discount rates can be found in the literature
+(Table 5).
+
+3.5. Discussion
+
+Regarding the specic water costs, these gures have to be meaning-
+fully benchmarked against those of alternative water sources, and other
+desalinations systems.
+A reasonable comparison with alternative sources of water can be
+achieved by the current direct water costs in the area. Beyond the
+water scheme supplying the Perth Metropolitan Area and nearby re-
+gions, including the Goldelds, very high water costs can be encoun-
+tered. Especially for remote and often smaller communities, water
+costs over 6 AUD/m3 and even in excess of 25 AUD/m3 have been re-
+ported [84,85] (Fig. 12).
+
+The actual direct water production costs are not generally disclosed
+from the supply companies and due to the regulated water pricing struc-
+ture, no direct relation between the actual local production costs and the
+water price can be drawn. The latest publicly available data for Geraldton
+and Dongarra, dating from 2006, however reveal a local direct cost of
+1.45 AUD/m3 [85]. Depending on the applied consumer price index, this
+would translate to 1.76 AUD/m3 (Perth specic CPI) or 2.61 AUD/m3
+(Australian water supply and sewage specic CPI) in the reference year
+2013.
+Table 6 lists a collection of Australian specic water costs of various
+desalination technologies for comparison, while Table 7 provides an
+overview of some cost estimates of renewable energy driven desalina-
+tion technologies.
+Comparing the results of the techno-economic model on a general
+scale against the levelised cost of alternative renewable energy driven
+desalination technologies (Table 7), the surveyed geothermal desalina-
+tion based on the Preheated Boosted MED is well within an economically
+competitive range. Depending on the local geological conditions, it can
+therefore represent the most favourable, renewable energy driven fresh-
+water supply. For the present case study, for example, with levelised cost
+
+]
+3
+
+m
+
+/
+
+D
+U
+A
+
+[
+
+r
+
+e
+
+t
+
+a
+
+W
+
+f
+
+o
+
+t
+
+s
+o
+
+C
+
+3.50
+
+3.30
+
+3.10
+
+2.90
+
+2.70
+
+2.50
+
+2.30
+
+2.10
+
+1.90
+
+1.70
+
+1.50
+
+MED
+
+ Boosted MED
+
+Preheated Boosted MED
+
+Geothermal Flow Rate [kg/s]
+
+75
+
+75
+
+75
+100
+
+100
+125
+100
+
+125
+125
+
+Base Scenario 
+
+0.0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+0.6
+Permeability [Darcy]
+
+0.7
+
+0.8
+
+0.9
+
+1.0
+
+Fig. 10. Inuence of the permeability and the geothermal ow rate on the estimated cost of water, 1800 m target depth.
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+177
+
+Base
+Geothermal Flowrate
+Geothermal Gradient
+Plant Lifetime
+Permeability
+Deviation Pumping Model
+Drilling Cost
+Electrical Power Cost
+CAPEX Desalination Plant
+Discount Rate
+
+2.10
+
+2.05
+
+2.00
+
+1.95
+
+1.90
+
+1.85
+
+1.80
+
+1.75
+
+1.70
+
+1.65
+
+]
+
+3
+
+m
+
+/
+
+D
+U
+A
+
+[
+
+t
+
+s
+o
+
+C
+
+r
+
+e
+
+t
+
+a
+
+W
+
+d
+e
+s
+
+i
+l
+
+e
+v
+e
+L
+
+-30
+
+-20
+
+-10
+
+0
+
+10
+
+20
+
+30
+
+Deviation from the Base Scenario [%]
+
+Fig. 11. Inuence of various parameters on the levelised water cost of the Preheated Boosted MED system, at 1800 m target depth.
+
+Table 5
+Effect of discount rate on the specic cost of water.
+
+Water cost in A$/m3
+
+MED
+
+Boosted MED
+
+Preheated
+Boosted MED
+
+Target
+depth
+[m]
+
+1800
+
+Geothermal
+ow rate
+[kg/s]
+
+75
+100
+125
+
+Discount rate
+
+Discount rate
+
+Discount rate
+
+5%
+
+7%
+
+9%
+
+5%
+
+7%
+
+9%
+
+5%
+
+7%
+
+9%
+
+2.29 2.61 2.96 2.05 2.34 2.65 1.95 2.22 2.52
+1.95 2.20 2.46 1.77 1.98 2.22 1.69 1.89 2.11
+1.80 2.00 2.21 1.63 1.81 1.99 1.56 1.73 1.90
+
+of water in the range of 2.00 AUD per m3, the application of the
+Preheated Boosted MED at around 1800 m depth provides an economi-
+cally and technically viable freshwater supply solution with a low envi-
+ronmental impact.
+
+4. Conclusion
+
+A techno-economic analysis that explicitly includes the sub-surface
+system has been undertaken to assess the potential of low-enthalpy
+geothermal resources for desalination in Western Australia. Simulation
+modules validated by actual experimental data via a local geothermal
+system and a Boosted MED pilot plant were integrated to arrive at a
+robust analysis.
+
+Fig. 12. Cost of production for rural drinking water in Western Australia [85].
+
+178
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+Table 6
+Published cost of water of various desalination technologies 每 Australia specic.
+
+MED
+
+RO
+
+MED
+MSF
+RO
+
+Plant capacity
+[m3/day]
+
+300
+1000
+5每50
+N 10
+180每265
+200
+10,000
+10,000
+10,000
+140,000每250,000
+153,000
+
+Unit cost
+[AUD/m3]
+
+0.90/2.70a
+0.60/2.00a
+1.89每2.20b
+b 1.25每2.00c
+4.00每6.5d
+2.21e
+1.17f
+1.97f
+0.95f
+1.19每1.44g
+2.20g
+
+a [86], estimated costs, with/without waste heat utilisation.
+b [86] estimated costs.
+c [87], data from 46 Australian desalination plants (SWRO and BWRO), b 1.25 AUD/m3
+for portable water, 1.25每2.00 AUD/m3 for product water.
+d [84], data from 3 small scale BWRO and SWRO plants in Western Australia.
+e [88], groundwater RO, estimated cost.
+f [89], estimations for Australia based on cost database.
+g [90] [91], actual data from large scale Australian RO plants.
+
+Table 7
+Published cost of water of various renewable energy driven desalination technologies 每
+general.
+
+Renewable energies
+Hybrid RO (grid-wind)
+Hybrid VC (grid-wind)
+Solar thermal
+Wind VC
+Wind RO
+Wind
+Photovoltaic
+Solar collectors
+Geothermal
+
+Plant capacity
+[m3/day]
+3每120
+1200
+1200
+Not specied
+Not specied
+Not specied
+Not specied
+Not specied
+Not specied
+30,000
+
+Unit cost
+[US$/m3]
+3.87每11.61a,f
+1.95b,f
+2.46b,f
+0.87每5.48c
+2.13每2.44c
+1.5每1.77c
+1.29每6.45d,f
+4.05每11.61d,f
+4.51每10.32d,f
+2.06/2.48e
+
+a [92], actual data, including solar MED, geothermal MED, MVC, PV-RO, Wind-RO, and
+hybrid RO (Wind-PV).
+b [93], case study.
+c [84], compiled from various sources, not specied by the author.
+d [94], review and assessment of water desalination cost literature.
+e [24], case study, geothermal driven RO and MED.
+f 1 EUR = 1.29 USD (www.xe.com, 18.03.2013).
+
+For the surveyed application in the Western Australia Northern
+Perth Basin, it is demonstrated that competitive levelised water costs
+on the order of 1.56 to 2.52 A$/m3 can be achieved. A comparison
+among conventional MED, the Boosted MED and the Preheated Boosted
+MED technology highlights the importance of maintaining an increased
+energy extraction from the geothermal source, thereby resulting in a re-
+duction of the levelised unit cost on the order of 13 to 16%.
+Over the surveyed application range (namely 1500, 1800 and
+2200 m as target depths), a location specic optimal target depth exists
+at 1800 m, where the geothermal parameters, namely wellhead tem-
+perature and permeability, provide the economically best match to the
+desalination system. The levelised cost of water at this target depth is
+in the range of 5 to 15% lower in comparison with the other surveyed
+target depths for all the considered desalination technologies, namely,
+MED, B-MED and PB-MED. Concomitantly, at this condition, the geo-
+thermal-system related expenditures (capital and operational) contrib-
+ute approximately 45% to the nal water cost, which is well within the
+typical range of energy related cost contribution to conventional desali-
+nation systems. In this scenario, the PB-MED results in the lowest
+levelised cost of water (1.89 A$/m3) among the various technologies.
+In addition the pivotal importance of the geothermal uid ow rate
+has been identied and shown that an increment of around 67% in the
+geothermal uid ow rate (from 75 to 125 kg/s) reduces the levelised
+
+cost of water by 20 to 25% for the various considered discount rates
+and applies equally to all of the considered desalination technologies.
+Benchmarked against both the levelised cost of water for existing
+sources and alternative desalination technologies, geothermal desalina-
+tion based on both Boosted and Preheated Boosted MED technologies can
+provide an economically and technically viable freshwater supply solu-
+tion with a small environmental footprint.
+
+Acknowledgement
+
+We gratefully acknowledge the nancial support from the Universi-
+ty of Western Australia and the National Centre of Excellence in Desali-
+nation Australia, which is funded by the Australian Government
+through the National Urban Water and Desalination Plan. We also ac-
+knowledge the support of Mr. Jaxon Smeed, who collected the data
+used for the validation of the geothermal pumping model.
+
+Appendix A. Validation of the hydrogeological pumping model
+
+The pumping model is validated based on data collected from the
+largest low temperature geothermal heating system in Australia, locat-
+ed at the HBF Stadium, known previously as the Perth Challenge Stadi-
+um [95].
+The HBF Stadium is the biggest purpose built outdoor aquatic centre
+in the Southern Hemisphere. A geothermal system is utilised to heat its
+three outdoor and two indoor pools with a total water volume of 11
+million litres, as well as to preheat the changing room showers [36,95].
+The geothermal system of the HBF Stadium accesses ~ 41 ～C hot geo-
+thermal uid in the Yarragadee Formation - the same formation within
+the same Perth Basin which the present case study is targeting. This hot
+water is passed through separate heat exchangers for the different
+pools/showers, and returned at ~ 25每30 ～C into the aquifer. Fig. A.1
+depicts a schematic of the well eld. A variable speed pump is installed
+to maintain the requisite ow rate, so as to track the heating
+requirements of the different pools.
+Fig. A.1 Schematic of the HBF Stadium well eld, based on [95,96].
+
+To validate the pumping model, system operational data were col-
+lected at varying operational modes. The volumetric ow rate, input
+and output temperatures, differential pressure of the aboveground sys-
+tem, and the actual pumping load of the variable speed pumps were
+logged in fteen-minute intervals. The system design parameters
+were gleaned from the system manual [96], and supplementary geolog-
+ical information was obtained from the proximate St. Hilda's Anglican
+School for Girls well eld (Table A.1).
+The actual operational ow rate ranged between 8 and 25 l/s, with a
+typical operational range between 14 and 18 l/s. The geothermal input
+temperature ranges between 40.6 and 40.9 ～C, with the uctuations of
+which being in the accuracy range of the temperature sensor. The rein-
+jection temperature is verily load dependent and ranges between 25.5
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+179
+
+and 30.5 ～C. We consider only steady state operating data for the exper-
+imental validation, which are dened as less than ㊣ 5% deviation in the
+measured pumping load over the data collection period of at least
+30 min. Fig. A.2 compares the predicted and actual pumping power ob-
+tained from the thirteen data sets demonstrating that the model is with-
+in ㊣ 10% of actual data for almost all operational conditions.
+
+Table A.1
+Summarised data of the HBF Stadium well eld.
+
+Production well (latitude  31.95358, longitude 115.77977)
+8 1/2∪/8∪ (length as indicated in Fig. A.1)
+636每684 m and 703每716 m
+0.65
+
+Casing
+Screened sections
+Efciency of submersible pump
+
+Injection well 1 (latitude  31.95360, longitude 115.77968)
+Casing
+5∪
+Screened sections
+560每611 m
+
+Injection well 2 (latitude  31.95963, longitude 115.78740)
+Casing
+8 1/2∪/6∪/5∪ (length as indicated in A.1)
+Screened sections
+572每609 m and 618-633 m
+
+Skin factor wells
+Overpressure for degassing
+prevention
+
+1
+3 bar
+
+Potentiometric height water level
+Lithology of penetrated aquifer
+
+ 28 m
+Sandstone, shale, sand, and siltstone
+dominated
+High permeability (k = 0.77 D)
+
+Fig. A.2 Predicted versus actual pumping power at the well eld of HBF
+Stadium.
+
+A typical set of input data for the pumping model for deep wells, as
+obtained from the ※Cockburn 1§ well (latitude  32.134782, longitude
+115.737512) located in the Perth Metropolitan Area, Australia and
+used for Fig. 5 is shown in Table A.2.
+
+Table A.2
+Exemplar input data for geothermal pumping estimation stemming from the ※Cockburn
+1§ well in Western Australia.
+
+Geothermal gradient
+Flow rate of geothermal uid
+Salinity of geothermal uid
+Potentiometric height
+Well depth
+Casing
+Screen height
+Skin factor
+Submersible pump depth
+Efciency of submersible pump [97]
+Efciency of injection pump
+Pressure drop of heat exchanger
+Overpressure for degassing prevention
+Additional aboveground pressure losses
+
+2.99
+～C/100 m
+100
+kg/s
+15,000
+ppm
+-5
+m
+2162
+m
+14∪/12∪ strings of equal length
+200
+m
+1
+[]
+250
+m
+0.72
+[]
+0.8
+[]
+0.50
+bar
+5
+bar
+0.93
+bar
+
+Appendix B. Assumptions for the auxiliary power demand of the de-
+salination plant
+
+The auxiliary power demand of the desalination module is estimated
+based on the media ow rates resulting process simulation under con-
+sideration of data adopted from typical market available MED systems
+as provided in Table B.2 [31].
+
+Table B.2
+Considerations for the auxiliary power consumption.
+
+Head
+
+Pump efciency
+
+Motor efciency
+
+Heating medium
+每 Basic MED
+每 Booster module
+每 Pre-heater (each)
+Brine pump
+Distillate pump
+Cooling water/feed pump
+Ejector pump for NCG removal
+
+Chemical dosing pump
+Control panel
+
+5 m
+5 m
+5 m
+30 m
+40 m
+20 m
+30 m
+
+0.78
+
+0.70
+0.50
+0.78
+0.78
+
+0.92
+
+0.92
+0.92
+0.92
+0.92
+Power rating
+0.5 kW
+1.5 kW
+
+Appendix C. Desalination plant specications
+
+In this section all essential parameters such as production rates, spe-
+cic pumping powers and waste heat performance ratios have been
+compared among all congurations in each scenario in Table C.1.
+
+Table C.1
+Comparison among all congurations in each scenario.
+
+Desalination technology
+Plant outputs
+Production rate (m3/day)
+Percentage
+Waste heat performance ratio (PRWH)
+Percentage
+Performance ratio (PR)
+Percentage
+Specic pumping power (kWh/m3) (desalination plant)
+Percentage
+Specic pumping power (kWh/m3) (geothermal and desalination plants)
+Percentage
+
+1500 m
+
+1800 m
+
+2200 m
+
+MED
+
+B-MED
+
+PB-MED
+
+MED
+
+B-MED
+
+PB-MED
+
+MED
+
+B-MED
+
+PB-MED
+
+1110
+n/a
+1.62
+n/a
+4.14
+n/a
+1.58
+n/a
+4.46
+n/a
+
+1340
++ 21%
+1.95
++ 21%
+4.03
+ 3%
+1.59
++ 1%
+4.11
+ 8%
+
+1470
++ 32%
+2.14
++ 32%
+3.91
+ 6%
+1.62
++ 3%
+4.03
+ 10%
+
+1710
+n/a
+2.09
+n/a
+4.70
+n/a
+1.40
+n/a
+3.92
+n/a
+
+2030
++ 19%
+2.49
++ 19%
+4.37
+ 7%
+1.46
++ 4%
+3.77
+ 4%
+
+2270
++ 33%
+2.78
++ 33%
+4.23
+ 10%
+1.50
++ 7%
+3.71
+ 5%
+
+2200
+n/a
+2.41
+n/a
+4.70
+n/a
+1.40
+n/a
+4.92
+n/a
+
+2550
++ 16%
+2.79
++ 16%
+4.56
+ 3%
+1.41
++ 1%
+4.67
+ 5%
+
+2870
++ 30%
+3.14
++ 30%
+4.37
+ 7%
+1.45
++ 4%
+4.58
+ 7%
+
+180
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+Waste heat performance ratio as in Eq. (C.1) [28], is used instead
+which encourages the maximal use of the enthalpy of the low grade
+heat source relative to the heat sink:
+
+PRWH 
+
+ 
+
+2326D
+
+_mHS  h f ;HS;inh f ;cond;in
+
+
+
+C:1
+
+In the above equation 2326 kJ/kg is considered as the enthalpy of
+distillation.
+It should be noted that the conventional performance ratio (Eq. C.2)
+which holds that heat comes with a premium as it is consumed, cannot
+capture the essence of such low grade heat driven desalination systems
+that only attracts a one-off investment cost, other than pumping power
+[28]. As shown in Table C.1 its trend is incongruent with that of the
+levelised water costs (Table 4). One can refer to [28] for more details re-
+garding the issue pertaining to performance ratio in low grade heat
+driven desalination systems.
+
+PR 
+
+ 
+
+2326D
+
+_mHS  h f ;HS;inh f ;HS;out
+
+
+
+C:2
+
+References
+
+[1] J.C. Bell, Availability of Geothermal Energy for the Demineralization of Saline Water,
+U.S. Department of the Interior, United States Ofce of Saline Water, Battelle Memo-
+rial Institute, 1959.
+[2] C.M. Wong, Geothermal energy and desalination: partners in progress, Geothermics,
+2 Part 1 (1970) 892每895.
+[3] A.D.K. Laird, B.W. Tleimat, Desalting geothermal brines, Desalination 19 (1976)
+309每316.
+[4] W.J. Boegli, S.H. Suemoto, K.M. Trompeter, Geothermal desalting at the East Mesa
+test site, Desalination 22 (1977) 77每90.
+[5] S.H. Suemoto, K.E. Mathias, Preliminary Results of Geothermal Desalting Operations
+at the East Mesa Test Site, Research for the Development of Geothermal Energy Re-
+sources, Imperial Valley, California, 1974 225每235.
+[6] L. Awerbuch, C.T. Draney, Geothermal Energy Recovery Process, U.S. Patent (Ed.),
+Bechtel International Corperation, 1976.
+[7] A. Ophir, Desalination plant using low grade geothermal heat, Desalination 40
+(1982) 125每132.
+[8] C. Karytsas, D. Mendrinos, G. Radoglou, The current geothermal exporation and de-
+velopment of the geothermal eld of Milos Island in Greece, GHC Bulletin. (2004)
+17每21.
+[9] M. Fytikas, G. Radoglou, C. Karytsas, D. Mendrinos, A. Vasalakis, N. Andritsos, Geo-
+thermal research in Vounalia Area, Milos Island (Greece), for seawater desalination
+and power production, Proceedings World Geothermal Congress, Antalya, Turkey,
+2005.
+[10] C. Karytsas, V. Alexandrou, I. Boukis, The Kimolos geothermal desalination project,
+International Summer School on Direct Application of Geothermal Energy,
+Thessaloniki, Greece 2002, pp. 206每219.
+[11] European Geothermal Energy Council, K4RES-H - Key Issue 5: Innovative Applica-
+tions Geothermal Utilization for Seawater Desalination, European Renewable Ener-
+gy Council, 2007.
+[12] P. Ungemach, Energy development problematics in the Mediterranean - the Aeolian
+and Aegean Islands. The geothermal energy case, International Workshop on the
+Possibilities of Geothermal Development of the Aegean Islands Region, Milos Island,
+Greece 2002, p. 25.
+[13] J.W. Lund, D.H. Freeston, T.L. Boyd, Direct utilisation of geothermal energy 2010
+worldwide review, Geothermics 40 (2011) 159每180.
+[14] C. Koroneos, G. Roumbas, Geothermal waters heat integration for the desalination of
+sea water, Desalin. Water Treat. 37 (2012) 69每76.
+[15] A. L車pez-S芍nchez, C. B芍ncora-Alsina, R.M. Prol-Ledesma, G. Hiriart, A new geother-
+mal resource in Los Cabos , Baja California Sur, Mexico, Proceedings 28th New
+Zealand Geothermal Workshop, 2006.
+[16] S.M. Alcocer, G. Hiriart, An applied research program on water desalination with re-
+newable energies, Am. J. Environ. Sci. 4 (2008) 190每197.
+[17] J. Gutierrez, M.A. Porta-Gandara, J.L. Fernandez, Distilled water production using
+geothermally heated seawater, Desalination 249 (2009) 41每48.
+[18] H. Guti谷rrez, S. Esp赤ndola, Using low enthalpy geothermal resources to desalinate
+sea water and electricity production on desert areas in Mexico, GHC Bulletin.
+(2010) 6.
+[19] Ministry of Information - Sultanate of Oman, Tap geothermal energy for water desa-
+lination, Business News - 2. June 2013. (2013).
+[20] A. El Amali, S. Bouguecha, M. Maalej, Experimental study of air gap and direct con-
+tact membrane distillation congurations: application to geothermal and seawater
+desalination, Desalination 168 (2004) 357.
+[21] R. Sarbatly, C.-K. Chiam, Evaluation of geothermal energy in desalination by vacuum
+membrane distillation, Applied Energy, (In Press, Corrected Proof).
+
+[22] F. Calise, M.D. d'Accadia, A. Macaluso , A. Piacentino, L. Vanoli, Exergetic and
+exergoeconomic analysis of a novel hybrid solar每geothermal polygeneration sys-
+tem producing energy and water, Energy Convers. Manag. 115 (2016) 200每220.
+[23] C. Li, S. Besarati, Y. Goswami, E. Stefanakos, H. Chen, Reverse osmosis desalination
+driven by low temperature supercritical organic rankine cycle, Appl. Energy 102
+(2013) 1071每1080.
+[24] S. Loutatidou, H.A. Arafat, Techno-economic analysis of MED and RO desalination
+powered by low-enthalpy geothermal energy, Desalination 365 (2015) 277每292.
+[25] K. Bourouni, R. Martin, L. Tadrist, M.T. Chaibi, Heat transfer and evaporation in geo-
+thermal desalination units, Appl. Energy 64 (1999) 129每147.
+[26] K. Bourouni, Chaibi, Application of geothermal energy for brackish water desalina-
+tion in the South of Tunisia, Proceedings World Geothermal Congress, Antalya, Tur-
+key, 2005.
+[27] B. Lindal, Industrial and other applications of geothermal energy, Geothermal Ener-
+gy - A Review of Research and Development, Unesco Press, 1973.
+[28] A. Christ, K. Regenauer-Lieb, H.T. Chua, Thermodynamic optimisation of multi effect
+distillation driven by sensible heat sources, Desalination 336 (2014) 160每167.
+[29] X. Wang, A. Christ, K. Regenauer-Lieb, K. Hooman, H.T. Chua, Low grade heat driven
+multi-effect distillation technology, Int. J. Heat Mass Transf. 54 (2011) 5497每5503.
+[30] A. Christ, K. Regenauer-Lieb, H.T. Chua, Application of the Boosted MED process for
+low-grade heat sources 〞 a pilot plant, Desalination 366 (2015) 47每58.
+[31] A. Christ, K. Regenauer-Lieb, H.T. Chua, Boosted multi-effect distillation for sensible
+low-grade heat sources: a comparison with feed pre-heating multi-effect distilla-
+tion, Desalination 366 (2015) 32每46.
+[32] J.W. Tester, B.J. Anderson, A.S. Batchelor, D.D. Blackwell, R. DiPoppo, E.M. Drake, J.
+Garnish, B. Livesay, M.C. Moore, K. Nichols, S. Pretty, M.N. Toksoez, R.W. Veatch,
+The Future of Geothermal Energy-Impact of Enhanced Geothermal Systems (EGS)
+on the United States in the 21st Century, Massachusetts Institute of Technology,
+Cambridge, 2006 372.
+[33] W.A. Dufeld, J.H. Sass, Geothermal energy-clean power from the earth's heat, USGS
+Circular 1249, U.S. Department of the Interior, U.S. Geological Survey, 2003.
+[34] P. Ungemach, Geothermal reservoir management technology and problem areas, In-
+ternational Geothermal Days Poland 2004, International Course on Low Enthalpy,
+Geothermal Resources 每 Exploitation and Development, Zakopane, Poland, 2004.
+[35] P. Ungemach, M. Antics, Sustainable geothermal reservoir management practice, In-
+ternational Geothermal Days 2009, Slovakia, 2009.
+[36] CSIRO Geothermal Energy, Geothermal Energy and the Perth Basin, 2013.
+[37] K. Regenauer-Lieb, H.T. Chua, X. Wang, F.G. Horowitz, J.F. Wellmann, Direct heat
+geothermal applications in the Perth Basin of Western Australia, 34th Workshop
+on Geothermal Reservoir Engineering, Stanford University, 2009 (pp. SGP-TR-187).
+[38] DesalData.com, IDA Desalting Plants Inventory, Media Analytics Ltd. 2011.
+[39] B. Rahimi, A. Christ, K. Regenauer-Lieb, H.T. Chua, A novel process for low grade heat
+driven desalination, Desalination 351 (2014) 202每212.
+[40] G. Polley, C. Haslego, Compact heat exchangers - part 1: designing plate-and-frame
+heat exchangers, Chem. Eng. Prog. 98 (2002) 32每37.
+[41] X. Wang, A. Bierwirth, A. Christ, P. Whittaker, K. Regenauer-Lieb, H.T. Chua, Applica-
+tion of geothermal absorption air-conditioning system: a case study, Appl. Therm.
+Eng. 50 (2013) 71每80.
+[42] C. Teodoriu, C. Cheuffa, A comprehensive review of past and present drilling
+methods with application to deep geothermal environment Stanford Geothermal
+Workshop, Stanford, 2011.
+[43] A.J. Mansure, D.A. Blankenship, Geothermal Well Cost Analyses 2008, GRC Transac-
+tions, 32, 2008.
+[44] Private communication with local Western Australian geothermal drilling compa-
+nies, 2013.
+[45] F. Horowitz, K. Regenauer-Lieb, J.F. Wellmann, H.T. Chua, X. Wang, T. Poulet, Evi-
+dence for hydrothermal convection in the Perth Basin, Australia, in: H. Gurgenci,
+A.R. Budd (Eds.),Proceedings of the Sir Mark Oliphant International Frontiers of Sci-
+ence and Technology Australian Geothermal Energy Conference, Melbourne 2008,
+pp. 85每87.
+[46] C. Clauser, H. Villinger, Analysis of conductive and convective heat transfer in a sed-
+imentary basin, demonstrated for the Rheingraben, Geophys. J. Int. 100 (1990)
+393每414.
+[47] Department of Energy, Revisions to GETEM Model, 2008.
+[48] D. Entingh, G. Mines, DOE Geothermal Electricity Technology Evaluation Model
+(GETEM) - Volume III - Detailed Technical Appendixes, 2006.
+[49] G. Thiem, Hydrologische Methoden, Thesis - (Doctoral) Technische Hochschule
+Stuttgart, 4 p. l., 56 p, J.m. Gebhardts Verlag Stuttgart, Leipzig, 1906.
+[50] C.W. Fetter, Applied Hydrogeology, Fourth Edition ed, Prentice-Hall, New Jersey,
+2001.
+[51] M.H. Sharqawy, J.H. Lienhard V, S.M. Zubair, Thermophysical properties of seawater:
+a review of existing correlations and data, (vol 16, pg 354每380, 2010), Desalin.
+Water Treat. 44 (2010), 361每361.
+[52] D. Entingh, G. Nix, G. Mines, A. Mansure, S. Bauer, S. Petty, B. Livesay, DOE Geother-
+mal Electricity Technology Evaluation Model (GETEM): Volume I 每 Technical Refer-
+ence Manual, 2006.
+[53] H.T. El-Dessouky, H.M. Ettouney, F. Mandani, Performance of parallel feed multiple
+effect evaporation system for seawater desalination, Appl. Therm. Eng. 20 (2000)
+1679每1706.
+[54] H. El-Dessouky, I. Alatiqi, S. Bingulac, H. Ettouney, Steady-state analysis of the mul-
+tiple effect evaporation desalination process, Chem. Eng. Technol. 21 (1998)
+437每451.
+[55] H.T. El-Dessouky, H.M. Ettouney, Fundamentals of Salt Water Desalination, Elsevier
+Science, Burlington, 2002.
+[56] K.H. Mistry, M.A. Antar, J.H. Lienhard V, An improved model for multiple effect dis-
+tillation, Desalin. Water Treat. 51 (2012) 807每821.
+
+A. Christ et al. / Desalination 404 (2017) 167每181
+
+181
+
+[57] L. Reid, S. Corbel, T. Poulet, L. Ricard, O. Schilling, H.A. Sheldon, J.F. Wellmann, Perth
+Basin Assessment Program - Project 3: Hydrothermal modelling in the Perth Basin,
+Western Australia, Western Australian Geothermal Centre of Excellence, Perth, 2012.
+[58] R.D. Hyndman, I.B. Lambert, K.S. Heier, J.C. Jaeger, A.E. Ringwood, Heat ow and sur-
+face radioactivity measurements in the Precambrian shield of Western Australia,
+Phys. Earth Planet. Inter. 1 (1968) 129每135.
+[59] T.T. Bestow, The Potential for Geothermal Energy Development in Western Austra-
+lia, Geological Survey of Western Australia Record 1982/6, Geological Survey of
+Western Australia, Perth, 1982.
+[60] L.E. Howard, J.H. Sass, Terrestrial heat ow in Australia, J. Geophys. Res. 69 (1964)
+1617每1626.
+[61] K.A. Ghori, Search for energy from geothermal resources in Western Australia,
+Petroleum in Western Australia 4 (2007).
+[62] K. Regenauer-Lieb, F.G. Horowitz, The Perth Basin geothermal opportunity,
+Petroleum in Western Australia 3 (2007).
+[63] P.N. Chopra, F. Holgate, Geothermal Energy Potential in Selected Areas of Western
+Australia, for: Government Western Australia, Department of Mines and Petroluem,
+Weston ACT, Australia, 2008.
+[64] K.A. Ghori, Western Australia's geothermal resources, AAPG Annual Convention &
+Exhibition, San Antonio, Texas, 2008 2008, p. 15.
+[65] N.E. Timms, S. Corbel, H. Olierook, P.G. Wilkes, C. Delle Piane, H.A. Sheldon, R. Alix,
+F.G. Horowitz, M.E.J. Wilson, K.A. Evans, C. Grifths, L. St邦tenbecker, S. Israni, P.J.
+Hamilton, L. Esteban, P. Cope, C. Evans, L. Pimienta, C. Dyt, X. Huang, J. Hopkins, D.
+Champion, Perth Basin Assessment Program - Project 2: Geomodel, Western Austra-
+lian Geothermal Centre of Excellence, Perth, 2012.
+[66] L. Ricard, M. Trefry, L. Reid, S. Corbel, L. Esteban, J.-B. Chanu, P.G. Wilkes, G.B.
+Douglas, A.H. Kaksonen, D. Lester, G. Metcalfe, L. Pimienta, S. Gutbrodt, S. Tressler,
+G. Bloomeld, C. Evans, K. Regenauer-Lieb, Perth Basin Assessment Program - Pro-
+ject 4: Productivity and Sustainablility of Low-Temperature Geothermal Sources,
+Western Australian Geothermal Centre of Excellence, Perth, 2012.
+[67] Australian Bureau of Statistics, Year Book Australia 2012, 2012.
+[68] Government of Western Australia - Mid West Development Commission, Mid West
+Development Commission - Climate, 2012.
+[69] Government of Western Australia - Department of Water, City of Geraldton -
+Greenough - Water conservation plan, Government of Western Australia -
+Department of Water, Perth, 2010.
+[70] Water and Rivers Commission, Allanooka and Dongara - Denison water reserves
+water source protection plan: Geraldton and Dongara - Port Denison Town water
+supplies, Water Resource Protection Series No WRP 47, Water and Rivers Commis-
+sion, 2002.
+[71] CSIRO, PressurePlot v2.0, 2007.
+[72] B. Hughes, Rig Count, 2013.
+[73] National Centre of Excellence in Desalination in Australia, Australian Desalination
+Research Roadmap, National Centre of Excellence in Desalination in Australia, Rock-
+ingham, Western Australia, 2010.
+[74] B. Schneiders, Four-day pay bonanza, The Age, Melbourne, 24.12.2009.
+
+[75] Australian Bureau of Statistics, Labour Costs Australia 2010每2011, 2012 20.
+[76] B. Mountain, Electricity Prices in Australia: An International Comparison, Energy
+Users Association of Australia, 2012.
+[77] US Bureau of Labour Statistics, PCU3339113339111Z4, 2013.
+[78] Navy Meteorology and Oceanography (METOC) Australia, Coastal Sea Surface Tem-
+peratures Australia, 2013.
+[79] Navy Meteorology and Oceanography (METOC) Australia, Coastal Sea Surface Salin-
+ities Australia, 2013.
+[80] International Atomic Energy Agency, Desalination Economic Evaluation Program
+(DEEP 4.0), 2011.
+[81] C. Sommariva, Water Management and Economics, IDA Academy, Singapore, 2012.
+[82] Synergy, Standard Electricity Prices and Charges - South West Interconnected
+System, Perth, 2012.
+[83] XE, XE Currency Charts (AUD/USD), 2013.
+[84] O. Barron, Desalination options and their possible implementation in Western
+Australia: potential role for CSIRO land and water, CSIRO: Water for a Healthy Coun-
+try National Research Flagship, Canberra, 2006.
+[85] Economic Regulation Authority Western Australia, Final report: inquiry on country
+water and wastewater pricing in Western Australia, Economic Regulation Authority
+Western Australia, Perth, 2006.
+[86] U.R.S. Australia, Economic and technical assessment of desalination technologies in
+Australia: with particular reference to national plan priority regions, Prepared for
+the Department of Agriculture, Fisheries & Forestery - Australia 2002, p. 80.
+[87] M. Hoang, B. Bolto, C. Haskard, O. Barron, S. Gray, G. Leslie, Desalination in Australia,
+CSIRO, 2009 26.
+[88] O. Barron, K. Zil, Katanning desalination demonstration plant, CSIRO: Water for a
+Healthy Country National Research Flagship, Canberra, 2006.
+[89] M.K. Wittholz, B.K. O'Neill, C.B. Colby, D. Lewis, Estimating the cost of desalination
+plants using a cost database, Desalination 229 (2008) 10每20.
+[90] I. El Saliby, Y. Okour, H.K. Shon, J. Kandasamy, I.S. Kim, Desalination plants in Austra-
+lia, review and facts, Desalination 247 (2009) 1每14.
+[91] T. Pankratz, I.D.A. Desalination Yearbook, Media Analytics Ltd, 2012, Oxford, 2012每
+2013.
+[92] E. Tzen, Overview of the Desalination Technologies Powered by Renewable Energy,
+Desalination Systems Powered by Renewable Energy, Amman, Jordan, 2006.
+[93] D. Zejli, R. Benchrifa, A. Bennouna, K. Zazi, Economic analysis of wind-powered de-
+salination in the south of Morocco, Desalination 165 (2004) 219每230.
+[94] I.C. Karagiannis, P.G. Soldatos, Water desalination cost literature: review and assess-
+ment, Desalination 223 (2008) 448每456.
+[95] E. Oldmeadow, D. Marinova, Into geothermal solutions: the sustainability case for
+Challenge Stadium in Perth, Western Australia, Environmental Progress & Sustain-
+able Energy 30 (2011) 476每485.
+[96] Challenge Stadium, Geothermal System Operation Manual, 2012.
+[97] Schlumberger, REDA Electric Submersible Pump Technology Catalog, 2011.
+

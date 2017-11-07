@@ -1,0 +1,870 @@
+Computer vision for wildre research: An evolving image dataset for processing and analysis
+
+Tom Toulouse a, *, Lucile Rossi a, Antoine Campana a, Turgay Celik b, Moulay A. Akhlou c
+
+a UMR CNRS 6134 SPE, University of Corsica, 20250, Corte, France
+b School of Computer Science, University of the Witwatersrand, Johannesburg, South Africa
+c Computer Science Department, University of Moncton, Moncton, NB, Canada
+
+article
+
+info
+
+Keywords:
+Database
+Image
+Wildre
+Pixel detection
+
+abstract
+
+The last decade has witnessed the use of computer vision for wildre detection and measurement. The rst and
+most important step for computer vision analysis is the re pixel detection because it determines the accuracy of
+the following processing. The evaluation and the comparison of the wildre detection algorithms of the literature
+and the development of new ones needs open datasets with a large number of annotated images and their ground
+truth. We address this issue by presenting a publicly evolving wildre annotated image database with ground
+truth data with examples of use. Currently, it contains 500 visible images and, in a more limited number,
+multimodal images and videos with frame by frame annotations. This is currently the largest dataset released in
+this research eld.
+
+1. Introduction
+Wildres are among the major risks to humans and wildlife around
+the world [1¨C4]. Thus, efcient re detection and behavior anticipation
+systems play an important role in the reduction of destruction caused by
+res. The last decade has witnessed the use of computer vision for ef-
+cient re detection [5¨C7], early re suppression [8¨C10], re measure-
+ment, and re behavior analysis and prediction [11¨C13]. The rst and
+most important step for computer vision analysis is the re pixel detec-
+tion because it determines the accuracy of the following processing.
+Fire emits radiations in a large spectral band (0:4; 14 ¦Ìm). The
+visible domain (0:4; 0:7 ¦Ìm) is the reference domain used in wildland
+re research because of the operational simplicity of visible cameras,
+their very affordable price, and the large quantity of published work
+using this spectrum. Fire pixel detection on color images is a challenging
+task because the images are highly affected by the environmental and
+physical conditions. The main difculties encountered by the detection
+methods are due to re color and the presence of smoke. Indeed, the color
+can be inhomogeneous (varying from yellow to red color), can have
+different luminance (depending on the background and the luminosity),
+and the smoke can mask the re areas. Several re detection algorithms
+working with color images are proposed in the literature [14]. A rst
+category of methods uses color rules. The most commonly used color
+
+system is RGB [15¨C20]. Other systems are also exploited. Among these
+systems are those permitting the extraction of luminance-chrominance
+components, such as YCbCr [21¨C23], YUV [24] and L a b [25]. There
+are also works using so-called cylindrical systems such as TSI [26] and
+TSV [27]. Finally, some algorithms use combinations of different color
+spaces [28,29]. A second category of pixel re detection algorithms uses
+machine learning [17,19,21,29,30]. These detections need to learn from
+a dataset containing re pixels and non re pixels obtained from a
+sampling of the test image database. In this case, it is important to have a
+database including a large number of heterogeneous re color images. To
+complete this part, several re detection algorithms use motion analysis
+[22] to consider or delete re pixel candidates selected using color
+criteria. Three works present the comparison of the performances of re
+pixel detection algorithms on datasets of wildre images [17,23,31]. In
+Refs. [17,23], the images used to benchmark the methods are mainly
+from two web databases (ForestryImages.org [32] and WildlandFire.com
+[33]). As there is no a public ground truth (re contour area obtained
+manually) associated with each image in these databases, it is impossible
+to evaluate independently the metrics and the algorithms used in these
+works. Moreover, the number of different wildre images of these da-
+tabases
+is
+insufcient
+to obtain a wildre pixel
+representative
+learning dataset.
+Infrared images are easier to process than visible images because the
+intensity of the re pixels is much higher than the one of the other pixels
+[11]. The approach to detect the re zones in an infrared image is to nd
+the threshold that differentiates the pixels belonging to the re to those
+of the background. Several threshold search algorithms that can be
+applied to the detection of re pixels are proposed in the literature
+[5,34¨C36]. The difculty to consider infrared images is that areas similar
+to those of re corresponding to hot gases can also be present in the
+images and consequently can produce a difference between the re areas
+appearing in the visible domain and those of the infrared domain. Works
+developed by Rossi et al. [37] show that the near infrared domain
+(0:75; 0:9 ¦Ìm) produces wildre areas that are very similar to the ones
+obtained in the visible domain. Tacking into account the fact that it is
+easier to detect re pixel in infrared images but that the visible images
+remains the reference, new re pixel detection algorithms could be
+develop by using image fusion [38].
+The development of the research on wildland re pixel detection al-
+gorithms needs a publicly available database containing a large number
+of images of wildre, showing various dominant re color, conditions of
+smoke, environments, background,
+luminosity characteristics, other
+similar to re color elements (cars or reghters for example), and
+ground truth data. Thus, it is important to be able to evaluate the
+robustness of a criterion of pixel detection or of an overall method ac-
+cording to isolated parameters like the dominant color or the texture of
+the re, the presence and the type of smoke, the background luminosity
+or the presence of objects that can produce error detections. Similarly,
+the comparison of the performances of different algorithms must be done
+considering common criteria and publicly ground truth. Finally, in order
+to develop new algorithms based on image fusion and pixels movements,
+multi-modal images and sequences of wildre have to be also present in
+this database. In this sense, the present work aims to bring a public test
+database called Corsican Fire Database (CFDB) and presents its use. The
+dataset consists of 500 visible images of wildre collected worldwide,
+100 multi-modal (visible and near infrared) images, and 5 sequences of
+about 30 multi-modal images of outdoor experimental res captured by
+the authors. Each image is associated with a black and white (binary)
+ground-truth image, annotations and descriptors. This database is an
+evolving one, as its content increases with the images that are depos-
+ited online.
+The paper is organized as follows. Section 2 gives information about
+publicly re image datasets. Section 2.1 informs about the origin of the
+visible images of the Corsican Fire Database, their selection and the
+acquisition protocol of the multi-modal re images and sequences. Sec-
+tion 2.2 presents the scheme of the manual annotation of the full
+collection of the database and the descriptors obtained by using image
+processing. Section 2.3 describes the handling of the new database. The
+way by which the data associated to the images are made available is
+described. Information is also given concerning how users of the database
+can create their own test subset selections for their specic research
+purposes. Finally, the conclusion appears in Section 4 with a summary of
+the main characteristics of this database and the prospects for its future
+extensions.
+
+2. Wildland re image dataset
+
+Our research has shown that there was no large public database for
+wildland re images. The vast majority of the research uses Internet
+collected images [32,33] or in house developed datasets of re images
+non-available publically. This makes it very difcult to benchmark the
+different algorithms developed for the study of forest res. A recent work
+by Bedo et al. [39] permitted the development of a Flickr-based Fire
+database. It contains about two thousand pictures; half of them have re
+ames in different environments (vegetation, urban, car, etc.). These
+images were taken from Flickr (a web site for picture and video sharing).
+The database is under the Creative Commons license that guarantees free
+public use. Each image has been annotated manually as ¡±re¡± or ¡±non
+re¡± by seven human experts but no specic information about the re
+
+pixels areas is given.
+Another database is Dyntex [40]. This database is very well organized
+and its contents properly characterized. It offers a collection of six hun-
+dred and fty high quality dynamic video texture sequences. The se-
+quences contain images of size 720  576, with a frame rate of 25 images
+per second, and a duration of at least ten seconds. Each sequence comes
+with general information (name, date, place, etc.), information about
+acquisition conditions (camera settings, indoor or outdoor) as well as
+information about the image texture properties in the sequence (dynamic
+and spatial properties). However, this database does not contain wild-
+land res.
+Considering what was interesting in the cited datasets and what was
+to improve, the Corsican Fire Database was developed. It contains images
+captured in the visible and near infrared spectrum, video sequences,
+annotation and details about the image characteristics, the environment,
+etc. Additionally it was built to be an evolving database ready for outside
+contributions.
+
+2.1. Origin of the images
+
+In order to build the database, a call for wildland re images was
+made and more than 2000 images captured on the visible spectra were
+collected from partners and researchers. These images came from
+different parts of the world, have different formats and were acquired
+from cameras with different parameters. 500 images were selected in this
+set in order to have heterogeneous re colors and textures, environments,
+light conditions and vegetation. For each image, a ground truth was built
+with a manual segmentation of the re in the image by an expert. This
+part of the database was used in Ref. [30].
+The database also contains 100 multi-modal re images and 5 multi-
+modal sequences of re in propagation. The multi-modal images were
+obtained using the JAI AD-080GE camera. This prism based 2-CCD multi-
+spectral camera acquires simultaneously an image in the visible spectra
+and an image in the near infrared (NIR) spectra (700 nm - 900 nm)
+through the same optic. An example of visible and near infrared images
+taken simultaneously is shown in Fig. 1 (a) and (b). The multi-modal
+images obtained directly from the JAI AD-080GE camera are not
+aligned due to the fact that the visible and NIR sensors are not exactly co-
+aligned. An image registration based on homography matrix transform
+computation was done in order to align multi-modal images that are
+available in the database. The camera shutter time was chosen according
+to the environment luminosity and the focal length was set to 6 mm. The
+sequences were kept with a frame rate of 1 fps. Images of both spectrum
+have a size of 1024  768 pixels.
+All the images of the database are in a lossless png format.
+
+2.2.
+
+Image descriptors
+
+Each image of the database is annotated using several descriptors.
+Some of them were annotated manually and others automatically using
+an image processing procedure. The descriptors are divided into two
+main categories, global descriptors and re and environment descriptors. The
+annotations have two purposes: (i) they can assist users in retrieving
+particular properties; for example, res with a particular Color or Texture
+and (ii) it allows the user to quickly tailor test sets for specic research
+purposes; for example, to test or develop detection algorithms for specic
+re conditions. A number of tools to assist in this selection process are
+described in Section 5. Some descriptors are missing if this information
+was not given by the image owner.
+
+2.2.1. Global descriptors
+The global descriptors give general information on the image. They
+are listed and described in Table 1. They are separated in two sub-groups,
+General information and acquisition settings.
+The General
+information are administrative descriptors such as a
+unique identier, the sequence number and the image number in the
+
+189
+
+T. Toulouse et al.
+
+Fire Safety Journal 92 (2017) 188¨C194
+
+Fig. 1. Example of images of the database taken with the multi-spectral camera. (a) Image of the visible spectra, (b) image of the near infrared spectra and (c) ground truth based on the
+image (a).
+
+Table 1
+Global properties descriptors. Listed are the eld variables, their type and a description of
+their meaning.
+
+General information
+< Id >
+Number
+< Sequence > Number
+< NumIm >
+Number
+< Owner >
+Text
+< Date >
+Text
+< GPS >
+Text
+< Place >
+Text
+< Region >
+Text
+< Name Vis > Text
+< Name IR >
+Text
+
+< Name GT > Text
+
+Acquisition settings
+< Material >
+Text
+< Focal >
+Number
+< Sensibility > Number
+< Exposure > Number
+< Spectra >
+NIR/SWIR/MWIR/
+LWIR
+
+Unique image identier
+Sequence number
+Image number in the sequence
+Author of the image
+Date of the acquisition
+GPS position
+Name of the place of shot
+(Region, Country) of shoot
+Name of the visible spectra image
+Name of the associated IR spectra image (if
+exists)
+Name of the corresponding ground truth
+image
+
+Camera model
+Focal length of the visible camera
+ISO Sensitivity
+Exposure time
+IR spectral domain (if IR image exists)
+
+sequence (which are non-zero if the image belongs to a sequence).
+Another annotations list information on location and date. The last de-
+scriptors of this sub-group give the names of the visible image, the
+associated infrared image (if it exists) and the ground truth image.
+The Acquisition settings elds give information about the equipment
+and settings used to obtain the images: the descriptor < Material > gives
+the camera model used, < Focal > indicates
+its
+focal
+length,
+< Sensibility > presents its ISO sensitivity and < Exposure > contains the
+exposure time used.
+If an infrared image is associated to a visible image, the eld
+< Spectra > indicates its spectral domain: near-infrared (NIR), short
+wavelength infrared (SWIR), medium wavelength infrared (MWIR) or
+long wavelength infrared (LWIR).
+
+2.2.2. Fire and environment descriptors
+The purpose of the proposed database is to specify the different pa-
+rameters of the re and the environment that can be important for
+detection purposes. These annotations are listed in Table 2 and are
+separated in two groups. The Fire descriptors group concerns the anno-
+tations specic to re pixels and the Background descriptors group is about
+environment pixels. Most of these data were computed automatically
+with image processing algorithms and the ground truth images. The
+description and the computation of these descriptors are explained in
+the following.
+Concerning the Fire descriptors:
+The < Occupation > eld is the percentage of re pixels in the image.
+It is computed by dividing the number of re pixels (pixels labeled ¡±re¡±
+
+Table 2
+Fire and background descriptors. Listed are the eld variables and their possible values.
+
+Fire descriptors
+< Occupation >
+< Color >
+< Smoke
+Superposition >
+< ColorSmoke >
+< Texture >
+< Dist F/C >
+< Direction >
+Background descriptors
+< Luminosity >
+< Time >
+< Vegetation >
+
+< Presence >
+< Clouds >
+
+[0¨C100]
+Red/Orange/Yellow-White/Other
+[0¨C100]
+
+Black/Grey/White
+0/1
+Near/Far
+Right/Left/Moves close/Moves away
+
+[0¨C100]
+Day/Night
+Crimp wood/Low maquis shrubland/High maquis shrubland/
+Trees
+Men/Trunk/None/Other
+0/1
+
+in the ground truth image) by the total number of pixels of the image. In
+Table 2, 0  100 indicates that this indicator is between 0 and 100.
+The < Color > eld indicates the dominant color of re pixels in the
+image. The possible value of this descriptor is Red, Orange, Yellow-White
+and Other. Each re pixel is labeled to one of these colors using the HSI
+color space (see Ref. [31] for computation details). The dominant color is
+the color of the majority of re pixels. An example of images of the
+database CFDB with different principal color is shown in Fig. 2.
+The < Smoke Superposition > eld indicates the percentage of re
+pixels which are superimposed with smokes. A learning has been done
+with support vector machine in order to automatically classify re pixels
+with and without smoke. The smoke pixels that not superimpose re are
+not considered since only re pixels given by the ground truth are pro-
+cessed. The eld < ColorSmoke > indicates the color of the smoke. Its
+value can be Black, Grey or White and is annotated manually.
+The < Texture > eld indicates if the re is textured or not accord-
+ingly to the entropy of re pixels (see Ref. [31] for computation details).
+The value ¡°0¡± informs that the re is not textured and the value ¡°1¡± in-
+dicates that it is textured. For example, the re area that appears in Fig. 2
+(b) is considered textured unlike the re region that appears in the
+Fig. 2 (c).
+The < Dist F/C > eld gives an indication on the distance from the
+re with respect to the camera. Its value can be near or far. A re is
+considered near to the camera when the distance is lower than 200
+meters. This eld is completed manually, given by the owner of the
+image from observation or eld measurement.
+The < Direction > eld indicates the direction of the re compared to
+the camera. This eld is completed manually and given by the owner of
+the image. The possible values are: right,
+left, moves close and
+moves away.
+Concerning the background descriptors:
+The eld < Luminosity > gives an information relating to the
+brightness of the environment. An automatic procedure computes an
+
+190
+
+T. Toulouse et al.
+
+Fire Safety Journal 92 (2017) 188¨C194
+
+Fig. 2. Example of images of the database that have different value for the < Color > descriptor. The value computed for these images are Red for (a), Orange for (b) and Yellow-White for
+(c). (For interpretation of the references to colour in this gure legend, the reader is referred to the web version of this article.)
+
+average of channel I of HSI color space of the non-re pixels (see Ref. [31]
+for computation details). The value of this eld is a value between 0 and
+100. Fig. 3 shows three images that have different luminosity values.
+The following descriptors are annotated manually.
+The eld < Time > indicates if the picture has been captured during
+the day or the night.
+The < Vegetation > eld gives information about the vegetable fuel
+that appears in the image. The possible values are: crimp wood, low
+maquis shrubland, high maquis shrubland and trees.
+The < Presence > descriptor indicates the presence of potential false
+positives area like the ones corresponding to re men or trucks.
+Finally the eld < Clouds > indicates if clouds are visible in the sky
+that can also generate false re detections especially when processing
+infrared images. The value ¡°1¡± indicates the presence of clouds and the
+value ¡°0¡± their absence.
+
+2.2.3. Distribution of the dataset pixels
+Table 3 gives the image pixel distribution by category. It shows the
+heterogeneity of the pixels in the dataset.
+
+2.3. Database on internet
+
+The Corsican Fire Database is available online at the following URL:
+http://cfdb.univ-corse.fr/. After registration, the images and sequences
+can be downloaded for research purposes via a customized interface. It
+gives to the user the possibility to download the entire database or to
+choose specic elements according to the descriptors detailed in the
+previous section. A screenshot of the browsing interface is shown in the
+upper part of Fig. 4.
+The values of the Occupation, Luminosity and Smoke Superposition
+
+Table 3
+Distribution of the dataset pixels by category.
+
+Fire Pixels
+
+Red
+
+Orange
+
+White-
+Yellow
+Other
+
+Smoke
+No Smoke
+Smoke
+No Smoke
+Smoke
+No Smoke
+Smoke
+No Smoke
+
+Non-re Pixels
+
+All
+Low Intensity
+Medium Intensity
+High Intensity
+All
+
+Number of pixels
+
+Percentage
+
+19 334 066
+43 373 644
+32 812 298
+115 227 509
+18 519 389
+2 426 830
+578 832
+5 332 683
+237 950 619
+170 088 686
+259 874 877
+345 107 529
+775 071 092
+
+8.1%
+18.2%
+13.8%
+48.4%
+7.8%
+1.0%
+0.2%
+2.2%
+100%
+21.9%
+33.5%
+44.5%
+100%
+
+descriptors are in the interval [0¨C100]. The research procedure is carried
+out by considering three sub-intervals that are: [0¨C20] (low), ]20¨C45]
+(medium) and ]45¨C100] (high).
+The lower part of Fig. 4 shows part of the list of the information
+associated to the images selected with the following attributes: no spe-
+cic region, no associated infrared image, not belonging to a sequence,
+without clouds, not textured, no specic false positive elements, no
+specic time, low percentage of re pixels in the image and smoke-re
+covering, dominant re color that is orange, no specic smoke color,
+with a medium environment brightness, no specic vegetation type, no
+specic re distance and no specic direction of re propagation.
+The browsing interface allows to download all the selected images or
+to select images by considering their information. By clicking on the eye
+icon it is possible to see the re image and the associated IR image if
+
+Fig. 3. Example of images of the database that have different value for the < Luminosity > descriptor. The value computed for these images are 10 for (a), 44 for (b) and 64 for (c).
+
+191
+
+T. Toulouse et al.
+
+Fire Safety Journal 92 (2017) 188¨C194
+
+Fig. 4. Screenshot of the Corsican Fire Database browser.
+
+it exists.
+The user downloads a compressed repository that gathers folders and
+a csv le. A folder contains at least one visible image and its corre-
+sponding ground truth. It can also contain the associated infrared image
+if it exits. It has all the images (visible, ground truth and infrared) of the
+same sequence. The csv le gives all the descriptor values of each image
+identied by a specic number.
+In order that this database evolves over time, the website proposes an
+interface for the upload of new images or sequences and the recording of
+the associated data (Fig. 5). These resources are not directly integrated
+with the database and follow a procedure of validation and image pro-
+cessing before their publication on the website. Thus, the database can
+grow in the future and contain more wildland re images through users
+contribution.
+
+3. Fire picture analysis
+
+This section presents examples of processing and analysis that can be
+carried out using the dataset.
+
+3.1. Construction of a pixel learning set
+
+Some pixel detection methods like [18,19,21] needs labeled re
+pixels for training. Following is the description of the method we have
+used in building the pixels learning set. Fifty images of the dataset were
+chosen randomly among the ve hundred images. The re pixels of these
+fty images were sorted in six categories depending to the color of the
+pixels (red, orange, white-yellow) and the presence of smoke. The non
+re pixels were classied using three levels of intensity (low, medium
+
+and high). 500 000 non re pixels and 500 000 re pixels were chosen as
+follows. For each category, each pixel was represented with a feature
+vector constructed from color features extracted using different color
+spaces. An average feature vector was computed for each category and
+the pixels were sorted based on the distance between their feature vectors
+and the average feature vector. The pixels were then sampled uniformly
+to obtain the desired number for each category. According to the ob-
+servations of Table 3, the pixel distribution was built as follows: 50% of
+orange pixels, 33% of red pixels and 17% of white-yellow pixels for re
+pixels, and 20% of low intensity pixels, 40% of medium intensity pixels
+and 40% of high intensity pixels for non-re pixels. To make it conve-
+nient for the processing step, the learning pixels can be organized in
+order to create an image of size 1000  1000 whose upper half corre-
+sponds to the ¡±re¡± pixels and the lower half corresponds to the ¡±non-
+re¡± pixels. This image presented in Fig. 6 shows the different categories:
+region N 1 corresponds to the pixels ¡±red with smoke¡±, region N 2
+contains the pixels ¡±red without smoke ¡±, region N3 includes the ¡±orange
+with smoke¡± pixels, region N 4 corresponds to the ¡±smokeless orange¡±
+pixels, region N 5 represent ¡±yellow-white pixels¡± with smoke and region
+N 6 corresponds to ¡±smoke-free yellow-white¡± pixels. We can notice that
+the ¡±non-re¡± pixels of ¡±low¡± and ¡±medium luminosity¡± are composed of
+many pixels with green color (which can be assumed to originate from
+the vegetation in the images). The ¡±non-re¡± pixels with ¡±high bright-
+ness¡± represent the color of the sky and the smoke.
+
+3.2. Performance analysis of pixel detection methods
+
+The dataset can be used to analyse the performance of re pixel
+detection
+algorithms
+based
+on re
+pixels
+and
+environment
+
+192
+
+T. Toulouse et al.
+
+Fire Safety Journal 92 (2017) 188¨C194
+
+Fig. 5. Screenshot of the Corsican Fire Database browser page to upload images.
+
+Table 4
+Scores of three state-of-art re detection methods.
+
+Phillips [19]
+
+Chen [29]
+
+Horng [26]
+
+Red
+
+Smoke
+
+No smoke
+
+Orange
+
+Smoke
+
+No smoke
+
+Yellow
+
+Smoke
+
+Fig. 6. Pixels of the pixel learning set. Nine categories are visible: (1) red with smoke, (2)
+red without smoke, (3) orange with smoke, (4) orange without smoke, (5) yellow-white
+with smoke, (6) yellow-white without smoke, (7) low brightness, (8) medium bright-
+ness and (9) high brightness. (For interpretation of the references to colour in this gure
+legend, the reader is referred to the web version of this article.)
+
+All
+
+No smoke
+
+Low
+Medium
+High
+Low
+Medium
+High
+Low
+Medium
+High
+Low
+Medium
+High
+Low
+Medium
+High
+Low
+Medium
+High
+
+0.95
+0.92
+0.89
+0.93
+0.90
+0.87
+0.98
+0.95
+0.92
+0.97
+0.94
+0.91
+0.87
+0.85
+0.81
+0.97
+0.95
+0.91
+0.91
+
+0.80
+0.78
+0.73
+0.85
+0.83
+0.78
+0.98
+0.96
+0.91
+0.97
+0.95
+0.90
+0.94
+0.92
+0.86
+0.98
+0.96
+0.91
+0.88
+
+0.87
+0.78
+0.86
+0.89
+0.80
+0.87
+0.90
+0.81
+0.89
+0.78
+0.69
+0.76
+0.78
+0.69
+0.76
+0.58
+0.50
+0.56
+0.78
+
+characteristics. The performance of
+the methods are obtained by
+considering standard metrics that compare the re areas obtained by
+pixel detection to the ones obtained manually (the ground truth). In this
+paper, the F-score [41] is used. As each tested image has associated de-
+scriptors, the scores of pixel detection methods can be obtained accord-
+ing to the images characteristics as it is shown in Table 4 for three
+different state-of-the-art techniques. From these experimental tests, we
+can see that for the red colored res, the technique proposed in Ref. [19]
+is the best performing overall. For the orange colored res the best
+performing techniques are [19] and [29]. For yellow res [29], is the best
+performing. The global results on all this colored res (with and without
+smoke) show that the best performing technique overall is [19] with an F-
+score of 0.91 followed by Ref. [29] with an F-score of 0.88.
+This data are useful to identify the strengths and weaknesses of the
+algorithms and to benchmark them. If we need to benchmark re pixel
+detection is a specic context images (for example re pixels with red
+dominant color and medium smoke), it is possible to get the corre-
+sponding set of images using the web interface of the database.
+
+4. Conclusion
+
+The Corsican Fire Database aims to provide a common dataset of
+multi-modal wildre images and videos. This dataset can be used for
+research and training. It also provides categories of re and background
+properties. The proposed wildland re images database was designed to
+be an evolving database over time. It contains visible spectrum and near
+infrared (NIR) images in its current form. Still it was designed to
+accommodate other spectrums in the future. The visible spectrum color
+images are by far the most used in current research in the area of forest
+res and the proposed database provides a large number of images
+captured in this spectrum. Additionally, this database contains video
+sequences captured simultaneously in color and NIR spectrums. These
+image sequences can serve in the study of multispectral fusion algo-
+rithms, the analysis of the performance of re segmentation in these
+spectrums, the use of motion for re segmentation, etc. The user-friendly
+web interface permits the selection of a subset of images based on
+
+193
+
+T. Toulouse et al.
+
+Fire Safety Journal 92 (2017) 188¨C194
+
+different criteria. The users can also contribute to the database by
+uploading their own images, image sequences (visible, infrared, etc.),
+corresponding ground-truth, and the image parameters. The newly added
+images are processed using algorithms developed by the authors for
+further categorization within the database. All these aspects make the
+proposed database an interesting tool for researchers and professionals in
+the eld of wildland re study.
+
+Funding sources
+
+The present work was supported in part by the French Ministry of
+Research, the Corsican Region and the CNRS, under Grant CPER
+2007-2013.
+
+References
+
+[1] Promethee2 : the Database on Forest Fire in Mediterranean Region in France.
+(Accessed le 13 August 2015).
+[2] FAO, Enlisting Communities in Wildre Prevention, 2010 (accd le 13 August 2015).
+[3] EFFIS. European forest re information system. http://forest.jrc.ec.europa.eu/efs/
+. (accd le 13 August 2015).
+[4] Peter L. Fuglem, Kelvin G. Hirsch, Canadian Council of Forest Ministers, Strategie
+canadienne en matiere de feux de for^et: syntheses de fond, analyses et perspectives,
+2006.
+[5] J. Ramiro Mart¨ªnez-de Dios, Luis Merino, An¨ªbal Ollero, Fire detection using
+autonomous aerial vehicles with infrared and visual cameras, in: Proceedings of the
+16th IFAC World Congress, 2005.
+[6] D. Stipanicev, T. Vuko, D. Krstinic, M. Stula, L. Bodrozic, Forest re protection by
+advanced video detection system-croatian experiences, in: Third TIEMS Workshop-
+improvement of Disaster Management System, Trogir, 2006.
+[7] Steven Verstockt, Peter Lambert, Rik Van de Walle, Bart Merci, Bart Sette, State of
+the art in vision-based re and smoke detection, in: 14th International Conference
+on Automatic Fire Detection, vol. 2, University of Duisburg-Essen. Department of
+Communication Systems, 2009, pp. 285¨C292.
+[8] Ingram Thomas Loane, James Stanley Goul, Aerial Suppression of Bushres: Cost-
+benet Study for Victoria, National Bushre Research Unit, CSIRO Division of
+Forest Research, 1986.
+[9] G.F. George, C.W. Ewart, W.C. Friauf, Flir: a promising tool for air-attack
+supervisors, Fire Manag. Notes 50 (1989) 26¨C29.
+[10] Yolanda Prez, Elsa Pastor, Eullia Planas, Matt Plucinski, Jim Gould, Computing
+forest res aerial suppression effectiveness by IR monitoring, Fire Saf. J. 46 (1¨C2)
+(January 2011) 2¨C8.
+[11] J.R. Martnez-de Dios, L. Merino, F. Caballero, A. Ollero, Automatic forest-re
+measuring using ground stations and unmanned aerial systems, Sensors 11 (6)
+(2011) 6328¨C6353.
+[12] Francisco Rodriguez, Amador Moreno Robles, D-09-04.The Infrared Imager: its Use
+for Wildland Fire Monitoring, Technical report, EUROFIRELAB, 2004.
+[13] Lucile Rossi, Jacques Henri Balbi, Jean Louis Rossi, Thierry Marcelli, Antoine Pieri,
+Front re propagation model: use of mathematical model and vision technology,
+Adv. Technol. Res. - Dev. - Appl. (July 2006) 745¨C760.
+[14] A. Enis etin, Kosmas Dimitropoulos, Benedict Gouverneur, Nikos Grammalidis,
+Osman G¨¹nay, Y Hakan Habibolu, B.U. ur Toreyin, Steven Verstockt, Video re
+detection¨Creview, Digit. Signal Process. 23 (6) (2013) 1827¨C1843.
+[15] Paulo Vinicius, Koerich Borges, Joceli Mayer, Ebroul Izquierdo, Efcient visual re
+detection applied for video retrieval, in: 16th European Signal Processing
+Conference, IEEE, 2008, pp. 1¨C5.
+[16] Turgay Celik, Hasan Demirel, Huseyin Ozkaramanli, Mustafa Uygurolu, Fire
+detection using statistical color model in video sequences, J. Vis. Commun. Image
+Represent. 18 (2) (April 2007) 176¨C185.
+
+[17] Jean-Franois Collumeau, Helene Laurent, Adel Haane, Khaled Chetehouna, Fire
+scene segmentations for forest re characterization: a comparative study, in: 18th
+IEEE International Conference on Image Processing (ICIP), 2011, pp. 2973¨C2976.
+[18] Byoung Chul Ko, Kwang-Ho Cheong, Jae-Yeal Nam, Fire detection based on vision
+sensor and support vector machines, Fire Saf. J. 44 (3) (2009) 322¨C329.
+[19] Walter Phillips III, Mubarak Shah, Niels da Vitoria Lobo, Flame recognition in
+video, Pattern Recognit. Lett. 23 (1) (2002) 319¨C327.
+[20] B. Uur Toreyin, Yiithan Dedeolu, Uur G¨¹d¨¹kbay, A. Enis etin, Computer
+vision based method for real-time re and ame detection, Pattern Recognit. Lett.
+27 (1) (January 2006) 49¨C58.
+[21] Turgay Celik, Hasan Demirel, Fire detection in video sequences using a generic
+color model, Fire Saf. J. 44 (2) (2009) 147¨C158.
+[22] De-Chang Wang, Xuenan Cui, Eunsoo Park, Changlong Jin, Hakil Kim, Adaptive
+ame detection using randomness testing and robust features, Fire Saf. J. 55
+(January 2013) 116¨C125.
+[23] Steve Rudz, Khaled Chetehouna, A. Haane, Helene Laurent, Olivier Sero-
+Guillaume, Investigation of a novel image segmentation method dedicated to forest
+re applications, Meas. Sci. Technol. 24 (7) (2013) 075403.
+[24] Giuseppe Marbach, Markus Loepfe, Thomas Brupbacher, An image processing
+technique for re detection in video images, Fire Saf. J. 41 (4) (2006) 285¨C289.
+[25] Turgay Celik, Fast and efcient method for re detection using image processing,
+ETRI J. 32 (6) (2010) 881¨C890.
+[26] Wen-Bing Horng, Jian-Wen Peng, Chih-Yuan Chen, A new image-based real-time
+ame detection method using color analysis, in: Networking, Sensing and Control
+Proceddings, IEEE, 2005, pp. 100¨C105.
+[27] Che-Bin Liu, Narendra Ahuja, Vision based re detection, in: Proceedings of the
+17th International Conference on Pattern Recognition,(ICPR), vol. 4, IEEE, 2004,
+pp. 134¨C137.
+[28] Juan Chen, Yaping He, Jian Wang, Multi-feature fusion based fast video ame
+detection, Build. Environ. 45 (5) (May 2010) 1113¨C1122.
+[29] Thou-Ho Chen, Ping-Hsueh Wu, Yung-Chuen Chiou, An early re-detection method
+based on image processing, in: International Conference on Image Processing,
+(ICIP), vol. 3, IEEE, 2004, pp. 1707¨C1710.
+[30] Tom Toulouse, Lucile Rossi, Turgay Celik, Moulay Akhlou, Automatic re pixel
+detection using image processing: a comparative analysis of rule-based and machine
+learning-based methods, Signal, Image Video Process. (2015) 1¨C8.
+[31] Tom Toulouse, Lucile Rossi, Moulay Akhlou, Turgay Celik, Xavier Maldague,
+Benchmarking of Wildland Fire Colour Segmentation Algorithms, IET Image
+Processing, August 2015.
+[32] Forest health, natural resources, re, trees, wildre, silviculture photos. http://
+www.forestryimages.org/. (Accessed: 09 December 2015).
+[33] Home of the wildland reghter. http://www.wildlandre.com/. (Accessed: 09
+December 2015)..
+[34] Nobuyuki Otsu, A threshold selection method from gray-level histograms,
+Automatica 11 (285¨C296) (1975) 23¨C27.
+[35] T.W. Ridler, S. Calvard, Picture thresholding using an iterative selection method,
+IEEE Trans. Syst. Man Cybern. 8 (8) (1978) 630¨C632.
+[36] Josef Kittler, John Illingworth, Minimum error thresholding, Pattern Recognit. 19
+(1) (1986) 41¨C47.
+[37] L. Rossi, T. Toulouse, M. Akhlou, A. Pieri, Y. Tison, Estimation of spreading re
+geometrical characteristics using near infrared stereovision, in: IS&T/SPIE
+Electronic Imaging, March 2013 pages 86500A¨C86500A.
+[38] Tom Toulouse, Estimation par stereovision multimodale de caracteristiques
+geometriques d¡¯un feu de vegetation en propagation (Ph.D. thesis), University of
+Corsica, November 2015.
+[39] Marcos VN. Bedo, Gustavo Blanco, Willian D. Oliveira, Mirela T. Cazzolato, Alceu
+F. Costa, Jose F. Rodrigues Jr., Agma JM. Traina, Caetano Traina Jr., Techniques for
+effective and efcient re detection from social media images, in: 17th
+International Conference on Enterprise Information System, 2015, pp. 34¨C45.
+[40] Renaud Peteri, Sandor Fazekas, Mark J. Huiskes, DynTex : a comprehensive
+database of dynamic textures, Pattern Recognit. Lett. (2010).
+[41] Cornelis J. Van Rijsbergen, Information Retrieval, second ed., Butterworth-
+Heinemann, London, 1979.
+
+194
+

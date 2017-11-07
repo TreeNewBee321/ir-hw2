@@ -1,0 +1,2720 @@
+Off-grid DOA estimation with nonconvex regularization via joint sparse representation 
+
+
+
+a , 
+
+Qi Liu 
+
+, Hing Cheung So 
+a , 1 , Yuantao Gu 
+
+b 
+
+a Department of Electronic Engineering, City University of Hong Kong, Hong Kong, China 
+b Department of Electronic Engineering and Tsinghua National Laboratory for Information Science and Technology (TNList), Tsinghua University, Beijing, 
+China 
+
+article
+
+info
+
+Article history: 
+Received 6 March 2017 
+Revised 21 April 2017 
+Accepted 17 May 2017 
+Available online 18 May 2017 
+
+Keywords: 
+DOA estimation 
+Off-grid model 
+Sparse representation 
+Nonconvex regularization 
+
+
+abstract
+
+In this paper, we address the problem of direction-of-arrival (DOA) estimation using sparse represen- 
+tation. As the performance of on-grid DOA estimation methods will degrade when the unknown DOAs 
+are not on the angular grids, we consider the off-grid model via Taylor series expansion, but dictionary 
+mismatch is introduced. The resulting problem is nonconvex with respect to the sparse signal and per- 
+turbation matrix. We develop a novel objective function regularized by the nonconvex sparsity-inducing 
+penalty for off-grid DOA estimation, which is jointly convex with respect to the sparse signal and pertur- 
+bation matrix. Then alternating minimization is applied to tackle this joint sparse representation of the 
+signal recovery and perturbation matrix. Numerical examples are conducted to verify the effectiveness of 
+the proposed method, which achieves more accurate DOA estimation performance and faster implemen- 
+tation than the conventional sparsity-aware and state-of-the-art off-grid schemes. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+Direction-of-arrival (DOA) estimation has been extensively stud- 
+ied over the past few decades because of its fundamental role 
+in many signal processing areas ranging from multiple-input 
+multiple-output radar, mobile and wireless communications, chan- 
+nel estimation and sonar to acoustic tracking [1¨C3] . 
+Recently, sparse representation has attracted increasing inter- 
+est in statistical signal analysis and parameter estimation. In [4] , 
+the concept of sparse representation is extended to address the 
+problem of DOA estimation problem and 
+-SVD algorithm is pro- 
+posed to reduce the dimension of observations via singular value 
+decomposition (SVD), which can achieve super-resolution perfor- 
+mance. A reweighted 
+norm penalty algorithm [5] exploits the 
+coecients of the reduced dimension Capon spatial spectrum in 
+constructing the weight matrix to enforce the sparsity of solution, 
+which involves a high computational burden. The methods men- 
+tioned above have shown improvements in DOA estimation, but 
+most of them are based on on-grid DOA 
+norm constrained min- 
+imization. Since in practice the unknown DOAs are not always ex- 
+actly on the sampling grids, their DOA estimation performance will 
+degrade due to errors caused by the mismatches. 
+To circumvent this issue, off-grid DOA estimation methods have 
+been developed [6¨C12] . In [6] , a gridless sparse approach via 
+reweighted atomic norm minimization is proposed for off-grid 
+DOA estimation. In [7,8] , alternating minimization is exploited to 
+solve for sparse signal and dictionary mismatch simultaneously, 
+but it suffers from slow convergence. A noise subspace tting- 
+based off-grid DOA estimation method is derived in [9] using 
+second-order Taylor approximation to achieve higher modeling ac- 
+curacy. In [10] , an analytical performance bound on joint sparse 
+recovery is given and a fast iterative shrinkage-threshold algorithm 
+is implemented to tackle joint sparse recovery with structured dic- 
+tionary mismatches. In [11] , co-prime arrays are considered to in- 
+crease degrees of freedom for the grid mismatch and sample co- 
+variance matrix is utilized to reduce the effect of noise variance. 
+In [12] , a computationally ecient root sparse Bayesian learning 
+(RSBL) method is proposed to eliminate the modeling error when 
+using coarse grid. 
+Compared with the convex function regularized by least squares 
+problem, it has been demonstrated that utilizing nonconvex 
+functions, such as smoothed 
+quasi-norm [13] , 
+ p quasi-norm 
+[14] and weak convexity [15] , can achieve better sparse signal 
+recovery. In this paper, we develop a novel objective function 
+regularized by the nonconvex sparsity-inducing penalty for off- 
+grid DOA estimation. Our motivation is twofold: (i) to overcome 
+the limitation of the conventional sparsity-based DOA estimation 
+methods that the unknown angles belong to predened discrete 
+angular grids; and (ii) a proper nonconvex regularization is able to 
+achieve better performance compared with convex relaxation em- 
+ploying the 
+norm function. In this study, we rst introduce the 
+off-grid model into DOA estimation via rst-order Taylor series ex- 
+pansion, which is equivalent to the dictionary mismatch, and then 
+devise an objective function regularized by the nonconvex sparsity- 
+inducing penalty with the least absolute shrinkage and selection 
+operator (LASSO) [16] . The resulting objective function is jointly 
+convex with respect to the sparse signal and perturbation ma- 
+trix. We follow the rationale of alternating minimization to obtain 
+the sparse signal by alternating direction method of multipliers 
+(ADMM) [17] with incorporating the proximity operator for a xed 
+perturbation matrix, then update perturbation matrix via xing the 
+sparse signal and so on. Our results demonstrate that the proposed 
+method outperforms the conventional sparsity-aware and state-of- 
+the-art off-grid schemes. 
+The rest of this paper is organized as follows. In Section 2 , the 
+problem of DOA estimation using sparse representation is formu- 
+lated. Section 3 introduces the off-grid model and presents our 
+DOA estimation method. In Section 4 , numerical examples are con- 
+ducted to evaluate the performance of the proposed algorithm. 
+Section 5 concludes this paper. 
+Notation : Lowercase bold-face and uppercase bold-face letters 
+¡¤) 
+¡¤) 
+¡¤) 
+represent vectors and matrices, respectively. ( 
+T and ( 
+H are 
+pseudo-inverse, transpose and conjugate transpose operators, re- 
+¡¤) denotes the vectorization operator which stacks 
+spectively. vec( 
+¡¤) is a diagonal matrix composed 
+a matrix column by column. diag( 
+of the elements of a column vector. 
+(cid:2) denotes the Kronecker prod- 
+¡¤|| 1 
+¡¤|| 2 
+¡¤|| F denote the 
+uct operator. || 
+, || 
+and || 
+norm, 
+norm and 
+Frobenious norm, respectively. 
+ and 
+ take the real and imagi- 
+nary parts of a complex variable, respectively. I K denotes the K 
+K identity matrix. 
+
+(cid:2)
+
+ 1 
+
+ , ( 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 2 
+
+(cid:3)
+
+(cid:4)
+
+¡Á
+
+2. Problem statement 
+
+2.1. Signal model 
+
+Consider a uniform linear array (ULA) equipped with M sensors. 
+The inter-element spacing is half-wavelength. The origin is set at 
+the middle point of the ULA. Assume that K narrowband signals 
+from the far-eld impinge onto the ULA from unknown and dis- 
+¦ÈK . The ULA response at the k th target can 
+tinct angles of 
+be expressed as 
+
+¦È1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+a 
+
+(¦È
+
+k 
+
+)
+
+=
+
+ [ e 
+
+ j¦Ð (M1)
+
+2 
+
+(¦È
+cos 
+
+k 
+
+)
+
+ ,
+.
+.
+.
+,
+¡Á 1 observation vector is: 
+The M 
+,
+,
+.
+.
+.
+,
+
+ e 
+
+j¦Ð (M1)
+2 
+
+(¦È
+cos 
+
+k 
+
+)
+
+ ] 
+
+T 
+
+(1) 
+
+y t 
+
+=
+
+ A 
+
+(¦È )
+
+ s t 
+
++
+
+ n t 
+
+ t 
+
+=
+
+ 1 
+
+ T 
+
+(2) 
+
+where y t 
+(t )
+(t )] 
+(¦È1 
+)
+(¦ÈK 
+)] is the ar- 
+(t )
+(t )] 
+T contains the source sig- 
+ray steering matrix, s t 
+nal amplitudes, n t 
+(t )
+(t )] 
+T is the complex indepen- 
+dent white Gaussian noise vector with zero mean and covariance 
+¦Ò 2 I M . Here, T is the number of snapshots, and y m ( t ) and n m ( t ), 
+m 
+ are the output and measurement noise of the m th 
+sensor at time t , respectively. 
+Collecting the T snapshots, the matrix form of (2) can be for- 
+mulated as a multiple measurement vectors (MMV) model, given 
+by 
+
+=
+
+ [ y 1 
+
+,
+
+...,
+
+ y M 
+ [ s 1 
+ [ n 1 
+
+T ,
+
+ A 
+
+(¦È )
+
+=
+
+ [ a 
+ s K 
+ n M 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ a 
+
+=
+
+,
+. . .
+
+. . .
+,
+
+,
+
+=
+
+,
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+ M,
+
+Y 
+
+=
+
+ A 
+
+(¦È )
+
+ S 
+
++
+
+ N 
+
+(3) 
+K¡ÁT and N 
+
+where Y 
+
+=
+
+ [ y 1 
+ n T ] 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ y T ] 
+
+¡Ê
+
+C
+
+M¡ÁT ,
+
+ S 
+
+=
+
+ [ s 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ s T ] 
+
+¡Ê
+
+C
+
+=
+
+[ n 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¡Ê
+
+C
+
+M¡ÁT . 
+
+In our study, we assume that K is known a priori and employ 
+¡Á K measurement matrix Y sv by thresholding the K largest 
+the M 
+
+¡Á T measurement matrix Y to reduce 
+singular values of the M 
+computational complexity in directly processing (3) , which is anal- 
+ogous to the 
+-SVD algorithm [4] . In summary, the problem of 
+DOA estimation in sparse representation framework is to nd the 
+¦È ). 
+unknown DOAs given K , Y sv and the mapping 
+
+(cid:2)
+
+ 1 
+
+¦È ¡ú
+
+ A ( 
+
+2.2. DOA estimation in sparse representation framework 
+
+Let the set 
+ be the discretized sampling grids of 
+all potential directions in the admissible DOA range [0, 
+¦Ð ], where 
+(cid:7) M 
+N is the number of grid points and typically N 
+ K . When 
+the true DOAs are located at (or close to) the sampling grids, the 
+typical DOA estimation model based on the sparse representation 
+framework is linear: 
+
+ =
+
+{
+
+ ¦È1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ ¦ÈN 
+
+}
+
+>
+
+Y sv 
+
+=
+
+ A 
+
+(
+
+ ¦È )
+
+  S 
+
++
+
+  N 
+
+(4) 
+
+N¡ÁK is the sparse signal matrix and A 
+where  S 
+(
+ ¦È )
+M¡ÁN . The K rows in  S with largest mag- 
+(
+)
+)] 
+[ a 
+ K rows 
+nitudes are identical to those of S , and the remaining N 
+in  S are regarded as zero. In compressed sensing theory, the main 
+task in (4) is to recover  S from the underdetermined system, and 
+DOA estimation is equivalent to nding the positions of K nonzero 
+rows in  S . The sparse signal recovery can be formulated as the 
+norm constrained minimization problem: 
+
+¡Ê
+
+C
+ ¦ÈN 
+
+=
+
+ ¦È1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ a 
+
+(
+
+¡Ê
+
+C
+
+(cid:2)
+
+ 0 
+
+((cid:2)
+
+ 0 
+
+)
+
+ : min 
+
+ S 
+¡¤|| row, 0 
+
+(cid:8)
+
+  S 
+
+(cid:8)
+
+ row,
+
+ 0 
+
+s.t .
+
+ Y sv 
+
+=
+
+ A 
+
+(
+
+ ¦È )
+
+  S 
+
++
+
+  N 
+
+(5) 
+
+where || 
+counts the nonzero rows. 
+Since 
+norm function is highly discontinuous and nonconvex, 
+solving the 
+norm constrained minimization problem is known to 
+be NP-hard in general. To address this issue, the 
+norm, which is 
+the closest convex norm to the 
+norm, is employed instead. Then 
+the sparse signal recovery problem under the 
+norm function is: 
+
+(cid:2)
+
+ 0 
+
+(cid:2)
+
+ 0 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 0 
+
+(cid:2)
+
+ 1 
+
+((cid:2)
+
+ 1 
+
+)
+
+ : min 
+
+ S 
+
+(cid:8)
+
+  s 
+
+(cid:2)
+
+ 2 (cid:8)
+
+ 1 
+
+s.t .
+
+(cid:8)
+
+ Y sv 
+
+ A 
+(
+
+ ¦È )
+
+  S 
+
+(cid:8)
+
+2 
+F 
+
+¡Ü ¦Ç
+
+(6) 
+
+¦Ç is an upper-bound on the noise power, and  s 
+where 
+ 2 is a func- 
+tion of  S whose the i th element equals the Frobenius norm of the 
+i th row of  S 
+ i.e., [  s 
+(i,
+ :)
+ 2 . Numerical methods [4,18] have 
+been presented for (6) . However, larger coecients are penalized 
+more heavily in 
+norm than smaller coecients, which results to 
+that the sparsest solution of 
+norm penalty does not approximate 
+the 
+norm penalty. Nevertheless, reweighted 
+norm minimiza- 
+tion algorithms are designed to tackle this imbalance in (6) : 
+ A 
+(
+
+(cid:2)
+
+,
+
+(cid:2)
+
+ 2 ] i 
+
+=
+
+(cid:8)
+
+  S 
+
+(cid:8)
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 0 
+
+(cid:2)
+
+ 1 
+
+(
+
+ W 
+
+(cid:2)
+
+ 1 
+
+)
+
+ : min 
+
+ S 
+
+(cid:8)
+
+ W 
+
+(
+
+  s 
+
+)
+
+(cid:2)
+
+ 2 (cid:8)
+
+ 1 
+
+s.t .
+
+(cid:8)
+
+ Y sv 
+
+ ¦È )
+
+  S 
+
+(cid:8)
+
+2 
+F 
+
+¡Ü ¦Ç
+
+(7) 
+
+where W is a weighting matrix and has different forms according 
+to different optimization criteria [19,20] . 
+To this end, there are two main drawbacks of the DOA esti- 
+mation methods based on 
+norm minimization: (i) they recover 
+the DOAs only if the targets exactly correspond to the discretized 
+sampling grids. However, the target positions are not precisely on 
+the grids in practical scenarios and thus DOA estimation bias ex- 
+ists. Moreover, most conventional sparsity-based DOA estimation 
+methods tackle this problem by using dense sampling grids, which 
+lead to high computational complexity and the estimated DOAs 
+are still constrained on the grids; (ii) they apply toolbox to calcu- 
+late the 
+norm constrained minimization problem, such as CVX 
+[21] and Sedumi [22] , which cannot tackle the nonconvex opti- 
+mization problem and is time-consuming, especially for large data 
+size. 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+Q. Liu et al. / Signal Processing 140 (2017) 171¨C176 
+
+173 
+
+3. Algorithm development 
+
+3.1. Off-grid model 
+
+In real scenario, no matter how ne the grid points are, DOAs 
+are almost not located exactly on the discretized sampling grids, 
+which is regarded as the off-grid problem. To address this, off- 
+grid DOA model has been suggested and there are two main ideas. 
+The rst applies atomic norm directly on the continuous parameter 
+space for gridless DOA estimation [6,23] , while the second mod- 
+els the off-grid DOA via Taylor series expansion and then handles 
+the resulting dictionary mismatch [7,10¨C12] . Note that our devel- 
+opment is based on the latter. Here, DOA is decomposed into two 
+parts, namely an integer part of DOA on the grid and a fraction 
+part to complement the on-grid model. Suppose 
+ K }
+for some k 
+ . In such a case, DOA 
+can be rewritten 
+ ¦È
+ ¦È
+as 
+ where 
+denotes the nearest grid to 
+and 
+is 
+the grid offset. 
+(
+According to the trigonometric identities, the term cos 
+is approximated as 
+
+¦È
+
+k 
+
+/
+
+¡Ê
+
+{
+
+ ¦È1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ ¦ÈN 
+
+}
+
+¡Ê
++
+
+{
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦È
+
+k 
+
+¦È
+
+k 
+
+=
+
+k 
+
+¦Ä
+
+k 
+
+,
+
+k 
+
+¦È
+
+k 
+
+¦Ä
+
+k 
+
+ ¦È
+
+k 
+
++
+
+¦Ä
+
+k 
+
+)
+
+cos 
+(
+
+ ¦È
+
+k 
+
++
+
+¦Ä
+
+k 
+
+)
+
+=
+
+ cos 
+(
+¡Ö cos 
+(
+By utilizing rst-order Taylor series expansion, the steering vec- 
+tor for the off-grid DOA model is given by 
+¡Ö a 
+(
+where b 
+(
+ ¦È
+ is the rst derivative of a 
+(
+ ¦È
+ with respect to 
+ ¦È
+. Then 
+the dictionary matrix based on the off-grid DOA model can be cor- 
+rected as 
+¡Ö A 
+(
+where 
+matrix. 
+As a result, the off-grid DOA estimation based on sparse repre- 
+sentation framework is formulated as: 
+]  S 
+
+ ¦È
+)
+
+k 
+
+ cos 
+
+(¦Ä
+
+k 
+
+)
+
+ sin 
+(
+k sin 
+(
+ ¦È
+)
+
+ ¦È
+)
+
+k 
+
+ sin 
+
+(¦Ä
+
+k 
+
+)
+
+ ¦È
+)
+
+k 
+
+ ¦Ä
+
+k 
+
+(8) 
+
+a 
+
+(¦È
+
+k 
+
+)
+
+ ¦È
+)
+
+k 
+
++
+
+ b 
+
+(
+
+ ¦È
+)(¦È
+
+k 
+
+k 
+
+  ¦È
+)
+
+k 
+
+(9) 
+
+k 
+
+)
+
+k 
+
+)
+
+k 
+
+(¦È )
+A 
+
+ ¦È )
+
++
+
+ B 
+
+(
+
+ ¦È )
+
+
+
+(10) 
+
+ =
+
+(¦Ä)
+ diag 
+
+ with 
+
+¦Ä =
+
+ [ 
+
+¦Ä1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦ÄN ] 
+
+T denotes the perturbation 
+
+Y sv 
+
+=
+
+ [ A 
+
+(
+
+ ¦È )
+
++
+
+ B 
+
+(
+
+ ¦È )
+
++
+
+  N 
+
+(11) 
+
+It is well known that a sparse solution can be obtained by solv- 
+ing a least squares problem with 
+norm regularization, which is 
+ [ A 
+(
+ ¦È )
+(
+ ¦È )
+]  S 
+known as the LASSO: min 
+where 
+ 0 is the trade-off parameter. However, the resulting 
+problem is dicult to solve due to the fact that it is nonconvex 
+with respect to  S and 
+. Therefore, it cannot be directly handled 
+by convex optimization toolboox. Most recently published works 
+[12,24,25] tackle it from a sparse Bayesian inference perspective 
+where the Laplace prior is exploited for the signal of interest, 
+which involve high computational complexity. 
+
+(cid:2)
+
+ 1 
+
+ S 
+
+(cid:8)
+
+ Y sv 
+
++
+
+ B 
+
+(cid:8)
+
+2 
+F 
+
++
+
+¦Ó (cid:8)
+
+  S 
+
+(cid:2)
+
+ 2 (cid:8)
+
+ 1 
+
+,
+
+¦Ó >
+
+3.2. Off-grid DOA estimation with nonconvex regularization 
+
+To overcome the limitation of the conventional sparsity-based 
+DOA estimation methods, off-grid DOA model is considered, but it 
+is a challenging task because of the presence of the mismatches. 
+We introduce the sparse regularized least squares (SRLS) with 
+norm to mitigate the mismatches. As a result, sparse signal is ob- 
+tained by combining the LASSO with the SRLS: 
+ [ A 
+(
+
+(cid:2)
+
+ 2 
+
+min 
+
+ S 
+
+
+,
+
+¦Ó (cid:8)
+
+  s 
+
+(cid:2)
+
+ 2 (cid:8)
+
+ 1 
+
++
+
+(cid:8)
+
+ (cid:8)
+
+2 
+F 
+
++
+
+(cid:8)
+
+ Y sv 
+
+ ¦È )
+
++
+
+ B 
+
+(
+
+ ¦È )
+
+]  S 
+
+(cid:8)
+
+2 
+F 
+
+(12) 
+
+It has been demonstrated in [15,26] that the sparsity pattern 
+can be better induced over the 
+penalty conunterpart, with a 
+proper nonconvex penalty. As far as we know, the SRLS approach 
+has not yet been studied in combination with nonconvex penalty 
+for an underdetermined system. Via adding a nonconvex function 
+
+(cid:2)
+
+ 1 
+
+¡¤), we devise an objective function regularized by the nonconvex 
+J ( 
+sparsity-inducing penalty for off-grid DOA estimation: 
+ [ A 
+min 
+¦ËJ 
+(
+(
+]  S 
+
+ S 
+
+
+,
+
+  s g 
+
+)+
+
+(cid:8)
+
+ (cid:8)
+
+2 
+F 
+
++
+
+(cid:8)
+
+ Y sv 
+
+ ¦È )
+
++
+
+ B 
+
+(
+
+ ¦È )
+
+(cid:8)
+
+2 
+F 
+
+(13) 
+
+in which  s g 
+ 0 is the regularization parameter while 
+the sparsity-inducing penalty is dened as 
+
+=
+
+  s 
+
+(cid:2)
+
+ 2 and 
+
+¦Ë >
+
+J (
+
+  s g 
+
+)
+
+=
+
+N (cid:2)
+=1 
+i 
+C
+
+F 
+(
+
+  s g i 
+
+)
+
+(14) 
+
+where F : 
+
+¡ú
+
+C
+
++
+
+ is a weakly convex sparseness function satises: 
+
+Denition 1. 
+
+(¡¤)
+(0)
+(a) F 
+¡¤) is nondecreasing on [0 
+ is even and not identically zero; 
+)
+(b) F ( 
+(c) The function  s g 
+¡¤) is weakly convex on [0 
+(
+)
+  s g is nonincreasing on [0 
+(d) F ( 
+)
+The concept of weak convexity is proposed in [27] . Basically, 
+F 
+(
+)
+ is weakly convex if and only if there exists a convex func- 
+ ¦Î  s 
+tion H (
+)
+(
+)
+when 
+ 0. From Lemma 1.1 in [26] , 
+¡¤) 
+(
+)
+¦Á as  s g 
+F 
+¡¤) can be dened as 
+ for 
+¦Î /¦Á according to Denition 1 and 
+ 0. Hence, the nonconvexity of F ( 
+and J ( 
+(14) . 
+
+=
+
+ 0 
+ F 
+
+,
+
+,
+
++
+
+¡Þ
+
+ ; 
+
+¡ú
+
+ F 
+
+  s g 
+
+/
+
+,
+
++
+
+¡Þ
+
+)
+
+ ; 
+
+,
+
++
+
+¡Þ
+
+ ; 
+
+  s g 
+
+  s g 
+  s g 
+
+=
+
+ F 
+
+  s g 
+
+2 
+g 
+
+¦Î <
+¦Á >
+
+  s g 
+
+/
+
+¡ú
+
+¡ú
+
+ 0 
+
++
+
+¦Â (cid:2)
+
+Functions satisfying Denition 1 can be found in Table 1 of [26] . 
+For example, the weakly convex sparseness function in (14) may be 
+chosen as 
+
+F 
+(
+
+  s g 
+
+)
+
+=
+
+(|
+
+  s g 
+
+|
+
+¦Â  s 
+1 
+ 1 |
+(15) 
+4 
+¡¤) is the indicator function with value 1 when the ar- 
+where 1 P ( 
+¡¤) in (15) is a continuous 
+gument satisfying P , and 0 otherwise. F ( 
+piecewise quadratic function. 
+ ¦È and 
+¦Ä in each iteration. To solve 
+Now, the task is to estimate 
+the nonconvex optimization problem in (13) , we apply alternating 
+optimization via minimizing with respect to one variable at each 
+time. To be specic, we rst update  S by keeping the unknown 
+variable 
+ xed, and then we do the same for 
+. 
+By xing 
+, the joint sparse representation problem in (13) re- 
+duces to the MMV sparse recovery problem: 
+ [ A 
+min 
+¦ËJ 
+(
+(
+]  S 
+
+2 
+g 
+
+)
+
+  s g 
+
+|¡Ü 1 
+
+¦Â
+2 
+
+(
+
+  s g 
+
+)
+
++
+
+¦Â 1 |
+
+  s g 
+
+|
+
+>
+
+1 
+2 
+¦Â
+
+(
+
+  s g 
+
+)
+
+ S 
+
+  s g 
+
+)+
+
+(cid:8)
+
+ Y sv 
+
+ ¦È )
+
++
+
+ B 
+
+(
+
+ ¦È )
+
+(cid:8)
+
+2 
+F 
+
+(16) 
+
+which can be solved using convex optimization toolbox, such as 
+SeDuMi and CVX. Nevertheless, it is time consuming especially 
+when the numbers of sensors and targets are large. For a more 
+ecient implementation, we apply variable splitting and introduce 
+the auxiliary variable z . Then we reformulate (16) as: 
+  A  s 
+¦ËJ 
+(z 
+min 
+
+z 
+
+)+
+
+(cid:8)
+
+  y 
+
+(cid:8)
+
+2 
+2 
+
+s.t .
+
+ z 
+
+=
+
+  s 
+
+(17) 
+
+where  y 
+
+=
+=
+
+ vec 
+
+(Y s v 
+=1 
+k 
+
+)
+
+=
+
+ [ y 
+
+T 
+s v 1 
+
+,
+
+ y 
+
+T 
+s v 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ y 
+
+T 
+s v K 
+
+] 
+
+T ,
+
+  s 
+
+=
+
+ vec 
+(
+
+  S 
+
+)
+
+=
+
+ [  s 
+
+T 
+1 
+
+,
+
+  s 
+
+T 
+2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ s 
+
+T 
+K 
+
+] 
+
+T ,
+
+  s g 
+
+(cid:3)
+
+ (cid:4)
+
+ K 
+
+(
+
+  s 
+
+(k 
+))
+
+2 and 
+ A 
+ ¦È )
+ ¦È )
+] . 
+ADMM blends the decomposability of dual ascent with the su- 
+perior convergence property of the multiplier method. We exploit 
+this property with incorporating the proximity operator of weakly 
+function into the framework of augmented Lagrangian to solve 
+(17) such that each iterative step corresponds to a convex opti- 
+mization. 
+The augmented Lagrangian is: 
+  A  s 
+
+=
+
+ I K 
+
+(cid:2) [ A 
+
+(
+
++
+
+ B 
+
+(
+
+L 
+(
+
+  s 
+ z 
+
+,
+
+,
+
+¦Ì)
+
+=
+
+¦ËJ 
+(z 
+
+)+
+
+(cid:8)
+
+  y 
+
+(cid:8)
+
+2 
+2 
+
++
+
+¦ÌT (
+
+ z 
+
+  s )
+
++
+
+¦Ã
+
+2 
+where 
+ 0 is a penalty parameter which controls the conver- 
+gence rate of the algorithm. 
+Based on the decomposition-coordination procedure of the 
+ADMM, we determine 
+ from (18) via the following steps: 
+
+(cid:8)
+
+ z 
+
+  s 
+
+(cid:8)
+
+2 
+2 
+
+(18) 
+
+¦Ã >
+
+{
+
+  s 
+ z 
+
+,
+
+,
+
+¦Ì}
+
+174 
+
+Q. Liu et al. / Signal Processing 140 (2017) 171¨C176 
+
+Table 1 
+Runtime comparison. 
+
+Algorithm/Time(s)/Snapshot 
+
+T 
+
+=
+
+ 50 
+
+T 
+
+=
+
+ 200 
+
+SNR 
+
+=
+
+ 10 dB 
+
+SNR 
+
+=
+
+ -10 dB 
+
+SNR 
+
+=
+
+ 10 dB 
+
+SNR 
+
+=
+
+ -10 dB 
+
+Proposed 
+RSBL-SVD 
+OGSBI-SVD 
+ 1 -SVD 
+W 
+ 1 -SVD 
+
+0.1569 
+0.2567 
+0.2667 
+0.5594 
+1.8290 
+
+0.1608 
+0.2640 
+0.2688 
+0.5705 
+1.9113 
+
+0.1629 
+0.2515 
+0.2744 
+0.5507 
+2.0023 
+
+0.1670 
+0.2421 
+0.2782 
+0.5869 
+2.1072 
+
+(cid:2)
+
+(cid:2)
+
+1) With the obtained 
+ at the t th iteration, the update of 
+t+1 at the 
+z 
+(t 
+ 1)
+ th iteration is 
+(
+z 
+ arg min 
+L 
+
+{
+
+  s 
+
+t ,
+
+¦Ìt }
+
++
+
+t+1 =
+
+z 
+
+  s 
+
+t ,
+
+ z 
+
+,
+
+¦Ìt )
+
+=
+
+ prox ¦Ë
+
+¦Ã J 
+
+(¡¤)
+
+(cid:5)
+
+ s 
+
+t +
+
+¦Ìt 
+
+¦Ã
+
+(cid:6)
+
+(19) 
+¡¤). 
+ denotes the proximal operator [28] of J ( 
+¦Æ ), 
+ 1/(2 
+ ¦Æ sign 
+v 
+(
+)
+ 2 
+¦Æ ¦Â 1 ¦Æ ¡Ü|
+1 
+2) The update of  s is 
+
+where prox ¦Ë
+
+¦Ã J 
+
+(¡¤)
+
+(
+
+ v 
+
+)
+
+When 
+
+¦Â <
+
+prox ¦Æ F 
+(
+
+ v 
+
+)
+
+=
+
+ v 
+
+ v 
+
+|¡Ü 1 
+
+¦Â
+2 
+
+(
+
+ v 
+
+)
+
++
+
+ v 1 |
+
+ v 
+
+|
+
+>
+
+1 
+2 
+¦Â
+
+(
+
+ v 
+
+)
+
+(20) 
+
+ s 
+
+t+1 =
+
+ arg min 
+L 
+(
+
+ s 
+
+  s 
+ z 
+
+,
+
+t ,
+
+¦Ìt )
+
+=
+
+C
+
+(cid:5)
+
+z 
+(¡¤)
+ is the Euclidean projection onto 
+ . That is, 
+
+ ¦Ìt 
+¦Ã
+
+(cid:6)
+
+(21) 
+
+where 
+ A  s 
+
+C
+
+C
+
+=
+
+{
+
+  s : 
+
+(cid:8)
+
+  y 
+
+
+
+(cid:8)
+
+2 
+2 
+
+¡Ü ¦Ç}
+
+C
+
+(
+
+  s 
+
+)
+
+=
+
+
+ 
+ 
+
+ s 
+
+,
+
+ s 
+
+¡Ê
+
+C
+
+¦Ç(cid:8)
+(cid:8)
+
+  s 
+
+2 
+2 
+
+¡¤  s 
+ otherwise 
+
+,
+
+.
+
+(22) 
+
+In computing (21) , Cholesky decomposition can be utilized to 
+improve the computational speed. 
+¦Ì is 
+3) The update of 
+
+¦Ìt+1 =
+
+¦Ìt  ¦Ã
+
+(cid:10)
+
+z 
+
+t   y 
+
++
+
+  A  s 
+
+t 
+
+(cid:11)
+
+(23) 
+
+When the variable  S has been updated, we minimize over 
+
+(cid:12)(cid:12)(cid:12)Y sv 
+while keeping the current estimate of  S xed. Then, the problem 
+of off-grid DOA estimation in (13) reduces to: 
+ (cid:18) A 
+Since the quadratic problem in (24) is convex with respect to 
+, it is formulated as a SRLS problem equivalently. The optimal 
+solution to the quadratic problem (24) has a closed-form of: 
+ (I K 
+where  B 
+(
+ ¦È )
+ diag 
+(
+ ¦È )
+ diag 
+(
+ ¦È )
+ diag 
+(
+This completes one update cycle and the algorithm will ter- 
+minate once the difference between two consecutive iterations is 
+smaller than a given threshold or if the maximum iteration num- 
+ber is reached. 
+As for the convergence of the problem in (13) , the following 
+result is established. 
+
+t+1 =
+ arg min 
+ arg min 
+
+(cid:8)
+(cid:8)
+
+(cid:8)
+(cid:8)
+
+2 
+F 
+
++
++
+
+
+
+(cid:13)
+(cid:14)
+(cid:12)(cid:12)2 
+
+A 
+
+ ¦È
+
+(cid:15)
+
++
+
+ B 
+
+(cid:14)
+
+ ¦È
+
+(cid:15)
+
+
+
+(cid:16)
+
+ (cid:17)
+
+ S 
+
+(cid:12)(cid:12)(cid:12)2 
+
+F 
+
+=
+
+2 
+F 
+
+(cid:12)(cid:12)(cid:18)
+
+ y 
+
+(cid:18)
+
+ s 
+
+2 
+
+(24) 
+
+t+1 =
+
+  B 
+
+ [  y 
+
+(cid:2) A 
+
+(
+
+ ¦È ))
+
+  s 
+
+t ] 
+
+(25) 
+
+=
+
+ [ B 
+
+  s 
+
+t 
+1 
+
+)
+
+,
+
+ B 
+
+(
+
+  s 
+
+t 
+2 
+
+)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ B 
+
+(
+
+  s 
+
+t 
+K 
+
+)
+
+ ] 
+
+T . 
+
+Theorem 1. For arbitrary starting point, the sequence 
+ gen- 
+erated by our algorithm converges at least to a stationary point of 
+(13) . 
+
+{
+
+(
+
+  S 
+
+t ,
+
+t )
+
+}
+
+Proof. In fact, the proposed method utilizing the rationale of alter- 
+nating optimization suggests that it is the special case of the block 
+
+ [ A 
+(
+ ¦È )
+coordinate descent algorithm: 
+ arg min 
+B 
+(
+ ¦È )
+]  S 
+¦ËJ 
+(
+)
+ . The rst two terms of the objective 
+function are differentiable with respect to the corresponding vari- 
+ables, while the remaining term (i.e., the sparsity-inducing penalty) 
+is separable in the entries of  s g . F 
+(
+)
+ is continuous and there 
+(
+)
+exists 
+ 0 such that F 
+ holds for all  s g 
+ which 
+is demonstrated in Section VI-A of [26] . Therefore, the cost func- 
+tion in (13) satises those technical assumptions (B1)-(B3) and 
+ [ A 
+ ¦È ) + B 
+(
+(
+ ¦È )
+]  S 
+(C2) in [29] . Moreover, the rst term 
+is 
+Gateaux-differentiable over its open domain. According to Lemma 
+3.1 in [29] , the cost function in (13) is regular at each coordinate- 
+t )
+wise minimum point. Assuming that the sequence 
+(
+ uti- 
+lizing the essential cyclic is dened, each coordinatewise minimum 
+point becomes a stationary point according to Proposition 5.1 and 
+Theorem 5.1 in [29] . 
+
+{
+
+(
+
+  S 
+
+t ,
+
+t )
+
+}
+
+=
+
+{(cid:8)
+
+ Y sv 
+
++
+
+(cid:8)
+
+2 
+F 
+
++
+
+(cid:8)
+
+ (cid:8)
+
+2 
+F 
+
++
+
+  s g 
+
+}
+
+  s g 
+  s g 
+
+¦Á >
+
+  s g 
+
+¡Ü ¦Á |
+
+|
+
+¡Ê
+
+R
+
+,
+
+(cid:8)
+
+ Y sv 
+
+(cid:8)
+
+2 
+F 
+
+{
+
+  S 
+
+t ,
+
+}
+
+(cid:3)
+
+4. Numerical examples 
+
+In this section, we present numerical examples for DOA esti- 
+mation to show the advantages of the proposed method, and to 
+compare it with the conventional on-grid model-based algorithms, 
+including 
+-SVD [4] and W 
+-SVD [20] and the off-grid sparse 
+Bayesian inference (OGSBI) algorithm [25] and RSBL [12] . All al- 
+gorithms process Y SV 
+to obtain the DOA estimates. For [4] , Se- 
+DuMi is used to solve the 
+norm problem, and the reweighted 
+norm problem in [20] is tackled by CVX. In all simulation ex- 
+amples, the noise is additive Gaussian white process and a ULA of 
+M 
+ 10 sensors is considered. The direction grid is uniformly di- 
+vided with resolution of 2 ¡ã sampling from 0 ¡ã to 180 ¡ã, and T 
+ 200 
+snapshots are collected. Assume that two narrowband far-eld sig- 
+nals from [66.3 ¡ã, 80.6 ¡ã] impinge onto ULA. All results are based on 
+500 Monte Carlo runs. Our simulations are performed using MAT- 
+LAB R2015b on a system with 3.40 GHz intel core i7 CPU and 4 GB 
+RAM, under a 64-bit Windows 7 operating system. 
+In the rst test, we investigate the root mean square error 
+(RMSE) of the proposed method, 
+-SVD, W 
+-SVD, OGSBI and 
+RSBL versus signal-to-noise ratio (SNR). It can be seen from Fig. 1 
+that the DOA estimation performance of the proposed method is 
+superior to that of 
+-SVD, W 
+-SVD, OGSBI and RSBL especially 
+for a higher SNR. We also notice that the on-grid algorithms, i.e., 
+-SVD and W 
+-SVD cannot provide reliable DOA estimation when 
+SNR is above 5 dB. 
+In the second test, RMSE versus snapshot number with differ- 
+ent methods is studied, where SNR is xed at 0 dB, and the snap- 
+shot number is varied from 100 to 600. From Fig. 2 , it is observed 
+that the proposed method has better angle estimation performance 
+than other algorithms for all T . The DOA estimation performance of 
+the proposed method gradually improves with the snapshot num- 
+ber. 
+In the third test, the resolution probability of different algo- 
+rithms versus SNR is examined and the results are plotted in Fig. 3 . 
+The resolution probability is computed as the ratio between the 
+number of successful runs and the total number of the indepen- 
+dent runs. A trial is regarded as a successful one when the abso- 
+lute deviation between the estimated and true DOA is less than 1 ¡ã. 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+=
+
+=
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ 1 
+
+Q. Liu et al. / Signal Processing 140 (2017) 171¨C176 
+
+175 
+
+Fig. 1. RMSE versus SNR. 
+
+Fig. 4. Convergence curves of different off-grid algorithms. 
+
+Table 1 . It is observed that the proposed algorithm enjoys more 
+computational attractiveness than 
+-SVD, W 
+-SVD, OGSBI and 
+RSBL. 
+
+ 1 
+
+(cid:2)
+
+(cid:2)
+
+ 1 
+
+5. Conclusion 
+
+In this paper, we have addressed the problem of DOA estima- 
+tion in sparse representation framework. A novel objective function 
+regularized by the nonconvex sparsity-inducing penalty has been 
+proposed for off-grid DOA estimation. We follow the rationale of 
+alternating minimization to minimize the resulting objective func- 
+tion, i.e., we rst update the sparse signal via ADMM as the solver 
+by xing perturbation matrix, and then calculate the perturbation 
+matrix by SRLS when the sparse signal is xed. Simulation results 
+show that the proposed method provides more accurate DOA esti- 
+mation and faster implementation compared with several conven- 
+tional algorithms. Although not shown here, it is worth pointing 
+out that the proposed method can also work for arrays with irreg- 
+ular sensor spacings. 
+
+Acknowledgments 
+
+This work was supported by a grant from the NSFC/RGC Joint 
+Research Scheme sponsored by the National Natural Science Foun- 
+dation of China and the Research Grants Council of Hong Kong 
+( 61531166005 , N_CityU 104/15). 
+
+References 
+
+[1] E.J. Cand¨¦s , An introduction to compressive sampling, IEEE Signal Process. Mag. 
+25 (2) (2008) 21¨C30 . 
+[2] F.K.W. Chan , H.C. So , L. Huang , L.-T. Huang , Parameter estimation and iden- 
+tiability in bistatic multiple-input multiple-output radar, IEEE Trans. Aerosp 
+Electron. Syst. 51 (3) (2015) 2047¨C2056 . 
+[3] C. Qian , L. Huang , N.D. Sidiropoulos , H.C. So , Enhanced PUMA for direc- 
+tion-of-arrival estimation and its performance analysis, IEEE Trans. Signal Pro- 
+cess. 64 (16) (2016) 4127¨C4137 . 
+[4] D. Malioutov , M. Cetin , A.S. Willsky , A sparse signal reconstruction perspective 
+for source localization with sensor arrays, IEEE Trans. Signal Process. 53 (8) 
+(2005) 3010¨C3022 . 
+[5] Q. Liu , X.P. Wang , Direction of arrival estimation via reweighted 
+ 1 norm 
+penalty algorithm for monostatic MIMO radar, Multidimensional Syst. Signal 
+Process. (2016) 1¨C12 . 
+[6] Z. Yang , L. Xie , Enhancing sparsity and resolution via reweighted atomic norm 
+minimization, IEEE Trans. Signal Process. 64 (4) (2016) 995¨C1006 . 
+[7] Z. Yang , C. Zhang , L. Xie , Robustly stable signal recovery in compressed sensing 
+with structured matrix perturbation, IEEE Trans Signal Process. 60 (9) (2012) 
+4658¨C4671 . 
+[8] H. Zhu , G. Leus , G.B. Giannakis , Sparse regularized total least squares for sens- 
+ing applications, in: 2010 IEEE 11th International Workshop on Signal Process- 
+ing Advances in Wireless Communications (SPAWC), Marrakech, Morocco, June 
+2010, pp. 1¨C5 . 
+[9] H. Duan , Z. Qian , Y. Wang , Off-grid DOA estimation based on noise subspace 
+tting, in: 2015 IEEE International Conference on Digital Signal Processing 
+(DSP), Singapore, July 2015, pp. 675¨C678 . 
+
+(cid:2)
+
+Fig. 2. RMSE versus snapshot number. 
+
+Fig. 3. Resolution probability versus SNR. 
+
+It is concluded that all methods exhibit a 100% correct resolution 
+probability at the high SNR region. We also see that the proposed 
+¡Ý 6 dB. 
+method has the highest resolution probability at SNR 
+In the fourth test, the RMSE versus number of iterations is stud- 
+ied for the proposed method and off-grid algorithms, and the re- 
+sults are shown in Fig. 4 . It can be seen that the proposed method 
+is superior to the OGSBI and RSBL in terms of convergence speed 
+and RMSE. 
+In the fth test, we compare the CPU runtimes of different 
+algorithms. The results averaged over 100 trials are tabulated in 
+
+176 
+
+Q. Liu et al. / Signal Processing 140 (2017) 171¨C176 
+
+(cid:2)
+
+[10] Z. Tan , P. Yang , A. Nehorai , Joint sparse recovery method for compressed sens- 
+ing with structured dictionary mismatches, IEEE Trans. Signal Process. 62 (19) 
+(2014) 4997¨C5008 . 
+[11] Z. Tan , A. Nehorai , Sparse direction of arrival estimation using co-prime arrays 
+with off-grid targets, IEEE Signal Process. Lett. 21 (1) (2014) 26¨C29 . 
+[12] J. Dai , X. Bao , W. Xu , C. Chang , Root sparse Bayesian learning for off-grid DOA 
+estimation, IEEE Signal Process. Lett. 24 (1) (2017) 46¨C50 . 
+[13] H. Mohimani , M. Babaie-Zadeh , C. Jutten , A fast approach for overcomplete 
+sparse decomposition based on smoothed 
+ 0 norm, IEEE Trans. Signal Process. 
+57 (1) (2009) 289¨C301 . 
+[14] W.J. Zeng , H.C. So , L. Huang , 
+ p -MUSIC: robust direction-of-arrival estimator 
+for impulsive noise environments, IEEE Trans. Signal Process. 61 (17) (2013) 
+4296¨C4308 . 
+[15] L. Chen , Y. Gu , Fast sparse recovery via non-convex optimization, in: 2015 IEEE 
+Global Conference on Signal and Information Processing (GlobalSIP), Orlando, 
+FL, USA, December 2015, pp. 1275¨C1279 . 
+[16] R. Tibshirani , Regression shrinkage and selection via the lasso, J. R. Stat. Soc. B 
+58 (1994) 267¨C288 . 
+[17] S. Boyd , N. Parikh , E. Chu , B. Peleato , J. Eckstein , Distributed optimization and 
+statistical learning via the alternating direction method of multipliers, Found. 
+Trends Mach. Learn. 3 (1) (2011) 1¨C122 . 
+[18] J. Dai , X. Xu , D. Zhao , Direction-of-arrival estimation via real-valued sparse rep- 
+resentation, IEEE Antennas Wireless Propagation Lett. 12 (2013) 376¨C379 . 
+[19] E.J. Cand¨¨s , M.B. Wakin , S.P. Boyd , Enhancing sparsity by reweighted 
+ 1 mini- 
+mization, J. Fourier Anal. Appl. 14 (5) (2008) 877¨C905 . 
+
+(cid:2)
+
+[20] X.P. Wang , W. Wang , J. Liu , X. Li , J.X. Wang , A sparse representation scheme 
+for angle estimation in monostatic MIMO radar, Signal Process. 104 (2014) 
+258¨C263 . 
+[21] M. Grant, S. Boyd, CVX: Matlab software for disciplined convex programming, 
+version 2.1, Available: http://www.cvxr.com/cvx , 2014. 
+[22] J.S. Sturm, Using SeDuMi 1.05, a Matlab Toolbox for Optimization Over Sym- 
+metric Cones. Tilburg University, Dept., Econometrics, Tilburg, Netherlands, 
+Available: http://www.fewcal.kub.nl/sturm/software/sedumi.html , 2004. 
+[23] Z. Tan , Y.C. Eldar , A. Nehorai , Direction of arrival estimation using co-prime 
+arrays:a super resolution viewpoint, IEEE Trans. Signal Process. 62 (21) (2014) 
+5565¨C5576 . 
+[24] L. Wang , L. Zhao , G. Bi , C. Wan , L. Zhang , H. Zhang , Novel wideband DOA es- 
+timation based on sparse Bayesian learning with Dirichlet process priors, IEEE 
+Trans. Signal Process. 64 (2) (2016) 275¨C289 . 
+[25] Z. Yang , L. Xie , C. Zhang , Off-grid direction of arrival estimation using sparse 
+Bayesian inference, IEEE Trans. Signal Process. 61 (1) (2013) 38¨C43 . 
+[26] L. Chen , Y. Gu , The convergence guarantees of a non-convex approach for 
+sparse recovery, IEEE Trans. Signal Process. 62 (15) (2014) 3754¨C3767 . 
+[27] G.E. Ivanov , Strong and weak convexity for linear differential games, in: Pro- 
+ceedings of 36th IEEE Conference on Decision and Control, Kobe, Japan, vol 4, 
+December 1996, pp. 3729¨C3734 vol.4 . 
+[28] N. Parikh , S. Boyd , Proximal algorithm, Found. Trends Optimization 1 (3) (2014) 
+127¨C239 . 
+[29] P. Tseng , Convergence of a block coordinate descent method for nondifferen- 
+tiable minimization, J. Optimization Theory Appl. 109 (3) (2001) 475¨C494 . 
+
+(cid:2)
+

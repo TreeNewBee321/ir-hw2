@@ -1,0 +1,1086 @@
+Impacts of HPAM molecular weights on desalination performance of ion exchange membranes and fouling mechanism
+
+Ting Wang, Shuili Yu , Li-an Hou
+
+State Key Laboratory of Pollution Control and Resource Reuse, College of Environmental Science & Engineering, Tongji University, Shanghai 200092, PR China
+
+H I G H L I G H T S
+
+ Inuence of HPAM molecular weights on desalination performance is studied.
+ Membrane fouling characteristics are analyzed.
+ CLSM, FTIR, electrostatic interaction and interface thermodynamics analysis explained fouling mechanism.
+ HPAM molecular weight distributions in cleaning solution from industry were measured to verify laboratory results.
+
+article 
+
+info
+
+
+
+Article history:
+Received 17 October 2015
+Received in revised form 9 October 2016
+Accepted 11 October 2016
+Available online 4 November 2016
+
+Keywords:
+Polymer ooding wastewater
+HPAM
+Salinity
+Membrane fouling
+
+abstract
+
+This study aimed at investigating the desalination performance of ion exchange membranes (IEMs) treating
+polymer ooding wastewater and inuence of partially hydrolyzed polyacrylamide (HPAM) molecular weights
+(MWs) on membrane fouling. Adsorption of HPAM on IEMs and molecular weight distributions (MWDs) of
+HPAM in chemical cleaning solutions were analyzed to study IEM fouling characteristics. Experimental results in-
+dicated that HPAM affected the desalination performance most signicantly compared to oil. Moreover, cation
+exchange membranes (CEMs) were easier to be polluted by HPAM with lower MWs while anion exchange mem-
+branes (AEMs) were easier to be polluted by HPAM with higher MWs. It was also found that the heterogeneous
+IEM fouling caused by HPAM was more severe than the homogeneous IEM. Furthermore, CLSM, FTIR, electrostatic
+interaction and interface thermodynamics analysis indicated that HPAM caused membrane fouling and the main
+mechanism was electrostatic interaction.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+As one of the enhanced recovery (EOR) technologies, polymer
+ooding has been widely utilized in oil production industry to efciently
+recover the remaining oil left in oil reservoirs, especially in China [1每3].
+By dissolving polymers in injected water, the viscosity increases and the
+mobility ratio between the ooding water and the reservoir oil alters,
+thus enhancing the sweep efciency and the oil recovery rate. However,
+polymer ooding technology has produced million tons of wastewater
+with high water content and complex composition of pollutants, includ-
+ing HPAM, crude oil, suspended solids and salts, which will cause ad-
+verse effects to the environment without further treatment [3每5].
+Moreover, considering the vast demand for fresh water to prepare the
+HPAM ooding solution, it is reasonable to apply proper treatments to
+polymer ooding produced water before recycling.
+Our research group was the rst to introduce electrodialysis (ED)
+into desalination of polymer ooding wastewater (with a treating ca-
+pacity: 9600 t/d). After a series of conventional pretreatments (e.g. co-
+agulation, sedimentation and ultraltration), suspended solids and oil
+(b 1 mg/L in ultraltration efuent) in polymer ooding wastewater
+can be removed mostly, thus not having a tendency to cause severe
+fouling on IEMs. However, concentration of polymer in ultraltration ef-
+uent may even be up to 60每100 mg/L. Also, high salinity of the ultral-
+tration efuent can cause coiling up of the linear polymer chain, which
+can reduce the thickening ability of HPAM, thereby making the
+pretreated water not satisfy rejection criteria for preparing the poly-
+meric solution and affecting the oil recovery rate [6每9]. Therefore, mea-
+sures should be taken to lower the salinity of the pretreated water
+before its reuse.
+Electrodialysis (ED), an electrochemical technology, utilizing poten-
+tial difference as the driving force for the separation of charged ions via
+IEMs, is not only employed for desalination of brackish water and sea-
+water, but also can be used for reclamation of acid/base from industrial
+wastewater and removal of bromate from natural water [10每12]. ED,
+having an edge both in efciency and cost, has enjoyed an increasing
+popularity in treating polymer ooding produced water. Nevertheless,
+electrodialysis (ED) inuent still contain a certain concentration of
+HPAM after ultraltration which can cause membrane fouling in ED
+process, thus seriously affecting desalination efciency and service life
+of the ED stack [13每16]. Due to electrical interactions between the
+membrane surface and foulants, AEMs were more susceptible to be
+fouled by organic compounds [17每19], while CEMs may possibly be
+fouled by mineral precipitates, such as calcium and magnesium salts
+[20]. Membrane fouling in ED process depends on electrochemical and
+physical properties of membranes and foulants, such as electric resis-
+tance, transmembrane potential and zeta potential [21每23]. In addition,
+recent studies showed that the fouling of inorganic salts on membranes
+was reversible, mainly due to direct surface crystallization and/or pre-
+cipitation [24], while organic molecules with benzene rings and xed
+charged groups can result in an irreversible fouling caused by hydro-
+phobic interactions between the benzene ring and the membrane poly-
+mer [25]. Also, we prepared a table (Supplementary material, Table S2)
+to show performance and fouling mechanism of ion exchange mem-
+branes. Unfortunately, there were surprisingly few studies focusing on
+fouling of HPAM with different MWs on IEMs and the fouling mecha-
+nism was rarely analyzed deeply by previous studies.
+In this research, we investigated inuence of HPAM MWs on IEMs
+fouling by measuring desalination ratio, energy consumption, trans-
+membrane potential and electrical resistance of IEMs. Crucial factors
+inuencing desalination efciency were found out through investiga-
+tion of electrostatic interaction, interface thermodynamics and MWs
+of HPAM. This study will not only nd out the crucial factor affecting de-
+salination, but also provide references for controlling membrane fouling
+in treating polymer ooding wastewater by ED.
+
+2. Materials and methods
+
+2.1. Experimental device
+
+A six-compartment ED stack was designed and made to observe the
+effect of HPAM with different MWs on desalting performance of IEMs.
+Its diagram is illustrated in Fig. 1. The stack, which dimension was
+W ℅ H ℅ D = 260 mm ℅ 60 mm ℅ 120 mm, was made of plexiglass.
+Each IEM, with an effective membrane area of 60 cm2, was clipped tight-
+ly by two splints and cushions, respectively. The stack was divided by
+three CEMs and two AEMs into six compartments, among which com-
+partments 1 and 6 were electrode compartments lled with 0.04 M
+Na2SO4 solution. The second and fourth compartments were diluted
+compartments, while the third and fth compartments were concen-
+trated compartments, lled with feed water respectively. The lab-scale
+experiments were conducted under a constant current of 80 A (the lim-
+iting current density was 100 mA). The electrode, concentrated and di-
+luted solution were pumped from different vessels with the same ow
+
+rate of 9 mL/min by peristaltic pumps to their respective compartments
+and efuents from these compartments owed back to their corre-
+sponding vessels, thereby forming a circulation ow respectively. (See
+Fig. 2.)
+The solution conductivities in diluted compartments were measured
+every 20 min.
+
+2.2. Experimental material
+
+2.2.1. Characterization of ion exchange membranes
+This experiment adopted two kinds of IEMs, including heteroge-
+neous IEMs (Hedun, China) and homogeneous IEMs (Tianwei, China).
+Membrane properties are given in Table 1.
+
+2.2.2. Feed water
+Feed water was prepared by dissolving 200 mg/L HPAM with MWs
+of 0.3, 0.8, 3.0 million Daltons respectively in 3000 mg/L NaCl electrode
+solution. To further investigate the inuence of oil on the desalting per-
+formance, 40 mg/L oil and 80 mg/L SDBS (to well disperse hydrophobic
+oil in water) were added to feed water. The parameters of feed water
+were shown in Table 2. The UF efuent still contain remaining oil inside,
+so the inuence of oil on the desalting performance needs to be further
+investigated. The crude oil was obtained from Daqing oileld and SDBS
+was added to disperse oil in water.
+
+2.3. Analytical methods
+
+2.3.1. Transmembrane potential
+Platinum wires were inserted at two sides of the AEMs and the
+multi-meter was connected to the data terminal to measure transmem-
+brane potentials under constant current in real time.
+
+2.3.2. Membrane resistance
+The membrane resistance was measured by the alternating current
+bridge method [26]. The unused IEM was placed in a specially designed
+cell containing 3000 mg/L NaCl solution to soak the membrane. Induc-
+tance, capacitance and impedance (LCZ) meter, connecting to the elec-
+trode clamps clipped at two sides of the cell by wires, was employed
+to measure the resistance and the measurement was repeated without
+the IEM. The membrane resistance was calculated as the difference of
+readings with and without membrane.
+
+2.3.3 Characterization of membrane fouling
+Microstructures of IEMs were analyzed via the confocal laser scan-
+ning microscope (CLSM) (Olympus FV1000, Olympus, Japan), and Fou-
+rier Transform Infrared Spectrometer (FTIR) (Nicolet 5700, Nicolet,
+USA) was applied to substantiate the presence of HPAM on the IEMs
+after fouling.
+
+Fig. 1. Flow diagram of experimental desalination process.
+
+52
+
+T. Wang et al. / Desalination 404 (2017) 50每58
+
+calculated by contact angles of HPAM and IEMs according to acid-base
+function method [27].
+
+q
+
+
+
+rLW
+l
+
+rLW
+
+m
+
+q
+
+
+rLW
+p
+
+rLW
+
+l
+
+
+
+q
+
+
+p  
+
+p
+p
+
+
+p
+
+q
+
+
+r
+
+r
+
+
+
+m
+
+r
+
+p
+
+l
+
+p
+
+
+q
+
+
+
+r
+
+l
+
+
+
+
+
+m
+
+r
+
+
+
+
+r
+
+p
+
+
+
+q
+
+
+
+
+m r
+p
+
+r
+
+
+
+r
+
+l
+
+2
+
+忖GLW  2
+
+忖GAB  2
+
+ 2
+
+r
+
+l
+rTOT  rLW  rAB
+
+p
+
+
+
+r r
+
+rAB  2
+
+q
+
+
+r
+m r
+
+
+
+p
+
+
+
+1
+
+2
+
+3
+4
+
+5
+
+Fig. 2. The membrane resistance measurement device.
+
+2.3.4 Zeta potentials of foulants
+Zetasizer (Nano ZS90, Malvern, UK) was used to analyze zeta
+potentials of different foulants.
+
+2.3.5 Atomic force microscope (AFM)
+Atomic force microscope system (MultiMode8, Bruker, Germany)
+was applied to test the force-distance curves between IEMs and
+HPAM. Peak Force QNM operation mode was adopted.
+
+2.3.6 Contact angles
+Goniometer (JC2000D1, Zhongchen, China) was employed to mea-
+sure contact angles of foulants and IEMs in ultra-water, formamide
+and diiodomethane solution respectively. The inuence of thermody-
+namics interaction on membrane fouling between HPAM and IEMs
+were analyzed.
+(1) Measurements of foulants: 10 g/L HPAM solution was smeared
+on the slide and then the slide was dried under 38 ～C to form a smear
+layer. After that, contact angles were measured in different solutions.
+(2) Measurements of IEMs: The IEMs were also dried under 38 ～C
+and was put smoothly on the slide. Then contact angles in different
+solutions were measured.
+
+2.3.7 Molecular weight (MW) and molecular weight distribution (MWD)
+A gel chromatography LC-10ADVP (Shimadzu, Japan) equipped with
+a TSK4000 separation column were used to test MWs and MWDs of
+HPAM.
+
+2.3.8 Interfacial free energy
+Contact angles of Milli-Q water, formamide and diiodomethane
+which were different in polarity were measured by dropping them on
+the target and interfacial tension was calculated by expanded Young
+equation (Eqs. (1)每(2)). Interfacial free energy (Eqs. (3)每(5)) was
+
+
+
+1  cos牟
+
+rTOT
+l
+
+ 2
+
+q
+
+
+rLW
+s
+
+rLW
+l
+
+q
+
+
+
+
+s r
+l
+
+r
+
+
+
+
+
+q
+
+
+r
+s r
+
+
+
+l
+
+where rLW is the component Van der Waals' force of interfacial tension,
+mJ/m2; rAB is the component the acid-base function force of interfacial
+tension, mJ/m2; rTOT is the sum of the interfacial tension, mJ/m2; r+
+and r are the component of electron acceptor and electron donor; 牟
+represents for the contact angle. Subscripts l, m, p, and s represent for
+liquid, membrane, pollutant and solid respectively.
+
+3. Results and discussion
+
+3.1 Inuence of HPAM on desalination performance of IEMs
+
+3.1.1 Desalination ratio and energy consumption
+Fig. 3 shows desalination rate curves in different feed solutions when
+other operating conditions were kept constant. Heterogeneous IEM re-
+vealed larger reduction in desalination efciency than homogeneous
+IEM whatever MW of HPAM was dosed. It revealed that HPAM exerted
+larger impact on heterogeneous membrane than homogeneous mem-
+brane. HPAM remaining in inuent will decrease ion transference num-
+ber of IEMs. The larger the MW of HPAM is, the smaller the transference
+number is. This makes ions in solution hard to pass through IEMs. Thus,
+desalination rate decrease signicantly with HPAM MW increasing and
+heterogeneous membrane was inuenced more markedly than homo-
+geneous membrane. Additionally, desalination ratios of oil-contained
+solutions were much higher than feed water with HPAM (3.0 million)
+treated by both heterogeneous and homogeneous membranes, indicat-
+ing that the desalting performance was not very strongly inuenced by
+oil compared to HPAM. Energy consumptions and current efciencies
+under various conditions are shown in Fig. 4. As we can see from
+Fig. 4(a), energy consumption of the heterogeneous IEMs was 1.04
+kWh/m3 when the saline was treated without dosing HPAM, while
+energy consumption increased to 1.22 kWh/m3, 1.37 kWh/m3 and
+1.54 kWh/m3 after 0.3 million, 0.8 million and 3.0 million Daltons
+HPAM were dosed respectively. These energy consumption results
+
+Fig. 3. Desalination ratios varying with time under different water conditions: (a) heterogeneous IEM; (b) homogeneous IEM.
+
+T. Wang et al. / Desalination 404 (2017) 50每58
+
+53
+
+Fig. 4. Energy consumptions and current efciencies under different water conditions: (a) heterogeneous IEM; (b) homogeneous IEM.
+
+were 17.31%, 35.20% and 48.08% higher than that of blank test respec-
+tively. Therefore, the existence of HPAM not only reduced the desalina-
+tion efciency, but also increased the energy consumption. With MWs
+of HPAM increasing, the energy consumption rose. Results of homoge-
+neous IEMs are shown in Fig. 4(b) which was similar to that of hetero-
+geneous ones and changes of energy consumption with homogeneous
+membrane were slighter than heterogeneous IEMs. It was probable
+that HPAM addition changed membrane resistance of heterogeneous
+membrane more substantially.
+As for current efciency, when treating HPAM (3.0 million Daltons)
+feed water, efciency of heterogeneous IEMs (Fig. 4(a)) reduced signif-
+icantly to 68%. However, differences of current efciencies were
+unobvious among results from feed water containing different MWs of
+HPAM. Membrane limiting current together with diffusion coefcient
+will decrease after fouled by HPAM. Therefore, current efciency de-
+clined remarkably when wastewater was treated [28]. But variations
+were slight for both homogeneous and heterogeneous IEMs, thus cur-
+rent efciencies were not affected obviously when HPAM MW changed.
+
+3.1.2 Transmembrane potential
+Generally, organics in natural water have a negatively charged sur-
+face which tend to adhere to AEMs with positively charged xed groups,
+so that studies of organic pollution are always on AEMs [29,30]. After
+membrane fouling, changes exist not only in conductivities, but also in
+the structure of membrane-liquid double layer. Tanaka. Nobuyuki
+et al. [31每34] studied variations of transmembrane potentials to mea-
+sure the degree of membrane pollution. In order to study the fouling
+of AEMs by different MWs of HPAM in desalination, transmembrane po-
+tentials varying with time were studied (Fig. 5).
+According to Fig. 5, transmembrane potentials of both two kinds of
+AEMs increased as time went by, which indicated that membrane foul-
+ing occurred during electrodialysis. For the same kind of membranes,
+curves all went higher with increase of HPAM MW from 0.3 million,
+0.8 million to 3.0 million Daltons. After heterogeneous AEMs had run
+
+for 150 min, results of solution containing HPAM (0.3, 0.8, 3.0 million
+Daltons) increased approximately 0.09 V, 0.19 V and 0.37 V respectively.
+Therefore, the larger the MW of HPAM was, the stronger its adsorption
+on the membrane was and the more serious the membrane fouling was.
+Meanwhile, as shown in Fig. 5(b), when HPAM MWs were 0.8 mil-
+lion and 0.3 million Daltons, transmembrane potentials of heteroge-
+neous AEMs increased to a certain value and remained stable, which
+meant that the content of HPAM on AEMs stabilized at a certain value,
+thus leading to the xedness of membrane resistance and the balance
+of membrane fouling. However, when HPAM MW was 3.0 million Dal-
+tons, transmembrane potentials of heterogeneous AEMs soared and
+the growth rate was more drastic after remaining stable for some
+time. Two reasons may account for this phenomenon: one was that
+HPAM molecules adhered to the HPAM fouling layer on the membrane
+surface, so that membrane fouling aggravated and the membrane resis-
+tance rose quickly. The other was that platinum wires, measuring the
+transmembrane potential, could only approach to the membrane sur-
+face as near as possible instead of on it, making what is measured in-
+clude both freshwater potentials and concentrated water potentials
+other than the potential through the membrane itself. Ion concentra-
+tions in diluted compartments decreased and the electric resistance of
+the solution increased as time passed by. The potential of freshwater
+surpassed the actual transmembrane potential of AEMs and became
+dominant, thus resulting in the rapid rise. Referring to the desalination
+result above, the desalination performance of the IEMs was the worst
+in experiments using 3.0 million Daltons HPAM, which meant that the
+decreasing rate of the ion concentration in it was slower than in 0.8 mil-
+lion and 0.3 million Daltons HPAM solution. Therefore, freshwater po-
+tential becoming dominant should appear the latest in 3.0 million
+Daltons HPAM solutions. However, according to Fig. 5(b), transmem-
+brane potential failed to rise continually after stabilization in 0.3 million
+and 0.8 million Daltons HPAM solutions. Thus, the unique rapid rise
+discussed here in 3.0 million Daltons HPAM solutions may be more like-
+ly to be accounted for the rst reason. Furthermore, it was evident that
+
+Fig. 5. Transmembrane potentials of the AEM varying with time: (a) heterogeneous IEM; (b) homogeneous IEM.
+
+54
+
+T. Wang et al. / Desalination 404 (2017) 50每58
+
+Fig. 6. Membrane resistances of IEMs before and after fouling: (a) heterogeneous IEM; (b) homogeneous IEM.
+
+the fouling of HPAM on the heterogeneous AEMs was more severe by
+comparison of Fig. 5(a) and Fig. 5(b).
+
+3.1.3 Membrane resistance
+Organics mainly pollute AEMs, while calcium and magnesium ions
+mainly pollute CEMs [35]. However, most polymeric membranes of
+which surfaces are hydrophobic generally treat hydrophobic organics.
+Organics approach membrane surfaces spontaneously as a result of
+thermodynamics, which causes fouling on CEMs and membrane resis-
+tance changed accordingly.
+Experiments were conducted to test membrane resistances of IEMs
+before and after being fouled by different feed water and results were
+presented in Fig. 6. As we can see from results of AEMs in Fig. 6, mem-
+brane resistances after fouling increased with increasing MWs of
+HPAM [36,37]. Also, the growth rate of the membrane resistance of
+AEMs fouled by 3.0 million Daltons HPAM was the fastest and the mem-
+brane resistance of heterogeneous AEMs increased by 73.52%, markedly
+exceeding results from heterogeneous AEMs fouled by HPAM of 0.8 mil-
+lion Daltons (15.42%) and 0.3 million Daltons (6.54%). Similar results
+were obtained from homogeneous IEMs. Conclusions can be drawn
+that membrane fouling of AEMs strengthened with the increase of
+
+HPAM MWs. As for CEMs, membrane resistances of heterogeneous
+CEMs rose by 78.97%, 68.74% and 35.20% when HPAM MWs were 0.3
+million, 0.8 million and 3.0 million Daltons respectively. So it was easier
+for HPAM with lower MWs to foul CEMs. This may be due to that the
+lower the HPAM MW was the easier the blocking of membrane pores
+was. Therefore, HPAM with low MWs caused more severe fouling on
+CEMs.
+According to Fig. 6, the membrane resistances of both kinds of IEMs
+in oil feed water were slightly larger than that in HPAM feed solution,
+indicating that oil was easier to cause membrane fouling than HPAM.
+This result seemed to be inconsistent with the result obtained from
+the desalting performance. To further explain this, the adsorption of
+oil and HPAM on the IEMs during the membrane fouling were studied
+and results could be seen in Fig. S1. It was observed that the adsorption
+of oil on the IEM was faster than HPAM at the same operating condition,
+possibly because most of oil formed an oil lm on the membrane skele-
+ton shortly. However, the membrane fouling caused by oil was a long-
+term accumulation, thus leading to an unobvious inuence on ion mi-
+grations and desalination ratios. It should be noted that the adsorption
+of HPAM on the membrane by fouling of feed solution (containing Oil
+and HPAM) was close to that of feed solution containing HPAM,
+
+Fig. 7. Microstructures of IEM before and after pollution by HPAM with molecular weight of 3.0 million Daltons: (a) Blank heterogeneous AEM; (b) Polluted heterogeneous AEM; (c) Blank
+homogeneous AEM; and (d) Polluted homogeneous AEM. The scanned regime was 600 ℅ 600 米m2 in size.
+
+the heterogeneous AEMs. Therefore, CLSM results showed that HPAM
+actually caused membrane fouling on AEMs. The extent of membrane
+fouling on the surface of the heterogeneous AEMs was more severe
+than the homogeneous AEMs.
+
+3.2.2 FTIR analysis
+Fig. 8 showed the FTIR spectra of the heterogeneous AEMs before
+and after fouled by HPAM.
+
+indicating that oil affected little on membrane fouling when treating
+feed water containing HPAM and oil. Moreover, results (Supporting In-
+formation, Text S1) of zeta potentials indicated that there was no inter-
+action between oil and HPAM. The composition of foulants could be
+complex if feed water containing oil was adopted to analyze inuence
+of HPAM on membrane fouling. And we may fail to study interactions
+between HPAM and the membrane. Therefore, we studied inuence of
+HPAM on membrane fouling without emulsied oil added in feed
+water. In further studies, we will study the inuence of feed water con-
+taining salts, oil and HPAM on membrane fouling simultaneously.
+
+3.2 Fouling characteristics and mechanism analysis of HPAM on IEMs
+
+3.2.1 CLSM analysis
+Because the fouling of AEMs was the most serious, CLSM was applied
+to observe and analyze microstructures of AEMs before and after pollu-
+tion by 3.0 million Daltons HPAM solutions [38,39]. Results were illus-
+trated in Fig. 7.
+As can be seen from Fig. 7(a) and (c), the surface of blank IEMs was
+relatively smooth and the supporting layer of the IEMs can be seen
+clearly. However, IEMs were not smooth any more after fouled by
+HPAM (Fig. 7(b) and (d)), especially for the heterogeneous AEMs. The
+surface of the heterogeneous AEMs adsorbed a layer of matters and
+pore structures became obscure. In addition, the surface of the homoge-
+neous AEMs also adsorbed a layer of matters obviously and pore struc-
+tures also became obscure, but the membrane fouling was slighter than
+
+56
+
+T. Wang et al. / Desalination 404 (2017) 50每58
+
+Table 1
+Parameters of the heterogeneous and homogeneous IEMs.
+
+Table 3
+Interfacial energy of HPAM with different MWs (unit: mJ/m2).
+
+Heterogeneous
+
+Homogeneous
+
+MW of HPAM (℅ 106)
+
+Contact angles
+
+0.3
+0.8
+3.0
+
+86.32～
+71.56～
+70.99～
+
+忖Gplp
+
+ 53.7
+ 15.2
+ 35.93
+
+Properties and characteristics
+
+Water content (%)
+Exchange capacity (mol/kg)
+Resistance of membrane surface (次﹞cm2)
+Transference number (%)
+Selective penetration (%)
+Membrane thickness (mm)
+Bursting strength (Mpa)
+
+CEMs
+35每50
+≡ 2
+≒ 11
+≡ 0.90
+≡ 90
+0.42
+≡ 1.0
+
+AEMs
+30每45
+≡ 1.8
+≒ 12
+
+≡ 89
+
+CEMs
+
+AEMs
+45每70
+≡ 1.3
+
+4070
+≡ 1.4
+≒ 4.0
+≡ 0.95
+≡ 0.97
+每
+每
+0.23每0.28
+≡ 0.8
+≡ 0.9
+
+which meant that the interaction between HPAM and CEMs fell as dis-
+tance increased. However, curve (a) located above the ※zero force
+line§ all the time, indicating that the interaction between HPAM and
+IEMs was repulsive force during retraction. Curve (b) was completely
+different from curve (a). Interaction force remained repulsive between
+HPAM and IEMs at the beginning of retraction. But the repulsive force
+dropped to zero suddenly when the probe moved upward and the inter-
+action between HPAM and the IEMs was attractive. At the bottom of
+curve (b), the attractive force reached maximum, roughly amounting
+to the elastic force of the cantilever probe. Then the interaction between
+HPAM and the IEMs dropped gradually until the perturbation of the
+cantilever reached zero again. Therefore, HPAM on the probe tip
+began to exhibit electrostatic interactions with IEMs, which were repul-
+sive forces between HPAM and CEMs and attractive forces between
+HPAM and AEMs. It reasonably explained the dominant role of the elec-
+trostatic force in the interaction between HPAM and IEMs.
+
+3.2.4 Interface thermodynamics interaction
+Adhesion free energies of HPAM-membrane interface are shown in
+Table 3. 忖Gplm represents for the adhesion free energy on the mem-
+brane surface. 忖Gplm N 0 and 忖Gplm b 0 represent for the repulsive
+force and the attractive force respectively [27]. The adhesive energy
+忖Gplm were all negative valued under these three conditions and abso-
+lute values were high, which indicated that HPAM were prone to adhere
+together on the IEMs.
+Table 3 shows interfacial energy of HPAM with different MW. 忖Gplp
+represents cohesive energy between HPAM molecules. When
+忖Gplp N 0, interaction force between molecules is repulsive. This force
+is attractive when 忖Gplp b 0. According to Table 4, 忖Gplp values were
+all negative which reveals HPAM molecules tend to cohere. The ranking
+of absolute value of adhesion free energies between HPAM molecules
+with different MWs, from high to low, were 0.3 million, 3.0million and
+0.8 million Daltons according to the interface thermodynamics analysis,
+which represented the adhesion ability of different kinds of HPAM mol-
+ecules to each other in an order from strong to weak. Theoretically, vis-
+cosity of solution with HPAM MW of 0.3 million should be the largest.
+However, viscosity of HPAM solutions ranging from high to low was
+that with solvent MW of 3.0 million, 0.3 million and 0.8 million Daltons,
+because viscosity is also relevant with MWs. So, for HPAM with a MW of
+3.0 million Daltons, the inuence of MW on viscosity was more signi-
+cant than interactive forces between molecules. Also, continual increase
+of transmembrane pressure after reaching a certain value in prior ex-
+periment on solution with HPAM MW of 3.0 million can be accounted
+
+Table 2
+Parameters of the feed water for ED.
+
+[NaCl]
+(mg/L)
+
+3000
+3000
+3000
+3000
+3000
+3000
+
+[HPAM]
+(mg/L)
+每
+200
+200
+200
+每
+200
+
+MW of HPAM (℅
+106)
+每
+0.3
+0.8
+3.0
+每
+3.0
+
+[oil]
+(mg/L)
+每
+每
+每
+每
+40
+40
+
+[SDBS]
+(mg/L)
+每
+每
+每
+每
+80
+80
+
+Blank
+HPAM
+
+Oil
+Oil and HPAM
+
+for by the assumption that HPAM molecules can adhere to the fouling
+layer of HPAM on the membrane surface, as viscosity of this kind of so-
+lution is the largest. Thus, the interface thermodynamics interaction
+contributed but slightly to the fouling of HPAM on IEMs, when AEMs
+were especially less inuenced by the thermodynamics interaction.
+Table 4 reveals contact angles, surface tension and HPAM-
+membrane interface adhesion free energy (忖Gplm). For the same kind
+of membrane, HPAM-membrane adhesion free energy were largest in
+solution with solvent MW of 0.8 million Daltons, while that with solvent
+MW of 3.0 and 0.3 million Daltons come the second largest and lowest
+which is also the sequence of the tendency of different kinds of HPAM
+molecules adhere to the membrane. But according to aforementioned
+conclusion, HPAM with larger MW tends to pollute AEMs, while
+HPAM with smaller MW tends to pollute CEMs. Interfacial thermody-
+namics interaction contributes little to IEMs pollution and Van der
+Waals force and acid-alkali force were less signicant than electrostatic
+force. In addition, strong repulsive force exists between HPAM and
+CEMs. HPAM can't pollute CEMs theoretically, but HPAM, especially
+with smaller MW, will actually pollute CEMs. Interface thermodynamic
+interaction can't completely explain this phenomenon. Other reasons
+like physical plugging may account for it.
+When comparing heterogeneous and homogeneous membranes,
+exchange groups on the latter ones were more evenly distributed.
+More unbalanced distribution of charges on heterogeneous AEMs may
+cause more severe fouling of heterogeneous AEMs than homogeneous
+AEMs. Charge density was high on some parts of heterogeneous AEMs.
+Thus electrostatic force between HPAM and membrane was stronger
+on these parts and pollution was more severe. As for fouling of hetero-
+geneous CEMs more severe than homogeneous CEMs, the low charge
+density on some parts of heterogeneous CEMs making repulsive force
+with HPAM weaker on these parts may be reason for more severe foul-
+ing of heterogeneous CEMs.
+
+3.2.5 Inuence of MWs on membrane fouling
+Long molecular chains are easy to be broken when preparing HPAM
+solutions, so that actual MWs of HPAM in solution may no longer be 0.3,
+0.8, 3.0 million Daltons as labeled. Therefore, experiments were con-
+ducted to measure MWDs in 0.3, 0.8, 3.0 million Daltons HPAM solu-
+tions respectively. The results are shown in Fig. 10.
+IEMs possess bending pores penetrating inside membrane body
+(tens to hundreds of nanometers in pore diameters). As dimensions of
+HPAM molecules are much greater than membrane pores, HPAM are
+hard to penetrate IEMs in transition, thus intercepted on the membrane
+surface. When dimensions of HPAM are equal to or smaller than that of
+membrane pores, HPAM are likely to block in membrane pores, and ag-
+gravate membrane fouling. Therefore, fouling caused by 0.3 million Dal-
+tons HPAM on heterogeneous CEMs resembles that on AEMs because
+small MWs HPAM cause membrane pore blockage, which inuence
+ion transition in membrane seriously. Additionally, homogeneous
+membranes are thinner than heterogeneous membranes and pore
+sizes are smaller, so their membrane pore blockage are not serious as
+heterogeneous membranes. Thus, fouling of heterogeneous IEMs
+being more serious than homogeneous IEMs may be due to physical
+blockage.
+Polluted CEMs were soaked in HCl solution (0.1 M) for 24 h and
+cleaned to study the effects of MWs of HPAM on IEMs. It is manifest
+from Fig. 10 that HPAM with lower MWs were more likely to foul the
+
+T. Wang et al. / Desalination 404 (2017) 50每58
+
+57
+
+Table 4
+Adhesion free energy of the HPAM-membrane interface (unit: mJ/m2).
+
+IEMs
+
+Contact angles
+
+污LW
+
+污+
+
+污
+
+污AB
+
+污TOT
+
+Heterogeneous
+
+Homogeneous
+
+CEMs
+AEMs
+CEMs
+AEMs
+
+98.15～
+110.72～
+99.25～
+89.71～
+
+25.81
+24.89
+41.65
+42.51
+
+0.51
+0.17
+0.02
+0.01
+
+0.60
+0.14
+0.00
+1.22
+
+1.11
+0.30
+0.02
+0.25
+
+26.92
+25.20
+41.66
+42.76
+
+忖Gplm
+
+0.3 million
+ 64.67
+ 70.00
+ 76.61
+ 67.30
+
+0.3 million
+ 48.31
+ 52.58
+ 58.01
+ 48.04
+
+3.0 million
+ 56.28
+ 60.87
+ 69.58
+ 59.81
+
+heterogeneous CEMs, which also further indicated that the fouling of
+heterogeneous CEMs was because of the blockage of membrane pores.
+To verify experimental results above, polluted heterogeneous IEMs
+employed in Daqing desalination system were soaked in 0.1 M HCl
+cleaning solution for 24 h and cleaned. MW distribution of HPAM in
+the cleaning solution was measured and fouling characteristic of IEMs
+polluted by HPAM with different MWs was analyzed. Results are
+shown in Fig. 11.
+MW of HPAM below 0.01 million Daltons had higher proportion in
+cleaning solution of CEMs than that of AEMs and results were exactly
+the opposite when it comes to HPAM with MWs above 0.01 million Dal-
+tons. It was clear that HPAM with lower MWs tended to foul the CEMs
+and HPAM with higher MWs tended to foul the AEMs.
+Therefore, lower HPAM MW was easier to foul heterogeneous CEMs.
+It indicated that the severe fouling of heterogeneous CEMs was caused
+by the blockage of membrane pores.
+
+4. Conclusions
+
+In this study, desalination performance of IEMs treating polymer
+ooding wastewater and inuence of HPAM MWs on membrane foul-
+ing were investigated. HPAM affected the desalination performance
+and energy consumption more signicantly compared to oil. It was ver-
+ied that the transmembrane potential of the AEMs and the membrane
+resistance increased with the rise of HPAM MWs, thus causing the AEM
+fouling. However, the fouling extent of the CEM was much slighter and
+the CEM fouling increased with the decrease of HPAM MWs. Results of
+MWDs of polymers in cleaning solutions also indicated that CEMs had
+a tendency to be fouled by HPAM with lower MWs and AEMs were eas-
+ier to be fouled by HPAM with higher MWs. Moreover, the desalination
+effect of homogeneous AEMs with higher average charge density was
+better than heterogeneous AEMs, suggesting that membranes with
+higher xed charge density could possibly enhance the limiting current
+density and ion transference number. Furthermore, electrostatic inter-
+action, interface thermodynamic interaction and MWs all affected
+membrane fouling. Electrostatic interactions, especially for AEMs, inu-
+enced membrane fouling the most remarkably.
+
+Acknowledgement
+
+This work was supported by the National High-tech Research and
+Development Projects (2008AA06Z304), International Cooperation Pro-
+jects of MOST (2010DFA92460) and the National Natural Science Foun-
+dation of China (51578390).
+
+Appendix A. Supplementary data
+
+Supplementary data to this article can be found online at http://dx.
+doi.org/10.1016/j.desal.2016.10.007.
+
+References
+
+[1] X. Wang, R. Liu, Z. Shao, J.H. Miller, S. Wakasiki, R. Lisana, A new treatment tech-
+nique of produced water from polymer ooding, Society of Petroleum Engineers -
+International Petroleum Technology Conference 2014, IPTC 2014: Unlocking Energy
+Through Innovation, Technology and Capability, 2014, pp. 2150每2158.
+
+[2] J. Guolin, W. Xiaoyu, H. Chunjie, The effect of oileld polymer-ooding wastewater
+on anion-exchange membrane performance, Desalination 220 (2008) 386每393.
+[3] X. Wang, Z. Wang, Y. Zhou, X. Xi, W. Li, L. Yang, X. Wang, Study of the contribution of
+the main pollutants in the oileld polymer-ooding wastewater to the critical ux,
+Desalination 273 (2011) 375每385.
+[4] X. Zhao, L. Liu, Y. Wang, H. Dai, D. Wang, H. Cai, Inuences of partially hydrolyzed
+polyacrylamide (HPAM) residue on the occulation behavior of oily wastewater
+produced from polymer ooding, Sep. Purif. Technol. 62 (2008) 199每204.
+[5] X. Wang, S. Chen, W. Dong, Z. Wang, L. Yang, X. Xi, Q. Zhang, L. Shi, Contribution of
+main pollutants in oileld polymer-flooding wastewater to the total membrane
+fouling resistance, Sep. Sci. Technol. 47 (2012) 1617每1627.
+[6] X.S. Yi, S.L. Yu, W.X. Shi, S. Wang, N. Sun, L.M. Jin, X. Wang, L.P. Sun, Hydrodynamics
+behaviour of oil eld wastewater advanced treatment by ultraltration process, De-
+salination 305 (2012) 12每16.
+[7] X. Qiao, Z. Zhang, J. Yu, X. Ye, Performance characteristics of a hybrid membrane
+pilot-scale plant for oileld-produced wastewater, Desalination 225 (2008)
+113每122.
+[8] X.S. Yi, W.X. Shi, S.L. Yu, X.H. Li, N. Sun, C. He, Factorial design applied to ux decline
+of anionic polyacrylamide removal from water by modied polyvinylidene uoride
+ultraltration membranes, Desalination 274 (2011) 7每12.
+[9] S.Y. Ruijun Zhang, W. Shi, J. tian, L. Jin, B. Zhang, L. Lia, Z. Zhanga, Optimization of a
+membrane cleaning strategy for advanced treatment of polymer ooding produced
+water by nanoltration, RSC Adv. (2016) 28844每28853.
+[10] X. Zuo, W. Shi, Z. Tian, S. Yu, S. Wang, J. He, Desalination of water with a high degree
+of mineralization using SiO2/PVDF membranes, Desalination 311 (2013) 150每155.
+[11] M.M.-P. Youssef El Rayess, Membrane technologies in wine industry: an overview,
+Food Science and Nutrition 56 (2015) 2005每2020.
+[12] Transfer of neutral organic solutes during desalination by electrodialysis: inuence
+of the salt composition, J. Membr. Sci. 511 (2016) 207每218.
+[13] X. Zuo, L. Wang, J. He, Z. Li, S. Yu, SEM-EDX studies of SiO2/PVDF membranes fouling
+in electrodialysis of polymer-ooding produced wastewater: diatomite APAM and
+crude oil, Desalination 347 (2014) 43每51.
+[14] M. Deng, S. Yu, W. Shi, X. Yi, Adsorption of anionic polyacrylamide on the surface of
+ion exchange membranes, Chinese Journal of Environmental Science 33 (2012)
+1625每1631.
+[15] M.J. Deng, W.X. Shi, S.L. Yu, Effect of Oil and HPAM in Polymer Flooding Wastewater
+on the Desalination Process by Electrodialysis, in: H. Zhao (Ed.), Mechanical and
+Electronics Engineering Iii, Pts 1每5, Trans Tech Publications Ltd, Stafa-Zurich 2012,
+pp. 1654每1657.
+[16] H. Guo, L. Xiao, S. Yu, H. Yang, J. Hu, G. Liu, Y. Tang, Analysis of anion exchange mem-
+brane fouling mechanism caused by anion polyacrylamide in electrodialysis, Desali-
+nation 346 (2014) 46每53.
+[17] S.P. Ruiz Benjamin, P. Huguet, et al., Application of relaxation periods during electro-
+dialysis of a casein solution: impacts on anion-exchange membrane fouling, J.
+Membr. Sci. 287 (2007) 41每50.
+[18] H.J. Lee, M.K. Hong, S.D. Han, et al., Fouling of an anion exchange membrane in the
+electrodialysis desalination process in the presence of organic foulants, Desalination
+238 (2009) 60每69.
+[19] T. Y., Acceleration of water dissociation generated in an ion exchange membrane, J.
+Membr. Sci. 303 (2007) 234每243.
+[20] Q. Wang, P. Yang, W. Cong, Cation-exchange membrane fouling and cleaning in bi-
+polar membrane electrodialysis of industrial glutamate production wastewater, Sep.
+Purif. Technol. 79 (2011) 103每113.
+[21] H.-J. Lee, J.-H. Choi, J. Cho, S.-H. Moon, Characterization of anion exchange mem-
+branes fouled with humate during electrodialysis, J. Membr. Sci. 203 (2002)
+115每126.
+[22] H.J. Lee, D.H. Kim, J. Cho, S.H. Moon, Characterization of anion exchange membranes
+with natural organic matter (NOM) during electrodialysis, Desalination 151 (2003)
+43每52.
+[23] J.-H.C. Hong-Joo Lee, Jaeweon Cho, Seung-Hyeon moon, characterization of anion
+exchange membranes fouled with humate during electrodialysis, J. Membr. Sci.
+203 (2002) 115每126.
+[24] Y.-M.Z. Shen-Xu Bao, Tao Liu, Jing Huang, tie-Jun Chen, evolution and morphometric
+characterization of fouling on membranes during the desalination of high CaSO4 su-
+persaturated water by electrodialysis, Desalination 256 (2010) 94每100.
+[25] Electrodialysis Treatment of Surface and Waste Waters, Technical Paper GE, 2005 1每6.
+[26] G.S. Viktoria Lindstrand, A.-S. Jnsson, Fouling of electrodialysis membranes by or-
+ganic substances, Desalination 128 (2000) 91每102.
+[27] J.A. Brant, A.E. Childress, Assessing short-range membrane每colloid interactions
+using surface energetics, J. Membr. Sci. 203 (2002) 257每273.
+[28] J. Xu, G.-P. Sheng, H.-W. Luo, W.-W. Li, L.-F. Wang, H.-Q. Yu, Fouling of proton ex-
+change membrane (PEM) deteriorates the performance of microbial fuel cell,
+Water Res. 46 (2012) 1817每1824.
+
+58
+
+T. Wang et al. / Desalination 404 (2017) 50每58
+
+[29] H.-J. Lee, M.-K. Hong, S.-D. Han, S.-H. Cho, S.-H. Moon, Fouling of an anion exchange
+membrane in the electrodialysis desalination process in the presence of organic
+foulants, Desalination 238 (2009) 60每69.
+[30] H.J. Lee, J.H. Choi, J.W. Cho, S.H. Moon, Characterization of anion exchange mem-
+branes fouled with humate during electrodialysis, J. Membr. Sci. 203 (2002)
+115每126.
+[31] E. James Watkins, P.H. Pfromm, Capacitance spectroscopy to characterize organic
+fouling of electrodialysis membranes, J. Membr. Sci. 162 (1999) 213每218.
+[32] J.S. Park, T.C. Chilcott, H.G.L. Coster, S.H. Moon, Characterization of BSA-fouling of
+ion-exchange membrane systems using a subtraction technique for lumped data,
+J. Membr. Sci. 246 (2005) 137每144.
+[33] N. Tanaka, M. Nagase, M. Higa, Preparation of aliphatic-hydrocarbon-based anion-
+exchange membranes and their anti-organic-fouling properties, J. Membr. Sci. 384
+(2011) 27每36.
+[34] N. Tanaka, M. Nagase, M. Higa, Organic fouling behavior of commercially available
+hydrocarbon-based anion-exchange membranes by various organic-fouling sub-
+stances, Desalination 296 (2012) 81每86.
+
+[35] C. Zhou, Y. Xiao, B. Zhang, Progress of research work on chemical ooding technol-
+ogy in China, China Surfactant Detergent and Cosmetics 41 (2011) 131每135.
+[36] K. Urano, Y. Masaki, Y. Naito, Increase in electric resistance of ion-exchange mem-
+branes by fouling with naphthalenemonosulfonate, Desalination 58 (1986)
+177每186.
+[37] Q. Ping, B. Cohen, C. Dosoretz, Z. He, Long-term investigation of fouling of cation and
+anion exchange membranes in microbial desalination cells, Desalination 325 (2013)
+48每55.
+[38] G.L. Jing, X.Y. Wang, H. Zhao, Study on TDS removal from polymer-ooding waste-
+water in crude oil: extraction by electrodialysis, Desalination 244 (2009) 90每96.
+[39] G.L. Jing, L.J. Xing, Y. Liu, W.T. Du, C.J. Han, Development of a four-grade and four-
+segment electrodialysis setup for desalination of polymer-ooding produced
+water, Desalination 264 (2010) 214每219.
+[40] T.T. Bartels, The Sadtler Handbook of Infrared SpectraSadtler Research Laboratories
+1978.
+

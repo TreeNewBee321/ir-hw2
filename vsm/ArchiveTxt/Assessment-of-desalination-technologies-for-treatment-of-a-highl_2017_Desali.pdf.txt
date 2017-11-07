@@ -1,0 +1,3247 @@
+Assessment of desalination technologies for treatment of a highly saline brine from a potential CO2 storage site
+
+Ruth Kaplan a, Darryl Mamrosh b, Haz H. Salih a, Seyed A. Dastgheib a,
+
+a Illinois State Geological Survey, University of Illinois, 615 East Peabody Drive, Champaign, IL 61820, USA
+b Trimeric Corporation, PO Box 826, Buda, TX 78610, USA
+
+H I G H L I G H T S
+
+ Geological CO2 sequestration may generate signicant volumes of highly saline brine.
+ Existing and emerging high-TDS desalination technologies are critically evaluated.
+ Evaporators are identied as the most suitable existing technology.
+ Mt. Simon brine treatment by multi-effect evaporation is modeled by Aspen simulation.
+ Near-ZLD treatment of Mt. Simon brine requires 246 kWh thermal energy per m3 of recovered water.
+
+article
+
+info
+
+Article history:
+Received 2 August 2016
+Received in revised form 7 October 2016
+Accepted 7 November 2016
+Available online 12 November 2016
+
+Keywords:
+Desalination
+Brine extraction
+CO2 sequestration
+Brine treatment
+Mt. Simon sandstone
+
+abstract
+
+Brine extraction is a promising strategy for the management of increased reservoir pressure, resulting from
+carbon dioxide (CO2) injection in deep saline reservoirs. The extracted brines usually have high concentrations
+of total dissolved solids (TDS) and various contaminants, and require proper disposal or treatment. In this article,
+rst by conducting a critical review, we evaluate the applicability, limits, and advantages or challenges of various
+commercially available and emerging desalination technologies that can potentially be employed to treat the
+highly saline brine (with TDS values N 70.000 ppm) and those that are applicable to a ~ 200,000 ppm TDS brine
+extracted from the Mt. Simon Sandstone, a potential CO2 storage site in Illinois, USA. Based on the side-by-side
+comparison of technologies, evaporators are selected as the most suitable existing technology for treating Mt.
+Simon brine. Process simulations are then conducted for a conceptual design for desalination of 454 m3/h
+(2000 gpm) pretreated brine for near-zero liquid discharge by multi-effect evaporators. The thermal energy
+demand is estimated at 246 kWh per m3 of recovered water, of which 212 kWh/m3 is required for multiple-effect
+evaporation and the remainder for salt drying. The process also requires additional electrical power of
+~ 2 kWh/m3.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Carbon dioxide (CO2) captured from industrial sources can be per-
+manently stored by geological sequestration in deep saline reservoirs.
+According to a scenario published by the International Energy Agency,
+
+Abbreviations: CO2, carbon dioxide; ED, electrodialysis; EDR, electrodialysis reversal;
+ENRTL, Electrolyte, Non-Random Two Liquid; FO, forward osmosis; GE, General Electric;
+gpm, gallons per minute; HD, humidication每dehumidication; kWhelec, kilowatt hour
+electrical; kWhelec equiv, kilowatt hour electrical equivalent; kWhth, kilowatt hour
+thermal; LMTD, logarithmic mean temperature difference; MD, membrane distillation;
+MED, multiple-effect distillation; MEE, multiple-effect evaporation; MJth, megajoules
+thermal; MSF, multiple-stage ash; MVC, mechanical vapor compression; ppm, parts per
+million (mg/L); ppmw, parts per million weight (mg/kg); RO, reverse osmosis; TDS,
+total dissolved solids; wt%, weight percent; ZLD, zero-liquid discharge.
+ Corresponding author.
+E-mail address: seyed@illinois.edu (S.A. Dastgheib).
+
+Klapperich et al. reported that by 2050, global geologic storage of
+9.12 billion metrics tons of CO2 per year will be required to meet CO2
+emission reduction goals [1]. The U.S. Department of Energy has identi-
+ed deep saline reservoirs as the largest potential sinks for CO2 storage
+in the United States. The total CO2 storage capacity in major saline res-
+ervoirs, estimated by the U.S. Department of Energy carbon sequestra-
+tion partnerships, is at least 2300 billion metric tons and possibly as
+high as about 22,000 billion tons [2].
+Large-scale geological CO2 sequestration may result in increasing the
+reservoir pressure beyond a level that is allowable by safety standards
+or potential regulations. Brine extraction is considered a promising
+strategy for managing increased reservoir pressure [3每5]. Signicant
+volumes of brine may be extracted if geological CO2 sequestration in
+deep brine reservoirs is implemented at industrial scales. Assuming
+that each metric ton of injected CO2 displaces 1.25 m3 of reservoir
+uid, Klapperich et al. estimate that up to 31.2 million m3 of brine
+
+
+
+Table 1
+Comparison of selected water quality parameters of Mt. Simon brine with selected water quality parameters of seawater and brackish water.
+
+Brine/water
+
+Mt. Simon brine
+Seawater at Doha Research Plant
+Brackish water at Kantor Desalination Plant
+
+TDS
+(ppm)
+
+197,000
+47,000
+3890
+
+Ca2+
+(mg/L)
+
+22,000
+570
+196
+
+Mg2+
+(mg/L)
+
+Sr2+
+(mg/L)
+
+1500
+1700
+146
+
+791
+NRa
+NR
+
+Na+
+(mg/L)
+
+48,000
+12,300
+1014
+
+Cl
+(mg/L)
+
+120,000
+24,000
+1970
+
+2
+
+SO4
+(mg/L)
+
+360
+3400
+251
+
+Alkalinity as CaCO3
+(mg/L)
+
+pH
+
+Data source
+
+55
+175
+305
+
+7.0
+8.2
+6.9
+
+b
+
+[14]
+[15]
+
+TDS was estimated by summation of all cations and anions.
+a NR: not reported but expected to be negligible.
+b Obtained from the Illinois State Geological Survey Geochemistry team based on previously described methods [12,13].
+
+might be extracted globally each day, although extraction rates may be
+limited by site-specic factors [1]. Breunig et al. estimate that 2 m3 of
+brine will be extracted for every metric ton of CO2 injected, and that a
+single CO2 injection site might receive 8.9 million metric tons of CO2
+per year, resulting in about 48,000 m3/day of brine extraction [3]. The
+extracted brines usually have high concentrations of total dissolved
+solids (TDS), suspended solids, and various contaminants and require
+proper disposal or treatment. Veil et al. reported the distribution of dif-
+ferent water quality parameters of 34,000 brine samples collected from
+basins that are considered potential targets for CO2 sequestration [6].
+They found that, of 52 formations sampled, 58% of geological formation
+brines had a median TDS concentration of at least 50,000 ppm, and 23%
+exhibited salinities N 100.000 ppm [6].
+The high-TDS extracted brine cannot be discharged to the environ-
+ment or applied for benecial uses without proper treatment. The dis-
+posal of extracted brine by deep well injection into other formations
+might not be an option for many CO2 sequestration sites for several rea-
+sons, including the availability of proper geological formations, the high
+volume of extracted brine, the high cost or other challenges of brine
+transportation, required pretreatments before brine injection, and envi-
+ronmental regulations. Therefore, treatment of extracted high-TDS
+brine might be the only practical option for some sequestration sites.
+Highly concentrated salt brine efuents are also generated from a
+variety of sources, including seawater desalination processes, cooling
+tower blowdown, mine tailing leachate, and produced water from fossil
+fuel production. The International Desalination Association reported
+that, as of 2015, there were N 18.000 desalination plants worldwide,
+with a total production capacity of N 86 million m3/day of fresh water
+[7], about 59% of which comes from seawater desalination [8]. The
+waste brine efuents from seawater desalination plants are major cur-
+rent sources of high-TDS brine. For instance, the desalination of seawa-
+ter by reverse osmosis (RO) produces brine concentrates that are
+typically 65,000 to 85,000 ppm of TDS [9]. A simple assumption of 50%
+water recovery for seawater desalination plants suggests a brine ow
+rate of ~ 51 million m3/day from worldwide seawater desalination
+plants. Produced water from oilelds, natural gas, and coalbed methane
+also generates large quantities of high-TDS brine [10]. For example, the
+produced water resulting from global oil and gas production is around
+250 million barrels per day (~ 40 million m3/day) [11].
+It is apparent that treatment of brines is increasingly necessary, both
+for the successful implementation of CO2 sequestration and for the re-
+duction of waste in other industries. High-TDS brine treatment creates
+a challenge in water treatment because conventional seawater desalina-
+tion methods are not designed for feed water streams higher than
+50,000 ppm of TDS. In this article, we evaluate the applicability, limits,
+and advantages or challenges of various desalination technologies that
+can potentially be employed to treat the highly saline brine (with TDS
+values N 70.000 ppm) and those that are applicable to a ~ 200,000 ppm
+TDS brine extracted from the Mt. Simon Sandstone, a potential CO2 stor-
+age site in Illinois, USA. We performed a side-by-side comparison of de-
+salination technologies and selected multi-effect evaporation (MEE) as
+the most suitable existing technology for treating Mt. Simon brine. We
+performed process simulations for treatment of Mt. Simon brine for
+near-zero liquid discharge (ZLD) treatment for 88% water recovery by
+MEE. We performed material balance for a 454 m3/h (2000 gpm)
+
+brine input unit and determined stream compositions, energy require-
+ments, and other process specications.
+
+2. The challenge of high-TDS brine desalination
+
+Concentrations of major salts (e.g., salts of Na, Ca, and Mg) are signif-
+icantly higher in high-TDS brines compared with those in seawater. The
+high salt content of brine creates specic treatment challenges, such as
+scaling, fouling, corrosion, and high energy consumption. Scaling and
+fouling are common problems in desalination processes. Scales are
+formed when mostly divalent (e.g., Ca, Mg, Sr) species are transformed
+from soluble to insoluble forms that result from changes in solution
+chemistry (e.g., pH and composition change) or process conditions
+(e.g., temperature) during the desalination process. Scales and other
+suspended solids may precipitate on the equipment surface or separa-
+tion devices (e.g., membranes) and impede the desalination process
+by reducing the heat transfer rate in thermal desalination systems or re-
+ducing the mass transfer rate through membrane-based systems. Brines
+extracted from potential CO2 sequestration sites may have high concen-
+trations of TDS, scale-forming species, and suspended solids. As an ex-
+ample, the composition of a high-TDS brine extracted from the Mt.
+Simon Sandstone in Illinois, USA, is compared with typical seawater
+and brackish water, which are the feed streams to conventional desali-
+nation plants (Table 1).
+The cumulative concentrations of scale-forming cations, mainly Ca,
+Mg, and Sr, in the Mt. Simon brine are one order of magnitude higher
+than those of other water samples listed in Table 1. The major divalent
+anion, sulfate, can form scales with divalent cations under appropriate
+precipitation conditions. Concentration of total suspended solids in the
+Mt. Simon brine was measured at our laboratory according to standard
+method 2540C [16] and is about 2800 ppm, which is up to two orders of
+magnitude higher than typical values for seawater or brackish water. As
+an example, concentrations of total suspended solids for selected sea-
+water and brackish water samples is reported as 5每20 ppm [17,18]
+and 24每144 ppm [19], respectively. Mt. Simon brine may require vigor-
+ous pretreatments for the removal of suspended solids and scale-
+forming species. The pH of sampled Mt. Simon brine is similar to other
+water sources for desalination. However, we observed that upon
+extended exposure to air the pH decreased to ~ 5.5 due to oxidation
+reactions.
+The salinity of Mt. Simon brine or similar high-TDS brines is also sig-
+nicantly higher than the salinity of seawater. Therefore, Mt. Simon
+brine can be more corrosive to many commonly-used metals. Special
+corrosion-resistant materials, such as nickel alloys or corrosion-resistive
+coating, may be needed for pumps, heat exchangers, pipes, or other
+parts of the desalination systems. Existing seawater desalination pro-
+cesses may need to be signicantly upgraded to be compatible with
+the high-TDS brines.
+Even if the technical issues associated with high-TDS brine desalina-
+tion are resolved, costs may be prohibitive. In addition to higher pre-
+treatment costs and capital costs for corrosion-resistant equipment,
+energy costs will be much higher for high-TDS brine desalination facili-
+ties than for seawater desalination. The theoretical thermodynamic
+minimum energy consumption for desalination, which sets a baseline
+for energy efciency, is dependent on the concentration of the feed
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+89
+
+and product streams [20]. For seawater with 35,000 ppm of TDS at 25 ～C
+and with 50% water recovery, the minimum energy for desalination is
+about 1.06 kWh/m3 [21,22]. Thiel et al. explored Gibbs free energy of
+mixing (the difference in free energy between the feed and product
+streams, equivalent to the least work of separation) for various feed wa-
+ters and recovery ratios. They concluded that, at 50% recovery, the min-
+imum work of separation for a highly saline brine of approximately
+18.3 wt% NaCl is about 9 kWh/m3, almost an order of magnitude higher
+than for seawater [23]. Thus, even a highly efcient high-TDS desalina-
+tion process will still exhibit much higher energy costs than a low-TDS
+desalination process.
+
+3. Overview of desalination technologies and their suitability for
+treatment of highly saline brine
+
+Prevalent commercial desalination technologies are mainly
+designed for seawater and brackish water (TDS of b 10.000 ppm) desa-
+lination. In most cases, a highly saline brine feed does not fall within the
+design parameters. We focus our discussion on brief descriptions of
+
+different desalination processes and relevant research related to highly
+saline brine treatment.
+The majority of desalination plants employ RO, multiple-stage ash
+(MSF), multiple-effect distillation (MED), and electrodialysis (ED).
+Water desalination by RO is favored over that by MED and MSF because
+of its lower energy consumption, typically 3.5 to 6.0 kWhelec/m3 for sea-
+water desalination and 0.5 to 3.1 kWhelec/m3 for brackish water [8,24每
+28], compared to typical reported energy consumption ranging from
+10 to 28 kWhelec equiv/m3 for MSF [20,26,27,29] and from 5.5 to
+20 kWhelec equiv/m3 for MED [20,26,27,29每31]. Energy requirement is
+one of the leading factors in selection of desalination technologies. To
+compare total energy consumption of various processes, thermal energy
+consumption can be converted to the electrical equivalent by multiply-
+ing an approximate electrical power generation efciency of about 30%
+[20]. Water recovery for single-stage seawater RO desalination is typi-
+cally 40% to 60% and is 75% to 90% for brackish water [9,32]. Despite
+its commercial success, salinity limitations of RO render it impractical
+for hypersaline (highly saline) water treatment. The osmotic pressure
+of a solution is directly proportional to its concentration. Standard
+membranes and membrane modules can handle pressures up to
+
+Table 2
+Reported process parameters for brine concentrators and crystallizers that might be used in zero liquid discharge processes.
+
+Process
+
+Inlets and outlets
+
+Energy requirements
+
+~ 27 kWhelec/m3
+
+Source
+
+Thiel et al. [23]
+
+Single stage MVC modeled by Thiel et al.
+
+3-effect MED modeled by Thiel et al.
+
+212 resources, mechanical vapor recompression process
+
+GE ZLD system, case study: 920 MW coal-red
+baseload power plant system with 1 large evaporator
+with extra-long heat transfer tubes (20 m instead of
+15 m) and 2 crystallizers
+
+GE ZLD system: 95% water recovery by brine
+concentrator; remaining slurry sent to a solar pond,
+crystallizer, or spray dryer
+
+Ambient technologies, vapor compression evaporation
+
+Resources conservation company, vapor compression
+evaporationa
+
+Feed: 15 wt% TDS.
+Concentrate: 26 wt% TDS.
+
+Feed: 15 wt% TDS.
+Concentrate: 26 wt% TDS.
+
+Feed: Marcellus Shale produced water
+and frac owback, TDS often
+150,000 + ppm Concentrate:
+300,000 + ppm of TDS
+
+Feed: treating 140 m3/h of cooling
+tower blowdown, ~ 3600 ppm of TDS
+
+Feed: industrial wastewater
+
+~ 250 kWhth/m3 and ~ 2 kWhelec/m3
+
+Thiel et al. [23]
+
+Not reported
+
+212 Resources [80]
+
+18 kWhelec/m3 feed for the evaporator with the
+extra-long tubes, but a typical energy
+requirement for the evaporator would be about
+25 kWhelec/m3 of feed
+
+GE Water & Process
+Technologies [81]
+
+The brine concentrator uses ~ 13每23 kWhelec/m3
+of feed. Energy requirements for the crystallizer
+are not stated
+
+GE Water & Process
+Technologies [82]
+
+Feed: 12,000 ppm of TDS brine from
+brackish water RO
+Permeate: b 10 ppm of TDS
+Concentrate: 210,000 ppm of TDS
+
+Feed: 9084 ppm of TDS brine from
+brackish water RO
+Permeate: 10 ppm of TDS.
+Concentrate: 206,676 ppm of TDS
+
+Not reported
+
+Not reported
+
+Single-stage or 3-stage brine concentrator with thermal
+vapor compression followed by a crystallizer
+
+Feed: brine from a seawater
+distillation process
+
+Estimated ~ 46每48.7 kWh/m3 of work required
+
+Mechanical evaporators as brine concentrators
+
+Feed: 30,000每150,000 ppm of TDS.
+Concentrate: 200,000每300,000 ppm
+of TDS
+
+20.8每36.5 kWhelec/m3
+
+Thermal crystallizer
+
+Brine concentrator
+
+Feed: residual liquid from brine
+concentrator, as concentrated as
+possible.
+Outlet: solid by-product
+
+Energy requirement not stated, but generalized to
+be 5 times higher than that of a mechanical
+evaporator
+
+Feed: varied.
+Concentrate: 167,000每358,000 ppm
+of TDS
+
+19.8每25.1 kWhelec/m3
+
+Vapor compression crystallizer
+
+Feed: concentrated brine
+
+52每66 kWhelec/m3
+
+a Note: GE purchased Resources Conservation Company in 2005.
+
+Awerbuch and Weekes
+[74]
+
+Awerbuch and Weekes
+[74]
+
+El-Sayed mathematical
+modeling, reported by
+Ahmad and Williams
+[28]
+
+2012 Global Water
+Intelligence Report,
+reported by Zuback et
+al. [76].
+
+2012 Global Water
+Intelligence Report,
+reported by Zuback et
+al. [76].
+
+WaterReuse
+Foundation [83]
+
+WaterReuse
+Foundation [83]
+
+90
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+Table 3
+Pretreatment technologies based on information provided by Igunnu and Chen, Fakhru'l-Razi et al., and Guerra et al. [10,11,85].
+
+Pretreatment
+
+Target contaminant(s)
+
+Process notes
+
+Applicability to Mt. Simon
+brine
+
+Chemical
+Coagulation and occulation Colloidal particles
+
+Softening
+
+Scale-forming contaminants including calcium, and
+other metals.
+
+Coagulant forms colloidal particles and occulent
+promotes the collection of those particles into ocs.
+
+Addition of calcium hydroxide to cause precipitation of
+scale-forming contaminants, especially calcium.
+Addition of sodium hydroxide to increase silica solubility
+and reduce scaling. Other chemicals may be used.
+
+Needed
+
+Needed
+
+Chemical oxidation
+
+Organic chemical and particulate removal, COD, BOD,
+and some inorganics including iron, manganese, and
+sulfur.
+
+pH adjustment
+
+Not applicable
+
+An oxidant (usually ozone, peroxide, permanganate,
+oxygen, or chlorine) is mixed in.
+
+Not needed because level
+of organics is low.
+
+pH adjustment by acid/base addition may be required
+for some processes.
+
+Possibly
+
+Physical
+
+Media/gravity ltration
+
+Suspended solids, oil and grease
+
+Use sand, gravel anthracite, walnut shell, or other
+ltration medium. Process not affected by salinity.
+
+Yes; after initial
+coagulation and lime
+softening.
+
+Hydrocarbons including dispersed oil and grease;
+removes 5 米m  15 米m particles but cannot remove
+soluble oils.
+Organic chemicals and particulates including natural
+organic matter, oil and grease.
+
+Separates oil from water based on density, can also
+separate solids.
+
+Might be applicable for
+removal of ne solids.
+
+Gas, mechanical shear propellers are used to generate
+bubbles which collect particulates.
+
+Not needed because no oil
+and grease are present.
+
+Hydrocyclone
+
+Flotation
+
+Adsorption
+
+Mostly dissolved organics, but heavy metals, iron, and
+manganese adsorption is also possible.
+
+Clarier or settling pond
+
+Suspended solids/large particulates
+
+Air stripping
+
+Volatile organic compounds.
+
+Ion exchange
+
+Scaling and fouling contaminants
+
+Biological
+
+Biological aerated lters
+
+Oil, suspended solids, ammonia, nitrogen, chemical
+oxygen demand, biological oxygen demand, iron,
+manganese, heavy metals, dissolved and soluble
+organics, and hydrogen sulde.
+
+Mainly organoclays and activated carbon used for
+adsorption of organics. May use zeolites and activated
+alumina adsorbents for metals. Process is best used as a
+polishing step because the adsorbent can be easily
+overloaded and regeneration can be costly.
+
+A clarier is a sloped-bottom tank or basin used to
+separate liquid from suspended solid particles. Solid
+particulates may also be separated by gravity settling in
+a pond or basin.
+
+Air is brought into contact with the water in a packed
+column and contaminants are transferred to the gas
+phase.
+
+Water softening by ion exchange resin. Resin will
+require regeneration.
+
+Might not be needed
+because level of organics is
+low.
+
+Might be necessary after
+coagulation.
+
+Not needed because the
+brine does not expect to
+contain volatile organic
+compounds.
+
+Not applicable for high-TDS
+feed.
+
+A permeable media facilitates the biochemical
+oxidation/removal of organic constituents.
+
+Not applicable for high-TDS
+feed.
+
+Membrane bioreactors
+
+COD, oil, and gas.
+
+Bench and pilot scale studies for oil and gas removal.
+
+Not needed because no oil
+and grease are present.
+
+1200 psi, appropriate for seawater RO and specialized membrane mod-
+ules may handle pressures up to 1500 psi [5]. Aines et al. suggest that
+advanced RO processes might be applied to a feed of up to
+105,000 ppm of TDS with 10% water recovery [5]. In addition to the
+practical pressure limits associated with RO membranes and the mod-
+ule hardware, operation of the membranes at these high pressures
+would result in the need to pump the feed brine to these high pressures,
+increasing the energy requirement for the separation. These practical
+limitations result in the feed salinity of current RO processes being lim-
+ited to about 55,000 to 70,000 ppm of TDS [33,34].
+One innovative technology that might be applicable to highly saline
+brines is slurry precipitation and recycling RO (SPARRO), in which seed
+crystals are introduced to induce solids precipitation on the seed crys-
+tals instead of on the membrane. This would reduce scaling issues asso-
+ciated with high-TDS feed waters, although pressure limitations might
+still limit the applicability of RO to highly saline brines. The process
+has been tested at a pilot scale [35].
+E lectrod ia lys is and e lectrod ia lys is reversa l (EDR) are vo ltage-
+driven membrane processes that are popular in industry for brack-
+ish wa te r desa l ina t ion . E lec t rod ia lys is as a t rea tmen t op t ion fo r
+
+h igh ly sa l ine b r ines is an eme rg ing techno logy . Ahmad and W i l -
+l iams p red ic ted tha t i t wou ld be techn ic a l ly poss ib le to t rea t
+high-TDS brine with ED, but that the process would be highly ener-
+gy consumptive . They estimated the energy required to desalinate
+a 70 ,000 ppm o f TDS b r ine by ED to be 49 .7 kWh e l e c /m 3 and the
+ene rgy requ i red fo r a 250 ,000 ppm o f TDS feed to be
+175 .7 kWhe lec/m3 , wh ich is not lower than the energy demand o f
+evapo ra to rs . They a lso sugge s ted tha t , a l though sca l ing m igh t
+limit the ux for ED , membrane scaling would not be as problemat-
+ic with ED as for RO [28].
+Researchers at the Massachusetts Institute of Technology have in-
+vestigated ED in stages to treat high-TDS water. A feed consisting of
+195,000 ppm of NaCl was treated in a 10-stage ED unit to produce
+water with only 240 ppm of NaCl. The exact energy requirements
+were not reported, but the authors suggested that the energy consump-
+tion was comparable to that of a mechanical vapor compression (MVC)
+process for a 40,000 to 90,000 ppm TDS feed. They further suggested
+that voltage optimization would reduce the costs by 30% to 60% [36].
+They also suggested operating ED in conjunction with RO to treat highly
+saline brines [37].
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+91
+
+Table 4
+Side-by-side comparison of desalination technologies to screen for applicability to brine treatment.
+
+Point of comparison Membrane
+
+Evaporative concentration
+
+Reverse osmosis
+(RO)
+
+Forward osmosis
+(FO)
+
+Membrane
+distillation (MD)
+
+Electrodialysis (ED)
+& electrodialysis
+reversal (EDR)
+
+Can brine with
+TDS N 70.000ppm
+be treated
+effectively?
+
+Partial treatment for
+a maximum feed
+salinity up to
+105,000 ppm of TDS
+might be possible,
+based on 1500 psi
+maximum applied
+pressure for
+advanced membrane
+modules. Inlet
+TDS b 70.000 ppm is
+typically
+recommended.
+
+Might be
+technically
+feasible. Finding
+the best draw
+solution will be
+critical, but salt
+precipitation will
+still inhibit ux
+and recovery.
+
+Might be possible
+if the issues
+related to salt
+precipitation and
+low ux are
+resolved. Pilot
+testing indicates
+feasibility of
+concentrating
+brine to near
+saturation.
+
+ED/EDR might be
+technically feasible
+for high TDS.
+Saltworks advertises
+an EDR process for
+feed stream with
+80,000 ppm of TDS
+(resulting brine:
+150,000 ppm of
+TDS). Lab-scale
+research
+investigating multi-
+stage ED for a
+195,000 ppm NaCl
+feed is ongoing.
+
+Standard brine
+concentrators
+
+Humidication
+compression
+
+Brine concentration
+may be increased to
+near saturation.
+
+Possible after
+further
+development.
+
+Conventional
+distillation:
+multi-effect
+distillation (MED) &
+multi-stage ash
+(MSF)
+
+Present systems are
+not designed for
+brine treatment.
+Partial treatment
+with
+corrosion-resistant
+materials possible for
+brines in the in the
+range of 80,000 to
+150,000 ppm.
+Fouling with solid
+precipitant will also
+occur at any
+reasonable recovery
+because of solubility
+limits.
+
+Characteristics of
+the brine or salt
+produced
+
+Concentrated brine.
+
+Concentrated
+brine.
+
+Concentrated
+brine.
+
+Concentrated brine.
+
+Concentrated brine.
+
+Concentrated brine
+near saturation.
+
+Expected recovery
+of treated water
+(%)
+
+Maximum recovery
+of 10% for
+105,000 ppm TDS
+feed.
+
+~ 10每50% or more,
+depending on feed
+TDS and salt
+precipitation
+issues.
+
+~ 10每50% or more,
+depending on feed
+TDS and salt
+precipitation
+issues.
+
+~ 50% for an
+80,000 ppm TDS
+brine feed.
+
+Possibly ~ 10每50%
+with upgraded
+technologies.
+
+Very high,
+depending on the
+feed TDS.
+
+Unknown;
+further research
+required.
+
+Concentrated
+brine near
+saturation,
+possible
+crystallization of
+salts.
+
+Advantages
+
+Less energy intensive
+technology.
+
+Less energy
+intensive
+technology.
+
+Can utilize low
+quality heat
+sources.
+
+Unknown.
+
+Challenges
+
+Standard membrane
+modules fail for
+highly saline brines
+with
+TDS N 70.000 ppm.
+Only partial
+treatment is
+possible.
+
+Operating issues
+include undesired
+precipitation of
+salts leading to
+membrane fouling
+and low water
+recovery. Draw
+solution recovery
+will also be
+challenging.
+
+Low water
+recovery and other
+operating issues
+associated with
+membrane
+processes for
+high-TDS feeds.
+
+Technology
+readiness level
+
+Commercially
+available technology.
+
+Emerging
+technology.
+
+Emerging
+technology.
+
+Applicability to Mt.
+Simon brine
+
+Not applicable at this
+time. May be feasible
+after further
+development of
+technology.
+
+Likely to be
+feasible after
+further
+development of
+technology, but
+technology is not
+yet available.
+
+Likely to be
+feasible after
+further
+development of
+technology, but
+technology is not
+yet available.
+
+Point of comparison Evaporative crystallization
+
+Highly energy
+consumptive
+because ED energy
+requirement
+increases with
+increasing feed
+salinity, although
+some researchers
+claim it will be
+competitive with
+MVC evaporation.
+Commercially
+available for brackish
+water.
+
+Likely to be feasible
+after further
+development of
+technology, but
+technology is not yet
+available.
+
+Standard evaporative
+crystallizers
+
+Spray drying
+
+Natural evaporation
+
+Technology is readily
+available and might
+be further upgraded
+to handle high-TDS
+brines.
+
+Expensive materials
+of construction will
+be required to
+prevent corrosion for
+high-TDS feeds.
+Process requires a
+high energy input.
+
+Established
+technology capable
+of handling high-TDS
+brines. Energy
+requirements may be
+reduced with MVC.
+Thermal evaporative
+processes tend to be
+energy intensive.
+Expensive
+equipment may be
+required to minimize
+corrosion. High-TDS
+liquid waste will still
+require further
+treatment or
+disposal.
+
+Low-grade heat
+sources and solar
+energy can be
+used.
+
+Further research
+required before
+process can be
+applied
+industrially.
+Potential
+corrosion/scaling
+of equipment at
+high TDS.
+
+Commercially
+available technology.
+
+Commercially
+available technology.
+
+Emerging
+technology.
+
+May be feasible after
+further development
+of existing
+technology.
+
+Applicable to Mt.
+Simon brine.
+
+Likely to be
+feasible after
+further
+development of
+technology, but
+technology is not
+yet available.
+
+Antisolvent crystallization
+
+Antisolvent addition, with
+antisolvent recovery by
+distillation
+
+Refrigerated
+crystallization
+Fractional freeze
+crystallization of ice
+
+Supercritical
+desalination
+Supercritical
+desalination/power
+cogeneration process
+
+Can brine with
+TDS N 70.000ppm
+be treated
+effectively?
+
+Characteristics of
+
+Technology is
+specically developed
+for high-TDS brine
+feed.
+
+Technology is
+specically
+developed for
+high-TDS brine feed,
+but capacity is
+limited.
+Solid product is ltered Solid product is
+
+It is applicable,
+provided sufcient
+space is available and
+water recovery is not
+an issue.
+
+Some literature indicates that
+this is technically feasible but
+further research is needed.
+
+Possibly. Further
+research required.
+
+Applicable to brines
+with different TDS
+concentrations.
+
+Impure mixed salt
+
+Solid product. Salt will be
+
+Concentrated brine.
+
+Solid salt product will
+
+(continued on next page)
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+Refrigerated
+crystallization
+Fractional freeze
+crystallization of ice
+
+Antisolvent crystallization
+
+Antisolvent addition, with
+antisolvent recovery by
+distillation
+
+impure. Might improve with
+pretreatment of brine or
+specialized crystallizer
+design.
+
+92
+
+Table 4 (continued)
+
+Point of comparison Evaporative crystallization
+
+the brine or salt
+
+Expected recovery
+of treated water
+(%)
+
+Advantages
+
+Challenges
+
+Standard evaporative
+crystallizers
+
+out and dried. Salt will
+be impure. Might
+improve with
+pretreatment of brine
+or specialized
+crystallizer design.
+Very high; near
+complete water
+recovery.
+
+Could be used for ZLD
+or near-ZLD treatment.
+Well established,
+commercial
+technology.
+
+Energy intensive.
+Recovery of a salt
+stream with any value
+may be difcult.
+
+Technology
+readiness level
+
+Commercially available
+technology.
+
+Applicability to Mt.
+Simon brine
+
+Applicable to Mt.
+Simon brine.
+
+Spray drying
+
+Natural evaporation
+
+collected and dried.
+Salt will be impure.
+Might improve with
+pretreatment of
+brine or specialized
+design.
+
+sludge would
+occasionally be dug
+out from a pond and
+landlled (or
+reprocessed).
+
+Simple process,
+which could be ZLD.
+Commercially
+proven.
+
+Highly unlikely to be
+economically viable
+at large scale.
+Recovery of water
+from outlet gas
+would be difcult
+and expensive.
+Commercially
+available technology.
+
+Technically feasible,
+but not practical due
+to low capacity of
+technology.
+
+No water recovery,
+produces a mixed salt
+sludge. Requires a
+large land area and is
+most effective in an
+arid environment.
+
+Commercially
+available technology.
+
+Technically feasible,
+but not practical due
+to land area
+requirements low
+rates of evaporation at
+the potential
+sequestration site.
+
+Water can be
+recovered if needed.
+
+Water not usually
+recovered.
+
+Unknown; further research is
+required.
+
+Further research is
+required.
+
+Simple technology.
+
+Relatively simple
+technological concept.
+
+Theoretically lower
+energy requirements;
+less risk of scaling at
+low temperatures.
+
+Low product purity;
+complexity of
+equipment (difculties
+in handling and
+melting ice).
+
+Experimental technology.
+Uncertain whether as much
+effort went into developing
+compared with other
+emerging technologies.
+Probably poor economics
+compared with evaporation.
+
+Supercritical
+desalination
+Supercritical
+desalination/power
+cogeneration process
+
+be impure. Might
+improve with
+pretreatment or
+stage-wise salt
+precipitation.
+
+Very high; near
+complete water
+recovery.
+Integration with a
+power plant can
+result in power
+generation and
+high-purity water
+production in a ZLD
+system.
+Emerging technology
+that is dependent on
+integration with
+power plants, so
+could not be
+implemented
+everywhere.
+
+Emerging technology.
+
+Emerging technology.
+
+Emerging technology.
+
+Not applicable at this time.
+May be feasible after further
+development of technology,
+but other emerging
+technologies show more
+promise.
+
+Not applicable at this
+time. May be feasible
+after further
+development of
+technology, but other
+emerging technologies
+show more promise.
+
+Likely to be feasible
+after further
+development of
+technology, but
+technology is not yet
+available for Mt.
+Simon brine
+treatment.
+
+Saltworks advertises an advanced EDR process: the ElectroChem
+stack technology with its IonFlux ion exchange membranes. The
+inlet stream concentration is up to 80,000 ppm of TDS and the outlet
+stream may be as high as 150,000 ppm of TDS [38]. The process may
+be worth pursuing as a brine concentrator for feeds in which salinity
+is double that of seawater, although crystallization or some other treat-
+ment would still be required for the EDR brine. The salinity limits for this
+commercial system are still too low for the Mt. Simon brine, which has a
+salinity of about 200,000 ppm of TDS.
+The conventional desalination processes (RO, MSF, MED, and ED/
+EDR) primarily target brackish water and seawater sources, but various
+emerging desalination technologies might be suitable for hypersaline
+feed streams. These include forward osmosis (FO), membrane distilla-
+tion (MD), humidication compression, fractional freeze crystallization
+of ice, supercritical desalination processes, and antisolvent addition.
+Mature, commercially available high-TDS desalination technologies
+are limited to evaporators including brine concentrators and
+crystallizers.
+Unlike an RO process, in forward or direct osmosis, no pressure is ap-
+plied to the membrane. Instead, a draw solution with a higher osmotic
+pressure than the feed solution is used to draw clean water out of the sa-
+line feed solution and across the membrane. Technically, FO is feasible
+for highly saline solutions depending on the availability of suitable
+draw solutions. Various salinity ranges have been reported, up to at
+least 175,000 ppm of TDS [39]. In one laboratory study, 5 M fructose
+was used as the draw solution for 1 M or 2 M NaCl (~ 58,000 to
+117,000 ppm of NaCl). Water recoveries of 56.8% and 38.5% were
+achieved for the 1 M and 2 M NaCl solutions, respectively. The water
+ux was signicantly lower for the 2 M feed solution (4.0 L/m2/h)
+than for the 1 M feed (8.2 L/m2/h) [40,41].
+
+From an energetic standpoint, FO is a promising desalination tech-
+nology, but the commercialization potential will ultimately depend on
+the energy required in the draw solution recovery step. The ideal
+draw solution will have to be an inexpensive, stable, and nontoxic solu-
+tion with high osmotic pressure, and must be recoverable by a simple
+process [42].
+One promising draw solution is ammonia/carbon dioxide (NH3/
+CO2). Oasys Water's Membrane Brine Concentrator uses NH3/CO2 as a
+draw solution to treat wastewater in the Permian basin [43,44]. The av-
+erage feed salinity is 103,000 ppm, with an average product concentra-
+tion of 737 ppm and a brine by-product concentration of 241,000 ppm
+[43,44]. A pilot demonstration of the technology yielded concentrate
+of about 180,000 ppm of TDS when the feed solution salinity was
+about 73,000 ppm. Thermal energy consumption in that case, including
+NH3/CO2 draw solution regeneration, was reported to be about
+275 kWhth/m3 (~ 83 kWhelec equiv/m3), with water recovery of 64% and
+a rather low ux of 2.6 L/m2-h [45]. However, some authors argue
+that the energy consumption of this process is too high for practical ap-
+plications and that the presence of residual ammonia in the treated
+water renders it unt for use as drinking water [46].
+Membrane distillation is a promising emerging technology that
+combines some of the features of thermal and membrane processes.
+The process is based on a vapor pressure gradient across a hydrophobic
+membrane. The rst MD plant (a small plant with a capacity of only
+10 m3/day) for seawater desalination was commissioned by Aquaver
+in February 2014 [47]. Aquaver's vacuum MD process was tested on
+synthetic seawater and on samples with salinities up to 175,000 ppm
+of TDS [48]. Membrane distillation may be a viable option for highly sa-
+line brine desalination because, theoretically, there is no limitation on
+the salinity of the feed solution and brines up to 300,000 ppm of TDS,
+
+R
+
+.
+
+K
+
+l
+
+a
+p
+a
+n
+
+e
+
+t
+
+a
+
+l
+.
+
+/
+
+D
+
+e
+s
+
+a
+
+l
+i
+
+n
+a
+
+t
+i
+
+o
+n
+4
+0
+4
+
+Fig. 1. Process ow diagram for near-zero liquid discharge treatment of Mt. Simon brine by a multi-effect evaporation system.
+
+(
+
+2
+0
+1
+7
+
+)
+
+8
+7
+每
+1
+0
+1
+
+9
+3
+
+9
+4
+
+R
+
+.
+
+K
+
+l
+
+a
+p
+a
+n
+
+e
+
+t
+
+a
+
+l
+.
+
+/
+
+D
+
+e
+s
+
+a
+
+l
+i
+
+n
+a
+
+t
+i
+
+o
+n
+4
+0
+4
+
+(
+
+2
+0
+1
+7
+
+)
+
+8
+7
+每
+1
+0
+1
+
+Table 5
+Approximate mass balance, enthalpy ow, and stream specication for near- zero liquid discharge treatment of Mt. Simon brine by a multi-effect evaporation system.
+
+Stream no.
+
+6101
+
+6201
+
+6202
+
+6203
+
+6301
+
+6302
+
+6303
+
+6401
+
+6402
+
+6403
+
+6501
+
+6502
+
+6503
+
+Temp., C
+32.0
+Pres., bar
+1.01
+Mass ow, Kg/h
+515,184
+Vap. fract.
+0
+Liq. fract.
+1
+Solid fract.
+0
+Enthalpy Flow, MJ/h
+ 7.2E+ 08
+pH
+7.0
+Component mass fraction
+H2O
+8.26E  01
+H2S
+3.00E  05
+Ca++
+2.15E  02
+CaOH+
+1.36E  08
+H3O+
+3.10E  03
+K+
+4.24E  02
+Na+
+1.17E  04
+HS
+6.46E  10
+HSO4
+1.06E  01
+Cl
+1.55E  09
+OH
+5.82E  04
+Br
+4.57E  04
+SO4
+1.69E  11
+S
+0
+KCl (S)
+0
+CaCl2 (S)
+0
+CaSO4, H2O (S)
+0
+NaCl (S)
+0
+Air
+0
+
+145.0
+3.60
+39,549
+1
+0
+0
+ 5.2E+ 05
+
+9.99E 01
+9.41E 04
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+145.0
+3.60
+475,635
+0
+1
+0
+ 6.6E+ 06
+8.0
+
+8.12E 01
+5.25E 07
+2.33E 02
+7.00E 05
+2.96E 10
+3.36E 03
+4.59E-02
+8.09E 05
+1.20E 09
+1.14E 01
+1.97E 06
+6.30E 04
+4.95E 04
+4.42E 07
+0
+0
+0
+0
+0
+
+133.3
+3.60
+39,549
+0.001
+0.999
+0
+ 6.1E+ 05
+4.1
+
+9.99E 01
+9.38E 04
+0
+0
+1.50E 06
+0
+0
+2.60E 06
+0
+1.25E 10
+3.45E 10
+0
+0
+7.35E 14
+0
+0
+0
+0
+0
+
+125.8
+2.00
+53,664
+1
+0
+0
+ 7.1E+ 05
+
+1.00E+ 00
+3.02E 04
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+125.8
+2.00
+421,972
+0
+1
+0
+ 5.8E+ 06
+8.5
+
+7.88E 01
+9.46E 08
+2.62E 02
+1.39E 04
+6.78E 11
+3.78E 03
+5.17E-02
+5.46E 05
+2.40E 10
+1.29E 01
+3.31E 06
+7.10E 04
+5.58E 04
+3.41E 07
+0
+0
+0
+0
+0
+
+117.7
+2.00
+53,664
+0.001
+0.999
+0
+ 8.3E+ 05
+4.4
+
+1.00E+ 00
+3.01E 04
+0
+0
+7.77E 07
+0
+0
+1.35E 06
+0
+2.31E 11
+4.27E 10
+0
+0
+3.13E 14
+0
+0
+0
+0
+0
+
+112.7
+1.24
+61,575
+1
+0
+0
+ 8.2E+ 05
+
+1.00E+ 00
+1.65E 04
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+112.7
+1.24
+360,396
+0
+1
+0
+ 4.9E+ 06
+8.9
+
+7.52E 01
+3.04E 08
+3.06E 02
+2.12E 04
+2.52E 11
+4.43E 03
+6.06E-02
+3.68E 05
+9.71E 11
+1.51E 01
+3.29E 06
+8.31E 04
+6.53E 04
+2.07E 07
+0
+0
+0
+0
+0
+
+105.8
+2.00
+61,575
+0
+1
+0
+ 9.6E+ 05
+6.1
+
+1.00E+ 00
+0
+0
+0
+1.58E 08
+0
+0
+0
+0
+0
+1.41E 08
+0
+0
+0
+0
+0
+0
+0
+0
+
+99.0
+0.70
+68,056
+1
+0
+0
+ 9.0E+ 05
+
+1.00E+ 00
+1.06E 04
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+99.0
+0.70
+292,341
+0
+0.99994
+5.53E-05
+ 3.8E+ 06
+9.2
+
+6.94E 01
+1.01E 08
+3.76E 02
+3.10E 04
+8.83E 12
+5.46E 03
+7.47E-02
+2.16E 05
+3.16E 11
+1.86E 01
+2.22E 06
+1.02E 03
+5.50E 04
+8.64E 08
+0
+0
+4.58E 04
+0
+0
+
+89.9
+2.00
+68,056
+0
+1
+0
+ 1.1E+ 06
+6.2
+
+1.00E + 00
+0
+0
+0
+1.17E  08
+0
+0
+0
+0
+0
+1.05E  08
+0
+0
+0
+0
+0
+0
+0
+0
+
+Stream no.
+
+6601
+
+6602
+
+6603
+
+6610
+
+6701
+
+6703
+
+6751
+
+6752
+
+6761
+
+6791
+
+6850
+
+6851
+
+Temp., C
+Pres., bar
+Mass ow, Kg/h
+Vap. fract.
+Liq. fract.
+Solid fract.
+Enthalpy Flow, MJ/h
+pH
+Component mass fraction
+H2O
+H2S
+Ca++
+CaOH+
+H3O+
+K+
+Na+
+HS
+HSO4
+Cl
+OH
+Br
+SO4
+S
+KCl (S)
+CaCl2 (S)
+CaSO4, 2H2O (S)
+NaCl (S)
+Air
+
+83.5
+0.37
+73,807
+1
+0
+0
+ 9.8E+ 05
+
+1.00E + 00
+5.64E  05
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+83.5
+0.61
+176,038
+0
+0.99428
+0.00572
+ 2.3E+ 06
+9.5
+
+6.66E  01
+2.75E  09
+5.65E  02
+5.05E  04
+3.17E  12
+8.24E  03
+5.70E  02
+1.18E  05
+4.79E  12
+1.95E  01
+2.87E  06
+1.55E  03
+2.36E  04
+3.28E  08
+0
+0
+1.93E  04
+1.56E  02
+0
+
+74.2
+2.00
+73,807
+0
+1
+0
+ 1.2E+ 06
+6.4
+
+1.00E + 00
+0
+0
+0
+8.36E  09
+0
+0
+0
+0
+0
+7.47E  09
+0
+0
+0
+0
+0
+0
+0
+0
+
+83.5
+0.61
+42,495
+0
+0.66116
+0.33884
+ 4.0E+ 05
+9.5
+
+2.78E 01
+1.15E 09
+2.36E 02
+2.11E 04
+1.33E 12
+3.45E 03
+2.38E 02
+4.93E 06
+2.00E 12
+8.15E 02
+1.20E 06
+6.47E 04
+9.89E 05
+1.37E 08
+0
+0
+7.20E 03
+5.81E 01
+0
+
+68.5
+0.14
+77,117
+1
+0
+0
+ 1.0E+ 06
+
+1.00E+ 00
+2.61E 05
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+53.7
+2.00
+77,246
+0
+1
+0
+ 1.2E+ 06
+6.6
+
+1.00E+ 00
+0
+0
+0
+4.91E 09
+0
+0
+0
+0
+0
+4.39E 09
+0
+0
+0
+0
+0
+0
+0
+0
+
+72.4
+3.00
+141,416
+0
+0.81204
+0.13287
+ 1.5E+ 06
+9.7
+
+3.67E 01
+4.58E 10
+7.73E 02
+7.24E 04
+5.92E 13
+1.09E 02
+8.78E 03
+2.38E 06
+3.61E 13
+1.60E 01
+1.52E 06
+2.12E 03
+2.09E 05
+3.17E 09
+8.02E 04
+0
+2.95E 03
+3.70E 01
+0
+
+50.0
+3.00
+141,416
+0
+0.80811
+0.19189
+ 1.5E+ 06
+10.3
+
+3.67E 01
+2.16E 10
+7.73E 02
+7.22E 04
+1.31E 13
+7.71E 03
+8.08E 03
+2.38E 06
+4.02每14
+1.56E 01
+1.92E 06
+2.12E 03
+1.69E 05
+2.04E 09
+6.83E 03
+0
+2.95E 03
+3.72E 01
+0
+
+45.0
+3.00
+75,431
+0
+0.99915
+0.00085
+ 9.4E+ 05
+10.5
+
+5.93E  01
+2.95E  10
+1.30E  01
+1.17E  04
+1.49E  13
+1.14E  02
+1.28E  02
+3.85E  06
+3.83E  14
+2.50E  01
+3.27E  06
+3.43E  03
+2.59E  05
+3.01E  09
+2.00E  03
+0
+2.49E  06
+6.27E  04
+0
+
+46.3
+3.00
+373,768
+0
+1
+0
+ 5.9E+ 06
+4.5
+
+1.00E + 00
+2.05E  04
+0
+0
+6.28E  07
+0
+0
+1.09E  06
+0
+2.05E  11
+2.24E  11
+0
+0
+2.28E  16
+0
+0
+0
+0
+0
+
+150.0
+1.01
+60,210
+0
+0.02349
+0.97651
+ 4.3E+ 05
+9.7
+
+2.64E  03
+4.48E  13
+3.02E  03
+2.36E  04
+4.89E  15
+2.46E  05
+1.06E  05
+2.19E  09
+3.00E  13
+5.23E  03
+1.50E  08
+6.83E  04
+8.96E  07
+1.84E  10
+2.07E  02
+8.03E  02
+6.94E  03
+8.80E  01
+1.05E  08
+
+150.0
+1.01
+15,755
+1
+0
+0
+ 7.5E+ 04
+
+3.66E  01
+3.01E  06
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+6.34E  01
+
+R
+
+.
+
+K
+
+l
+
+a
+p
+a
+n
+
+e
+
+t
+
+a
+
+l
+.
+
+/
+
+D
+
+e
+s
+
+a
+
+l
+i
+
+n
+a
+
+t
+i
+
+o
+n
+4
+0
+4
+
+(
+
+2
+0
+1
+7
+
+)
+
+8
+7
+每
+1
+0
+1
+
+9
+5
+
+96
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+or near saturation, may be treated [39,49]. General Electric (GE) and
+Memsys successfully operated an MD system over a 200 h test period
+to concentrate a 150,000 ppm of TDS feed up to 230,000 ppm of TDS
+[40]. Pilot studies by ConocoPhilips Global Water Sustainability Center,
+Qatar University, and Qatar Electricity & Water Company indicate that
+~ 70,000 ppm TDS brine concentrate from a thermal desalination plant
+may be desalinated by multi-effect vacuum MD with 52% recovery
+and a ux of 6.2 L/m2/h [50]. Many researchers, e.g. Mericq et al. [51].
+and Zhang et al. [52], have reported successfully operating MD at
+bench scale to concentrate wastewater or synthetic brines to near satu-
+ration. Sanmartino et al. report concentrating synthetic NaCl brine to su-
+persaturation [53].
+Membrane distillation is especially promising when coupled with a
+crystallizer. Tun and Groth investigated an integrated MD crystallization
+process to treat RO brine concentrate. The initial brine concentration of
+19,200 ppm TDS was increased to 212,899 ppm TDS by MD, with a ux
+of 3每5 L/m2/h, which declined as the solution became more concentrat-
+ed. When water recovery was about 75每80%, the MD brine was fed to a
+crystallizer, which facilitates the precipitation of salt crystals. Liquid
+concentrate from the crystallizer is recirculated back to the MD system,
+allowing for a total water recovery of up to 95% [49].
+In a humidication每dehumidication (HD) process, hot air is
+brought into contact with saline water, resulting in the extraction of
+water vapor from the feed solution. The humid air must then be
+dehumidied by being brought into contact with a cold surface. In the
+rst major variation of the HD process, condensation occurs in a heat
+exchanger used to preheat the seawater. In the second variation
+(dewvaporation), evaporation and condensation take place in
+the same vessel [54]. Humidication每dehumidication desalination
+requires a large amount of thermal energy (300 to 550 kWh/m3) but
+may be a viable process when a waste heat source or renewable energy
+source is available [39]. In HD processes, ltration and softening are re-
+quired to prevent equipment fouling.
+A dewvaporation module is commercially available through Altela,
+Inc [32]. Gradiant Technology and Saltworks are examples of vendors
+that use the HD process. Saltworks Technologies Inc. advertises a ther-
+mally driven crystallizer based on a multiple-effect humidied air
+cycle that has no limit for inlet TDS concentration [55]. Gradiant, a
+startup company that resulted from HD desalination research at
+Massachusetts Institute of Technology, advertises a carrier gas extrac-
+tion process specically designed to treat highly saline brines [56每58].
+In at least one case, HD was integrated with MD hypersaline brine
+treatment. Minier-Mater et al. developed a pilot system to treat up to
+6.3% TDS brine by MD, resulting in brine of up to 10.2% TDS which was
+then fed to a pilot HD unit which reportedly functioned as a crystallizer.
+The energy requirement for the MD unit was 260 kWh/m3 and the en-
+ergy required by the HD unit was 220 kWh/m3, indicating that the pro-
+cess seems to be technically feasible but requires improvement in
+energy efciency before scaling up to treat industrial quantities [59].
+Freeze每me lt desa l inat ion processes are based on the pr inc ip le
+that some water impurities might be excluded during the formation
+of ice crysta ls. A sa line solution is subjected to controlled freez ing
+and me lt ing , wh ich can resu lt in the separat ion of pur ied water
+from salts . Mult iple freeze每melt cyc les can be used . The resu lt ing
+pure water crystals can be separated from the remaining pockets of
+saline brine by rinsing, then melted. Advocates of freeze每melt desa-
+lination cite the low latent heat of freezing (7 times lower than the
+latent heat of evaporation) as an indicator of huge potential energy
+sav ings compared with trad it iona l evaporat ive techno log ies , as
+well as the lower scaling potential at lower temperatures [60每63] .
+This emerging technology can be potentially applicable to treatment
+of high-TDS brine but needs further development to address issues
+related to equipment and systems for handling ice and separating
+ice crystals, and correspondingly high capital costs.
+Cooling crystallization of salt and multiphase turbo-expansion are
+both freeze crystallization technologies. A multiphase turbo expander
+
+is presently being developed by GE [64]. Brine is injected into a com-
+pressed air stream, and the mixture is then expanded in a turbo-ex-
+pander capable of handling multiple phases. Quick expansion results
+in cooling and in the production of salt and ice crystals, which are
+then separated. This innovative technology claims to be more energy ef-
+cient (with predicted energy consumption of under 40 kWh/m3) com-
+pared with thermal crystallization [64]. Further development of this
+technology is required before potential application to Mt. Simon brine
+treatment.
+In a supercritical desalination process, the brine is brought to water
+supercritical conditions (temperature N 374 ～C, pressure N 220 bar), at
+which point the solubility of the salts decreases signicantly (e.g., the
+solubility of NaCl may reduce to ~ 100 ppm), and salts spontaneously
+precipitate out by a shock crystallization phenomenon [65,66]. The
+main advantage of this process is its suitability for treatment of high-
+TDS brines. Some of the main challenges of this process include the con-
+tinuous separation of salts, the requirement of special high-pressure/
+high-temperature and corrosion-resistant equipment, and the high en-
+ergy demand. Odu et al. developed a pilot scale supercritical water desa-
+lination process designed for ZLD treatment of seawater and
+determined that the energy consumption of the process to produce a
+water product with 750 ppm of TDS was 450 MJth per m3 of product
+water (125 kWhth/m3) [67]. Supercritical precipitation has also been
+proposed by other researchers (e.g., Lean et al. [68]; Research Partner-
+ship to Secure Energy for America [69]); however, only partial water re-
+covery for highly saline brines by these processes (e.g., for input and
+output concentrations of 200,000 and 300,000 ppm, respectively) is ex-
+pected without the addition of a conventional crystallization unit. Fur-
+thermore, such an approach might be energetically superior to
+existing thermal evaporators with an efcient heat integration and re-
+covery system or by integration with a power generation system. Re-
+searchers at the University of Illinois at Urbana-Champaign propose
+using the supercritical steam in a cogeneration process for power pro-
+duction to mitigate energy consumption of supercritical desalination
+[65]. Using this approach, the input energy will be partially recovered
+as the electrical power in a water每electricity cogeneration system. Con-
+tinued research and development is needed to further address the chal-
+lenges of supercritical water desalination.
+Supercritical reactor systems have been developed for wastewater
+treatment, and in some systems salt removal is accomplished by
+employing a 2-zone reactor system in which salts precipitate in the
+upper supercritical zone, and then fall into the lower subcritical zone
+where they dissolve and are removed as liquid waste [70每72]. In this
+sort of system, the primary purpose of the system is oxidation of organic
+materials. The feed salinity is much lower than Mt. Simon brine; while
+some salts are removed in order to prevent clogging in the system, the
+process will not be effective for a highly saline feed stream. A means
+to remove precipitated salts as solids, rather than as a liquid waste
+stream, must be developed for the successful application of supercritical
+desalination to high-TDS brines.
+In the antisolvent addition process an antisolvent 每 a chemical that
+reduces the solubility of the salt solutes 每 is added to the brine.
+Antisolvent addition is commonly applied to precipitate salts or
+organics in specialty chemical production. Zijlema et al. concluded
+that, compared to evaporative crystallization, antisolvent addition
+would reduce the energy consumption for NaCl production but would
+result in high capital costs [73].The technology might be technically
+feasible for hypersaline brine treatment, but the operation of such a
+scheme at a very large scale appears to have no precedent.
+Brine concentrators and crystallizers are considered as the common
+available technology for management of the concentrated brine in a ZLD
+system. Brine concentrators will typically concentrate a saline feed up to
+about 200,000 ppm of TDS [74,75], or possibly even higher [76,77], be-
+fore crystallization. Water recovery depends on feed concentration,
+but is typically 90每98% [78]. Data on the feed concentration, water re-
+covery, waste stream concentration, and energy consumption of
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+97
+
+industrial brine concentrators and crystallizers is limited. Table 2 pre-
+sents some of the data advertised by manufacturers or reported in the
+literature for selected processes that might be used in ZLD treatment
+of brines or industrial wastewater. Many sources indicate that MVC
+units for seawater desalination may require only 7 to 12 kWh/m3 of
+electrical power [29,79], a value much lower than indicated in Table 2.
+In those cases, MVC is most likely not being used as a brine concentrator
+but for seawater or brackish water desalination processes, and the con-
+centrate stream probably does not approach saturation.
+Spray dryers and evaporation ponds are sometimes used as the nal
+step in a ZLD process. Spray dryers are considered economically practi-
+cal for use only at a small scale, possibly as the nal step for a process
+with a minimal waste stream remaining or for a very small scale desali-
+nation facility. Capacity for spray dryers is b 10 gpm (2.3 m3/h) [83]. At
+one ZLD facility in Florida, GE uses a spray dryer as the nal step in the
+treatment process; the brine is sent to the spray dryer at a rate of 0.45 to
+0.9 m3/h [81].
+Evaporation ponds are another potential option for ZLD treatment
+but they have very large land requirements, in which the area required
+by the pond is determined by the evaporation rate, and the feed stream
+ow rate is limited [32]. Furthermore, this technology is more suitable
+for areas with dry and hot weather [84].
+
+4. Evaluation of Mt. Simon brine treatment options
+
+Challenging water sources, such as high-TDS produced water from
+oilelds, are usually managed by disposal, and water extracted during
+CO2 sequestration is expected to be handled similarly [1]. However,
+freshwater generation, the recovery of salts or valuable minerals, and
+the reduction of adverse effects of wastewater disposal to the environ-
+ment can be some benets of pursuing high-TDS brine treatment in-
+stead of disposal. Brine treatment usually includes pretreatment and
+desalination stages. Commercial and emerging water treatment tech-
+nologies and their potential applicability to high-TDS brine treatment,
+especially brine from Mt. Simon Sandstone, are evaluated.
+
+4.1. Brine pretreatment
+
+Before desalination, pretreatment is required to remove contami-
+nants such as suspended solids, scale-forming species, and organic im-
+purities that interfere with the desalination process. Pretreatments
+may be categorized as chemical treatment, physical separation, or bio-
+logical treatment processes. Table 3 presents the common pretreatment
+processes for produced water reported by Igunnu and Chen, Fakhru'l-
+Razi et al., and Guerra et al. [10,11,85], and their relevance to Mt.
+Simon brine.
+The type of required pretreatment depends on the water source.
+High salinity is generally associated with a high degree of water hard-
+ness, so chemical treatment will most likely be required to soften
+water before high-TDS desalination. Pretreatments that target hydro-
+carbons are essential for oileld-produced water, but they are likely
+not required for Mt. Simon brine. The brine extracted from Mt. Simon
+Sandstone requires pretreatment to remove a large concentration of
+suspended solids (i.e., 2800 ppm), which can be achieved by coagula-
+tion每occulation每sedimentation, and media ltration. The large con-
+centration of divalent metal species in Mt. Simon brine (Table 1) may
+create scaling issues, and scales may be removed by chemical precipita-
+tive softening using lime and soda ash.
+
+4.2. Side-by-side comparison of desalination technologies and their poten-
+tial applicability to highly saline brine treatment
+
+An overview of desalination technologies was presented in Section
+3, and energy requirements, capacity, pretreatment and the main desa-
+lination requirements, maturity, capital costs, and challenges were con-
+sidered. Brine concentration or crystallization technologies, as well as
+
+other potential options (spray drying, and natural evaporation) that
+are commercially available for ZLD processes are also considered. The
+goal of this side-by-side comparison is to identify the technologies
+that are most relevant to hypersaline brines generally, and to Mt.
+Simon brine specically. Available desalination treatment options, in-
+cluding commercial and emerging technologies, were evaluated and
+screened for their applicability to highly saline waters. Technologies
+were evaluated primarily based on salinity limitations and technical
+feasibility.
+The rst question addressed in Table 4 is whether a desalination
+technology can treat highly saline brine with TDS of N 70.000 ppm. If
+treatment of a highly saline brine is technically feasible, or if further re-
+search is required to determine the salinity limitations of a process, then
+other parameters are evaluated, allowing for an assessment of applica-
+bility to Mt. Simon brine at the conclusion of the table.
+Table 4 includes a description of process outlets: whether a technol-
+ogy results in a concentrated brine or solid product, characteristics of
+that brine or solid, and an estimate of the percentage of feed solution
+that may typically be recovered as product water. An ideal process
+would minimize the residual brine stream and maximize pure water re-
+covery. The advantages and challenges of applying each process to a
+high-TDS brine are also reported in Table 4. A desalination method
+may be theoretically or technically feasible for high-TDS brines but
+might not presently be appropriate for implementation at an industrial
+scale because of other issues. These potential issues might include costs,
+limited data availability, research gaps, and process complexity, among
+others. Finally, an indication of process maturity and applicability to Mt.
+Simon brine is provided. The maturity level varies from emerging (lab-
+oratory scale or pilot scale) to commercial (industrial scale).
+In general, membrane processes exhibit TDS and fouling limitations.
+The high osmotic pressure of high-salinity brines is a limitation of RO
+processes because available membrane materials and systems cannot
+withstand the high pressures needed to overcome high osmotic pres-
+sure. For FO, in addition to membrane development, identication of
+an appropriate draw solution and draw solution recovery processes is
+also required. Membrane distillation is an evaporative membrane pro-
+cess and might be technically feasible with current membranes and
+membrane modules, but might be challenging to implement at industri-
+al scales unless scaling, fouling, and other technical issues are further in-
+vestigated to improve ux at high feed salinity. Electrodialysis reversal
+might be technically feasible, but it has not been adequately tested for
+high-TDS feeds.
+Brine treatment by brine concentrators is a mature technology, but it
+exhibits signicantly greater energy consumption than the theoretical
+minimum value, so there is space for a reduction in energy require-
+ments. Current research focuses include the utilization of low-grade
+heat sources and scaling-reduction techniques, and the development
+of cogeneration facilities that would reduce energy consumption costs
+by simultaneous power production at the desalination facility. Humidi-
+cation compression is an emerging thermal brine concentration tech-
+nology, and further research is required before it can be implemented
+at the industrial scale. Corrosion, fouling, and scaling of equipment are
+more likely with high-TDS feed solutions.
+Crystallization processes might be designed to result in signicantly
+less (or even no) liquid waste compared with other technologies, such
+as membrane processes or evaporative concentrators, which only ac-
+complish recovery of a portion of the water from the feed. As with ther-
+mal brine concentration technologies, there is signicant room for
+reduction in energy consumption requirements for thermal crystal-
+lizers. Freeze每melt crystallization processes may require low energy
+consumption, but research gaps include product water quality limita-
+tions and efcient salt每ice separation techniques. Crystallization by a
+supercritical desalination process appears promising, but operation at
+very high temperatures and pressures can present practical design chal-
+lenges. Membrane treatment of supercritical steam in the proposed in-
+tegrated water desalination and power generation process may also be
+
+98
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+challenging. This technology needs to be tested at a pilot scale to con-
+rm its performance.
+According to the screening of available desalination technologies
+presented in Table 4, brine desalination by commercially available
+technologies is presently limited to evaporative concentration and crys-
+tallization processes. These will be applicable both to concentrated
+brines of approximately 70,000 to 100,000 ppm of TDS and to the
+even more highly concentrated Mt. Simon brine, which exhibits a salin-
+ity of ~ 200,000 ppm (Table 1). Several emerging technologies for brine
+treatment, including new generation of RO, FO, MD, ED, HD, fractional
+freeze crystallization of ice, and supercritical desalination, are promising
+technologies with the potential for application to concentrate feed
+streams with TDS of 70,000 ppm or more. For high-TDS brines, including
+the Mt. Simon brine, the applicability of these processes depends on fur-
+ther technology development.
+
+5. Concep tua l des ign and process s imu la t ion for t rea tmen t of
+Mt. Simon brine
+
+Based on the side-by-side comparison of desalination technologies,
+we conclude that evaporators are the most suitable existing technology
+for treating Mt. Simon brine. We perform process simulations for treat-
+ment of Mt. Simon brine for near-ZLD treatment to recover 88 wt% of
+the water by MEE. We assume that the extracted Mt. Simon brine has
+been pretreated (e.g., by coagulation, sedimentation, and ltration)
+prior to the desalination stage for removal of suspended solids. We per-
+form material balance for a 454 m3/h (2000 gpm) brine input unit and
+determine stream compositions, energy requirements, and other
+process specications. Aspen Plus (Version 8.6) software was used to
+prepare a process ow diagram, simulate the evaporation and crystalli-
+zation process, and perform material and energy balance. Results of the
+simulation were used to estimate energy requirements for the process.
+The ENRTL (Electrolyte, Non-Random Two Liquid) activity coefcient
+model was selected in Aspen Plus to represent the thermodynamics of
+the processes. Mt. Simon brine contains many ionic species (in addition
+to those listed in Table 1) at low concentrations, and the ENRTL model
+does not contain predictive solubility (and other thermodynamic) infor-
+mation for all of the salt species that could possibly form. The model fo-
+cused on the major species present, and those that were most prone to
+precipitate during the processes. Some minor components, including
+ions of Fe, Mn, Zn, Li, Sr, and Al, were not included in the simulation be-
+cause they were present in the Mt. Simon brine at relatively low concen-
+trations, and the complex solubility behavior of the system with these
+added components would be difcult to model realistically in the soft-
+ware. Fig. 1 shows a process ow diagram of the proposed system to re-
+cover majority of the water (~ 88 wt%) from a pretreated brine stream. A
+brief description of the main process units and operation conditions of
+evaporators are also included in Fig. 1. An approximate material balance
+of the system is shown in Table 5. The process uses a 6-stage MEE sys-
+tem to recover water from the brine. A salt product, consisting primarily
+of sodium chloride but also containing some calcium chloride, potassi-
+um chloride, and calcium sulfate dihydrate is also produced.
+Pretreated Mt. Simon brine, containing approximately 20 wt% TDS, is
+pumped through a plate cross-exchanger (E-6100) at a ow rate of
+454 m3/h, where it is preheated by water condensate streams from
+the rst 5 MEE stages. The preheated feed is further heated in the rst
+evaporator (EV-6001) by steam (produced by a boiler), evaporating a
+portion of the water from the brine. The steam produced by the rst
+evaporator is then used to provide heat to the second evaporator,
+steam produced in the second evaporator is used to provide heat to
+the third evaporator, and so on. The stream from the last (sixth) evapo-
+rator is condensed by cooling water. The key to this process concept is to
+operate the evaporators at consecutively lower pressures, so that the
+boiling temperature of the brine (despite it becoming more concentrat-
+ed in dissolved salts) is reduced from one evaporator to the next; the
+lower boiling temperature of a second evaporator allows for the steam
+
+from the previous evaporator to transfer heat to the second during
+condensation.
+The rst evaporator operates at 3.6 bar and 145 ～C, while the sixth
+evaporator (EV-6006) operates at 0.15 bar and 69 ～C. The process ow
+diagram (Fig. 1) shows the approximate temperature and pressure of
+each evaporator. The steam produced in each stage (except for the
+last) is condensed by evaporating brine in the next evaporator in the se-
+quence; the condensed hot water is then further cooled by transferring
+heat to the feed brine in E-6100. A vacuum pump (VP-6401) provides a
+vacuum on the nal condenser separator drum (D-6401), which allows
+for the last three evaporator stages to operate under vacuum conditions.
+The rst four evaporator stages will just concentrate the brine, with-
+out precipitation of salts occurring to a signicant extent. The brine
+exiting the 4th stage will be at the solubility limit of salts, and salt pre-
+cipitation occurs in the 5th and 6th evaporation stages. The design and
+cost of the rst four and last two evaporator units are therefore different
+in order to accommodate the bulk salt crystallization that occurs.
+The recovered water 每 about 378 m3/h 每 is collected in a storage
+tank, and pumped to users. In the evaporative crystallizers (EVC-6005,
+EVC-6006) salts are precipitated as water is evaporated, resulting in
+the liquid phase being a slurry of solid salt particles and brine. Evapora-
+tive crystallizers are equipped with thickening/clarication sections,
+such that in EVC-6005 a thickened slurry is collected from the bottom
+of the vessel, while a claried brine is collected from a different part of
+the vessel. The claried liquid from EVC-6005 is fed to EVC- 6006. In
+EVC-6006 it is assumed that the slurry is not thickened, and instead
+the entire liquid slurry product from this nal stage is combined with
+the thickened slurry from EVC-6005. The combined slurry streams, con-
+taining about 40 wt% solids, is cooled and ltered. The solids collected
+from the lters are then dried.
+There are four parallel trains of ltration and drying equipment.
+Each tra in cons ists of a rotary vacuum drum  lter (F-6301 A/B/C/
+D), with the wet solids dumping into a continuous rotary dryer (D-
+6201 A/B/C/D). The rotary dryer uses direct contact of the wet solids
+with combustion gases from burning natural gas (note that for sim-
+pl icity the materia l ba lance does not show the combust ion gases
+added to the dryer); extra combustion air can be added to control
+temperature . The dried sol id product is dumped into b ins , whi le
+the combustion gases from the dryer are sent to a baghouse to lter
+out entrained solids prior to venting to the atmosphere. Salt is pro-
+duced at a rate of about 60 MT/h and conta ins b 1 wt% moisture ;
+the dry mass composition of the sa lt is 89% NaC l , 8 .1% CaC l2 , 2 .1%
+KC l , and 0 .7% CaSO4 d ihydrate . A l l of the m inor spec ies in the Mt .
+Simon brine composition could not be included in the material bal-
+ance; it is l ike ly that add it iona l sma l l-concentrat ion components
+(e.g., metals) will also be present in this salt, some of which might
+be important in the consideration of its disposition.
+The ltrate streams from F-6301 A/B/C/D are combined and stored in
+a tank. This concentrated brine, at a ow rate of about 52 m3/h, contain-
+ing roughly 50 wt% TDS (mostly CaCl2), is pumped from the tank for use
+or disposal; as the brine cools off during storage, it is possible that some
+additional CaCl2 may precipitate from solution.
+When estimating the energy usage and capital cost of a process in
+the early phase of design development, a number of assumptions
+must often be made. These assumptions are typically based on historical
+experience, information from the literature, and engineering judgment.
+Key assumptions that affect the design and energy usage of this process
+are listed below:
+
+ Steam production efciency: A natural-gas-fed boiler is used to gener-
+ate steam. The thermal efciency of this unit is assumed to be 80%.
+ Dryer efciency: Natural gas is burned to dry the wet salt product. A
+thermal efciency of 70% is assumed.
+ Rotating equipment efciencies: Equipment efciencies for pumps,
+blower, vacuum pump, and electric motor drives were 75%, 72%,
+72%, and 98%, respectively.
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+99
+
+ Other power usage: In addition to the process equipment shown in
+Fig. 1, another signicant electric power load is for the cooling water
+system (cooling water circulation pumps and cooling tower fans).
+The cooling water system is estimated to consume over half of the
+electrical power load of the process.
+ Evaporator/crystallizer train differential temperature: Stage 1 (EV-601)
+had a temperature difference 每 between the boiling brine and con-
+densing steam 每 of 15 ～C. The remaining stages were assumed to
+have temperature differences of about 6 ～C (ranged from 5 to 7 ～C).
+ Feed Preheater (E-6100) differential temperature: Although this ex-
+changer is envisioned to be a single multi-feed plate and frame ex-
+changer, for simplicity of analysis it was modeled as sequential
+countercurrent exchangers, with logarithmic mean temperature dif-
+ference (LMTD) of approximately 10 ～C.
+ Final condenser (E-6401) differential temperature: LMTD = 20 ～C.
+ Slurry cooler (E-6301) differential temperature: LMTD = 26 ～C.
+
+One issue not addressed directly in this design is hydrogen sulde.
+During the distillation process hydrogen sulde is formed in the brine
+from soluble sulde salts, and a portion of the H2S is stripped into the
+vapor (steam) phase. As a result water recovered from each MEE stage
+is predicted to contain some H2S, with the combined recovered water
+stream containing roughly 205 ppmw of H2S, unless measures are
+taken to prevent it. The H2S in the steam can be removed prior to
+condensing by scrubbing with hot caustic in a packed tower. Another
+option is to chemically convert H2S to a non-volatile product that
+could be used to prevent the H2S problem, including the use of iron
+redox chemistry to convert the sulde to sulfur, and other oxidation
+chemistries.
+Results of the energy balance, obtained from the process simulation,
+are used to determine the energy requirement of the desalination pro-
+cess. The two energy requirements are electrical power and natural
+gas fuel. The process equipment with the largest power requirements
+include the rotary salt dryers, the vacuum pump on the nal stage crys-
+tallizer, the process pumps, the cooling tower system (cooling water
+pumps, fans), and salt product lters. Total power requirement for the
+process systems is 718 kWelec (~ 2 kWh per m3 of recovered water).
+The electrical power requirement of the salt drying equipment is
+about 10% of the total power requirement.
+The largest overall energy source required for the process is natural
+gas to provide heat for evaporation of water from the brine. It was as-
+sumed that steam would be fed to the rst evaporation stage, and this
+steam would be generated by a package boiler which would use the
+burning of natural gas as a heat source. Another major use of natural
+gas is in the salt product dryers; natural gas is burned and fed directly
+to the rotary dryers, which results in the evaporation of water from
+the salt. The total natural gas requirement for the process is about
+92.8 MW thermal. Since water is recovered at 378 m3/h, the total ther-
+mal energy usage is 246 kWh per m3 of recovered water, in which 86%
+of the thermal energy is required for evaporators and the remaining 14%
+is needed for drying the salt product. Without salt drying the thermal
+energy demand of the process is about 212 kWh/m3 water product.
+The most important factor that causes the energy usage for recover-
+ing water from this brine via evaporative techniques to be signicantly
+greater than that normally seen when recovering water from brackish
+or seawater is the high total salt concentration. The boiling temperature
+of brines generally increases with increasing salt concentration. There-
+fore, in order to maintain a temperature driving force for heat transfer,
+the pressure difference between the evaporation and the condensing
+sides of the evaporator typically must increase with increasing salt con-
+tent. That factor results in the energy efciency of water evaporation
+processes being lower as they treat higher concentration brines.
+The energy usage estimated by our process simulation is similar to
+the value reported by Thiel et al.. [23]. Thiel et al. estimated the thermal
+energy consumption for a 3-stage MED brine concentration process to
+
+be about 250 kWh/m3. The process modeled by Thiel et al. assumed a
+brine outlet concentration of 26 wt% TDS and does not account for the
+solids drying steps that our process includes. Other values reported in
+the literature (see Table 2) are based on MVC technology, which is
+more energy-efcient but has lower capacity limitations than MEE.
+
+6. Conclusions
+
+Potential utilization of the Mt. Simon Sandstone as a storage site for
+CO2 sequestration is likely to involve the extraction of large quantities of
+highly saline brine, which will require management by disposal or treat-
+ment. Desalination of the Mt. Simon brine could potentially reduce ad-
+verse environmental impacts of brine disposal while simultaneously
+increasing fresh water supplies. Solutions for treatment of Mt. Simon
+brine can also be useful for handling other highly saline brines generat-
+ed from other sources such as produced water from oil and gas industry
+or concentrated brine from seawater desalination plants. Through a crit-
+ical review, we evaluated the applicability, limits, and advantages or
+challenges of various commercially available and emerging desalination
+technologies that can potentially be employed to treat the highly saline
+brine (with TDS values N 70.000 ppm) and those that are applicable to a
+~ 200,000 ppm TDS brine extracted from the Mt. Simon Sandstone. The
+most promising emerging technologies include ED, FO, MD, HD, super-
+critical desalination, and freeze-melt technologies that after further de-
+velopment can potentially be used for treatment of high-TDS water.
+Among these, MD and HD have been tested with pilot scale studies indi-
+cating technical feasibility for hypersaline brine desalination. At the lab-
+oratory and pilot scale, MD and HD allow for the feed stream to be
+concentrated near to the saturation point, and HD may even allow for
+the crystallization of salts. Forward osmosis has not yet been demon-
+strated to concentrate brine beyond ~ 200,000 ppm of TDS, but if mem-
+branes, membrane modules, draw solutions, and draw solution
+recovery methods are further developed, it is possible that FO may be
+applied to higher salinity feeds. Supercritical desalination and freeze-
+melt processes are both promising because energy requirements may
+be signicantly lower than other technologies, but better separation
+methods for removing crystals from liquid are required for both of
+these induced phase change approaches to desalination. Supercritical
+desalination has the advantage of producing purer products than
+freeze-melt desalination. Additionally, supercritical desalination pro-
+cesses may be rendered highly energy efcient by integration with a
+power plant. Continued tracking of the development of all of these tech-
+nologies is recommended.
+Our literature review and technology assessment also revealed that,
+among commercially available technologies, options are limited to
+thermal evaporators and crystallizers. We used Aspen Plus software
+to simulate a process in which 454 m3/h of Mt. Simon brine containing
+~ 200,000 ppm of dissolved salts was treated by the MEE process in a
+near-ZLD system. Pretreated brine is fed to a 6-stage MEE process,
+with crystallization occurring in the nal two stages. About 378 m3/h
+of water is recovered, and the remaining salt sludge is treated by ltra-
+tion and drying. Energy balance indicates that the thermal energy con-
+sumption for the process is extremely high, mostly due to the high
+energy required for the evaporation of highly saline brine.
+From our conceptua l design and Aspen simulat ion resu lts , the
+near-ZLD process is estimated to consume roughly 246 kWhth and
+2 kWhelec per m3 of recovered water. Without drying of the salt prod-
+uc t , MEE evaporat ion alone requires 212 kWh th/m3 . This demon-
+strates a huge potentia l for reduct ion in energy consumption ,
+further conrm ing our recommendat ion to cont inue pursu ing
+emerging technologies . The energy demand of currently available
+technologies is so high that Mt. Simon brine treatment by these tech-
+nologies may not be economically feasible. Emerging technologies
+have the potential to signicantly reduce desalination costs by low-
+ering the energy demand.
+
+100
+
+Acknowledgments
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+This research was funded by the U.S. Department of Energy,
+National Energy Technology Laboratory (Cooperative Agreement DE-
+FE0026136). Any opinions expressed in this paper are those of the
+authors and do not necessarily reect the views of the funding agency;
+therefore, no ofcial endorsement should be inferred. Any mention of
+trade names or commercial products does not constitute endorsement
+or recommendation for use.
+
+References
+
+[1] R.J. Klapperich, G. Liu, D.J. Stepan, M.D. Jensen, C.D. Orecki, E.N. Steadman, J.A. Harju,
+D.V. Nakles, IEAGHG investigation of extracted water from CO2 storage: potential
+benets of water extraction and lesson learned, Energy Procedia 63 (2014)
+7173每7186.
+[2] National Energy Technology Laboratory, National Carbon Sequestration Database
+and Interactive Viewer. http://www.netl.doe.gov/research/coal/carbon-storage/
+natcarb-atlas (accessed 03/15/16).
+[3] H.M. Breunig, J.T. Birkholzer, A. Borgia, C.M. Oldenburg, P.N. Price, T.E. McKone, Re-
+gional evaluation of brine management for geologic carbon sequestration, Int. J.
+Greenhouse Gas Control 14 (2013) 39每48.
+[4] W.L. Bourcier, T.J. Wolery, T. Wolfe, C. Haussmann, T.A. Buscheck, R.D. Aines, A pre-
+liminary cost and engineering estimate for desalinating produced formation water
+associated with carbon dioxide capture and storage, Int. J. Greenhouse Gas Control
+5 (2011) 1319每1328.
+[5] R.D. Aines, T.J. Wolery, W.L. Bourcier, T. Wolfe, C. Hausmann, Fresh water generation
+from aquifer-pressured carbon storage: feasibility of treating saline formation wa-
+ters, 10th International Conference on Greenhouse Gas Control Technologies, Am-
+sterdam, Energy Procedia, 4, 2011, pp. 2269每2276.
+[6] J.A. Veil, C.B. Harto, A.T. McNemar, Management of water extracted from carbon se-
+questration projects: parallels to produced water management, SPE Americas E&P
+Health, Safety, Security, and Environmental Conference, Houston, 21-23, 2011.
+[7] International Desalination Association, Desalination by the Numbers, . http://
+idadesal.org/desalination-101/desalination-by-the-numbers/ (accessed 03/15/16).
+[8] S. Miller, H. Shemer, R. Semiat, Energy and environmental issues in desalination, De-
+salination 366 (2015) 2每8.
+[9] N. Voutchkov, Overview of seawater concentrate disposal alternatives, Desalination
+273 (2011) 205每219.
+[10] E.T. Igunnu, G.Z. Chen, Produced water treatment technologies, Int. J. Low Carbon
+Technol. 9 (2014) 157每177.
+[11] A. Fakhru'l-Razi, A. Pendashteh, L.C. Abdullah, D.R.A. Biak, S.S. Madaeni, Z.Z. Abidin,
+Review of technologies for oil and gas produced water treatment, J. Hazard. Mater.
+170 (2009) 530每551.
+[12] D.M. Labotka, S.V. Panno, R.A. Locke, J.T. Freiburg, Isotopic and geochemical charac-
+terization of fossil brines of the Cambrian Mt . Simon Sandstone and Ironton每
+Galesville Formation from the Illinois Basin, USA, Geochim. Cosmochim. Acta 165
+(2015) 342每360.
+[13] R. Locke, D. Larssen, W. Salden, C. Patterson, J. Kirksey, A. Iranmanesh, B. Wimmer, I.
+Krapac, Preinjection reservoir uid characterization at a CCS demonstration site: Il-
+linois Basin 每 Decatur project, USA, Energy Procedia 37 (2013) 6424每6433.
+[14] S. Ebrahim, M. Abdel-Jawad, S. Bou-Hamad, M. Safar, Fifteen years of R&D program
+in seawater desalination at KISR part I. Pretreatment technologies for RO systems,
+Desalination 135 (2001) 141每153.
+[15] S. Oren, L. Birnhack, O. Lehmann, O. Lahav, A different approach for brackish-water
+desalination, comprising acidication of the feed-water and CO2(aq) reuse for alka-
+linity, Ca2+ and Mg2+ supply in the post treatment stage, Sep. Purif. Technol. 89
+(2012) 252每260.
+[16] Method 2540C: total dissolved solids dried at 180 ～C, in: L.S. Clesceri, A.E. Greenberg,
+A.D. Eaton (Eds.), Standard Methods for the Examination of Water and Wastewater,
+20th ed.American Public Health Association, American Water Works Association,
+and Water Environment Federation 1998, pp. 2-56每2-57.
+[17] J. Xu, G. Ruan, X. Chu, Y. Yao, B. Su, C. Gao, A pilot study of UF pretreatment without
+any chemicals for SWRO desalination in China, Desalination 207 (2007) 216每226.
+[18] N. Prihasto, Q. Liu, S. Kim, Pre-treatment strategies for seawater desalination by re-
+verse osmosis system, Desalination 249 (2009) 308每316.
+[19] M.D. Afonso, J.O. Jaber, M.S. Mohsen, Brackish groundwater treatment by reverse os-
+mosis in Jordan, Desalination 164 (2004) 157每171.
+[20] A. Al-Karaghouli, L.L. Kazmerski, Energy consumption and water production cost of
+conventional and renewable-energy-powered desalination processes, Renew. Sust.
+Energ. Rev. 24 (2013) 343每356.
+[21] R. Semiat, J. Sapoznik, D. Hasson, Energy aspects in osmotic processes, Desalin.
+Water Treat. 15 (2010) 228每235.
+[22] M. Elimelech, W.A. Phillip, The future of seawater desalination: energy, technology,
+and the environment, Science 333 (2011) 712每717.
+[23] G.P. Thiel, E.W. Tow, L.D. Banchik, H.W. Chung, J.H.V. Lienhard, Energy consumption
+in desalinating produced water from shale oil and gas extraction, Desalination 366
+(2015) 94每112.
+[24] M. Al-Sahali, H. Ettouney, Developments in thermal desalination processes: design,
+energy, and costing aspects, Desalination 214 (2007) 227每240.
+[25] T. Mezher, H. Fath, Z. Abbas, A. Khaled, Techno-economic assessment and environ-
+mental impacts of desalination technologies, Desalination 266 (2011) 263每273.
+
+[26] N. Ghaffour, T.M. Missimer, G.L. Amy, Technical review and evaluation of the eco-
+nomics of water desalination: current and future challenges for better water supply
+sustainability, Desalination 309 (2013) 197每207.
+[27] H. Ettouney, M. Wilf, Commercial desalination technologies, in: G. Micale, L. Rizzuti,
+A. Cipollina (Eds.), Seawater Desalination: Conventional and Renewable Energy Pro-
+cesses, Springer, Berlin 2009, pp. 77每107.
+[28] M. Ahmad, P. Williams, Assessment of desalination technologies for high saline
+brine applications〞discussion paper, Desalin. Water Treat. 30 (2011) 22每36.
+[29] Energy requirements of desalination processes, in: Encyclopedia of Desalination and
+Water Resources, Eolss Publishers Co. Ltd., Ramsey, Isle of Man, United Kingdom,
+http://www.desware.net/Energy-Requirements-Desalination-Processes.aspx
+(accessed 11/4/16)
+[30] E. Curcio, G.D. Proo, E. Fontananova, E. Drioli, Membrane technologies for seawater
+desalination and brackish water treatment, in: A. Basile, A.C.K. Rastogi (Eds.), Ad-
+vances in Membrane Technologies for Water Treatment, Woodhead Publishing, Ox-
+ford, United Kingdom 2015, pp. 411每441.
+[31] MED: Multiple effect distillation, . http://technomaps.veoliawatertechnologies.com/
+multipleffectdistillation/en/ (accessed 03/15/16).
+[32] P. Xu, T.Y. Cath, A.P. Robertson, M. Reinhard, J.O. Leckie, J.E. Drewes, Critical review
+of desalination concentrate management, treatment and benecial use, Environ.
+Eng. Sci. 30 (2013) 502每514.
+[33] B. Alspach, Produced water and salinity management: the desalination frontier, J.
+Am. Water Works Assoc. 106 (2014) 47每52.
+[34] L.F. Greenlee, D.F. Lawler, B.D. Freeman, B. Marrot, P. Moulin, Reverse osmosis desa-
+lination: water sources, technology, and today's challenges, Water Res. 43 (2009)
+2317每2348.
+[35] G. Juby, A. Zacheis, W. Shih, P. Ravishanker, B. Morazavi, Evaluation and selection of
+available processes for a zero-liquid discharge system for the Perris, California,
+ground water basin, Desalination and Water Purication Research and Develop-
+ment Program Report No. 149, U.S. Department of the Interior, Bureau of Reclama-
+tion, Denver, CO, 2008.
+[36] R.K. McGovern, A.M. Weiner, L. Sun, C.G. Chambers, S.M. Zubair, J.H.V. Lienhard, On
+the cost of electrodialysis for the desalination of high salinity feeds, Appl. Energy
+136 (2014) 649每661.
+[37] R. McGovern, S. Zubair, J.H.V. Lienhard, Hybrid electrodialysis reverse osmosis sys-
+tem design and its optimization for treatment of highly saline brines, IDA J. Desalin.
+Water Reuse 6 (2014) 15每23.
+[38] ElectroChem, advanced electrodialysis reversal (EDR), . http://www.saltworkstech.
+com/wp-content/uploads/2015/03/Saltworks_ElectroChem_Product_Sheet_EN.pdf
+(accessed 03/15/16).
+[39] A. Subramani, J.G. Jacangelo, Emerging desalination technologies for water treat-
+ment: a critical review, Water Res. 75 (2015) 164每187.
+[40] J. Morillo, J. Usero, D. Rosado, H. El Bakouri, A. Riaza, F.J. Bernaola, Comparative study
+of brine management technologies for desalination plants, Desalination 336 (2014)
+32每49.
+[41] W. Tang, H.Y. Ng, Concentration of brine by forward osmosis: performance and in-
+uence of membrane structure, Desalination 224 (2008) 143每153.
+[42] D.L. Shaffer, J.R. Werber, H. Jaramillo, S. Lin, M. Elimelech, Forward osmosis: where
+are we now? Desalination 356 (2015) 271每284.
+[43] N.T. Hancock, M.S. Nowosielski-Slepowron, R.L. McGinnis, High recovery brine treat-
+ment using forward osmosis, AMTA/AWWA Membrane Technology Conference and
+Exposition 2013, San Antonio 2013, pp. 1190每1203.
+[44] B.D. Coday, P. Xu, E.G. Beaudry, J. Herron, K. Lampi, N.T. Hancock, T.Y. Cath, The
+sweet spot of forward osmosis: treatment of produced water, drilling wastewater,
+and other complex and difcult liquid streams, Desalination 333 (2014) 23每35.
+[45] R.L. McGinnis, N.T. Hancock, M. Nowosielski-Slepowron, G.D. McGurgan, Pilot dem-
+onstration of the NH3/CO2 forward osmosis desalination process on high salinity
+brines, Desalination 312 (2013) 67每74.
+[46] L. Chekli, S. Phuntsho, J.E. Kim, J. Kim, J.Y. Choi, J. Choi, S. Kim, J.H. Kim, S. Hong, J.
+Sohn, A comprehensive review of hybrid forward osmosis systems: performance,
+applications and future prospects, J. Membr. Sci. 497 (2016) 430每449.
+[47] E. Drioli, A. Ali, F. Macedonio, Membrane distillation: recent developments and per-
+spectives, Desalination 356 (2015) 56每84.
+[48] Aquaver, membrane distillation: a low-cost breakthrough technology for water
+treatment,
+. http://www.aquaver.com/wp-content/uploads/2014/05/Aquaver_
+White-Papers-Industry-Applications.pdf (accessed 03/15/16).
+[49] C.M. Tun, A.M. Groth, Sustainable integrated membrane contactor process for water
+reclamation, sodium sulfate salt and energy recovery from industrial efuent, Desa-
+lination 283 (2011) 187每192.
+[50] J. Minier-Matar, A. Hussain, A. Janson, F. Benyahia, S. Adham, Field evaluation of
+membrane distillation technologies for desalination of highly saline brines, Desali-
+nation 351 (2014) 101每108.
+[51] J.P. Mericq, S. Laborie, C. Cabassud, Vacuum membrane distillation of seawater re-
+verse osmosis brines, Water Res. 44 (2010) 5260每5273.
+[52] X. Zhang, Z. Guo, C. Zhang, J. Luan, Exploration and optimization of two-stage vacu-
+um membrane distillation process for the treatment of saline wastewater produced
+by natural gas exploitation, Desalination 385 (2016) 117每125.
+[53] . J.A. Sanmartino, M. Khayet, M.C. Garc赤a-Payo, H. El Bakouri, A. Riaza , Desalina-
+tion and concentration of saline aqueous solutions up to supersaturation by air
+gap membrane distillation and crystallization fouling, Desalination 393 (2016)
+39每51.
+[54] Y. Ghalavand, M.S. Hatamipour, A. Rahimi, Humidication compression desalina-
+tion, Desalination 341 (2014) 120每125.
+[55] Saltworks, SaltMaker 每 evaporator crystallizer 每 brochure, low temperature crystal-
+lizer, . https://www.environmental-expert.com/downloads/saltmaker-evaporator-
+crystallizer-brochure-620078 (accessed 03/15/16).
+
+R. Kaplan et al. / Desalination 404 (2017) 87每101
+
+101
+
+[56] HDH tackles brine disposal challenge, Water Desalination Report, 50, 2014, pp. 2每3.
+[57] Gradiant, Carrier Gas Extraction, . http://gradiant.com/technology/carrier-gas-ex-
+traction/ (accessed 03/24/16).
+[58] R. Matheson, Toward cheaper water treatment, MIT News (July 15, 2015), . http://
+news.mit.edu/2015/cheaper-fracking-water-treatment-0716 (accessed 03/24/16).
+[59] J. Minier-Matar, R. Sharma, A. Hussain, A. Janson, S. Adham, Field evaluation of
+membrane distillation followed by humidication/dehumidication crystallizer
+for inland desalination of saline groundwater, Desalination 398 (2016) 12每21.
+[60] M.V. Rane, Y.S. Padiya, Heat pump operated freeze concentration system with tubu-
+lar heat exchanger for seawater desalination, Energy Sustain. Dev. 15 (2011)
+184每191.
+[61] H.F. Wiegandt, R.L. Von Berg, Myths about freeze desalting, Desalination 33 (1980)
+287每297.
+[62] R. Fujioka, L.P. Wang, G. Dodbiba, T. Fujita, Application of progressive freeze-concen-
+tration for desalination, Desalination 319 (2013) 33每37.
+[63] P. Gao, Z. Guo, D. Zhang, X. Zhou, G. Zhou, Performance analysis of evaporation每
+freezing desalination system by humidity differences, Desalination 347 (2014)
+215每223.
+[64] V. Lissianski, Water desalination using multi-phase turbo-expander, GE Global Re-
+search, Munich, Germany, 2015, . https://www.netl.doe.gov/File%20Library/Events/
+2015/crosscutting/Crosscutting_20150428_Poster23_GE.pdf (accessed 03/15/16).
+[65] S.A. Dastgheib, H. Salih, A. Ashraf, H. Lu, S. Nam, An integrated supercritical system
+for efcient produced water treatment and power generation, Crosscutting Re-
+search & Rare Earth Elements Portfolios Review Meeting, 2016 (April 18每22).
+[66] F.J. Armellini, J.W. Tester, G.T. Hong, Precipitation of sodium chloride and sodium
+sulfate in water from sub- to supercritical conditions: 150 to 550 ～C, 100 to
+300 bar, J. Supercrit. Fluids 7 (1994) 147每158.
+[67] S.O. Odu, D.H. Van, S. Metz, S.R.A. Kersten, Design of a process for supercritical water
+desalination with zero liquid discharge, Ind. Eng. Chem. Res. 54 (2015) 5527每5535.
+[68] M.H. Lean, J. Seo, A.R. Volkel, Desalination Using Supercritical Water and Spiral Sep-
+aration, United States Patent Application Publication, August 16 2012 US 2012/
+0205320 A1.
+[69] Research partnership to secure energy for America, cost-effective treatment of
+owback and produced waters via an integrated precipitative supercritical (IPSC)
+process, . http://www.rpsea.org/projects/11122-60/ (accessed 3/6/2015).
+[70] J. Bettinger, P.E. Ferland, E.D. Ferland, W. Killilea, Demonstration of the Modar super-
+critical water oxidation process, Waste Management Symposia, Tucson 1994,
+pp. 813每818.
+[71] P.A. Marrone, M. Hodes, K.S. Smith, J.W. Tester, Salt precipitation and scale control in
+supercritical water oxidation〞part B: commercial/full-scale applications,
+J.
+Supercrit. Fluids 29 (2004) 289每312.
+
+[72] D. Xu, C. Huang, S. Wang, G. Lin, Y. Guo, Salt deposition problems in supercritical
+water oxidation, J. Chem. Eng. 279 (2015) 1010每1022.
+[73] T.G. Zijlema , R.M. Geertman, G. Witkamp, G.M. van Rosmalen, J. de Graauw,
+Antisolvent crystallization as an alternative to evaporative crystallization for the
+production of sodium chloride, Ind. Eng. Chem. Res. 39 (2000) 1330每1337.
+[74] L. Awerbuch, M.C. Weekes, Disposal of concentrates from brackish water desalting
+plants by means of evaporation technology, Desalination 78 (1990) 71每76.
+[75] D.L. Shaffer, L.H. Arias Chavez, M. Ben-Sasson, S. Romero-Vargas Castrill車n, N.Y. Yip,
+M. Elimelech, Desalination and reuse of high-salinity shale gas produced water:
+drivers, technologies, and future directions, Environ. Sci. Technol. 47 (2013)
+9569每9583.
+[76] R. Zuback, L. Marchewka, L. Herrmann, Industrial brine concentration using forward
+osmosis, Proceedings of the Water Environment Federation, WEFTEC 2014, Water
+Environment Federation, Alexandria 2014, pp. 2685每2690.
+[77] P.C. Das, Selection of technology for produced water treatment, North Africa Techni-
+cal Conference and Exhibition 2012, Managing Hydrocarbon Resources in a Chang-
+ing Environment, NATC 2012, Cairo, 2012, pp. 1122每1128.
+[78] A. Subramani, J.G. Jacangelo, Treatment technologies for reverse osmosis concen-
+trate volume minimization: a review, Sep. Purif. Technol. 122 (2014) 472每489.
+[79] O.K. Buros, The ABCs of Desalting, International Desalination Association, Topseld,
+MA, 2000.
+[80] 212 Resources, Company overview, . http://www.212resources.com/company/his-
+tory.html (accessed 03/15/16).
+[81] J. Bostjancic, R. Ludlum, Reducing Wastewater to Dryness: Zero Liquid Discharge
+Case Studies at New Power Plants, 1994. Resources Conservation Company, Belle-
+vue, WA, 1994 (available in the Document Library at www.gewater.com, accessed
+03/15/16).
+[82] G.E. Water, Process Technologies, Zero Liquid Discharge: Eliminate Liquid Discharge,
+Recover Valuable Process Water, 2009. GE Water & Process Technologies, Trevose,
+PA, 2009 (available in the Document Library at www.gewater.com, accessed 03/
+15/16).
+[83] M. Mickley, Survey of High-Recovery and zero Liquid Discharge Technologies for
+Water Utilities, Water Reuse Foundation, 2008.
+[84] P. Chelme-Ayala, D.W. Smith, M.G. El-Din, Membrane concentrate management op-
+tions: a comprehensive critical review, Can. J. Civ. Eng. 36 (2009) 1107每1119.
+[85] K. Guerra, K. Dahm, S. Dundorf, Oil and Gas Produced Water Management and Ben-
+ecial Use in the Western United States, Science and Technology Program Report
+No. 157, US Department of the Interior, Bureau of Reclamation, Denver, CO, 2011.
+

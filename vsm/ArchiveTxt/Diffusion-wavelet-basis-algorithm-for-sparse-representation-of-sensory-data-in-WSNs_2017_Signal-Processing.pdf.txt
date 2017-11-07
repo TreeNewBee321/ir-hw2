@@ -1,0 +1,4305 @@
+Diffusion wavelet basis algorithm for sparse representation of sensory data in WSNs 
+
+Cuicui Lv 
+
+, Qiang Wang 
+
+, Wenjie Yan 
+b , Yi Shen 
+
+a 
+
+
+
+a , 
+
+
+
+a , 
+
+a Department of Control Science and Engineering, Harbin Institute of Technology, Harbin, China 
+b School of Computer Science and Engineering, Hebei University of Technology, Tianjin, China 
+
+article 
+
+info
+
+
+
+Article history: 
+Received 4 October 2016 
+Revised 21 March 2017 
+Accepted 1 May 2017 
+Available online 1 May 2017 
+
+Keywords: 
+Compressive sensing 
+Wireless sensor networks 
+Diffusion wavelet 
+Numerical sparsity 
+
+
+
+abstract 
+
+Sparsity is a precondition for compressive data gathering in Wireless Sensor Networks. To solve the sparse 
+representation problem of sensory data in temperature eld, the paper puts forward a diffusion wavelet 
+basis algorithm, which mainly includes the construction of diffusion operator and the lter of diffusion 
+wavelet bases. The construction of diffusion operator takes spatial correlation between sensory data and 
+the communication radius into account. Diffusion wavelet bases are generated from diffusion wavelet 
+trees with different decomposition levels. The algorithm introduces numerical sparsity to evaluate the 
+sparsity of approximately sparse data. Based on the measure of sparsity, diffusion wavelet basis with 
+the better performance is extracted as the sparsifying basis. Synthetic data experiment and real data ex- 
+periment are conducted to validate the performance of the sparsifying basis. The results of numerical 
+experiments show that sensory data are approximately sparse, and the numerical sparsity in the pro- 
+posed diffusion wavelet basis is less than that in the other types of the sparsifying bases. The recovery of 
+sensory data considers the noiseless and noise cases. When BP and BPDN are used for data recovery, and 
+the measurement matrix is sparse binary matrix, we observe that the proposed diffusion wavelet basis 
+decreases relative error. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Compressive sensing (CS) [1] provides a data gathering method 
+for Wireless Sensor Networks (WSNs) [2] , and can use the fewer 
+linear measurements to recover these data. Consider a WSN with 
+N sensor nodes. Each sensor node has a random ID that ranges 
+¡Ü i 
+¡Ü N ) is denoted 
+from 1 to N , and sensor node with ID i (1 
+. The data readings of sensor nodes are a column vector 
+x 
+ where x i 
+is data reading of s i 
+. If x has 
+a sparse representation in a basis 
+ it is written as 
+
+ [ x 1 
+ x 2 
+
+N¡ÁN ,
+
+by s i 
+
+ ¡Ê
+
+ x N ] 
+
+ x i 
+
+=
+
+T ,
+
+R
+
+,
+
+,
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+=
+
+x 
+
+
+
+(1) 
+
+R
+
+ ¡Ê
+
+N¡Á1 is the coecient vector of x , and 
+where 
+is the 
+number of nonzero coecients. When the value of 
+(cid:6) N ), x is said to be k -sparse in the basis 
+is equal 
+ . In practical, 
+to k ( k 
+many signals are approximately sparse in an appropriate basis. If 
+(cid:6) N ) large coecients in a basis, and the coe- 
+x only has k ( k 
+cients sorted in decreasing order of magnitude decrease quickly, x 
+is approximately k -sparse. 
+
+(cid:5)
+
+ 0 
+
+ 0 
+
+(cid:5)
+(cid:5)
+(cid:5)
+
+
+
+Corresponding authors. 
+E-mail addresses: wangqiang@hit.edu.cn , lvcuicuixuchuan@163.com (Q. Wang). 
+
+http://dx.doi.org/10.1016/j.sigpro.2017.05.001 
+0165-1684/ 2017 Elsevier B.V. All rights reserved. 
+
+.
+
+.
+
+.
+
+,
+
+.
+
+.
+
+,
+
+.
+
+,
+
+,
+
+,
+
+R
+
+<
+
+T ,
+
+y 
+
+=
+
+=
+
+=
+
+ y i 
+
+ M 
+
+ y M ] 
+
+ ¡Ê
+
+
+
+ [ y 1 
+ y 2 
+
+M¡ÁN ( k 
+
+Provided that x is sparse or approximately sparse, the linear 
+measurement vector y , y 
+ can be acquired 
+by Eq. (2) in the noiseless case. 
+x 
+
+(2) 
+(cid:6) N ) is the measurement matrix. Given 
+where 
+the column vector x and the measurement vector y , it is natural to 
+ =
+attempt to recover x by solving the l 0 
+ argmin (cid:5)
+-norm minimization problem: 
+s.t .y 
+. This problem has been proved to be 
+NP-hard. It is translated into the l 1 
+ argmin (cid:5)
+-norm minimization problem: 
+ =
+s.t .y 
+. x can be recovered from y by solving 
+the l 1 
+-norm minimization problem. The reconstruction algorithms 
+contain Basis Pursuit(BP) [3] , IT(Iterative thresholding) [4] and etc. 
+Due to the additive nature of radio waves in WSNs, the commu- 
+nication receiver circuitry of sink node usually generates the noise 
+[5] . The noisy measurement can be expressed as 
+x 
+
+(cid:5)
+(cid:5)
+
+(3) 
+
+=
+
++
+
+=
+
+=
+
+ z 
+
+y 
+
+ 1 
+
+ 0 
+
+where z represents the measurement noise (additive uncorrelated 
+i.i.d. Gaussian noise with the variance 
+). Like the problem in 
+Eq. (2) , the problem in Eq. (3) can be solved by the noisy version 
+BPDN of BP. 
+In compressive data gathering [6] , two factors to be considered 
+are the sparsifying basis and the measurement matrix. The mea- 
+
+¦Ò 2 
+n 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+13 
+
+surement matrix includes dense random matrices and sparse ran- 
+dom matrices [7] . Dense random matrices, such as independent 
+and identically distributed Gaussian random matrix and Bernoulli 
+matrix, satisfy RIP with overwhelming probability. However, the 
+class of matrices have high computational complexity, which inter- 
+feres with the hardware implementation [8] . Compared with them, 
+sparse random matrices are sparser. For this kind of matrix, Wang 
+et al. showed the performance of data recovery was comparable 
+to the optimal k -term approximation [9] . Sparse binary matrix is 
+in that category. Through extensive experiments on both synthetic 
+and real data sets, Li and Qi showed the recovery accuracy of sen- 
+sory data by sparse binary matrix outperformed existing sparse 
+random matrices [10] . So sparse binary matrix is used for com- 
+pressive data gathering and data recovery in the paper. 
+Sparse representation of sensory data is rst to nd the spar- 
+sifying basis of sensory data, and determine the coecient vector 
+based on Eq. (1) . The goal of the paper is to construct the spar- 
+sifying basis of temperature data in the monitored led. Because 
+WSNs can be described by weighted graphs, and multiscale sig- 
+nal processing technique based on diffusion wavelet can be lifted 
+to the graph for compression and approximation [11] , diffusion 
+wavelet is more attractive in this problem [12] . Diffusion wavelet 
+applies a diffusion operator on the graph to a space of test func- 
+tions at the nest scale, and uses its dyadic powers to induce a 
+multiresolution analysis. Diffusion wavelet provides a paradigm of 
+wavelet decomposition for multiscale analysis on graphs [13] . Xi- 
+ang et al. [12] rst adopted diffusion wavelet to design the sparsi- 
+fying basis of sensory data in WSNs, and the experimental results 
+showed that diffusion wavelet had the better performance in the 
+sparse representation of sensory data. Inspired by the construction 
+of diffusion operator [12] , we study the effect factors of diffusion 
+wavelet, and propose a diffusion wavelet basis algorithm. Based on 
+the algorithm, we construct the sparsifying basis of sensory data, 
+and use measure of sparsity to verify its performance. The main 
+contributions of the paper are as follows. 
+
+(1) In the paper, the temperature led monitored by a WSN is 
+mapped into a graph. Based on graph theory and the deploy- 
+ment of sensor nodes, we put forward a method to measure 
+the spatial correlation of sensory data. This method uses the 
+spatial correlation between sensory data as the weight of an 
+edge on the graph, and generates the diffusion operator re- 
+stricted by the communication radius. It has been proved by 
+theoretical analyses and the experiment that high powers of 
+the constructed diffusion operator have low numerical rank. 
+(2) For approximately sparse temperature data in the sparsify- 
+ing basis, we propose a diffusion wavelet basis algorithm to 
+make temperature data sparser. In the algorithm, we intro- 
+duce the numerical sparsity to evaluate the proportion of ef- 
+fectively large coecients, and consider the decomposition 
+level of diffusion wavelets for the optimization of the algo- 
+rithm. 
+(3) The synthetic data experiment and real data experiment are 
+carried out to verify the performance of the proposed algo- 
+rithm in the noiseless and noise cases. In addition, we com- 
+pare the proposed diffusion wavelet basis with other sparsi- 
+fying bases in terms of numerical sparsity and data recovery. 
+From the experimental results, we can see that numerical 
+sparsity is minimal in the proposed diffusion wavelet basis, 
+and relative error of data recovery is the less. 
+
+The rest of the paper is organized as follows. In Section 2 , we 
+construct the diffusion operator based on WSNs described by the 
+weighted graphs. In Section 3 , low numerical rank of high powers 
+of diffusion operator is proved in theory. Given that premise, we 
+propose the diffusion wavelet basis algorithm, and regard the basis 
+as the sparsifying basis of sensory data. To verify the algorithm, 
+
+synthetic data experiment and real data experiment are conducted 
+in Section 4 . Section 5 concludes the paper. 
+
+2. Diffusion wavelet based sparsity model 
+
+In the section, we introduce the construction of diffusion oper- 
+ator, which is the major part of sparsity model, and describe two 
+estimation methods of the sparsifying basis: Gini Index( GI ) and nu- 
+merical sparsity s . 
+
+2.1. Construction of diffusion operator 
+
+,
+
+,
+
+{
+
+.
+
+.
+
+.
+
+=
+
+ s 0 
+ s 1 
+
+Suppose sensor nodes are uniformly deployed to monitor a spa- 
+tially varying temperature eld. The eld is regarded as an image 
+with a degree of spatial correlation and sensory data correspond to 
+the pixel values in the image [5] . In this case, the temperature eld 
+being monitored can be mapped to a graph on two-dimensional 
+plane. 
+Network topology of a WSN is abstracted to a weighted undi- 
+rected graph G ( V, E, 
+¦Ø). It consists of a set of vertices V , a set 
+¦Ø . V corresponds to nodes in 
+of edges E and a weight function 
+WSNs, that is, V 
+ where s 0 
+is sink node. For 
+a general graph G ( V, E, 
+¦Ø), if s i 
+and s j 
+can communicate with each 
+other, an edge e ij 
+¡Ü i 
+exists, and the set of all edges is expressed as 
+E 
+ . The weight function 
+ satises 
+¡Ý 0. The weighted adjacency matrix of G ( V, E, 
+and 
+¦Ø) is 
+, 
+¦Ø), diffusion wavelet 
+] . For sensory data dened on G ( V, E, 
+is introduced to construct an orthogonal basis for functions sup- 
+ported on the graph. The construction process of diffusion wavelet 
+¦Ø) by analyzing the eigenvec- 
+produces a basis tailored to G ( V, E, 
+tors of diffusion operator O derived from weighted adjacency ma- 
+trix. Based on the method in [12] , the paper denes the weight 
+as a function of the spatial correlation between sensory data 
+and s j 
+. 
+
+=
+ =
+
+of e ij 
+of s i 
+
+¡Ü N}
+
+ e i j 
+ ij 
+
+¦Ø
+¦Ø
+
+ s N 
+
+=
+
+,
+
+,
+
+ s i 
+
+ j 
+
+ [ 
+
+ 1 
+
+.
+
+.
+
+.
+
+,
+
+}
+
+{
+
+¦Ø
+
+¦Ø
+
+¦Ø
+
+ i j 
+
+¦Ø
+
+ ij 
+
+|
+
+ ij 
+
+ ji 
+
+<
+
+,
+
+(cid:2)
+
+=
+
+ i j 
+
+¦Ø
+
+1 
+i j 
+
+ d 
+
+0 
+1 
+
+=
+=
+
+i 
+i 
+
+(cid:2)
+
+>
+
+ R 
+ R 
+
+ j,
+ j,
+
+i 
+
+ d i j 
+ d i j 
+
+=
+
+ j 
+
+(4) 
+
+s i 
+
+( d ij 
+
+¦Ø) has the dif- 
+Under the circumstances, the constructed G ( V, E, 
+¦Ø) is used to denote the spatial correla- 
+ferent meaning. G ( V, E, 
+tion between sensory data of sensor nodes, and V not only in- 
+cludes sensor nodes but also includes their sensory data. Unlike 
+the method in [12] , the paper considers the communication radius 
+R in weighted adjacency matrix 
+. The communication radius R 
+called in the communications networks is no longer to measure 
+whether two sensor nodes can communicate with each other, and 
+it is used to bound the degree of spatial correlation in the paper. 
+In Eq. (4) , d ij 
+is Euclidean distance between s i 
+and s j 
+. The smaller 
+¡Ü R ) is, the larger the spatial correlation is. With 
+the value of d ij 
+the increase of d ij 
+, the spatial correlation between sensory data of 
+and s j 
+becomes smaller and smaller. When the value of d ij 
+is 
+greater than R , spatial correlation between sensory data of s i 
+and 
+is set as zero. Compared with [12] , the denition in Eq. (4) weak- 
+ens the spatial correlation of sensory data from two sensor nodes, 
+which are far away from each other. The value of R is determined 
+based on measure of sparsity and the geometric structure of sen- 
+sory data, which will be introduced in Section 3 . 
+In graph theory, degree matrix is combined with adjacency ma- 
+trix to construct Laplacian matrix of a graph. Each entry in the de- 
+gree matrix is the number of edges attached to the vertex. For the 
+weighted undirected graph G ( V, E, 
+¦Ø), degree matrix D considers 
+spatial correlation between sensory data. Each entry in degree ma- 
+trix D is D ij 
+, dened in Eq. (5) . Normalized Laplacian matrix of G ( V, 
+E, 
+¦Ø) is 
+, 
+] . Different from the early work [14] , the deni- 
+tion of degree matrix D in Eq. (5) can guarantee the spectral range 
+
+ =
+
+s j 
+
+ [ 
+
+i j 
+
+¦Ë
+
+14 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+ . 
+of 
+ [15] . Diffusion operator O is I 
+
+D i j 
+
+=
+
+(cid:3)(cid:4)
+(cid:2)
+
+ N 
+
+p=1 
+
+¦Ø
+
+ i p 
+
+i 
+i 
+
+=
+=
+=
+=
+
+ j 
+ j 
+
+0 
+
+(5) 
+
+¦Ëi j 
+
+=
+
+1 
+
+ 1 
+
+ i j ¡Ì
+D i j 
+¡¤D j j 
+D ii 
+
+i 
+
+ j 
+
+ ¦Ø
+
+i 
+
+ j 
+
+(6) 
+
+2.2. Measure of sparsity 
+
+The sparsity k of x in the sparsifying basis 
+ is usually mea- 
+. For approximately sparse 
+sured by l 0 
+norm, k 
+s.t. x 
+data, only fewer large coecients concentrate a large proportion of 
+energy. So we introduce Gini Index( GI ) [16,17] and numerical spar- 
+sity [18] . 
+
+=
+
+(cid:5)
+
+(cid:5)
+
+ 0 
+
+=
+
+Denition 1. Gini Index( GI ): If the coecient vector of x in 
+the sparsifying basis 
+ is 
+ they are re- 
+ordered from smallest to largest, 
+ where 
+[1] 
+ [2] 
+ [ N] are the new indices after reordering, then GI is 
+ f 
+ 2 
+N 
+N 
+
+ =
+
+ [ 
+
+¦È1 
+[1] 
+
+,
+
+¦È2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦ÈN ] 
+
+¦Ó ,
+,
+
+(cid:5)(cid:5)¦È
+
+(cid:5)(cid:5) (cid:2)
+
+(cid:5)(cid:5)¦È
+
+[2] 
+
+(cid:5)(cid:5),
+
+. . .
+
+(cid:2)
+
+(cid:5)(cid:5)¦È
+
+[ N] 
+
+(cid:5)(cid:5),
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+GI 
+
+=
+
+ 1 
+
+N (cid:6)
+f =1 
+
+(cid:5)(cid:5)¦È
+
+[ f ] 
+
+(cid:5)(cid:5)
+
+(cid:5)
+
+(cid:5)
+
+ 1 
+
+(cid:7)
+
++
+
+1 
+2 
+
+(cid:8)
+
+(7) 
+
+Gini Index( GI ) exhibits relative distribution of energy among the 
+coecients. Seen from the denition in Eq. (7) , GI is normalized, 
+and the value ranges from zero to one. The closer to one the value 
+of GI is, the more concentrated the distribution of energy among 
+these coecients is. Further, the basis, where GI of the coecients 
+is the larger, can make x sparser. Considering the instability of 
+in practical application, numerical sparsity was proposed as 
+an alternative measure of sparsity [18] . 
+
+(cid:5)
+
+(cid:5)
+
+ 0 
+
+Denition 2. Numerical Sparsity: If the coecient vector of x in 
+the sparsifying basis 
+ is 
+ numerical sparsity s of x is 
+
+ ¡Ê
+
+R
+
+N¡Á1 ,
+
+s 
+
+=
+
+(cid:5)
+(cid:5)
+
+(cid:5)
+(cid:5)
+
+2 
+1 
+2 
+2 
+
+(8) 
+
+Numerical sparsity uses the ratio 
+to replace the l 0 
+norm, and it is a soft version of l 0 
+norm. If x has k large coecients 
+ k small coecients in the sparsifying basis 
+¡Ö k . 
+and N 
+ , then s 
+isfy the inequality (cid:5)
+For any nonzero coecient vector 
+, the l 1 
+N (cid:5)
+-norm and l 2 
+-norm sat- 
+ and the value of s is 
+[1, N ]. Moreover, s has a sharp lower bound on 
+, s 
+[18] . Compared with GI , numerical sparsity provides an explicit es- 
+timation method of sparsity. 
+
+(cid:5)
+
+(cid:5)
+
+2 
+1 
+
+/
+
+(cid:5)
+
+(cid:5)
+
+2 
+2 
+
+(cid:5)
+
+ 2 
+
+(cid:2)
+
+ (cid:5)
+
+(cid:5)
+
+ 1 
+
+(cid:2)
+
+¡Ì
+
+(cid:5)
+
+ 2 
+
+,
+
+(cid:5)
+
+(cid:5)
+
+ 0 
+
+¡Ü (cid:5)
+
+(cid:5)
+
+ 0 
+
+3. Diffusion wavelet basis algorithm 
+
+3.1. Description and analysis of algorithm 
+
+If high powers of diffusion operator have low numerical rank, 
+they can be compressed by projecting on an appropriate sub- 
+space. Based on the assumption, Coifman and Maggioni [11] pro- 
+posed the construction of diffusion wavelet tree. Enlightened by 
+the approaches in [11,12] , we propose a diffusion wavelet basis 
+Algorithm 1 . 
+
+Theorem 1. If normalized Laplacian matrix 
+ of G ( V, E, 
+¦Ø) is con- 
+ ,
+structed based on Eq. (6) , and diffusion operator O is I 
+ high pow- 
+ers of diffusion operator O have low numerical rank . 
+
+Proof. For a weighted undirected graph G ( V, E, 
+¦Ø), 
+ is a real sym- 
+ are real number and satisfy 
+metric matrix. The eigenvalues of 
+0 
+1 to 1. Because diffusion operator O is also a 
+ 2 [15] . The eigenvalues of diffusion op- 
+erator O range from 
+
+=
+
+¦Ë
+
+1 
+
+¡Ü ¦Ë
+
+2 
+
+¡Ü  ¡Ü ¦ËN 
+
+=
+
+Algorithm 1 Diffusion wavelet basis algorithm. 
+
+Input: 
+N , sensory data x , G 
+(V ,
+ , the decomposition level 
+¦Ã of dif- 
+fusion wavelet, and precision 
+ . 
+Output: 
+diffusion wavelet basis 
+
+1: The maximum value of Euclidean distances between any two 
+nodes is d max . 
+¡Á d max then 
+2: if the network is connected when r is 0 
+¡Á d max to d max by the step size 0.1. 
+3: R ranges from 0 
+4: else 
+In the set {
+ , the mini- 
+mum value that makes the network connected is dened as 
+, and the coecient (0.1,0.2,¡­ ,1.0) in the set is marked 
+as 
+¦Á . 
+6: R ranges from R min 
+7: end if 
+8: for each value of R do 
+9: Calculate each entry 
+in 
+10: Normalized Laplacian matrix is 
+ . 
+12: Original range space of O is U 0 , U 0 
+for J 
+ 0 to 
+¦Ã -1 do 
+if the columns of O 
+Break; 
+end if 
+
+ E ,
+
+¦Ø )
+
+.
+
+ 1 
+
+.
+
+ 1 
+
+5: 
+
+ 0 
+ 1 
+
+.
+
+¡Á d max 
+
+,
+
+ 0 
+ 2 
+
+.
+
+¡Á d max 
+
+,
+
+.
+
+.
+
+.
+,
+
+ 1 
+ 0 
+
+.
+
+¡Á d max 
+
+}
+
+R min 
+
+to d max by the step size 0 
+
+.
+
+ 1 
+
+¡Á d max . 
+
+¦Ø
+
+ i j 
+
+, D i j 
+
+in D , and 
+] . 
+
+¦Ë
+
+i j 
+
+. 
+
+ =
+
+ [ 
+
+¦Ë
+
+i j 
+
+11: O 
+
+=
+
+ I 
+
+=
+
+{
+
+¦Ä
+
+k 
+
+}
+
+ k 
+
+¡Ê
+
+ G 
+
+(V ,E ,¦Ø )
+
+. 
+
+13: 
+
+=
+
+14: 
+
+2 
+
+J is below or equal to 1 then 
+
+15: 
+
+16: 
+
+17: 
+
+( [ U J+1 ] U J 
+
+,
+
+ [ O 
+
+2 
+
+U J+1 
+J ] 
+U J 
+
+)
+
+=
+
+ S pQ R 
+(
+
+ [ O 
+
+2 
+
+U J 
+J ] 
+U J 
+
+,
+
+ ) 
+
+18: 
+
+if J 
+
+(cid:3)
+
+ 1 then 
+
+19: 
+
+[ U J+1 ] U 0 
+
+=
+
+(cid:9)
+
+U J 
+
+(cid:10)
+
+U 0 
+
+[ U J+1 ] U J 
+ [ U J+1 ] U J 
+¦Ó
+[ U J+1 ] 
+V J+1 
+
+20: 
+
+end if 
+
+21: 
+
+(cid:9)
+(cid:9)
+(cid:11)
+
+V J 
+V J+1 
+
+(cid:10)
+
+U J 
+
+=
+
+ S pQ R 
+
+(I U J 
+
+U J 
+
+,
+
+ )
+
+22: 
+
+(cid:10)
+
+U 0 
+ U J+1 
+J+1 
+
+=
+
+(cid:9)
+
+U J 
+
+(cid:10)
+
+U 0 
+
+(cid:9)
+
+(cid:10)
+
+U J 
+U J+1 
+J ] 
+U J 
+
+23: 
+
+O 
+
+2 
+
+(cid:12)
+
+U J+1 
+
+=
+
+([ O 
+
+2 
+
+[ U J+1 ] U J 
+
+)
+
+2 
+
+24: end for 
+¦Ã -1 do 
+for J 
+ 1 to 
+Extract the orthogonal bases of extended scaling functions 
+, and extended wavelet functions 
+. Diffusion wavelet basis is the concatenation of their 
+orthogonal bases. 
+Calculate the sparsity (numerical sparsity) of sensory data 
+x at the decomposition level J . 
+28: end for 
+29: end for 
+30: Diffusion wavelet basis that makes the sparsity (numerical 
+ . 
+sparsity) of x minimal is considered as 
+
+25: 
+
+=
+
+26: 
+
+[ V 0 ] U 0 
+, [ V 1 ] U 0 
+, ¡­ , [ V J ] U 0 
+[ U J ] U 0 
+
+27: 
+
+real symmetric matrix, the scope of singular values is [0, 1], 1 
+ 0. 
+Golub et al. [19] gave the denition of numerical rank, and 
+pointed out that diffusion operator O had numerical rank r with 
+parameters( 
+, 
+-norm) if and only if 
+¦Òr+1 . Dif- 
+fusion operator O is used as a dilation operator by its dyadic 
+ ¦Ë1 ) 
+, the eigenvalues of O 
+J are ( 1 
+powers. Relative to 
+ ¦ËN ) 
+J . For real symmetric matrix O 
+ singular val- 
+ues are absolute values of the corresponding eigenvalues, and the 
+range of singular values is [0, 1]. With the increase of powers, sin- 
+gular values become smaller and smaller. When the values of 
+and 
+are xed, the value of numerical rank decreases. So the 
+high powers of the constructed diffusion operator O have low nu- 
+merical rank. 
+
+=
+
+¦Ò
+
+1 
+
+¡Ý ¦Ò
+
+2 
+
+¡Ý  ¡Ý ¦Ò N 
+
+=
+
+¦Î
+
+1 
+
+¦Î
+
+, l 2 
+2 
+
+¦Òr 
+
+(cid:3)
+
+¦Î1 
+
+>
+
+¦Î2 
+
+(cid:3)
+
+2 
+
+2 
+
+J ,
+
+ ( 1 
+
+
+
+¦Ë2 ) 
+2 
+
+J ,
+
+.
+
+.
+
+.
+
+,
+
+ ( 1 
+
+2 
+
+2 
+
+J ,
+
+¦Î
+
+1 
+
+¦Î
+
+2 
+
+(cid:4)
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+15 
+
+to represent U J+1 
+
+In the proposed algorithm, we use [ U J+1 ] U J 
+with respect to the basis U J . [ O 
+is a representation of an 
+¦Å- 
+J with respect to U J in the do- 
+approximation of dyadic powers O 
+main and U J+1 in the range. The representation of O 
+J onto the ba- 
+sis U J is encoded in the matrix [ O 
+denotes the trans- 
+. 
+
+. [ U J+1 ] 
+¦Ó
+
+U J+1 
+J ] 
+U J 
+
+U J 
+J ] 
+U J 
+
+U J 
+
+2 
+
+2 
+
+2 
+
+2 
+
+pose of [ U J+1 ] U J 
+
+According to the locations of sensor nodes, the algorithm rst 
+calculates the maximum value d max of Euclidean distances among 
+sensor nodes, and determines the minimum value R min 
+to guaran- 
+tee the network connectivity. From the construction of diffusion 
+operator, we can see that different communication radius R can 
+generate different diffusion operators. For each value of R , the cor- 
+responding diffusion operator O is represented on the basis U 0 
+, 
+and its high powers have low numerical rank, which has been 
+step24, a diffusion wavelet 
+proved in Theorem 1 . Through step13 
+tree is generated. The tree includes the orthogonal bases of dif- 
+fusion scaling function U J and the orthogonal bases of wavelets 
+V J . SpQR is a function of computing a sparse QR decomposition. 
+
+Take step17 as an example. SpQR decomposes [ O 
+thogonal matrix [ U J+1 ] U J 
+such that [ O 
+
+[ O 
+
+=
+
+2 
+
+2 
+
+ ¦Å
+
+U J+1 
+J ] 
+U J 
+
+ [ U J+1 ] U J 
+
+U J 
+J ] 
+U J 
+
+and an upper triangular matrix [ O 
+
+. More specic details about 
+
+2 
+
+U J 
+J ] 
+U J 
+
+into an or- 
+
+2 
+
+U J+1 
+J ] 
+U J 
+
+,
+
+SpQR are available in [11] . Calculate the sparsity(numerical spar- 
+sity) of sensory data, and repeat the above steps. Based on the 
+sparsity(numerical sparsity), we determine diffusion wavelet basis 
+with the better performance. From the foregoing, the proposed al- 
+gorithm is to look for the optimal values of 
+¦Á and 
+¦Ã from a - 
+nite set. Like greedy algorithm, it is dicult to prove the optimum 
+mathematically, and the optimal values in the paper can be con- 
+sidered to be locally optimal. 
+The proposed algorithm requires the position information of 
+sensor nodes to construct the diffusion operator. In a real sen- 
+sor network, sink node gets these information by some localiza- 
+tion techniques. Generally, the localization techniques of sensor 
+nodes are categorized as the range-free and range-based. Range- 
+free localization techniques utilize the radio connectivity to map 
+the network topology, and the number of hops between two nodes 
+is used as a distance metric [20] . Range-based localization tech- 
+niques are to estimate the distance between two nodes, and com- 
+pute the position of every node in the network. Compared with 
+range-free localization techniques, range-based localization tech- 
+niques are more accurate [21] . Range-based techniques include an- 
+gle of arrival (AOA), time difference of arrival (TDOA), and time 
+of arrival (TOA) and received signal strength indication (RSSI) [22] . 
+Such as GreenOrbs, a large-scale sensor network system deployed 
+in a forest, [23] inherited the advantages of two localization tech- 
+niques, and proposed a Combined and Differentiated Localization 
+approach. When the higher accuracy is required, Global Position- 
+ing System (GPS) could even be used in outdoor environments. 
+
+3.2. Time complexity of algorithm 
+
+,
+
++
+
+The step 1 in the proposed algorithm is the calculation of Eu- 
+clidean distance and determination of the maximum Euclidean dis- 
+tance. Because the network includes N sensor nodes and one sink 
+node, the time complexity is O 
+((N 
+ 1)
+ and O 
+((N 
+ 1)
+ log(N 
+1))
+ respectively. In steps 2¨C7, Prim algorithm is used to validate 
+((N 
+ 1)
+the network connectivity, and the time complexity is O 
+The construction of normalized Laplacian matrix only relates to 
+2 ). Steps 13¨C24 are 
+sensor nodes, and the time complexity is O ( N 
+the generation of diffusion wavelet tree, and the time complexity 
+is O ( N 
+3 ) in the worst case. The last step is to calculate the spar- 
+sity(numerical sparsity) of diffusion wavelet coecients, and the 
+
++
+
++
+
++
+
+2 )
+
+2 )
+
+ . 
+
+time complexity is O ( N ). As a result, the time complexity of the 
+proposed algorithm is O ( N 
+3 ) in the worst case. Given the decom- 
+¦Ã , [12] has the same order of magnitude as the pro- 
+position level 
+posed algorithm in the construction of diffusion wavelet tree, and 
+3 ) in the worst case. However, the pro- 
+the time complexity is O ( N 
+posed algorithm adds to the steps 1¨C6, steps 25¨C28, and it needs 
+to take more time to look for the optimal values of 
+¦Á and 
+¦Ã . Com- 
+pared with [12] , the runtime of the proposed algorithm is longer. 
+
+3.3. Sparse representation of sensory data 
+
+According to the proposed algorithm, we construct a diffusion 
+wavelet basis 
+ with the better performance, and regard it as the 
+sparsifying basis of x . If the data readings of sensor nodes are a 
+column vector x 
+ the coecient vector 
+, 
+ = [ 
+ =  1 x 
+
+ [ x 1 
+ x 2 
+
+¦ÈN ] 
+T ,
+
+¡¤ ¡¤ ¡¤ ,
+
+ x N ] 
+
+¦È1 
+
+¦È2 
+
+(9) 
+
+ is 
+
+ x i 
+
+=
+
+T ,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+The linear representation of x in the sparsifying basis 
+ is 
+
+=
+
+x 
+
++
+
+ x 1 
+
+¦È1 
+
+ x 2 
+
+¦È2 
+
++
+
+¡¤ ¡¤ ¡¤ +
+
+ x N 
+
+¦ÈN 
+
+(10) 
+
+As mentioned in the proposed algorithm, the numerical sparsity s 
+of x is smaller than N . There are s effectively large coecients in 
+the coecient vector, and the linear representation of x in the 
+
+is sparse. 
+
+4. Experimental results and analysis 
+
+4.1. Experiment setting 
+
+In the section, we carry out the synthetic data experiment and 
+real data experiment of temperature eld to demonstrate the pro- 
+posed algorithm. Among them, the temperature eld in the syn- 
+thetic data experiment is simulated by peaks function in MAT- 
+LAB [24,25] . The temperature elds in real data experiment are 
+from four scenarios: National Oceanic and Atmospheric Adminis- 
+tration¡¯s National Weather Service [26] , temperature distribution in 
+USA [27] , and Sea Surface Temperature(100 KM Global) [28] . These 
+experiments are realized on the PC with inter(R) Core(TM) i3-3320 
+CPU@3.30 GHz, and the experimental tool is MATLAB. Based on the 
+approach in Section 2 , we rst construct the diffusion operator, and 
+analyze the performance of numerical rank. Then represent sen- 
+sory data in the proposed diffusion wavelet basis, and compare 
+the sparsity(numerical sparsity) in different sparsifying bases. Fi- 
+nally we consider the recovery performance of sensory data by BP 
+in the noiseless case and that by BPDN in the noise case. In addi- 
+tion, the proposed diffusion wavelet basis is compared with other 
+sparsifying bases in terms of relative error. 
+
+4.2. Analysis of diffusion operator 
+
+,
+
+Suppose N (1024) sensor nodes and one sink node are deployed 
+¡Á 100 m 
+in the area of 100 m 
+ as shown in Fig. 1 . Sensor nodes 
+obey the random uniform distribution, and their locations are 
+known. Sink node is responsible for compressive data gathering 
+and it is placed in the center (50,50) of the area. In the network, 
+the maximum value of Euclidean distances between any two nodes 
+is d max m . The communication radius R among two nodes is rst 
+¡Á d max m and the network is connected. According to 
+set as 0.1 
+the approach in Section 2 , we construct the diffusion operator O 
+¡Á N . The singular values are sorted in descend- 
+with the size N 
+ing order, as denoted in Fig. 2 (a). We observe that the scope of 
+singular values is [0, 1], i.e. 
+ [0, 1]. With the increase of pow- 
+ers of diffusion operator O , the singular values decay quickly, and 
+the value of numerical rank r reduces. When the value of 
+4 and 
+¡Á 10 
+is 
+¦Ò r and 
+10 
+is equal to 9 
+ 9999 
+ the values of r, 
+
+¦Ò ¡Ê
+
+1 
+¦Òr+1 
+
+4 ,
+
+¦Î
+
+¦Î
+
+2 
+
+.
+
+16 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Table 1 
+The powers of diffusion operator O and the numerical rank r . 
+(¡Á10 
+(¡Á10 
+4 )
+5 )
+
+The powers 
+
+r [12] 
+
+r 
+
+¦Òr 
+
+¦Òr+1 
+
+(¡Á10 
+4 )
+
+¦Òr 
+
+(¡Á10 
+5 )
+
+¦Òr+1 
+
+1 
+2 
+4 
+8 
+16 
+32 
+64 
+
+1023 
+921 
+417 
+72 
+35 
+20 
+11 
+
+1.5411 
+1.0316 
+1.0033 
+1.1336 
+1.0557 
+1.4573 
+1.9242 
+
+5.33321 
+9.92702 
+9.93994 
+9.72108 
+5.546816 
+5.203732 
+4.697564 
+
+1016 
+776 
+52 
+4 
+1 
+1 
+1 
+
+1.0347 
+1.0024 
+1.0322 
+1.7505 
+10 0 0 0 
+10 0 0 0 
+10 0 0 0 
+
+9.1083 
+9.7053 
+9.9948 
+5.6779 
+¡Á10 
+3.4812 
+¡Á10 
+1.2119 
+¡Á10 
+2.0253 
+
+1 
+6 
+10 
+
+¦Á
+
+¦Á =
+
+ R/d max . The 
+
+4.3.1. Sparsity of sensory data 
+According to the proposed algorithm, we dene 
+¦Á range from 0.1 to 1.0 by the step size 0.1. Because the 
+values of 
+construction of diffusion operator O is affected by the communi- 
+¦Á will generate different diffu- 
+cation radius R , different values of 
+¦Á , the temperature data are 
+sion wavelet bases. For each value of 
+represented in the corresponding diffusion wavelet basis. From the 
+experiments, we discover that temperature data are approximately 
+sparse in diffusion wavelet basis and record the numerical sparsity 
+s . Based on these statistical data, Fig. 4 draws the relationship be- 
+¦Á . In Fig. 4 , the step size of 
+tween the numerical sparsity s and 
+is 0.05 for the better observation. In addition, the effect of the de- 
+¦Ã on the numerical sparsity s is also taken into 
+composition level 
+account. For different values of 
+¦Ã , we observe from Fig. 4 that nu- 
+¦Á is 
+merical sparsity s has the minimum value when the value of 
+¦Ã is 2. If the value of 
+¦Ã is greater than 6, the 
+0.1 and the value of 
+condition in the step 14 of proposed algorithm is satised. In this 
+¦Ã is greater 
+case, diffusion wavelet basis, corresponding value of 
+than 6, is the same as that corresponding value of 
+¦Ã is 6, and the 
+¦Ã . To verify the per- 
+value of s doesn¡¯t change with the increase of 
+formance of numerical sparsity s , the coecients of temperature 
+data represented in diffusion wavelet basis are in descending order 
+¦Á is 0.1. 
+by the magnitude, as denoted in Fig. 5 , where the value of 
+When the value of 
+¦Ã is 2, the magnitude of diffusion wavelet coef- 
+cients has a more rapid decay, which corresponds to the smaller 
+value of s in Fig. 4 . From the above analysis, one can draw a con- 
+clusion that the minimum value of s is obtained when the value 
+¦Á is 0.1 and the value of 
+¦Ã is 2. In different diffusion wavelet 
+of 
+bases, the diffusion wavelet basis corresponding to the minimum 
+value of s is better. When GI is used as the evaluation index, the 
+¦Á is 0.1 and 
+maximum value of GI is 0.8924. Here the value of 
+the value of 
+¦Ã is 6. To compare the difference between numeri- 
+cal sparsity s and GI , Fig. 6 shows the diffusion wavelet coecients 
+sorted in decreasing order by the magnitude. Meanwhile, the val- 
+¦Á is 
+ues of GI and s are summarized in Table 2 . When the value of 
+0.1, the value of GI corresponding decomposition level 2(i.e. 
+ 2) 
+is less than that corresponding decomposition level 6(i.e. 
+ 6). 
+
+¦Ã =
+¦Ã =
+
+Fig. 1. The distribution of sensor nodes and one sink node. 
+
+are listed in Table 1 . Compared with the lower powers of diffusion 
+operator O , the higher powers have the lower numerical rank r , 
+which corresponds to Theorem 1 . For other values of R , the above 
+steps are repeated and the same conclusion can also be drawn. 
+Besides, Fig. 2 (b) and Table 1 also show the diffusion operator O 
+constructed by [12] . We observe that the diffusion operator O in 
+[12] has the smaller numerical rank r . 
+
+4.3. Synthetic data experiment 
+
+In the experiment, we use peaks function in MATLAB to simu- 
+late the temperature eld [24,25] , as shown in Fig. 3 (a). Fig. 3 (b) 
+depicts the temperature data of 1024 sensor nodes, and the tem- 
+perature values are represented in different colors. In the proposed 
+¦Ã and 
+algorithm, the maximum value of the decomposition level 
+the value of 
+ are set as 8 and 10 
+ respectively. 
+
+6 ,
+
+¡Á d max m (b) diffusion 
+Fig. 2. The singular values sorted in descending order for different powers of diffusion operator O : (a) diffusion operator O when the value of R is 0.1 
+operator O in [12] . 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+17 
+
+Fig. 3. The synthetic temperature eld and synthetic temperature data: (a) the synthetic temperature eld (b) the synthetic temperature data. 
+
+Fig. 4. The relationship between the numerical sparsity s and 
+¦Á . 
+
+Fig. 6. Diffusion wavelet coecients versus different values of 
+¦Á and 
+¦Ã . 
+
+¦Á
+
+This is because GI and numerical sparsity s have different focus. 
+GI denotes relative distribution of energy among these coecients, 
+but numerical sparsity s represents the number of effectively large 
+coecients. The paper is to use large coecients to solve the spar- 
+sity problem of sensory data in the sparsifying basis. By contrast, 
+numerical sparsity is a more appropriate choice. If the value of 
+¦Ã is the same as that in [12] , 
+is 1.0 and the decomposition level 
+the constructed diffusion wavelet basis is the same as that in [12] . 
+As can be seen from Table 2 , the value of s in the proposed algo- 
+rithm is 33.8886 and the value of s in [12] is 59.3483 when the 
+¦Ã is 2. If the value of 
+¦Á is 0.1 and the value of 
+¦Ã is the 
+value of 
+same as that in [12] , the value of s in the proposed algorithm is 
+¦Á and 
+¦Ã , Fig. 6 shows 
+less than that in [12] . For different values of 
+the change of diffusion wavelet coecients sorted in decreasing 
+order by the magnitude. From Fig. 6 , we can see that diffusion 
+wavelet coecients corresponding to the smaller value of s atten- 
+uate quickly. 
+To validate the performance of the proposed algorithm, the con- 
+structed diffusion wavelet basis is compared with seven sparsify- 
+ing bases (i.e. spatial basis(identity matrix), Discrete Cosine Trans- 
+formation(DCT) basis, Discrete Fourier Transform(DFT) basis, haar 
+wavelet basis, bior3.1 wavelet basis, dictionary obtained by K-SVD 
+[29] and diffusion wavelet basis [12] ) [30] . Numerical experimen- 
+tal results are listed in Table 3 , where the value of 
+¦Ã is 6. It can be 
+seen that numerical sparsity s reaches the minimum value 51.9474 
+when the sparsifying basis is diffusion wavelet basis in the paper. 
+The value of s in DFT basis is maximal, and GI reaches the min- 
+imum value 0.2906. The numerical sparsity s of the temperature 
+data in spatial basis is 344.3421. DCT basis, DFT basis, haar wavelet 
+
+Fig. 5. Diffusion wavelet coecients versus different values of decomposition level 
+¦Ã . 
+
+Table 2 
+The values of GI and s with respect to 
+¦Á and 
+¦Ã . 
+
+¦Á and 
+¦Ã
+The values of 
+
+GI 
+
+s 
+
+¦Ã =
+¦Ã =
+
+¦Ã =
+¦Ã =
+
+.
+
+,
+
+ 0 
+ 1 
+ 1 
+ 0 
+
+,
+
+.
+
+.
+
+,
+
+ 0 
+ 1 
+ 1 
+ 0 
+
+,
+
+.
+
+¦Á =
+¦Á =
+¦Ã =
+¦Á =
+¦Á =
+¦Ã =
+
+ 6 
+ 6 
+
+ 2 
+ 2 
+
+0.8924 
+0.8904 
+0.8904 
+0.8902 
+0.8894 
+0.8894 
+
+51.9474 
+59.8835 
+59.8835 
+33.8886 
+59.3483 
+59.3483 
+
+ 6 [12] 
+
+ 2 [12] 
+
+18 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Fig. 7. The coecients sorted in descending order of synthetic temperature data in eight sparsifying bases: (a) spatial basis (b) DCT basis (c) DFT basis (d) haar wavelet basis 
+(e) bior3.1 wavelet basis (f) dictionary obtained by K-SVD (g) diffusion wavelet basis [12] (h) diffusion wavelet basis in the paper. 
+
+Table 3 
+The values of s and GI in eight sparsifying bases. 
+
+The sparsifying bases 
+
+s 
+
+GI 
+
+Spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Diffusion wavelet basis in the paper 
+
+344.3421 
+624.3799 
+790.6240 
+544.8247 
+289.1851 
+655.8218 
+59.8835 
+51.9474 
+
+0.6657 
+0.4265 
+0.2906 
+0.4954 
+0.6069 
+0.4098 
+0.8904 
+0.8924 
+
+basis, and dictionary obtained by K-SVD can¡¯t make the temper- 
+ature data sparser than the spatial basis. Their performances are 
+worse in terms of numerical sparsity s . Compared with them, the 
+numerical sparsity s in bior3.1 wavelet basis reduces to 289.1851. 
+In these sparsifying bases above, diffusion wavelet basis in the pa- 
+per can make the value of s smaller. As mentioned in Measure of 
+Sparsity , the smaller the value of s is, the sparser sensory data in 
+the sparsifying basis are. Therefore, the temperature data are the 
+sparser in diffusion wavelet basis. Fig. 7 shows the coecients of 
+temperature data represented in eight sparsifying bases. We can 
+see that attenuation velocity of the coecients in diffusion wavelet 
+basis is much faster. 
+
+4.3.2. Recovery of sensory data 
+From Eqs. (2) and (3) , we know that recovery of sensory data 
+needs to consider the measurement matrix and the sparsifying ba- 
+sis. Sparse binary matrix with a xed number of nonzero entries 
+in each column satises RIP-1. Such matrices have a one-to-one 
+correspondence with the adjacency matrices of xed left degree 
+expander graph [31] . In the experiment, the measurement matrix 
+ is sparse binary matrix with 8 ones in each column, and the 
+ is the sparsifying basis mentioned above. The 
+sparsifying basis 
+coherence between 
+ and 
+ is 
+
+¡Ì
+
+=
+
+¦Ì(,
+
+ )
+
+N max 
+
+(cid:2)
+
+ i, j(cid:2)
+
+1 
+
+ N 
+
+
+
+,
+
+ i 
+
+¦×
+
+ j 
+
+(cid:5)(cid:5)(cid:13)
+
+(cid:14)(cid:5)(cid:5)
+
+(11) 
+
+¦Ì( 
+, 
+ ) measures the largest correlation between any two entries 
+ and 
+ . If the two matrices contain correlated elements, the 
+of 
+¦Ì( 
+, 
+ ) is large, Otherwise, it is small. However, the value 
+value of 
+of 
+¦Ì( 
+, 
+ ) has a limit, 
+¦Ì(,
+ )
+ [1 
+N ] . 
+If the coecients of x in the sparsifying basis 
+ is k -sparse, and 
+the number of measurements M satises the condition in Eq. (12) , 
+x can be recovered with overwhelming probability by solving the 
+-norm minimization problem. 
+¡¤ k 
+¡¤ logN 
+
+¡¤ ¦Ì2 (,
+
+(12) 
+
+ )
+
+¡Ì
+
+M 
+
+ C 
+
+l 1 
+
+(cid:3)
+
+¡Ê
+
+,
+
+where C is a positive constant. When the value of 
+¦Ì( 
+, 
+ ) is 1, M 
+¡¤ k 
+¡¤ logN [32] . Because synthetic temper- 
+has the minimum value C 
+ , k is 
+ature data are approximately sparse in the sparsifying basis 
+replaced by numerical sparsity s . Before compressive data gather- 
+ing, we analyze numerical sparsity s of original sensory data, and 
+¡¤ s 
+¡¤ logN . In order to guaran- 
+bound the minimum value M min 
+by C 
+tee recovery performance of sensory data, the value of M should be 
+greater than or equal to M min 
+. Once the value of M is determined, 
+sink node takes charge of collecting the measurements. 
+For WSNs, the measurements are gathered by compressive data 
+gathering algorithms [12,33¨C35] , which are beyond the scope of 
+the paper. Generally speaking, in each measurement, the weighed 
+sums of random projections(the product of sensory data and the 
+corresponding entries in sparse binary matrix) are transmitted to 
+sink node based on compressive data gathering algorithms. After 
+M measurements, sink node collects the measurement vector y of 
+¡Á 1, and recovers these data by BP or BPDN. Relative 
+the size M 
+error 
+¦Å of recovering sensory data is dened in Eq. (13) . 
+  x 
+
+(cid:5)
+
+(cid:5)
+
+(13) 
+
+=
+
+¦Å
+
+ 2 
+
+(cid:5)
+
+ x 
+ x 
+
+(cid:5)
+
+ 2 
+
+where x are sensory data and  x are the recovered sensory data. 
+As listed in Table 2 , diffusion wavelet basis with the better per- 
+¦Á is 0.1 and the value of 
+formance is obtained when the value of 
+¦Ã is 2. In the diffusion wavelet basis, the numerical sparsity s of 
+temperature data is 33.8886. According to Eq. (12) , we know that 
+¡¤ s 
+¡¤ logN . If the value of C is 1, M min 
+the value of M min 
+is C 
+becomes 
+¡¤ logN 
+¡Ö 339. When the value of 
+¦Á is 1.0, and the decomposition 
+s 
+¦Ã is the same as that in [12] , the proposed diffusion wavelet 
+level 
+basis is the same as that in [12] . In the noiseless case, Fig. 8 draws 
+the recovery results of sensory data by BP, and each subgraph cor- 
+responds to diffusion wavelet basis in Table 2 . In the second sub- 
+gure of Fig. 8 , we make a comparison between the proposed dif- 
+fusion wavelet basis and diffusion wavelet basis in [12] . By con- 
+trast, the proposed diffusion wavelet basis can reduce relative er- 
+ror by 0.0038¨C0.1033. In order to observe the changing trends of 
+relative error, the number of measurements M ranges from 100 to 
+700. For the noiseless and noise cases, Figs. 9 and 10 depict the 
+comparison results of relative error in eight sparsifying bases. In 
+¦Á is 0.1, and the value of 
+¦Ã is 6. Seen from 
+Fig. 9 , the value of 
+Fig. 9 , the relative error decreases with the increase of M , and it 
+reaches the minimum in diffusion wavelet basis of the paper. If 
+the value of C is 1, the value of M min 
+is 519. When the value of 
+M isn¡¯t less than 500, relative error changes among 0.0281¨C0.0731. 
+Otherwise, relative error ranges from 0.0572 to 0.7573. When the 
+measurement noise is added to, relative error will change, but the 
+comparative results remain the same. When the value of 
+¦Ã is 2, we 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+19 
+
+sion wavelet basis [12] and the proposed diffusion wavelet basis 
+are almost the same, as shown in Figs. 13 and 14 . For other values 
+of M , Tables 4 and 5 give the numerical results of relative error 
+corresponding to eight sparsifying bases in the noiseless and noise 
+cases. When the measurement matrices are Gaussian random ma- 
+trix and Bernoulli matrix, we carry out the recovery experiments 
+of sensory data at the same condition, and show their recovery re- 
+sults in Fig. 15 . Seen from four sub-gures, the curves of relative 
+error have the same trends as those in Fig. 10 . The proposed diffu- 
+sion wavelet basis can make the temperature data sparser, and the 
+recovery performances are better than other sparsifying bases. 
+
+4.4. Real data experiment 
+
+The real data of temperature led come from National Oceanic 
+and Atmospheric Administration¡¯s National Weather Service [26] , 
+temperature distribution in USA [27] , and Sea Surface Tempera- 
+ture(100 KM Global) [28] . Fig. 16 (a) is the temperature led image 
+of CONUS area provided by National Oceanic and Atmospheric Ad- 
+ministration¡¯s National Weather Service [26] . Fig. 16 (b) is tempera- 
+ture distribution in USA provided by NOAA [37] . Fig. 16 (c) and (d) 
+are Sea Surface Temperature(100 KM Global) of two areas. There 
+are 1024 sensor nodes deployed in the area and their locations are 
+the same as those in Fig. 1 . Like synthetic data experiment, real 
+data experiments are divided into the sparsity of sensory data and 
+recovery of sensory data. 
+
+6 ,
+
+4.4.1. Sparsity of sensory data 
+We use real temperature data to verify the proposed algorithm. 
+¦Ã and the value 
+The maximum value of the decomposition level 
+of 
+ are set as 8 and 10 
+ respectively. Because the layout of all 
+the nodes is the same as that in the synthetic data experiment, the 
+constructed diffusion operator O in the step 11 and corresponding 
+step24 are the same. However, the 
+diffusion wavelet tree in step13 
+¦Ã is 
+value of numerical sparsity s at the same decomposition level 
+different. 
+Based on the experiments, we observe that real temperature 
+data are approximately sparse in eight sparsifying bases. In the ex- 
+periments, the value of 
+¦Ã in [12] is set to be the same as that in 
+the proposed algorithm for the best results. Table 6 separately lists 
+the values of s and GI in each sub-gure of Fig. 16 . It can be seen 
+that diffusion wavelet basis has an advantage over other six sparsi- 
+fying bases. For sensory data in Fig. 16 (a) and (b), the proposed al- 
+gorithm obtains the better diffusion wavelet basis when the value 
+¦Á is 1.0. Because the value of 
+¦Ã is set as the same, diffusion 
+of 
+wavelet basis [12] has the same values of s and GI as the proposed 
+diffusion wavelet basis in Fig. 16 (a) and (b). For diffusion wavelet 
+
+Fig. 8. The comparison results of relative error between diffusion wavelet basis in 
+the paper and that in [12] . 
+
+obtain diffusion wavelet basis with the better performance. How- 
+ever, both haar wavelet basis and bior3.1 wavelet basis also change. 
+The above experiment is repeated and the results of relative error 
+are shown in Fig. 10 . From Fig. 10 (a), we can see that relative error 
+in the proposed diffusion wavelet basis is less than other seven 
+sparsifying bases. When the value of M isn¡¯t less than 300, the 
+range of relative error is 0.0260¨C0.1577 in the noiseless case. Oth- 
+erwise, relative error changes from 0.14 4 4 to 0.3896. The results 
+in Fig. 10 (b) are almost the same as those in the noiseless case. 
+Moreover, we discover that relative error in the proposed diffusion 
+wavelet basis is smaller than that in [12] , and the difference be- 
+comes smaller with the increase of M . When the values of M are 
+200 and 520, Figs. 11 ¨C14 show the visual effects of the recovered 
+temperature data in the noiseless and noise cases, respectively. In 
+Fig. 11 , relative error in spatial basis, DCT basis, DFT basis, haar 
+wavelet basis, bior3.1 wavelet basis, dictionary obtained by K-SVD, 
+diffusion wavelet basis [12] , and the proposed diffusion wavelet 
+basis is 0.9963, 1.0534, 0.8933, 0.9967, 1.0749, 0.8848, 0.4470 and 
+0.2539, respectively. From Fig. 11 , it can be seen that the recovery 
+performance of the proposed diffusion wavelet basis is better than 
+that in [12] . Fig. 12 takes the measurement noise into account. Rel- 
+ative error corresponding to the eight sparsifying bases is 0.9943, 
+1.0545, 0.8872, 0.9962, 1.0712, 0.8838, 0.4464 and 0.2503. With the 
+increase of M , relative error is decreasing. When the value of M is 
+520, the visual effects of the recovered temperature data in diffu- 
+
+¦Á and 
+¦Ã are 0.1 and 6 separately (a) without the measurement noise (b) with 
+Fig. 9. The comparison results of relative error in eight sparsifying bases when the values of 
+the measurement noise( 
+ 0.05) [36] . 
+
+=
+
+¦Ò n 
+
+20 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Table 4 
+The relative error of temperature data without the measurement noise in eight sparsifying 
+bases when the measurement matrix is sparse binary matrix with a xed number of nonzero 
+entries in each column (A-spatial basis, B-DCT basis, C-DFT basis, D-haar wavelet basis, E- 
+bior3.1 wavelet basis, F-dictionary obtained by K-SVD, G-diffusion wavelet basis [12] , H-the 
+proposed diffusion wavelet basis). 
+
+M 
+
+A 
+
+B 
+
+C 
+
+D 
+
+E 
+
+F 
+
+G 
+
+H 
+
+100 
+120 
+140 
+160 
+180 
+200 
+220 
+240 
+260 
+280 
+300 
+320 
+340 
+360 
+380 
+400 
+420 
+440 
+460 
+480 
+500 
+520 
+540 
+560 
+580 
+600 
+620 
+640 
+660 
+680 
+700 
+
+0.9662 
+0.9542 
+1.0104 
+1.0718 
+1.1070 
+0.9963 
+0.9839 
+0.9749 
+0.9706 
+0.9624 
+0.8872 
+0.8446 
+0.8836 
+0.8541 
+0.8310 
+0.7745 
+0.7306 
+0.6800 
+0.7755 
+0.7068 
+0.6497 
+0.6589 
+0.5412 
+0.5546 
+0.5008 
+0.4858 
+0.4777 
+0.4464 
+0.4251 
+0.4006 
+0.3945 
+
+1.1167 
+1.0455 
+1.0859 
+1.0811 
+1.0568 
+1.0534 
+1.0367 
+0.9955 
+1.0095 
+0.9933 
+0.9791 
+0.9651 
+0.9629 
+0.9494 
+0.8842 
+0.8983 
+0.9220 
+0.8988 
+0.8594 
+0.8774 
+0.8885 
+0.8228 
+0.7891 
+0.7771 
+0.7394 
+0.7645 
+0.7554 
+0.7221 
+0.7322 
+0.6757 
+0.6844 
+
+0.9262 
+0.9388 
+0.9203 
+0.8962 
+0.8777 
+0.8933 
+0.8552 
+0.8608 
+0.8648 
+0.8547 
+0.8475 
+0.8191 
+0.8219 
+0.8167 
+0.7843 
+0.7696 
+0.7907 
+0.7496 
+0.7594 
+0.7674 
+0.7316 
+0.7003 
+0.6800 
+0.6814 
+0.6330 
+0.6390 
+0.6522 
+0.6159 
+0.6129 
+0.5929 
+0.6225 
+
+1.1353 
+1.1305 
+1.0970 
+1.1094 
+1.0285 
+0.9967 
+1.0235 
+1.0353 
+1.0565 
+0.9776 
+0.94 4 4 
+0.9813 
+0.9237 
+0.9148 
+0.9344 
+0.9086 
+0.9054 
+0.8365 
+0.8931 
+0.8315 
+0.8303 
+0.8160 
+0.7365 
+0.7889 
+0.6477 
+0.7121 
+0.6986 
+0.6451 
+0.6349 
+0.5695 
+0.5736 
+
+1.1347 
+1.1276 
+1.1044 
+1.1290 
+1.1178 
+1.0749 
+1.0531 
+1.0956 
+1.0961 
+1.0721 
+1.0522 
+1.0766 
+1.0809 
+1.0669 
+1.0170 
+1.0425 
+1.0571 
+1.0711 
+1.0152 
+0.9783 
+0.9652 
+0.9883 
+0.9550 
+0.9700 
+0.9560 
+0.9206 
+0.9329 
+0.9084 
+0.8344 
+0.8312 
+0.8368 
+
+0.8669 
+0.8815 
+0.9473 
+0.9434 
+0.9053 
+0.8848 
+0.8962 
+0.8527 
+0.9408 
+0.8970 
+0.8905 
+0.8863 
+0.9076 
+0.9197 
+0.9175 
+0.9007 
+0.9185 
+0.9014 
+0.8674 
+0.8613 
+0.8633 
+0.9046 
+0.9338 
+0.8649 
+0.9297 
+0.8544 
+0.8578 
+0.8647 
+0.8470 
+0.8554 
+0.8235 
+
+0.6914 
+0.6470 
+0.5836 
+0.4351 
+0.4085 
+0.4470 
+0.3013 
+0.2821 
+0.2900 
+0.2599 
+0.2548 
+0.1856 
+0.1600 
+0.1719 
+0.1654 
+0.1618 
+0.1267 
+0.1104 
+0.1113 
+0.1058 
+0.0886 
+0.0833 
+0.0757 
+0.0573 
+0.0516 
+0.0555 
+0.0440 
+0.0421 
+0.0363 
+0.0313 
+0.0312 
+
+0.3811 
+0.3896 
+0.3529 
+0.2603 
+0.2775 
+0.2539 
+0.1863 
+0.2047 
+0.14 4 4 
+0.1701 
+0.1577 
+0.1303 
+0.1219 
+0.1279 
+0.0870 
+0.0934 
+0.0839 
+0.0751 
+0.0713 
+0.0691 
+0.0534 
+0.0609 
+0.0559 
+0.0414 
+0.0395 
+0.0395 
+0.0349 
+0.0324 
+0.0285 
+0.0263 
+0.0260 
+
+Table 5 
+The relative error of temperature data with the measurement noise( 
+ 0.05) [36] in eight 
+sparsifying bases when the measurement matrix is sparse binary matrix with a xed number 
+of nonzero entries in each column (A-spatial basis, B-DCT basis, C-DFT basis, D-haar wavelet 
+basis, E-bior3.1 wavelet basis, F-dictionary obtained by K-SVD, G-diffusion wavelet basis [12] , 
+H-the proposed diffusion wavelet basis). 
+
+¦Ò n 
+
+=
+
+M 
+
+A 
+
+B 
+
+C 
+
+D 
+
+E 
+
+F 
+
+G 
+
+H 
+
+100 
+120 
+140 
+160 
+180 
+200 
+220 
+240 
+260 
+280 
+300 
+320 
+340 
+360 
+380 
+400 
+420 
+440 
+460 
+480 
+500 
+520 
+540 
+560 
+580 
+600 
+620 
+640 
+660 
+680 
+700 
+
+0.9664 
+0.9542 
+1.0119 
+1.0711 
+1.1085 
+0.9943 
+0.9801 
+0.9770 
+0.9665 
+0.9627 
+0.8861 
+0.8423 
+0.8790 
+0.8525 
+0.8253 
+0.7738 
+0.7312 
+0.6757 
+0.7691 
+0.7129 
+0.6452 
+0.6531 
+0.5468 
+0.5521 
+0.4998 
+0.4861 
+0.4833 
+0.4471 
+0.4211 
+0.3928 
+0.4008 
+
+1.1163 
+1.0457 
+1.0867 
+1.0807 
+1.0566 
+1.0545 
+1.0344 
+0.9943 
+1.0092 
+0.9930 
+0.9773 
+0.9641 
+0.9610 
+0.9483 
+0.8834 
+0.8976 
+0.9185 
+0.8976 
+0.8557 
+0.8736 
+0.8900 
+0.8165 
+0.7858 
+0.7708 
+0.7362 
+0.7717 
+0.7496 
+0.7227 
+0.7259 
+0.6660 
+0.6784 
+
+0.9233 
+0.9302 
+0.9168 
+0.8865 
+0.8742 
+0.8872 
+0.8492 
+0.8542 
+0.8425 
+0.8430 
+0.8238 
+0.8119 
+0.7975 
+0.7865 
+0.7728 
+0.7581 
+0.7561 
+0.7185 
+0.7475 
+0.7257 
+0.7141 
+0.6829 
+0.6497 
+0.6519 
+0.5956 
+0.6017 
+0.6229 
+0.5886 
+0.5697 
+0.5560 
+0.5732 
+
+1.1336 
+1.1291 
+1.0979 
+1.1097 
+1.0282 
+0.9962 
+1.0223 
+1.0342 
+1.0563 
+0.9777 
+0.9800 
+0.9214 
+0.9166 
+0.9341 
+0.9087 
+0.9047 
+0.8362 
+0.8889 
+0.8349 
+0.8286 
+0.8177 
+0.8177 
+0.7333 
+0.7800 
+0.6498 
+0.7088 
+0.6959 
+0.6489 
+0.6340 
+0.5661 
+0.5755 
+
+1.1332 
+1.1277 
+1.1032 
+1.1294 
+1.1171 
+1.0712 
+1.0514 
+1.0947 
+1.0960 
+1.0694 
+1.0747 
+1.0856 
+1.0656 
+1.0156 
+1.0359 
+1.0547 
+1.0677 
+1.0156 
+0.9746 
+0.9681 
+0.9924 
+0.9924 
+0.9547 
+0.9679 
+0.9512 
+0.9180 
+0.9254 
+0.9012 
+0.8126 
+0.8271 
+0.8264 
+
+0.8658 
+0.8822 
+0.9467 
+0.9411 
+0.9034 
+0.8838 
+0.8967 
+0.8532 
+0.9399 
+0.8928 
+0.8867 
+0.9071 
+0.9148 
+0.9143 
+0.8913 
+0.9058 
+0.8912 
+0.8561 
+0.8555 
+0.8559 
+0.9017 
+0.9017 
+0.9246 
+0.8440 
+0.9026 
+0.8374 
+0.8195 
+0.8467 
+0.8220 
+0.8072 
+0.7873 
+
+0.6891 
+0.6460 
+0.5805 
+0.4358 
+0.4056 
+0.4464 
+0.2995 
+0.2810 
+0.2895 
+0.2567 
+0.1826 
+0.1620 
+0.1769 
+0.1674 
+0.1652 
+0.1273 
+0.1088 
+0.1107 
+0.1080 
+0.0872 
+0.0796 
+0.0796 
+0.0717 
+0.0618 
+0.0518 
+0.0540 
+0.0476 
+0.0481 
+0.0439 
+0.0386 
+0.0353 
+
+0.3798 
+0.3926 
+0.3521 
+0.2601 
+0.2792 
+0.2503 
+0.1844 
+0.2034 
+0.1415 
+0.1695 
+0.1298 
+0.1233 
+0.1247 
+0.0886 
+0.0895 
+0.0855 
+0.0757 
+0.0756 
+0.0693 
+0.0550 
+0.0604 
+0.0604 
+0.0564 
+0.0450 
+0.0414 
+0.04 4 4 
+0.0397 
+0.0358 
+0.0324 
+0.0303 
+0.0309 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+21 
+
+¦Á and 
+¦Ã are 0.1 and 2 separately (a) without the measurement noise (b) with 
+Fig. 10. The comparison results of relative error in eight sparsifying bases when the values of 
+the measurement noise ( 
+ 0.05) [36] . 
+
+=
+
+¦Ò n 
+
+Table 6 
+The values of s and GI of real temperature data in eight sparsifying bases. 
+
+The sparsifying bases 
+
+Spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+The proposed diffusion wavelet basis 
+
+The sparsifying bases 
+Spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+s 
+
+s 
+s 
+s 
+s 
+s 
+s 
+s 
+s 
+
+GI 
+GI 
+GI 
+GI 
+GI 
+GI 
+GI 
+GI 
+GI 
+
+Fig. 16 (a) 
+
+Fig. 16 (b) 
+
+Fig. 16 (c) 
+
+Fig. 16 (d) 
+
+10 0 0.7978 
+42.0655 
+27.2497 
+209.1440 
+220.6655 
+660.6477 
+9.3906 
+9.3906 
+
+Fig. 16 (a) 
+0.0834 
+0.6086 
+0.4348 
+0.7365 
+0.7316 
+0.4094 
+0.7769 
+0.7769 
+
+901.1341 
+125.5184 
+117.0807 
+253.0312 
+258.1278 
+650.8165 
+14.7327 
+14.7327 
+
+Fig. 16 (b) 
+0.2111 
+0.4996 
+0.3434 
+0.6128 
+0.6268 
+0.4155 
+0.8196 
+0.8196 
+
+873.9807 
+144.5129 
+141.4851 
+220.4146 
+238.2169 
+633.0333 
+12.3609 
+11.2932 
+
+Fig. 16 (c) 
+0.2318 
+0.4928 
+0.3338 
+0.5776 
+0.6057 
+0.4261 
+0.8596 
+0.8475 
+
+967.2009 
+73.3424 
+59.3052 
+96.1711 
+144.8614 
+646.7721 
+10.1734 
+9.3255 
+
+Fig. 16 (d) 
+0.1357 
+0.5437 
+0.3699 
+0.6282 
+0.6443 
+0.4176 
+0.8412 
+0.8346 
+
+basis [12] , the values of s are 12.3609 and 10.1734 in Fig. 16 (c) and 
+(d), respectively. While the values of s in the proposed diffusion 
+wavelet basis are 11.2932 and 9.3255, respectively. Compared with 
+diffusion wavelet basis [12] , the proposed diffusion wavelet basis 
+reduces the value of s in the two sub-gures, and makes real tem- 
+perature data sparser. 
+In the following analysis, we take real temperature data in 
+¦Á , the numerical spar- 
+Fig. 16 (a) for example. With the increase of 
+sity s will change, and the changes are depicted in Fig. 17 . When 
+¦Ã is 1, the numerical sparsity s of real 
+the decomposition level 
+temperature data is maximal, which signies that real temperature 
+data are the least sparse. This phenomenon also appears in syn- 
+thetic data experiment. The reason is that diffusion wavelet tree 
+only includes orthogonal bases of scaling functions if the value of 
+¦Ã is 1. While an integral diffusion wavelet tree should consist the 
+orthogonal bases of scaling functions and the orthogonal bases of 
+wavelets. Scaling functions are smoothly bumped functions with 
+some oscillations(approximation), and wavelets are smoothly local- 
+ized oscillatory(details) functions at the same scale. If only the or- 
+thogonal bases of scaling function exist, details of real temperature 
+data represented in diffusion wavelet basis are lost, which results 
+in the increase of s . This is also the reason why the scope of J is 
+ ¦Ã  1 in step 25. When the value of 
+1 
+¦Á is 1.0 and the value of 
+¦Ã is 3, the proposed algorithm can obtain diffusion wavelet ba- 
+sis with the better performance. If GI is the evaluation index, the 
+values of 
+¦Á and 
+¦Ã corresponding to the maximum value of GI are 
+0.1 and 2, respectively. Their diffusion wavelet coecients sorted 
+in decreasing order by the magnitude are denoted in Fig. 18 , and 
+
+Table 7 
+The values of GI and s with respect to 
+¦Á and 
+¦Ã . 
+
+¦Á and 
+¦Ã
+The values of 
+
+GI 
+
+s 
+
+¦Ã =
+¦Ã =
+
+¦Ã =
+¦Ã =
+
+.
+
+,
+
+ 0 
+ 1 
+ 1 
+ 0 
+
+,
+
+.
+
+.
+
+,
+
+ 0 
+ 1 
+ 1 
+ 0 
+
+,
+
+.
+
+¦Á =
+¦Á =
+¦Ã =
+¦Á =
+¦Á =
+¦Ã =
+
+ 2 
+ 2 
+
+ 3 
+ 3 
+
+0.8448 
+0.7890 
+0.7890 
+0.8215 
+0.7769 
+0.7769 
+
+60.2793 
+10.8081 
+10.8081 
+37.0535 
+9.3906 
+9.3906 
+
+ 2 [12] 
+
+ 3 [12] 
+
+¦Ã
+
+the numerical results are given in Table 7 . When the value of 
+in [12] is the same as that in the proposed diffusion wavelet basis, 
+sensory data in Fig. 16 (a) have the same diffusion wavelet coe- 
+¦Á is 0.1, 
+cients in two diffusion wavelet bases. When the value of 
+the proposed diffusion wavelet basis is better in terms of GI . How- 
+ever, the numerical sparsity is more ecient in the proportion of 
+effectively lar ge coecients than GI . As shown in Fig. 18 , the coe- 
+cients with respect to the proposed diffusion wavelet basis contain 
+the fewer large coecients, and real temperature data are sparser 
+in the proposed diffusion wavelet basis. 
+For sensory data in Fig. 16 (a), we compare the proposed diffu- 
+sion wavelet basis with other seven sparsifying bases, and denote 
+the comparative results of the coecients in Fig. 19 . The numer- 
+ical comparisons are summarized in Table 6 , where the value of 
+¦Á is 1.0 and the value of 
+¦Ã is 3 in Fig. 16 (a). Seen from Table 6 , 
+the numerical sparsity s of real temperature data in the spatial ba- 
+sis is 10 0 0.7978, which is in close proximity to 1024, that is, real 
+
+22 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Fig. 11. The recovered temperature data by BP in eight sparsifying bases when the value of M is 200 without the measurement noise: (a) spatial basis (b) DCT basis (c) DFT 
+basis (d) haar wavelet basis (e) bior3.1 wavelet basis (f) dictionary obtained by K-SVD (g) diffusion wavelet basis [12] (h)the proposed diffusion wavelet basis. 
+
+temperature data are the least sparse in the spatial basis. Like the 
+spatial basis, the numerical sparsity s of real temperature data in 
+dictionary obtained by K-SVD is larger than other six sparsifying 
+bases. In haar wavelet basis, the value of s is 209.1440. Bior3.1 
+wavelet basis is almost the same as haar wavelet basis. Compared 
+with DFT basis, real temperature data have more large coecients 
+in DCT basis, which leads to the increase of s . The proposed dif- 
+fusion wavelet basis can make the numerical sparsity s reach the 
+minimum value 9.3906. So the performance of the proposed diffu- 
+
+sion wavelet basis is better than the other seven sparsifying bases. 
+For the best results, diffusion wavelet basis [12] has the same per- 
+formance as the proposed diffusion wavelet basis. 
+
+4.4.2. Recovery of sensory data 
+In the recovery of sensory data, the measurement matrix and 
+the sparsifying basis need to be considered. In real data experi- 
+ments, the measurement matrix 
+ is the same as that in the syn- 
+ is the proposed 
+thetic data experiment, and the sparsifying basis 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+23 
+
+Fig. 12. The recovered temperature data by BPDN in eight sparsifying bases when the value of M is 200 with the measurement noise( 
+ 0.05) [36] : (a) spatial basis (b) 
+DCT basis (c) DFT basis (d) haar wavelet basis (e) bior3.1 wavelet basis (f) dictionary obtained by K-SVD (g) diffusion wavelet basis [12] (h) the proposed diffusion wavelet 
+basis. 
+
+=
+
+¦Ò n 
+
+diffusion wavelet basis. Besides, the other seven sparsifying bases 
+mentioned above are used for comparison. 
+Similarly, sensory data in Fig. 16 (a) are taken for example. From 
+Table 6 , it can be seen that numerical sparsity s of real tempera- 
+ture data in the proposed diffusion wavelet basis is 9.3906. Based 
+on Eq. (12) and the lower bound of 
+¦Ì( 
+, 
+ ), the minimum value 
+¡¤ s 
+is determined by C 
+logN . When the value of C is 1, 
+
+¡¤
+
+M min 
+
+M min 
+
+¡¤ logN 
+¡Ö 94. If the value of 
+¦Á is 0.1, and the 
+is equal to s 
+¦Ã is 2, sensory data in Fig. 16 (a) have the maximum 
+value of 
+¦Á is 1.0, and the value of 
+¦Ã is 3, the 
+value of GI . If the value of 
+data in Fig. 16 (a) have the minimum value of s . When the numer- 
+ical sparsity s reaches the minimum value, we obtain the diffu- 
+sion wavelet basis with better performance. Corresponding to GI 
+and s , Fig. 20 depicts the recovery performance of sensory data 
+
+24 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Fig. 13. The recovered temperature data by BP in eight sparsifying bases when the value of M is 520 without the measurement noise: (a) spatial basis (b) DCT basis (c) DFT 
+basis (d) haar wavelet basis (e) bior3.1 wavelet basis (f) dictionary obtained by K-SVD (g) diffusion wavelet basis [12] (h) the proposed diffusion wavelet basis. 
+
+in Fig. 16 (a) by BP. In the rst sub-gure, the proposed diffusion 
+wavelet basis decreases the relative error by 0.0098¨C0.1301 than 
+diffusion wavelet basis [12] with the maximum value of GI . In 
+the second sub-gure, compared with the diffusion wavelet basis 
+[12] with the maximum value of GI , the proposed diffusion wavelet 
+basis reduces the relative error by 0.0086¨C0.1010. For sensory data 
+in Fig. 16 , we conduct the recovery experiments in the noiseless 
+and noise cases. Fig. 21 draws the relative error between the sen- 
+
+sory data in Fig. 16 and the recovered sensory data in the noiseless 
+case, and gives the comparison results between the eight sparsi- 
+fying bases. Fig. 21 includes four sub-gures, and each sub-gure 
+separately denotes the relative error of the recovery of real tem- 
+perature data in each sub-gure. We have analyzed the recovery 
+of sensory data in Fig. 16 (a) above. When the value of 
+¦Á is 1.0 and 
+¦Ã is 4, diffusion wavelet basis with the better perfor- 
+the value of 
+mance is obtained for sensory data in Fig. 16 (b). When the value 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+25 
+
+Fig. 14. The recovered temperature data by BPDN in eight sparsifying bases when the value of M is 520 with the measurement noise( 
+ 0.05) [36] : (a) spatial basis (b) 
+DCT basis (c) DFT basis (d) haar wavelet basis (e) bior3.1 wavelet basis (f) dictionary obtained by K-SVD (g) diffusion wavelet basis [12] (h)the proposed diffusion wavelet 
+basis. 
+
+=
+
+¦Ò n 
+
+¦Á is 0.2, sensory data in Fig. 16 (c) and (d) are the sparsest. At 
+of 
+¦Ã are 5 in Fig. 16 (c), and 
+this moment, the corresponding values of 
+6 in Fig. 16 (d). The numerical results of relative error are listed in 
+Table 8 . 
+With the increase of M , it can be seen from Fig. 21 that relative 
+error decreases gradually. Because the number of sensor nodes N 
+is 1024, the numerical sparsity s of real temperature data is a con- 
+stant in the given sparsifying basis. If the value of M is larger, com- 
+
+pressive data gathering can acquire the more information about 
+original sensory data. In this case, relative error is smaller and the 
+recovery of data is more accurate. However, if the value of M is 
+smaller, it isn¡¯t enough for accurate recovery, and relative error be- 
+comes larger. In four sub-gures, the spatial basis and DFT basis 
+have an advantage over four sparsifying bases(i.e. DCT basis, haar 
+wavelet basis, bior3.1 wavelet basis and dictionary obtained by K- 
+SVD). However, relative error in diffusion wavelet basis [12] and 
+
+26 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Fig. 15. The comparison results of relative error in eight sparsifying bases when the measurement matrices are Gaussian random matrix and Bernoulli matrix (a) Gaussian 
+random matrix without the measurement noise (b) Gaussian random matrix with the measurement noise( 
+ 0.05) [36] (c) Bernoulli matrix without the measurement 
+noise (d) Bernoulli matrix with the measurement noise( 
+ 0.05) [36] . 
+
+¦Ò n 
+
+=
+
+=
+
+¦Ò n 
+
+Fig. 16. (a) The temperature led image of CONUS area, 8AM EST, Thu MAY 26, 2016 (b) temperature distribution in USA (c) Sea Surface Temperature(100 KM Global) (d) 
+Sea Surface Temperature(100 KM Global). 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+27 
+
+Table 8 
+The relative error of the recovery of sensory data without the measurement noise in eight spar- 
+sifying bases. 
+
+The sparsifying bases 
+
+M 
+
+Fig. 21 (a) 
+
+Fig. 21 (b) 
+
+Fig. 21 (c) 
+
+Fig. 21 (d) 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+100 
+100 
+100 
+100 
+100 
+100 
+100 
+100 
+
+150 
+150 
+150 
+150 
+150 
+150 
+150 
+150 
+
+200 
+200 
+200 
+200 
+200 
+200 
+200 
+200 
+
+250 
+250 
+250 
+250 
+250 
+250 
+250 
+250 
+
+300 
+300 
+300 
+300 
+300 
+300 
+300 
+300 
+
+0.1432 
+0.2660 
+0.1432 
+0.3212 
+0.3388 
+0.1775 
+0.1139 
+0.1139 
+
+0.1399 
+0.2198 
+0.1399 
+0.3814 
+0.3319 
+0.1678 
+0.1205 
+0.1205 
+
+0.1337 
+0.2558 
+0.1337 
+0.2642 
+0.2473 
+0.1808 
+0.0908 
+0.0908 
+
+0.1338 
+0.2098 
+0.1338 
+0.2067 
+0.2255 
+0.1710 
+0.0871 
+0.0871 
+
+0.1259 
+0.1988 
+0.1262 
+0.2067 
+0.2169 
+0.1784 
+0.0905 
+0.0905 
+
+0.3246 
+0.4573 
+0.3246 
+0.6674 
+0.5648 
+0.4024 
+0.1884 
+0.1884 
+
+0.3186 
+0.4296 
+0.3186 
+0.4753 
+0.4977 
+0.3948 
+0.1320 
+0.1320 
+
+0.3092 
+0.4405 
+0.3091 
+0.4 4 46 
+0.4572 
+0.3923 
+0.1143 
+0.1143 
+
+0.3048 
+0.3988 
+0.3049 
+0.4109 
+0.4230 
+0.3772 
+0.1135 
+0.1135 
+
+0.2844 
+0.4159 
+0.2844 
+0.4031 
+0.4520 
+0.3875 
+0.0946 
+0.0946 
+
+0.3639 
+0.4901 
+0.3639 
+0.5293 
+0.5186 
+0.4314 
+0.1862 
+0.1594 
+
+0.3521 
+0.4705 
+0.3520 
+0.4633 
+0.4896 
+0.4270 
+0.1176 
+0.1017 
+
+0.3492 
+0.4558 
+0.3491 
+0.4299 
+0.4571 
+0.4411 
+0.1004 
+0.0922 
+
+0.3338 
+0.4437 
+0.3339 
+0.4406 
+0.4614 
+0.4 4 49 
+0.0831 
+0.0738 
+
+0.3295 
+0.4218 
+0.3295 
+0.4177 
+0.4513 
+0.4534 
+0.0701 
+0.0644 
+
+0.2236 
+0.3804 
+0.2236 
+0.2675 
+0.2838 
+0.2681 
+0.1776 
+0.1472 
+
+0.2168 
+0.3465 
+0.2168 
+0.2623 
+0.2738 
+0.2748 
+0.1265 
+0.1234 
+
+0.2150 
+0.3255 
+0.2150 
+0.2528 
+0.2718 
+0.2669 
+0.1236 
+0.1017 
+
+0.2027 
+0.3011 
+0.2027 
+0.2574 
+0.2718 
+0.2721 
+0.0922 
+0.0894 
+
+0.1954 
+0.2835 
+0.1954 
+0.2446 
+0.2676 
+0.2732 
+0.0865 
+0.0730 
+
+Fig. 17. The relationship between the numerical sparsity s and 
+¦Á in Fig. 16 (a). 
+
+Fig. 18. Diffusion wavelet coecients versus different values of 
+¦Á and 
+¦Ã in Fig. 17 . 
+
+the proposed diffusion wavelet basis are less than that in the two 
+sparsifying bases(spatial basis and DFT basis). For sensory data in 
+Fig. 16 (a) and (b), the proposed diffusion wavelet basis is gained 
+when the value of 
+¦Á is 1.0. Under the best circumstance, the value 
+¦Ã in diffusion wavelet basis [12] is the same as that in the 
+of 
+
+proposed diffusion wavelet basis, and the recovery results are the 
+same, as shown in Fig. 21 (a) and (b). In diffusion wavelet basis 
+[12] , the numerical sparsity s of real temperature data in Fig. 21 (c) 
+and (d) are 12.3609 and 10.1734, respectively. If the proposed dif- 
+fusion wavelet basis is used, the numerical sparsity s reduces to 
+
+28 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Fig. 19. The coecients sorted in descending order of real temperature data in eight sparsifying bases: (a) spatial basis (b) DCT basis (c) DFT basis (d) haar wavelet basis 
+(e) bior3.1 wavelet basis (f) dictionary obtained by K-SVD (g) diffusion wavelet basis [12] (h)the proposed diffusion wavelet basis. 
+
+basis are greatly inuenced by the measurement noise, and the 
+peak value of relative error appears. Like the curves in Fig. 21 , 
+spatial basis and DFT basis have the almost the same relative er- 
+¦Ã is set as the 
+ror. For diffusion wavelet basis [12] , the value of 
+same as the proposed diffusion wavelet basis for the best results. 
+In Fig. 23 (a) and (b), the proposed algorithm gets diffusion wavelet 
+basis with the better performance when the value of 
+¦Á is 1.0. So 
+the two diffusion wavelet bases have the same relative error in 
+two sub-gures. Seen from Fig. 23 (c) and (d), the proposed dif- 
+fusion wavelet basis reduces relative error compared with other 
+seven sparsifying bases. When the value of M ranges from 100 to 
+300 by the step size 50, relative error of the recovery of sensory 
+data in Fig. 23 (c) is 0.1594, 0.1017, 0.0922, 0.0738 and 0.0644 in 
+the proposed diffusion wavelet basis. For sensory data in Fig. 23 (d), 
+relative error of data recovery is 0.1468, 0.1246, 0.1044, 0.0913 and 
+0.0765 when the proposed diffusion wavelet basis is chosen as the 
+sparsifying basis. Through the experiments and analysis, we know 
+that the proposed diffusion wavelet basis has the advantage over 
+other seven sparsifying bases in the noiseless and noise cases. 
+
+5. Conclusions 
+
+The paper studies the effect of the communication radius and 
+the wavelet decomposition level on the construction of diffusion 
+operator, and proposes a diffusion wavelet basis algorithm to make 
+sensory data on the graph represented in a sparser way. Based on 
+the locations of sensor nodes and the communication radius, we 
+analyze the performance of high powers of diffusion operator and 
+conduct the experiments. Theoretical and experimental investiga- 
+tions prove that high powers of the constructed diffusion opera- 
+tor have low numerical rank. Based on measure of sparsity, the 
+algorithm chooses the diffusion wavelet basis with better perfor- 
+mance. From the results of synthetic data experiment and real data 
+experiment, we see that sensory data are approximately sparse in 
+different sparsifying bases. Compared with seven sparsifying bases 
+such as the spatial basis, DCT basis, DFT basis, haar wavelet basis, 
+bior3.1 wavelet basis, dictionary obtained by K-SVD and diffusion 
+wavelet basis [12] , sensory data are the sparsest in the proposed 
+diffusion wavelet. Furthermore, we consider the effect of the noise 
+on data recovery, and study the recovery of sensory data in the 
+noise cases. Through the experiments, we discover that the pro- 
+posed diffusion wavelet basis is superior to other seven sparsifying 
+bases in terms of data recovery when the difference between diffu- 
+sion wavelet basis [12] and the proposed diffusion wavelet basis is 
+larger. If the difference is smaller, diffusion wavelet basis [12] have 
+
+Fig. 20. The comparison results of the proposed diffusion wavelet basis and the 
+diffusion wavelet basis [12] . 
+
+11.2932 and 9.3255. When the value of M ranges from 100 to 300, 
+we observe from Fig. 21 (c) and (d) that relative error of the pro- 
+posed diffusion wavelet is less than that of diffusion wavelet ba- 
+sis [12] . When the value of M becomes larger, their results are 
+almost the same. As a result, diffusion wavelet basis constructed 
+by the proposed algorithm can make sensory data sparser, and re- 
+duces the relative error when the value of M is smaller. Further- 
+more, when the measurement matrices are Gaussian random ma- 
+trix and Bernoulli matrix, we also study the recovery performance 
+of the proposed diffusion wavelet basis in the noiseless and noise 
+cases, and show the relative error of data recovery in Fig. 22 . In 
+the same way, we can also draw the conclusion that the recovery 
+performance of the proposed diffusion wavelet is better than other 
+sparsifying bases. 
+When the measurement noise is considered and the measure- 
+ment matrix is sparse binary matrix with a xed number of 
+nonzero entries in each column, Fig. 23 shows the comparison re- 
+sults of relative error in eight sparsifying bases, and Table 9 gives 
+the numerical results of relative error. Compared with Fig. 21 , the 
+recovery performances in haar wavelet basis and bior3.1 wavelet 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+29 
+
+Fig. 21. The comparison results of relative error in eight sparsifying bases when the measurement matrix is sparse binary matrix with a xed number of nonzero entries in 
+each column (a) the recovery of sensory data in Fig. 16 (a) without the measurement noise (b) the recovery of sensory data in Fig. 16 (b) without the measurement noise (c) 
+the recovery of sensory data in Fig. 16 (c) without the measurement noise (d) the recovery of sensory data in Fig. 16 (d) without the measurement noise. 
+
+Fig. 22. The comparison results of relative error for sensory data in Fig. 16 (a) when the measurement matrices are Gaussian random matrix and Bernoulli matrix (a)the 
+recovery of sensory data without the measurement noise when the measurement matrix is Gaussian random matrix (b) the recovery of sensory data with the measurement 
+noise ( 
+ 0.05) [36] when the measurement matrix is Gaussian random matrix (c) the recovery of sensory data without the measurement noise when the measurement 
+matrix is Bernoulli matrix (d) the recovery of sensory data with the measurement noise ( 
+ 0.05) [36] when the measurement matrix is Bernoulli matrix. 
+
+¦Ò n 
+
+=
+
+=
+
+¦Ò n 
+
+30 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+Fig. 23. The comparison results of relative error for sensory data in Fig. 16 when the measurement matrix is sparse binary matrix with a xed number of nonzero entries in 
+each column (a) the recovery of sensory data in Fig. 16 (a) with the measurement noise( 
+ 0.05) [36] (b) the recovery of sensory data in Fig. 16 (b) with the measurement 
+noise( 
+ 0.05) [36] (c) the recovery of sensory data in Fig. 16 (c) with the measurement noise( 
+ 0.05) [36] (d) the recovery of sensory data in Fig. 16 (d) with the 
+measurement noise( 
+ 0.05) [36] . 
+
+¦Ò n 
+
+¦Ò n 
+
+¦Ò n 
+
+=
+
+=
+
+¦Ò n 
+
+=
+
+=
+
+Table 9 
+The relative error of the recovery of sensory data with the measurement noise( 
+eight sparsifying bases. 
+
+=
+
+¦Ò n 
+
+ 0.05) [36] in 
+
+The sparsifying bases 
+
+M 
+
+Fig. 23 (a) 
+
+Fig. 23 (b) 
+
+Fig. 23 (c) 
+
+Fig. 23 (d) 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+100 
+100 
+100 
+100 
+100 
+100 
+100 
+100 
+
+150 
+150 
+150 
+150 
+150 
+150 
+150 
+150 
+
+200 
+200 
+200 
+200 
+200 
+200 
+200 
+200 
+
+0.1432 
+0.2557 
+0.1432 
+0.1799 
+0.1887 
+0.1665 
+0.1135 
+0.1135 
+
+0.1400 
+0.2177 
+0.1400 
+0.1943 
+0.1984 
+0.1583 
+0.1188 
+0.1188 
+
+0.1338 
+0.2234 
+0.1339 
+0.2852 
+0.2908 
+0.1605 
+0.0908 
+0.0908 
+
+0.3246 
+0.4542 
+0.3246 
+0.4321 
+0.4606 
+0.3973 
+0.1877 
+0.1877 
+
+0.3186 
+0.4307 
+0.3187 
+0.5326 
+0.5505 
+0.3865 
+0.1323 
+0.1323 
+
+0.3092 
+0.4389 
+0.3091 
+0.7726 
+0.7068 
+0.3795 
+0.1139 
+0.1139 
+
+0.3640 
+0.4859 
+0.3639 
+0.4410 
+0.4549 
+0.4252 
+0.1896 
+0.1637 
+
+0.3521 
+0.4721 
+0.3521 
+0.5467 
+0.6130 
+0.4153 
+0.1169 
+0.1028 
+
+0.3492 
+0.4577 
+0.3491 
+0.6883 
+0.6907 
+0.4258 
+0.0978 
+0.0947 
+
+0.2237 
+0.3797 
+0.2236 
+0.2814 
+0.3033 
+0.2623 
+0.1791 
+0.1468 
+
+0.2168 
+0.3433 
+0.2168 
+0.3476 
+0.3585 
+0.2648 
+0.1313 
+0.1246 
+
+0.2151 
+0.3211 
+0.2151 
+0.4999 
+0.4850 
+0.2584 
+0.1244 
+0.1044 
+
+( continued on next page ) 
+
+C. Lv et al. / Signal Processing 140 (2017) 12¨C31 
+
+31 
+
+Table 9 ( continued ) 
+
+The sparsifying bases 
+
+M 
+
+Fig. 23 (a) 
+
+Fig. 23 (b) 
+
+Fig. 23 (c) 
+
+Fig. 23 (d) 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+The spatial basis 
+DCT basis 
+DFT basis 
+Haar wavelet basis 
+Bior3.1 wavelet basis 
+Dictionary obtained by K-SVD 
+Diffusion wavelet basis [12] 
+Proposed diffusion wavelet basis 
+
+250 
+250 
+250 
+250 
+250 
+250 
+250 
+250 
+
+300 
+300 
+300 
+300 
+300 
+300 
+300 
+300 
+
+0.1339 
+0.2073 
+0.1340 
+0.5619 
+0.4031 
+0.1527 
+0.0888 
+0.0888 
+
+0.1264 
+0.1977 
+0.1265 
+0.3872 
+0.3105 
+0.1531 
+0.0898 
+0.0898 
+
+0.3049 
+0.3934 
+0.3050 
+0.7141 
+0.6001 
+0.3654 
+0.1133 
+0.1133 
+
+0.2845 
+0.4115 
+0.2846 
+0.6497 
+0.6147 
+0.3664 
+0.1001 
+0.1001 
+
+0.3339 
+0.4425 
+0.3341 
+0.7820 
+0.6591 
+0.4247 
+0.0899 
+0.0782 
+
+0.3296 
+0.4184 
+0.3296 
+0.6338 
+0.5375 
+0.4246 
+0.0712 
+0.0620 
+
+0.2028 
+0.2975 
+0.2028 
+0.6830 
+0.5240 
+0.2517 
+0.0960 
+0.0913 
+
+0.1956 
+0.2801 
+0.1956 
+0.5456 
+0.4505 
+0.2524 
+0.0880 
+0.0765 
+
+the same recovery performance as the proposed diffusion wavelet 
+basis in the best case. 
+The paper only studies the construction of diffusion wavelet 
+based sparsifying basis, and doesn¡¯t further research the design of 
+the measurement matrix. For WSNs, the energy consumption and 
+data gathering delay are also the important evaluation index. In 
+the future study, the design of sparsifying basis and the measure- 
+ment matrix are combined to improve the data gathering perfor- 
+mance, which makes the work to be more meaningful. 
+
+Acknowledgments 
+
+We thank anonymous reviewers for careful and strict review, 
+and the reviewers¡¯ comments improve our paper a lot. This work of 
+the paper is supported by National Natural Science Foundation of 
+China (No. 61174016 ), Natural Science Foundation of Hebei Province 
+of China (No. F2015202214 ), Hebei Province Science and Technology 
+Support Program (No. 15210506 ), and Natural Science Foundation of 
+Tianjin (No. 16JCQNJC0 040 0 ). 
+
+References 
+
+[1] R.G. Baraniuk , Compressive sensing, IEEE Signal Process. Mag. 24 (4) (2008) . 
+[2] J. Yick , B. Mukherjee , D. Ghosal , Wireless sensor network survey, Comput. 
+Netw. 52 (12) (2008) 2292¨C2330 . 
+[3] S. Chen , D.L. Donoho , M.A. Saunders , Atomic decomposition by basis pursuit, 
+Siam J. Sci. Comput. 20 (1) (1998) 33¨C61 . 
+[4] I. Daubechies , M. Defrise , C.D. Mol , An iterative thresholding algorithm for lin- 
+ear inverse problems with a sparsity constraint, Commun. Pure Appl. Math. 57 
+(11) (2004) 1413¨C1457 . 
+[5] J. Haupt , W.U. Bajwa , M. Rabbat , R. Nowak , Compressed sensing for networked 
+data, IEEE Signal Process. Mag. 25 (2) (2008) 92¨C101 . 
+[6] J. He , G. Sun , Z. Li , Y. Zhang , Compressive data gathering with low-rank con- 
+straints for wireless sensor networks, Signal Process. 131 (2017) 73¨C76 . 
+[7] W. Wang , M.J. Wainwright , K. Ramchandran , Information-theoretic limits on 
+sparse signal recovery: dense versus sparse measurement matrices, IEEE Trans. 
+Inf. Theory 56 (6) (2010) 2967¨C2979 . 
+[8] H. Mamaghanian , N. Khaled , D. Atienza , P. Vandergheynst , Compressed sensing 
+for real-time energy-ecient ecg compression on wireless body sensor nodes, 
+IEEE Trans. Biomed. Eng. 58 (9) (2011) 2456¨C2466 . 
+[9] W. Wang , M. Garofalakis , K. Ramchandran , Distributed sparse random projec- 
+tions for renable approximation, in: International Symposium on Information 
+Processing in Sensor Networks, 2007, pp. 331¨C339 . 
+[10] S. Li , H. Qi , Distributed data aggregation for sparse recovery in wireless sen- 
+sor networks, in: IEEE International Conference on Distributed Computing in 
+Sensor Systems, 2013, pp. 62¨C69 . 
+[11] R.R. Coifman , M. Maggioni , Diffusion wavelets, Appl. Comput. Harmon. Anal. 
+21 (1) (2006) 53¨C94 . 
+[12] L. Xiang , J. Luo , C. Rosenberg , Compressed data aggregation: energy ecient 
+and high delity data collection, IEEE/ACM Trans. Networking 21 (6) (2013) 
+1722¨C1735 . 
+[13] Gudivada , S.K. Naidu , Applications of Diffusion Wavelets, University of York 
+(2011) . 
+
+[14] C. Lv , Q. Wang , W. Yan , R. Zhao , A sparse representation method of 2-d sensory 
+data in wireless sensor networks, in: IEEE International Instrumentation and 
+Measurement Technology Conference Proceedings, 2016 . 
+[15] F. Chung , Spectral Graph Theory, 1997, p. 212 . 
+[16] N. Hurley , S. Rickard , Comparing measures of sparsity, IEEE Trans. Inf. Theory 
+55 (10) (2008) 55¨C60 . 
+[17] D. Zonoobi , A .A . Kassim , Y.V. Venkatesh , Gini index as sparsity measure for sig- 
+nal reconstruction from compressive samples, IEEE J. Sel. Topics Signal Process. 
+5 (5) (2011) 927¨C932 . 
+[18] M.E. Lopes , Estimating unknown sparsity in compressed sensing, in: Interna- 
+tional Conference on Machine Learning, 2012, pp. 217¨C225 . 
+[19] G.H. Golub , V.C. Klema , G.W. Stewart , Rank Degeneracy and Least Squares 
+Problems, Stanford University, 1976 . 
+[20] N. Salman , M. Ghogho , A.H. Kemp , Optimized low complexity sensor node po- 
+sitioning in wireless sensor networks, IEEE Sensors J. 14 (1) (2014) 39¨C46 . 
+[21] . L¨¦deczi , M. Mar¨®ti , Wireless sensor node localization, Philos. Trans. R. Soc. 
+A Math. Phys. Eng. Sci. 370 (1958) (2012) 85¨C99 . 
+[22] N.A. Alrajeh , M. Bashir , B. Shams , Localization techniques in wireless sensor 
+networks, Int. J. Distrib. Sensor Netw. 17 (2013) (2014) 216¨C221 . 
+[23] J. Zhao , W. Xi , Y. He , Y. Liu , X.Y. Li , L. Mo , Z. Yang , Localization of wireless 
+sensor networks in the wild:pursuit of ranging quality, IEEE/ACM Trans. Netw. 
+21 (1) (2013) 311¨C323 . 
+[24] X. Liu , J. Luo , C. Deng , A.V. Vasilakos , W. Lin , Dual-level compressed aggre- 
+gation: recovering elds of physical quantities from incomplete sensory data, 
+Comput. Sci. (2011) 182¨C190 . 
+[25] L. Xiang , J. Luo , C. Deng , A.V. Vasilakos , Deca: recovering elds of physical 
+quantities from incomplete sensory data, in: Sensor, Mesh and Ad Hoc Com- 
+munications and Networks, Annual IEEE Communications Society Conference 
+on, 2012, pp. 182¨C190 . 
+[26] National oceanic and atmospheric administration¡¯s national weather service, 
+2016. ( http://graphical.weather.gov/sectors/conus.php?element=T ). [Online; ac- 
+cessed 5-December-2016]. 
+[27] Temperature distribution in usa, 2016. ( http://www.weather.gov ). 
+[28] Sea surface temperature(100 km global), 2016. ( http://www.class.ngdc. 
+noaa.gov/saa/products/search?sub _ id=0&datatype _ family=SST100&submit.x= 
+18&submit.y=7 ). 
+[29] M. Aharon , M. Elad , A. Bruckstein , K-svd: an algorithm for designing overcom- 
+plete dictionaries for sparse representation, IEEE Trans. Signal Process. 54 (11) 
+(2006) 4311¨C4322 . 
+[30] A. Tabibiazar , O. Basir , Energy-ecient compressive state recovery from 
+sparsely noisy measurements, IEEE Trans. Instrum. Meas. 61 (61) (2012) 
+2392¨C2400 . 
+[31] B. Bah , J. Tanner , Vanishingly sparse matrices and expander graphs, with 
+application to compressed sensing, IEEE Trans. Inf. Theory 59 (11) (2013) 
+7491¨C7508 . 
+[32] E. Cand¨¦s , J. Romberg , Sparsity and incoherence in compressive sampling, In- 
+verse Prob. 23 (3) (2006) 969¨C985 . (17). 
+[33] C. Luo , F. Wu , J. Sun , C.W. Chen , Compressive data gathering for large-scale 
+wireless sensor networks, in: Proceedings of the 15th Annual International 
+Conference on Mobile Computing and Networking, ACM, 2009, pp. 145¨C156 . 
+[34] D. Ebrahimi , C. Assi , Compressive data gathering using random projection for 
+energy ecient wireless sensor networks, Ad Hoc Netw. 16 (2013) 105¨C119 . 
+[35] D. Ebrahimi , C. Assi , Optimal and ecient algorithms for projection-based 
+compressive data gathering, IEEE Commun. Lett. 17 (8) (2013) 1572¨C1575 . 
+[36] D.M. Malioutov , S.R. Sanghavi , A.S. Willsky , Sequential compressed sensing, 
+IEEE J. Sel. Topics Signal Process. 4 (2) (2010) 435¨C4 4 4 . 
+[37] Noaa datasets, 2016. ( http://www.noaa.gov/ ). 
+

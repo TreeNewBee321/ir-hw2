@@ -1,0 +1,730 @@
+Antiscaling effect of polyaspartic acid and its derivative for RO membranes used for saline wastewater and brackish water desalination
+
+Biplob Kumar Pramanik a, Yuhua Gao b, Linhua Fan a,, Felicity A. Roddick a, Zhenfa Liu b
+
+a School of Engineering, RMIT University, GPO Box 2476, Melbourne 3001, Australia
+b Institute of Energy Resources, Hebei Academy of Sciences, Shijiazhuang 050081, China
+
+H I G H L I G H T S
+
+ PASP and its derivate were investigated as greener RO antiscalants.
+ PASP derivate showed better antiscaling effect than PASP and a commercial product.
+ PASP derivate led to larger crystals and a less dense scale layer on the RO membrane.
+ PASP and its derivative appeared to be cost-effective.
+
+article
+
+info
+
+
+Article history:
+Received 5 August 2016
+Received in revised form 14 October 2016
+Accepted 7 November 2016
+Available online 19 November 2016
+
+Keywords:
+Antiscalant
+Reverse osmosis
+Polyaspartic acid
+Brackish water
+Desalination
+Wastewater reclamation
+
+abstract
+
+Polyaspartic acid (PASP) and its derivative (PASP-SEA-ASP) were tested as environmentally benign scale inhibi-
+tors at lab scale for a polyamide reverse osmosis (RO) membrane in the desalination of a synthetic brackish water
+containing various scale-forming ions. Their performance was compared with a commercially available RO
+antiscalant which contains phosphonic acid. The addition of the scaling inhibitors to feedwater led to increase
+in water recovery and removal efciency of inorganic matter for the RO unit operated under constant transmem-
+brane pressure, with PASP-SEA-ASP giving greater water recovery (90%) than PASP (87%) and the commercial
+antiscalant (85%). PASP-SEA-ASP was superior to PASP and the commercial antiscalant in scaling inhibitor/foul-
+ing reduction due to the reduced deposition of the scale forming ions on the membrane. Examination of the used
+membranes with scanning electron microscopy and X-ray diffraction suggested the different effect of the
+antiscalants was related to the resultant crystalline morphology on the membrane surface. The PASP and its de-
+rivative appeared to be more cost effective in maintaining permeate ux and inhibiting the formation of a dense
+scale layer. The present study demonstrated the great potential of these non-phosphorus containing agents for
+scale inhibition in domestic and industrial wastewater reclamation and brackish water desalination applications.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Membrane fouling caused by inorganic, organic and biological mate-
+rials is a major problem limiting the efciency of reverse osmosis (RO)
+based wastewater reclamation and brackish water desalination pro-
+cesses. Inorganic fouling, known as scaling, occurs after deposition of in-
+organic constituents on the RO membranes. The most common scale-
+forming constituents in membrane processes are CaSO4, CaCO3, BaSO4,
+calcium phosphates, silica, aluminum and ferric hydroxides [1,2]. Scal-
+ing can reduce permeate ow due to formation of a cake layer by surface
+blockage and/or bulk crystallisation with the inorganic deposits [3],
+leading to signicantly increased operational cost for the membrane
+systems. Scaling may also physically damage the membranes because
+of ineffective scale removal and occurrence of irreversible pore plugging
+during ltration. As such, scaling mitigation is a critical measure to en-
+sure efcient RO operation for wastewater reclamation and brackish
+water desalination.
+Several methods can be used to prevent the scaling of RO mem-
+branes, including (i) acidication of feedwater to reduce bicarbonate
+by converting it into carbon dioxide, (ii) scale inhibitor chemicals
+which change the physical and chemical nature of the depositor ions
+and hence the scale growth mechanisms, (iii) operating conditions of
+RO systems, and (iv) softening with lime or soda ash which react with
+bicarbonate in the feed to produce CaCO3 sludge [4,5]. Antiscalants are
+used widely in RO processes due to their high effectiveness for
+preventing scaling. Antiscalants generally delay scale formation and
+allow higher water recovery by hindering scale growth under supersat-
+urated conditions [6]. Reitz [7] investigated a number of commercial
+antiscalants for the control of scaling caused by SrSO4, CaSO4 and
+CaCO3 in RO systems and found that they were effective for inhibiting
+CaCO3 precipitation. Another study by Lisitsin et al. [8] reported that
+zinc ion was promising to mitigate scaling for membrane processes.
+However, many commercial antiscalants can enhance biofouling of RO
+systems as they contain nutrients such as phosphorus [9,10,11]. More-
+over, phosphorus-containing antiscalants remaining in the RO concen-
+trate/brine can contribute to eutrophication of the receiving water
+bodies and consequent blooms of harmful algae. It has been suggested
+that most of the commercially available antiscalants are expensive,
+and could account for approximately 10% of the total treatment cost
+for the production of clean water [12]. As such, the development of
+low-environmental risk and cost-effective antiscalants is required for
+improving the sustainability of RO-based water purication processes.
+Polyaspartic acid (PASP) is a polyamino acid which does not contain
+phosphorus and is biodegradable. It was reported as being an environ-
+mentally friendly antiscalant in the freshwater environment [13]. The
+functional groups of PASP have a scale inhibition effect as they have a
+side chain generated through the aminolysis reaction with amine-
+group [14]. Gao et al. [15,16] synthesised a PASP derivative (PASP-
+ASP) with the aim of enhancing the chelating performance of PASP
+through the introduction of carboxylic acid to its side chain, and the ex-
+perimental study demonstrated the improved scale inhibition effect of
+the derivative in freshwater applications. It was suggested that PASP
+could ionise and form molecular chains of negative charge, leading to
+the formation of water-soluble complexes with Ca2+ and hence re-
+duced deposition of the scale causing ions on membrane surface [13].
+They also synthesised a PASP derivative (PASP-SEA-ASP) for enhancing
+both chelation and dispersion performance by introducing sulfonic acid
+and carboxylic acid to the side chain of PASP, with a view to inhibiting
+scale formation in a saline water environment such as seawater [17].
+As there is a sulfonic acid group in the molecular structure of PASP-
+SEA-ASP, and when PASP-SEA-ASP is adsorbed onto the small crystal
+particles, a double layer can be formed and the charge state of the par-
+ticle surface is changed. This can result in enhanced dispersion of the
+crystal particles in water. Although PASP and its derivative exhibited a
+promising antiscaling effect on carbon steel in freshwater and seawater
+for potential industrial applications such as scale inhibition for heat ex-
+changers and water pipes, their effect on scale inhibition for polymeric
+RO membranes used for wastewater and brackish water desalination
+has not been investigated.
+The present study was aimed at examining the antiscaling effect of
+PASP and its derivative PASP-SEA-ASP on polyamide RO membranes
+used for the desalination of a synthetic saline water containing various
+scale-forming ions, and to compare them with a phosphorus-containing
+commercial RO antiscalant. The antiscaling effect was assessed by deter-
+mining the ltration performance in terms of water recovery within the
+test period and removal efciency of inorganic matter, the quantity and
+chemical composition of the scale on the membranes, and examining
+the scale crystals formed on the membrane surface using scanning elec-
+tron microscopy (SEM) and X-ray diffraction (XRD).
+
+2. Materials and methods
+
+2.1. RO feedwater
+
+The chemical composition of the synthetic feedwater used for the RO
+tests is shown in Table 1. The chemicals were selected based on their
+wide occurrence in the scale on RO membranes. The chemical reagents
+used for the preparation of the RO feedwater were of analytical grade,
+supplied by Sigma-Aldrich.
+
+2.2. Antiscalants
+
+A commercial RO antiscalant that is widely used for wastewater de-
+salination in many countries including Australia was tested in this
+study. According to the manufacturer, the antiscalant is based on
+
+Table 1
+Composition of the synthetic RO feedwater.
+
+Composition/property
+
+NaCl
+CaCl2
+MgSO4
+SiO2
+pH
+Conductivity
+
+Unit
+
+mg/L
+mg/L
+mg/L
+mg/L
+每
+米s/cm
+
+Concentration
+
+15,000
+8000
+2000
+1000
+7.9
+52,800
+
+phosphonic acid and polycarboxylic acid. The PASP and PASP-SEA-ASP
+were synthesised in our lab with the methods described in Section 2.3.
+The purity of PASP and PASP-SEA-ASP was determined as 99% and
+98.5%, respectively. The antiscalant dosage of 1 mg/L (1 ppm) was
+used for all RO antiscaling experiments.
+
+2.3. Synthesis of antiscalants
+
+2.3.1. PASP
+PASP was synthesised through two steps. The rst step was the syn-
+thesis of polysuccinimide, which was carried out in an electric thermo-
+static drying oven through pyro-condensation of L-aspartic acid
+(Industrial grade, Sigma Aldrich) monomer at 240 ～C for 4 h. The second
+step was the synthesis of PASP. Firstly, polysuccinimide was suspended
+in three times its weight of water. The aqueous polysuccinimide suspen-
+sion was stirred at 12 ～C, and then NaOH solution (15%, industrial grade)
+was added. The reaction was for 4 h at 12 ～C and pH 8每9. Solid PASP was
+obtained through the separation process involving the addition of dou-
+ble volume of absolute alcohol, washing of the resultant precipitates
+with deionised water, and then drying at 80 ～C for 48 h. PASP stock so-
+lution (36%) was prepared by dissolving the solid PASP in deionised
+water. The relevant synthetic reactions are expressed in Schemes 1
+and 2.
+
+2.3.2. PASP-SEA-ASP
+Synthesis of PASP-SEA-ASP was through two steps. In the rst step,
+polysuccinimide was synthesised as described in Section 2.3.1. The sec-
+ond step was the synthesis of PASP-SEA-ASP, in which polysuccinimide
+was rst suspended in three times its weight of water. The polysuccin-
+imide suspension was stirred at 25 ～C, and then aspartic acid and 2-
+aminoethanesulfonic (Industrial grade, Sigma Aldrich) which were dis-
+solved in NaOH solutions (15%) were added. The reaction was for 24 h at
+25 ～C and pH 8每9. The pH of the mixture was then dropped to 5.2 by
+adding 2 N HCl to remove the unreacted 2-aminoethane sulfonic acid
+through ltration. Unreacted aspartic acid was removed from the solu-
+tion by further dropping the pH to 2.8 and then ltration. Solid PASP-
+SEA-ASP was obtained through a separation process in which a double
+volume of absolute alcohol was added to the ltrate and the resultant
+precipitate was rinsed using deionised water and dried at 80 ～C for
+48 h. The stock solution of PASP-SEA-ASP (30%) was made through dis-
+solving the obtained solid in deionised water. The relevant synthetic re-
+action is expressed in Scheme 3.
+
+2.4. RO tests
+
+RO tests were performed using a at-sheet membrane (Polyamide
+RO AG membrane, GE Osmonics) with a bench-scale cross ow RO rig
+(SEPA CF, GE Osmonics). Before the ltration tests, RO membranes
+
+n
+
+H2N
+
+O
+
+O
+
+OH
+OH
+
+Scheme 1. Synthesis route of polysuccinimide.
+
+226
+
+B.K. Pramanik et al. / Desalination 404 (2017) 224每229
+
++ nNaOH
+
+O
+
+O
+
+NH
+ONa
+
+n
+
+Scheme 2. Synthesis route of polyaspartic acid.
+
+were soaked in Milli-Q water at 4 ～C overnight after which deionised
+water was passed through the membranes for removing chemical pre-
+servatives and membrane compaction. During RO operation, a constant
+transmembrane pressure of 10 bar and cross-ow rate of 0.1 m/s was
+maintained. A refrigerated circulating bath (Neslab RTE 7, USA) was
+used to maintain the temperature of the feedwater at 22 ㊣ 2 ～C. Each
+test was performed in duplicate and the average values of the results
+were reported, a new membrane was used for each run. RO concentrate
+and permeate samples were collected for analyses of water quality and
+determining the water recovery over the testing period. The schematic
+diagram of the RO testing system is presented in Fig. 1.
+The following equation was used to calculate the water recovery:
+
+WR  V p
+V f
+
+ 100%
+
+where WR is water recovery (%); Vf is the total volume of feedwater (L);
+Vp is the total volume of permeate (L).
+
+2.5. Analytical methods
+
+The substances forming the scale on the RO membranes were ex-
+tracted with acid solution (0.1 N H2SO4). The fouled membrane was
+soaked in 2 L of acid solution at room temperature for 24 h and then
+manually agitated using forceps for 5 min to extract the scale. The con-
+centration of the metal ions of interest was determined by atomic ab-
+sorption spectroscopy (AA-6501F, Shimadzu, Japan). Prior to the
+analysis, all samples were pre-ltered using 0.45 米m membrane lters
+and then acidied using 40% nitric acid to stabilise the metal content.
+Stock solution for each metal species was prepared for obtaining a stan-
+dard curve to determine the concentration of the metal ion.
+The dry weight of the unused and used membrane was measured to
+calculate the amount of scale attached to the membrane for each
+antiscalant. The membrane was dried for 12 h in a desiccator at room
+temperature, and then weighed with an electronic balance (PA 114C,
+Ohaus, China).
+A scanning electron microscope (SEM) (FEI Quanta 200, Nova) was
+employed to examine the scaling layer on the membrane surface. The
+used membranes were dried at room temperature overnight prior to
+the SEM examination. A small piece of the membrane was cut out and
+coated with gold, and then held within the SEM chamber with
+
+conductive and double-sided carbon tape. The accelerating voltage of
+30 kV was maintained and images were acquired at 4000 ℅
+magnication.
+X-ray diffraction (XRD) analysis was undertaken for virgin and used
+membranes using a Bruker AXS D4 Endeavor X-ray diffractometer
+equipped with Lynxeye linear strip detector and copper anode. The
+analysis was conducted using Cu-K汐 radiation at 40 kV and 40 mA
+beam intensity. The data was collected between 5～ and 55～ 2-theta
+ranges with a step size of 0.02～ 2-theta and the counting time per step
+was 1 s. Prior to the analysis, the used membranes were dried overnight
+at room temperature.
+
+3. Results and discussion
+
+3.1. Impact of scale inhibitors on RO permeate water quality
+
+The concentration of the metal ions in feedwater, permeate and con-
+centrate was examined to indicate the scale formation conditions. The
+removal efciency of the ions by the membrane was increased by
+adding antiscalant to the feedwater, with PASP-SEA-ASP giving greater
+ion removals than PASP which in turn performed better than the com-
+mercial antiscalant (Table 2). The greater concentration of the metal
+ions in the concentrate stream for the PASP-SEA-ASP and PASP also sug-
+gested less salt attachment to the membrane surface compared with the
+commercial antiscalant. Analyses and quantication of the deposits ex-
+tracted from the membrane surface conrmed that the antiscalants led
+to reduced scale formation, with antiscaling effect in the order of PASP-
+SEA-ASP N PASP N commercial antiscalant (Table 2 and Fig. 2).
+In a previous study of the antiscaling effect of PASP-ABSA copoly-
+mers [18], it was suggested that the reduced calcium scale formation
+was due to the chelation of calcium ions and the subsequent formation
+of stabilised and soluble chelates, which was attributed to the presence
+of sulfonic groups and carboxylic ion in the scale inhibitors. In the pres-
+ent study, it was likely that the antiscalants led to the formation of che-
+lated structures with metal ions [19,20], resulting in less passage of salt
+through the RO membrane and hence lower ion concentration in the
+permeate. The higher ion concentration in the RO concentrate stream
+would be a result of good solubility of the chelates [18]. However,
+antiscalants cannot innitely increase the solubility of inorganic com-
+pounds, after the solubility reaches a certain value, carbonate scale
+will be produced. Since PASP-SEA-ASP possesses both carboxylic acid
+groups and sulfonic acid groups, whereas PASP has only carboxylic
+acid groups, greater inhibition of the deposition of the scale forming
+ions on the membrane was expected for PASP-SEA-ASP compared
+with PASP. Further work to examine the function of chelation of the
+antiscalants and examine the solubility of calcium carbonate as a func-
+tion of the antiscalants may be required to conrm the suggested
+mechanism.
+The water recovery was determined as 83% for the RO test without
+using antiscalant, 85% for the commercial antiscalant, 87% for PASP
+
+Scheme 3. Synthesis route of PASP-SEA-ASP.
+
+B.K. Pramanik et al. / Desalination 404 (2017) 224每229
+
+227
+
+Fig. 1. A schematic diagram of the RO system.
+
+Fig. 2. Scale deposits per membrane surface area for RO tests without and with addition of
+antiscalant.
+
+and 90% for PASP-SEA-ASP. These results were consistent with the ex-
+pectation that the antiscalant exhibiting greater scale inhibiting effect
+would result in less membrane inorganic fouling and hence higher
+water productivity.
+
+3.2. Characterisation of the scale formed on membrane surface
+
+3.2.1. SEM images of scale crystals
+SEM analysis of the used and unused membranes was carried out to
+examine the scaling of the RO membranes in the presence of the various
+antiscalants (Fig. 3). SEM image of the virgin membrane was also ob-
+tained for comparison (Fig. 3a). In general, scale formation occurs via
+several stages including ion pairing, formation of micro-aggregates,
+micro-crystals and then macro-crystals, and eventually formation of
+scale [21]. When no antiscalant was added to the feedwater, the scale
+deposits on the RO membrane appeared to be present over the entire
+membrane area sampled and formed a dense scale layer, mainly
+consisted of distorted calcite crystals which appeared to have rough
+rounded edges. Changes in crystal morphology were shown, which
+was most likely due to antiscalant addition to the feedwater. The crys-
+tals resulting from the antiscalants were signicantly larger in size
+(Fig. 3c, d, and e). This was most probably because the antiscalants in-
+creased the solubility of the inorganic compounds and delayed the for-
+mation of the deposits, and when the concentration of solute increased
+to a certain value, deposit formation began [19,20]. The resultant
+
+Table 2
+Concentration of ions in RO feedwater, permeate, concentrate and the solutions containing
+deposits extracted from the used membranes.
+
+Without
+antiscalant
+
+Commercial
+antiscalant
+
+PASP
+
+PASP-SEA-ASP
+
+Feed (mg/L)
+
+Permeate (mg/L)
+
+Na+
+5842
+Mg2+ 184
+Si4+
+624
+Ca2+
+2338
+Na+
+176
+Mg2+ 16
+Si4+
+46
+Ca2+
+94
+Concentrate (mg/L) Na+
+17,540
+Mg2+ 388
+Si4+
+1376
+Ca2+
+4560
+Na+
+3640
+Mg2+ 98
+Si4+
+396
+Ca2+
+1536
+
+Solution containing
+the extract of
+membrane scaling
+layer (mg/L)
+
+148
+12
+38
+82
+18,960
+456
+1584
+5176
+2942
+112
+342
+1448
+
+132
+112
+6
+10
+26
+28
+68
+62
+20,448 23,376
+524
+676
+1640
+1842
+5872
+6284
+1492
+856
+66
+28
+312
+186
+1224
+972
+
+crystals were signicantly larger in size because the formation of the
+carbonate scale was inuenced by other ions such as Mg2+, Na+, Si4+
+and Ca2+. With advancing outgrowth of the crystals, adsorbed scale in-
+hibitor molecules were eventually overgrown [22]. This was in line with
+a previous study in which the crystals were larger in size due to the in-
+uence of other ions on carbonate scale in a groundwater environment
+[23]. The build-up of larger crystallites was the result of the formation of
+loose and irregular crystallites. However, some researchers found that
+scale inhibition was due to the formation of smaller and more dispersed
+每 in the syn-
+carbonate crystallites when there was only Ca2+ and HCO3
+thetic feedwater [15,24,25].
+PASP and PASP-SEA-ASP appeared to lead to the formation of the
+crystals with irregular shapes and loose structures. For PASP, the crys-
+tals lost the sharp edges, and their morphology was changed from
+smaller fragments to extended stick forms. The resultant crystals from
+the addition of PASP-SEA-ASP were markedly larger in size and were
+spindle shaped. A similar observation was made by Weijnen and
+Rosmalen [22] who suggested that the larger and spindle shaped crys-
+tals were the result of the increased adsorption of the polyelectrolyte in-
+hibitor (based on either polyacrylic acid or polymaleic acid) onto the
+gypsum crystal surface. The addition of the PASP-SEA-ASP to the
+feedwater could affect the scaling process through (i) threshold inhibi-
+tion, as lattice formation of regular crystals was inhibited via adsorption
+on the active growth sites of crystals; (ii) crystal dispersion, whereby
+micro-crystal growth and agglomeration was prevented via the in-
+creased anionic charge of the membrane surface [26]; and (iii) crystal
+modication, whereby the build-up of a regular crystalline lattice was
+prevented via modication of the micro-crystal morphology/shape [21].
+Overall, PASP-SEA-ASP led to the formation of larger sized crystals,
+which were more sparsely distributed on the membrane surface com-
+pared with PASP and the commercial antiscalant. This could result in a
+partial coverage of the membrane by the loose structures, leading to sig-
+nicantly improved mass transfer, which was consistent with the water
+recovery results (Section 3.1). A similar observation was made by
+Rahardianto et al. [27] who noted that the fractional ux reduction
+was marked compared with the fractional surface area covered with
+scale.
+
+3.2.2. XRD analysis
+The XRD spectra of the RO membranes were to help identify the var-
+ious compounds such as calcite, aragonite, and vaterite that are respon-
+sible for membrane scaling. The XRD results showed the presence of
+vaterite at 32～ 2-theta and 76～ 2-theta, calcite at 46～ 2-theta and 57～
+2-theta, and aragonite at 66～ 2-theta, and 85～ 2-theta (Table 3, and
+
+228
+
+B.K. Pramanik et al. / Desalination 404 (2017) 224每229
+
+(a) Virgin membrane
+
+(b) Without antiscalent
+
+(c) With commercial antiscalent
+
+(d) With PASP
+
+(e) With PASP-SEA-ASP 
+
+Fig. 3. SEM images of the virgin membrane (a), the membranes after ltration of the synthetic water without antiscalant (b), with commercial antiscalant (c), PASP (d) and PASP-SEA-ASP
+(e).
+
+Fig. S1 in Supplementary Materials). A similar pattern was reported by
+Tang et al. [28] who found that different forms of compounds such as
+calcite and vaterite were formed at 46～ 2-theta, 32～ 2-theta,
+
+Table 3
+Intensity data of the various compounds on the different membrane samples.
+
+Compounds
+
+2-theta
+
+Intensity for different membrane samples
+
+Calcite
+
+Vaterite
+
+Aragonite
+
+46～
+57～
+32～
+76～
+66～
+85～
+
+Without
+antiscalant
+
+1852
+1073
+4138
+815
+741
+605
+
+Commercial
+
+PASP
+
+PASP-SEA-ASP
+
+2763
+1268
+8051
+892
+843
+618
+
+3139
+1291
+10,832
+901
+832
+622
+
+3787
+1421
+10,214
+929
+900
+629
+
+respectively. These results indicated that the scale formed had a signif-
+icantly different crystal composition. The addition of antiscalant appar-
+ently led to the changes in the morphology of the crystal precipitates,
+resulting in displacement and enhancement of the diffraction peaks.
+At the same degree, the peaks exhibited different intensities for the
+different antiscalants. The vaterite peak at 32～ 2-theta was the highest
+peak for all samples, indicating vaterite was a major component in the
+scale crystals on the membranes. There was a higher peak intensity at
+32～ 2-theta for PASP than PASP-SEA-ASP. However, overall, the diffrac-
+tion peaks for PASP-SEA-ASP were stronger than for the commercial
+antiscalant or PASP (Table 3), indicating that the morphological changes
+for the crystals resulted from the presence of PASP-SEA-ASP in the RO
+feedwater. It should be noted the intensity of the diffraction peaks for
+PASP-SEA-ASP is related not only to the composition, but also to the
+crystallinity and the size of scale crystals [29]. PASP had stronger
+
+B.K. Pramanik et al. / Desalination 404 (2017) 224每229
+
+229
+
+peaks than the commercial antiscalant. These changes in the peaks illus-
+trated that the crystal structure was signicantly different with the ad-
+dition of various scale inhibitors. These changes likely resulted in the
+loose structure of the crystals, and hence a less dense scale layer.
+
+4. Conclusions
+
+PASP and its derivative PASP-SEA-ASP were tested as potential envi-
+ronmentally friendly antiscalants for mitigating scaling of a RO mem-
+brane in the ltration of a synthetic saline feedwater containing
+various scale forming ions, and compared with a commercially available
+antiscalant. All scale inhibitors were capable of improving RO perfor-
+mance in terms of water recovery and rejection of inorganic matter,
+with PASP-SEA-ASP performing better compared with PASP which in
+turn was better than the commercial antiscalant. SEM analysis con-
+rmed the formation of larger crystals and less dense scale layer on
+the membrane surface for the feedwater with added PASP-SEA-ASP
+compared with the other antiscalants, which suggested the effective
+chelation of scale-forming ions.
+Overall, this study exhibited the potential of polyaspartic acid and its
+derivative as scale inhibitors for their applications in wastewater and
+brackish water desalination. As the cost of chemical per unit of water
+treated was
+$4.5 ℅ 10 6/m3
+for
+commercial
+antiscalant,
+$2.1 ℅ 10 6/m3 for PASP-SEA-ASP and $1.5 ℅ 10 6/m for PASP, PASP
+and its derivate appeared to possess an advantage on cost-effectiveness.
+It is recommended that further investigations into the impact of process
+variables such as pH, inorganic species, the presence of organic matter
+in feedwater, and membrane materials on their scale inhibition effect
+be conducted at lab and pilot scales before being employed for full
+scale applications.
+Supplementary data to this article can be found online at http://dx.
+doi.org/10.1016/j.desal.2016.11.019.
+
+References
+
+[1] R. Rautenbach, T. Albrecht, Membrane Processes, John Wiley & Sons, New York,
+1989.
+[2] K.A. Faller, AWWA Manual M46-Reverse Osmosis and Nanoltration, AWWA, USA,
+1999.
+[3] S. Lee, C. Lee, Effect of operating conditions on CaSO4 scale formation mechanism in
+nanoltration for water softening, Water Res. 34 (2000) 3854每3866.
+[4] M. Al-Shammiri, M. Safar, M. Al-Dawas, Evaluation of two different antiscalants in
+real operation at the Doha research plant, Desalination 128 (2000) 1每16.
+[5] E.H. Kelle Zeiher, B. Ho, K.D. Williams, Novel antiscalant dosing control, Desalination
+157 (2003) 209每216.
+[6] J.C. Crittenden, R.R. Trussel, D.W. WHand, K.J. Howe, G. Tchobanoglous, Water Treat-
+ment Principles and Design, John Wiley & Sons, Inc., New Jersey, 2005.
+
+[7] R.L. Reitz, Development of a broad-spectrum antiscalant for reverse osmosis sys-
+tems, Proceedings of the Water Supply Improvement Association 1984, pp. 1每26.
+[8] D. Lisitsin, Q. Yang, D. Hasson, R. Semiat, Inhibition of CaCO3 scaling on RO mem-
+branes by trace amounts of zinc ions, Desalination 186 (2005) 311每318.
+[9] J.S. Vrouwenvelder, S.A. Manolarakis, H.R. Veenendaal, D. van der Kooij, Biofouling
+potential of chemicals used for scale control in RO and NF membranes, Desalination
+132 (2000) 1每10.
+[10] A. Sweity, Y. Oren, Z. Ronen, M. Herzberg, The inuence of antiscalants on biofouling
+of RO membranes in seawater desalination, Water Res. 47 (2013) 3389每3398.
+[11] L. Weinrich, C.N. Haas, M.W. LeChevallier, W. Lauren, Recent advances in measuring
+and modeling reverse osmosis membrane fouling in seawater desalination: a re-
+view, J. Water Reuse Desalin. 3 (2013) 85每101.
+[12] H.-Y. Li, W. Ma, L. Wang, R. Liu, L.-S. Wei, Q. Wang, Inhibition of calcium and mag-
+nesium-containing scale by a new antiscalant polymer in laboratory tests and a
+eld trial, Desalination 196 (2006) 237每247.
+[13] Y. Gao, L. Zhang, Z. Liu, R. He, Synthesis, scale and corrosion inhibition of polyaspar-
+tic acid derivative, International Conference on Mechatronics, Electronic, Industrial
+and Control Engineering (MEIC 2015), April 1每3, Shenyang, China 2015,
+pp. 338每341.
+[14] R.J. Ross, K.C. Low, J.E. Shannon, Polyaspartate scale inhibitors-biodegradable alter-
+natives to polyacrylates, Mater. Perform. 36 (1997) 53每57.
+[15] Y. Gao, Z. Liu, R. Guo, Y. Wang, Synthesis of polyaspartic acid derivative and its char-
+acteristics in scale inhibition, CIESC J. 60 (2009) 2107每2111.
+[16] Y.H. Gao, Z.F. Liu, L.H. Zhang, Y.J. Wu, Study on scale inhibition performance of mod-
+ied polyaspartic acid, Adv. Mater. Res. 893 (2014) 7每10.
+[17] Y. Gao, Z. Liu, L. Zhang, H. Li, Study on scale inhibition performance of polyaspartic
+acid derivative, Adv. Mater. Res. 535每537 (2012) 2287每2290.
+[18] Y. Xu, L. Wang, L. Zhao, Y. Cui, Synthesis of polyaspartic acid-aminobenzenesulfonic
+acid grafted copolymer and its scale inhibition performance and dispersion capacity,
+Water Sci. Technol. 64 (2011) 423每430.
+[19] G. Yao, R. Cheng, Inhibition ability of scale inhibitor on calcium carbonate scale, In-
+dustrial Water Treatment 6 (1986) 36每38.
+[20] Y. Li, Discussion on the mechanism of control deposition of the scale inhibitor and
+dispersing agent, Industrial Water Treatment 4 (1984) 6每10.
+[21] P.Y. Duggirala, Formation of Calcium Carbonate Scale and Control Strategies in Con-
+tinuous Digesters, CD deli Coloquio Internacional Sobre Celuosa de Eucalipto,
+Concepcion, Chile 2005, pp. 1每34.
+[22] M.P.C. Weijnen, G.M. Rosmalen, The inuence of various polyelectrolytes on the
+precipitation of gypsum, Desalination 54 (1985) 239每261.
+[23] Y. Gao, Synthesis and performance research of polyaspartic acid derivative, Doctoral
+Paper. (2010) 86每87.
+[24] Z. Liu, Y. Wang, Y. Gao, L. Zhang, Synergistic scale inhibition of polyaspartic acid
+composite with magnetic eld, Front. Chem. Eng. China 1 (2007) 261每265.
+[25] Y. Gao, Y. Wang, Z. Liu, L. Zhang, Synthesis, characterization and performance of co-
+polymer of polyaspartic acid, J. Chem. Eng. Chin. Univ. 24 (2010) 301每306.
+[26] Y. Gao, L. Fan, L. Ward, Z. Liu, Synthesis of polyaspartic acid derivative and evalua-
+tion of its corrosion and scale inhibition performance in seawater utilization, Desa-
+lination 365 (2015) 220每226.
+[27] A. Rahardianto, W.Y. Shih, R.W. Lee, Y. Cohen, Diagnostic characterization of gypsum
+scale formation and control in RO membrane desalination of brackish water, J.
+Membr. Sci. 279 (2006) 655每668.
+[28] Y.M. Tang, W.H. Yang, X.S. Yin, Y. Liu, P.W. Yin, J.T. Wang, Investigation of CaCO3
+scale inhibition by PAA, ATMP and PAPEMP, Desalination 228 (2008) 55每60.
+[29] S. Yang, W. Song, Study on precipitation process of spherical calcium carbonate con-
+trolled by polyaspartic acid, J. Synthetic Crystals 42 (2013) 1475每1480.
+

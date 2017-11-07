@@ -1,0 +1,3377 @@
+Multi-target Bayes lter with the target detection 
+
+Zong-xiang Liu 
+
+, Yan-ni Zou , Wei-xin Xie , Liang-qun Li 
+
+
+
+College of Information Engineering, Shenzhen University, Shenzhen 518060, China 
+
+article
+
+info
+
+
+
+Article history: 
+Received 12 October 2016 
+Revised 11 May 2017 
+Accepted 12 May 2017 
+Available online 13 May 2017 
+
+Keywords: 
+Target tracking 
+Multi-target Bayes lter 
+Target detection 
+Track initiation 
+State estimation 
+
+
+abstract
+
+The probability hypothesis density (PHD) lter and marginal distribution Bayes (MDB) lter are two ef- 
+cient Bayes approaches for multi-target tracking. However, these two lters fail to provide the state 
+estimation of a target during its initial times due to the poor capability of the two lters on the target 
+detection. To enhance the capability of the MDB lter on the target detection, we present a method for 
+the target detection based on the rule-based track initiation technique, and develop a multi-target Bayes 
+lter with the target detection by applying this target detection method to the MDB lter. Simulation 
+results indicate that this lter has a stronger detecting and tracking capability of the target than the 
+existing PHD and MDB lters. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+1. Introduction 
+
+Multi-target tracking has attracted the attentions of researchers 
+due to its wide applications in civil and military elds. This prob- 
+lem was discussed in many articles and a lot of tracking theo- 
+ries and algorithms of multiple targets were established in the 
+past decades [1每31] . Traditional approaches for this problem use 
+the measurements obtained by a sensor at several different times 
+to detect new targets and establish new trajectories, and assign 
+the measurement for each existing target to maintain its trajec- 
+tory [1每4] . As the nite set statistics was established by Mahler, 
+many novel Bayes tracking algorithms for multiple targets were 
+developed in recent years. The remarkable achievements in this 
+aspect include Mahler＊s probability hypothesis density (PHD) l- 
+ter [5每6] , Vo＊s Gaussian mixture PHD lter [7] , particle PHD l- 
+ter [8每10] and their extensions [11每25] . The optimal multi-target 
+Bayes lter propagates the joint posterior density of the multi- 
+target state through its prediction and update equations, which is 
+generally intractable because of the set integrals in the prediction 
+and update equations of the lter. This intractability is alleviated in 
+Mahler＊s PHD lter because it propagates the rst-order moment 
+of the joint posterior density in the lter recursion [6] . However, 
+the prediction and update equations of the PHD lter still involve 
+multiple dimension integrals and are also intractable in general. 
+Therefore, further approximation of the PHD lter is usually re- 
+quired [7,11] . Using a Gaussian mixture to represent the posterior 
+intensity, Vo developed an implementation of the PHD lter for the 
+linear Gaussian system, and extended this implementation to the 
+nonlinear Gaussian system [7] . By applying the switching multi- 
+ple models into Vo＊s Gaussian mixture PHD lter, Pasha proposed 
+a Gaussian mixture PHD lter to track the maneuvering target that 
+switches among several linear Gaussian models [12] . Adaptive tar- 
+get birth intensity techniques were also investigated independently 
+in [13, 14] and [15] to avoid the requirement for exact knowledge 
+of the birth target. To improve the stability of the target number 
+estimation, the cardinalized PHD lter was developed in [16] to 
+propagate the cardinality and moment in the lter recursion. In 
+addition to the Gaussian mixture approach, the particle or sequen- 
+tial Monte Carlo approach is another approximation of the PHD l- 
+ter [8每10] . The drawback of this approximation is that it requires 
+a higher computational load than the Gaussian mixture approxi- 
+mation because a large number of particles need to be sampled in 
+this approximation. 
+The main differences between the PHD lter and the traditional 
+tracking approach are that the PHD lter avoids the data associ- 
+ation which is used in the traditional approach to establish the 
+new trajectories and maintain the existing trajectories [5每8] and 
+that the PHD lter may provide the estimation of the target num- 
+ber. However, the PHD lter is prone to discard the information of 
+a target if the target is missing from the measurement of a sen- 
+sor. Besides, the PHD lter is not applicable to the closely spaced 
+targets because it cannot distinguish distinct targets if these tar- 
+gets have a small separation [6] . To track the closely spaced tar- 
+gets more eciently, Liu developed the marginal distribution Bayes 
+(MDB) lter [27,28] . Unlike the PHD lter that propagates the rst- 
+order moment, the MDB lter transmits the marginal distribution 
+and existence probability of each target in the lter＊s recursion. 
+Based on the MDB lter, Liu also developed a sequential multi- 
+target MDB lter to track multiple targets [29] . The advantage of 
+the sequential MDB lter is that it may handle the received mea- 
+surements in real time and is more applicable to tracking the mul- 
+tiple targets than the PHD lter in case of low detection proba- 
+bility. By applying the switching multiple models and the adap- 
+tive estimating technique of turn rate to the sequential MDB lter, 
+respectively, Liu proposed a sequential multiple target Bayes lter 
+with jump Markov system models [30] and a multi-target Bayes 
+lter with adaptive estimation of turn rate [31] to track the multi- 
+ple maneuvering targets and the turn maneuvering targets, respec- 
+tively. Similar to the PHD lter, Liu＊s MDB lters also avoid the data 
+association that is usually used in the traditional approach of tar- 
+get tracking. The performance of these MDB lters have also been 
+analyzed and examined through simulation experiments [27每31] . 
+Available research results have demonstrated that Vo＊s PHD l- 
+ter and Liu＊s MDB lter are ecient for multi-target tracking in 
+the presence of clutter and noise [7,27,29] . However, these two l- 
+ters fail to provide the state estimation of a target during its initial 
+times due to the poor capability of these two lters on the target 
+detection. The track initiation technique in the traditional tracking 
+approaches [32] may provide an ecient solution for this prob- 
+lem. The objective of this technique is to detect a new target and 
+initialize its track whenever the new target appears in the surveil- 
+lance space. In [32] , the two sequential track initiation techniques, 
+namely, the rule-based technique and logic-based technique, are 
+investigated. Based on the rule-based track initiation technique, an 
+approach for the target detection by using the measurements ob- 
+tained by the radar at three different scanning periods is presented 
+in this paper. Applying the target detection approach to the MDB 
+lter, we develop the MDB lter with the target detection to en- 
+hance the capability of the MDB lter on detecting multiple tar- 
+gets, which is also the main contribution of this paper. In terms of 
+the OSPA distance [33] , the tracking performance of the proposed 
+lter is demonstrated by comparing it with Vo＊s Gaussian mixture 
+PHD lter and Liu＊s MDB lter, which indicates that the proposed 
+lter is best at detecting and tracking multiple targets among these 
+lters. Please note that the target detection method presented in 
+this paper may also be applied to the PHD lter to enhance its 
+capability on detecting multiple targets because of the similarity 
+between the MDB lter and PHD lter. 
+The rest of this paper is organized as follows: The target de- 
+tection technique used in this paper is described in Section 2 . The 
+multi-target Bayes lter with the target detection is developed in 
+Section 3 . The performance of the developed lter is evaluated in 
+Section 4 . Conclusion is drawn in Section 5 . 
+
+2. Target detection method 
+
+Track initiation techniques have been investigated in [32] . Based 
+on the rule-based track initiation technique, we will present the 
+target detection approach to detect the new target and estimate its 
+initial state vectors by using three measurement sets that are ob- 
+tained by the radar at three different scanning periods. The radar 
+measures the range and azimuth of the target, and its measure- 
+ment in polar coordinates is denoted by 
+
+z r,牟 =
+
+(cid:2)
+
+r 
+
+牟
+
+(cid:3)
+
+=
+
+(cid:4)
+
+(cid:5)
+
+x 
+
+2 +
+
+ y 
+
+2 
+
+y 
+arctan 
+x 
+
+(cid:6)
+
++
+
+(cid:2)
+
+v r 
+v 牟
+
+(cid:3)
+
+(1) 
+
+where ( x, y ) denotes the position of the target, and v r and v 牟 are 
+the measurement noises with standard deviations 
+考 r and 
+考 牟 , re- 
+spectively. Converting this measurement in polar coordinates into 
+a measurement in Cartesian coordinates [34] , we have 
+
+z 
+
+=
+
+(cid:2)
+
+r cos 
+
+牟
+牟
+
+r sin 
+
+(cid:3)
+
+(2) 
+
+The error covariance of converted measurement z is given by 
+
+R xy 
+
+=
+
+(cid:4)
+
+ 考 2 
+x 
+考 2 
+yx 
+
+考 2 
+xy 
+考 2 
+y 
+
+(cid:6)
+
+(3) 
+
+where 
+
+考 2 
+x 
+
+=
+
+考 2 
+r 
+
+cos 
+
+2 牟 +
+
+ r 
+
+2 考 2 牟 sin 
+2 牟
+
+(4) 
+
+考 2 
+y 
+
+=
+
+考 2 
+r 
+
+sin 
+
+2 牟 +
+
+ r 
+
+2 考 2 牟 cos 
+2 牟
+
+(5) 
+
+考 2 
+xy 
+
+=
+
+考 2 
+yx 
+
+=
+
+ sin 
+牟 cos 
+
+牟
+
+(cid:7)
+
+考 2 牟  r 
+2 考 2 牟
+
+(cid:8)
+
+(6) 
+
+Let 
+
+Z k 
+2 
+
+=
+
+(z 1 
+2 
+2 
+1 
+ and Z k 
+
+,k 
+
+,
+
+ z 2 
+
+,k 
+
+,
+
+﹞ ﹞ ﹞ ,
+=
+
+ z M k 
+
+2 
+,k 
+,k 
+
+2 
+
+)
+
+ , 
+
+Z k 
+1 
+
+=
+
+(z 1 
+
+,k 
+
+1 
+
+,
+
+ z 2 
+
+,k 
+
+1 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ z M k 
+
+1 
+,k 
+
+)
+
+(z 1 
+
+,
+
+ z 2 
+
+,k 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ z M k 
+
+,k 
+
+)
+
+ de- 
+ 2 , 
+note three measurement sets obtained at scanning periods k 
+ 1 and k , respectively, let t k 
+k 
+and t k 
+denote the times of 
+these three scanning periods and let M k 
+and M k 
+denote 
+the number of measurements at these three scanning periods. 
+Each measurement in three measurement sets is the converted 
+measurement given by Eq. (2) . We pick a measurement from 
+each measurement set. The picked measurements from the three 
+sets are denoted by z e,k 
+, respectively, where 
+e 
+, f 
+and g 
+. We 
+then test whether the picked three measurements satisfy the fol- 
+lowing three requirements that are given based on the rule-based 
+track initiation technique in [32] . 
+(1) Velocity requirement: the moving velocity of the target is 
+greater than or equal to v min 
+and is less than or equal to v max , 
+namely, 
+
+2 
+, t k 
+1 
+
+2 
+, M k 
+1 
+
+2 
+, z f ,k 
+1 
+and z g,k 
+1 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M k 
+
+2 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M k 
+
+v min 
+
+≒
+
+(cid:9)(cid:9)z f ,k 
+ z e,k 
+1 
+ t k 
+2 
+(cid:9)(cid:9)z g,k 
+t k 
+1 
+2 
+ z f ,k 
+1 
+ t k 
+t k 
+1 
+
+(cid:9)(cid:9)
+
+2 
+
+≒ v max 
+
+,
+
+(7) 
+
+v min 
+
+≒
+
+(cid:9)(cid:9)
+
+2 
+
+≒ v max 
+
+,
+
+(8) 
+
+where 
+denotes the 2-norm of a vector, and v min 
+are minimal and maximal velocities, respectively. 
+(2) Acceleration requirement: the acceleration of the target is 
+less than or equal to a max , namely, 
+
+(cid:4)
+
+﹞ (cid:4)
+
+ 2 
+
+and v max 
+
+(cid:10)(cid:10)(cid:10)(cid:10)(cid:10)
+
+(cid:9)(cid:9)z g,k 
+ z f ,k 
+1 
+ t k 
+t k 
+1 
+
+(cid:9)(cid:9)
+
+2 
+
+
+
+(cid:9)(cid:9)z f ,k 
+ z e,k 
+1 
+ t k 
+2 
+t k 
+1 
+2 
+
+(cid:9)(cid:9)
+
+2 
+
+(cid:10)(cid:10)(cid:10)(cid:10)(cid:10)
+(cid:11)
+
+(
+
+ t k 
+
+ t k 
+1 
+
+)
+
+≒ a max 
+
+,
+
+(9) 
+
+﹞ | denotes the absolute value of a number and a max is the 
+where | 
+maximal acceleration. 
+(3) Angle requirement: the cosine of the included angle be- 
+tween vectors z f ,k 
+is greater than or 
+equal to minimal value c min 
+, namely, 
+
+ z e,k 
+1 
+2 
+(cid:9)(cid:9)z f ,k 
+1 
+ z e,k 
+2 
+ z e,k 
+1 
+2 
+
+ z f ,k 
+and z g,k 
+1 
+
+(cid:9)(cid:9)z g,k 
+(z g,k 
+ z f ,k 
+ z f ,k 
+1 
+1 
+
+,
+
+ z f ,k 
+
+)
+
+(cid:9)(cid:9)
+
+2 
+
+℅
+
+(cid:9)(cid:9)
+
+2 
+
+≡ c min 
+
+,
+
+(10) 
+
+﹞, 
+﹞) denotes the dot product of two vectors. 
+where ( 
+We conrm that a target is detected if measurements z e,k 
+, 
+satisfy the above three requirements, and then esti- 
+mate the state vectors of the detected target at times t k 
+and 
+
+2 
+
+z f ,k 
+1 
+
+and z g,k 
+
+2 
+, t k 
+1 
+
+Z.-x. Liu et al. / Signal Processing 140 (2017) 69每76 
+
+71 
+
+t k 
+
+by using the least square technique to establish its track. Let 
+
+C 
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ t k 0 
+1 t k 
+2 
+2 
+ t k 
+1 t k 
+ t k 0 
+1 t k 
+1 
+ t k 
+1 t k 
+1 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+1 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+1 
+
+0 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+,
+
+(11) 
+
+Y 
+
+=
+
+z e,k 
+2 
+z f ,k 
+1 
+z g,k 
+
+
+ 
+ 
+
+,
+
+(12) 
+
+R 
+
+=
+
+R 
+
+1 
+xy 
+
+0 
+
+0 
+
+0 R 
+
+2 
+xy 
+
+0 
+
+0 
+
+0 R 
+
+3 
+xy 
+
+
+ 
+ 
+
+,
+
+(13) 
+
+where R 
+, R 
+and R 
+are the error covariance matrices of con- 
+verted measurements z e,k 
+, respectively, and are 
+T to denote the 
+obtained by using Eq. (3) . Using 
+步 x 
+y 
+步 y ] 
+state vector of a target where ( x, y ) is its position vector and 
+(
+)
+is its velocity vector, the state estimation and covariance matrix of 
+the detected target at time t k 
+are given by 
+T C )
+
+1 
+xy 
+
+2 
+xy 
+
+3 
+xy 
+
+2 
+, z f ,k 
+1 
+
+and z g,k 
+
+缶 =
+
+ [ x 
+
+ 步 x 
+ 步 y 
+
+,
+
+缶 i 污 ,k 
+
+=
+
+(
+
+ C 
+
+1 C 
+T Y 
+
+,
+
+(14) 
+
+P 
+
+i 污 ,k 
+
+=
+
+(
+
+ C 
+
+T C )
+
+1 C 
+T RC 
+
+(
+
+ C 
+
+T C )
+
+1 .
+
+(15) 
+
+The state estimation of the detected target at time t k 
+given by 
+
+1 
+
+are 
+
+缶 i 污 ,k 
+1 
+
+=
+
+(C 
+
+T 
+C 1 
+1 
+
+)
+
+1 C 
+T 
+1 
+
+Y 
+
+,
+
+(16) 
+
+where 
+
+C 1 
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ t k 
+1 t k 
+2 
+1 0 
+
+0 
+
+0 
+
+0 
+
+ t k 
+1 t k 
+2 
+1 
+
+1 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+1 
+
+0 
+
+1 
+
+ t k 
+t k 
+1 0 
+
+0 
+
+0 
+
+0 
+
+1 
+
+ t k 
+t k 
+1 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+.
+
+(17) 
+
+Similarly, the state estimation of the detected target at time t k 
+are given by 
+
+2 
+
+缶 i 污 ,k 
+2 
+
+=
+
+(C 
+
+T 
+C 2 
+2 
+
+)
+
+1 C 
+T 
+2 
+
+Y 
+
+,
+
+(18) 
+
+where 
+
+C 2 
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+1 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+1 
+
+0 
+
+ t k 
+1 t k 
+1 
+2 0 
+
+0 
+
+0 
+
+0 
+
+ t k 
+1 t k 
+1 
+2 
+ t k 
+t k 
+2 0 
+
+1 
+
+0 
+
+0 
+
+0 
+
+1 
+
+ t k 
+t k 
+2 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+.
+
+(19) 
+
+After the state estimations of a detected target are obtained, 
+three measurements which are used for estimating its state vectors 
+have to be abandoned from sets Z k 
+and Z k 
+, respectively. 
+
+2 
+, Z k 
+1 
+
+Fig. 1. Pseudo-code for the target detection. 
+
+By repeating the aforementioned method, we may detect indi- 
+vidual targets from measurement sets Z k 
+and Z k 
+, and esti- 
+mate their state vectors at times t k 
+and t k 
+and covariance 
+matrix at time t k 
+. 
+Fig. 1 shows the pseudo-Code for the target detection where N 
+denotes the number of the detected targets at time t k 
+. The advan- 
+tage of the target detection method is that it may provide the state 
+estimations of individual detected targets at times t k 
+and t k 
+, 
+which is extremely important for tracking these detected targets at 
+subsequent times. 
+
+2 
+, Z k 
+1 
+2 
+, t k 
+1 
+
+2 
+, t k 
+1 
+
+3. Mult-target Bayes lter with the target detection 
+
+We have presented the multi-target Bayes lter in [27] and 
+[29] . In this section, we apply the target detection method in 
+Section 2 to the multi-target Bayes lter in [29] to design a multi- 
+target Bayes lter with the target detection. The novel lter is de- 
+scribed as follows: 
+Step 1: Prediction 
+In this step, we use marginal distribution N (
+and existence probability 
+of distinct targets at time step k 
+1 to predict their marginal distribution and existence probability at 
+time step k where i 
+ 1 . The predicted marginal distribution 
+and N k 
+denotes the number 
+of targets at time step k 
+and existence probability are as follows: 
+
+ x i,k 
+
+1 
+
+; 缶
+
+1 
+i,k 
+
+,
+
+ P i,k 
+
+1 
+
+)
+
+老
+
+1 
+i,k 
+
+
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ N k 
+
+1 
+
+1 
+
+N (
+
+ x i,k 
+
+; 缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+,
+
+ P i,k 
+
+|
+
+ k 
+
+1 
+
+)
+
+ i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ N k 
+
+1 
+
+(20) 
+
+老
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+=
+
+ p S,k 
+
+老
+
+1 
+i,k 
+
+,
+
+ i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ N k 
+
+1 
+
+(21) 
+
+72 
+
+Z.-x. Liu et al. / Signal Processing 140 (2017) 69每76 
+
+where p S, k 
+
+is survival probability, and 
+
+缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+and P i,k 
+
+|
+
+ k 
+
+1 
+
+are given 
+
+by 
+
+缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+=
+
+
+
+1 
+k 
+
+缶
+
+1 
+i,k 
+
+(22) 
+
+P i,k 
+
+|
+
+ k 
+
+1 
+
+=
+
+ Q k 
+
+1 
+1 
+k 
+
++
+
+
+
+1 P i,k 
+1 
+T 
+1 
+k 
+k 
+1 
+
+(23) 
+
+where 
+and Q k 
+denotes the state transition matrix and co- 
+variance matrix, respectively. 
+Step 2: Classication of measurements 
+In this step, we split measurement set Z k 
+ at 
+time step k , where M k 
+denotes the number of measurements, into 
+two categories according to the following procedures: 
+We rst use converted measurement z j, k 
+to compute the probability 
+as 
+
+
+
+=
+
+(
+
+ z 1 
+
+,k 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ z M k 
+
+,k 
+
+)
+
+where 
+
+j 
+
+=
+
+1 
+
+,
+
+ 2 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M k 
+
+老 c 
+j 
+
+老 c 
+j 
+
+=
+
+竹
+
+c,k 
+; H k 
+
+竹
+
+c,k 
+
++
+
+ p D,k 
+
+N k 
+
+1 (cid:18)
+
+=1 
+i 
+
+老
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+N (
+
+ z j,k 
+
+缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+,
+
+ H k P i,k 
+
+|
+
+ k 
+
+1 
+
+H 
+
+T 
+k 
+
++
+
+ R j,k 
+
+)
+
+(24) 
+
+where 
+denote the clutter rate, detection 
+probability, observation matrix and error covariance matrix of con- 
+verted measurement z j, k 
+, respectively. We then classify converted 
+≒ 0 
+measurement z j, k 
+into the rst category if 
+ 5 , which indi- 
+is originated from an existing target. Otherwise, we clas- 
+into the second category, which suggests z j, k 
+is a clutter- 
+originated measurement or a measurement originated from a new 
+target. 
+Addressing each measurement in measurement set Z k 
+(
+)
+ according to the aforementioned method, we may 
+split measurement set Z k 
+into two categories. The measurements 
+in the rst category and second category are denoted by sets Z 
+(z 
+)
+ and Z 
+(z 
+)
+ , respectively, where 
+
+竹
+
+, p D, k 
+, H k 
+c, k 
+
+and R j, k 
+
+老 c 
+j 
+
+.
+
+cates z j, k 
+sify z j, k 
+
+=
+
+ z 1 
+
+,k 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ z M k 
+
+,k 
+
+m 
+k 
+
+=
+
+m 
+1 
+M 1, k 
+
+,k 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ z 
+
+m 
+
+M 1 ,k 
+
+,k 
+
+c 
+k 
+
+=
+
+c 
+1 
+
+,k 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ z 
+
+c 
+
+M 2 
+
+,k 
+
+,k 
+
+and M 2, k 
+
+denote the measured numbers of the rst category 
+and second category at time step k , respectively, and M 1 
+. 
+Step 3: Update and state extraction of existing targets 
+Using each measurement 
+in measurement 
+set Z 
+)
+ to update each predicted distribution in 
+
+,k 
+
++
+
+ M 2 
+
+,k 
+
+=
+
+M k 
+
+m 
+k 
+
+=
+
+(z 
+
+m 
+1 
+
+,k 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ z 
+
+m 
+
+M 1 ,k 
+
+,k 
+
+Eq. (20) according to Bayes rule, we obtain the updated dis- 
+tribution and existence probability as follows: 
+
+N (
+
+ x i,k 
+
+; 缶 j 
+
+i,k 
+
+,
+
+ P 
+
+j 
+i,k 
+
+)
+
+,
+
+ i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ N k 
+
+1 
+
+,
+
+ j 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M 1 
+
+,k 
+
+(25) 
+
+老 j 
+i,k 
+
+=
+
+p D,k 
+
+老
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+N (z 
+
+; H k 
+m 
+j,k 
+
+缶
+
+1 
+i,k 
+; H k 
+m 
+j,k 
+
+|
+
+ k 
+
+,
+
+ H k P i,k 
+
+|
+
+ k 
+
+1 
+
+H 
+
+T 
+k 
+
++
+
+ R 
+
+m 
+j,k 
+
+)
+
+竹
+
+c,k 
+
++
+﹞ ﹞ ﹞ ,
+
+ p D,k 
+
+N k 
+
+1 (cid:18)
+
+=1 
+i 
+1 
+
+老
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+N (z 
+
+缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+,
+
+ H k P i,k 
+
+|
+
+ k 
+
+1 
+
+H 
+
+T 
+k 
+
++
+
+ R 
+
+m 
+j,k 
+
+)
+
+i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+ N k 
+
+,
+
+ j 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M 1 
+
+,k 
+
+,
+
+(26) 
+
+where R 
+
+m 
+j,k 
+m 
+j,k 
+
+is the error covariance matrix of converted measure- 
+
+ment z 
+
+, and 
+
+缶 j 
+i,k 
+
+and P 
+
+j 
+i,k 
+ H k 
+m 
+j,k 
+
+are given by 
+
+缶 j 
+i,k 
+
+=
+
+缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+
++
+
+ A 
+
+j 
+i,k 
+﹞ H k 
+j 
+i,k 
+
+﹞ (z 
+
+缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+)
+
+(27) 
+
+P 
+
+j 
+i,k 
+
+=
+
+ A 
+(I 
+
+)
+
+ P i,k 
+
+|
+
+ k 
+
+1 
+
+(28) 
+
+A 
+
+j 
+i,k 
+
+=
+
+ P i,k 
+老 M 1 
+
+|
+
+ k 
+
+1 
+T 
+[ H k P i,k 
+k 
++1 
+
+H 
+
+|
+
+ k 
+
+1 
+
+H 
+
+T 
+k 
+
++
+
+ R 
+
+m 
+j,k 
++1 
+
+] 
+
+1 
+
+(29) 
+
+Let 
+, 
+and P 
+. 
+We nd the index with maximum existence probability from 
+; j 
+set 
+ , namely, 
+
+,k 
+
+i,k 
+
+=
+
+老
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+缶M 1 
+
+,k 
+
+i,k 
+
+=
+
+缶
+
+i,k 
+
+|
+
+ k 
+
+1 
+
+M 1 
+
+,k 
+
++1 
+
+i,k 
+
+=
+
+ P i,k 
+
+|
+
+ k 
+
+1 
+
+{
+
+老 j 
+i,k 
+
+=
+
+ 1 
+
+, 2 
+,
+
+﹞ ﹞ ﹞ ,
+
+ M 1 
+
+,k 
+
++
+
+ 1 
+
+}
+
+q 
+
+=
+
+ arg max 
+
+j﹋{
+
+ 1 
+
+,
+
+﹞﹞﹞ ,
+
+ M 1 
+
+,k 
+
++1 
+
+}
+
+{
+
+老 j 
+i,k 
+
+}
+
+(30) 
+
+The updated distribution and existence of target i at time step 
+k are given by 
+
+N (
+
+ x i,k 
+
+; 缶
+
+i,k 
+
+,
+
+ P i,k 
+
+)
+
+=
+
+ N (
+
+ x i,k 
+
+; 缶 q 
+
+i,k 
+
+,
+
+ P 
+
+q 
+i,k 
+
+)
+
+,
+
+ i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ N k 
+
+1 
+
+,
+
+(31) 
+
+老
+
+i,k 
+
+=
+
+老 q 
+i,k 
+
+,
+
+ i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ N k 
+
+1 
+
+,
+
+(32) 
+
+We then eliminate the targets whose existence probability 
+is less than threshold 
+而 and select the state vectors of the targets 
+whose existence probability 
+is greater than 0.5 as the output 
+of this lter at time step k . 
+Step 4: Target detection 
+In 
+this 
+step, we use measurement 
+sets Z 
+ 2 , 
+)
+at 
+time 
+step 
+k 
+Z 
+ 1 
+k 
+and 
+ at time step k to detect individual targets. 
+
+老
+
+i, k 
+
+老
+
+i, k 
+
+c 
+2 
+k 
+c 
+1 
+k 
+c 
+k 
+
+=
+=
+=
+
+(z 
+(z 
+(z 
+
+c 
+1 
+c 
+1 
+c 
+1 
+
+,k 
+
+2 
+1 
+
+,
+
+﹞ ﹞ ﹞ ,
+﹞ ﹞ ﹞ ,
+﹞ ﹞ ﹞ ,
+
+ z 
+
+c 
+
+M 2 
+
+,k 
+
+2 
+,k 
+1 
+,k 
+
+2 
+1 
+
+,k 
+
+,
+
+ z 
+
+c 
+
+M 2 
+
+,k 
+
+)
+
+at 
+
+time 
+
+step 
+
+Z 
+
+,k 
+
+,
+
+ z 
+
+c 
+
+M 2 
+
+,k 
+
+,k 
+
+)
+
+We select a measurement from each set; denote the selected 
+measurements by z 
+, z 
+and z 
+, respectively, where e 
+
+c 
+2 
+e,k 
+
+c 
+1 
+f ,k 
+
+c 
+g,k 
+
+=
+
+1 
+, f 
+and g 
+; replace 
+measurements z e,k 
+in Eqs. (7) , (8) , (9) and 
+(10) with z 
+, z 
+and z 
+, respectively, and test whether the 
+selected three measurements satisfy the requirements in Eqs. (7) , 
+(8) , (9) and (10) . 
+If measurements z 
+, z 
+and z 
+satisfy the requirements 
+in Eqs. (7) , (8) , (9) and (10) . we conrm that a target is detected. 
+Replacing measurements z e,k 
+in Eq. (12) with 
+z 
+, z 
+and z 
+, respectively, and using the error covari- 
+ance matrices of converted measurements z 
+, z 
+and z 
+
+,
+
+ 2 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M 2 
+
+,k 
+
+2 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M 2 
+
+,k 
+
+1 
+2 
+, z f ,k 
+1 
+and z g,k 
+c 
+1 
+c 
+f ,k 
+g,k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M 2 
+
+,k 
+
+c 
+2 
+e,k 
+
+c 
+2 
+e,k 
+
+c 
+1 
+f ,k 
+
+c 
+g,k 
+
+2 
+, z f ,k 
+1 
+
+and z g,k 
+
+c 
+2 
+e,k 
+
+c 
+1 
+f ,k 
+
+c 
+g,k 
+
+c 
+2 
+e,k 
+
+c 
+1 
+f ,k 
+
+c 
+g,k 
+
+as covariance matrices R 
+we obtain state vector 
+
+1 
+xy 
+缶 i 污 ,k 
+
+, R 
+and R 
+in Eq. (13) , respectively, 
+and error covariance P 
+by using 
+
+2 
+xy 
+
+3 
+xy 
+
+i 污 ,k 
+
+Eqs. (14) and (15) , respectively. The marginal distribution of the 
+detected target is given by 
+
+N (
+
+ x i,k 
+
+; 缶 i 污 ,k 
+
+,
+
+ P 
+
+i 污 ,k 
+
+)
+
+(33) 
+
+The state estimations 
+and 
+of the detected target at 
+ 1 and k 
+ 2 are given by Eqs (16) and (18) , respec- 
+time steps k 
+老 污 as the existence 
+tively. At the same time, we designate a known 
+probability of the detected target at time step k , namely, 
+
+缶 i 污 ,k 
+1 
+
+缶 i 污 ,k 
+2 
+
+老 i 污 ,k 
+
+=
+
+老污
+
+(34) 
+
+After the state estimations of the detected target are obtained, 
+we discard the three measurements which are used for estimat- 
+ing the states of the detected target from sets Z 
+, Z 
+and Z 
+, 
+respectively. 
+By repeating the aforementioned method, we may detect indi- 
+vidual targets and obtain their marginal distributions at time step 
+ 1 and k 
+ 2 . 
+k and their state estimations at time steps k 
+Step 5: State extraction of detected targets 
+We export the state estimations of each detected target at time 
+ 1 and k 
+ 2 to supply the output of this lter at time 
+steps k , k 
+ 1 and k 
+ 2 , respectively. At the same time, we add the 
+steps k , k 
+marginal distributions and existence probabilities of the detected 
+targets at time step k to those of the existing targets at time step 
+k to form the marginal distributions and existence probabilities of 
+individual targets at time step k , and transmit them, along with 
+measurement sets Z 
+and Z 
+, to the next time step. The pseudo- 
+Code for the multi-target Bayes lter with the target detection is 
+given in Fig. 2 . 
+The advantages of the multi-target Bayes lter with the target 
+detection over the PHD and MDB lters are as follows: (1) It may 
+provide the initial state estimations of the detected target, which 
+is extremely important for tracking the target at subsequent times. 
+(2) It propagates less Gaussian terms to the next time step because 
+
+c 
+2 
+k 
+
+c 
+1 
+k 
+
+c 
+k 
+
+c 
+1 
+k 
+
+c 
+k 
+
+Z.-x. Liu et al. / Signal Processing 140 (2017) 69每76 
+
+73 
+
+Fig. 2. Pseudo-code for the proposed multi-target Bayes lter. 
+
+only the Gaussian terms relevant to the existing targets and de- 
+tected targets are propagated to the next time step. 
+Remark : The initial position, velocity and error covariance of 
+the detected targets or newly appearing targets provided in the 
+developed lter are accurate, whereas the initial velocity of newly 
+appearing targets is usually assumed to be zero and their initial 
+error covariance is generally chosen based on the maximal target 
+velocity in the PHD lter and MDB lter [14] . In this case, the in- 
+accuracy in the initial state and error covariance of new targets 
+becomes larger, which may lead to a failure of target detection or 
+track initialization [14] . 
+
+4. Simulation results 
+
+We use three examples to reveal the performance of the MDB 
+lter with the target detection. The rst is to show the perfor- 
+mance of this lter for two targets with the constant velocity in 
+the absence of missed detection, clutter and noise. The second is to 
+reveal the tracking performance of this lter for eight targets with 
+the constant velocity in the presence of missed detection, clutter 
+and noise. The third is to demonstrate the performance of this l- 
+ter for eight targets with the constant acceleration in the presence 
+of missed detection, clutter and noise. In the experiments, we use 
+Vo＊s PHD lter and Liu＊s MDB lter as the comparing objects, and 
+select OSPA distance [33] with parameters c 
+ 10 m and p 
+ 2 as 
+the measure. The state transition matrix 
+
+in Eqs. (22) and 
+(23) , covariance matrix Q k 
+in Eq. (23) , observation matrix H k 
+in Eqs. (24) , (26) , (27) , (28) and (29) are identical to matrices 
+in [29] , respectively, where 
+denotes the vari- 
+ance of process noise. The converted measurement in Eq. (2) and 
+converted error covariance in Eq. (3) are used in the proposed 
+lter, Vo＊s PHD lter and Liu＊s MDB lter. The parameters v min 
+, 
+for the target detection in the proposed l- 
+2 and 
+ 10 m s 
+ 70 m s 
+ 25 m s 
+
+=
+
+=
+
+1 
+k 
+
+1 
+
+F k 
+1 
+, Q k 
+1 
+, H k 
+
+考 2 v 
+
+v max , a max and c min 
+
+ter are set to v min 
+ 7071 . 
+
+=
+
+1 , v max 
+
+=
+
+1 , a max 
+
+=
+
+c min 
+
+=
+
+ 0 
+
+.
+
+Example 1. Two targets are considered in this example. Target 1 
+950 m , 
+850 m ) moves at constant ve- 
+with initial position at ( 
+locity ( 步 x 
+ 19 m 
+ s and 步 y 
+ 18 m 
+ s ) from t 
+ 1 s to t 
+ 100 s . Tar- 
+17 m 
+get 2 moves at constant velocity ( 步 x 
+ 18 m 
+ s and 步 y 
+950 m , 
+from t 
+ 1 s to t 
+ 100 s , and its initial position is at ( 
+850 m). We use parameters 
+考v 
+0 m , 
+ 0 to gener- 
+ate the measurements of the radar with scanning period T 
+for 100 scanning periods, set parameters of the proposed lter 
+℅ 10 
+to 
+考v 
+考
+1 
+ 001 , 
+
+=
+=
+
+/
+
+=
+
+/
+
+=
+
+=
+=
+
+=
+
+/
+
+/
+
+ s ) 
+
+=
+
+t k 
+c,k 
+
+=
+=
+
+ t k 
+ 0 m 
+
+ t k 
+1 
+2 and p D,k 
+
+=
+
+ 1 s , 
+
+=
+=
+
+ 0 m 
+ 1 
+
+/
+
+ s 
+
+2 , 
+
+考
+
+r 
+
+=
+
+考
+
+牟
+
+=
+
+ 0 rad , p S,k 
+
+=
+
+ 1 
+ 0 , 
+
+.
+
+竹
+
+.
+
+=
+
+ 1 s 
+
+t k 
+
+=
+而 =
+
+ 1 s 
+ 0 
+
+=
+
+ 1 m 
+ 3 m , 
+
+/
+
+ s , p S,k 
+
+=
+=
+
+ 0 
+ 6 , 
+ 0 
+
+.
+
+竹
+
+c,k 
+
+=
+
+ 2 
+ 5 
+
+.
+
+11 m 
+2 , p D,k 
+
+=
+
+.
+
+ 0 , 
+
+.
+
+r 
+
+=
+
+考
+
+牟
+
+.
+
+ 001 rad and 
+
+老污 =
+
+ 0 
+
+.
+
+ 9 , and address 
+
+Fig. 3. The experimental result in Example 1 . 
+
+Fig. 4. A detail view of the experimental result in Example 1 . 
+
+the measurements by the proposed lter, Vo＊s PHD lter and Liu＊s 
+MDB lter and MDB lter, respectively. Figs. 3 and 4 show the ex- 
+perimental result and a detail view of this result, respectively. 
+
+The proposed lter uses the measurements from three consec- 
+utive scanning periods to detect the targets and estimate their ini- 
+tial states. Due to this fact, although the two targets appear at 
+t 
+ 1 s in this example, the proposed lter detects the two targets 
+at t 
+ 3 s and obtains their initial state estimations at this time. 
+Figs. 3 and 4 reveal that suciently small OSPA distances appear at 
+the plot of the proposed lter at t 
+ 2 s and t 
+ 3 s because 
+the proposed lter may provide the accurate state estimations of 
+the two targets at t 
+ 2 s and t 
+ 3 s when they are de- 
+tected at t 
+ 3 s , whereas Vo＊s PHD lter and Liu＊s MDB lter fail to 
+provide the state estimations of the two targets at t 
+ 1 s because 
+of their poor capacity on the target detection. Fig. 4 also reveals 
+that the PHD and MDB lters have larger OSPA distances at t 
+t 
+ 3 s and several subsequent times than the proposed lter. The 
+reason for this phenomenon is that the proposed lter provides 
+much more accurate state estimations than the PHD and MDB l- 
+ters at these times because it has a strong detecting capability of 
+the target. 
+
+=
+
+=
+
+=
+
+ 1 s , t 
+
+=
+
+=
+
+=
+
+ 1 s , t 
+
+=
+
+=
+
+=
+
+=
+
+=
+
+ 2 s , 
+
+=
+
+Example 2. In this example, eight targets with different initial ve- 
+locities appear from different initial positions at different times. 
+
+74 
+
+Z.-x. Liu et al. / Signal Processing 140 (2017) 69每76 
+
+Fig. 5. Moving trajectories of eight targets. 
+
+Fig. 7. Average OSPA distances in Example 2 . 
+
+Fig. 6. Converted measurements. 
+
+Fig. 8. Moving trajectories of the targets in Example 3 . 
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+ 6 s t 
+
+ 2 s , t 
+
+ 1 s , t 
+
+ 4 s , t 
+
+ 5 s , t 
+
+=
+=
+
+Targets 1, 2, 3, 4, 5, 6, 7 and 8 appear at t 
+t 
+ 7 s and t 
+ 8 s , respectively, and con- 
+tinue to exist before t 
+ 100 s . The measurements with missed 
+detection, clutter and noise are generated by using parameters 
+考v 
+℅ 10 
+2 
+ 98 . The moving trajectories of eight 
+targets and converted measurements are shown in Figs. 5 and 6 , 
+respectively. 
+
+2 , 
+6 m 
+2 and p D,k 
+r 
+
+ 3 m , 
+ 0 
+
+ 001 rad , p S,k 
+
+=
+=
+
+t k 
+
+ 0 m 
+
+ 1 
+ 0 , 
+
+ 1 s , 
+
+ 3 s , 
+
+=
+
+=
+
+=
+
+=
+
+=
+
+ 0 
+
+c,k 
+
+ 5 
+
+ s 
+
+竹
+
+考
+
+考
+
+/
+
+牟
+
+.
+
+.
+
+.
+
+.
+
+=
+
+=
+而 =
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+牟
+
+/
+
+r 
+
+考
+
+考
+
+竹
+
+c,k 
+
+ 0 
+
+ 0 
+
+=
+
+=
+
+=
+
+=
+
+=
+
+ 2 
+ 5 
+
+ 3 m , 
+
+t k 
+
+ s , p S,k 
+
+老污 =
+
+ 0 
+ 6 , 
+ 0 
+
+ 1 s 
+ 0 
+
+6 m 
+2 , p D,k 
+
+考v 
+Setting parameters of the proposed lter to 
+℅ 10 
+1 m 
+ 98 , 
+ 001 , 
+ 001 rad and 
+ 9 , we use Vo＊s PHD lter, Liu＊s 
+MDB lter and proposed lter to handle the measurements, re- 
+spectively. Fig. 7 shows the average OSPA distance for 120 trials 
+and also reveals that the proposed lter performs better than Vo＊s 
+PHD lter or Liu＊s MDB lter because its average OSPA distance 
+is the least at each time. This performance advantage of the pro- 
+posed lter appears more obvious from t 
+ 1 s to 8 s because it 
+has a strong detecting capability of the target. Fig. 7 also shows 
+that the proposed lter may track the detected targets better than 
+Vo＊s PHD lter or Liu＊s MDB lter at the subsequent times (from 
+t 
+ 9 s to t 
+ 100 s ) because it provides more accurate initial state 
+estimations of the detected targets. 
+
+=
+
+=
+
+=
+
+Example 3. In this example, eight targets with different initial ve- 
+locities and accelerations appear in the scene at t 
+
+ 1 s , t 
+
+ 2 s , 
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+ 3 s , t 
+
+ 5 s , t 
+
+ 4 s , t 
+
+t 
+ 7 s and t 
+ 8 s , respectively, and 
+continue to exist in the scene before t 
+ 100 s . Moving trajectories 
+of the targets and converted measurements are shown in Figs. 8 
+and 9 , respectively. 
+
+ 6 s t 
+
+=
+
+=
+
+To handle the converted measurements, identical parameters to 
+Example 2 are also used to set the proposed lter in this exam- 
+ple. We use Vo＊s PHD lter, Liu＊s MDB lter and proposed lter to 
+handle the converted measurements for 120 Monte Carlo runs, and 
+show the experimental result in Fig. 10 . Based on Fig. 10 , similar 
+conclusion to Example 2 is also drawn. The proposed lter is the 
+best among these three lters due to its strong detecting capabil- 
+ity of the target. In addition, the result in Fig. 10 suggests that the 
+lter with the motion model of constant velocity may be applied 
+for tracking the targets that move at a constant acceleration. 
+Computational complexity : The proposed lter is originated 
+from Liu＊s MDB lter. The difference between them is that Liu＊s 
+MDB lter uses the measurements at current time to generate the 
+new marginal distributions, whereas the developed method rst 
+splits current measurements into two categories and then use the 
+second category of measurements from three consecutive times to 
+detect individual targets and estimate their initial states. Due to 
+the similarity between the proposed lter and MDB lter, its com- 
+putational complexity is identical to that of Liu＊s MDB lter or Vo＊s 
+PHD lter. The computational complexity of the proposed lter is 
+
+Z.-x. Liu et al. / Signal Processing 140 (2017) 69每76 
+
+75 
+
+Fig. 9. Converted measurements in Example 3 . 
+
+5. Conclusions 
+
+In this research, we present a target detection method based on 
+the rule-based track initiation technique. This approach uses the 
+measurements obtained at three consecutive times to detect indi- 
+vidual targets and estimate their initial states. Applying this tar- 
+get detection method to the MDB lter, we develop a multi-target 
+Bayes lter with the target detection. Its performance is tested by 
+comparing it with Vo＊s PHD lter and Liu＊s MDB lter, which in- 
+dicates that this lter has a stronger capability on detecting and 
+tracking multiple targets than Vo＊s PHD lter or Liu＊s MDB lter. 
+The extension of the applicable scope of the proposed lter and 
+further improvement on its tracking performance are potential re- 
+search topics for the multi-target Bayes lter with the target de- 
+tection in the future. 
+
+Acknowledgments 
+
+This work was supported by the National Natural Science Foun- 
+dation of China ( 61271107 , 61301074 ) and Shenzhen Basic Research 
+Project ( JCYJ20140418095735618 ). 
+
+References 
+
+[1] H. Blom , Y. Bar-Shalom , The interacting multiple model algorithm for sys- 
+tems with Markovian switching coecients, IEEE Trans. Autom. Control 33 (8) 
+(1988) 780每783 . 
+[2] X.R. Li , Y. Bar-Shalom , Design of an interacting multiple model algorithm for 
+air trac control tracking, IEEE Trans. Control Syst. Technol. 1 (3) (1993) 
+186每194 . 
+[3] X.R. Li , V. Jilkov , Survey of maneuvering target tracking. Part 1: dynamic mod- 
+els, IEEE Trans. Aerosp. Electron. Syst. 39 (4) (2003) 1333每1364 . 
+[4] X.R. Li , V. Jilkov , Survey of maneuvering target tracking. Part V: multiple-model 
+methods, IEEE Trans. Aerosp. Electron. Syst. 41 (4) (2005) 1255每1321 . 
+[5] R. Mahler , Statistical Multisource-Multitarget Information Fusion, Artech 
+House, Norwood, MA, 2007 . 
+[6] R. Mahler , Multitarget Bayes ltering via rst-order multitarget moments, IEEE 
+Trans. Aerosp. Electron. Syst. 39 (4) (2003) 1152每1178 . 
+[7] B.N. Vo , W.K. Ma , The Gaussian mixture probability hypothesis density lter, 
+IEEE Trans. Signal Process. 54 (11) (2006) 4091每4104 . 
+[8] B.N. Vo , S.S Doucet , Sequential Monte Carlo methods for multi-target lter- 
+ing with random nite sets, IEEE Trans. Aerosp. Electron. Syst. 41 (4) (2005) 
+1224每1245 . 
+[9] J.H. Yoon , D.Y. Kim , K.J. Yoon , Ecient importance sampling function design 
+for sequential Monte Carlo PHD lter, Signal Process. 92 (2012) 2315每2321 . 
+[10] C. Ouyang , H.B. Ji , Z.Q. Guo , Extensions of the SMC-PHD for jump Markov sys- 
+tems, Signal Process. 92 (2012) 1422每1430 . 
+[11] W.L. Li , Y.M. Jia , J.P. Du , J. Zhang , PHD lter for multi-target tracking with glint 
+noise, Signal Process. 94 (2014) 48每56 . 
+
+Fig. 10. Average OSPA distances in Example 3 . 
+
+Table 1 
+Average performing time (s). 
+
+Filter 
+
+PHD lter MDB lter 
+
+Proposed lter 
+
+Example 2 
+Example 3 
+
+7 .8422 
+7 .7861 
+
+8 .7151 
+8 .5247 
+
+0 .8132 
+0 .8126 
+
+℅ N k 
+1 
+
+ M k 
+
+1 
+
+1 
+
+also O 
+(
+)
+ where M k 
+is the number of measurements at 
+time step k and N k 
+is the number of Gaussian terms or marginal 
+ 1 to time step k . De- 
+distributions propagated from time step k 
+spite the identical computational complexity, The proposed lter 
+requires less computational load than Vo＊s PHD lter or Liu＊s MDB 
+lter due to the fact that N k 
+in the proposed lter approximates 
+the number of real targets in the scene because only the marginal 
+distributions and existence probabilities of the existing targets and 
+detected targets are propagated to the next time step in the lter 
+recursion, whereas Vo＊s PHD lter or Liu＊s MDB lter may propa- 
+gate many Gaussian terms irrelevant to real targets, along with the 
+Gaussian terms relevant to real targets, to the next time step. This 
+performance advantage of the proposed lter is validated by the 
+average performing times in Examples 2 and 3 . Based on Table 1 , 
+the proposed lter requires much less performing time than Vo＊s 
+PHD lter or Liu＊s MDB lter. 
+
+76 
+
+Z.-x. Liu et al. / Signal Processing 140 (2017) 69每76 
+
+[12] S.A. Pasha , B.N. Vo , H.D. Tuan , W.K. Ma , A Gaussian mixture PHD lter for 
+jump Markov system models, IEEE Trans. Aerosp. Electron. Syst. 45 (3) (2009) 
+919每936 . 
+[13] Y. Wang , Z.L. Jing , S.Q. Hu , J.J. Wu , Detection-guided multi-target Bayesian l- 
+ter, Signal Process. 92 (2012) 564每574 . 
+[14] J.H. Yoon , D.Y. Kin , S.H. Bae , V. Shin , Joint initialization and tracking of multiple 
+moving objects using Doppler information, IEEE Trans. Signal Process. 59 (7) 
+(2011) 3447每3452 . 
+[15] B. Ristic , D. Clark , B.N. Vo , B.T. Vo , Adaptive target birth intensity for PHD and 
+CPHD lter, IEEE Trans. Aerosp. Electron. Syst. 48 (2) (2012) 1656每1668 . 
+[16] B.T. Vo , B.N. Vo , A. Cantoni , analytic implementations of the cardinalized prob- 
+ability hypothesis density Filter, IEEE Trans. Signal Process. 55 (7) (2007) 
+3553每3567 . 
+[17] J.L. Yang , H.B. Ji , A novel track maintenance algorithm for PHD/CPHD lter, Sig- 
+nal Process. 92 (2012) 2371每2380 . 
+[18] W.L. Li , Y.M. Jia , Gaussian mixture PHD lter for jump Markov models based 
+on best-tting Gaussian approximation, Signal Process. 91 (2011) 1036每1042 . 
+[19] Z.X. Liu , W.X. Xie , P. Wang , Y. Yu , A sequential GM-based PHD lter for a linear 
+Gaussian system, Sci. China Inf. Sci. 56 (10) (2013) 1每10 102302 . 
+[20] J. Vermaak , S.J. Godsill , P. Perez , Monte Carlo ltering for multi-target tracking 
+and data association, IEEE Trans. Aerosp. Electron. Syst. 41 (1) (2005) 309每331 . 
+[21] T.M. Wood , Interacting methods for manoeuvre handling in the GM-PHD lter, 
+IEEE Trans. Aerosp. Electron. Syst. 47 (4) (2011) 3021每3025 . 
+[22] H.Q. Zhang , H.W. Ge , J.L Yang , Y.H. Yuan , A GM-PHD algorithm for multiple 
+target tracking based on false alarm detection with irregular window, Signal 
+Process. 120 (2016) 537每552 . 
+[23] T.C. Li , S.D. Sun , ;M. Bolic , Algorithm design for parallel implementation of the 
+SMC-PHD lter, Signal Process. 119 (2016) 115每127 . 
+
+[24] L. Liu , H.B. Ji , Z.H. Fan , Improved iterated-corrector PHD with Gaussian mixture 
+implementation, Signal Process. 114 (2015) 89每99 . 
+[25] M. Yazdian-Dehkordi , Z. Azimifar , Rened GM-PHD tracker for tracking targets 
+in possible subsequent missed detections, Signal Process. 116 (2015) 112每126 . 
+[26] B. Li , S. Wang , X. Jia , Adaptive Bernoulli lter for single target tracking in un- 
+certain detection environment, Int. J. Innovative Comput. Inf. Control 13 (1) 
+(2017) 307每317 . 
+[27] Z.X. Liu , W.X. Xie , Multi-target Bayesian lter for propagating marginal distri- 
+bution, Signal Process. 105 (2014) 328每337 . 
+[28] Z.X. Liu , L.J. Li , W.X. Xie , L.Q. Li , Two implementations of marginal distribution 
+Bayes lter for nonlinear Gaussian models, AEU Int. J. Electron. Commun. 69 
+(9) (2015) 1297每1304 . 
+[29] Z.X. Liu , L.J. Li , W.X. Xie , L.Q. Li , Sequential measurement-driven multi-target 
+Bayesian lter, EURASIP J. Adv. Signal Process. 43 (2015) 1每9 . 
+[30] Z.X. Liu , Q.Q. Zhang , L.Q. Li , W.X. Xie , Tracking multiple maneuvering targets 
+using a sequential multiple target Bayes lter with jump Markov system mod- 
+els, Neurocomputing 216 (2016) 183每191 . 
+[31] Z.X. Liu , D.H. Wu , W.X. Xie , L.Q. Li , Tracking the turn maneuvering target using 
+the multi-target Bayes lter with an adaptive estimation of turn rate, Sensors 
+17 (2) (2017) 1每14 . 
+[32] Z.J. Hu , H. Leung , M. Blanchette , Statistical performance analysis of track initi- 
+ation techniques, IEEE Trans. Signal Process. 45 (2) (1997) 445每456 . 
+[33] D. Schuhmacher , B.T. Vo , B.N. Vo , A consistent metric for performance 
+evaluation of multi-object lters, IEEE Trans. Signal Process. 56 (8) (2008) 
+3447每3457 . 
+[34] D. Lerro , Y. Bar-Shalom , Tracking with debiased consistent converted measure- 
+ments versus EFK, IEEE Trans. Aerosp. Electron. Syst. 29 (3) (1993) 1015每1022 . 
+

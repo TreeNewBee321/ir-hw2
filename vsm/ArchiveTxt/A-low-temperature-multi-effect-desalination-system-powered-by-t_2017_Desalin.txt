@@ -1,0 +1,1367 @@
+A low-temperature multi-effect desalination system powered by the cooling water of a diesel engine
+
+Fengming Zhang a,, Shiming Xu b, Dongdong Feng b, Shunquan Chen a, Ruxu Du c, Chuangjian Su a, Boya Shen a
+
+a Guangzhou Institutes of Advanced Technology, Chinese Academy of Sciences, 511458 Guangzhou, China
+b School of Energy and Power Engineering, Dalian University of Technology, 116024, Dalian, China
+c Institute of Precision Engineering, The Chinese University of Hong Kong, Shatin, N. T., Hong Kong SAR, China
+
+H I G H L I G H T S
+
+ A 60 T/d LT-MED desalination system powered by diesel engine waste heat was designed.
+ A compact and integrated four-effect tower distiller was proposed and built.
+ The desalination plant was operated successfully and tested comprehensively.
+ Electricity and water co-production can provide for islands and offshore platforms.
+
+article
+
+info
+
+Article history:
+Received 24 July 2016
+Received in revised form 23 October 2016
+Accepted 5 November 2016
+Available online 14 November 2016
+
+Keywords:
+Electricity and freshwater co-generation
+Low-temperature multi-effect distillation
+Waste heat recovery
+Diesel engine
+
+abstract
+
+This paper introduces a medium-size low-temperature multi-effect desalination (LT-MED) system. Powered by
+the cooling water of a 1000 kW diesel power generator set, the system can produce 60 tons of fresh water per
+day. First, the thermodynamic and heat transfer model of the LT-MED system is derived. Second, an integrated
+four-effect tower distiller is designed and built. The system is installed in the Guishan Island, Zhuhai, Guangdong,
+China, and tested comprehensively. In the operation, the evaporation temperature of each effect is linearly pro-
+portional to the heat load of the power generator. Additionally, the evaporation temperature in each effect distill-
+er rose linearly when the heat load was gradually increased. The variation of evaporation pressure was consistent
+with the evaporation temperature. When the heat load of the power generator increases from 300 kW to 530 kW,
+the fresh water production rate increases from 1.26 m3/h to 2.30 m3/h. The conductivity of the fresh water is usu-
+ally b 100 ¶ÃS/cm. Because of electricity and freshwater co-production, the system is environmental friendly and is
+particularly useful for islands and offshore platforms.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+With the rapid growth of the global population and the improve-
+ment of living standards, the demand for freshwater has increased dra-
+matically in the past few decades. As a result, global water scarcity has
+become a critical problem [1®C2]. To solve this problem, desalination is
+a key technology. In the past 50®C60 years, desalination industry has
+grown dramatically [3®C4]. However, there is a crucial problem: high en-
+ergy consumption. In general, desalination processes can be divided
+into two main categories based on the phase change of seawater [5®C
+8]. The rst category refers to thermal processes including Multi-Stage
+Flash distillation (MSF), Multi-Effect Distillation (MED), Thermal
+Vapor Compression (TVC), and Mechanical Vapor Compression
+(MVC). The second category is based membrane ltration including re-
+verse osmosis (RO), and electro-dialysis (ED). From the energy point of
+view, all these desalination processes are energy thirsty [9®C11]. In par-
+ticularly, the membrane process would have a higher overall efciency
+at the expense of consuming a large amount of electricity. The greatest
+advantage of the thermal processes is that they can use any types of
+thermal sources consuming very little electricity. As a result, it is partic-
+ularly useful when renewable energy, such as solar, geothermal, as well
+as waste heat, such as streams and/or hot water from power generation
+and other chemical engineering processes, is available. In short, it has
+been agreed that the desalination process shall use renewable energy
+or waste energy that is low cost or even cost free [12®C15].
+Waste thermal energy is very common in the process industry, and
+waste heat management is an important consideration as it affects oper-
+ation cost and system performance. In general, waste heat can be
+Nomenclature
+
+Abbreviations
+A
+heat transfer area m2
+BPE
+the rise in brine's boiling point rise, °„C
+CFU
+colony-forming units
+Cp
+specic heat capacity kJ°§kg 1°§K 1
+d
+diameter, m
+F
+ow rate, kg°§h 1
+gravitational acceleration, m°§s 2
+g
+specic enthalpy, kJ°§kg 1
+h
+H
+head of delivery, m
+L
+effective length of the tubes, m
+LT-MED low-temperature multi-effect distillation
+MED
+multi-effect distillation
+MSF
+multi-stage ash distillation
+MVC
+mechanical vapor compression
+N
+number of effect, number of columns
+NTU
+nephelometric turbidity unit
+Nu
+Nusselt number
+P
+pressure, kPa
+Pr
+Prandtl constant
+Q
+heat load, kW
+fouling resistance of pipe wall, m2°§K 1°§W 1
+R
+Re
+Reynolds number
+RO
+reverse osmosis
+T
+temperature, K
+TVC
+thermal vapor compression
+X
+seawater concentration, ppm
+
+Greek letters
+¶¡
+heat transfer coefciency, w°§m 2°§K 1
+¶ 
+total heat transfer coefcient, w°§m 2°§K 1
+¶—
+density, kg°§m 3
+latent heat, kJ°§kg 1
+¶√
+heat conductivity coefcient,w°§m2°§K 1
+¶À
+¶Õ
+kinematic viscosity, m2°§s 1
+¶£
+spray density, kg°§m 1°§s 1
+¶Ã
+dynamic viscosity, Pa°§s
+¶§
+difference
+¶§t
+heat transfer temperature difference, K
+temperature difference in the hot side of the preheater,
+K
+concentration ratio
+
+¶§Tpre
+
+¶≈
+
+Subscripts
+cw
+fw
+hw
+i
+in
+L
+out
+s
+sw
+v
+vap
+w
+
+cooling water
+fresh water
+hot water
+the ith effect
+inlet, inner
+liquid
+outlet, outer
+saturated
+sea water
+vapor
+vapor
+tube wall
+
+divided into two kinds: high grade and low grade. The high grade refers
+to those that have temperature above 80 °„C and can be easily recovered
+using conventional methods, while low grade refers to those that have
+temperature below 80 °„C and is often not economically viable to recover
+
+[16®C17]. In practice, low grade waste heat would be one of the most
+promising options for desalination [18®C19]. It matches well with the re-
+quirement of MED, in which higher temperature should be avoided to
+prevent the precipitation of gypsum that could severely foul the heat
+exchanger [20®C21].
+Diesel generator set consisting of engine, generator and control sys-
+tem, is widely used in the region far away from power grid such as
+islands and offshore platforms. However, it can only convert about
+40% of the energy from fuel combustion into useful work, and the re-
+maining energy is discharged into environment in the form of waste
+heat, which includes 30% in the exhaust gas, 25% in the jacket cooling
+water, and 5% of other heat losses [22]. Thus, utilizing the waste heat
+from diesel engine for desalination would be ideal [23®C25]. This moti-
+vates us to design and build a 60 Ton per day (T/day) LT-MED desalina-
+tion system powered by a 1000 kW diesel generator set.
+The rest of the paper is organized as follows: Section 2 presents the
+design of the desalination system. Section 3 gives its thermodynamic
+model. Section 4 describes the building of the system and the experi-
+ment results. Finally, Section 5 contains conclusions and discussions.
+
+2. Pilot plant description
+
+2.1. Design conditions
+
+The desalination process was designed based on the waste heat re-
+source and the quality of raw seawater. The cooling water waste heat
+of a diesel engine with a rated power of 1000 kW was used as the
+heat sources of the MED desalination process, and the related parame-
+ters of the diesel engine were listed in Table 1. The temperature range
+of cooling water produced in the diesel engine is usually between 71
+and 85 °„C, which matches extremely well with the multi-effect distilla-
+tion (MED) technology. Considering the heat dissipation and uctuating
+electric load, the waste heat load of cooling water recovered from the
+diesel engine was set as 600 kW. Besides, the quality of raw seawater
+was also tested before designing the system, which is listed in Table 2
+and a simple pretreatment process will be sufcient for MED
+technology.
+
+2.2. Process description
+
+The schematic diagram of our LT-MED seawater desalination process
+driven by cooling water waste heat from a diesel generator set is shown
+in Fig. 1. It consists of a hot water circuiting system, four evaporators, a
+condenser, a vacuum system and other auxiliary equipment. In the four-
+effect distiller, each effect contains heat exchanging tubes, vapor space,
+brine spray nozzles and a demister. The horizontal falling lm evapora-
+tor is preferred to use in the MED processes for getting high heat trans-
+fer efciency [26®C27].
+As shown in the gure, after being ltered by a simple meshed grid
+the seawater is pumped into the tubes of the condenser. A large portion
+of the seawater is rejected back to the sea as cooling water, while the
+remnant ows into the preheater through a self-cleaning lter. Then,
+the preheated water enters the rst effect distiller starting the multi-ef-
+fect desalination process. At the meantime, the circulating hot water
+
+Table 1
+Parameters of the diesel engine.
+
+Parameters
+
+Engine type
+Rated load
+Thermal load of the cooling water
+Cooling water ow
+Temperature adjustment range
+Maximum temperature
+
+Unit
+®C
+kW
+kW
+L°§min 1
+°„C
+°„C
+
+Value
+
+S12R-PTA2
+1000
+697
+1650
+71®C85
+98
+
+114
+
+Table 2
+The raw seawater quality.
+
+Number
+
+Indexes
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+
+Turbidity
+Chroma
+suspended solids
+Smell
+Visible substances
+pH
+Electrical conductivity
+Total dissolved solids
+Chemical oxygen demand
+Aerobic bacterial count
+Total coliform group
+Heat resistant Escherichia coli group
+Escherichia coli
+
+Unit
+
+NTU
+°„
+mg/l
+®C
+®C
+®C
+mS/cm
+mg/l
+mg/l
+CFU/ml
+CFU/ml
+CFU/100 ml
+CFU/100 ml
+
+Test result
+
+b 1
+b 5
+17.5
+Not detected
+Not detected
+7.94
+45.0
+3.8 °¡ 104
+48.2
+257
+Not detected
+Not detected
+Not detected
+
+receives the heat from the cooling water of the diesel engine and pumps
+into the rst effect distiller as heating medium to transfer the heat ener-
+gy to the feed seawater, and ows into the preheater to preheat the
+feed.
+This forward feed conguration is adopted for its simplicity and op-
+eration efcient [28]. The entire low-temperature evaporation process
+is operated under low pressure condition generated by a vacuum
+pump. Both the brine and the vapor ow from the rst effect to the
+last effect. At the rst effect distiller, the feed seawater is heated up to
+its boiling temperature and a portion of it evaporates subsequently.
+The generated vapor goes through demister and then ows into the sec-
+ond effect distiller to be condensed. In the second effect distiller, the
+condensation and the evaporation occurs at the same time. This permits
+the feed seawater to undergo multiple boiling without additional
+heating. This process is repeated likewise in the third and the fourth ef-
+fect distillers. Finally, the generated vapor in the last effect distiller is
+condensed in the condenser. The condensed freshwater from each effect
+
+F. Zhang et al. / Desalination 404 (2017) 112®C120
+
+distiller is pumped into a storage tank and the brine is pumped back to
+the sea.
+
+3. Mathematical model
+
+3.1. Modeling assumption
+
+In this section, the mathematical model of mass balance and energy
+balance for the preheater, the evaporators and the condenser are pre-
+sented. In the model, following assumptions are made:
+
+ The startup and shutdown conditions are not considered, so the pro-
+cess is assumed to be at steady state and the parameters do not de-
+pend on time.
+ Concentration of feed seawater is known based on sample analysis,
+and the concentration of salt in distillate stream is negligible, so distil-
+late product is assumed to be salt free.
+ Since all effects follow almost the same structural design, temperature
+difference between each two adjacent effects is taken to be identical.
+ The outer side walls of preheater, evaporators and condenser are insu-
+lated, heat losses to the surrounding are assumed to be negligible.
+ Pressure drop in the demister as well as during the vapor condensa-
+tion process is neglected.
+ The effect of fouling factors and the presence of non-condensable gas-
+ses on the heat transfer coefcients in the evaporators, preheaters and
+the condenser are neglected.
+
+3.2. Thermodynamic calculation model
+
+A schematic of main four-effect desalination plant's parts is shown in
+Fig. 2.
+
+Fig. 1. Schematic diagram of the LT-MED system, the line colors show the temperature gradients from low (blue) to high (red).
+
+F. Zhang et al. / Desalination 404 (2017) 112®C120
+
+115
+
+Fig. 2. Control volume MED parts.
+
+As seen in Fig. 2a, the mass and energy balance equations for pre-
+heater (i = 0) are as follows:
+
+F sw;in;i  F sw;out;i
+F hw  F hw;in;i  F hw;out ;i
+Q i  F hw;in;i hhw;in;ihhw;out ;i
+
+ 
+
+  F sw;in;i hsw;out ;ihsw;in;i
+
+ 
+
+
+
+1
+2
+3
+
+As seen in Fig. 2b, the mass and energy balance equation for the rst
+effect (i = 1) is written as:
+
+F hw  F hw;out;i  F hw;in;i  F hw;in;i1
+F sw;in;i  F sw;out;i  F vap;out;i
+T hw;out ;i  T hw;in;i1
+T sw;in;i  T sw;out ;i1
+T vap;out ;i  T sw;in;iBPE
+Q i  F hw hhw;in;ihhw;out;i
+
+ 
+
+  F sw;out ;i hsw;out;i
+ F vap;out ;i hvap;out ;i F sw;in;i hsw;in;i
+
+4
+5
+6
+7
+8
+
+9
+
+The BPE at a given pressure refers to the increase in boiling temper-
+ature due to the dissolution of salts in the water, and hvap,out,i has consid-
+ered gasication latent heat and enthalpy difference due to temperature
+change. The BPE can be calculated by Eq. (10) according to literature
+[29]:
+BPE  AX  BX 2  CX 3
+A  8:325  102  1:883  104 T  4:02  106 T 2
+B  7:625  104  9:02  105 T5:2  107 T 2
+C  1:522  1043  106 T3  108 T 2
+
+10
+11
+12
+13
+
+where X is salinity and T is seawater temperature. Besides, the total heat
+load recovered from the cooling water of the diesel engine can be
+
+calculated as follow.
+Q hw  Q 0  Q 1
+
+14
+
+The mathematic models for ith effect (2 °‹ i °‹ 4, Fig. 2c) is expressed
+
+as
+
+F vap;in;i  F vap;out;i1  F fw;out ;i
+F sw;in;i  F sw;out;i  F vap;out;i
+T vap;in;i  T vap;out ;i1
+T sw;in;i  T sw;out ;i1
+T vap;out ;i  T sw;in;i¶§TBPE
+Q i  F vap;in;i hvap;in;ihfw;out ;i
+
+ 
+
+  F sw;out ;i hsw;out ;i
+ F vap;out ;i hvap;out;i F sw;in;i hsw;in;i
+
+15
+16
+17
+18
+19
+
+20
+
+The mathematic models for condenser (i = 5, Fig. 2d) is expressed as
+
+F vap;in;i  F vap;out;i1  F fw;out ;i
+F cw  F cw;in:i  F cw;out ;i
+T vap;in;i  T vap;out ;i1  T fw;out ;i
+  F cw;out ;i hcw;out ;ihcw;in;i
+Q i  F vap;in;i hvap;in;ihfw;out ;i
+
+ 
+
+ 
+
+Total water production:
+
+X5
+
+i2
+
+F fw 
+
+F fw;out ;i
+
+
+
+21
+22
+23
+24
+
+25
+
+A calculation program was developed based on Eqs. (1) to (25), and
+the owchart of the thermodynamic calculation for the desalination is
+presented in Fig. 3.
+Table 3 presents the known and calculated thermodynamic state pa-
+rameters, and the maximum freshwater production for the system is
+2848 kg/h, that is over 60 T/d.
+
+116
+
+F. Zhang et al. / Desalination 404 (2017) 112®C120
+
+3.3. Heat transfer model
+
+Based on the above thermodynamic state parameters, heat transfer
+coefcients of every effect distiller are described by the following equa-
+tions [30®C32], and the detailed structural parameters can be determined
+by heat transfer calculation. Specically, internal convection and exter-
+nal falling lm evaporation happen in rst effect, internal condensation
+and external falling lm evaporation occur from the second to the
+fourth effect, and internal convection and external condensation hap-
+pen in the condenser.
+Heat transfer coefcient of falling lm evaporation on horizontal
+tube bundle can be expressed as follows,
+
+
+
+.
+
+1
+
+
+
+
+
+0:3367
+
+3 4¶£ i
+
+¶Ã L
+
+¶Õ2
+
+L
+
+¶¡ i;out  0:032 ¶ÀL
+
+3 g
+
+¶£ i  F i = Li  N i
+
+
+
+
+
+Pr0:4629
+
+26
+
+27
+
+Heat transfer coefcient of condensation in horizontal tube is de-
+scribed by,
+
+
+
+1
+
+¶¡ i;in  0:555 ¶À3
+
+L
+
+
+
+¶—L ¶—L¶—v
+
+g r  3
+8
+
+
+
+cp;L T sT w
+
+
+
+
+
+: ¶Ã
+
+
+
+L din T sT w
+
+
+
+
+4 28
+
+Heat transfer coefcient of single phase ow in horizontal tube is
+given by,
+Nui  0:023Re0:8
+L Prn
+where n = 0.4, if the uid is heated, otherwise, n = 0.3.
+Heat transfer coefcient of condensation on horizontal tube bundle
+is described by
+
+29
+
+L
+
+¶¡ out  0:725
+
+gr¶—L
+
+2 ¶À3
+L
+L dout N T sT w
+
+
+
+
+
+¶Ã
+
+
+
+"
+
+
+
+#1
+
+4
+
+30
+
+31
+
+Fig. 3. The block diagram of thermodynamic calculation.
+
+Thermal load of ith effect distiller is given by
+Q i  ¶  iAi¶§t i
+
+Table 3
+Thermodynamic state parameters for the desalination systems.
+
+Symbol
+
+Parameter
+
+Qc
+
+Qc,0
+Qc,1
+
+N
+¶≈
+¶§T
+
+¶§Tpre
+Fcw
+Fsw
+Fhw
+Ffw
+Tcw,in,5
+Tcw,out,5
+Tsw,in,1
+Tsw,in,2
+Tsw,in,3
+Tsw,in,4
+Thw,in,1
+Thw,out,1
+Thw,out,0
+
+P1
+P2
+P3
+P4
+
+Heat load recovered from the cooling water of the diesel engine
+Heat load of the preheater
+Heat load of the rst effect
+Numbers of effect
+Concentration ratio
+Temperature difference between two adjacent effects
+Temperature difference in the hot side of the preheater
+Cooling water ow rate
+Feed seawater ow rate
+Hot water ow rate
+Fresh water ow rate
+Cooling water condenser inlet temperature
+Cooling water condenser outlet temperature
+rst effect evaporator spray temperature
+second effect evaporator spray temperature
+third effect evaporator spray temperature
+fourth effect evaporator spray temperature
+Hot water inlet temperature in the rst effect evaporator
+Hot water outlet temperature in the rst effect evaporator
+Hot water outlet temperature in the preheater
+Pressure of the rst effect evaporator
+Pressure of the second effect evaporator
+Pressure of the third effect evaporator
+Pressure of the fourth effect evaporator
+
+a Parameters with same values in the mathematical model are shown in the remarks column.
+
+Unit
+
+kW
+kW
+kW
+®C
+®C
+°„C
+°„C
+kg/h
+kg/h
+kg/h
+kg/h
+°„C
+°„C
+°„C
+°„C
+°„C
+°„C
+°„C
+°„C
+°„C
+kPa
+kPa
+kPa
+kPa
+
+Value
+
+600
+195.4
+404.6
+4
+2
+6
+3
+79,051.6
+7000
+36,814.3
+2848.54
+30
+36
+60
+54
+48
+42
+74
+64.56
+60
+19.9479
+15.0321
+11.1903
+8.21989
+
+Remarksa
+®C
+®C
+®C
+®C
+®C
+®C
+®C
+
+Fcw,in,5, Fcw,out,5
+Fsw,in,0, Fsw,out,0, Fsw,in,1
+Fhw,in,0, Fhw,out,0, Fhw,in,1, Fhw,out,1
+
+®C
+
+Tcw,in,5
+Tcw,out,5
+Tsw,out,0
+Tsw,in,2
+Tsw,in,3
+Tsw,in,4
+Thw,in,1
+Thw,in,0
+
+®C
+®C
+®C
+®C
+®C
+
+F. Zhang et al. / Desalination 404 (2017) 112®C120
+
+117
+
+Table 4
+The structure parameters.
+
+Heat
+exchanger
+
+Tube bundles
+(row °¡ column)
+
+Evaporation
+temperature/°„C
+
+Mean temperature
+difference/°„C
+
+Calculated heat transfer
+area/m2
+
+Actual heat transfer
+area/m2
+
+First effect
+Second effect
+Third effect
+Fourth effect
+Condenser
+
+13 °¡ 16
+18 °¡ 16
+21 °¡ 16
+24 °¡ 16
+15 °¡ 16
+
+60
+54
+48
+42
+/
+
+8.36
+6
+6
+6
+8.66
+
+21.99
+31.13
+36.23
+41.96
+26.13
+
+23.28
+32.23
+37.60
+42.98
+26.86
+
+The effective heat transfer coefcient of ith effect distiller is written
+
+by
+
+
+
+
+¶  i  Rin  1
+
+¶¡ i;in
+
+
+
+
+
+
+
+dout
+din
+
+dout
+din
+
+ dout
+
+2¶À ln
+
+
+
+ Rout  1
+
+¶¡ i;out
+
+
+
+©\1
+
+32
+
+Based on the design conditions and parameters given above as well
+as the MED mathematical model of thermodynamics and heat transfer
+calculation, the actual heat exchange area and the tube bundle arrange-
+ment in each effect distiller are obtained by the layout design of struc-
+ture. The detailed structure parameters of the desalination plant are
+listed in Table 4.
+In order to provide compact and integrated desalination equipment
+for usage on islands and offshore platforms, an integrated four-effect
+tower distiller was designed (Fig. 4). Heat transfer tubes (i.d./o.d. 17/
+19 mm) were made of stainless steel 316L, with the effective length of
+1.95 m, and the total number of heat exchanging tubes was up to
+1500.
+The
+overall
+size
+of
+the
+four-effect
+distiller was
+2.5 m °¡ 2.0 m °¡ 4.0 m (length °¡ width °¡ height) and the total weight
+was about 5.6 tons. The liquid distributors consisting of runoff tubes
+and liquid distributing salvers was designed to distribute liquid lm
+uniformly on the heat exchanging tube bundles. Besides, multi-stage
+bafes were used as demisters.
+
+4. Auxiliary equipment and measuring apparatus
+
+According to the thermodynamic parameters of the desalination sys-
+tem, some auxiliary equipments were selected to build the pilot plant.
+On the basis of the local seawater quality, terrain, and ocean currents,
+coastal seawater intake system was chosen, and a submersible pump
+with a grille was selected to delivery raw seawater. The self-cleaning
+
+lter (ltration precision °‹ 100 ¶Ãm) was adopted to further lter seawa-
+ter. Water-ring vacuum pump was used to keep the pressure of the dis-
+tillation process at a low level (with an extreme pressure of 3.3 kPa).
+Resistance thermometers, pressure sensors, and orice plate ow
+meters were used to measure temperature, pressure, and ow rate in
+the pilot plant respectively. Specially, sea water spray temperature
+and generated vapor pressure in each effect distiller must be measured
+in order to compare with the data in listed in Table 3. The quality of
+water product was monitored by an online conductivity meter installed
+at outlet of the product pump. Besides, off-line freshwater sample was
+collected and detected based on the national drinking water criterion
+[33]. Detailed information for auxiliary equipment and measuring appa-
+ratus can be found in Table 5. All of the data shown during the working
+process were recorded by the host computer automatically. Detailed lo-
+cation distribution and numbering order of the measurement points can
+be seen in Fig. 1.
+
+5. Operating performance of demonstration system
+
+5.1. Pilot plant
+
+The high production (60T/d) desalination pilot plant driven by
+cooling water waste heat of the diesel engine has been established
+and successfully operated since early 2015. Fig. 5 shows the photo of
+pilot device. The diesel generator set combines with the desalination
+pilot plant provides an electricity and water co-production for residents
+of Guishan Island.
+
+5.2. Startup procedure
+
+It is important to startup the desalination plant quickly and econom-
+ically. We usually start the pilot plant after the diesel generator set is
+
+Fig. 4. Structural diagram of the four-effect distiller.
+
+118
+
+F. Zhang et al. / Desalination 404 (2017) 112®C120
+
+Table 5
+Summary of auxiliary equipment and measuring apparatus.
+
+Item
+
+Seawater pump
+Feeding pump
+Fresh water pump
+Concentrated seawater pump
+Circulating pump
+Vacuum pump
+
+Self-cleaning lter
+Salimeter
+Resistance thermometer
+Pressure sensor
+Orice plate ow meter, F1
+Orice plate ow meter, F2
+Orice plate ow meter, F3
+Orice plate ow meter, F2
+
+Models
+
+SP95-3-B
+CRN10-3
+SS211-1.5H
+SS211-1.5H
+65®C100(I)A
+2BVA2060
+
+ZL-LB1.5-1.6
+DDG-3080
+PT100
+SP-851
+SKLG125
+SKLG32
+SKLG50
+SKLG25
+
+Specications
+F = 100 m3/h, H = 30 m
+F = 10 m3/h, H = 20 m
+F = 3.5 m3/h, H = 12 m
+F = 4.5 m3/h, H = 12 m
+F = 38 m3/h, H = 8 m
+F = 0.45 m3/min, extreme pressure:
+3.3 kPa
+10 m3/h, ltration precision °‹ 100 ¶Ãm
+0®C1000 ¶ÃS/cm, error b 0.1%
+ 20®C100 °„C, error b 0.1%
+0®C100 kPa, error b 0.1%
+F = 0®C120 m3/h, error b 0.5%
+F = 0®C10 m3/h, error b 0.5%
+F = 0®C50 m3/h, error b 0.5%
+F = 0®C5 m3/h, error b 0.5%
+
+Supplier
+
+Grundfos
+Grundfos
+NIKKISO
+NIKKISO
+Shanghai Kaitong
+Dongguan shengfei
+
+Wuxi public power
+Shanghai Boqu
+Shanghai SPES
+Shanghai SPES
+Jinhu YIJIA
+Jinhu YIJIA
+Jinhu YIJIA
+Jinhu YIJIA
+
+running, at which point the waste heat of cooling water starts to gener-
+ate. When the diesel generator set runs and the cooling water tempera-
+ture rises to about 65 °„C, the hot water circulation pump is started to
+recover the waste heat. At the same time, the distiller is depressurized
+to 5®C10 kPa by the water ring vacuum pump, and 20®C30 min are usually
+needed to at this stage. And then, cooling water and the feed of seawater
+will be pumped to the condenser and the distiller respectively. Fig. 6
+shows the parameters at the startup stage of the pilot plant.
+The running diesel engine provides heat sources for the desalination
+system. The total heat load recovered by the pilot plant can be calculat-
+ed by Eqs. (3), (9), and (14). It can be seen from Fig. 6a that Th,in,1, Th,out,1
+and Th,out,0 decline quickly rst when the feed of seawater are injected
+into the distiller, which shows that heat has been transferred from the
+circulating hot water to the seawater. Then Th,in,1, Th,out,1 and Th,out,0
+rise and become stable gradually. As the feed evaporates and the
+steam condenses, the differences of temperature and pressure among
+the four effect distillers are established step by step (Fig.6b and c),
+which shows that the pilot plant has been operated successfully.
+
+5.3. Temperature and pressure distribution at steady-state condition
+
+The inuence of heat load on evaporation temperature and pressure
+in each effect distiller is shown in Fig.7a and b, with constant ow rates
+of cooling seawater, feed seawater and circulating hot water. It can be
+seen that the evaporation temperature of each effect almost increases
+linearly when the heat load was gradually increased. This is due to the
+increase in circulating hot water temperature with the increase in
+heat load, which leads to the increase in evaporation temperatures in
+
+the rst effect. And the evaporation temperature decreases gradually
+from the rst effect to the last effect for throttle effect in the distiller.
+Since evaporation temperature in each effect is saturated, the variation
+of evaporation pressure is consistent with evaporation temperature.
+
+5.4. Fresh water productivity and quality
+
+Fig. 8 shows the effect of the heat load on freshwater production rate
+and conductivity. It can be seen that the water production rate will in-
+crease with increasing heat load. The designed heat load and water pro-
+ductivity of the desalination system are 600 kW and 2.84 m3/h
+respectively. The heat load of the desalination system usually ranges
+from 300 kW to 530 kW, which corresponds to the operating power
+of the generator. Due to the limited power consumption of the resi-
+dents, the quantity of heat is usually lower than full load. Thus, the
+heat transfer area of the distiller is sufcient in the insufcient heat
+load conditions and water productivity depends on the total heat load
+[34®C35]. Under the operating conditions, water production rate is
+1.26 m3/h at heat load of 310 kW. When the heat load of desalination
+system increases to 530 kW, water production rate increases to
+2.30 m3/h. And the fresh water production may further increase when
+the heat load increases.
+The distillation process can remove most of the salt in seawater, thus
+reducing the conductivity. The conductivity of seawater feed is usually
+kept as a constant, so desalination efciency can be acquired by measur-
+ing conductivity of the fresh water. The power of the diesel generator is
+unstable because of the uctuation in electricity consumption, which
+makes heat load unstable. Thus, the fresh water conductivity uctuates
+
+Fig. 5. Desalination pilot plant in Guishan Island.
+
+F. Zhang et al. / Desalination 404 (2017) 112®C120
+
+119
+
+Fig. 6. The startup procedure of the pilot plant (Fcw = 45,000 kg/h, Fsw = 7000 kg/h, Fhw = 33,000 kg/h).
+
+frequently. Considering the bafe demisters used in LT-MED system, an
+optimal vapor mass ow rate corresponding to the best working ef-
+ciency may exist [36®C37]. It can be seen in Fig. 8 that the conductivity
+of fresh water uctuates strongly due to uctuation of vapor mass
+ow rate. Even so, the conductivity of desalted water is b 100 ¶ÃS/cm in
+most operating conditions.
+Moreover, based on the third party testing result, the quality of the
+freshwater samples can be seen in Table 6. It meets the standard of
+the Chinese national drinking water act [33].
+
+6. Conclusion
+
+This paper presents a 60 Ton per day (T/d) low-temperature multi-
+effect distillation (LT-MED) desalination system driven by the cooling
+water waste of a 1000 kW diesel engine power generator. The system
+combines the diesel generator set forms an electricity-water coproduc-
+tion plant, which can provide both electricity and freshwater for the
+
+residents of Guishan Island, Zhuhai, China. Based on the discussions
+above, following conclusions can be drawn:
+
+(1) The performance of the system can be well predicted by the pre-
+sented thermodynamic model.
+(2) In the steady state operating condition, the evaporation temper-
+ature of each effect is proportional to the amount of heat load.
+The evaporation temperature decreases gradually from the rst
+effect to the last effect. Besides, the variation of evaporation pres-
+sure is correlated to the evaporation temperature.
+(3) The water production increases from 1.26 m3/h to 2.30 m3/h
+when the heat load is increased from 300 kW to 530 kW. The
+conductivity of the freshwater uctuates due to the uctuation
+of vapor mass ow rate, but is b 100 ¶ÃS/cm in most operating
+conditions. Moreover, based on the test of a third party company,
+the freshwater meet the standard of the Chinese national drink-
+ing water act and is very safe to drink.
+
+Fig. 7. Temperature and pressure distribution in the distiller at different heat loads.
+
+120
+
+F. Zhang et al. / Desalination 404 (2017) 112®C120
+
+[6] N. Ghaffour, S. Lattemann, T. Missimer, K.C. Ng, S. Sinha, G. Amy, Renewable energy
+driven innovative energy-efcient desalination technologies, Appl. Energy 136
+(2014) 1155®C1165.
+[7] L. Malaeb, G.M. Ayoub, Reverse osmosis technology for water treatment: state of the
+art review, Desalination 267 (2011) 1®C8.
+[8] A.D. Khawaji, I.K. Kutubkhanah, J.M. Wie, Advances in seawater desalination tech-
+nologies, Desalination 221 (2008) 47®C69.
+[9] J.M. Gordon, C.H. Tong, Thermodynamic perspective for the specic energy con-
+sumption of seawater desalination, Desalination 386 (2016) 13®C18.
+[10] V.G. Gude, N. Nirmalakhandan, S. Deng, Renewable and sustainable approaches for
+desalination, Renew. Sustain. Energy Rev. 14 (2013) 2641®C2654.
+[11] A.G.M. Ibrahim, I. Dincer, A solar desalination system: exergetic performance assess-
+ment, Energy Convers. Manag. 101 (2015) 379®C392.
+[12] A. Al-Karaghouli, L.L. Kazmersk, Energy consumption and water production cost of
+conventional and renewable-energy-powered desalination processes, Renew. Sust.
+Energ. Rev. 24 (2013) 343®C356.
+[13] K.V. Reddy, N. Ghaffour, Overview of the cost of desalinated water and costing
+methodologies, Desalination 205 (2007) 340®C353.
+[14] M. Al-Nory, M. El-Beltagy, An energy management approach for renewable energy
+integration with power generation and water desalination, Renew. Energy 72
+(2014) 377®C385.
+[15] N.A.S. Elminshawy, F.R. Siddiqui, G.I. Sultan, Development of a desalination system
+driven by solar energy and low grade waste heat, Energy Convers. Manag. 103
+(2015) 28®C35.
+[16] K. Kwon, B.H. Park, D.H. Kim, D. Kim, Parametric study of reverse electrodialysis
+using ammonium bicarbonate solution for low-grade waste heat recovery, Energy
+Convers. Manag. 103 (2015) 104®C110.
+[17] R. Law, A. Harvey, D. Reay, A knowledge-based system for low-grade waste heat re-
+covery in the process industries, Appl. Therm. Eng. 94 (2016) 590®C599.
+[18] Y. Ammar, H. Li, C. Walsh, P. Thornley, V. Shari, A.P. Roskilly, Desalination using low
+grade heat in the process industry: challenges and perspectives, Appl. Therm. Eng.
+48 (2012) 446®C457.
+[19] X. Wang, A. Christ, K. Regenauer-Lieb, K. Hooman, H.T. Chua, Low grade heat driven
+multi-effect distillation technology, Int. J. Heat Mass Transf. 54 (25®C26) (2011)
+5497®C5503.
+[20] P. Fiorini, E. Sciubba, Modular simulation and thermoeconomic analysis of a multi-
+effect distillation desalination plant, Energy 32 (2007) 459®C466.
+[21] M.E. Kazemian, A. Behzadmehr, S.M.H. Sarvari, M.E. Kazemian, A. Behzadmehr,
+Thermodynamic optimization of multi-effect desalination plant using the DoE
+method, Desalination 257 (2010) 195®C205.
+[22] G. Shu, M. Zhao, H. Tian, H. Wei, X. Liang, Y. Huo, W. Zhu, Experimental investigation
+on thermal OS/ORC (Oil Storage/Organic Rankine Cycle) system for waste heat re-
+covery from diesel engine, Energy 107 (2016) 693®C706.
+[23] K.S. Maheswari, K. Kalidasa Murugavel, G. Esakkimuthu, Thermal desalination using
+diesel engine exhaust waste heat®CAn experimental analysis, Desalination 358
+(2015) 94®C100.
+[24] Y.F. Wang, S.M. Xu, Analysis of desalination system powered by waste heat from
+diesel generating set, Energy Conserv. Technol. 32 (2014) 455®C460.
+[25] N.A.S. Elminshawy, F.R. Siddiqui, G.I. Sultan, Development of a desalination system
+driven by solar energy and low grade waste heat, Energy Convers. Manag. 103
+(2015) 28®C35.
+[26] L. Gong, S. Shen, H. Liu, M. Xingsen, C. Xue, Three-dimensional heat transfer coef-
+cient distributions in a large horizontal-tube falling lm evaporator, Desalination
+357 (2015) 104®C116.
+[27] C.-Y. Zhao, W.-T. Ji, P.-H. Jin, W.-Q. Tao, Heat transfer correlation of the falling lm
+evaporation on a single horizontal smooth tube, Appl. Therm. Eng. 103 (2016)
+177®C186.
+[28] S. Ibrahim, I.W. Al-Mutaz, Comparative performance evaluation of conventional
+multi-effect evaporation desalination processes, Appl. Therm. Eng. 73 (2014)
+1194®C1203.
+[29] H.T. El-Dessouky, H.M. Ettouney, Fundamentals of Salt Water Desalination, Elsevier
+Science, 2002 587.
+[30] J.-S. Chiou, S.-a. Yang, C.'o.-K. Chen, Laminar lm condensation inside a horizontal el-
+liptical tube, Appl. Math. Model. 18 (1994) 340®C346.
+[31] X.L. Ren, Experimental Investigation on Heat Transfer Coefcients of Horizontal
+Tube Falling Film Evaporation, Dalian Dalian University of Technology, 2008 49®C53.
+[32] M.Z. Shi, Z.Z. Wang, Principle and Design of the Heat Exchanger, Southeast Univer-
+sity Press, Nanjing, 2003 65®C68.
+[33] Standards for Drinking Water Quality, GB 5749, 2006.
+[34] L. Yang, W. Wang, The heat transfer performance of horizontal tube bundles in large
+falling lm evaporators, Int. J. Refrig. 34 (2011) 303®C316.
+[35] L. Xu, M. Ge, S. Wang, Y. Wang, Heat-transfer lm coefcients of falling lm horizon-
+tal tube evaporators, Desalination 166 (2004) 223®C230.
+[36] C. Galletti, E. Brunazzi, L. Tognotti, A numerical model for gas ow and droplet mo-
+tion in wave-plate mist eliminators with drainage channels, Chem. Eng. Sci. 63
+(2008) 5639®C5652.
+[37] L.I. Jia, H. Su, X. Wang Chin, Numerical study of steam-water separators with wave-
+type vanes, J. Chem. Eng. 15 (2007) 492®C498.
+
+Fig. 8. Inuence of heat load on freshwater production rate and conductivity.
+
+Table 6
+The detailed testing results of the freshwater.
+
+Number Testing item
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+10
+11
+
+12
+
+13
+
+Turbidity
+Chroma
+Suspended solids
+Smell
+Visible substances
+pH
+Electrical conductivity
+Total dissolved solids
+Chemical oxygen
+demand
+Aerobic bacterial count
+Heat resistant
+Escherichia coli group
+Total coli group
+
+Escherichia coli
+
+Units
+
+NTU
+°„
+mg/l
+®C
+®C
+®C
+¶ÃS/cm
+mg/l
+mg/l
+
+Testing
+results
+
+b 1
+b 5
+1.5
+No
+No
+6.7
+121.2
+76.3
+0.4
+
+CFU/ml
+21
+CFU/100 ml Not
+detected
+CFU/100 ml Not
+detected
+CFU/100 ml Not
+detected
+
+Standards for
+drinking water
+°‹ 1
+°‹ 15
+®C
+No
+No
+6.5®C8.5
+®C
+°‹ 1000
+b 5
+
+°‹ 100
+Not detected
+
+Not detected
+
+Not detected
+
+Acknowledgement
+
+This work is supported by Guangdong-Hongkong Breakthrough Bid-
+ding Project in Key Areas (NO. 2012A090200001), Research Project of
+High Tech Industry in Nansha District (NO. 2013P013), PhD Start-Up
+Fund of Natural Science Foundation of Guangdong Province (NO.
+2014A030310203), Guangdong Province Science and Technology Plan
+Project (NO. 2013B091100003; NO. 2016B090918037), Nansha District
+Technology Development Project (NO. 2015KF013), Shenzhen Basic Re-
+search Project (NO. JCYJ20150316144639927), Shenzhen Technology
+Development Project (NO. 20150528141008015).
+
+References
+
+[1] A.D. Khawaji, I.K. Kutubkhanah, J.M. Wie, Advances in seawater desalination tech-
+nologies, Desalination 142 (2008) 47®C69.
+[2] N. Ghaffour, T.M. Missimer, G.L. Amy, Technical review and evaluation of the eco-
+nomics of water desalination: current and future challenges for better water supply
+sustainability, Desalination 309 (2013) 197®C207.
+[3] M. Elimelech, W.A. Phillip, The future of seawater desalination: energy, technology,
+and the environment, Science 333 (2011) 712®C717.
+[4] A. Cipollina, G. Micale, L. Rizzuti, Seawater Desalination: Conventional and Renew-
+able Energy Processes, Springer, 2009.
+[5] S. Burn, M. Hoang, D. Zarzo, F. Olewniak, E. Campos, B. Bolto, O. Barron, Desalination
+techniques°™a review of the opportunities for desalination in agriculture, Desalina-
+tion 364 (2015) 2®C16.
+

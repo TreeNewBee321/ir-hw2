@@ -1,0 +1,3425 @@
+Robust minimum dispersion distortionless response beamforming against fast-moving interferences 
+
+Liang Zhang 
+a , Bo Li 
+b , Lei Huang 
+
+a , 
+
+
+
+, Thiagalingam Kirubarajan b , Hing Cheung So c 
+
+a College of Information Engineering, Shenzhen University, Shenzhen, PR China 
+b Department of Electrical and Computer Engineering, McMaster University, Hamilton, Canada 
+c Department of Electronic Engineering, City University of Hong Kong, Hong Kong 
+
+article
+
+info
+
+
+Article history: 
+Received 4 January 2017 
+Revised 30 March 2017 
+Accepted 27 April 2017 
+Available online 12 May 2017 
+
+MSC: 
+00-01 
+99-00 
+
+Keywords: 
+Beamforming 
+Interference suppression 
+Minimum dispersion 
+Sub-Gaussian signals 
+Fast-moving interferences 
+
+
+abstract
+
+The recently proposed minimum dispersion distortionless response (MDDR) beamformer is able to im- 
+prove the reception of non-Gaussian signals over the minimum variance distortionless response (MVDR) 
+beamformer. However, the performance of the MDDR beamformer degrades in the presence of fast- 
+moving interferences. To suppress such an interference, a robust beamformer against fast-moving inter- 
+ferences based on the minimum dispersion (MD) criterion is proposed, which provides a continuous deep 
+null sector over a predened range of dynamic angle-of-arrival (AOA). The designed beamformer ensures 
+that the output is minimized in terms of dispersion and the average power over the dynamic AOA is zero 
+via a quadratic constraint. In order to reduce the computational load, the optimization problem with a 
+quadratic constraint is relaxed to its counterpart with a linear constraint. This allows us to devise an 
+ecient beamforming approach, namely, gradient projection algorithm. Numerical results are provided 
+to demonstrate that the developed beamformer can suppress the strong fast-moving interferences effec- 
+tively. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Beamforming is a spatial lter used to enhance the signal-of- 
+interest (SOI) and mitigate the interference as well as noise. It has 
+been widely used in radar, sonar, communications, biomedical and 
+audio signal processing [1¨C4] . 
+Compared with conventional delay-and-sum beamforming, 
+adaptive beamforming approaches are able to more eciently en- 
+hance the SOI and suppress interference and noise [1] . However, 
+the performances of most adaptive beamforming techniques de- 
+teriorate under challenging environments such as angle-of-arrival 
+(AOA) mismatch, imperfect array calibration, and sensor location 
+error. In order to tackle this issue of robust beamforming in some 
+challenging scenarios, various adaptive beamforming algorithms 
+under the minimum variance (MV) criterion have been suggested 
+[1,5¨C12] . In this work, we consider two commonly encountered 
+situations where the performances of adaptive beamforming algo- 
+rithms degrade. 
+In the rst case, a fast-moving interference crosses the obser- 
+vation region of a receiving array, in which the AOA of the in- 
+terference is not xed but varies with time. Such an interference 
+will inuence the SOI reception and results in reduction of output 
+signal-to-interference-plus-noise ratio (SINR). Usually, a null is de- 
+signed to cancel the interference by making the response to the 
+interference with zero [13] . With multiple interferences, multiple 
+similar constraints are imposed, which lead to the linearly con- 
+strained minimum variance (LCMV) beamformer [4] . However, in 
+this case, the degree-of-freedom of the LCMV beamformer is af- 
+fected to the number of linear constraints. The LCMV beamformer 
+does not perform well with an interference whose AOA varies 
+quickly with time. Unlike the LCMV approach, the null-broadening 
+technique provides a null sector to suppress a fast-moving inter- 
+ference. In [14] , the interferers were made to cover a greater an- 
+gular extent by applying a transformation to the sample covari- 
+ance matrix (SCM). As the transformation in [14] would introduce 
+the noise contribution to the SCM, the method of dispersion syn- 
+thesis was proposed in [15] to avoid additional noise power in- 
+volved in the SCM. In [15] , adaptive trough patterns were pro- 
+duced by distributing a cluster of virtual equal-strength incoher- 
+ent interferences around each original source. The null-broadening 
+method of derivative constraint was proposed in [16,17] , but has a 
+much greater computational load than those of [14,15] . The min- 
+imum power distortionless response (MPDR) beamformer, which 
+constrained the output power in a predened angular sector be- 
+low a pre-specied suppression level by using a quadratic con- 
+straint, was proposed in [18] . To reduce computational complexity, 
+the original quadratic constraint in [18] was replaced with a set of 
+linear constraints in [19] to produce a widened null sector over the 
+fast-moving interference. 
+In the second case, the signals and interferences encountered 
+in practice are often non-Gaussian distributed. Zero-mean ran- 
+dom signals can be classied as super-Gaussian, Gaussian and sub- 
+Gaussian, according to the kurtosis measure which describes the 
+tail shapes of their distributions [20] . Most of the encountered sig- 
+nals in practice are non-Gaussian distributed, e.g., speech, acous- 
+tic signals, and modulated signals in radar, sonar, GPS navigation 
+and wireless communications [21] . The beamformers based on the 
+MV criterion are optimal for Gaussian signals, because they make 
+full use of the second-order statistical information of Gaussian sig- 
+nals. For non-Gaussian situations, however, the MV beamformer 
+suffers performance degradation as the higher-order and lower- 
+order statistical information has been ignored. The non-Gaussianity 
+of signals applied to blind beamforming and impulsive noise sup- 
+pression were considered in [22,23] . The minimum dispersion dis- 
+tortionless response (MDDR) beamformer for non-Gaussian sig- 
+nals, which minimizes the 
+ p -norm of the output while constrain- 
+ing the response of SOI to unity, was proposed in [24¨C27] . The 
+MDDR beamformer exhibits better performance of non-Gaussian 
+signals reception than the minimum variance distortionless re- 
+sponse (MVDR) beamformer. 
+Although the MDDR beamformer exhibits superior performance 
+for non-Gaussian signal reception, its performance deteriorates in 
+the presence of fast-moving interferences. To tackle this issue, we 
+devise a new beamforming approach based on the minimum dis- 
+persion (MD) criterion [24] , which is able to eliminate the power of 
+the interference from the beamformer output by constraining the 
+average power of the interference¡¯s dynamic angular sector to zero. 
+This provides a broad deep null sector, which in turn enables us 
+to handle the fast-moving interferences. The proposed beamformer 
+has two advantages: First, it shares the same performance with 
+the MDDR beamformer for sub-Gaussian signal reception; Second, 
+it is much more robust against fast-moving interferences than the 
+MVDR and MDDR beamformers. 
+Moreover, the optimization problem in the proposed beam- 
+former consists of a convex objective function and a linear con- 
+straint. This problem can be solved using the software of interior- 
+point method (IPM) via CVX and SeDuMi [28] . In order to reduce 
+the computational load, the gradient projection (GP) algorithm is 
+applied to solve the optimization problem. Besides, the computa- 
+tional complexity of the algorithm is also analysed. 
+This paper is organized as follows: Section 2 presents the sig- 
+nal model for array processing along with a brief introduction to 
+the MPDR and standard MDDR beamformers. In Section 3 , the lin- 
+early constrained MDDR beamforming approach is formulated in 
+the case of fast-moving interferences. To solve the linearly con- 
+strained optimization problem for MDDR beamformer, the GP algo- 
+rithm is revisited. Computer simulations are performed to evaluate 
+the performance of the proposed beamformer in Section 4 . Finally, 
+conclusions are drawn in Section 5 . 
+
+(cid:2)
+
+2. Background 
+
+2.1. Signal model 
+
+Consider a uniform linear array (ULA) with M omnidirectional 
+receiving sensors. Assume that P uncorrelated narrowband sig- 
+ 1 ) impinge on the array with AOAs 
+nals s i 
+( i 
+( i 
+ 1 ), where s 0 
+0 
+is the SOI. The signal received by the ar- 
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ P 
+
+¦È
+
+i 
+
+=
+
+,
+
+ 1 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ P 
+
+ray at the n th time instant is mathematically expressed as 
+
+x 
+(n 
+)
+
+=
+
+¦Á(¦È0 
+)
+
+ s 0 
+
+(n 
+)
+
++
+
+P1 (cid:2)
+=1 
+i 
+
+¦Á(¦Èi 
+)
+
+ s i 
+
+(n 
+)
+
++
+
+ e 
+
+(n 
+)
+
+,
+
+(1) 
+
+where 
+are the steering vectors of the SOI and interfer- 
+ences, and e ( n ) is the additive noise. The steering vector 
+¦Á( 
+¦È ) is 
+given by 
+
+{
+
+¦Á(¦È
+
+i 
+
+)
+
+}
+
+P1 
+=0 
+i 
+
+¦Á(¦È )
+
+=
+
+(cid:3)
+
+1 
+
+,
+
+ e 
+
+j (2 
+¦Ð /¦Æ )
+
+(¦È )
+ d sin 
+
+ ,
+
+¡¤ ¡¤ ¡¤ , e 
+
+j (M1)(2 
+¦Ð /¦Æ )
+
+(¦È )
+ d sin 
+
+(cid:4)
+
+T ,
+
+(2) 
+¡¤) 
+where 
+¦Æ is the wavelength, d is the inter-element spacing, and ( 
+represents the transpose operator. 
+In order to enhance the reception of SOI and mitigate the in- 
+terference as well as noise, the beamforming weight vector is de- 
+signed following a certainty criterion, which is recorded as w 
+Therefore, the beamformer output can be expressed as 
+
+T 
+
+¡Ê
+
+C
+
+M . 
+
+y 
+(n 
+)
+
+=
+
+ w 
+
+H x 
+
+(n 
+)
+
+,
+
+(3) 
+
+¡¤) 
+H denotes the Hermitian transpose. The beamformer out- 
+where ( 
+put SINR is dened as 
+
+SINR 
+
+(cid:2)
+
+E 
+E 
+
+{|
+{|
+
+ w 
+ w 
+
+H ¦Á(¦È0 
+H (i 
+
+)
+
+ s 0 
+ e 
+
+(n 
+)
+(n 
+))
+
+|
+
+2 }
+2 }
+
+(n 
+)
+
++
+
+|
+
+=
+
+¦Ò 2 
+s 
+
+|
+
+ w 
+
+H ¦Á(¦È0 
+H R i 
+2 }
+
+)
+
+|
+
+2 
+
+w 
+
++
+
+ n w 
+
+,
+
+(4) 
+
+where i ( n ) is the interference impinging on the array dened as 
+i 
+(n 
+)
+)
+(n 
+)
+(n 
+)
+ is the variance of the SOI, 
+¡¤} de- 
+is the interference-plus-noise covariance matrix, and E{ 
+notes the expectation operator. 
+
+=
+
+(cid:5)
+
+ P1 
+=1 
+i 
+
+¦Á(¦È
+
+i 
+
+ s i 
+
+,
+
+¦Ò 2 
+s 
+
+=
+
+ E 
+
+{|
+
+ s 0 
+
+|
+
+R i 
+
++
+
+ n 
+
+2.2. MPDR Beamformer 
+
+Consider the commonly encountered scenario in practice that 
+a fast-moving interference crosses the observation region, where 
+the AOA of the interference varies with time. In this situation, an 
+interference can be anywhere in [ 
+, 
+¦È max ], which poses a big 
+challenge for accurate reception of the SOI and effective suppres- 
+sion of interference. The MPDR beamformer [19] , which designs a 
+¦È max ] with a pre-specied suppres- 
+broad null sector over [ 
+, 
+sion level, is reformulated in this work to handle the issue of ro- 
+bust beamforming against fast-moving interferences. It can be ex- 
+pressed as the following constrained optimization problem: 
+
+¦È
+
+min 
+
+¦È
+
+min 
+
+min 
+
+w 
+
+w 
+
+H R i 
+H ¦Á(¦È0 
+H Q w 
+
++
+
+ n w 
+
+s 
+
+.
+
+ t 
+ w 
+
+.
+
+)
+¡Ü ¦Ç,
+
+=
+
+ 1 
+
+w 
+
+(5) 
+
+where Q 
+
+=
+
+ 1 
+
+/
+
+ (
+
+¦Èmax 
+
+ ¦È
+
+min 
+
+)
+
+(cid:6)
+
+ ¦Èmax 
+min 
+
+¦È
+
+¦Á(¦È )
+
+¦ÁH (¦È )
+
+ d¦È ,
+¦Ç denotes the 
+ and 
+pre-specied level of the broad null sector. The solution of (5) min- 
+imizes the beamformer output, not only subject to a distortionless 
+constraint but also subject to a constraint that the average power 
+over [ 
+, 
+¦È max ] is under a pre-specied level 
+¦Ç . 
+
+¦È
+
+min 
+
+2.3. Standard MDDR beamformer 
+A random signal s ( n ) with zero-mean can be classied accord- 
+(cid:7)| s 
+ing to its kurtosis, which is dened as 
+E 
+(n 
+)
+
+¦Ês 
+
+=
+
+ |
+
+4 
+
+(cid:8)
+
+¦Ò 4 
+s 
+
+.
+
+(6) 
+
+Here, s ( n ) belongs to the class of sub-Gaussian signals if 
+ 3; 
+s ( n ) is a super-Gaussian signal if 
+ 3; and the kurtosis of a 
+Gaussian signal is equal to 3. Super-Gaussian signals are very com- 
+mon in practice, such as speech, biomedical signals and impulsive 
+noise [20,29,30] . Sub-Gaussian signals are widely used in sonar, 
+radar and GPS navigation, such as quadrature phase-shift keying 
+
+¦Ê s 
+
+<
+
+¦Ê s 
+
+>
+
+192 
+
+L. Zhang et al. / Signal Processing 140 (2017) 190¨C197 
+
+(QPSK), quadrature amplitude modulation (QAM) and other com- 
+munication signals [20,21] . 
+The MDDR beamformer is proposed for non-Gaussian signals by 
+ (cid:10)(cid:10)w 
+exploiting the 
+ p -norm of the data received by the array. Speci- 
+cally, the corresponding optimization problem is formulated as 
+¡¤| 
+Since E{| 
+p } is referred to as the dispersion of a random variable 
+in statistics, which is also the generalization of variance for non- 
+Gaussian signals, the MVDR beamformer is a special case of the 
+MDDR beamformer when p 
+
+(cid:2)
+
+min 
+
+w 
+
+E 
+
+(cid:9)
+
+H x 
+
+(n 
+)
+
+(cid:10)(cid:10) p 
+(cid:11)
+
+s 
+
+.
+
+ t 
+ w 
+
+.
+
+H ¦Á(¦È0 
+
+)
+
+=
+
+ 1 
+
+.
+
+(7) 
+
+=
+
+ 2 . 
+
+3. Linearly constrained minimum dispersion beamforming 
+against fast-moving interference 
+
+3.1. Robust MDDR beamformer against fast-moving interference 
+
+The standard MDDR beamformer exhibits excellent perfor- 
+mance for non-Gaussian signal reception. However, it deteriorates 
+in the presence of a fast-moving interference. To suppress such an 
+interference, a robust beamformer based on the MD criterion is 
+proposed in this section, which provides a continuous deep null 
+sector over a predened range of dynamic AOA. 
+
+3.1.1. Linearly constrained MDDR beamformer 
+As the fast-moving interferences usually exhibit the property of 
+sub-Gaussian distribution [20,21] , this paper just focuses on the 
+sub-Gaussian scenarios. Therefore, unless stated otherwise the sig- 
+nals and interferences are assumed to be sub-Gaussian and p 
+is adopted, while the additive noise is Gaussian distributed. 
+Due to nite samples, replacing the expectation with the sam- 
+ple mean and discarding the constant 1/ N , (7) is rewritten as 
+
+>
+
+ 2 
+
+min 
+
+w 
+
+F 
+(w )
+
+=
+
+(cid:12)(cid:12)X 
+
+H w 
+
+(cid:12)(cid:12) p 
+
+p 
+
+( p 
+
+>
+
+ 2)
+
+s 
+
+.
+
+ t 
+ w 
+
+.
+
+H ¦Á(¦È0 
+
+)
+
+=
+
+ 1 
+
+,
+
+(8) 
+
+where X 
+(1)
+(N )] contains the data received by the ar- 
+(n 
+)
+ray, with the number of snapshots being N , and x 
+M for 
+n 
+ N . 
+Motivated by the MPDR beamformer described in Section 2.2 , 
+the fast-moving interference can be suppressed by eliminating 
+the average power over the sector [ 
+¦È ] from the 
+MDDR beamformer output. Therefore, the MDDR beamformer with 
+a broad null over [ 
+¦È ] under a level 
+¦Ç is 
+
+=
+¡¤ ¡¤ ¡¤ ,
+
+ [ x 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ x 
+
+¡Ê
+
+C
+
+=
+
+ 1 
+
+,
+
+¦ÈI,
+
+ 0 
+
+ (cid:5)
+
+¦È ,
+
+¦ÈI,
+
+ 0 
+
++
+
+(cid:5)
+
+¦ÈI,
+
+ 0 
+
+ (cid:5)
+
+¦È ,
+
+¦ÈI,
+
+ 0 
+
++
+
+(cid:5)
+
+min 
+
+w 
+
+F 
+(w )
+
+=
+
+(cid:12)(cid:12)X 
+
+H w 
+
+(cid:12)(cid:12) p 
+
+p 
+
+( p 
+
+>
+
+ 2)
+
+s 
+
+.
+
+ t 
+ w 
+
+.
+
+H ¦Á(¦È0 
+H Q sub w 
+
+)
+
+=
+
+ 1 
+
+w 
+
+¡Ü ¦Ç,
+
+(9) 
+
+ d(cid:5)
+where Q sub 
+)
+¦ÁH (
+)
+being 
+a Hermitian matrix, and 
+¦Ç is the predened level of the null sector. 
+Moreover, the average power of the MDDR beamformer over the 
+ (cid:10)(cid:10)w 
+sector [ 
+¦È ] can be expressed as 
+H ¦Á((cid:5)
+Applying eigendecomposition to Q sub 
+, one has Q sub 
+V 
+where V 
+M for m 
+ M being the 
+orthogonal eigenvector, and 
+ diag 
+(¦Ë1 
+)
+ with diagonal 
+elements in descending order. Assume that the rank of Q sub 
+is r 
+ v r ] is an orthonormal basis for the range space 
+of matrix Q sub 
+denoted as R ( Q sub 
+), and the other orthogonal eigen- 
+vectors constitute its null-space N ( Q sub 
+). 
+
+=
+
+ 1 
+
+/
+
+ (
+
+ 2 
+
+(cid:5)
+
+¦È )
+
+(cid:6)
+
+ ¦È
+¦È
+
+I,
+
+ 0 
+
++
+(cid:5)
+(cid:5)
+
+¦È
+¦È
+
+I,
+
+ 0 
+
+¦Á(
+
+(cid:5)
+
+¦ÈI 
+
+(cid:5)
+
+¦ÈI 
+
+¦ÈI with Q sub 
+
+¦ÈI,
+
+ 0 
+
+ (cid:5)
+
+¦È ,
+
+¦ÈI,
+
+ 0 
+
++
+
+(cid:5)
+
+P 
+
+((cid:5)
+
+¦ÈI 
+
+)
+
+=
+
+1 
+2 
+
+(cid:5)
+
+¦È
+
+(cid:13)
+
+ ¦ÈI,
+
+ 0 
+
++
+
+(cid:5)
+
+¦È
+
+¦ÈI,
+
+ 0 
+
+(cid:5)
+
+¦È
+
+E 
+
+(cid:9)
+
+¦ÈI 
+
+)
+
+(cid:10)(cid:10)2 
+(cid:11)
+
+d(cid:5)
+
+¦ÈI 
+
+.
+
+(10) 
+
+=
+
+ V 
+
+H ,
+
+=
+
+ [ v 1 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ v M ] with v m 
+
+¡Ê
+ =
+
+C
+
+=
+¡¤ ¡¤ ¡¤ ,
+
+ 1 
+ 2 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+,
+
+¦ËM 
+
+¡Ü M , V r 
+
+=
+
+ [ v 1 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+To achieve a deeper null sector against strong fast-moving inter- 
+ferences, the value of 
+¦Ç is preferred to be zero, which leads to the 
+quadratic constraint denoted in (9) that is equivalent to a linear 
+constraint w 
+ i.e., the weight vector w lies in the null- 
+space N ( Q sub 
+). Furthermore, the two linear constraints are com- 
+bined as 
+
+H V r 
+
+=
+
+ 0 
+
+r¡Á1 
+T 
+
+,
+
+(cid:14)
+
+ V 
+
+H w 
+
+=
+
+ e 1 
+
+,
+
+(11) 
+
+¦Á(¦È0 
+)
+where 
+ [1 
+] . 
+Therefore, the optimization problem in (9) with the updated 
+linear constraint is rewritten as 
+( p 
+
+(cid:14)
+
+ V 
+
+=
+
+ [ 
+
+,
+
+ V r ] 
+ e 1 
+
+,
+
+T =
+
+,
+
+ 0 
+
+T 
+r¡Á1 
+
+min 
+
+w 
+
+F 
+(w )
+
+=
+=
+
+(cid:12)(cid:12)X 
+
+H w 
+
+(cid:12)(cid:12) p 
+
+p 
+
+>
+
+ 2)
+
+s 
+
+.
+
+ t 
+
+.
+
+(cid:14)
+
+ V 
+
+H w 
+
+ e 1 
+
+.
+
+(12) 
+
+The optimization problem shown in (12) with a linear con- 
+straint can be solved more eciently than the one in (9) . More- 
+over, the null depth achieved by (12) is deeper than that achieved 
+by (9) , as the quadratic constraint is set to zero. 
+
+3.1.2. Choice of p 
+The MDDR beamformer implicitly exploits the non-Gaussianity 
+of signals, which signicantly improves the performance of non- 
+Gaussian signal reception. However, there is no explicit formula to 
+describe the relationship between p and 
+¦Ê s [24¨C26] . The general 
+guideline is that p is determined by the non-Gaussianity of signals 
+indicated by 
+¦Ê s , that is, p 
+ 2 for sub-Gaussian signals and p 
+2 for super-Gaussian signals. Particularly, for sub-Gaussian signals 
+the larger value of p leads to better performance in terms of output 
+SINR. The near-optimal performance is achieved when p 
+ [25] . 
+However, too large value of p is easy to result in overow when 
+calculating the p th power of a number in engineering application. 
+Fortunately, for sub-Gaussian signals, such as PSK and QAM, the 
+performance of MDDR beamformer is satised when the value of 
+p is around 20 [26] . 
+
+>
+
+<
+
+¡ú
+
+¡Þ
+
+3.2. GP Algorithm 
+
+For the optimization problem in (12) , the objective function and 
+constraint are both convex, while the variable is a complex vector. 
+Conventional methods for solving the convex optimization prob- 
+lem can be modied to solve this problem. In the following sub- 
+sections, an ecient algorithm is developed for solving this mini- 
+mization problem following the framework of GP algorithm. 
+
+3.2.1. Projection onto the feasible region 
+The feasible region of (12) is denoted as 
+. For 
+C is in- 
+any vector s not belonging to 
+ the projection of s onto 
+(¡¤)
+C with the shortest 
+dicated as P C
+ which is the point located at 
+distance to s . The problem of searching for P C
+(s 
+)
+ can be expressed 
+as 
+
+C
+
+=
+
+(cid:7)
+
+w|
+
+(cid:14)
+
+ V 
+
+H w 
+
+=
+
+ e 1 
+
+(cid:8)
+
+C ,
+
+,
+
+min 
+
+w 
+
+(cid:8)
+
+ w 
+
+ s (cid:8)
+=
+
+2 
+
+s 
+
+.
+
+ t 
+
+.
+
+(cid:14)
+
+ V 
+
+H w 
+
+ e 1 
+
+.
+
+(13) 
+
+Applying the method of Lagrange multipliers, we have: 
+ e 
+L 
+(w,
+w 
+(14) 
+r+1 . Taking the derivative w.r.t. w and setting the re- 
+where 
+ (cid:14) V 
+sultant expression to zero yield 
+Substituting (15) into 
+
+¦Ë)
+
+=
+
+ (cid:8)
+
+ w 
+
+ s (cid:8)
+
+2 +
+
+(cid:15)
+
+H (cid:14)
+
+ V 
+
+T 
+1 
+
+(cid:16)
+
+¦Ë,
+
+¦Ë ¡Ê
+
+C
+
+w 
+
+=
+
+ s 
+
+¦Ë.
+
+(15) 
+
+(cid:14)
+
+ V 
+
+H w 
+ e 1 
+H s 
+
+=
+
+ e 1 leads to 
+
+¦Ë =
+
+(cid:15)(cid:14)
+
+ V 
+
+H (cid:14)
+
+ V 
+
+(cid:16)1 
+
+(cid:15)(cid:14)
+
+ V 
+
+(cid:16)
+
+.
+
+(16) 
+
+Therefore, substitute (16) into (15) yields 
+
+w 
+
+=
+
+ s 
+
+ (cid:14)
+
+ V 
+
+(cid:15)(cid:14)
+
+ V 
+
+H (cid:14)
+
+ V 
+
+(cid:16)1 
+
+(cid:15)(cid:14)
+
+ V 
+
+ e 1 
+H s 
+
+(cid:16)
+
+.
+
+(17) 
+
+L. Zhang et al. / Signal Processing 140 (2017) 190¨C197 
+
+193 
+
+Fig. 1. Geometrical interpretation of GP algorithm. 
+
+3.2.2. GP Algorithm 
+The geometrical interpretation of the GP algorithm is shown 
+in Fig. 1 . Take the k th iteration as an example to elaborate the 
+GP algorithm. First, the gradient of F ( w k 
+) is calculated at point 
+(with details given in Appendix). Second, the step size 
+along the direction of gradient descent is determined. Then, pro- 
+ F 
+C with u k 
+jecting F 
+)
+ F 
+)
+ onto the feasible region 
+P C
+(F 
+)
+))
+ the updated direction is 
+. 
+is given by following the direction (cid:5)
+Finally, w k 
+with step size 
+, i.e., w k 
+. Setting 
+ one has w k 
+. 
+The last problem to determine the step size 
+along the di- 
+rection of 
+)
+ which minimizes the objective function F ( w ). 
+The minimization problem can be formulated as 
+
+w k 
+
+¦Ì
+
+k 
+
+(w k 
+k 
+
+ ¦Ì
+
+k 
+(w k 
+
+(w k 
+
+=
+
+(w k 
+
+ ¦Ì
+
+,
+
+(cid:5)
+
+ w k 
+ w k 
+
+=
+
+ u k 
+
+ w k 
+
++1 
++1 
+
+¦Á
+
+k 
+
+=
+ F 
+
+ w k 
+
++
+
+¦Á
+
+k 
+
+(cid:5)
+
+ w k 
+
+¦Á
+
+k 
+
+=
+
+ 1 
+
+,
+
++1 
+
+=
+
+ u k 
+
+¦Ì
+
+k 
+
+(w k 
+
+,
+
+¦Ì
+
+k 
+
+=
+
+ arg min ¦Ì>
+F (
+
+ 0 
+
+ P C
+
+(
+
+ w k 
+
+ ¦Ì F (
+
+ w k 
+
+)
+
+)
+
+)
+
+.
+
+(18) 
+
+Then, the backtracking line search algorithm is utilized to provide 
+the optimal 
+[31] , which, when adopted, leads to the GP algo- 
+rithm and is summarized as Algorithm 1 . 
+
+¦Ì
+
+k 
+
+Algorithm 1 GP Algorithm. 
+
+Input: 
+Data received by array: X 
+Maximum iteration number: K max 
+Convergence tolerance: 
+Initialize: 
+¦Á(¦È0 
+)
+¦Á(¦È0 
+)
+
+¦Å
+
+w 0 
+
+=
+=
+=
+=
+¦Ã =
+¦Ä =
+
+/
+,
+
+ (cid:8)
+
+¦Á(¦È0 
+)
+
+ (cid:8)
+
+2 
+
+(cid:14)
+
+ V 
+
+ [ 
+ 1 
+ 1 
+ 0 
+ 5 
+ 0 
+ 1 
+ 0 
+ 1 
+
+ V r ] 
+
+¦Á
+
+k 
+¦Ì0 
+
+.
+.
+
+1: for k 
+
+=
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+=
+=
+=
+
+ K max do 
+(w k 
+ w k 
+
+2: Compute u k 
+(cid:15) F (
+2 Re 
+
+ P C
+
+ ¦Ì
+¡¤ ¡¤ ¡¤ do 
+=
+
+k 
+
+ F 
+
+(w k 
+
+))
+
+(cid:5)
+
+ w k 
+
+ u k 
+ 1 
+ 2 
+
+3: 
+
+for i 
+Compute w k 
+Break 
+
+,
+
+,
+
+4: 
+
++1 
+ w k 
+w k 
++1 
+
+ P C
+
+(w k 
+
+ ¦Ì F 
+
+(w k 
+(w k 
++1 
+
+))
+
+5: 
+
+if 
+
+F 
+
+)
+
+<
+
+ F 
+
+(w k 
+
+)
+
++
+
+¦Ä ¡¤
+
+ w k 
+
+)
+
+H 
+
+(cid:15)
+
+(cid:16)(cid:16)
+
+6: 
+
+¦Ì ¡û
+
+¦Ã ¦Ì
+
+7: 
+
+end for 
+return 
+
+8: 
+
+¦Ì
+
+k 
+
+=
+
+¦Ì
+
+9: 
+
+w k 
++1 
+ w k 
++1 
+
+=
+
+ w k 
+
++
+
+¦Ì
+¦Å
+
+k 
+
+(cid:5)
+
+ w k 
+
+10: Break if (cid:8)
+11: end for 
+
+ w k 
+
+(cid:8)
+
+<
+
+ or k 
+
+>
+
+ K max 
+
+12: return w opt 
+
+The dominant computational cost for the GP algorithm is the 
+calculation of the gradient of the objective function F ( w ), which 
+has a computational complexity of 
+ (
+ NM )
+
+O
+
+ . 
+
+Table 1 
+Null depths provided by standard MDDR beamformer at the AOAs of 30 ¡ã
+and 75 ¡ã respectively (in dB). 
+
+p 
+
+1 
+20.12 
+23.39 
+
+1.5 
+20.13 
+23.44 
+
+2 
+20.09 
+23.26 
+
+4 
+20.11 
+23.37 
+
+8 
+20.12 
+23.43 
+
+20 
+20.20 
+23.89 
+
+30 ¡ã
+75 ¡ã
+
+4. Numerical results 
+
+In this section, four numerical experiments are conducted 
+to demonstrate the performance of the optimal weight vectors 
+achieved by the developed algorithm. As QPSK signals are typical 
+sub-Gaussian signals which have been widely used in various ar- 
+eas, such as TV, WiFi and wireless communications. According to 
+the denition of kurtosis in (6) , it is easy to attain 
+QPSK 
+ 1 . In 
+the following simulations, we assume that the signals of the SOI 
+and interferences are QPSK modulated, while the noise is additive 
+white Gaussian noise (AWGN). A ULA of 20 sensors with a half 
+wavelength spacing is utilized. Suppose that there are four uncor- 
+related QPSK signal sources, distributed in the far-eld of the array. 
+The AOA of SOI is 
+ 43 
+ and the AOAs of three interferences 
+60 
+are 
+ 30 
+60 
+ 75 
+ and 
+. The interference from the 
+direction of 
+is the fast-moving interference, whose width of 
+65 
+55 
+dynamic AOA is 
+ 10 
+from 
+to 
+. Whereas the other 
+two interferences are xed at the AOAs of 30 ¡ã and 75 ¡ã. The signal- 
+to-noise ratio (SNR) is dened as 
+
+¦Ê
+
+=
+
+¦È0 
+
+=
+
+ ,
+
+¦È1 
+
+=
+
+ ,
+
+¦È2 
+
+=
+
+ ,
+
+¦È3 
+
+=
+
+
+
+
+
+(cid:5)
+
+¦ÈI 
+
+=
+
+
+
+
+
+
+
+SNR 
+
+=
+
+¦Ò 2 
+s 
+¦Ò 2 
+e 
+
+.
+
+(19) 
+
+Furthermore, we assume that three interferences are stronger 
+than the SOI, with the variances being 
+ and 
+ 100 
+. 
+
+¦Ò 2 
+1 
+
+=
+
+ 4 
+
+¦Ò 2 
+s 
+
+,
+
+¦Ò 2 
+2 
+
+=
+
+ 9 
+
+¦Ò 2 
+s 
+
+,
+
+¦Ò 2 
+3 
+
+=
+
+¦Ò 2 
+s 
+
+4.1. Experiment 1 
+
+In this subsection, the beampatterns for various p of the pro- 
+posed approach is evaluated when SNR 
+ 0 dB and the number 
+of snapshots is 400. Although the MDDR beamformer is prefer 
+to adopt p 
+ 2 for sub-Gaussian signals, the scenarios of p 
+and p 
+ 5 are also involved to explore the performances of the 
+standard MDDR and the proposed beamformer with different p . 
+In comparison with the proposed beamformer, the beampatterns 
+generated by the standard MDDR beamformer in the presence of 
+fast-moving interference is shown in Fig. 2 , while the simulation 
+results of GP algorithm under the same simulation conditions are 
+depicted in Fig. 3 , in which the red dash lines indicate the pre- 
+specied null sector and the AOA of SOI. From Figs. 2 and 3 , it 
+can be seen that the GP algorithm is able to provide a deep null 
+80 dB over the pre-specied sector of [ 
+65 
+55 
+of more than 
+] 
+which can suppress the strong fast-moving interferences eciently. 
+Moreover, the scenario of p 
+ 2 shown in Fig. 3 is the same as 
+the one proposed in [19] . Compared with the simulation results 
+in [19] , the null depth achieved by (12) is deeper, in which the 
+constraint on the average power over the predened angular sector 
+is set to zero. 
+Furthermore, the null depths provided by the standard MDDR 
+beamformer and GP algorithm at the AOAs of 30 ¡ã and 75 ¡ã are 
+shown in Tables 1 and 2 , respectively. It can be seen that the 
+GP algorithm provides much deeper nulls for those xed inter- 
+ferences over the standard MDDR beamformer. In Table 2 , deeper 
+nulls can be achieved when the value of p is greater than 2. Recall 
+that when p 
+ the MDDR beamformer is reduced to the MPDR 
+beamformer. 
+
+=
+
+>
+
+=
+
+ 1 
+
+=
+
+ 1 
+
+.
+
+ ,
+
+
+
+,
+
+=
+
+=
+
+ 2 
+
+,
+
+194 
+
+L. Zhang et al. / Signal Processing 140 (2017) 190¨C197 
+
+50
+
+0
+AOA [degree]
+p=2
+
+50
+
+150
+
+100
+
+50
+
+0
+
+p=1
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+p=4
+
+50
+
+150
+
+100
+
+50
+
+0
+
+p=1.5
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+p=8
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+p=20
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+Fig. 2. Beampatterns of standard MDDR beamformer in the presence of fast-moving interference for p 
+
+=
+
+ 1 
+ 1 
+ 5 
+ 2 
+ 4 
+
+,
+
+.
+
+,
+
+,
+
+,
+
+ 8 and 20. 
+
+Table 2 
+Null depths provided by GP algorithm at the AOAs of 30 ¡ã and 75 ¡ã respec- 
+tively (in dB). 
+
+p 
+
+1 
+44.36 
+49.12 
+
+1.5 
+48.20 
+52.90 
+
+2 
+51.17 
+54.83 
+
+4 
+58.08 
+60.19 
+
+8 
+63.61 
+63.83 
+
+20 
+69.40 
+70.36 
+
+30 ¡ã
+75 ¡ã
+
+4.2. Experiment 2 
+
+Under the same settings as those in Experiment 1, the out- 
+put SINR versus SNR with N 
+ 100 is shown in Fig. 4 . 200 inde- 
+pendent trials have been conducted and the upper bound SINR is 
+)
+)
+
+=
+
+¦Ëmax 
+
+(cid:17)
+
+¦Ò 2 
+s 
+
+R 
+
+1 
+i 
+
++
+
+ n 
+
+¦Á(
+
+¦È0 
+
+¦Á(
+
+¦È0 
+
+H 
+
+(cid:18)
+
+. 
+
+It can be seen from Fig. 4 that the performance of the proposed 
+beamformer is affected by the value of p . Specically, the output 
+SINR increases with the increase of p . When p 
+ 20 
+ the output 
+SINR of the proposed beamformer is close to the upper bound, 
+which is the reason why the larger value of p is not adopted. Com- 
+paring the experimental results of p 
+ 2 and p 
+ 20 
+ it is indicated 
+again that the MDDR beamformer exhibits better performance in 
+sub-Gaussian signals reception than the MVDR beamformer. 
+
+=
+
+,
+
+=
+
+=
+
+,
+
+4.3. Experiment 3 
+
+The output SINR versus the number of snapshots with SNR 
+10 dB is shown in Fig. 5 . It is seen that the output SINR increases 
+as the number of snapshots increases. The GP algorithm is sen- 
+¡Ü 8, while the near- 
+sitive to the number of snapshots when p 
+optimal output SINR is achieved when p 
+ 20 which just needs 
+100 snapshots. 
+The proposed GP algorithm is integrated with backtracking line 
+search algorithm to determine the optimal step size 
+shown in 
+(18) . Exploring Algorithm 1 , the value of 
+is affected by 
+¦Ã and 
+¦Ä , which makes the algorithm converge to different w opt and dif- 
+ferent output SINRs. The proposed GP algorithm is sensitive to 
+the settings of 
+¦Ã and 
+¦Ä when p adopts small values, specially 
+p 
+ 1 . The results shown in Fig. 5 are attained when 
+ 6 and 
+ 05 . 
+
+=
+
+=
+
+¦Ì
+
+k 
+
+¦Ì
+
+k 
+
+=
+¦Ä =
+
+¦Ã =
+
+ 0 
+
+.
+
+ 0 
+
+.
+
+4.4. Experiment 4 
+
+In this subsection, we investigate the runtimes of the GP al- 
+gorithm for p 
+ and p 
+ 20 
+ meanwhile the experimen- 
+tal results of the standard convex optimization package are pro- 
+vided. The parameter settings are: SNR 
+ 10 dB, M 
+ 20 
+ 001 
+ 10 0 0 
+ and other parameters are listed in Algorithm 1 ; 
+
+=
+
+ 4 
+ p 
+
+,
+
+=
+
+ 8 
+
+,
+
+=
+
+,
+
+=
+
+=
+
+,
+
+¦Å
+
+=
+
+ 0 
+
+.
+
+,
+
+K max 
+
+=
+
+,
+
+L. Zhang et al. / Signal Processing 140 (2017) 190¨C197 
+
+195 
+
+50
+
+0
+AOA [degree]
+p=2
+
+50
+
+150
+
+100
+
+50
+
+0
+
+p=1
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+p=4
+
+50
+
+150
+
+100
+
+50
+
+0
+
+p=1.5
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+p=8
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+p=20
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+50
+
+0
+AOA [degree]
+
+50
+
+150
+
+100
+
+50
+
+0
+
+B
+
+a
+e
+
+m
+
+a
+p
+
+t
+t
+
+e
+
+r
+
+n
+
+[
+
+d
+
+B
+
+]
+
+Fig. 3. Beampatterns of GP algorithm in the presence of fast-moving interference for p 
+
+=
+
+ 1 
+ 1 
+ 5 
+ 2 
+ 4 
+
+,
+
+.
+
+,
+
+,
+
+,
+
+ 8 and 20. 
+
+0
+10
+
+5
+
+0
+
+5
+
+10
+SNR [dB]
+
+15
+
+20
+
+25
+
+30
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+35
+
+40
+
+45
+
+R
+N
+S
+
+I
+
+[
+
+d
+
+B
+
+]
+
+p=1
+p=1.5
+p=2
+p=4
+p=8
+p=20
+Upper bound
+
+Fig. 4. Output SINR versus SNR of GP algorithm. 
+
+the number of snapshots for the GP algorithm varies from 100 
+to 10 0 0 0, while it is interrupted for CVX package at N 
+ 50 0 0 
+as overow occurs; the number of independent trials is 200; 
+other parameters not mentioned herein remain unchanged in 
+
+=
+
+4
+50
+
+100
+
+150
+
+200
+250
+Number of snapshots
+
+300
+
+350
+
+400
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+22
+
+24
+
+R
+N
+S
+
+I
+
+[
+
+d
+
+B
+
+]
+
+p=1
+p=1.5
+p=2
+p=4
+p=8
+p=20
+Upper bound
+
+Fig. 5. Output SINR versus number of snapshots for GP algorithm. 
+
+Algorithm 1 . The standard convex optimization package is CVX ver- 
+sion 2.1, which is available at [32] . 
+The experimental results are based on Matlab R2012b on a 
+computer with a 3.4 GHz CPU and 8 GB memory, which are tabu- 
+lated in Tables 3 and 4 . 
+
+196 
+
+L. Zhang et al. / Signal Processing 140 (2017) 190¨C197 
+
+Table 3 
+Runtimes of GP algorithm for p 
+
+=
+
+ 4 
+
+,
+
+ 8, 20 (in seconds). 
+
+N 
+
+100 
+
+500 
+
+10 0 0 
+
+50 0 0 
+
+10 0 0 0 
+
+p 
+p 
+p 
+
+=
+=
+=
+
+ 4 
+ 8 
+
+0.0060 
+0.0072 
+0.0084 
+
+0.0321 
+0.0327 
+0.0265 
+
+0.0762 
+0.0785 
+0.0600 
+
+0.6852 
+0.7245 
+0.6493 
+
+2.3657 
+2.5766 
+2.2581 
+
+ 20 
+
+Table 4 
+Runtimes of CVX for p 
+
+=
+
+ 4 
+
+,
+
+ 8, 20 (in seconds). 
+
+N 
+
+100 
+
+500 
+
+10 0 0 
+
+50 0 0 
+
+p 
+p 
+p 
+
+=
+=
+=
+
+ 4 
+ 8 
+
+1.3208 
+1.4727 
+2.3510 
+
+5.5706 
+6.9229 
+11.7799 
+
+13.3432 Out of memory 
+17.0201 
+Out of memory 
+26.4071 Out of memory 
+
+ 20 
+
+The IPM based CVX package has the computational complexity 
+(cid:12) N , the 
+of 
+N 
+ while that of the GP algorithm is 
+ (
+ NM )
+ . As M 
+GP algorithm is much more ecient for the problem in (12) under 
+the same experimental conditions. Comparing the results shown in 
+Tables 3 and 4 , the same conclusion can be drawn. 
+
+O
+
+(cid:15)
+
+3 
+
+(cid:16)
+
+,
+
+O
+
+5. Conclusion 
+
+Most of signals encountered in real-world applications are non- 
+Gaussian distributed. The MVDR beamformer and its variants, 
+based on the minimum variance criterion, turn out to be sub- 
+optimal for non-Gaussian signals as they just exploit the second- 
+order statistical information of non-Gaussian signals. The MDDR 
+approach was proposed to handle the non-Gaussianity of signals 
+with the aim at improving the reception of non-Gaussian signals. 
+This paper extends the MDDR beamformer to handle fast-moving 
+interferences, in which a continuous deep null sector over a prede- 
+ned range of dynamic AOA is desired. To make the MDDR beam- 
+former robust against the fast-moving interference, the proposed 
+beamformer minimizes the output based on the MD criterion and 
+constrains the average power over the dynamic AOA to be zero via 
+a quadratic constraint. In order to reduce the computational com- 
+plexity, a linear rather than a quadratic constraint is derived. Fur- 
+thermore, the GP algorithm is developed. Experimental results con- 
+rm that the proposed beamforming approach is able to suppress 
+the fast-moving interferences effectively. 
+
+Acknowledgement 
+
+The authors would like to thank the reviewers for their con- 
+structive comments and helpful suggestions. This work was sup- 
+ported by the National Natural Science Foundation of China un- 
+der Grant U1501253 , the Natural Science foundation of Guang- 
+dong Province, P.R. China (No.2015A030311030), the Founda- 
+tion of Shenzhen City under Grants ZDSYS201507081625213 and 
+JCYJ20160520165659418, the Foundation of Nanshan District Shen- 
+zhen City under Grant KC2015ZDYF0036 and the China Postdoc- 
+toral Science Foundation under Grant 2017M610547 . 
+
+Appendix 
+
+Consider the conversion of the objective function of (12) into 
+the expression of 
+-norm, that is, 
+(cid:10)(cid:10)2 .
+
+(cid:2)
+
+ 2 
+
+F 
+(w )
+
+=
+
+(cid:12)(cid:12)X 
+
+H w 
+
+(cid:12)(cid:12) p 
+
+p 
+
+=
+
+N (cid:2)
+n 
+=1 
+
+(cid:10)(cid:10)x 
+
+H (n 
+
+)
+
+ w 
+
+(cid:10)(cid:10)p2 
+
+(cid:10)(cid:10)x 
+
+(n 
+)
+
+H w 
+
+(20) 
+
+Since y 
+
+=
+
+ X 
+
+H w,
+
+ the objective function can be rewritten as 
+
+F 
+(w )
+
+=
+
+(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)
+
+
+ 
+ 
+
+|
+
+ y(1)
+. . . 
+0 
+
+ |
+
+p2 
+2 
+
+¡¤ ¡¤ ¡¤
+
+0 
+. . . 
+ y(N )
+
+. . . 
+
+¡¤ ¡¤ ¡¤
+
+|
+
+ |
+
+p2 
+2 
+
+
+
+ 
+ 
+ 
+
+|
+
+ y(1)
+. . . 
+ y(N )
+
+ |
+
+|
+
+ |
+
+
+(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)
+ 
+
+2 
+
+=
+=
+=
+=
+
+ (cid:8)
+
+y (cid:8)
+
+2 
+
+ y 
+
+H H y 
+H (cid:25)
+
+ w 
+
+H XC (w )
+(w )
+(cid:25) R 
+where 
+ diag 
+(1)
+(N )
+. Note that C (w )
+H  and
+(w )
+ XC (w )
+H are the functions of w . 
+If g is a real function of a complex vector z , then the complex 
+gradient vector is given by [33] 
+dg(z )
+dz 
+
+ X 
+
+H w 
+
+ w 
+
+ R 
+
+ w,
+
+(21) 
+
+ =
+
+(cid:7)|
+
+ y 
+
+|
+
+( p2)
+
+/
+
+ 2 ,
+
+¡¤ ¡¤ ¡¤ ,
+
+|
+
+ y 
+
+|
+
+( p2)
+
+/
+
+ 2 
+
+(cid:8)
+
+=
+
+=
+
+ X 
+
+ g(z )
+
+=
+
+ 2 
+
+ =
+
+ g(z )
+
+ Re 
+(z )
+
++
+
+ i 
+
+ g(z )
+
+ Im 
+(z )
+
+.
+
+(22) 
+
+As a result, the gradient of F ( w ) w.r.t. the complex vector w is 
+expressed as 
+ F 
+(w )
+p 
+XC (w )
+2 
+
+=
+
+ X 
+
+H w.
+
+(23) 
+
+References 
+
+[1] J. Li , P. Stoica , Robust Adaptive Beamforming, Wiley Online Library, 2006 . 
+[2] L.C. Godara , Application of antenna arrays to mobile communications. II. 
+Beam-forming and direction-of-arrival considerations, Proc. IEEE 85 (8) (1997) 
+1195¨C1245 . 
+[3] J. Yin , Underwater acoustic communications and signal processing, National 
+Defense Industry Press, 2011 . 
+[4] S.A. Vorobyov , Principles of minimum variance robust adaptive beamforming 
+design, Signal Process. 93 (12) (2013) 3264¨C3277 . 
+[5] Q. Li , B. Liao , L. Huang , C. T. Guo , G. S. Liao , S. Q. Zhu , A robust stap method for 
+airborne radar with array steering vector mismatch, Signal Process. 128 (2016) 
+198¨C203 . 
+[6] B.D. Carlson , Covariance matrix estimation errors and diagonal loading in 
+adaptive arrays, IEEE Trans. Aerosp. Electron.Syst. 24 (4) (1988) 397¨C401 . 
+[7] C.Y. Chen , P.P. Vaidyanathan , Quadratically constrained beamforming robust 
+against direction-of-arrival mismatch, IEEE Trans. Signal Process. 55 (8) (2007) 
+4139¨C4150 . 
+[8] J. Li , P. Stoica , Z. Wang , On robust Capon beamforming and diagonal loading, 
+IEEE Trans. Signal Process. 51 (7) (2003) 1702¨C1715 . 
+[9] R.G. Lorenz , S.P. Boyd , Robust minimum variance beamforming, IEEE Trans. Sig- 
+nal Process. 53 (5) (2005) 1684¨C1696 . 
+[10] L. Zhang , B. Liao , L. Huang , C. Guo , An eigendecomposition-based approach to 
+blind beamforming in a multipath environment, IEEE Communications Letters 
+21 (2) (2017) 322¨C325 . 
+[11] S. Shahbazpanahi , A.B. Gershman , Z.-Q. Luo , K.M. Wong , Robust adaptive 
+beamforming for general-rank signal models, IEEE Trans. Signal Process. 51 (9) 
+(2003) 2257¨C2269 . 
+[12] S.A. Vorobyov , A.B. Gershman , Z.-Q. Luo , Robust adaptive beamforming using 
+worst-case performance optimization: a solution to the signal mismatch prob- 
+lem, IEEE Trans. Signal Process. 51 (2) (2003) 313¨C324 . 
+[13] H.L. Van Trees , Detection, Estimation, and Modulation Theory, Part IV: Opti- 
+mum Array Processing, Wiley-Interscience, 2002 . 
+[14] R.J. Mailloux , Covariance matrix augmentation to produce adaptive array pat- 
+tern troughs, Electron. Lett. 31 (10) (1995) 771¨C772 . 
+[15] M. Zatman , Production of adaptive array troughs by dispersion synthesis, Elec- 
+tron. Lett. 31 (25) (1995) 2141¨C2142 . 
+[16] A.B. Gershman , U. Nickel , J.F. Bohme , Adaptive beamforming algorithms with 
+robustness against jammer motion, IEEE Trans. Signal Process. 45 (7) (1997) 
+1878¨C1885 . 
+[17] A.B. Gershman , G.V. Serebryakov , J.F. Bohme , Constrained hung-turner adaptive 
+beam-forming algorithm with additional robustness to wideband and moving 
+jammers, IEEE Trans. Antennas Propag. 44 (3) (1996) 361¨C367 . 
+[18] J. Riba , J. Goldberg , G. Vazquez , Robust beamforming for interference rejec- 
+tion in mobile communications, IEEE Trans. Signal Process. 45 (1) (1997) 271¨C
+275 . 
+[19] A . Amar , M.A . Doron , A linearly constrained minimum variance beamformer 
+with a pre-specied suppression level over a pre-dened broad null sector, 
+Signal Process. 109 (2015) 165¨C171 . 
+[20] H. Mathis , On the kurtosis of digitally modulated signals with timing offsets, 
+in: Proc. 2001 IEEE Third Workshop on Signal Processing Advances in Wireless 
+Communications, 2001, pp. 86¨C89 . 
+[21] D. Middleton , Non-Gaussian noise models in signal processing for telecommu- 
+nications: new methods an results for class A and class B noise models, IEEE 
+Trans. Inf. Theory 45 (4) (1999) 1129¨C1149 . 
+
+L. Zhang et al. / Signal Processing 140 (2017) 190¨C197 
+
+197 
+
+[22] J.F. Cardoso , A. Souloumiac , Blind beamforming for non-Gaussian signals, IEE 
+Proc. F - Radar Signal Process. 140 (6) (1993) 362¨C370 . 
+[23] P. Tsakalides , C.L. Nikias , Robust adaptive beamforming in alpha-stable noise 
+environments, in: Proc. 1996 IEEE International Conference on Acoustics, 
+Speech, and Signal Processing Conference Proceedings, 1996, pp. 2884¨C
+2887 . 
+[24] X. Jiang , W.J. Zeng , A. Yasotharan , H.C. So , T. Kirubarajan , Minimum disper- 
+sion beamforming for non-Gaussian signals, IEEE Trans. Signal Process. 62 (7) 
+(2014a) 1879¨C1893 . 
+[25] X. Jiang , W.J. Zeng , A. Yasotharan , H.C. So , T. Kirubarajan , Robust beamform- 
+ing by linear programming, IEEE Trans. Signal Process. 62 (7) (2014b) 1834¨C
+1849 . 
+[26] X. Jiang , W.J. Zeng , A. Yasotharan , H.C. So , T. Kirubarajan , Quadratically con- 
+strained minimum dispersion beamforming via gradient projection, IEEE Trans. 
+Signal Process. 63 (1) (2015) 192¨C205 . 
+
+[27] X. Jiang , W.J. Zeng , H.C. So , A.M. Zoubir , T. Kirubarajan , Beamforming via non- 
+convex linear regression, IEEE Trans. Signal Process. 64 (7) (2016) 1714¨C1728 . 
+[28] S. Boyd , L. Vandenberghe , Convex Optimization, Cambridge University Press, 
+2004 . 
+[29] A.M. Zoubir , V. Koivunen , Y. Chakhchoukh , M. Muma , Robust estimation in sig- 
+nal processing: a tutorial-style treatment of fundamental concepts, IEEE Signal 
+Process. Mag. 29 (4) (2012) 61¨C80 . 
+[30] S. Gazor , W. Zhang , Speech probability distribution, IEEE Signal Process. Lett. 
+10 (7) (2003) 204¨C207 . 
+[31] A. Antoniou , W.-S. Lu , Practical Optimization: Algorithms and Engineering Ap- 
+plications, Springer Science & Business Media, 2007 . 
+[32] M. Grant, S. Boyd, CVX: Matlab Software for Disciplined Convex Programming, 
+Version 2.1, 2014 . ( http://cvxr.com/cvx ). 
+[33] S. Haykin , Adaptive Filter Theory, Prentice Hall, 2002 . 
+

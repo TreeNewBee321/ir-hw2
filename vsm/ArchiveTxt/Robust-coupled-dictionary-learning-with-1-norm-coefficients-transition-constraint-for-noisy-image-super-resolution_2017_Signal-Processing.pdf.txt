@@ -1,0 +1,3720 @@
+Robust coupled dictionary learning with 1 -norm coecients transition constraint for noisy image super-resolution 
+
+
+Bo Yue 
+a , Shuang Wang 
+
+a , 
+
+, Xuefeng Liang 
+b , Licheng Jiao 
+
+a 
+
+
+
+a Key Laboratory of Intelligent Perception and Image Understanding of Ministry of Education, International Research Center for Intelligent Perception and 
+Computation, Xidian University, Xi¡¯an, 710071, China 
+b IST, Graduate School of Informatics, Kyoto University, Kyoto, 606-8501, Japan 
+
+article
+
+info
+
+Article history: 
+Received 9 December 2016 
+Revised 17 April 2017 
+Accepted 19 April 2017 
+Available online 20 April 2017 
+
+Keywords: 
+Image super-resolution 
+Coupled dictionary learning 
+ 1 -norm 
+Non-linear mapping 
+Non-local self-similarity 
+
+
+abstract
+
+Conventional coupled dictionary learning approaches are designed for noiseless image super-resolution 
+(SR), but quite sensitive to noisy images. We nd that the cause is the commonly used 
+ F -norm coef- 
+cients transition term. In this paper, we propose a robust 
+ 1 -norm solution by introducing two sub- 
+terms: LR coecient sparsity constraint term and HR coecient conversion term , which are able to prevent 
+the noise transmission from noisy input to output. By incorporating our simple yet effective non-linear 
+model inspired by auto-encoder, the proposed 
+ 1 -norm dictionary learning achieves a more accurate co- 
+ecients conversion. Moreover, to make the coecients conversion more reliable in the iterative process, 
+we bring the non-local self-similarity constraint to regularize the HR sparse coecients updates. The im- 
+proved sparse representation further enhances SR inference on both synthesized noisy and noiseless im- 
+ages. Using standard metrics, we show that results are signicantly clearer than state-of-the-arts on noisy 
+images and sharper on denoised images. In addition, experiments on real-world data further demonstrate 
+the superiority of our method in practice. 
+
+ 2017 Published by Elsevier B.V. 
+
+1. Introduction 
+
+The goal of single image super-resolution (SISR) is to recon- 
+struct a high resolution (HR) image from a low resolution (LR) 
+input. This problem is inherently ill-posed, thus very challenging 
+in computer vision. To solve it, different forms of prior knowledge 
+have been explored. In particular, learning-based (example-based) 
+strategy [1¨C14] , which captures the prior information by learning 
+one or more mapping functions from generic datasets, has received 
+a great attention in the past decade. It assumes that the lost details 
+in LR images can be recovered by the prior learned from millions 
+external LR-HR image patch pairs due to the richness of real-world 
+images. 
+The dominant approach, namely coupled dictionary learning, 
+utilizes the sparse representation to model the relation between 
+the sparse coecients of LR and HR patches over an over-complete 
+dictionary pair ( D l 
+). It rst extracts overlapped patches from 
+the LR image, which are then encoded as the higher dimensional 
+sparse vectors with respect to a LR dictionary D l 
+. Next, the LR 
+sparse coecients are projected to HR ones via a learned mapping 
+function. Finally, the HR sparse coecients are passed into a HR 
+dictionary D h 
+for reconstructing HR patches. To learn the coe- 
+cients conversion, various assumptions have been imposed on the 
+underlying mapping model from the initial sparse representation 
+invariance [1¨C3,8] , through to the linear mapping [4,5] , and nally 
+to the statistical dependence [6,9] . This task is carried out through 
+ W 
+the 
+ F -norm coecients transition term 
+in the 
+shared objective function (1) by optimizing the projection matri- 
+ces ( W 
+) under varied assumptions. With the 
+ F -norm min- 
+imizing the mapping error, these models achieve quite convincing 
+performances for the noiseless image SR. Unfortunately, LR images 
+often contain certain noise in the real-world applications. We nd 
+all above approaches are sensitive to noise, even the noise is weak. 
+Fig. 1 demonstrates the noise sensitivities of one representative of 
+sparse representation approach (Yang et al. [1] ), two other recent 
+approaches (Wang et al. [4] and A 
+ method [8] ) and the proposed 
+method. 
+In this paper, we explore the mechanism of noise sensitivity of 
+conventional approaches by studying the convex objective function 
+(1) in Section 3.1 . One can see that the coecients conversion is 
+carried out by the 
+ F -norm due to the fact that 
+ F -norm is easy to 
+be optimized and its solution is unique. Despite its popularity, 
+norm is not a right choice for noisy image SR. Our analysis reveals 
+that the 
+ F -norm coecients transition term causes the sparsity of 
+
+ F - 
+
++
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+178 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+Fig. 1. Sensitivities to noise in SR, where Gaussian noise with standard deviation of 5 is added to the LR input. Top: SR outputs. Middle: noise residual maps visualizing the 
+difference between the SR outputs when the input is a noisy LR image or the corresponding noiseless LR image. Bottom: the magnied local patches of SR output. (a) LR 
+input interpolated by Bicubic operator; (b) Result by Yang et al. [1] ; (c) Result by Wang et al. [4] ; (d) Result by A 
+ approach [9] ; (e) Result by proposed method. 
+
++
+
+Fig. 2. The combination of transition term and sparsity-inducing term acting on the state in sparse-coding. (a) 
+ F -norm regularization: (a1) The ellipse represents the 
+ F -norm 
+coecients transition term, the diamond denotes the sparsity-inducing term. (a2) The joint solution takes place off the axis, which is not sparse. (b) 
+ 1 -norm regularization: 
+(b1) The upper diamond represents the 
+ 1 -norm coecients transition term. (b2) The joint solution takes place on the axis, which is much sparser. 
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+ 1 
+
+LR sparse coecients poorly maintained, and further encodes noise 
+from the LR sparse coecients into the HR sparse coecients. A 
+2D geometric interpretation is given in Fig. 2 .(a) by solely consid- 
+ering the solution to LR sparse coecients. Owing to the convexity 
+of 
+ F -norm, the solution/intersection mostly takes place off the axis 
+with all non-zero coordinates, which is not sparse. 
+With this in mind, we thus put emphasis on the upgrade of 
+coecients transition term. To well maintain the sparsity of LR co- 
+ecients, the intersection is desired to take place on the axis. We 
+nd that the 
+-norm is a better choice, please refer to Fig. 2 .(b). 
+Nevertheless, simply replacing the 
+ F -norm by a 
+-norm to the 
+entire transition term brings two problems. Firstly, it will down- 
+grade the performance on the calculation of HR coecients, be- 
+cause 
+-norm restrains the non-zero sum other than the mean 
+squared error in 
+ F -norm. To address this problem, we introduce 
+two auxiliary variables to split the transition term into two sub- 
+terms: LR coecient sparsity constraint term with 
+-norm and HR 
+coecient conversion term with 
+ F -norm in Section 3.2 . Secondly, 
+the presence of two 
+-norm terms (the transition term and the 
+sparsity-inducing term) cannot apply the standard optimization 
+techniques to sparse-coding. To alleviate this problem, we propose 
+a smooth proximal gradient method to approximate the transition 
+term, and then are able to employ the ecient solvers, e.g. Fast 
+
+ 1 
+
+ 1 
+
+ 1 
+
+ 1 
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+l 
+
+ 1 
+
+h 
+
+¦Á
+
+¦Á
+
+Iterative Shrinkage Thresholding algorithm [15] in Section 3.4 ( Up- 
+date 
+, 
+). 
+Furthermore, considering after applying 
+-norm on LR coe- 
+cient and 
+ F -norm on HR coecient, the coecients conversion 
+learning becomes more complicated. Either the sparse representa- 
+tion invariance [1¨C3,8] or the linear mapping [4,5] is incompetent 
+to carry out an accurate relation modeling task, which is crucial to 
+the dictionary learning SR approaches. Instead, we propose a non- 
+linear method inspired by the auto-encoder that possesses an en- 
+coding process and a decoding process. It is simple yet effectively 
+embedded into our optimization procedure in Section 3.2 . Once es- 
+tablished, we can iteratively update the LR patch representation 
+and the estimated HR patch in the inference procedure. Unfortu- 
+nately, it does not guarantee the HR patch free of noise at the rst 
+few iterations. Indeed, if an accurate initial estimation is given, the 
+proposed method is able to steadily improve its output. Thus, we 
+introduce a non-local constraint into the dictionary learning that 
+correlates the similarity among non-local patches to regularize the 
+HR sparse coecients updates in Section 3.3 . This constraint is able 
+to distinguish the texture from noise effectively and results in a 
+better noise suppression. 
+To the best of our knowledge, it is the rst work in the liter- 
+ature to use coupled dictionary learning method on noisy image 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+179 
+
+super-resolution. Meanwhile, we show improved PSNR and SSIM 
+over the competing sparse-coding approaches for a wide range of 
+noise levels. In particular, given noise level from 0 to 20, our per- 
+formance degrades only 2.53 dB in PSNR and 0.1140 in SSIM com- 
+paring with the least decrease (5.96 dB in PSNR and 0.3345 in 
+SSIM) of others. In conguration of denoising 
+ SR, our method 
+also outperforms others on denoised inputs by improving PSNR 
+0.53 dB, SSIM 0.0122 at noise level 20. To show the generalization, 
+our method is compared on the real noisy images and noiseless 
+data against state-of-the-arts as well. 
+The rest of the paper is organized as follows. In the next section 
+we briey review the previous related works. The proposed model 
+and its parameters training are presented in Section 3 . The ex- 
+perimental results on several different image SR tasks are demon- 
+strated in Section 4 . Section 5 provides some conclusions and dis- 
+cussions. 
+
++
+
+2. Related work 
+
+Among the coupled dictionary learning based SR approaches, 
+Yang¡¯s approaches [1,2] and Zeyde¡¯s method [3] are the most 
+widely used, which assume that the sparse representation is in- 
+variant over the LR and HR dictionary pair. However, this sim- 
+ple assumption restricts its ability of the SR recovery. After that, 
+there have been several attempts to go beyond the invariance as- 
+sumption to improve the exibility for accurate relationship learn- 
+ing. Wang et al. [4] proposed a semi-coupled dictionary training 
+model by considering a linear mapping between the LR-HR co- 
+ecients. Similar to Wang¡¯s work, a beta process model [6] was 
+proposed to learn the dictionaries whose sparse representations 
+have the same sparsity but different values. It reported a more 
+consistent and accurate mapping result. Alternatively, Huang et al. 
+[5] presented a joint model which incorporated a common feature 
+space learning into the coupled dictionary scheme to better de- 
+scribe the relationship. Recently, A 
+ approach [8] exploits the same 
+invariance assumption as Yang¡¯s works and combines the dictionar- 
+ies with neighbor embedding methods to obtain improvements in 
+both quality and speed. Dai et al. [16] jointly learned a collection of 
+invariant mapping functions to alleviate the inability of a universal 
+regressor for modeling the complex relationship. More recently, in- 
+spired by the deep learning achieving great success in many com- 
+puter vision application, deep convolutional neural networks [17¨C
+21] are exploited to directly learn the mapping from LR input to 
+HR output and achieved state-of-the-art performance. 
+Notwithstanding the demonstrated success in the noiseless im- 
+age SR, none of the conventional coupled dictionary learning ap- 
+proaches is robust to noisy LR images. To our best knowledge, very 
+few works address on this issue. A straightforward thought could 
+do image denoising rst, and super-resolve the denoised image af- 
+terward. Our test shows that many high frequency details are in- 
+evitably lost by denoising process, which is absolutely important 
+to SR process. SRNI [22] tried to integrate the merits of image de- 
+noising and image SR. They rst super-resolve the noisy LR im- 
+age and the denoised LR image. Then, a convex combination of 
+the denoised HR image and noisy HR image is exploited to obtain 
+the nal HR image. Recently, single dictionary learning approaches 
+[23¨C25] are proposed for SR and denoising. It regularizes the degra- 
+dation model y 
+ AHx 
+ n (where y is the noisy LR image, A is a 
+downsampling, H is a blurring operator, x is the HR image to be 
+recovered and n is the noise) with some sparsity priors (such as 
+centralized sparsity [26] , group sparsity [27,28] , etc) by robust ma- 
+trix factorization strategy [29¨C32] . Then, the nal result is obtained 
+through a maximum a posteriori (MAP). 
+Unlike all previous approaches, we provide a 
+-norm solution 
+to suppress the noise, meanwhile, incorporate a non-linear model 
+inspired by auto-encoder and a non-local self-similarity constraint 
+
++
+
+=
+
++
+
+(cid:2)
+
+ 1 
+
+for accurate and reliable coecients conversion. As was expected, 
+our method out-competes previous approaches on noisy data by a 
+big margin. 
+
+3. Robust coupled dictionary learning 
+
+This section describes our solution for noisy image SR. We start 
+by analyzing the cause of noise sensitivity in conventional ap- 
+proaches that use 
+ F -norm to regularize the relation between the 
+sparse coecients ( 
+, 
+) in LR and HR images. The 
+ F -norm is 
+found to be the reason of encoding the noise from 
+to 
+. Next, 
+we provide our 
+-norm solution by introducing two auxiliary vari- 
+ables to make the objective function solvable. To model the rela- 
+tion between 
+and 
+more precise under the new regulariza- 
+tion, we design a non-linear mapping approach. Afterward, we ap- 
+ply the non-local constraint into our dictionary learning framework 
+to stabilize the estimation procedure and further improve the out- 
+put performance. Finally, we detail the optimization procedure fol- 
+lowed by the learning and the inference algorithms. 
+
+(cid:2)
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+(cid:2)
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+(cid:2)
+
+ 1 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+3.1. The cause of noise sensitivity 
+
+It has been known that noiseless images can be approximated 
+as a linear combination of a few elementary atoms, which is 
+named sparse representation/coding. This nd lays the foundation 
+of the coupled dictionary learning methods for SR. Their general 
+objective function is formulated as follows: 
+
+argmin 
+
+D l 
+
+,
+
+ D h 
+ W l 
+ W h 
+
+,
+
+,
+
+,¦Á
+
+l 
+
+,¦Á
+
+h 
+
+1 
+2 
+
+((cid:3)
+
+ X l 
+
+ D l 
+
+¦Á
+
+2 
+l 
+F 
+1 
+h 
+
+(cid:3)
+
++
+
+(cid:3)
+(cid:3)
+
+ X h 
+
+ D h 
+
+¦Á
+
+h 
+
+(cid:3)
+(cid:3)
+
+2 
+F 
+
+)
+
++
+
+¦Ë(cid:3)
+
+ W 
+
+1 
+l 
+
+¦Á
+
+l 
+
+ W 
+where 
+and 
+are the sparse coecients over the LR-HR dictio- 
+nary pair ( D l 
+), respectively, 
+and 
+are the sparsity- 
+inducing terms. Since X l 
+and X h 
+are in two different spaces, one 
+of the tasks in function (1) is to establish the relation to link 
+sparse coecients in two spaces. The coecients transition term 
+ W 
+is designed to learn the relation, where W 
+and W 
+are the projection matrices who project 
+and 
+into a 
+common feature space. Here we use the inverse operation to reg- 
+ularize the projection matrices to prevent the model from learning 
+¦Ë and 
+the trivial solution (where the projection matrices are zeros). 
+¦Ì are the regularization parameters to balance the terms. Several 
+algorithms have been proposed to solve the objective function (1) , 
+such as the joint dictionary training algorithm [1,3,7] , the coordi- 
+nate descent algorithm [4,5] and the Bayesian algorithm [6] . 
+In practice, most LR images contain certain noise. With a well- 
+designed dictionary, the image signals can be easily separated from 
+the noise via sparse representation. Thus, the sparsity-inducing 
+term 
+in the function (1) is expected to suppress the noisy. 
+Extensive experiments using the conventional approaches, how- 
+ever, do not show the desired ecacy. 
+By analyzing the convex solution of function (1) , we consider 
+that the 
+ F -norm on the coecients transition term makes the 
+sparsity of 
+poorly maintained and causes the failed noise sup- 
+pression. The 2D geometric interpretation is shown in Fig. 2 . Let¡¯s 
+only consider the LR space because the HR images are assumed 
+to be free of noise. The ellipse ( 
+ W 
+ p ball ) in Fig. 2 .(a1) represents 
+ the diamond denotes 
+, and the green 
+line is X l 
+. When we jointly solve them, the combination 
+of ellipse and diamond becomes the convex shape in Fig. 2 .(a2). 
+One can see that the intersection (the problem solution 
+) of the 
+red curve and the green line takes place off the axis which is not 
+sparse, with all non-zero coordinates. The noise in the LR images, 
+therefore, is transmitted/encoded into 
+through the coecient 
+transition term. 
+
+¦Á
+
+h 
+
+2 
+F 
+
++
+
+¦Ì((cid:3)
+
+¦Á
+
+l 
+
+ 1 
+
++
+
+(cid:3)
+
+¦Á
+
+h 
+
+(cid:3)
+
+ 1 
+
+)
+
+,
+
+(1) 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+, D h 
+
+(cid:3)
+
+¦Á
+
+l 
+
+(cid:3)
+
+ 1 
+
+(cid:3)
+
+¦Á
+
+h 
+
+(cid:3)
+
+ 1 
+
+(cid:3)
+
+ W 
+
+1 
+l 
+
+¦Á
+
+1 
+l 
+h 
+
+1 
+h 
+
+¦Á
+
+h 
+
+(cid:3)
+
+2 
+F 
+
+1 
+l 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+(cid:3)
+
+¦Á
+
+l 
+
+(cid:3)
+
+ 1 
+
+(cid:2)
+
+¦Á
+
+l 
+
+(cid:2)
+
+(cid:3)
+
+ W 
+
+1 
+l 
+
+¦Á
+
+l 
+
+1 
+h 
+
+¦Á
+¦Á
+
+h 
+
+(cid:3)
+
+2 
+F 
+
+,
+
+(cid:3)
+
+¦Á
+
+l 
+
+(cid:3)
+
+ 1 
+
+=
+
+ D l 
+
+l 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+180 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+To suppress the noise, the intersection of the green line and the 
+ p ball is expected to take place on the axis. This situation happens 
+¡Ü 1. While p 
+only if 0 
+ 1, the solution is no longer convex 
+and dicult to be solved. Thus, 
+-norm becomes a better choice 
+which is convex and the tendency to sparsity we are referring to. 
+As we move the coecient transition term from 
+ F -norm towards 
+-norm, Fig. 2 .(b) shows that the intersection takes place on the 
+axis, where most coordinates are zeros. Thus, it leads to a sparser 
+solution. More specically, we are able to prevent the noise from 
+to be encoded into 
+estimation using a 
+-norm coecient 
+transition term. 
+
+(cid:2)
+
+<
+
+ p 
+
+<
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+(cid:2)
+
+ 1 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+(cid:2)
+
+ 1 
+
+3.2. 
+
+(cid:2)
+
+ 1 -norm and coecients conversion learning 
+
+However, simply applying a 
+-norm to the coecient transi- 
+tion term brings two problems. In this section, we focus on the 
+rst problem of an inaccurate 
+calculation, and provide our solu- 
+tion in below. For the second one of optimizing two 
+-norm terms 
+in the objective function (1) , we propose a smooth proximal gradi- 
+ent algorithm to solve it in the Section 3.4 ( Update 
+, 
+). 
+Applying a 
+-norm to the entire coecient transition term 
+leads to an inaccurate HR coecients calculation, 
+W 
+ W 
+because 
+ 1 restrains the non-zero sum rather 
+than the mean square error in 
+ F -norm. This is one of the rea- 
+sons that 
+ F -norm is widespread in various problems. To solve it, 
+we introduce two auxiliary variables P h 
+and P l 
+to split the transi- 
+tion term into two sub-terms: LR coecient sparsity constraint term 
+with 
+-norm for ensuring the sparsity, and HR coecient conver- 
+sion term with 
+ F -norm for the accuracy guarantee. The new de- 
+nition is given as follows: 
+ T 
+ T 
+s.t .
+
+(cid:2)
+
+ 1 
+
+¦Á
+
+h 
+
+(cid:2)
+
+ 1 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+(cid:2)
+
+ 1 
+
+¦Á
+
+h 
+
+=
+
+ W h 
+
+1 
+l 
+
+¦Á
+
+l 
+
+,
+
+(cid:3)
+
+ W 
+
+1 
+l 
+
+¦Á
+
+l 
+
+1 
+h 
+
+¦Á
+
+h 
+
+(cid:3)
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+ 1 
+ T h 
+
++
+
+(cid:3)
+
+¦Á
+¦Á
+
+h 
+
+T 
+P l 
+h 
+
+(cid:3)
+
+2 
+F 
+
+ P h 
+
+=
+
+h 
+
+,
+
+ P l 
+
+=
+
+ T l 
+
+¦Á
+
+l 
+
+,
+
+(2) 
+
+where T h 
+and T l 
+are the transition matrices of 
+and 
+respec- 
+tively. With the new transition term ready, we note that the joint 
+dictionary learning approaches in [1¨C3,8] are special cases when 
+ where I is a unit matrix. The approaches in [4,6] are 
+similar but by having W h 
+ I only. They assume that the relations 
+should be linear. Considering the complicated mapping between 
+and 
+after applying 
+-norm on LR coecient and 
+ F -norm 
+on HR coecient, we prefer a non-linear model instead of a lin- 
+ear one. Our idea is to model the relations as a combination of an 
+encoding process and a decoding process similar to auto-encoder. 
+Specically, we encode the input ( 
+/ 
+) non-linearly, and decode 
+the latent representation to the output ( 
+/ 
+) linearly. Thus, the 
+function (2) becomes: 
+ T 
+ T 
+)
+s.t .
+
+¦Á
+
+h 
+
+¦Á
+
+l 
+
+W h 
+
+=
+
+ W l 
+
+=
+
+ I,
+
+=
+
+¦Á
+
+h 
+
+¦Á
+
+l 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+¦Á
+
+h 
+
+¦Á
+
+l 
+
+(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+ 1 
+
++
+
+(cid:3)
+
+¦Á
+
+h 
+(T h 
+
+T 
+P l 
+h 
+
+(cid:3)
+
+2 
+F 
+
+ P h 
+
+=
+
+ so f t 
+
+¦Á
+
+h 
+
+,
+
+ P l 
+
+=
+
+ so f t 
+
+(T l 
+
+¦Á
+
+l 
+
+)
+
+,
+
+(3) 
+
+where the non-linear mapping is done by a soft-thresholding op- 
+¡¤). In this situation, the auxiliary variables P h 
+erator soft ( 
+and P l 
+are regarded as the latent representations in the auto-encoder net- 
+work, which is obtained by projecting the input to the feature 
+space. In fact, our coecients conversion learning via auto-encoder 
+is a generalization of the conventional linear mapping model. 
+
+3.3. Non-local constraint on HR sparse coecient 
+
+When introducing the function (3) , we assume the HR patch X h 
+has been free of noise and then update its estimation through min- 
+imizing the error by 
+ F -norm. Nevertheless, the iterative optimiza- 
+tion does not guarantee this, particularly, at the rst few iterations. 
+The encoded noise in 
+still affects 
+and the results can be ar- 
+bitrarily bad. To make our solution steadily converge at a better 
+result, the HR patch coecient 
+is also desired to be regularized 
+in both the dictionary learning and the image SR inference. 
+
+(cid:2)
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+¦Á
+
+h 
+
+It has been found that the local image structures tend to re- 
+peat within a large region. These similar patches at different lo- 
+cations in the image are regarded as multiple observations of the 
+target patch. Such non-local similarity provides additional infor- 
+mation for estimating the target patch and inspired the non-local 
+means (NLM) methods [33,34] that had been applied to image de- 
+noising. Thus, a non-local constraint, which correlates the similari- 
+ties among patches, can be used to regularize the sparse decompo- 
+sition to prevent the iterative estimates from exhibiting unpleasant 
+noise amplication and artifacts. 
+In this work, we incorporate the non-local constraint (the cor- 
+relation of patch similarities) into regularizing the HR sparse co- 
+ecients update during the optimization, which is formulated as: 
+
+argmin 
+
+¦Á
+
+h 
+
+n (cid:2)
+=1 
+i 
+
+(cid:3)
+
+¦Á i 
+h 
+
+ n (cid:2)
+
+¦Á j 
+N i j 
+j=1 
+h 
+
+(cid:3)
+
+2 
+F 
+
+=
+
+ t r (¦Á
+
+¦Á T 
+h L 
+h 
+
+)
+
+,
+
+(4) 
+
+where N is the weight matrix, N ij 
+denotes the similarity between 
+ N 
+ N 
+)
+)
+patches x i 
+and x j 
+, and L 
+ . We construct N 
+through connecting every patch to its k most similar image patches 
+and compute the weights of connected patches by Gaussian ker- 
+nel function [33] . In addition, we do this on the HR output only 
+because the HR image has more details, the weight matrix con- 
+structed from it is more accurate. Finally, the non-local constraint 
+t r (¦Á
+L 
+)
+ is employed to regularize our dictionary learning and 
+the image SR inference to further enhance the SR performance. 
+
+=
+
+(I n 
+¡Án 
+
+T (I n 
+¡Án 
+
+h 
+
+¦Á T 
+h 
+
+3.4. Optimization and inference 
+
+By incorporating all the above new constraints into our coupled 
+dictionary learning, the proposed method needs to solve the fol- 
+lowing optimization problem: 
+
+argmin 
+
+D l 
+
+,
+
+ D h 
+ T l 
+ T h 
+
+,
+
+,
+
+,¦Á
+
+l 
+
+,¦Á
+
+h 
+
+1 
+2 
+
+((cid:3)
+(cid:3)
+
+ X l 
+
+ D l 
+
+¦Á
+
+l 
+
+(cid:3)
+
+2 
+F 
+
++
+
+(cid:3)
+
+ X h 
+
+ D h 
+
+¦Á
+
+h 
+
+(cid:3)
+
+2 
+F 
+
+)
+
++
++
+
+¦Ì((cid:3)
+¦Ë((cid:3)
+¦Á
+
+¦Á
+
+l 
+
+(cid:3)
+
+ 1 
+
++
+
+¦Á
+
+h 
+
+(cid:3)
+
+ 1 
+
+)
+
++
+
+¦Ã t r (¦Á
+ T 
+¦Á
+ so f t 
+
+¦Á T 
+h L 
+h 
+T 
+P l 
+2 
+h 
+F 
+(T l 
+
+)
+
+l 
+
+ T 
+ so f t 
+
+T 
+P h 
+l 
+(T h 
+
+(cid:3)
+
+ 1 
+
++
+
+(cid:3)
+
+h 
+
+(cid:3)
+
+)
+¦Á
+
+s.t .
+
+ P h 
+
+=
+
+¦Á
+
+h 
+
+)
+
+,
+
+ P l 
+
+=
+
+l 
+
+)
+
+.
+
+(5) 
+
+While the objective function (5) is not jointly convex to D l 
+, 
+, 
+and 
+, it is convex with respect to each of them if the 
+remaining variables are xed. Given the training data X l 
+and L , 
+we apply a coordinate descent algorithm (as shown in Algorithm 1 ) 
+
+, D h 
+
+T l 
+, T h 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+, X h 
+
+Algorithm 1 Dictionaries and transition matrices learning 
+¡Áq , non-local 
+Input: Training data matrices X l 
+matrix L 
+1. Initialize D 
+T 
+as I . 
+2. Let P 
+ so f t 
+(T 
+ and P 
+while not converged do 
+3. Update D 
+and D 
+the previous iteration. 
+1 . Update 
+4 
+and 
+5. Update T 
+
+¡Ê
+
+R
+
+p 1 
+
+¡Áq and X h 
+
+¡Ê
+
+R
+
+p 2 
+
+¡Ê
+
+R
+
+¡Áq . 
+q 
+0 
+l 
+
+, D 
+
+0 
+h 
+
+, 
+
+¦Á 0 
+l 
+
+and 
+
+¦Á 0 
+h 
+
+by [1] , transition matrices T 
+
+0 
+l 
+
+and 
+
+0 
+h 
+
+0 
+l 
+
+¡û
+
+0 
+¦Á 0 
+l 
+l 
+
+)
+
+0 
+h 
+
+¡û
+
+ so f t 
+(T 
+
+0 
+¦Á 0 
+h 
+h 
+
+)
+
+ , k 
+
+=
+
+ 0 . 
+
++1 
+k 
+l 
+
++1 
+k 
+h 
+
+by (6) with 
+
+¦Á k 
+l 
+
+and 
+
+¦Á k 
+h 
++1 
+k 
+k 
+h 
++1 
+l 
++1 
+k 
+¦Á k 
+h 
+l 
+
+derived from 
+
++1 
+¦Á k 
++1 
+l 
+k 
+l 
+
++1 
+¦Á k 
+h 
++1 
+k 
+h 
+
+by (7) with D 
+
++1 
+k 
+l 
++1 
+k 
+l 
+
+, D 
+
+, T 
+
+and T 
+
+k 
+h 
+
+. 
+
+and T 
+
+by (14) with D 
+
+, D 
+
+, 
+
+and 
+
++1 
+¦Á k 
+h 
++1 
+k 
+l 
+
+. 
+
+6. P 
+7. k 
+end while 
+Output: D l 
+
+¡û
++
+
+ so f t 
+(
+
+ T 
+
++1 
++1 
+k 
+¦Á k 
+l 
+l 
+
+)
+
+ and P 
+
++1 
+k 
+h 
+
+¡û
+
+ so f t 
+(T 
+
++1 
++1 
+k 
+¦Á k 
+h 
+h 
+
+)
+
+ . 
+
+¡û
+
+ k 
+
+ 1 . 
+
+, D h 
+, T l 
+
+and T h 
+. 
+
+to optimizing the dictionaries { D l 
+}, transition matrices { T l 
+} 
+and coecients { 
+, 
+}, respectively. We now discuss how to up- 
+date these variables in each iteration. 
+
+, D h 
+
+, T h 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+181 
+
+Update D l 
+: We rst apply the algorithm of joint dictionary 
+learning [1] to the initialization of D l 
+and D h 
+for the optimization 
+process. When updating the two dictionaries during each iteration, 
+we consider the sparse coecients { 
+, 
+} and transition matrices 
+} as constants. As a result, the problem of (5) can be simpli- 
+ed into the following forms: 
+ D 
+ D 
+
+, D h 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+{ T l 
+, T h 
+
+argmin 
+
+D 
+
++1 
+k 
+l 
+
+(cid:3)
+(cid:3)
+
+ X l 
+
++1 
+k 
+¦Á k 
+l 
+l 
+
+(cid:3)
+(cid:3)
+
+2 
+F 
+
++
+
+¦Ç(cid:3)
+¦Ç(cid:3)
+
+ D 
+
++1 
+k 
+l 
+
+ D 
+ D 
+
+k 
+l 
+
+(cid:3)
+(cid:3)
+
+2 
+F 
+
+,
+
+argmin 
+
+D 
+
++1 
+k 
+h 
+
+ X h 
+
++1 
+k 
+¦Á k 
+h 
+h 
+
+2 
+F 
+
++
+
+ D 
+
++1 
+k 
+h 
+
+k 
+h 
+
+2 
+F 
+
+.
+
+(6) 
+
+After updated by an iterative scheme (e.g. the Conjugate Gradi- 
+ent method), the dictionaries D l 
+and D h 
+are column normalized to 
+avoid any trivial solutions. 
+Update 
+, 
+: Similar to dictionary updates, the transition ma- 
+trices { T l 
+} and dictionaries { D l 
+} are xed when we calcu- 
+late the solutions of sparse coecients { 
+, 
+}. Thus, the objective 
+functions are written as follows: 
+ T 
+1 
+argmin 
+2 
+
+¦Á
+
+l 
+, T h 
+
+¦Á
+
+h 
+
+, D h 
+
+¦Á
+
+l 
+
+¦Á
+
+h 
+
+¦Á
+
+l 
+
+(cid:3)
+(cid:3)
+(cid:3)
+
+ X l 
+
+ D l 
+ D h 
+
+¦Á
+
+l 
+
+(cid:3)
+(cid:3)
+
+2 
+F 
+
++
+
+¦Ë(cid:3)
+¦Ë(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+(cid:3)
+
+ 1 
+
++
+
+¦Ì(cid:3)
+
+¦Á
+
+l 
+
+(cid:3)
+
+ 1 
+
+,
+
+1 
+argmin 
+2 
+
+¦Á
+
+h 
+
+ X h 
+
+¦Á
+
+h 
+
+2 
+F 
+
++
+
+¦Á
+
+h 
+
+ T 
+
+T 
+P l 
+h 
+
+2 
+F 
+
++
+
+¦Ì(cid:3)
+
+¦Á
+
+h 
+
+ 1 
+
++
+
+¦Ã t r (¦Á
+
+¦Á T 
+h L 
+h 
+
+)
+
+.
+
+(7) 
+
+Besides the standard sparse-coding formulation, here is an ad- 
+ T 
+ditional coecient sparsity constraint term 
+ 1 with re- 
+spect to 
+. So the commonly used minimization algorithms are no 
+longer applicable. We propose a smooth proximal gradient method 
+motivated by [35,36] . Specically speaking, the non-smooth 
+- 
+norm coecient sparsity constraint term is transformed into its 
+dual domain, where it can be approximated by a smooth 
+ term 
+using Nestrov¡¯s algorithm. Since the output is convex and differ- 
+entiable with respect to 
+with a sparsity constraint, we are able 
+to solve it eciently using a proximal method, e.g. Fast Iterative 
+Shrinkage Thresholding Algorithm (FISTA) [15] . 
+ T 
+We rst rewrite the sparsity constraint term 
+the dual form of 
+-norm as 
+ T 
+
+(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+¦Á
+
+l 
+
+(cid:2)
+
+ 1 
+
+(cid:2)
+
+ ¡Þ
+
+¦Á
+
+l 
+
+(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+ 1 using 
+
+(cid:2)
+
+ 1 
+
+(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+ 1 
+
+=
+
+¦Ä T (¦Á
+ argmax 
+
+(cid:3)
+
+¦Ä(cid:3)
+
+ ¡Þ
+
+¡Ü1 
+
+l 
+
+ T 
+
+T 
+P h 
+l 
+
+)
+
+,
+
+(8) 
+
+where 
+¦Ä is the dual variable. Then, we approximate above solution 
+using Nestrov¡¯s algorithm as 
+ T 
+¡Ö argmax 
+¦Ä T (¦Á
+where d (¡¤)
+is a smoothing operator and 
+¦Ñ is a smooth- 
+ness parameter. We can see that the approximate function is 
+convex and differentiable. Thus, the approximate gradient 
+ 1 over ¦Á
+T 
+is: 
+ T 
+¡Ö S 
+
+(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+ 1 
+
+(cid:3)
+
+¦Ä(cid:3)
+
+ ¡Þ
+
+¡Ü1 
+
+l 
+
+ T 
+
+T 
+P h 
+l 
+
+)
+
+ ¦Ñ d (¦Ä )
+
+,
+
+(9) 
+
+=
+
+1 
+2 
+
+(cid:3)
+
+¦Ä(cid:3)
+
+2 
+2 
+
+(cid:3)
+
+¦Á
+
+l 
+
+
+
+T 
+P h 
+l 
+
+(cid:3)
+
+l 
+
+(cid:9)
+
+ ¦Á
+
+l 
+
+(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+ 1 
+
+(cid:3)
+
+¦Á
+
+l 
+
+ T 
+
+T 
+P h 
+l 
+
+¦Ñ
+
+(cid:4)
+
+,
+
+(10) 
+
+where S ( x ) is a function projecting x onto an 
+1 
+¡Ü x 
+¡Ü 1 
+1 
+1 
+x 
+1 
+¦Á
+Finally, the gradient with respect to 
+ T 
+¡Ö D 
+
+(cid:2)
+
+ ¡Þ
+
+ -ball, 
+
+S(x 
+)
+
+=
+
+(cid:5)
+
+ x 
+
+,
+,
+
+>
+<
+
+ 1 
+
+,
+
+ x 
+
+.
+
+(11) 
+
+l 
+T 
+P h 
+l 
+
+is written as: 
+
+(cid:9)
+
+ ¦Á
+
+l 
+
+h 1 
+
+(¦Á
+
+l 
+
+)
+
+T 
+(D l 
+l 
+
+¦Á
+
+ X l 
+l 
+ D l 
+
+)
+
++
+
+¦ËS 
+
+(cid:3)
+
+¦Á
+
+l 
+
+¦Ñ
+
+(cid:4)
+
+,
+
+(12) 
+
+ T 
+where h 1 
+For the optimization of 
+, we also use the proximal methods 
+like FISTA. Its gradient is given as follows: 
+¡Ö D 
+ T 
+(L 
+
+(¦Á
+
+l 
+
+)
+
+=
+
+1 
+2 
+
+(cid:3)
+
+ X l 
+
+¦Á
+
+l 
+
+(cid:3)
+
+2 
+F 
+
++
+
+¦Ë(cid:3)
+
+¦Á
+
+l 
+
+T 
+P h 
+l 
+
+(cid:3)
+
+ 1 . 
+
+¦Á
+
+h 
+ X h 
+h 
+
+(cid:9)
+
+ ¦Á
+
+h 
+
+h 2 
+
+(¦Á
+
+h 
+
+)
+
+T 
+(D h 
+h 
+T )
+
+¦Á
+
+)
+
++
+
+ 2 
+
+¦Ë(¦Á
+
+h 
+
+T 
+P l 
+h 
+
+)
+
++
+
+¦Ã ¦Á
+
+h 
+
++
+
+ L 
+
+,
+
+(13) 
+
+ T 
+)
+¦Ã t r (¦Á
+where h 2 
+L 
+Update T l 
+: When updating the transition matrices, only the 
+terms associating with { T l 
+} are considered in the optimization. 
+With xed { D l 
+} and { 
+}, we solve the following problem 
+for update, 
+
+(¦Á
+
+1 
+h 
+2 
+, T h 
+
+=
+
+(cid:3)
+
+ X h 
+
+ D h 
+
+¦Á
+
+h 
+
+(cid:3)
+
+2 
+F 
+
++
+
+¦Ë(cid:3)
+
+¦Á
+
+h 
+
+T 
+P l 
+h 
+
+(cid:3)
+
+2 
+F 
+
++
+
+h 
+
+¦Á T 
+h 
+
+)
+
+ . 
+
+, T h 
+l 
+
+, D h 
+
+¦Á
+
+, 
+
+¦Á
+
+h 
+
+argmin 
+
+T 
+
++1 
+k 
+l 
+
+(cid:3)
+
+¦Á
+
+l 
+
+ T 
+
++1 
+k 
+T P h 
+l 
+
+(cid:3)
+
+ 1 
+
++
+
+¦Ç(cid:3)
+
+ T 
+
++1 
+k 
+l 
+
+ T 
+
+k 
+l 
+
+(cid:3)
+
+2 
+F 
+
+,
+
+argmin 
+
+T 
+
++1 
+k 
+h 
+
+(cid:3)
+
+¦Á
+
+h 
+
+ T 
+
++1 
+k 
+T P l 
+h 
+
+(cid:3)
+
+2 
+F 
+
++
+
+¦Ç(cid:3)
+
+ T 
+
++1 
+k 
+h 
+
+ T 
+
+k 
+h 
+
+(cid:3)
+
+2 
+F 
+
+.
+
+(14) 
+
+This can be done by the Conjugate Gradient method as well. 
+Inference : Once the optimization is complete, the derived 
+model is employed for image SR reconstruction. We rst partition 
+the LR image into overlapped patches, and initialize the sparse co- 
+ecients 
+via solving: 
+
+¦Á
+
+l 
+
+of X l 
+ D l 
+¦Á 0 
+l 
+
+1 
+argmin 
+2 
+
+¦Á 0 
+l 
+
+(cid:3)
+
+ X l 
+
+(cid:3)
+
+2 
+F 
+
++
+
+¦Ì(cid:3)
+
+¦Á 0 
+l 
+
+(cid:3)
+
+ 1 
+
+.
+
+(15) 
+
+Once 
+
+¦Á
+
+l 
+
+is calculated, we initialize 
+
+¦Á
+
+h 
+
+in the derived feature space: 
+
+¦Á 0 
+h 
+
+=
+
+ T 
+
+T 
+h 
+
+so f t 
+
+(T l 
+¦Á 0 
+l 
+
+)
+
+.
+
+(16) 
+
+After iteratively updating 
+through the objective function (5) , we 
+have X h 
+as the nal SR output. The procedure is given in 
+Algorithm 2 . 
+
+¦Á
+
+h 
+
+=
+
+ D h 
+
+¦Á
+
+h 
+
+Algorithm 2 Image SR inference 
+Input: Dictionaries D l 
+and D h 
+, transition matrices T l 
+and T h 
+, a low- 
+resolution image Y . 
+¡ÁM from LR image Y with 1pixel 
+1. Extract LR patches X l 
+overlap in each direction. 
+2. Initiate 
+by (15) and 
+by (16) . 
+3. Let P 
+ so f t 
+(T 
+)
+ and P 
+ so f t 
+(T 
+)
+0 computed from X 
+4. Initialize: X 
+, L 
+while not converged do 
+1 . Update 
+5 
+and 
+6. Update P 
+
+¡Ê
+
+R
+
+p 1 
+
+¦Á 0 
+l 
+
+¦Á 0 
+h 
+
+0 
+l 
+
+¡û
+
+0 
+¦Á 0 
+l 
+l 
+¦Á 0 
+h 
+
+0 
+h 
+
+¡û
+
+0 
+¦Á 0 
+h 
+h 
+
+ . 
+
+0 
+h 
+
+¡û
+
+ D h 
+
+0 
+h 
+
+, k 
+
+=
+
+ 0 . 
+
++1 
+¦Á k 
++1 
+l 
+k 
+l 
+
++1 
+¦Á k 
+h 
++1 
+¦Á k 
+k 
+l 
+l 
+
+by (7) with X 
+(T 
+)
+ so f t 
++1 computed from X 
+and L 
+
+k 
+h 
+
+, L 
+(T 
+ so f t 
+
+k , P 
+k 
+l 
++1 
+k 
+¦Á k 
+h 
+h 
+
+and P 
+)
+
+k 
+h 
++1 
+k 
+h 
+
+. 
+
+¡û
+
+ , P 
+
++1 
+k 
+h 
++1 
+k 
+h 
+
+¡û
+
+ , X 
+
+¡û
+
++1 
+¦Á k 
+D h 
+h 
+
+k 
+
+. 
+
+7. k 
+end while 
+8. Put the patches X h 
+Output: HR image X h 
+. 
+
+¡û
+
+ k 
+
++
+
+ 1 . 
+
+into a high-resolution image X . 
+
+4. Experiments and discussion 
+
+To validate the robustness of our method to noise and the ef- 
+fectiveness on detail recovery, the performance of our method is 
+evaluated on various types of image SR tasks in Section 4.2 , which 
+include synthesized noisy images, real noisy images, denoised im- 
+ages and noiseless images. We also compare our approach with 
+CSR [26] , GSR [27] and SRNI [22] , which are specically designed 
+for noisy SR application. We select the test images set includ- 
+ing standard databases Set5, Set14, BD100 from [7] , BD50 from 
+[22] and newly created one as shown in Fig. 3 . The quantita- 
+tively validations are calculated in terms of Peak Signal-to-Noise 
+Ratio (PSNR) and Structural Similarity Index (SSIM) from their HR 
+outputs. To show the sparsity eciency of the 
+-norm coe- 
+cients transition term, we also provide some visualization results 
+in Section 4.3 . Furthermore, we conduct some discussions on the 
+computational complexity in Section 4.4 and parameters determi- 
+nation in Section 4.5 . 
+
+(cid:2)
+
+ 1 
+
+1 The matrix L (non-local constraint) is applied to regularize 
+¦Á h as the function 
+(4) . 
+
+182 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+Fig. 3. The test images. 
+
+Fig. 4. PSNR and SSIM of seven competing methods and our methods when noise level varies from 0 up to 20. 
+
+4.1. Experimental settings 
+
+To have synthesized noisy/noiseless LR images, we blur and 
+down-sample HR images using Matlab function ¡°imresize()¡± with a 
+scaling factor, and then add Gaussian white noise with varied stan- 
+dard deviations (noiseless image with a deviation 0). Considering 
+that human eyes are more sensitive to the luminance channel, the 
+proposed method is only performed on Y channel in YCbCr color 
+space. The color is directly magnied to the desired size later by 
+Bicubic interpolation. For the training dataset, 50 0,0 0 0 LR-HR im- 
+age patch pairs are randomly extracted from database [1] , where 
+the LR patches are interpolated up to the same size as the HR 
+¡Á 9 with one pixel 
+training data. The HR patch size is xed as 9 
+overlap between adjacent patches. For the parameters in objective 
+function (5) , { 
+¦Ë, 
+¦Ì, 
+¦Ã } is set to {0.5, 0.1, 0.05}. The dictionary size 
+is dened as 1024. Moreover, our approach nds k 
+ 10 most simi- 
+lar patches to calculate the weight matrix N for the non-local con- 
+straint. The empirical studies of the parameters in the proposed 
+algorithm will be discussed in the following subsection. 
+
+=
+
+4.2. Experimental results 
+
+In this Section 4.2.1 ¨C4.2.4 , several state-of-the-art methods 
+are used as comparison baselines, which can be divided into 
+two classes: (i) The conventional coupled dictionary learning ap- 
+proaches, such as Zeyde¡¯s approach [3] based on the sparse repre- 
+sentation invariance, Wang¡¯s approach [4] based on a semi-coupled 
+dictionary, He¡¯s approach [6] based on the Beta process, Dai¡¯s ap- 
+proach (JOR) [16] based on jointly optimized regressors and A 
+[8] based on an anchored neighborhood regression. (ii) Deep con- 
+volutional networks based methods, such as Super-resolution Con- 
+volutional Neural Network (SRCNN) [17,21] and Very Deep Con- 
+volutional Networks for Image Super-Resolution (VDSR) [20] . To 
+have a better insight into our proposed method, we deliberately 
+create two versions: proposed1 , a partial version of only opti- 
+mization on the 
+-norm coecients transition term to suppress 
+noise; proposed2 , a full version including both the 
+-norm and 
+the non-local constraint for improving SR quality. Moreover, effec- 
+tive noisy image SR methods: CSR [26] which uses the centralized 
+
++
+
+ 1 
+
+ 1 
+
+(cid:2)
+
+(cid:2)
+
+sparse representation to regularize the ill-posed SR problem, GSR 
+[37] which establishes a framework for image SR using group spar- 
+sity and proposes a robust dictionary learning method to suppress 
+the noise, SRNI [22] which integrates the merits of image denoising 
+and image SR by a convex combination are compared to demon- 
+strate the advantage of our proposed method. 
+
+ ,
+
++
+
+4.2.1. Results on synthetic noisy images 
+In this subsection, we use the test images shown in Fig. 3 to 
+conduct experiments to explore how noise affects the perfor- 
+mances of our method and the other state-of-the-art SR methods. 
+The quantitative comparisons in both PSNR and SSIM are shown in 
+Fig. 4 when varying the standard deviation of Gaussian noise from 
+0 up to 20 with step size 4. From Fig. 4 one can see other seven 
+approaches degrade much quicker when noise level increases. In 
+contrast, proposed1 and proposed2 perform well across all noise 
+level, even when the input noise level is high. We further pro- 
+vide the visual comparisons on noisy image parrots with noise 
+level 20 and image buttery with noise level 4 shown in Figs. 5 
+and 6 , respectively. In Fig. 5 , one can see that Zeyde¡¯s method, 
+A 
+ SRCNN and VDSR generate plausible details and sharper edges 
+along parrots beak, but are poor at suppressing the noise, particu- 
+larly on the smooth regions. Wang¡¯s approach and He¡¯s approach 
+generate over-smoothed results and meanwhile fail to suppress 
+the noise effect. JOR produces relatively pleasing result by incor- 
+porating multiple mapping functions, and outperforms the simi- 
+lar approach, e.g. Wang¡¯s approach and He¡¯s approach. Our pro- 
+posed1 ( Fig. 5 .i) produces visually comparable result that has lit- 
+tle remaining noise. Moreover, the proposed2 with the non-local 
+constraint ( Fig. 5 .j) further improves SR performance by nely 
+synthesizing the high-frequency details and eliminating artifacts. 
+Fig. 5 shows all other competing approaches produce unacceptable 
+results, where the noise is magnied rather than suppressed. The 
+reason is that the noise in LR input is rst upscaled by interpola- 
+tion, then encoded into HR result through the 
+ F -norm coecients 
+transition term in the conventional coupled dictionary learning ap- 
+proaches and through the convolution operation in the deep con- 
+volutional networks based methods. Wang¡¯s approach generates a 
+relatively ner result due to a non-local post-processing. However, 
+
+(cid:2)
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+183 
+
+¡Á 3) with a noise level of 20. Top: Visual SR results. Bottom: left. Magnied local SR patches. right. Noise residual maps 
+Fig. 5. Results of synthetic noisy image parrots ( 
+visualizing the difference between SR patches of the noiseless LR inputs and their noisy ones, where the residual signal (white dots) is magnied by 10 times. (a) Ground- 
+truth (left) and its interpolated LR version (right); (b) Zeyde¡¯s approach [3] ; (c) Wang¡¯s approach [4] ; (d) He¡¯s approach [6] ; (e) JOR [16] ; (f) A 
+ [8] ; (g) SRCNN [17,21] ; (h) 
+VDSR [20] ; (i) Proposed1; (j) Proposed2. 
+
++
+
+¡Á 3) with a noise level of 4. Please refer to Fig. 5 for the description of subgures. 
+Fig. 6. Results of synthetic noisy image buttery ( 
+
+184 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+¡Á 3). (a) Bicubic interpolation; (b) Zeyde¡¯s approach [3] ; (c) Wang¡¯s approach [4] ; (d) He¡¯s approach [6] ; (e) JOR [16] ; (f) A 
+Fig. 7. Results of the real LR noise image ( 
+(g) SRCNN [17,21] ; (h) VDSR [20] ; (i) Proposed1; (j) Proposed2. 
+
++
+
+ [8] ; 
+
+Fig. 8. PSNR and SSIM of seven competing methods and our methods, where the inputs of other seven have been denoised, and noise level varies from 0 up to 20. 
+
+it does the sparse-coding and non-local constraint regularization 
+separately, which restricts the noisy SR performance. JOR produces 
+an over-smoothed HR result because its class-label selection be- 
+comes ambiguous when the noise is severe. In contrast our meth- 
+ods ( Fig. 5 .i and j) successfully suppress the noise and produce vi- 
+sually pleasing SR results. The Fig. 6 further validates our summary 
+of above results. More visual comparison can be found in supple- 
+mentary document, Fig. C _ 1¨CC _ 8. 
+
+4.2.2. Results on real noisy examples 
+To validate the effectiveness of our proposed algorithm, we test 
+its performance on real-world noisy images and the results are 
+shown in Fig. 7 . The results produced by the competing meth- 
+ods are sensitive to noise. For example, obvious noise can be ob- 
+served in the sky area. Meanwhile, we can see that the compet- 
+ing methods (except VDSR) smooth much the edges of the build- 
+ings. Though VDSR generates sharp edges and ne details, it looks 
+somewhat unnatural. Overall, our approach produces visually more 
+satisfying results, involving sharp edges, noise suppression. More 
+visual comparison can be found in supplementary document, Fig. 
+D _ 1 and D _ 2. 
+
+competing methods. The averaged quantitative performance of de- 
+noised synthetic noisy images is summarized in Fig. 8 . From this 
+gure, we can see that our proposed method, without resorting to 
+additional denoising, still achieves an obvious improvement than 
+other state-of-the-art approaches. Apart from quantitative results, 
+we also show visual comparisons of the denoised-SR results shown 
+in Fig. 9 (denoised synthetic noisy images) and Fig. 10 (denoised 
+real noisy images). In Fig. 9 , the original noise level is 12. Thanks to 
+denoising, the competing methods all produce rather clear result 
+with little noise in Fig. 9 but tend to smooth high frequency de- 
+tails as shown along the brim of hat and destroy the image struc- 
+ture as shown cheek region within the face. This is in large part 
+due to the missing or smoothing out edges in the denoising proce- 
+dure, which restricts the subsequent SR step performance. By con- 
+trast, our method produces much sharper edges and more faithful 
+details because of the inherent 
+-norm who preserves sparsity of 
+input signal. From Fig. 10 , one can see that the visual comparison is 
+analogous to that described in the results of the denoised synthetic 
+noisy images, with an exception that VDSR generates over-sharp 
+edges, which is unnatural to the observer. More visual comparison 
+can be found in supplementary document, Fig. E _ 1¨CE _ 4. 
+
+ 1 
+
+(cid:2)
+
+4.2.3. Results on denoised images 
+In this subsection, we further perform a comparison on de- 
+noised synthetic noisy images (same as those used in the 
+Section 4.2.1 ) and denoised real noisy data. The noisy images are 
+rst denoised by BM3D algorithm [38] , and then input into seven 
+
+4.2.4. Results on noiseless images 
+To verify the effectiveness of our proposed method to noise- 
+less images, we also compare it against the aforementioned seven 
+approaches, and summarize the average PSNR and SSIM scores 
+on three test datasets with different magnication factors in 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+185 
+
+¡Á 3) with a noise level of 12. Top: Visual SR results. Bottom: left. Magnied local denoised SR patches. right. 
+Fig. 9. Results of denoised synthetic noisy image foreman ( 
+Magnied local noiseless SR patches. (a) Ground-truth (left) and BM3D-Bicubic (right); (b) BM3D-Zeyde¡¯s approach [3] ; (c) BM3D-Wang¡¯s approach [4] ; (d) BM3D-He¡¯s 
+approach [6] ; (e) BM3D-JOR [16] ; (f) BM3D-A 
+ [8] ; (g) BM3D-SRCNN [17,21] ; (h) BM3D-VDSR [20] ; (i) Proposed1; (j) Proposed2. 
+
++
+
+¡Á 3). (a) BM3D-Bicubic; b) BM3D-Zeyde¡¯s approach [3] ; (c) BM3D-Wang¡¯s approach [4] ; (d) BM3D-He¡¯s approach [6] ; 
+Fig. 10. Results of the denoised real LR noise image ( 
+(e) BM3D-JOR [16] ; (f) BM3D-A 
+ [8] ; (g) BM3D-SRCNN [17,21] ; (h) BM3D-VDSR [20] ; (i) Proposed1; (j) Proposed2. 
+
++
+
+Table 1 
+¡Á 3 magnication) on test data set Set5, Set14, BD100. 
+Average PSNR, SSIM and running time ( 
+
+Benchmark 
+
+Zeyde Wang 
+[3] 
+[4] 
+
+He 
+[6] 
+
+Set5 
+
+Set14 
+
+BD100 
+
+PSNR 
+SSIM 
+Time (s) 
+PSNR 
+SSIM 
+Time (s) 
+PSNR 
+SSIM 
+Time (s) 
+
+31.90 
+0.9088 
+34.6 
+28.67 
+0.8188 
+71.3 
+27.87 
+0.7808 
+60.2 
+
+32.46 
+0.9045 
+715.7 
+29.26 
+0.8204 
+1384.3 
+28.32 
+0.7961 
+1044.3 
+
+32.38 
+0.9037 
+414.7 
+28.97 
+0.8175 
+803.4 
+28.15 
+0.7953 
+626.4 
+
+JOR 
+[16] 
+
+32.55 
+0.9064 
+35.3 
+29.09 
+0.8194 
+70.6 
+28.17 
+0.7951 
+56.3 
+
++
+
+A 
+[8] 
+
+32.59 
+0.9088 
+8.2 
+29.13 
+0.8188 
+15.3 
+28.29 
+0.7835 
+12.4 
+
+SRCNN 
+[17,21] 
+
+VDSR 
+[20] 
+
+Proposed1 
+(ours) 
+
+Proposed2 
+(ours) 
+
+32.75 
+0.9090 
+13.5 
+29.30 
+0.8215 
+25.7 
+28.41 
+0.7863 
+17.7 
+
+33.66 
+0.9213 
+6.6 
+29.77 
+0.8314 
+12.4 
+28.82 
+0.7976 
+8.8 
+
+32.65 
+0.9083 
+312.4 
+29.15 
+0.8178 
+604.5 
+28.24 
+0.7954 
+454.2 
+
+32.94 
+0.9105 
+563.2 
+29.44 
+0.8223 
+1124.4 
+28.49 
+0.7975 
+782.4 
+
+186 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+Table 2 
+¡Á 4 magnication) on test data set Set5, Set14, BD100. 
+Average PSNR, SSIM and running time ( 
+
+Benchmark 
+
+Zeyde Wang 
+[3] 
+[4] 
+
+He 
+[6] 
+
+Set5 
+
+Set14 
+
+BD100 
+
+PSNR 
+SSIM 
+Time (s) 
+PSNR 
+SSIM 
+Time (s) 
+PSNR 
+SSIM 
+Time (s) 
+
+29.69 
+0.8603 
+32.8 
+26.88 
+0.7491 
+64.5 
+26.51 
+0.7085 
+56.2 
+
+30.27 
+0.8589 
+705.6 
+27.26 
+0.7485 
+1335.6 
+26.64 
+0.7043 
+1024.9 
+
+30.16 
+0.8612 
+395.4 
+27.13 
+0.7512 
+784.7 
+26.51 
+0.7035 
+602.4 
+
+JOR 
+[16] 
+
+30.19 
+0.8604 
+31.1 
+27.26 
+0.7506 
+65.6 
+26.74 
+0.7065 
+48.3 
+
++
+
+A 
+[8] 
+
+30.29 
+0.8603 
+7.5 
+27.33 
+0.7491 
+13.3 
+26.82 
+0.7087 
+10.5 
+
+SRCNN 
+[17,21] 
+
+VDSR 
+[20] 
+
+Proposed1 
+(ours) 
+
+Proposed2 
+(ours) 
+
+30.49 
+0.8628 
+11.2 
+27.50 
+0.7513 
+21.4 
+26.90 
+0.7101 
+12.4 
+
+31.35 
+0.8838 
+6.1 
+28.01 
+0.7674 
+11.3 
+27.29 
+0.7251 
+7.4 
+
+30.35 
+0.8615 
+293.5 
+27.41 
+0.7504 
+584.1 
+26.85 
+0.7095 
+432.6 
+
+30.63 
+0.8645 
+538.6 
+27.73 
+0.7542 
+1108.8 
+27.01 
+0.7143 
+758.5 
+
+¡Á 3). (a) Ground-truth; (b) Zeyde¡¯s approach [3] ; (c) Wang¡¯s approach [4] ; (d) He¡¯s approach [6] ; (e) JOR [16] ; (f) A 
+Fig. 11. Results of the noiseless LR image ower ( 
+(g) SRCNN [17,21] ; (h) VDSR [20] ; (i) Proposed1; (j) Proposed2. 
+
++
+
+ [8] ; 
+
+Fig. 12. PSNR and SSIM of SRNI [22] , CSR [26] , GSR [37] and our proposed method on BD50 under varied noise levels (from 10 up to 30). 
+
+Tables 1 and 2 . One can see our methods are still able to out- 
+perform all other coupled dictionary based approaches across all 
+datasets. Compared with deep learning based method SRCNN, the 
+proposed1 is slightly inferior to the SRCNN. By applying the non- 
+local similarity constraint, our best method (proposed2) achieves 
+comparable performance to SRCNN (outperforms it over 0.2dB in 
+¡Á 3 magnication and 0.16dB in PSNR, 
+PSNR, 0.0020 in SSIM for 
+¡Á 4 magnication), but is slightly inferior to 
+0.0030 in SSIM for 
+¡Á 3 magnication and 0.42dB in PSNR, 0.0144 in SSIM for 
+VDSR by an average loss of 0.46dB in PSNR, 0.0067 in SSIM for 
+¡Á 4 
+magnication. Fig. 11 shows a visual comparison. One can see that 
+Zeyde¡¯s approach [3] produces blurred textural details and zigzag 
+
+edges because of their simple assumption of the invariant sparse 
+representation. He¡¯s approach [6] is very competitive in terms of 
+visual quality compared to Zeyde¡¯s by relaxing the representation 
+relationship assumption to a beta process prior for the coupled 
+dictionary learning. Wang¡¯s approach [4] is a large improvement 
+by introducing a more complicated assumption that there is a lin- 
+ear mapping between 
+and 
+. Although it produces a better 
+HR image with many ne details, some unpleasant artifacts still 
+can be found along major edges. JOR [16] improves the SR per- 
+formance signicantly compared to Zeyde¡¯s approach by involv- 
+ing multiple regressors. Using a similar framework (sparse repre- 
+sentation invariance assumption) of Zeyde¡¯s, A 
+ [8] combines the 
+
++
+
+¦Á
+
+¦Á
+
+l 
+
+h 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+187 
+
+¡Á 2) with a noise level of 20. (a) Bicubic interpolation. (b) Ground-truth. (c) SRNI [22] . (d) CSR [26] . (e) GSR [37] . (f) Proposed2. 
+Fig. 13. Results of the noisy LR image horse ( 
+
+¡Á 200 matrix, which is the subset of size 1024 
+¡Á M of the representation 
+Fig. 14. Visualization of the sparse representation of LR image patches. For clarity, we only show 200 
+coecients. Each column is the sparse coecient of an image patch. Red indicates positive values, blue indicates negative values and white denotes exact zero. (a) with 
+norm coecients transition term constraint; (b) with 
+ 1 -norm coecients transition term constraint. (For interpretation of the references to color in this gure legend, the 
+reader is referred to the web version of this article.) 
+
+ F - 
+
+(cid:2)
+
+(cid:2)
+
+in Fig. 11 .j, superior to all other SR approaches including VDSR. 
+It suggests that the non-local similarity constraint effectively im- 
+proves the stability of sparse decomposition, which benets the SR 
+performance. More visual comparison can be found in supplemen- 
+tary document, Fig. F _ 1¨CF _ 3. 
+
+4.2.5. Comparison with specialized noisy SR methods 
+To further illustrate the advantage of our proposed method on 
+the noisy images, we compare to the state-of-the-art noisy SR 
+methods: CSR [26] , GSR [37] and SRNI [22] . For a fair compari- 
+son, we quantitatively evaluate our performance on dataset BD50 
+in Fig. 12 , which is used in the work of SRNI. From it, one can see 
+that our method is consistently better than other methods at all 
+the levels of noise. We also give the visual comparison in Fig. 13 . 
+As can be seen in Fig. 13 , SRNI tends to remove textures besides 
+noise and exhibits some high-frequency artifacts. CSR can suppress 
+the noise, but some artifacts still can be found along edges. GSR 
+achieves very similar performances as CSR. In contrast, our pro- 
+posed method can successfully remove noise from textures and 
+generate visually pleasing high-frequency details. More visual com- 
+parison can be found in supplementary document, Fig. G _ 1¨CG _ 4. 
+
+4.3. Visualization of the sparse representation 
+
+To order to explicitly make a comparison between 
+ F -norm 
+coecients transition term and 
+-norm one, we visualize the 
+learned sparse representation of LR image patches with different 
+
+ 1 
+
+(cid:2)
+
+(cid:2)
+
+Fig. 15. Results of our proposed method with different transition term constraints 
+(noise variance 12). (a) with 
+ F -norm coecients transition term constraint; (b) 
+with 
+ 1 -norm coecients transition term constraint. 
+
+(cid:2)
+
+(cid:2)
+
+learned sparse dictionaries and neighbor embedding to improve 
+the SR performance. However, noticeable zigzags are created along 
+dominant edges, and some ne image structures are missing. The 
+deep learning based methods SRCNN and VDSR generate much 
+sharper edges and suppress noticeable artifacts in the SR result. 
+This is mainly due to a more accurate mapping function learned 
+by deep nets. Our proposed1 produces a slightly worse reconstruc- 
+tion quality with a few artifacts along the edges shown in Fig. 11 .i. 
+But, our proposed2 recovers a HR image with richer details shown 
+
+188 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+Fig. 16. The improvement in the SR results after each iteration. 
+
+Fig. 17. Performance results with different parameters setting. (a) with different patch sizes; (b) with different neighbor numbers. 
+
+constraints in Fig. 14 . In the heatmap, these LR coecient matrices 
+are visualized by the coecients value, where the coecient of an 
+image patch is arranged as a column vector. The nonzero elements 
+are denoted as colored points and white denote zero ones. It is 
+obvious that our method with 
+-norm yields sparser codes, which 
+fully demonstrates the superiority of 
+-norm over 
+ F -norm, and 
+validates the effectiveness of our proposed method. Also, Fig. 15 
+illustrates the SR output of our method with different transition 
+term constraints. 
+
+ 1 
+
+ 1 
+
+(cid:2)
+
+(cid:2)
+
+(cid:2)
+
+4.4. Algorithm complexity and computational time 
+
+In this subsection we provide the complexity of our pro- 
+posed method. The detailed inference algorithm is described in 
+Algorithm 2 . We can see that the main computations are in the 
+similar patches searching and the gradient computing in every it- 
+eration. Assume that the number of similar patches is S k 
+, the dic- 
+tionary size is D s , the number of outer loop iterations is I 1 
+and 
+the number of inter loop iterations is I 2 
+. Thus, the total complex- 
+ M )))
+ity of our method is O 
+P 
+logM 
+ . In practice, 
+2 of the 
+the inter loop is terminated after a xed toleration ( 10 
+relative error change) is reached. In terms of outer loop iteration 
+number determination, we plot the evolutions of PSNR and SSIM 
+versus iteration numbers in Fig. 16 . One can see that all the curves 
+start to increase dramatically and get stable in about 12 iterations. 
+Consequently, we use I 1 
+ 12 for the experiments in this paper. To 
+¡Á 85 image with a magnication of 3, the 
+super-resolve an 85 
+proposed method requires about 10 minutes, on an Intel Core i5- 
+3470 PC under Matlab R2012a environment. Also, we report the 
+
+ I 2 D s M (D s 
+
+(I 1 
+(S k 
+
+2 
+1 
+
++
+
++
+
+=
+
+running time for the comparative methods under the same testing 
+condition in the Table 1 and 2 . 
+
+4.5. Parameter determination 
+
+To achieve a reasonable parameter determination, in this sub- 
+section, we provide an analysis of the sensitivity to the setting 
+of parameters. We rst investigate the inuence of image patch 
+size and Fig. 17 (a) gives the changing results of PSNR and SSIM 
+from 3 to 13 with step 2. We see that these curves rst ascend 
+and then decline with the increase of patch size. Clearly, the big- 
+ger the patch size, the more expressive the input. Thus, increas- 
+ing the patch size improves the performance. However, the quality 
+¡Á 9, due to the 
+cures have a slight drop when input size exceeds 9 
+bigger input size (higher dimension) increasing the computational 
+cost. Fig. 17 (b) shows the curves of the averaged PSNR and SSIM 
+values with varying the number of similar neighbors in the non- 
+local constraint, whose change trends are similar to Fig. 17 (a). As 
+shown, both PSNR and SSIM values increase within the range from 
+4 to 10. Nonetheless, the curves then start to drop due to the need 
+of massive amounts of similar patches leading to inaccurate patch 
+matching. Furthermore, we analyze the inuence of the other pa- 
+rameters ( 
+¦Ë, 
+¦Ì, 
+¦Ã ) by grid search strategy shown in Fig. 18 and nd 
+that there is a single peak for each parameter. Thus, the proper pa- 
+rameter values are selected with the best performances. 
+
+5. Conclusions 
+
+We propose a robust dictionary learning for noisy image SR, 
+in which our 
+-norm solution on coecients transition term pre- 
+
+(cid:2)
+
+ 1 
+
+B. Yue et al. / Signal Processing 140 (2017) 177¨C189 
+
+189 
+
+Fig. 18. Performance results with different parameters setting. (a) with different 
+¦Ë values; (b) with different 
+¦Ì values; (c) with different 
+¦Ã values. 
+
+vents the noise to be transmitted from noisy LR input to HR out- 
+put. By incorporating the non-local constraint on HR sparse coe- 
+cient into our dictionary learning framework, the improved sparse 
+representation further enhances SR inference. Results on noisy, de- 
+noised and noiseless data validate the superiority of the proposed 
+method. 
+Although 
+-norm effectively suppresses the noise, it requires 
+sucient iterations during SR inference. In our next work, we will 
+try to use the dictionaries and transition matrices learned within 
+much fewer iterations as the initialization of a deep neural net- 
+work framework. It may reduce the training cost of the network 
+and speed up the SR inference simultaneously. 
+
+ 1 
+
+(cid:2)
+
+Acknowledgments 
+
+This work is supported by the National Basic Research Program 
+(973 Program) of China (No. 2013CB329402), the Fund for Foreign 
+Scholars in University Research and Teaching Programs (the 111 
+Project) (No. B07048), the Program for Cheung Kong Scholars and 
+Innovative Research Team in University(No. IRT 15R53), and JSPS 
+Grants-in-Aid for Scientic Research C (No. 15K00236) for funding. 
+
+Supplementary material 
+
+Supplementary material associated with this article can be 
+found, in the online version, at 10.1016/j.sigpro.2017.04.015 . 
+
+References 
+
+[1] J. Yang , J. Wright , T.S. Huang , Y. Ma , Image super-resolution via sparse repre- 
+sentation, IEEE Trans. Image Process. 19 (11) (2010) 2861¨C2873 . 
+[2] J. Yang , Z. Wang , Z. Lin , S. Cohen , T. Huang , Coupled dictionary training for 
+image super-resolution, IEEE Trans. Image Process. 21 (8) (2012) 3467¨C3478 . 
+[3] R. Zeyde , M. Elad , M. Protter , On single image scale-up using sparse-represen- 
+tations, in: Curves and Surfaces, Springer, 2012, pp. 711¨C730 . 
+[4] S. Wang , L. Zhang , Y. Liang , Q. Pan , Semi-coupled dictionary learning with 
+applications to image super-resolution and photo-sketch synthesis, in: CVPR, 
+IEEE, 2012, pp. 2216¨C2223 . 
+[5] D.-A. Huang , Y.-C. F. Wang , Coupled dictionary and feature space learning with 
+applications to cross-domain image synthesis and recognition, in: ICCV, IEEE, 
+2013, pp. 2496¨C2503 . 
+[6] L. He , H. Qi , R. Zaretzki , Beta process joint dictionary learning for coupled fea- 
+ture spaces with application to single image super-resolution, in: CVPR, IEEE, 
+2013, pp. 345¨C352 . 
+[7] R. Timofte , V. De , L. Van Gool , Anchored neighborhood regression for fast ex- 
+ample-based super-resolution, in: ICCV, IEEE, 2013, pp. 1920¨C1927 . 
+[8] R. Timofte , V. De Smet , L. Van Gool , A+: adjusted anchored neighborhood re- 
+gression for fast super-resolution, in: ACCV, Springer, 2014, pp. 111¨C126 . 
+[9] T. Peleg , M. Elad , A statistical prediction model based on sparse represen- 
+tations for single image super-resolution, IEEE Trans. Image Process. 23 (6) 
+(2014) 2569¨C2582 . 
+[10] S. Schulter , C. Leistner , H. Bischof , Fast and accurate image upscaling with su- 
+per-resolution forests, in: CVPR, IEEE, 2015, pp. 3791¨C3799 . 
+[11] C. Huang , Y. Liang , X. Ding , C. Fang , Generalized joint kernel regression and 
+adaptive dictionary learning for single-image super-resolution, Els. Signal Pro- 
+cess. 103 (2014) 142¨C154 . 
+
+(cid:2)
+
+[12] S. Zhao , H. Liang , M. Sarem , A generalized detail-preserving super-resolution 
+method, Els. Signal Process. 120 (2016) 156¨C173 . 
+[13] K. Zhang , X. Gao , J. Li , H. Xia , Single image super-resolution using regular- 
+ization of non-local steering kernel regression, Els. Signal Process. 123 (2016) 
+53¨C63 . 
+[14] B. Yue , S. Wang , X. Liang , L. Jiao , Robust noisy image super-resolution using 
+ 1 -norm regularization and non-local constraint, ACCV Workshops, Springer, 
+2016 . 
+[15] A. Beck , M. Teboulle , A fast iterative shrinkage-thresholding algorithm for lin- 
+ear inverse problems, SIAM J. Imaging Sci. 2 (1) (2009) 183¨C202 . 
+[16] D. Dai , R. Timofte , L. Van Gool , Jointly optimized regressors for image su- 
+per-resolution, in: Computer Graphics Forum, Wiley Online Library, 2015, 
+pp. 95¨C104 . 
+[17] C. Dong , C.C. Loy , K. He , X. Tang , Learning a deep convolutional network for 
+image super-resolution, in: ECCV, Springer, 2014, pp. 184¨C199 . 
+[18] Z. Cui , H. Chang , S. Shan , B. Zhong , X. Chen , Deep network cascade for image 
+super-resolution, in: ECCV, Springer, 2014, pp. 49¨C64 . 
+[19] Z. Wang , D. Liu , J. Yang , W. Han , T. Huang , Deep networks for image super-res- 
+olution with sparse prior, in: ICCV, IEEE, 2015, pp. 370¨C378 . 
+[20] J. Kim , J. Kwon Lee , K. Mu Lee , Accurate image super-resolution using very 
+deep convolutional networks, CVPR, IEEE, 2016 . 
+[21] C. Dong , C.C. Loy , K. He , X. Tang , Image super-resolution using deep convolu- 
+tional networks, IEEE Trans. Pattern Anal. Mach. Intell. 38 (2) (2015) 295¨C307 . 
+[22] A. Singh , F. Porikli , N. Ahuja , Super-resolving noisy images, in: CVPR, IEEE, 
+2014, pp. 2846¨C2853 . 
+[23] M. Aharon , M. Elad , A. Bruckstein , K-svd: an algorithm for designing overcom- 
+plete dictionaries for sparse representation, IEEE Trans. Signal Process. 54 (11) 
+(2006) 4311¨C4322 . 
+[24] W. Dong , L. Zhang , G. Shi , X. Wu , Image deblurring and super-resolution by 
+adaptive sparse domain selection and adaptive regularization, IEEE Trans. Im- 
+age Process. 20 (7) (2011) 1838¨C1857 . 
+[25] Y. Wang , C. Xu , S. You , C. Xu , D. Tao , Dct regularized extreme visual recovery, 
+IEEE Trans. Image Process. (2017) . 
+[26] W. Dong , L. Zhang , G. Shi , Centralized sparse representation for image restora- 
+tion, in: ICCV, IEEE, 2011, pp. 1259¨C1266 . 
+[27] J. Zhang , D. Zhao , W. Gao , Group-based sparse representation for image 
+restoration, IEEE Trans. Image Process. 23 (8) (2014) 3336¨C3351 . 
+[28] X. Li , H. He , R. Wang , D. Tao , Single image super-resolution via directional 
+group sparsity and directional features, IEEE Trans. Image Process. 24 (9) 
+(2015) 2874¨C2888 . 
+[29] Y. Hu , D. Zhang , J. Ye , X. Li , X. He , Fast and accurate matrix completion via 
+truncated nuclear norm regularization, IEEE Trans. Pattern Anal. Mach. Intell. 
+35 (9) (2013) 2117¨C2130 . 
+[30] T. Liu , D. Tao , On the performance of manhattan nonnegative matrix factoriza- 
+tion, IEEE Trans. Neural Netw. Learn. Syst. 27 (9) (2016) 1851¨C1863 . 
+[31] T. Liu , M. Gong , D. Tao , Large-cone nonnegative matrix factorization, IEEE 
+Trans. Neural Netw. Learn. Syst. (2016) . 
+[32] Y. Wang , C. Xu , C. Xu , D. Tao , Beyond rpca: attening complex noise in the 
+frequency domain, AAAI (2017) 500¨C505 . 
+[33] A. Buades , B. Coll , J.-M. Morel , A non-local algorithm for image denoising, in: 
+CVPR, IEEE, 2005, pp. 60¨C65 . 
+[34] M. Protter , M. Elad , H. Takeda , P. Milanfar , Generalizing the nonlocal-means 
+to super-resolution reconstruction, IEEE Trans. Image Process. 18 (1) (2009) 
+36¨C51 . 
+[35] X. Chen , Q. Lin , S. Kim , J.G. Carbonell , E.P. Xing , et al. , Smoothing proximal 
+gradient method for general structured sparse regression, Ann. Appl. Stat. 6 
+(2) (2012) 719¨C752 . 
+[36] R. Chalasani, J.C. Principe, Deep predictive coding networks, ArXiv:1301.3541 
+arXiv preprint (2013). 
+[37] K. Zhang , X. Gao , D. Tao , X. Li , Single image super-resolution with non-local 
+means and steering kernel regression, IEEE Trans. Image Process. 21 (11) (2012) 
+4544¨C4556 . 
+[38] K. Dabov , A. Foi , V. Katkovnik , K. Egiazarian , Image denoising by sparse 3-d 
+transform-domain collaborative ltering, IEEE Trans. Image Process. 16 (8) 
+(2007) 2080¨C2095 . 
+

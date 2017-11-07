@@ -1,0 +1,1862 @@
+A weighted detector for mismatched subspace signals 
+
+Jun Liu 
+
+a National Laboratory of Radar Signal Processing, Xidian University, Xi¡¯an, 710071, China 
+b Collaborative Innovation Center of Information Sensing and Understanding, Xidian University, Xi¡¯an, 710071, China 
+c School of Electronic Information, Wuhan University, Wuhan 430072, China 
+d Wuhan Electronic Information Institute, Wuhan 430019, China 
+
+article
+
+info
+
+Article history: 
+Received 20 January 2017 
+Revised 5 May 2017 
+Accepted 8 May 2017 
+Available online 16 May 2017 
+
+Keywords: 
+Adaptive detection 
+Multichannel signal detection 
+Subspace signal mismatch 
+Statistical distribution 
+
+abstract
+
+This paper investigates the problem of detecting a multichannel signal when subspace signal mismatch 
+occurs. A new detector is proposed, which is obtained by weighting two existing detectors, namely, the 
+subspace-based adaptive matched lter and adaptive subspace detector. The proposed weighted detec- 
+tor has exibility in controlling its capability of rejection mismatched subspace signals. Specically, its 
+robustness (or selectivity) for mismatched subspace signals improves as the weight value increases (or 
+decreases). Closed-form expressions for the probabilities of detection and false alarm are derived. The 
+theoretical results are conrmed by Monte Carlo simulations. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Detection of a signal embedded in noise is a common prob- 
+lem in the eld of signal processing. Kelly was the rst adopting 
+the generalized likelihood ratio test (GLRT) to multichannel sig- 
+nal detection [1] . Then Chen et al. [2] and Robey et al. [3] in- 
+dependently derive the adaptive matched lter (AMF), which has 
+lower complexity than the KGLRT. For the same detection prob- 
+lem in [1] , De Maio derives the Rao test, denoted as De Maio¡¯s 
+Rao (DMRao) [4] . The DMRao provides better performance than 
+the KGLRT and AMF in rejecting mismatched signals. Note that 
+these three detectors are designed in homogeneous environment, 
+where the test and training data have the same noise covariance 
+matrix. In [5] , the detection problem in partially homogeneous en- 
+vironment is exploited and the adaptive coherence estimate (ACE) 
+is proposed therein. For partially homogeneous environment, the 
+test and training data share the same covariance matrix up to an 
+unknown scaling factor. Recently, many different kinds of detection 
+problems are investigated and a large number of detectors are pro- 
+posed, such as [6¨C16] and the references therein. 
+The detectors mentioned above are mainly devised in the ab- 
+sence of signal mismatch. However, signal mismatch often hap- 
+pens due to array errors, pointing errors, and wavefront distortions 
+[17] . It is worth noting that robust detectors are not always pre- 
+ferred [17] . For example, when a target is located in the sidelobe of 
+the radar beam, there is mismatch between the target bearing and 
+radar beam steering. Hence, it is often desirable to reject this side- 
+lobe target (for the purpose of target localization) and wait until it 
+enters into the main beam. As a result, in some practical applica- 
+tions one needs a detector which can balance the robustness and 
+selectivity [18] . The capability of a detector to reject or detect mis- 
+matched signals is referred to as the directivity [19] . In the open 
+literature there are mainly two kinds of methods to make trade- 
+off between robustness and selectivity. One is the two-stage de- 
+tection scheme. A two-stage detector is constructed by cascading 
+two detectors, which usually behave quite differently in the case 
+1 to signal 
+of signal mismatch. Precisely, one detector is selective 
+mismatch, while the other is robust to signal mismatch. The two- 
+stage detector have two detection thresholds. By tuning the pair 
+of detection thresholds for a xed probability of false alarm (PFA), 
+the two-stage detector achieves exible robustness to mismatched 
+signals. The well-known two-stage detectors are the adaptive side- 
+lobe blanker (ASB) [20] , the two-stage detector cascading the AMF 
+and KGLRT [21] , the two-stage Rao test cascading of the AMF and 
+DMRao [4] , the so-called WAS-ASB cascading the subspace-based 
+GLRT (SGLRT) and whited-adaptive beamforming orthogonal rejec- 
+tion test (W-ABORT) [22] , the subspace-based ASB (S-ASB) cascad- 
+ing the SGLRT and ACE [23] , the so-called KWAS-ASB cascading the 
+SGLRT and KWA [24] , and the two-stage Rao test cascading the 
+SGLRT and DMRao [25] . More recently, a review of two-stage de- 
+tectors is given in [19] . The other kind of method to solve the de- 
+
+1 A selective detector is less tolerant to signal mismatch. When signal mismatch 
+occurs, the probability of detection (PD) of a selective rapidly decreases. 
+tection problem in the presence of signal mismatch is the tunable 
+detector (or called the parametric detector). The tunable detector 
+is parameterized by a scalar, referred to as the tunable parame- 
+ter. By changing the tunable parameter, the tunable detector can 
+smoothly varying from a robust detector to a selective one. Many 
+tunable detectors have been proposed, such as the tunable detec- 
+tor given in [26] , the KWA [24] , the KRAO [27] , and the KMABORT 
+[28] . 
+Note that all the two-stage detectors and tunable detectors 
+mentioned above are designed for rank-one signals, which have 
+known signal steering vectors. However, in many applications the 
+actual signal may be naturally a subspace signal, such as the po- 
+larimetric signal [29] , which belongs to a known subspace but with 
+unknown coordinates. Signal mismatch can also arise for subspace 
+signals, due to the same reasons for rank-one signals. Subspace sig- 
+nal mismatch is dened as the phenomenon that the actual signal 
+does not fully lie in the presumed subspace. Very limited works 
+are done for subspace signal mismatch. In particular, several robust 
+detectors are devised in [30¨C32] for subspace signal mismatch. 
+However, a robust detector is not always a desirable choice. 
+In this paper, a kind of approach to signal detection in the pres- 
+ence of mismatched subspace signals is introduced. A new detec- 
+tor is constructed by weighting the subspace-based AMF (SAMF) 
+[33] and adaptive subspace detector (ASD) [34] . For convenience, 
+the proposed weighted detector is referred to as the SAMF-ASD. 
+Note that the SAMF and ASD behave quite differently when sub- 
+space signal mismatch happens. Precisely, the SAMF is very robust, 
+while the ASD is quite selective. As a consequence, the proposed 
+SAMF-ASD is of great exibility in controlling the detection perfor- 
+mance for mismatched subspace signals. By adjusting the weight, 
+the proposed SAMF-ASD can smoothly vary from a robust detector 
+to a selective one. Analytical expressions for the PD and PFA are 
+derived, which are veried by Monte Carlo (MC) simulations. 
+The rest of the paper is organized as follows. Section 2 gives the 
+problem formulation and presents the proposed weighted detector. 
+Section 3 shows the derivations of the analytical expressions for 
+the PD and PFA in the case of subspace signal mismatch. Numerical 
+examples are given in Section 4 . Finally, Section 5 summarizes the 
+paper. 
+
+2. Problem formulation and the proposed weighted detector 
+
+For a binary hypothesis test, one needs to make a decision 
+between signal-presence and signal-absence choices. Denote the 
+¡Á 1 vector x . Under the signal-absence hy- 
+test data by an N 
+pothesis H 0 
+, x can be expressed as x 
+ where n is the noise, 
+subjected to a zero-mean complex circular Gaussian distribution, 
+with an unknown positive denite covariance matrix 
+2 R t . Under 
+the signal-presence hypothesis H 1 
+, x 
+ where s is the sig- 
+¡Á p signal matrix H 
+¦È . The N 
+nal component with the form s 
+is known full-column-rank, whose columns span the nominal sub- 
+¡Á 1 vector 
+space where the signal is assumed to lie, and the p 
+¦È is 
+deterministic but unknown, standing for the corresponding coordi- 
+nate. In summary, the detection problem can be written symboli- 
+cally as 
+
+=
+
+ n 
+
+,
+
+=
+
+ s 
+
++
+
+ n 
+
+,
+
+=
+
+ H 
+
+(cid:2)
+
+H 0 : x 
+H 1 : x 
+
+=
+=
+
+ n 
+ H 
+
+,
+
+¦È +
+
+ n 
+
+.
+
+(1) 
+
+Note that the noise covariance matrix R t is unknown in prac- 
+tice. In order to estimate R t , a set of independent and identi- 
+cally distributed (IID) training data is needed, denoted by x l 
+, l 
+1 
+ L . The training data x l 
+does not contain any signal but 
+
+=
+
+,
+
+ 2 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+2 Note that the covariance matrix is equal to the correlation matrix, since the 
+mean of the noise is zero. This reasoning is also valid for the SCM given in (2) . 
+
+noise n l 
+, which is subject to a zero-mean complex circular Gaus- 
+sian distribution with a covariance matrix R . 
+In homogeneous environment the noise in the test data and 
+training data has the identical covariance matrix, i.e., R t 
+ while 
+¦Ò 2 R . The scaling factor 
+in partially homogeneous environment R t 
+¦Ò 2 is unknown, and it stands for the power mismatch between the 
+test and training data. In homogeneous environment, according to 
+the detector design criterion of two-step GLRT [33] or Wald test 
+[35] , one can obtain the SAMF 
+
+=
+
+ R 
+
+,
+
+=
+
+t SAMF 
+
+=
+
+ x 
+
+1 H 
+H S 
+
+(
+
+ H 
+
+1 H 
+H S 
+
+)
+
+1 H 
+1 x 
+H S 
+
+H 1 
+H 0 
+
+¦Çm 
+
+,
+
+(2) 
+
+where S 
+x 
+is L times the sample covariance matrix 
+(SCM) and 
+¦Çm is the detection threshold for the SAMF. 
+In the partially homogeneous environment, the GLRT for the de- 
+tection problem in (1) is the ASD [34] 
+
+=
+
+(cid:3)
+
+ L 
+
+l=1 
+x l 
+
+H 
+l 
+
+(cid:3)
+t 
+
+ASD 
+
+=
+
+x 
+
+1 H 
+H S 
+
+(
+
+ H 
+
+1 H 
+1 H 
+1 x 
+H S 
+H S 
+1 x 
+H S 
+
+)
+
+x 
+
+H 1 
+H 0 
+
+¦Ç
+
+(cid:3)
+
+s 
+
+,
+
+(3) 
+
+where 
+is the detection threshold for the ASD. Note that (3) is 
+equivalent to 
+
+¦Ç
+
+(cid:3)
+
+s 
+
+t ASD 
+
+=
+
+x 
+
+1 H 
+1 H 
+1 H 
+1 x 
+H S 
+H S 
+H S 
+1 x 
+1 H 
+1 H 
+1 H 
+1 x 
+H S 
+H S 
+H S 
+H S 
+
+(
+
+ H 
+
+)
+
+x 
+
+ x 
+1  1] 
+1 is a monotonically increasing function 
+since t ASD 
+ [(t 
+)
+of t 
+. In (4) 
+¦Çs is the modied detection threshold given by 
+1  1] 
+[(¦Ç
+)
+Remarkably, the SAMF is very robust to subspace signal mis- 
+match, while the ASD is very selective [36] . Unfortunately, the ro- 
+bustness of the SAMF or the selectivity of the ASD cannot be ex- 
+ibly adjusted. Hence, a new detector is designed in this paper by 
+weighting the SAMF and ASD, i.e., 
+
+(
+
+ H 
+
+)
+
+H 1 
+H 0 
+
+¦Çs 
+
+,
+
+(4) 
+
+=
+
+(cid:3)
+
+ASD 
+1 . 
+
+(cid:3)
+
+ASD 
+
+¦Çs 
+
+=
+
+(cid:3)
+
+s 
+
+t SAMF¨CASD 
+
+=
+
+¦Át SAMF 
+
++
+
+(1 
+
+ ¦Á )
+
+ t ASD 
+
+H 1 
+H 0 
+
+¦Çw 
+
+,
+
+(5) 
+
+¦Çw is the detection threshold. For convenience, the pro- 
+where 
+posed detector is referred to as the SAMF-ASD. A prominent prop- 
+erty of the SAMF-ASD lies in exibly adjusting its rejection capa- 
+¦Á is the weighted 
+bility for mismatched subspace signals. In (5) 
+value, constrained to satisfy 
+
+0 
+
+¡Ü ¦Á ¡Ü 1 
+
+.
+
+(6) 
+
+Obviously, the SAMF-ASD with 
+ 0 reduces to the ASD, while the 
+SAMF-ASD with 
+ 1 degenerates into the SAMF. An immediate 
+remark on the proposed weighted detector is that it possesses the 
+CFAR property with respect to the noise covariance matrix R , since 
+the SAMF and ASD are both CFAR 
+3 [33,34] . Moreover, the proposed 
+SAMF-ASD is invariant with respect to the group of transforma- 
+tions dened in [37] . 
+
+¦Á =
+
+¦Á =
+
+3. Statistical performance of the SAMF-ASD 
+
+This section exploits the statistical performance of the SAMF- 
+ASD in the presence of subspace signal mismatch, for which the 
+actual signal, say s 0 
+, does not completely lie in the subspace 
+spanned by the nominal signal matrix H . The PD of the SAMF-ASD 
+can be expressed as 
+
+PD 
+
+=
+
+ Pr [ t SAMF¨CASD 
+
+>
+,
+(7) 
+¡¤ ] stands for the probability of the event in the bracket 
+where Pr[ 
+¦Çw is the detection threshold for the SAMF-ASD. 
+and 
+
+; H 1 ] 
+¦Çw 
+
+3 Note that ASD has additional CFAR property with respect to the power mis- 
+match between the training and the test data. However, in this paper, it mainly 
+focuses on the case of homogeneous environment. 
+
+112 
+
+J. Liu et al. / Signal Processing 140 (2017) 110¨C115 
+
+To obtain the expressions for the PD and PFA of the SAMF-ASD, 
+the statistical dependence of the SAMF and ASD on the SGLRT and 
+a loss factor is used. The statistical distributions of the SGLRT and 
+the loss factor in the case of subspace signal mismatch are given 
+in [36] . The detection statistic of the SGLRT is [38] 
+
+t SGLRT 
+
+=
+
+x 
+
+1 H 
+1 H 
+1 H 
+1 x 
+H S 
+H S 
+H S 
+1 x 
+1 H 
+1 H 
+1 H 
+1 x 
+H S 
+H S 
+H S 
+H S 
+
+(
+ x 
+while the loss factor is dened as 
+1 
+ x 
+(
+It follows from (2), (4), (8) , and (9) that 
+
+ H 
+
+)
+
+1 
+
++
+
+ x 
+
+(
+
+ H 
+
+)
+
+,
+
+(8) 
+
+¦Â =
+
+1 
+
++
+
+ x 
+
+1 x 
+H S 
+
+1 H 
+H S 
+
+ H 
+
+1 H 
+H S 
+
+)
+
+1 H 
+1 x 
+H S 
+
+.
+
+(9) 
+
+t SAMF 
+
+=
+
+t SGLRT 
+
+¦Â
+
+(10) 
+
+and 
+
+t ASD 
+
+=
+
+t SGLRT 
+
+1 
+
+ ¦Â
+
+.
+
+(11) 
+
+Using (10) and (11) one can rewrite (5) as 
+
+t SAMF¨CASD 
+
+=
+
+(cid:4)
+
+¦Á
+¦Â
+
++
+
+1 
+1 
+
+ ¦Á
+ ¦Â
+
+(cid:5)
+
+t SGLRT 
+
+.
+
+(12) 
+
+It follows that (7) can be recast as 
+
+PD 
+
+=
+
+ Pr 
+
+(cid:6)
+(cid:4)
+(cid:8)
+
+¦Á
+¦Â
+
++
+
+1 
+1 
+
+ ¦Á
+ ¦Â
+
+(cid:5)
+
+t SGLRT 
+
+>
+
+; H 1 
+¦Çw 
+
+(cid:7)
+
+=
+
+ Pr 
+
+t SGLRT 
+
+>
+
+¦Çw 
+
+ ¦Â )
+¦Â (1 
+¦Á  2 
+¦Á¦Â +
+¦Â
+
+; H 1 
+
+(cid:9)
+
+.
+
+(13) 
+
+Remarkably, to guarantee the PD in (13) meaningful, the follow- 
+ing constraint is needed 
+
+ ¦Â )
+¦Â (1 
+¦Á  2 
+¦Á¦Â +
+
+¦Â
+
+>
+
+ 0 
+
+.
+
+(14) 
+
+It is known from (9) that 
+
+0 
+
+¡Ü ¦Â ¡Ü 1 
+
+.
+
+(15) 
+
+It follows that 
+¡Ý 0 
+Hence, we only need to guarantee 
+
+ ¦Â )
+¦Â (1 
+
+.
+
+(16) 
+
+¦Á  2 
+¦Á¦Â +
+
+¦Â >
+
+ 0 
+
+,
+
+(17) 
+
+from which 
+ 2 
+(1 
+According to (6) and (15) , we have 
+
+¦Á )
+
+¦Â >
+
+¦Á .
+
+(18) 
+
+
+ 
+ 
+
+¦Â >
+
+ 0 
+
+,
+
+when 0 
+1 
+2 
+
+¡Ü ¦Á <
+¡Ü ¦Á ¡Ü 1 
+
+1 
+2 
+
+¦Â <
+
+¦Á
+¦Á  1 
+
+2 
+
+,
+
+ when 
+
+(19) 
+
+Using (6) again leads to 
+
+¦Á
+¦Á  1 
+
+2 
+
+>
+
+ 1 
+
+,
+
+ when 
+
+1 
+2 
+
+¡Ü ¦Á ¡Ü 1 
+
+.
+
+(20) 
+
+As a result, we obtain 
+
+
+ 
+ 
+
+¦Â >
+
+ 0 
+
+,
+
+ when 0 
+1 
+2 
+Gathering (21) and (15) , it is known that the inequality in 
+(17) holds with probability unity under the constraints (15) and 
+(6) . As a result, (14) holds true. 
+¦Â , can be expressed as 
+The conditional PD, with given 
+PD ¦Â =
+
+¡Ü ¦Á <
+¡Ü ¦Á ¡Ü 1 
+
+1 
+2 
+
+¦Â <
+
+ 1 
+
+,
+
+ when 
+
+(21) 
+
+ 1 
+
+ P
+
+ 1 
+
+(cid:8)
+
+¦Çw 
+
+ ¦Â )
+¦Â (1 
+¦Á  2 
+¦Á¦Â +
+¦Â
+
+(cid:9)
+
+,
+
+(22) 
+
+where 
+(¦Ç )
+ is the cumulative distribution function (CDF) of t SGLRT 
+¦Â xed under hypothesis H 1 
+with 
+, dened as 
+¡Ü ¦Ç; H 1 ] 
+,
+where 
+¦Ç is positive real number. 
+It is known from [36] that the SGLRT in (8) , for given 
+¦Â , 
+is distributed as a complex noncentral F-distribution with p and 
+ N 
+L 
+ 1 degrees of freedom (DOFs) and a noncentrality parame- 
+¦Ñ ¦Õ , denoted symbolically as 
+ter 
+
+P
+
+ 1 
+
+P
+
+ 1 
+
+(¦Ç )
+
+=
+
+ Pr [ t SGLRT 
+
+(23) 
+
++
+
+t SGLRT 
+¦Â ;H 1 
+
+|
+
+ C
+
+F
+
+ p,L 
+
+N+1 
+
+(¦Â ¦Ñ¦Õ )
+
+,
+
+(24) 
+
+where 
+¦Ñ cos 
+
+¦Ñ¦Õ =
+
+2 ¦Õ ,
+
+(25) 
+
+¦Ñ =
+
+ s 
+
+H 
+0 
+
+R 
+
+1 s 0 
+
+(26) 
+
+is the signal-to-noise ratio (SNR), and 
+(H 
+s 
+
+cos 
+
+2 ¦Õ =
+
+s 
+
+H 
+0 
+
+R 
+
+1 H 
+
+1 H 
+1 H 
+1 s 0 
+H R 
+H R 
+1 s 0 
+H 
+0 
+
+)
+
+R 
+
+(27) 
+
+is the cosine squared between the whitened actual signal s 0 
+and 
+whitened nominal signal subspace spanned by the columns of H . 
+According to the equation (A2-29) in [39] , 
+
+P
+
+ 1 
+
+(¦Ç )
+
+=
+
+L 
+
+N (cid:13)
+
+=0 
+k 
+
+C 
+
+k 
+L 
+
++
+N+
+
+ p 
+
+ p 
+
+¦Çk 
+
++
+
+ p 
+
+(1 
+
++
+
+¦Ç )
+
+L 
+
+N+
+
+ p 
+
+IG k 
++1 
+
+(cid:8)
+
+¦Ñ¦Õ ¦Â
+¦Ç
+
+1 
+
++
+
+(cid:9)
+
+,
+
+(28) 
+
+where 
+
+C 
+
+m 
+n 
+
+=
+
+n ! 
+ m 
+m !(n 
+)! 
+is the binominal coecient and 
+
+(29) 
+
+IG k 
++1 
+
+(a 
+)
+
+=
+
+ e 
+
+k (cid:13)
+a 
+=0 
+m 
+
+a 
+m ! 
+
+m 
+
+(30) 
+
+is the incomplete Gamma function. 
+Substituting (28) into (22) results in the conditional PD of the 
+¦Â in 
+SAMF-ASD. Averaging the conditional PD given in (22) over 
+the range from 0 to 1 yields the unconditional PD, described as 
+
+PD 
+
+=
+
+ 1 
+
+
+
+(cid:14)
+
+ 1 
+
+0 
+
+P
+
+ 1 
+
+(cid:8)
+
+¦Çw 
+
+ ¦Â )
+¦Â (1 
+¦Á  2 
+¦Á¦Â +
+¦Â
+
+(cid:9)
+
+f 1 
+
+(¦Â )
+
+ d 
+
+¦Â ,
+
+(31) 
+
+where f 1 
+( 
+¦Â ) is the probability density function (PDF) of the loss 
+¦Â in (9) under hypothesis H 1 
+¦Â in (9) un- 
+factor 
+. The loss factor 
+der hypothesis H 1 
+in the presence of subspace signal mismatch is 
+ N 
+distributed as a complex noncentral Beta-distribution with L 
+ p DOFs and a noncentrality parameter 
+p 
+ 1 and N 
+¦Ä 2 , written 
+symbolically as 
+
++
+
++
+
+¦ÂH 1 
+
+ C
+
+B
+
+ L 
+
+N 
+
++
+
+ p+1 
+
+,N 
+
+ p 
+
+(
+
+¦Ä 2 )
+
+,
+
+(32) 
+
+where 
+¦Ñ sin 
+2 ¦Õ ,
+2 ¦Õ =
+ cos 
+sin 
+ and cos 
+2 ¦Õ is given in (27) . 
+Moreover, according to (32) and using (A2-23) in [39] , one ob- 
+tains 
+
+¦Ä 2 =
+
+(33) 
+
+ 1 
+
+2 ¦Õ ,
+
+f 1 
+
+(¦Â )
+
+=
+
+ e 
+
+¦Ä 2 ¦Â
+
+L 
+
+N+
+
+ p+1 (cid:13)
+k 
+=0 
+
+C 
+
+k 
+L 
+
+N+
+
+ p+1 
+
+L ! 
+
+(L 
+
++
+
+ k 
+
+)! 
+
+¦Ä 2 k f 0 
+
+(¦Â )
+
+,
+
+(34) 
+
+where f 0 
+( 
+¦Â ) is the PDF of 
+¦Â under H 0 
+, given by 
+
+f 0 
+
+(¦Â )
+
+=
+
+¦Â L 
+
+N+
+
+ p (1 
+
+ ¦Â )
+
+N p1 
+
+B 
+(
+
+ L 
+
+ N 
+
++
+
+ p 
+
++
+
+ 1 
+ N 
+
+,
+
+ p 
+)
+
+,
+
+(35) 
+
+with 
+
+B 
+(
+
+ m,
+
+ n 
+
+)
+
+=
+
+ 1)!(n 
+ 1)! 
+(m 
+ 1)! 
+(m 
+
++
+
+ n 
+
+(36) 
+
+J. Liu et al. / Signal Processing 140 (2017) 110¨C115 
+
+113 
+
+Fig. 1. Contour of the PFA of the SAMF-ASD versus the detection threshold and 
+weight 
+¦Á . 
+
+being the Beta function with integer argument. Hence, substituting 
+(28) and (34) into (31) results in the nal PD. 
+Under hypothesis H 0 
+, no signal exists. Hence, (24) and (32) de- 
+generate into 
+
+t SGLRT 
+
+|
+
+ H 0 
+
+ C
+
+F
+
+ p,L 
+
+N+1 
+
+(37) 
+
+and 
+
+¦ÂH 0 
+
+ C
+
+B
+
+ L 
+
+N 
+
++
+
+ p+1 
+
+,N 
+
+ p 
+
+,
+
+(38) 
+
+respectively. In a manner similar to (31) , the PFA is given by 
+
+PFA 
+
+=
+
+ 1 
+
+
+
+(cid:14)
+
+ 1 
+
+0 
+
+P
+
+ 0 
+
+(cid:8)
+
+¦Çw 
+
+ ¦Â )
+¦Â (1 
+¦Á  2 
+¦Á¦Â +
+¦Â
+
+(cid:9)
+
+f 0 
+
+(¦Â )
+
+ d 
+
+¦Â ,
+
+(39) 
+
+where 
+
+P
+
+ 0 
+
+(¦Ç )
+
+ is the CDF of t SGLRT 
+
+under hypothesis H 0 
+, namely, 
+
+P
+
+ 0 
+
+(¦Ç )
+
+=
+
+ Pr [ t SGLRT 
+
+¡Ü ¦Ç; H 0 ] 
+Equation (28) , with 
+¦Ñ replaced by zero, becomes 
+
+.
+
+(40) 
+
+P
+
+ 0 
+
+(¦Ç )
+
+=
+
+L 
+
+N (cid:13)
+
+=0 
+k 
+
+C 
+
+k 
+L 
+
++
+N+
+
+ p 
+
+ p 
+
+¦Çk 
+
++
+
+ p 
+
+(1 
+
++
+
+¦Ç )
+
+L 
+
+N+
+
+ p 
+
+.
+
+(41) 
+
+Substituting (35) and (41) into (39) results in the nal PFA. 
+
+4. Numerical examples 
+
+Numerical examples are given in this section to demonstrate 
+the detection performance of the proposed SAMF-ASD. For inde- 
+pendent verication of the derived expressions for the PD and PFA, 
+Monte Carlo simulations are provided, besides the theoretical re- 
+sults. For the MC simulations, 10 
+4 and 10 
+8 independent trials are 
+run to evaluate the PD and detection threshold, respectively. The 
+detection threshold is needed to ensure a preassigned PFA. The 
+( i, j )th component of R is chosen to be 
+¦Å is the one-lag correla- 
+where 
+denotes the noise power and 
+tion coecient. The following parameters are used throughout the 
+paper: N 
+ 12 
+6 in all gures except for Fig. 1 . 
+ and 
+ 95 . Moreover, the 
+PFA is set to be 10 
+Fig. 1 shows the contours of the SAMF-ASD under different 
+weights and detection thresholds. It is seen that for a given PFA, 
+one has freedom to choose a suitable weight 
+¦Á . The best choice 
+for the weight in the case of no signal mismatch is the one that 
+achieves the largest PD. On the other hand, when subspace signal 
+
+¦Ò 2 
+n 
+
+¦Å
+
+|
+
+ i 
+
+ j|
+
+ ,
+ i,
+
+ j 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ N,
+
+¦Ò 2 
+n 
+
+=
+
+,
+
+ p 
+
+=
+
+ 3 
+ L 
+
+,
+
+=
+
+ 2 N,
+
+¦Ò 2 
+n 
+
+=
+
+ 1 
+
+,
+
+¦Å
+
+=
+
+ 0 
+
+.
+
+Fig. 2. PD of the SAMF-ASD versus the weight 
+¦Á in the absence of signal mismatch. 
+
+mismatch happens, one can choose a weight that provides robust- 
+ness or selectivity, depending on system requirements. In addition, 
+it is shown in Fig. 1 that the PFA decreases as the weight and/or 
+the detection threshold increase. 
+Fig. 2 displays the PD of the SAMF-ASD with different weights 
+in the absence of signal mismatch. The SNR is set to be 20 dB. The 
+results highlight that the PD of the SAMF-ASD rst increases and 
+then decreases with the increase of the weight. The SAMF-ASD has 
+the same detection performance as the ASD and SAMF at 
+and 
+ respectively. This is because the SAMF-ASD reduces to 
+the ASD and SAMF at the corresponding values of 
+¦Á . A remarkable 
+feature is that the SAMF-ASD achieves slightly better detection per- 
+formance than the SAMF and ASD in the range of 0.7 
+¦Á in the absence of signal mismatch is 
+in this example. The best 
+the one with which the weighted detector SAMF-ASD provides the 
+¦Á is 
+highest PD. Unfortunately, an explicit expression for the best 
+unavailable. Alternatively, we can use the closed-form expression 
+¦Á which 
+for the PD given in (31) to numerically search the best 
+achieves the highest PD. 
+Fig. 3 plots the PD of the SAMF-ASD under different SNRs in 
+the case of no signal mismatch. The weight 
+¦Á is chosen as 0.83 for 
+the SAMF-ASD. For comparison purposes, the PDs of the SAMF and 
+ASD are also shown. For the SAMF-ASD, the dashed line denotes 
+the theoretical result, while the symbol circle stands for MC re- 
+sult. The results highlight that the theoretical PD of the SAMF-ASD 
+is in good agreement with the MC simulation, and the proposed 
+weighted detector with 
+ 83 outperforms the SAMF and ASD. 
+Fig. 4 demonstrates the detection performance of the SAMF- 
+ASD with the weight as a parameter when subspace signal mis- 
+match arises. The SNR is set to be 24 dB. For the curves of the 
+SAMF-ASD, the dashed line, dotted line, and dash-dotted line stand 
+for the theoretical results, while the symbols square, circle, and tri- 
+angle denote MC results. It is indicated that the theoretical results 
+comply with the MC results pretty well. For comparison, the PDs 
+of the SAMF and ASD are also given. It can be observed that the 
+SAMF-ASD is much more exible in governing the detection per- 
+¦Á is 
+formance for mismatched subspace signals. When the weight 
+large, the SAMF-ASD is very robust to mismatched subspace sig- 
+¦Á is small, the SAMF-ASD is very selective 
+nals. In contrast, when 
+to mismatched subspace signals. 
+Fig. 5 presents the contours of the PD of the SAMF-ASD, as a 
+function of cos 
+2 ¦Õ and SNR. This type of gure is a generaliza- 
+tion of Fig. 4 . The results in Fig. 5 clearly show that the SAMF- 
+
+¦Á =
+
+ 0 
+
+¦Á =
+
+ 1 
+
+,
+
+<
+
+¦Á <
+
+ 1 
+
+¦Á =
+
+ 0 
+
+.
+
+114 
+
+J. Liu et al. / Signal Processing 140 (2017) 110¨C115 
+
+Fig. 3. PDs of the detectors under different SNRs in the absence of signal mismatch. 
+For the SAMF-ASD, the dashed line denotes the theoretical result, while the symbol 
+) stands for MC results. 
+circle ( 
+
+Fig. 4. PDs of the detectors under different cos 
+2 ¦Õ in the presence of subspace sig- 
+nal mismatch. For the SAMF-ASD the dashed line, dotted line, and dash-dotted line 
+(cid:2)), circle ( 
+), and triangle 
+denote the theoretical results, while the symbols square ( 
+( 
+ ) stand for MC results. 
+
+(cid:8)
+
+ASD can exibly control the detection performance for mismatched 
+¦Á , the SAMF-ASD 
+subspace signals. With a moderately large weight 
+is very robust. For example, when the amount of signal mismatch 
+is large as cos 
+ 0.5, the SAMF-ASD with 
+ 6 can provide a 
+PD of 0.9 when the SNR is larger than 26.5 dB. In contrast, with 
+¦Á , the SAMF-ASD becomes very selective. Only when the 
+a small 
+amount of signal mismatch is small as cos 
+ 0.9, it achieves a 
+PD of 0.9. 
+
+¦Á =
+
+2 ¦Õ >
+
+2 ¦Õ <
+
+.
+
+ 0 
+
+Fig. 5. Contour of PD of the SAMF-ASD in the presence of subspace signal mis- 
+match. 
+
+nal mismatch by adjusting the weight. Specically, a relative large 
+value of the weight is needed, when a robust detector is needed, 
+such as operating the radar system in surveillance model. More- 
+over, a small value of the weight is needed, when a selective de- 
+tector is needed, such as operating the radar system in tracking 
+model. 
+
+Acknowledgments 
+
+This work was supported in part by National Natural Science 
+Foundation of China under Contracts 61501351 and 61501505 . 
+
+5. Conclusions 
+
+References 
+
+In this paper, a weighted detector for mismatched subspace 
+signal detection, was proposed, namely, the SAMF-ASD. It is con- 
+structed by linearly combining the SAMF and ASD. Analytical ex- 
+pressions for the PD and PFA are derived. The SAMF-ASD can con- 
+trol its robustness or selectivity in the presence of subspace sig- 
+
+[1] E.J. Kelly , An adaptive detection algorithm, IEEE Trans. Aerosp. Electron.Syst. 22 
+(1) (1986) 115¨C127 . 
+[2] W.-S. Chen , I.S. Reed , A new CFAR detection test for radar, Digital Signal Pro- 
+cess. 1 (4) (1991) 198¨C214 . 
+[3] F.C. Robey , D.R. Fuhrmann , E.J. Kelly , R. Nitzberg , A CFAR adaptive matched 
+lter detector, IEEE Trans. Aerosp. Electron.Syst. 28 (1) (1992) 208¨C216 . 
+
+J. Liu et al. / Signal Processing 140 (2017) 110¨C115 
+
+115 
+
+[4] A. De Maio , Rao test for adaptive detection in Gaussian interference with un- 
+known covariance matrix, IEEE Trans. Signal Process. 55 (7) (2007) 3577¨C3584 . 
+[5] S. Kraut , L.L. Scharf , The CFAR adaptive subspace detector is a scale-invariant 
+GLRT, IEEE Trans. Signal Process. 47 (9) (1999) 2538¨C2541 . 
+[6] G. Cui , L. Kong , X. Yang , Multiple-input multiple-output radar detectors design 
+in non-Gaussian clutter, IET Radar Sonar Navig. 4 (5) (2010) 724¨C732 . 
+[7] J. Guan , X. Zhang , Subspace detection for range and Doppler distributed targets 
+with Rao and Wald tests, Signal Process. 91 (1) (2011) 51¨C60 . 
+[8] G. Cui , L. Kong , X. Yang , GLRT-based detection algorithm for polarimetric 
+MIMO radar against SIRV clutter, Circuits Syst. Signal Process. 31 (3) (2012) 
+1033¨C1048 . 
+[9] A . Aubry , A . De Maio , L. Pallotta , A . Farina , Radar detection of distributed tar- 
+gets in homogeneous interference whose inverse covariance structure is de- 
+ned via unitary invariant functions, IEEE Trans. Signal Process. 61 (20) (2013) 
+4 94 9¨C4 961 . 
+[10] J. Liu , Z.-J. Zhang , Y. Cao , M. Wang , Distributed target detection in subspace 
+interference plus Gaussian noise, Signal Process. 85 (2014) 88¨C100 . 
+[11] G. Cui , J. Liu , H. Li , B. Himed , Signal detection with noisy reference for passive 
+sensing, Signal Process. 108 (2015) 389¨C399 . 
+[12] S. Lei , Z. Zhao , Z. Nie , Q.-H. Liu , Adaptive polarimetric detection method for tar- 
+get in partially homogeneous background, Signal Process. 106 (2015) 301¨C311 . 
+[13] Z. Wang , M. Li , H. Chen , Y. Lu , R. Cao , P. Zhang , L. Zuo , Y. Wu , Persymmetric 
+detectors of distributed targets in partially homogeneous disturbance, Signal 
+Process. 128 (2016) 382¨C388 . 
+[14] A. De Maio , D. Orlando , C. Hao , G. Foglia , Adaptive detection of point-like tar- 
+gets in spectrally symmetric interference, IEEE Trans. Signal Process. 64 (12) 
+(2016) 3207¨C3220 . 
+[15] C. Hao , D. Orlando , G. Foglia , G. Giunta , Knowledge-based adaptive detection: 
+joint exploitation of clutter and system symmetry properties, IEEE Signal Pro- 
+cess. Lett. 23 (10) (2016) 1489¨C1493 . 
+[16] A. Hariri , M. Babaie-Zadeh , Compressive detection of sparse signals in additive 
+white Gaussian noise without signal reconstruction, Signal Process. 131 (2017) 
+376¨C385 . 
+[17] N.B. Pulsone , C.M. Rader , Adaptive beamformer orthogonal rejection test, IEEE 
+Trans. Signal Process. 49 (3) (2001) 521¨C529 . 
+[18] D. Orlando , G. Ricci , A Rao test with enhanced selectivity properties in homo- 
+geneous scenarios, IEEE Trans. Signal Process. 58 (10) (2010) 5385¨C5390 . 
+[19] A. De Maio , D. Orlando , A survey on two-stage decision schemes for point-like 
+targets in Gaussian interference, IEEE Aerosp. Electron. Syst. Mag. 31 (4) (2016) 
+20¨C29 . 
+[20] C.D. Richmond , Performance of the adaptive sidelobe blanker detection algo- 
+rithm in homogeneous environments, IEEE Trans. Signal Process. 48 (5) (20 0 0) 
+1235¨C1247 . 
+[21] N.B. Pulsone , M.A. Zatman , A computationally ecient two-step implementa- 
+tion of the GLRT, IEEE Trans. Signal Process. 48 (3) (20 0 0) 609¨C616 . 
+
+
+
+[22] F. Bandiera , O. Besson , D. Orlando , G. Ricci , An improved adaptive sidelobe 
+blanker, IEEE Trans. Signal Process. 56 (9) (2008a) 4152¨C4161 . 
+[23] F. Bandiera , D. Orlando , G. Ricci , A subspace-based adaptive sidelobe blanker, 
+IEEE Trans. Signal Process. 56 (9) (2008b) 4141¨C4151 . 
+[24] F. Bandiera , D. Orlando , G. Ricci , One- and two-stage tunable receivers 
+, IEEE 
+Trans. Signal Process. 57 (8) (2009) 3264¨C3273 . 
+[25] C. Hao , B. Liu , L. Cai , Performance analysis of a two-stage Rao detector, Signal 
+Process. 91 (8) (2011) 2141¨C2146 . 
+[26] S.Z. Kalson , An adaptive array detector with mismatched signal rejection, IEEE 
+Trans. Aerosp. Electron.Syst. 28 (1) (1992) 195¨C207 . 
+[27] C. Hao , B. Liu , S. Yan , L. Cai , Parametric adaptive radar detector with enhanced 
+mismatched signals rejection capabilities, EURASIP J. Adv. Signal Process. 2010 
+(2010) . 
+[28] W. Liu , W. Xie , Y. Wang , Parametric detector in the situation of mismatched 
+signals, IET Radar Sonar Navig. 8 (1) (2014) 48¨C53 . 
+[29] J. Liu , Z.-J. Zhang , Y. Yang , Performance enhancement of subspace detection 
+with a diversely polarized antenna, IEEE Signal Process. Lett. 19 (1) (2012) 4¨C7 . 
+[30] A. Zeira , B. Friedlander , Robust subspace detectors, in: The 31th Asilomar Con- 
+ference on Signals, Systems and Computers, 1, 1997, pp. 778¨C782 . 
+[31] A. Zeira , B. Friedlander , Robust adaptive subspace detectors for space time pro- 
+cessing, in: IEEE International Conference on Acoustics, Speech and Signal Pro- 
+cessing (ICASSP), 4, 1998, pp. 1965¨C1968 . 
+[32] O. Besson , L.L. Scharf , S. Kraut , Adaptive detection of a signal known only to lie 
+on a line in a known subspace, when primary and secondary data are partially 
+homogeneous, IEEE Trans. Signal Process. 54 (12) (2006) 4698¨C4705 . 
+[33] J. Liu , Z.-J. Zhang , Y. Yang , Optimal waveform design for generalized likelihood 
+ratio and adaptive matched lter detectors using a diversely polarized antenna, 
+Signal Process. 92 (4) (2012) 1126¨C1131 . 
+[34] S. Kraut , L.L. Scharf , Adaptive subspace detectors, IEEE Trans. Signal Process. 49 
+(1) (2001) 1¨C16 . 
+[35] W. Liu , W. Xie , J. Liu , Y. Wang , Adaptive double subspace signal detection 
+in Gaussian backgroundpart I: homogeneous environments, IEEE Trans. Signal 
+Process. 62 (9) (2014) 2345¨C2357 . 
+[36] W. Liu , J. Liu , C. Zhang , H. Li , Performance prediction of subspace-based adap- 
+tive detectors with signal mismatch, Signal Process. 123 (2016) 122¨C126 . 
+[37] S. Bose , A.O. Steinhardt , Adaptive array detection of uncertain rank one wave- 
+forms, IEEE Trans. Signal Process. 44 (11) (1996) 2801¨C2809 . 
+[38] D. Pastina , P. Lombardo , T. Bucciarelli , Adaptive polarimetric target detection 
+with coherent radar part I: detection against Gaussian background, IEEE Trans. 
+Aerosp. Electron.Syst. 37 (4) (2001) 1194¨C1206 . 
+[39] E.J. Kelly , K.M. Forsythe , Adaptive detection and parameter estimation for mul- 
+tidimensional signal models, Technical Report, Lincoln Laboratory, Lexington, 
+1989 . 
+

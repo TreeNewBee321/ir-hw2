@@ -1,0 +1,2158 @@
+Novel Computer Vision Analysis of Nasal Shape in Children with Unilateral Cleft Lip
+
+
+abstract
+
+Background: Optimization of treatment of the unilateral cleft lip nasal deformity (uCLND) is hampered 
+by lack of objective means to assess initial severity and changes produced by treatment and growth.  
+The purpose of this study was to develop automated 3D image analysis specific to the uCLND; assess 
+the correlation of these measures to esthetic appraisal; measure changes that occur with treatment 
+and differences amongst cleft types. 
+
+Methods: Dorsum Deviation, Tip-Alar Volume Ratio, Alar-Cheek Definition, and Columellar Angle were 
+assessed using computer-vision techniques.  Subjects included infants before and after primary cleft lip 
+repair (N=50) and children aged 8-10 years with previous cleft lip (N=50).  Two expert surgeons 
+ranked subjects according to esthetic nose appearance. 
+
+Results: Computer-based measurements strongly correlated with rankings of infants pre-repair (r=0.8, 
+0.75, 0.41 and 0.54  for Dorsum Deviation, Tip-Alar Volume Ratio, Alar-Cheek Definition, and 
+Columellar Angle, p<0.01) while all measurements except Alar-Cheek Definition correlated moderately 
+with rankings of older children post-repair (r~0.35, p<0.01).  Measurements were worse with greater 
+severity of cleft type but improved following initial repair.  Abnormal Dorsum Deviation and 
+Columellar Angle persisted after surgery and were more severe with greater cleft type. 
+
+Conclusions: Four fully-automated measures were developed that are clinically relevant, agree with 
+expert evaluations and can be followed through initial surgery and in older children. Computer vision 
+analysis techniques can quantify the nasal deformity at different stages, offering efficient and 
+standardized tools for large studies and data-driven conclusions.   
+
+Keywords: Cleft Lip; Computer-Assisted Image Analysis; 3-D Image 
+
+1. Introduction 
+
+Cleft lip with or without palate occurs in 1 in 1000 births and results in complex 3-dimensional 
+deformity of the nose (Figure 1).  Although surgery can produce dramatic changes, the lack of objective 
+measures and data-driven evaluations of different treatments result in decisions that are based on 
+experience instead of scientific evidence. Conventional photography has been used to develop 
+objective measures of cleft severity (Mommaerts and Nagy, 2008; Fisher et al., 2008; Fudalej et al., 
+2012) however, it suffers from parallax (Oh et al., 2011) and fails to capture the complex 3D nature of 
+the deformity. Traditional methods, such as direct anthropometry, CT scan, and dentofacial casts, 
+provide richer information but are impractical in clinical settings or for routine use.  
+
+Advances in 3D stereo-photogrammetry, have allowed for acquisition of high-resolution 3D images 
+with minimal burden to patients.  Although the technology provides great opportunities to improve 
+cleft care, its utility in research and clinical settings is still evolving.  Prior studies have focused on the 
+accuracy and reliability of indirect anthropometric analysis (Ort et al., 2012; Li et al., 2013; Tse et al., 
+2014; Othman and Aidil Koay, 2016) and have used this type of analysis to compare children with clefts 
+to controls (Hood et al., 2004; Krimmel et al., 2006; Ayoub et al., 2011; Othman et al., 2014), children 
+with different types of clefts (Yeow et al., 2002; Bugaighis et al., 2013; Bugaighis et al., 2014a), and 
+children before and after surgery (Huempfner-Hierl et al., 2009; Okawachi et al., 2011; Krimmel et al., 
+2013; Alazzawi et al., 2017).  Although anthropometric analysis is objective, it does not consider 3D 
+shape and the manual landmarking can be tedious.  More recent studies have measured surface 
+asymmetry as a standard (Hood et al., 2003; Bilwatsch et al., 2006; Nkenke et al., 2006; Devlin et al., 
+2007; Singh et al., 2007; Stauber et al., 2008; Weinberg et al., 2009; Hoefert et al., 2010; Meyer-Marcotty 
+et al., 2010; Bugaighis et al., 2013), however, as Fudalej has found, measurement of symmetry alone 
+may only have weak association with esthetic rating (Fudalej et al., 2012).  An appropriate objective 
+measure may therefore need to be based on specific and clinically relevant features. We define an 
+objective measure as one that is not based upon a subjective appraisal and that is based upon 
+mathematical measurement following a standardized and well-defined algorithm. 
+
+The goals of this study were to: 
+
+1. Develop automated objective measures of 3D nasal form that are specific and relevant to the 
+unilateral cleft lip nasal deformity (uCLND) 
+2. Determine the correlation of the measures to subjective appraisals of nose appearance.   
+3. Assess changes in measures that occur with primary cleft lip repair 
+4. Assess differences in measures amongst children with different types of unilateral cleft lip and 
+different age groups 
+
+Our plan is to use the methods and findings of this study to compare treatments and optimize 
+outcomes of surgical care.    
+
+MATERIAL AND METHODS 
+
+This study was reviewed and approved by institutional review board of Seattle Children¡¯s Hospital. 
+Consent was obtained from all subjects to participate in this project. 
+
+Subjects 
+
+Consecutive families presenting to our institution were recruited for this study.  Group A included 45 
+infants with unrepaired cleft lip.  Images before (Infant Pre-repair) and after (Infant Post-repair) 
+primary cheiloplasty were collected.  An additional 5 age-matched subjects with no craniofacial 
+differences (Infant Control) were included in this group as control.  Infants with clefts in Group A 
+underwent repair by the senior author using the Anatomic Subunit Approximation Approach as 
+described by Fisher (Fisher, 2005) and modified by Tse (Tse and Lien, 2015). Primary rhinoplasty was 
+
+performed in the form of nasal floor closure, lateral sidewall reconstruction, and primary septoplasty 
+(Tse, 2012).   
+
+To assess longer term and a wider variety of outcomes, Group B included 45 children aged 8-10 years 
+old who had previously undergone repair (8-10 y Post-repair) and 5 control children aged 8-10 years 
+old (8-10 y Control) with no craniofacial differences.   Children with clefts in Group B underwent repair 
+by any of 6 surgeons at our institution or by a surgeon at an outside institution.  All had undergone 
+variations of rotation-advancement repair (42% repaired at our institution and 58% repaired 
+elsewhere).  53% had undergone surgical revision and 73% had undergone alveolar bone grafting.  We 
+had no pre-repair images for Group B subjects because 3D image capture was not yet available.   
+
+Imaging and preprocessing 
+
+3D facial images were captured by our center¡¯s professional imaging technologist using the 3dMD 
+Cranial System (3dMD, Atlanta, GA). 3D images were preprocessed to extract the face and to correct 
+alignment into a standard facial frontal plane using a previously described automated cleaning and 
+pose normalization algorithm (Wu et al., 2014). No manual image processing was performed.  The 
+images were then analyzed using the developed automated measures.  
+
+Computer-based quantification of cleft severity 
+
+Using a sample set of 3D images and computer vision techniques, we developed automated 
+measurements to quantify specific features of the uCLND (Figure 1): dorsal deviation, columellar 
+deviation, nasal tip asymmetry, and blunting of the alar-cheek junction (Figure 2A-B).  Columellar 
+angle has previously been found to be an important measure of initial cleft severity (Fisher et al., 
+2008).  The nasal form and nasal deviation domains of the Asher-McDade scale have previously been 
+found to highly correlate with lay-person evaluations of post-operative nasal form via crowdsourcing 
+(Tse et al., 2016).  The developed measures were designed to quantify these features.  All of the steps in 
+processing and analysis required no manual processing. 
+
+We defined the mid-facial reference plane as the geometric midline that ignores the nasolabial region.  
+Based upon a previous study (Wu et al., 2016a), the most valid automated method to produce a 
+consistent reference plane was to identify the midline of calculated surface landmarks (Liang et al., 
+2013) outside of the nasolabial region (Deformation method). 
+
+To more accurately differentiate dorsum from the tip region of the nose, the profile contour was 
+extracted on the sagittal section containing the greatest projecting point of the nose (pronasale).  Using 
+local curvature contour analysis, the sellion, pronasale, and subnasale were defined (Figure 3A).  
+
+Horizontal contours were extracted by taking the intersection of the 3D surface mesh with an xz-plane 
+at several y-coordinates (Figure 3B-C).  For each contour, the curvature angle was calculated at all 
+points by fitting lines to the neighboring 15 points on each side and calculating the angle between two 
+lines (Figure 3E). On each contour, four points of interest were identified: two local minima of the 
+curvature angle were detected as the nose corners, the global maximum of the curve was detected as 
+the nasal dorsum, and the intersection of the contour with the mid-facial plane was identified for 
+reference (Figure 3D-E).  In doing so, the borders of the nose could be identified (Figure 3F). 
+
+Dorsum Deviation measures the deviation of the nasal dorsum from the mid-facial reference plane. The 
+nasal dorsum was approximated by a line fitted to the highest points (detected through curvature 
+analys) at 20 horizontal contours taken from pronasale to sellion. Dorsum Deviation was measured as 
+the angle between the dorsum line and the mid-facial reference plane (Figure 2A and 2C).  A perfectly 
+symmetrical nose has a Dorsum Deviation of 0¡ã while the Dorsum Deviation increases with 
+asymmetry.  
+
+Tip-Alar Volume Ratio measures the volumetric asymmetry of the nasal tip-alar complex. The nasal tip 
+was located between the subnasale and alar curvature. Figure 2A illustrates the nasal tip area where 
+the Tip-Alar Volume Ratio is calculated. Horizontal contours were extracted, and the area under the 
+horizontal contour line was calculated at each plane. Using the automatically calculated mid-facial 
+reference plane, the area was divided into two parts (Figure 2D). As an approximation of the nose 
+volume, the areas under the left and right sides were summed over all planes. The ratio of the volume 
+of the larger side to the smaller side was calculated for each subject. A perfectly symmetrical nose 
+produces a ratio of 1, and higher values of Tip-Alar Volume Ratio indicate asymmetry.  
+
+Alar-Cheek Definition measures alar-cheek definition and assesses the contour changes between the 
+nasal ala and the cheek with the premise that this distinction tends to be blunted on the cleft side 
+(Figure 1B and Figure 2B). 10 horizontal contours from the mid-point between the subnasale and 
+pronasale to the alar curvature were extracted. Using the curvature analysis, nose corners were 
+detected at each horizontal contour. A line was fitted to the 15 points from the nose corner towards the 
+nasal tip and the curvature angle is the angle this line makes with the x-axis. Figure 2E demonstrates 
+the curvature angles at two sides. Alar-Cheek Definition was measured as the mean of the absolute 
+differences between the angles of the two nose corners. A perfectly symmetrical nose produces an 
+Alar-Cheek Definition of 0¡ã, and higher values Alar-Cheek Definition mean greater deformity.   
+
+Columellar Angle measures the deviation and deformation of the columella. Similar to the horizontal 
+contours used for the measures above, a set of contours from the midpoint between the pronasale and 
+subnasale to the subnasale that are parallel to the xy-plane were extracted. Using curvature analysis, 
+the most prominent point on each contour was calculated and the columellar line was approximated 
+by the line fitted to these points. Figure 2F demonstrates the points detected by curvature analysis. 
+Figure 2B shows the columellar line and the columellar angle computed by the computer, while Figure 
+1B shows a columellar line drawn by a cleft surgeon. The Columellar Angle was defined as the angle 
+between the columellar line and the yz-plane. A perfectly symmetrical nose has a Columellar Angle of 
+0¡ã, and higher values of Columellar Angle mean greater deformity.  
+
+Subjective appraisal of nasal form 
+
+Expert surgeons have previously been found to reliably place images of infants with cleft lip in 
+increasing order of nasal severity when allowed to perform side-by-side comparisons (Fisher et al., 
+2008).  Images from each group of subjects were assembled and randomly placed onto an electronic 
+¡°sorting board¡± (Wu et al., 2016b).  Images could be selected and viewed in a 3D viewer that also 
+displayed adjacent images for direct comparison. Pre-repair images of Group A and post-repair images 
+of Group B were ranked in order of increasing nasal deformity by expert surgeons (CM and RT, 
+respectively).  
+
+To compare rankings with measures, we ordered subjects in each group based on increasing Dorsum 
+Deviation, Tip-Alar Volume Ratio, Alar-Cheek Definition and Columellar Angle. The correlation of 
+measures to the expert rank order was determined by Pearson¡¯s correlation coefficients of the rank 
+orders. 
+
+Changes with primary repair and differences amongst cleft types and extents 
+
+Subjects were grouped by cleft type and cleft extent.  Changes in measures before and after surgery 
+and differences in subject groups were assessed using t-test.  
+
+Subject demographics are summarized in Tables 1 and 2.  Group A was consistent with the initial 
+presentations normally seen at our institution.  In Group B, there was a preponderance of subjects with 
+
+RESULTS 
+
+complete cleft lip.  Although this is not representative of initial presentations, it is consistent with visits 
+in clinic by children at age 8-10 years who are returning for ongoing care.    
+
+Correlation of measures to subjective appraisals of nose deformity 
+
+Correlations of measures to expert ranking of uCLND are summarized in Table 3. In Group A, measures 
+of Dorsum Deviation and Tip-Alar Volume Ratio were highly correlated with the expert rankings (0.8 
+and 0.75 respectively, p < 0.01) while Alar-Cheek Definition and Columellar Angle produced 
+reasonable correlation coefficients (0.41 and 0.54 respectively, p < 0.01).  
+
+The raters did not feel that they could reliably differentiate the nasal appearance of subjects in Group A 
+immediately after surgery because all the appearances were similar.  Formal ranking of post-operative 
+images of Group A was therefore abandoned.  
+
+The nasal appearances of subjects in Group B were distinct enough that raters could differentiate nasal 
+appearance.  The correlation of quantitative measures to the rank order of nasal appearance in Group 
+B was moderate for all measures (correlation coefficient of ~0.35, p < 0.01), except for Alar-Cheek 
+Definition (correlation coefficient of 0.18, p ~ 0.2).  Apart from Alar-Cheek Definition, all correlations 
+were statistically significant (see Table 3).  
+
+Changes with primary cleft lip repair 
+
+All 4 of the nasal measures were significantly reduced after repair and there were greater changes in 
+measures with increasing initial severity (Table 4).  
+
+Pre-operative differences amongst cleft type and extent 
+
+In Group A, for all measures, except the Alar-Cheek Definition, the mean values decreased in the order 
+of complete, complete with band, incomplete and control (Figure 4). The difference was statistically 
+significant between infants with complete cleft and infants with incomplete cleft, and infants with 
+complete cleft and controls. Mean Dorsum Deviation for infants with complete cleft was also 
+significantly higher than for infants with complete cleft with band.  
+
+When grouped by extent of clefting, measures for infants with CLA and CLP were similar, however, 
+measures of nasal deformity decreased for infants with CL and for control subjects.  Those differences 
+reached statistical significance for Dorsum Deviation and Tip-Alar Volume Ratio (Figure 5). 
+
+Post-operative differences amongst cleft type and extent 
+
+Following repair, measures of uCLND for children with clefts were worse than for control subjects 
+(Table 4).  In Group A the differences reached statistical significance for all measures.  In Group B the 
+differences approached significance for Dorsum Deviation (p=0.06) and Columellar Angle (p=0.07). 
+
+When grouped by cleft type, there was a trend toward worsening Columellar Angle with increasing 
+cleft severity for both Group A and B.   We also found worsening Dorsum Deviation with worsening 
+cleft type in Group B but not in the younger Group A.  Similar trends were not found for the Tip-Alar 
+Volume Ratio or the Alar-Cheek Definition.   
+
+Other correlations 
+
+There were no significant differences between amongst ethnicities and the two sexes in any of the 
+groups.  
+
+DISCUSSION 
+
+Advances in 3D stereophotogrammetry provide an opportunity for better assessment of cleft 
+morphology.   Whereas previous studies used traditional anthropometric analysis as a surrogate for 3D 
+form, more recent studies have assessed surface data of 3D images to study facial and regional 
+symmetry (Hartmann et al., 2007; Djordjevic et al., 2014).  Dadakova and Bugaighis created average 3D 
+images of subjects grouped by cleft type to illustrate differences in morphology and to produce ¡°heat 
+maps¡± that demonstrate regional differences in children 3 and 4.5 years (Dad¨¢kov¨¢ et al., 2016) and 8-
+12 years old (Bugaighis et al., 2014b) respectively. Schwenzer-Zimmerer used a similar approach to 
+visualize changes that occur with initial cleft lip repair performed in Cambodia for patients over 4 
+years old (Schwenzer-Zimmerer et al., 2008).  Heat maps have also been used to illustrate changes 
+before and after both secondary alveolar bone grafting (Kau et al., 2011) and secondary rhinoplasty 
+(Nakamura et al., 2011).  Although these methods nicely illustrate differences and changes, they are 
+qualitative, rely upon manually placed landmarks, and do not specifically address differences or 
+changes of the nose.   
+
+Geometric morphometrics have been applied to assess 3D images. Bugaighis used Procrustes analysis 
+and principal component analyses to assess differences amongst averaged faces for subjects grouped 
+by cleft type at 8-12 years of age (Bugaighis et al., 2010) and Bell used Procrustes analysis and facial 
+curve analysis to compare regions of asymmetry amongst subjects grouped by cleft type at 10 years of 
+age (Bell et al., 2014).  They found that different facial regions exhibited different degrees of 
+asymmetry.  Kuijpers examined a similar group of subjects using manual landmarks, mirror images 
+and surface based registration and found that the nose was the most asymmetric region of the face 
+(Kuijpers et al., 2015).  Their findings are consistent with the clinical notion that persistent nasal 
+deformity is common and correction of the uCLND remains a significant challenge.   
+
+Only a few studies focus specifically on the nose. Singh used landmark-based geometric 
+morphometrics to look at 3D nasal changes from nasoalveolar molding (Singh et al., 2005). van Loon 
+performed linear measurements and volumetric analysis of nasal symmetry in a group of 3 year-old 
+children to demonstrate differences between children with repaired clefts and volunteers without 
+clefts (van Loon et al., 2011).  In a similar manner, both Linden and van Loon manually isolated noses 
+on 3D images and quantified overall symmetry for two methods of primary rhinoplasty (Linden et al., 
+2016) and before and after secondary rhinoplasty (van Loon et al., 2010), respectively.  None of these 
+studies have assessed infants before and after surgery and none of these examined specific features of 
+the uCLND.  Although overall symmetry may be an objective measure of form, as Fudalej has found, 
+asymmetry alone may only partially account for esthetic ratings of form (Fudalej et al., 2012; Desmedt 
+et al., 2015).  In order to improve results of treatment, specific and clinically relevant measures of the 
+uCLND nasal are required.   
+
+Our study differs from prior work in a number of ways.  First, we developed measures based upon 
+clinically relevant features of the uCLND that surgeons and lay people use to assess cleft severity and 
+treatment outcome (Fisher et al., 2008; Meltzer et al., 2013; Tse et al., 2016).  Second, we assessed the 
+correlation of these measures to esthetic appraisals of the unilateral cleft lip deformity and found 
+strong agreement, thereby validating use of the measures for clinical and research purposes.  Third, as 
+opposed to evaluating a single age group, we examined subjects at 3 time points (pre-lip repair, post-
+lip repair, and at 8-10 years of age).  Although the subjects in Group A and B were different, the same 
+analysis may be used in the future for true longitudinal assessment. Finally, we used completely 
+automated processes from image cleaning, registration and pose normalization (Wu et al., 2014) to 
+shape analysis.  In contrast, previous methods require manual cropping or landmarks.  By minimizing 
+the burden of work on investigators, we hope to enable more centers to analyze and study their 
+outcomes.  Automation allows for study of large volumes of images in an efficient and practical 
+manner.  While these tools have considerable value in facilitating research, objective 3D analysis has 
+also been found to be of clinical value for surgeons in planning and decision-making(Trotman et al., 
+
+2013).  Trotman et al. found that pre-operative systematic image analysis frequently resulted in 
+alterations of surgical goals. 
+
+We found progressively worse measures of uCLND for worsening cleft types.  Cleft lip repair and 
+primary nasal correction improved all measures.  Although we may have found similar relationships of 
+appearance, cleft type, and changes with surgery using surgeon assessments, those assessments are 
+tedious and time consuming.  In addition, overall subjective appraisals by surgeons do not provide 
+feedback on specific features that may contribute to an overall appearance.   For infants post-repair, 
+the Tip-Alar Volume Ratio and Alar-Cheek Definition were similar to that of controls, however Dorsum 
+Deviation and Columellar Angle remained greater than that of controls.  Similarly, for older children, 
+the Tip-Alar Ratio was similar to that of control subjects, whereas the more specific measures of 
+uCLND, Dorsum Deviation, Alar-Cheek Definition, and Columellar Angle, were greater for subjects with 
+greater cleft severity.  There may be several reasons why the Alar-Cheek Definition was worse in the 
+older group than in the infant systepost-repair group including, recurrent deformity, differences in 
+surgical technique, and a preponderance of subjects with complete clefts in the older group.  Given that 
+Group A underwent surgery by a single surgeon using one technique and that Group B underwent 
+surgery by multiple surgeons using different techniques, inferences from direct comparison of the two 
+groups is limited.. As we follow subjects in Group A over time with repeated images, analysis and true 
+longitudinal assessment, we will gain further insights.  For now, our results suggest that the treatment 
+approaches in Group A and Group B leave residual dorsal deviation and columellar angulation but 
+correct volumetric asymmetry of the nasal tip-alar region.  Insights from these specific measures have 
+potential value for both outcomes research and clinical feedback.  
+
+Although specific measures of the uCLND offer new opportunities, several features remain a challenge.   
+We were unable to develop an automated method to measure nostril size and shape.  While those can 
+be measured manually (Stauber et al., 2008), the sparse mesh resolution in the nasal cavity results in 
+inaccurate representation of form, data holes, and artifacts that prevent accurate automated detection. 
+With improvements in imaging of these regions, we may be able to more accurately detect and 
+measure nostril shapes.  We were also unable to detect the two pronasale landmarks that an expert 
+may recognize as part of the uCLND.  Computer vision still lacks the complex human perception of 
+form and can¡¯t detect these by computation.  We therefore defined a single pronasale point based 
+mathematically as the greatest projecting point along the z-axis.   
+
+Our future plans include producing a user-friendly interface that would allow clinicians and non-
+computer science researchers to use the developed tools for automated image cleaning, normalization, 
+and analysis.  Ultimately we plan to use similar analysis to study nasal morphology following primary 
+septoplasty, tip rhinoplasty, secondary tip rhinoplasty, and secondary septorhinoplasty.  We may not 
+be able to fully correct the uCLND in a single stage, however we may be able to optimize care by 
+producing stepwise improvements that minimize the number of procedures a patient undergoes.  
+Quantitative methods of measurement are necessary to assess changes in the setting of varying initial 
+cleft severity, multi-stage treatment, and changes or relapse that occur with time and growth. 
+
+CONCLUSION 
+
+We have developed four specific and objective measures of the uCLND that can be generated by 
+automated computer analysis.  Those measures had tight correlation with expert assessments of initial 
+cleft severity and moderate correlation with expert assessments of treatment outcome.   
+
+In our study population, we found that primary cleft lip repair resulted in improved nasal form as 
+determined by the objective measures, however, residual Dorsum Deviation and Columellar 
+Angulation persisted.   Similar residual deformities of Dorsum Deviation and Columellar Angulation 
+were found in an older population of children age 8-10 years of age who previously underwent 
+treatment.  Further work is needed to specifically measure other residual features of the uCLND and to 
+determine the best strategies for treatment over the course of longitudinal care. 
+
+3D stereo-photogrammetry provides a unique opportunity to develop automated and specific 
+measures that can facilitate large-scale analysis and minimize barriers to outcomes assessment.  In 
+turn, the objective data may be used to directly or indirectly improve patient care.   
+
+ACKNOWLEDGEMENTS 
+
+This project was funded by Seattle Children¡¯s Hospital CCTR Translational Research Ignition Projects 
+Program and Seattle Children¡¯s Hospital CCTR Pediatric Pilot Fund.  
+
+Authors would like to thank Linda Peters, CRA and Kate Nickel, CRA for subject recruitment, and Jerrie 
+Bishop for grant administration. 
+
+Conflicts of interest: none. 
+
+REFERENCES 
+
+Alazzawi O, Morioka D, Miyabe M, Tosa Y, Ohkubo F, Yoshimoto S: Nasolabial Growth in Individuals 
+With Unilateral Cleft Lip and Palate. J Craniofac Surg. 28(5):e449e451, 2017. 
+
+Ayoub A, Garrahy A, Millett D, Bowman A, Siebert JPP, Miller J, Ray A: Three-Dimensional Assessment 
+of Early Surgical Outcome in Repaired Unilateral Cleft Lip and Palate: Part 2. Lip Changes. Cleft 
+Palate-Craniofacial J. 48(5):578-583, 2011. 
+
+Bell A, Lo T-WR, Brown D, Bowman AW, Siebert JP, Simmons DR, Millett DT, Ayoub AF: Three-
+Dimensional Assessment of Facial Appearance Following Surgical Repair of Unilateral Cleft Lip 
+and Palate. Cleft Palate-Craniofacial J. 51(4):462-471, 2014. 
+
+Bilwatsch S, Kramer M, Haeusler G, Schuster M, Wurm J, Vairaktaris E, Neukam FW, Nkenke E: 
+Nasolabial symmetry following Tennison-Randall lip repair: A three-dimensional approach in 10-
+year-old patients with unilateral clefts of lip, alveolus and palate. J Cranio-Maxillofacial Surg. 
+34(5):253-262, 2006. 
+
+Bugaighis I, Mattick CR, Tiddeman B, Hobson R: 3D asymmetry of operated children with oral clefts. 
+Orthod Craniofac Res. 17(1):27-37, 2013. 
+
+Bugaighis I, Mattick CR, Tiddeman B, Hobson R: 3D Facial Morphometry in Children With Oral Clefts. 
+Cleft Palate-Craniofacial J. 51(4):452-461, 2014a. 
+
+Bugaighis I, O¡¯Higgins P, Tiddeman B, Mattick C, Ben Ali O, Hobson R: Three-dimensional geometric 
+morphometrics applied to the study of children with cleft lip and/or palate from the North East 
+of England. Eur J Orthod. 32(5):514-521, 2010. 
+
+Bugaighis I, Tiddeman B, Mattick CR, Hobson R: 3D comparison of average faces in subjects with oral 
+clefts. Eur J Orthod. 36(4):365-372, 2014b. 
+
+Dad¨¢kov¨¢ M, Cag¨¢¨¾ov¨¢ V, Dupej J, Hoffmannov¨¢ E, Borsk J, Velem¨ªnsk¨¢ J: Three-dimensional 
+evaluation of facial morphology in pre-school cleft patients following neonatal cheiloplasty. J 
+Cranio-Maxillofacial Surg. 44(9):1109-1116, 2016. 
+
+Desmedt DJ, Maal TJ, Kuijpers MA, Bronkhorst EM, Kuijpers-Jagtman AM, Fudalej PS: Nasolabial 
+symmetry and esthetics in cleft lip and palate: analysis of 3D facial images. Clin Oral Investig. 
+19(8):1833-42, 2015. 
+
+Devlin MF, Ray A, Raine P, Bowman A, Ayoub AF: Facial symmetry in unilateral cleft lip and palate 
+following alar base augmentation with bone graft: a three-dimensional assessment. Cleft Palate 
+Craniofac J. 44(4):391-395, 2007. 
+
+Djordjevic J, Toma AM, Zhurov AI, Richmond S: Three-dimensional quantification of facial symmetry in 
+adolescents using laser surface scanning. Eur J Orthod. 36(2):125-32, 2014. 
+
+Fisher DM: Unilateral cleft lip repair: an anatomical subunit approximation technique. Plast Reconstr 
+Surg. 116(1):61-71, 2005. 
+
+Fisher DM, Tse R, Marcus JR: Objective Measurements for Grading the Primary Unilateral Cleft Lip 
+Nasal Deformity. Plast Reconstr Surg. 122(3):874-880, 2008. 
+
+Fudalej P, Katsaros C, Hozyasz K, Borstlap WA, Kuijpers-Jagtman AM: Nasolabial symmetry and 
+aesthetics in children with complete unilateral cleft lip and palate. Br J Oral Maxillofac Surg. 
+50(7):621-625, 2012. 
+
+Hartmann J, Meyer-Marcotty P, Benz M, Husler G, Stellzig-Eisenhauer A: Reliability of a Method for 
+Computing Facial Symmetry Plane and Degree of Asymmetry Based on 3D-data. J Orofac Orthop. 
+
+68(6):477-90, 2007. 
+
+Hoefert CS, Bacher M, Herberts T, Krimmel M, Reinert S, Hoefert S, Gz G: Implementing a 
+superimposition and measurement model for 3D sagittal analysis of therapy-induced changes in 
+facial soft tissue: a pilot study. J Orofac Orthop. 71(3):221-34, 2010. 
+
+Hood CA, Bock M, Hosey MT, Bowman A, Ayoub AF: Facial asymmetry - 3D assessment of infants with 
+cleft lip &amp; palate. Int J Paediatr Dent. 13(6):404-410, 2003. 
+
+Hood CA, Hosey MT, Bock M , White J, Ray A, Ayoub AF: Facial characterization of infants with cleft lip 
+and palate using a three-dimensional capture technique. Cleft Palate Craniofac J. 41(1):27-35, 
+2004. 
+
+Huempfner-Hierl H, Hemprich A, Hierl T: Results of a Prospective Anthropometric and Functional 
+Study About Aesthetics and Nasal Respiration After Secondary Rhinoplasty in Cleft Lip and Palate 
+Patients. J Craniofac Surg. 20(Suppl 2):1863-1875, 2009. 
+
+Kau CH, Medina L, English JD, Xia J, Gateno J, Teichgraber J: A comparison between landmark and 
+surface shape measurements in a sample of cleft lip and palate patients after secondary alveolar 
+bone grafting. Orthodontics (Chic). 12(3):188-195, 2011. 
+
+Krimmel M, Kluba S, Bacher M, Dietz K, Reinert S: Digital surface photogrammetry for anthropometric 
+analysis of the cleft infant face. Cleft Palate Craniofac J. 43(3):350-355, 2006. 
+
+Krimmel M, Kluba S, Breidt M, Bacher M, M¨¹ller-Hagedorn S, Dietz K, B¨¹lthoff H, Reinert S: Three-
+Dimensional Assessment of Facial Development in Children With Unilateral Cleft Lip With and 
+Without Alveolar Cleft. J Craniofac Surg. 24(1):313-316, 2013. 
+
+Kuijpers MA, Desmedt DJ, Nada RM, Berg¨¦ SJ, Fudalej PS, Maal TJ: Regional facial asymmetries in 
+unilateral orofacial clefts. Eur J Orthod. 37(6):636-642, 2015. 
+
+Li G, Wei J, Wang X, Wu G, Ma D, Wang B, Liu Y, Feng X: Three-dimensional facial anthropometry of 
+unilateral cleft lip infants with a structured light scanning system. J Plast Reconstr Aesthetic Surg. 
+66(8):1109-1116, 2013. 
+
+Liang S, Wu J, Weinberg SM, Shapiro LG: Improved detection of landmarks on 3D human face data. Conf 
+Proc  . Annu Int Conf IEEE Eng Med Biol Soc IEEE Eng Med Biol Soc Annu Conf. 2013:6482-6485, 
+2013. 
+
+Linden OE, Taylor HO, Vasudavan S, Byrne ME, Deutsch CK, Mulliken JB, Sullivan SR: Three-
+Dimensional Analysis of Nasal Symmetry Following Primary Correction of Unilateral Cleft Lip 
+Nasal Deformity. Cleft Palate-Craniofacial J. 0(0):16-73, 2016. 
+
+van Loon B, Maal TJ, Plooij JM, Ingels KJ, Borstlap WA, Kuijpers-Jagtman AM, Spauwen PH, Berg¨¦ SJ, 
+Berg?? SJ, Berg¨¦ SJ: 3D Stereophotogrammetric assessment of pre- and postoperative volumetric 
+changes in the cleft lip and palate nose. Int J Oral Maxillofac Surg. 39(6):534-540, 2010. 
+
+van Loon B, Reddy SG, van Heerbeek N, Ingels KJAO, Maal TJJ, Borstlap WA, Reddy RR, Kuijpers-
+Jagtman A-MM, Berg¨¦ SJ: 3D stereophotogrammetric analysis of lip and nasal symmetry after 
+primary cheiloseptoplasty in complete unilateral cleft lip repair. Rhinology. 49(5):546-553, 2011. 
+
+Meltzer NE, Vaidya D, Capone RB: The Cleft-Columellar Angle: A Useful Variable to Describe the 
+Unilateral Cleft Lip-Associated Nasal Deformity. Cleft Palate-Craniofacial J. 50(1):82-87, 2013. 
+
+Meyer-Marcotty P, Alpers GW, Gerdes ABM, Stellzig-Eisenhauer A: Impact of facial asymmetry in visual 
+perception: A 3-dimensional data analysis. Am J Orthod Dentofac Orthop. 137(2)2010. 
+
+Mommaerts MY, Nagy KK: Analysis of the cleft lip-nose in the submental-vertical view. Part II. Panel 
+study: Which is the most important deformity? J Cranio-Maxillofacial Surg. 36(6):315-320, 2008. 
+
+Nakamura N, Sasaguri M, Okawachi T, Nishihara K, Nozoe E: Secondary correction of bilateral cleft lip 
+nose deformity - Clinical and three-dimensional observations on pre- and postoperative outcome. 
+J Cranio-Maxillofacial Surg. 39(5):305-312, 2011. 
+
+Nkenke E, Lehner B, Kramer M, Haeusler G, Benz S, Schuster M, Neukam FW, Vairaktaris EG, Wurm J: 
+Determination of facial symmetry in unilateral cleft lip and palate patients from three-
+dimensional data: technical report and assessment of measurement errors. Cleft Palate Craniofac 
+J. 43(2):129-137, 2006. 
+
+Oh TS, Choi JW, Koh KS: Upper Lip Asymmetry Perception Using Three-Dimensional Anthropometry in 
+Patients With Unilateral Cleft Lip Deformity. J Craniofac Surg. 22(6):2080-3, 2011. 
+
+Okawachi T, Nozoe E, Nishihara K, Nakamura N: 3-Dimensional Analyses of Outcomes Following 
+Secondary Treatment of Unilateral Cleft Lip Nose Deformity. J Oral Maxillofac Surg. 69(2):322-
+332, 2011. 
+
+Ort R, Metzler P, Kruse AL, Matthews F, Zemann W, Grtz KW, Luebbers H-T: The Reliability of a Three-
+Dimensional Photo System- (3dMDface-) Based Evaluation of the Face in Cleft Lip Infants. Plast 
+Surg Int. 2012(3):1-8, 2012. 
+
+Othman SA, Ahmad R, Asi SM, Ismail NH, Rahman ZAA: Three-dimensional quantitative evaluation of 
+facial morphology in adults with unilateral cleft lip and palate, and patients without clefts. Br J 
+Oral Maxillofac Surg. 52(3):208-213, 2014. 
+
+Othman SA, Aidil Koay NA: Three-dimensional facial analysis of Chinese children with repaired 
+unilateral cleft lip and palate. Sci Rep. 6(1):418, 2016. 
+
+Schwenzer-Zimmerer K, Chaitidis D, Berg-Boerner I, Krol Z, Kovacs L, Schwenzer NF, Zimmerer S, 
+Holberg C, Zeilhofer H-FF: Quantitative 3D soft tissue analysis of symmetry prior to and after 
+unilateral cleft lip repair compared with non-cleft persons (performed in Cambodia). J Cranio-
+Maxillofacial Surg. 36(8):431-438, 2008. 
+
+Singh GD, Levy-Bercowski D, Santiago PE: Three-dimensional nasal changes following nasoalveolar 
+molding in patients with unilateral cleft lip and palate: geometric morphometrics. Cleft Palate 
+Craniofac J. 42(4):403-409, 2005. 
+
+Singh GD, Levy-Bercowski D, Y¨¢ez MA, Santiago PE: Three-dimensional facial morphology following 
+surgical repair of unilateral cleft lip and palate in patients after nasoalveolar molding. Orthod 
+Craniofac Res. 10(3):161-166, 2007. 
+
+Stauber I, Vairaktaris E, Holst A, Schuster M, Hirschfelder U, Neukam FW, Nkenke E: Three-dimensional 
+analysis of facial symmetry in cleft lip and palate patients using optical surface data. J Orofac 
+Orthop. 69(4):268-82, 2008. 
+
+Trotman C-A, Phillips C, Faraway JJ, Hartman T, van Aalst JA: Influence of Objective Three-Dimensional 
+Measures and Movement Images on Surgeon Treatment Planning for Lip Revision Surgery. Cleft 
+Palate-Craniofacial J. 50(6):684-695, 2013. 
+
+Tse R: Unilateral cleft lip: Principles and practice of surgical management. Semin Plast Surg.2012. 
+
+Tse R, Booth L, Keys K, Saltzman B, Stuhaug E, Kapadia H, Heike C: Reliability of Nasolabial 
+Anthropometric Measures Using Three-Dimensional Stereophotogrammetry in Infants with 
+Unrepaired Unilateral Cleft Lip. Plast Reconstr Surg. 133(4):530e¨C542e, 2014. 
+
+Tse R, Lien S: Unilateral Cleft Lip Repair Using the Anatomical Subunit Approximation. Plast Reconstr 
+Surg. 136(1):119-130, 2015. 
+
+Tse RW, Oh E, Gruss JS, Hopper RA, Birgfeld CB: Crowdsourcing as a Novel Method to Evaluate 
+
+Aesthetic Outcomes of Treatment for Unilateral Cleft Lip. Plast Reconstr Surg. 138(4):864-874, 
+2016. 
+
+Weinberg SM, Naidoo SD, Bardi KM, Brandon CA, Neiswanger K, Resick JM, Martin RA, Marazita ML: 
+Face shape of unaffected parents with cleft affected offspring: combining three-dimensional 
+surface imaging and geometric morphometrics. Orthod Craniofac Res. 12(4):271-281, 2009. 
+
+Wu J, Heike C, Birgfeld C, Evans K, Maga M, Morrison C, Saltzman B, Shapiro L, Tse R: Measuring 
+Symmetry in Children With Unrepaired Cleft Lip: Defining a Standard for the Three-Dimensional 
+Midfacial Reference Plane. Cleft Palate-Craniofacial J. 53(6):695-704, 2016a. 
+
+Wu J, Liang S, Shapiro L, Tse R: Measuring symmetry in children with cleft lip. Part 2: Quantification of 
+nasolabial symmetry before and after cleft lip repair . Cleft Palate Craniofac J. 53(6):1-2, 2016b. 
+
+Wu J, Tse R, Shapiro LG: Automated Face Extraction and Normalization of 3D Mesh Data. IEEE EMBS 
+Conf .:1-4, August 2014. 
+
+Yeow VKL, Huang MHS, Lee ST, Fook Chong SMC: An anthropometric analysis of indices of severity in 
+the unilateral cleft lip. J Craniofac Surg. 13(1):68-74, 2002. 
+
+Table 1 Subject demographics. 
+
+Group A 
+
+Group B 
+
+Infant 
+Pre-/Post-
+repair  
+
+Infant 
+Control 
+
+8-10 y 
+Post-repair* 
+
+8-10 y 
+Control 
+
+Mean age  
+
+7.5 / 10 months 
+
+5.5 months 
+
+9.5 years 
+
+9 years 
+
+Sex 
+
+Male 
+
+Female 
+
+Ethnicity 
+
+Caucasian 
+
+Asian 
+
+Latino 
+
+Native American  
+
+Mixed Caucasian 
+
+Other 
+
+Did not indicate 
+
+32 
+
+13 
+
+27 
+
+4 
+
+0 
+
+0 
+
+4 
+
+7 
+
+3 
+
+4 
+
+1 
+
+2 
+
+1 
+
+0 
+
+0 
+
+2 
+
+0 
+
+0 
+
+27 
+
+17 
+
+17 
+
+19 
+
+0 
+
+1 
+
+3 
+
+2 
+
+2 
+
+2 
+
+3 
+
+4 
+
+0 
+
+1 
+
+0 
+
+0 
+
+0 
+
+0 
+
+Table 2 Statistics for cleft type, side, extent and surgical interventions. 
+
+Cleft Side 
+
+Left 
+
+Right 
+
+Cleft Type 
+
+Complete 
+
+Infant 
+Pre-/Post-repair 
+
+8-10 y 
+Post-repair 
+
+25 
+
+20 
+
+15 
+
+33 
+
+11 
+
+41 
+
+Table 4: Pearson correlation coefficients and p-values of the computational measures to the 
+expert consensus rankings. 
+
+Dorsum Deviation 
+
+Tip-Alar Volume 
+Ratio 
+
+Alar-Cheek 
+Definition 
+
+Columellar Angle 
+
+Group A* 
+
+Group B 
+
+0.8 
+
+0.75 
+
+(p < 0.01) 
+
+(p < 0.01) 
+
+0.38 
+
+0.38 
+
+( p<0.01) 
+
+(p<0.01) 
+
+0.41 
+
+(p<0.01) 
+
+0.18 
+
+(p=0.20) 
+
+0.54 
+
+(p<0.01) 
+
+0.37 
+
+(p<0.01) 
+
+Figure 1 A patient with cleft lip nasal deformity: A. Asymmetry and deviation of nasal tip and 
+dorsum relative to midline B. Deviation of columella and blunting of nasal ala-cheek junction on the 
+cleft side on the cleft side.  
+
+Figure 2 Shape analysis based measurements: A. Frontal view of a 3D mesh. Dorsal Deviation is 
+defined as the angle between the dorsal line (red) and mid-facial reference plane (blue), whereas Tip-
+Alar Volume Ratio is the ratio of volumes of the two halves of the nose divided by the mid-facial 
+reference plane, indicated by green and red shades. B. Basal view of a 3D mesh. Alar-Cheek Definition 
+is defined as the difference between angles (green) at the two sides of the nose, and Columellar 
+Deviation is the angle columella (red) makes with the yz-plane. C. The highest points of the nose at the 
+contours taken between pronasale and sellion were used to fit the dorsal line. D. The area under each 
+horizontal contour was divided into two by using the mid-facial reference plane (blue dot). The sum of 
+these areas on all contours approximated the nose volume, and the ratio of the larger sum to the 
+smaller sum was calculated as Tip-Alar Volume Ratio. E. Curvature angles were calculated at two nose 
+corners by fitting lines (green) to the neighboring points towards nose tip. F. The most prominent 
+points on contours between the subsanale and the midpoint between the subnasale and pronasale 
+were used to fit the columellar line. 
+
+Figure 3 Horizontal contours and curvature analysis: A. The profile contour is used to detect 
+subnasale (sn), pronasale (pn) and sellion (se). B. The horizontal contours from a frontal view. C. 
+Horizontal contours from a basal view. D. Several points of interest including nose corners (green), 
+nose tip (red) and mid-facial reference plane were noted on a horizontal contour.  E. Plot of curvature 
+angle at each point in horizontal contour in D. The highest point of the nose (red) and two corners of 
+the nose where nasal ala meets the cheek (green) were detected through curvature analysis. F. Nose 
+corners reflected on the 3D surface for visualization. They follow the crease of the nose. 
+
+Figure 4 Mean values of severity measures by cleft type: For Infants Pre-repair, all measurements 
+followed a decreasing trend with less severe cleft types.  The differences reached significance for 
+complete clefts and variably for complete clefts with band and incomplete clefts.  There were more 
+significant differences amongst groups for Dorsum Deviation and Tip-Alar Volume Ratio.  All measures 
+improved after surgery and were similar amongst groups except for persistent trends of worse 
+Columellar Angle for more severe cleft types in both the Infant Post-Repair and the 8-10 year old 
+group.    The Alar-Cheek definition was similar amongst groups for Infants post-repair but seemed to 
+follow a trend of worse measures with more severe clefts for children in the older group. 
+
+A
+
+B
+
+A
+
+B
+
+C
+
+D
+
+E
+
+L
+
+R
+
+L/R = 1.82
+
+73¡ã
+
+32¡ã
+
+F
+
+F
+
+A
+
+se
+
+pn
+
+sn
+
+B
+
+C
+
+D
+
+E
+
+l
+
+e
+g
+n
+a
+
+F
+
+e
+
+r
+
+u
+
+t
+
+a
+v
+
+r
+
+u
+
+c
+
+0
+
+5
+
+10
+
+15
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Dorsum Deviation
+
+*
+
+*
+
+*
+
+1.00
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Volume Ratio
+
+* *
+
+*
+
+0
+
+10
+
+20
+
+30
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Columellar Angle
+
+*
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+o
+C
+
+m
+
+e
+p
+
+l
+
+t
+
+d
+n
+a
+b
++
+e
+
+I
+
+n
+
+c
+
+o
+
+m
+
+e
+p
+
+l
+
+t
+
+e
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Curvature Angle Difference
+
+*
+
+1.00
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Tip-Alar Volume Ratio
+
+0
+
+10
+
+20
+
+30
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Columellar Angle
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Alar-Cheek Definition
+
+0
+
+5
+
+10
+
+15
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+C
+
+L
+
+P
+
+C
+
+L
+
+A
+
+C
+
+L
+
+n
+o
+C
+
+r
+t
+
+o
+
+l
+
+Pre-repair Infant
+
+Post-repair Infant
+
+Post-repair 8-10 y
+
+Group A
+
+Group B
+
+Dorsum Deviation
+
+* *
+
+*
+
+
+
+*
+
+*
+
+*
+
+*
+
+¡ì
+
+*
+

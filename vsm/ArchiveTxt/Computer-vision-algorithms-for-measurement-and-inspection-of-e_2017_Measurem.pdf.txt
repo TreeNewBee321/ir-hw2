@@ -1,0 +1,1754 @@
+Computer vision algorithms for measurement and inspection of external screw threads
+
+E.S. Gadelmawla 1
+
+Department of Marine Engineering, Faculty of Marine Sciences, King Abdulaziz University, Jeddah 21589, Saudi Arabia
+
+article
+
+info
+
+Article history:
+Received 13 October 2016
+Received in revised form 19 December 2016
+Accepted 20 December 2016
+Available online 23 December 2016
+
+Keywords:
+Screw threads
+Thread measurements
+Thread inspection
+Computer vision
+Image processing
+
+abstract
+
+The current methods of measuring screw threads are either time consuming or expensive. In addition, no
+single measurement method is available and capable of accurately measuring all screw thread features
+while signicantly reducing the measurement time. This paper introduces a vision system for automatic
+measurement and inspection of most types of screw threads. Many image processing and computer vision
+algorithms have been developed to analyze the captured images of screw threads and perform the mea-
+surement and inspection processes. Most of the common screw thread features (18 features) could be
+measured by the introduced vision system. The system has been calibrated for both imperial and metric
+units and was veried by measuring a standard ISO metric thread plug gage and comparing the results of
+the measurements with the standard values. The results showed that the maximum difference between
+the standard and measured values was ㊣5.4 lm, which provide a good accuracy for measurement.
+ 2016 Elsevier Ltd. All rights reserved.
+
+1. Introduction
+
+Screw threads probably are among the most important of all
+machine elements. Threaded pipe joints are commonly used in var-
+ious industries such as petroleum, transport, and mining [1].
+According to the statistics, the threaded connections generally
+account for 15% of the total mechanical parts in each machinery
+and equipment. The frequency of using screw thread is so high in
+the industrial production so that it also plays an important role
+to do real-time high-precision measurement and to improve the
+quality of accessories [2].
+Due to the basic design of a screw thread, which involves helical
+geometry, screw thread technology is complex [3]. Methods of
+measuring threads are as varied as the threads themselves. These
+methods include coordinate measuring machines (CMM), prole
+projectors, laser measurements, measuring microscopes, 3-wire
+units, screw thread micrometers and V-groove micrometers. On
+the other hand, methods of thread inspection range from lasers
+to xed and variable limit gauging.
+
+Abbreviations: EPA, edge pixels arrangement; MISTVision, Screw Thread Mea-
+surement and Inspection by Vision; IPE, Inversion Pixels Extraction; CRPE, Crest and
+Root Pixels Extraction; CRPG, Crest and Root Pixels Grouping; CRGC, Crest and Root
+Groups Classication; CRDC, Crest and Root Data Calculation; STPC, Screw Thread
+Features Calculation; pd, perpendicular distance.
+There are about 30 separate geometrical features and dimen-
+sional characteristics in the design and construction of screw
+threads [4]. The most rigorous standard in the United States
+inspects 11 major thread characteristics [5]. In addition, recent
+researches [6,7] explored the effect of thread dimensional noncon-
+formity on fastener performance and it was reported that dimen-
+sional nonconformity of 150% out of tolerance for pitch diameter
+yielded a 4% reduction in tensile strength. Therefore, the measure-
+ment and inspection of screw threads are very important to ensure
+the required degree of accuracy and conformity [8].
+Due to the importance of measuring screw thread features,
+research in the eld of measuring screw thread is still underway.
+For example, Laczik [9] introduced a derivation of geometrical fea-
+tures of the screw surfaces with the exact mathematical forms.
+Fujun et al. [10] presented a method, which used optical tech-
+niques and image processing techniques to measure the physical
+dimension of tube thread and give further analysis. Zhang and
+Zhang [11] introduced an online contact measuring system that
+can automatically detect large screw threads by using the neotype
+gauge head of threads. They used spectrum analysis to analyze the
+dynamic error and to obtain the data of the functional diameter.
+They reported that the neotype gauge head of thread is capable
+to get the error and the relative changes of the functional diameter
+of the screw thread. Tong et al. [12] introduced a system for auto-
+matic measurement of screw thread parameter based on the the-
+ory of laser measurement. The inspection and estimation of the
+screw thread contour were done using position sensitive device
+(PSD) to measure the coordinate data of the screw thread contour
+and using precise raster to measure the axial displacement of the
+precision worktable. Gadelmawla [13] developed a non-contact
+measurement system using a measurescope, personal computer
+and developed software, for measuring and inspecting most of
+the common types of screw threads. Kosarev and Sugrobova intro-
+duced a method to inspect the quality of the prole of an internal
+screw thread produced by means of plastic deformation of metal is
+determined [14].
+The current methods of measuring screw threads are either time
+consuming or expensive.
+In addition, no single measurement
+method is available and capable of accurately measuring all screw
+features while signicantly reducing the measurement time.
+Therefore, the aim of this work is to develop a non contact measur-
+ing system, based on the computer vision techniques, for measuring
+and inspecting the most common features of external screw
+threads.
+
+2. Implemented vision system
+
+A vision system consists of two main parts, hardware and a
+developed software, has been used. The hardware is used to cap-
+ture images for screw threads to be measured and the software
+is used to analyze the captured images and perform the measure-
+ment and inspection processes.
+
+2.1. System setup
+
+As shown in Fig. 1, the hardware consists of three items. The
+rst item is the backlighting table, which is a lighting box with dif-
+fusing surface at its front, and it is used to produce a back lighting
+for the screw thread to be measured. The second item is a CCD
+color video camera and a set of lenses with different focal lengths.
+The camera is carried by a camera holder and it is connected to a
+PC computer through a USB connection. Capturing software is pro-
+vided with the CCD camera to acquire images with different reso-
+lutions up to 4.2 Mp (2048  2048 pixels).
+The developed software, named MISTVision (Measurement and
+Inspection of Screw Threads by Vision), is fully written in-house
+using Microsoft Visual C++ as a 32-bit Windows application. It
+features many image processing and computer vision algorithms
+to measure and inspect screw thread features from captured
+images. Fig. 2 shows the main interface of the MISTVision software.
+
+2.2. Capturing images
+
+Before capturing images for screw threads to be measured, the
+vision system was adjusted to capture images that satisfy the fol-
+lowing criteria:
+
+1. The screw thread to be measured is set on the backlighting table
+so that its axis appears horizontally in the captured image.
+2. The CDD camera is adjusted so that the image of the screw
+thread appears as maximum as possible in the capturing soft-
+ware window.
+3. At least, three complete threads should appear in the captured
+image for both the upper and lower proles of the screw thread.
+4. The left and right sides of the captured image should be
+opened, i.e., there is no background at the left or right sides
+of the image.
+5. The size of the captured images will affect the accuracy of mea-
+surement, as it will be discussed in Section 5.3; therefore, the
+vision system was adjusted to capture images of size
+2048  2048 pixels to obtain good accuracy (5 lm/pixel).
+
+3. The developed algorithms
+
+Several image processing and computer vision algorithms have
+been developed and applied to the captured image to perform the
+measurement and inspection processes. Fig. 3 shows the procedures
+of applying these algorithms and the following sections explain
+them.
+
+3.1. Image processing algorithms
+
+The aim of the image processing algorithms is to extract the
+coordinates of the pixels that constitute the upper and lower pro-
+les of the screw threads. These coordinates will be utilized by
+developed computer vision algorithms to measure the screw thread
+features. Five image processing algorithms were used: image seg-
+mentation, edge pixels detection, edge pixels thinning, edge pixels
+labeling, and edge pixels arrangement (EPA). The rst four algo-
+rithms were explained in a previous work [15] while the EPA algo-
+rithm is explained here.
+
+3.1.1. Edge pixels arrangement
+The pixels stored in the UpperEdgePixels and LowerEdgePixels
+arrays are usually not arranged due to the scanning process dis-
+cussed in the edge detection algorithm. To deal with the extracted
+pixels easily, these pixels should be arranged sequentially accord-
+ing to their positions in the thread proles. Therefore, the Edge
+Pixel Arrangement (EPA) algorithm is designed to perform this pro-
+cess. This algorithm works as follows:
+
+1. Search all pixels in the UpperEdgePixels array to nd the pixel
+that has the minimum x coordinate and mark it as the rst pixel
+in the array.
+2. Measure all distances between the rst pixel and the remaining
+pixels in the UpperEdgePixels array to nd the pixel that has the
+minimum distance and mark it as the second pixel in the
+UpperEdgePixels.
+3. Repeat step 2 by measuring the distances between the second
+pixel and all remaining pixels in the UpperEdgePixels array to
+nd third pixel.
+4. Repeat
+step 3 to arrange all
+remaining pixels
+in the
+UpperEdgePixels according to their minimum distances from
+the previous pixel.
+
+The result of the EPA algorithm is a list of pixels arranged
+sequentially from left to right. The two lists shown in the left side
+of Fig. 4 shows the extracted pixels of the upper and lower proles
+after applying the EPA algorithm.
+
+3.2. Computer vision algorithms
+
+Six computer vision algorithms were developed to calculate the
+screw thread features (18 features) and one algorithm was developed
+to inspect the screw threads. Once the coordinates of the upper and
+lower proles are arranged sequentially by the EPL algorithm, the
+computer vision algorithms are applied to perform the measurement
+and inspection processes as discussed in the following subsections.
+
+3.2.1. Inversion Pixels Extraction
+For screw thread proles, the inversion pixels are the pixels at
+which the prole changes its direction as shown in Fig. 5. For
+any pixel in the screw thread prole, the direction of the prole
+can be calculated by subtracting the y coordinate of that pixel from
+the y coordinates of both the previous and next pixels. If the two
+values have the same sign (positive or negative), then the pixel is
+considered an inversion pixel. The inversion pixels are useful to
+
+38
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+CCD Camera
+
+PC Computer & 
+the MISTVision 
+soware
+
+Camera 
+Ho lder
+
+Backlighng 
+Tab le
+
+Screw thread to 
+be measured
+
+Fig. 1. Layout of the implemented vision system.
+
+Fig. 2. Main interface of the MISTVision software.
+
+calculate the crest and root lines of the screw threads; therefore,
+the Inversion Pixels Extraction (IPE) algorithm has been developed
+to extract all inversion pixels from the edge pixels of the upper and
+lower proles. For example, the IPE algorithm extracts the inver-
+sion pixels of the upper prole as follows:
+
+1. Find the rst two successive pixels which have different y
+coordinates, for example yn, yn+1.
+2. Using the image coordinate system shown in Fig. 5, the initial
+direction (DirInit) of the prole can be calculated between these
+two pixels as follows:
+If yn+1 < yn then DirInit = Up, otherwise, DirInit = Down.
+3. Consider the initial direction (DirInit) is the previous direction
+(DirPrev) for the next pixels, i.e., DirPrev = DirInit.
+
+4. Loop through all remaining pixels in the UpperEdgePixels array
+and do the following for each pixel. Consider i the pixel number
+of the current pixel.
+a. Calculate the next direction (DirNext) of the prole by com-
+paring the y coordinate of the next pixel (yi+1) with the y
+coordinate of the current pixel (yi) as follows:
+每 If yi+1 < yi then DirNext = Up
+每 Else If yi+1 > yi then DirNext = Down
+每 Otherwise, skip.
+
+b.
+
+If DirPrev and DirNext are the same then skip, otherwise, do the
+following:
+每 If DirNext = Down, then mark the current pixel as crest inver-
+sion pixel.
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+39
+
+Start
+
+Capture an image for screw 
+thread to be measured
+
+Open the capture image by the 
+MISTVision soware
+
+Enter the major diameter of the 
+screw thread to the MISTVision
+
+Inspect Screw 
+Thread?
+
+Yes
+
+Specify 
+Inspecon 
+parameters
+
+a
+
+t
+
+a
+
+D
+
+t
+
+u
+p
+n
+
+I
+
+s
+
+m
+
+h
+
+t
+
+i
+
+r
+
+o
+
+g
+
+l
+
+A
+
+g
+
+n
+
+i
+
+s
+s
+
+e
+
+c
+
+o
+
+r
+
+P
+e
+g
+a
+
+m
+
+I
+
+Apply median lter to remove 
+noise
+
+Convert the image to grayscale, 
+then convert it to binary image
+
+Apply the Edge Detecon 
+algorithm to extract edge pixels 
+
+Apply the Edge Pixel Thinning 
+(EPT) algorithm to remove extra 
+pixels from the detected edges
+
+Apply the Edge Pixel Labeling 
+(EPL) algorithm to label the pixels 
+of the upper and lower proles
+
+Apply the Edge Pixel 
+Arrangement (EPA) algorithm to 
+sort the pixels of the upper and 
+lower proles sequenally
+
+1
+
+Apply the Inversion Pixel Extracon (IPE) 
+algorithm to extract the crest and root 
+inversion pixels 
+
+Apply the Crest and Root Pixels Extracon 
+(CRPE) algorithm to dene the crest and root 
+lines then extract all pixels lie on the crest 
+and root lines 
+
+Apply the Crest and Root Pixels Grouping 
+algorithm (CRPG) to mark each group of 
+successive pixels by a unique group number, 
+then extract the coordinates of the rst and 
+last pixel in each group.
+
+Apply the Crest and Root Groups 
+Classicaon (CRGC) algorithm to classify the 
+crest and root of the screw thread as vertex, 
+edge, or curve
+
+Apply the Crest and Root Data Calculaon 
+(CRDC) algorithm to calculate the main data 
+of the crest and root according to their 
+classicaon
+
+Apply the Screw Thread Parameter 
+Calculaon (STPC) algorithm to calculate all 
+features of the screw thread
+
+If the screw thread is to be inspected, apply 
+the Screw Thread Inspecon (SCI) algorithm 
+to take an inspecon decision
+
+s
+
+m
+
+h
+
+t
+
+i
+
+r
+
+o
+
+g
+
+l
+
+A
+
+n
+o
+
+i
+
+s
+
+i
+
+V
+
+r
+
+e
+
+t
+
+u
+p
+
+m
+
+o
+C
+
+1
+
+End
+
+Fig. 3. Procedures of the measurement and inspection process by MISTVision software.
+
+每 If DirNext = Up, then mark the current pixel as root inversion
+pixel.
+每 Set DirPrev = DirNext then loop to the next pixel.
+
+The IPE algorithm uses the same procedures to extract the
+inversion pixels of the lower prole with one exception in step 4.
+b. For the lower prole, if DirNext = Down, then the current pixel
+is marked as root inversion pixel instead of crest inversion pixel.
+Similarly, if DirNext = Up, then the current pixel is marked as crest
+inversion pixel instead of root inversion pixel. The two lists shown
+in the right side of Fig. 4 shows the inversion pixels extracted by
+the IPE algorithm for the upper and lower proles.
+
+3.2.2. Crest and Root Pixels Extraction
+The Crest and Root Pixels Extraction (CRPE) algorithm has been
+developed to extract all pixels lie on the crest and root lines of the
+screw thread proles. Based on the geometry of the screw thread
+prole shown in Fig. 6, the crest lines are the two lines pass
+through the crest inversion pixels of the upper and lower proles.
+
+Similarly, the root lines are the two lines pass through the root
+inversion pixels of the upper and lower proles.
+By referring to Fig. 4, the upper right list represents the crest
+and root inversion pixels of the upper prole. From this list, the
+crest line of the upper prole can be dened as the line connects
+between the rst crest inversion pixel (pixel 465) and the last crest
+inversion pixel (pixel 3609). Similarly, the root line of the upper
+prole can be dened as the line connects between the rst root
+inversion pixel (pixel 931) and the last root inversion pixel (pixel
+3027). Similarly, the crest and root lines of the lower proler can
+be dened. Table 1 shows the extracted data for the crest and root
+lines of the upper and lower proles.
+Any pixel can be classied as crest/root pixel if the perpendicu-
+lar distance (pd) between the pixel and the crest/root line is nearly
+equal to zero, i.e. 1 > pd >  1. For example, the CRPE algorithm
+extracts the crest pixels of the upper prole by calculating pd
+between each pixel in the UpperEdgePixels array and the crest line
+of the upper prole. All pixels satisfy the condition of 1 > pd >  1
+are marked as crest pixel for the upper prole. The value of pd
+can be calculated using Eq. (1):
+
+40
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+Fig. 4. Extracted coordinates of the edge pixels (left lists) and Inversion pixels (right lists) for the upper and lower proles.
+
+x
+
+y
+
+Crest Inversion Pixel 
+
+Crest Inversion Pixel 
+
+Root Inversion Pixel 
+
+Root Inversion Pixel 
+
+Fig. 5. Inversion pixels at the crest and root of the upper prole (enlarged image).
+
+1
+
+q
+
+
+Pd  x2   x1 y1   y3    x1   x3 y2   y1 
+x2   x1 2  y2   y1 2
+where pd is the perpendicular distance, x1, y1 are the coordinates of
+the rst pixel (p1) of the crest line and x2, y2 are the coordinates of
+the last pixel (p2), x3, y3 are the coordinates of the pixel at which pd
+is calculated (p3).
+For Cartesian coordinates, negative values of pd means that the
+pixel p3 lies to the left of the crest line (looking from the rst pixel
+to the second pixel), positive values means that the pixel p3 lies to
+the right of the crest line, and zero values means that the pixel p3
+lies on the crest line. For the image coordinates shown in Fig. 5, the
+
+opposite is true, i.e., negative values of pd means that the pixel p3
+lies to the right of the crest line and positive values means that the
+pixel p3 lies to the left.
+The crest and root pixels of the upper prole can be extracted by
+applying the following steps:
+
+1. For each pixel in the upper prole, calculate pd between the
+pixel and the crest line.
+2. If pd < 1 and pd >  1, then mark the pixel as crest pixel.
+3. For each pixel in the upper prole, calculate pd between the
+pixel and the root line.
+4. If pd < 1 and pd >  1, then mark the pixel as root pixel.
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+41
+
+Crest pixels 
+
+Group＊s space  
+
+Crest line of the 
+upper profile 
+
+Root pixels 
+
+Root line of the 
+upper profile 
+
+Root pixels 
+
+Group＊s space  
+
+Root line of the 
+lower profile 
+
+Crest pixels 
+
+Crest line of the 
+lower profile 
+
+Fig. 6. Using crest and root lines to extract crest and root pixels.
+
+The crest and root pixels of the lower prole can be extracted by
+the same way. Fig. 7 shows the extracted crest and root pixels for
+the upper and lower proles. The number of crest pixels for the
+upper and lower proles is greater than the number of root pixels
+because the crest of the investigated thread (Fig. 2) is a straight
+edge while the root is a curve.
+
+3.2.3. Crest and Root Pixels Grouping
+The aim of the Crest and Root Pixels Grouping (CRPG) algorithm
+is to extract useful information about the screw thread from the
+crest and root pixels extracted by the CRPE algorithm. This can
+be done by applying the following two steps:
+
+1. Assigning each group of successive pixels a unique group
+number.
+2. Extracting useful information from the identied groups.
+
+3.2.3.1. Assigning each group of successive pixels a unique group
+number. In this step, each pixel is assigned a unique group number
+based on the distance between the pixel and the next pixel. As
+shown in Fig. 7, the distance between each two successive pixels
+in the same group will be equal to 1 pixel and should not be greater
+than 1.414 (
+2
+). The space between each two groups of pixels is
+represented by the distance between the last pixel in one group
+and the rst pixel in the next group. This space will always be
+greater than 2 pixels. Considering this, the CRPG algorithm can
+group the crest pixels of the upper prole, for example, as follows:
+
+p
+
+
+
+1. Consider the rst pixel is the current pixel and assign it a group
+number of 1.
+2. Calculate the distance between the current pixel and the next
+pixel.
+
+Table 1
+Extracted data for the crest and root lines of the upper and lower proles.
+
+3. If the calculated distance is less than or equal to 2 pixels, then
+assign the same group number to the next pixel, otherwise,
+increase the group number by 1 and assign the new group num-
+ber to the next pixel.
+4. Move to the next pixel and consider it the current pixel.
+5. Repeat steps 2每4 for all crest pixels of the upper prole.
+
+The root pixels of the upper prole as well as the crest and root
+pixels of the lower prole can be assigned a unique group number
+using the same way. As shown in the last column of each list in
+Fig. 7, each pixel is assigned a unique group number by this
+algorithm.
+
+3.2.3.2. Extracting useful information from the identied groups. After
+assigning each pixel a unique group number, each group of succes-
+sive pixels can be considered as a short line. Therefore, useful infor-
+mation such as the start, the end, and the length of each short line
+can be calculated from each group as shown in Fig. 8. For each
+group, the coordinates of the start point are the coordinates the
+rst pixel in the group. Similarly, the coordinates of the end point
+are the coordinates of the last pixel in the group. The length of each
+short line is the distance between the start and the end points of
+each group.
+
+3.2.4. Crest and Root Groups Classication
+Based on the screw thread type, the root and crest can be clas-
+sied as vertex, edge, or curve. As a result, the shape of the screw
+threads can be classied into the ve groups
+shown in
+Figs. 9 and 10a. Based on this classication, the Crest and Root
+Groups Classication (CRGC) algorithm uses the information
+extracted by the CRPG algorithm to classify the crest and root of
+the screw thread. By referring to Fig. 9, the CRGC algorithm can
+classify the crest and root of the upper prole, for example, as
+follows:
+
+1. Assume a ank line 1 connects the end pixel of a root group
+(Re) and the start pixel of the next crest group (Cs).
+2. For all pixels lie between the two pixels (Re, Cs), use Eq. (1) to
+calculate the minimum perpendicular distance (pdmin) and the
+maximum perpendicular distance (pdmax) between each pixel
+and the ank line 1.
+3. For the four cases shown in Fig. 9, use the calculated values of
+pdmin and pdmax to classify the crest and root shape as shown
+in Table 2. It should be noticed here that the calculated values
+shown in the table are based on the image coordinate system,
+not Cartesian coordinate system.
+4. As shown in Fig. 10, use the lengths of the crest and root groups
+(Cs, Ce/Rs, Re), which were calculated by the CRPG algorithm, to
+distinguish between vertex and edge shapes. If the group length
+is less than 2 pixels, then classify the crest/root as vertex, other-
+wise, classify the crest/root as edge.
+
+After applying the CRGC algorithm, the crest and root of the
+screw thread are classied as shown in the upper section in Fig. 11.
+
+Prole
+
+Upper
+
+Lower
+
+Line type
+
+Crest line
+Root line
+
+Crest line
+Root line
+
+First pixel
+
+Pixel no.
+
+465
+931
+
+991
+408
+
+X1
+
+326
+623
+
+677
+263
+
+Y1
+
+127
+557
+
+2540
+2110
+
+Last pixel
+
+Pixel no.
+
+3609
+3027
+
+3087
+2552
+
+X2
+
+2453
+2041
+
+2095
+2390
+
+Y2
+
+127
+557
+
+2540
+2110
+
+42
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+Fig. 7. Extracted crest and root pixels for the upper and lower proles.
+
+Fig. 8. Results of the Crest and Root Pixels Grouping (CRPG) algorithm.
+
+3.2.5. Crest and Root Data Calculation (CRDC)
+After classifying the crest and root of the screw thread, the Crest
+and Root Data Calculation (CRDC) algorithm is used to calculate the
+main data of the screw thread. This data include the crest/root
+width for straight features and the crest/root radius for curved fea-
+tures. By referring to Fig. 9, the CRDC algorithm calculates the main
+data of the screw thread as follows:
+
+1. If the crest/root is classied as a vertex, the start and end pixels
+will be the same and their coordinates can be extracted
+from the pixel groups shown in Fig. 8. Accordingly, the coordi-
+nates of the middle pixel will be the same as the rst and end
+pixels.
+2. If the crest/root is classied as an edge, the start and end
+pixels will be different and their coordinates can be extracted
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+43
+
+Cs
+
+Ce
+
+As
+
+Ae
+
+pdmax>1 
+
+fl1
+
+fl2
+
+pdmin<-1 
+
+Rs
+
+Re
+
+Rs
+
+(a) Thread with curved crest and root
+
+Cs
+
+Ce
+
+pdmax>1 
+
+fl1
+
+fl2
+
+1>pdmin>-1 
+
+Rs
+
+Re
+
+Rs
+
+Re
+
+(b) Thread with curved crest and straight root  
+
+Re
+
+Cs
+
+Ce
+
+Cs
+
+Ce
+
+1>pdmax>-1 
+
+fl1
+
+fl2
+
+fl1
+
+1>pdmax>-1 
+
+fl2
+
+pdmin<-1 
+
+1>pdmin>-1 
+
+Rs
+
+Re
+
+Rs
+
+Re
+
+Rs
+
+Re
+
+Rs
+
+(c) Thread with curved root and straight crest
+
+(d) Thread with straight root and crest
+
+Fig. 9. Classication of crest and root as straight and curve (magnied images) (Cs: Crest start, Ce: Crest end, Rs: Root start, Re: Root end, As: Arc start, Ae: Arc end, pdmin:
+Minimum perpendicular distance, pdmax: Maximum perpendicular distance).
+
+Cs, Ce
+
+Group length < 2 
+
+Cs
+
+Ce
+Group length > 2 
+
+1>pdmin>-1 
+1>pdmax>-1 
+
+1>pdmin>-1 
+1>pdmax>-1 
+
+Rs, Re
+
+Rs, Re
+
+Rs
+
+Re
+
+Rs
+
+Re
+
+(a) Thread with sharp crest and root 
+
+(b) Thread with straight crest and root 
+
+Fig. 10. Classication of screw threads having straight and vertex crests and roots.
+
+Table 2
+Classication of the crest and root shapes according to the minimum and maximum distances between ank pixels and the ank line.
+
+Thread type
+
+(a)
+(b)
+(c)
+(d)
+
+pdmin
+
+pdmin <  1
+1 > pdmin >  1
+pdmin <  1
+1 > pdmin >  1
+
+pdmax
+
+pdmax > 1
+1 > pdmax >  1
+pdmax > 1
+1 > pdmax >  1
+
+Crest
+
+Curve
+Curve
+Vertex/edge
+Vertex/edge
+
+Root
+
+Curve
+Vertex/edge
+Curve
+Vertex/edge
+
+from the pixel groups shown in Fig. 8. The middle pixel is calcu-
+lated as the point between the start and end pixels.
+3. If the crest/root is classied as a curve, three points are required
+to identify the arc. As shown in Fig. 9a, the start and end points
+of the crest arc (As, Ae) can be dened as the two pixels which
+produce the maximum perpendicular distances (pdmax) from
+the two ank lines (1, 2). The second point of the arc can be
+calculated as the middle point between the start and end pixels.
+
+Once the three points of the arc are dened, the center and
+radius of the arc can be calculated. If (x1, y1), (x2, y2) and (x3, y3) are
+the coordinates of the start, middle, and end point of the arc, respec-
+tively, then the coordinates of the center point can be calculated
+using Eqs. (2) and (3) and the radius can be calculated using Eq. (4):
+cx  acc 0  bb
+0    bdd
+0  aa0 
+2ce   be
+
+2
+
+0 
+
+44
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+Fig. 11. Classication of the crest and root of the screw thread (upper section) and calculating the main data of the screw thread (lower section).
+
+cy  cdd
+0  aa0    dcc 0  bb
+2ce   be
+
+0 
+
+q
+
+
+xi   cx 2  yi   cy 2
+
+R 
+
+where
+
+0 
+
+3
+
+4
+
+To obtain accurate measurements, three calculations are per-
+formed for three pixels in different groups, then the average of
+the three calculations is taken as the major diameter. Similarly,
+the minor diameter can be calculated by calculating pd between
+any pixel in the root pixel groups of the upper prole and the root
+line of the lower prole.
+
+cx and cy are the x and y coordinates of the center point of the
+arc.
+a  y3   y1 , a0  y3  y1
+b  y2   y1 , b
+0  y2  y1
+c  x2   x1 , c 0  x2  x1
+d  x3   x1 , d
+0  x3  x1
+e  y3   y2 , e0  x3   x2
+xi and yi are the x and y coordinates of the start point of the arc.
+
+After applying the CRDC algorithm, the main data of the screw
+thread is calculated as shown in the lower section in Fig. 11.
+
+3.2.6. Screw Thread Features Calculation
+The Screw Thread Features Calculation (STFC) algorithm is used
+to calculate the screw thread features based on the main data
+extracted by the CRDC algorithm. The main important features
+are calculated as follows.
+
+3.2.6.1. Calculation of the major and minor diameters. By referring to
+Fig. 6, the major diameter can be calculated by calculating the per-
+pendicular distance (pd) between any pixel in the crest pixel
+groups of the upper prole and the crest line of the lower prole.
+
+3.2.6.2. Calculation of the theoretical depth and crest truncation. By
+referring to Fig. 12, the theoretical depth (h1) of the screw thread
+can be calculated as follows:
+
+1. If P1 and P2 are the two end points of the ank line 1 and P3 and
+P4 are two end points of the ank line 2, then the intersection
+point (P5) of the two ank lines can be calculated using Eqs. (5)
+and (6).
+xint  P1x  r  P2x   P1x 
+yint  P1y  r  P2y   P1y 
+where
+
+5
+6
+
+xint is the x coordinate of the intersection point,
+yint is the y coordinate of the intersection point,
+
+r  P1y   P3y P4x   P3x    P1x   P3x P4y   P3y 
+P2x   P1x P4y   P3y    P2y   P1y P4x   P3x 
+
+7
+
+If the denominator in Eq. (7) is equal to zero, then the two lines
+are parallel.
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+45
+
+2. Similarly, the intersection points P6 and P7 can be calculated
+between the two ank lines 3 and 4 and the two ank lines
+2 and 3 respectively.
+3. The theoretical depth (h1) can be calculated as the perpendicu-
+lar distance between the point P7 and the line connecting P5 and
+P6. This distance can be calculated using Eq. (1).
+4. The crest truncation (h2) can be calculated as the perpendicular
+distance between any pixel in the crest groups of the upper pro-
+le and the line connecting P5 and P6. Eq. (1) is also used to cal-
+culate this perpendicular distance.
+
+3.2.6.3. Calculation of the pitch and effective diameter. By referring to
+Fig. 12, the pitch can be calculated as the distance between P5 and
+P6. The effective diameter line is dened as the line which divides
+the screw thread so that the widths of the threads and the widths
+of the spaces are equal on a perfect thread. According to this de-
+nition, the distance h3 is equal to half of the theoretical depth, i.e.
+h3 = 0.5h1. Hence, the effective diameter (Deffective) of the screw
+thread can be calculated as follows:
+
+Deffectiv e  Dmajor   2h3   h2 ;
+Deffectiv e  Dmajor   20:5h1   h2 
+
+8
+
+where Dmajor is the major diameter, h1 is the theoretical depth, h2 is
+the crest truncation.
+
+3.2.6.4. Calculation of the axial thickness. By referring to Fig. 12, the
+axial thickness (Te) is the width of the screw thread measured at
+the effective line. To calculate the axial thickness, the effective
+diameter line should be dened by any two end points, for exam-
+ple, P8 and P9. Based on the screw thread geometry, the effective
+diameter line is parallel to the line P5 P6 and far from it with a dis-
+tance equal to h3. Therefore, the two end points (P8 and P9) of the
+effective diameter line can be calculated as follows:
+
+P8  x  P5  x  h3  Cosh
+P8  y  P5  y  h3  Sinh
+P9  x  P6  x  h3  Cosh
+P9  y  P6  y  h3  Sinh
+
+9
+10
+11
+12
+
+1. Use Eqs. (7)每(9) to calculate the intersection point (P10)
+between the effective diameter line and the ank line 1.
+2. Similarly, calculate the intersection point (P11) between the
+effective diameter line and the ank line 2.
+3. Calculate the axial thickness as the distance between P10 and P11.
+
+3.2.6.5. Calculation of the other features of the screw thread. The rest
+of the screw thread features can be calculated using similar ways
+according to the basic geometry shown in Fig. 13. For example,
+the Addendum (10) can be calculated from the upper prole as
+the perpendicular distance between any pixel in the crest groups
+and the effective diameter line. Similarly, the Dedendum (11) can
+be calculated as the perpendicular distance between any pixel in
+the root groups and the effective diameter line. Also, the actual
+depth (12) can be calculated as the perpendicular distance
+between any pixel on the upper prole crest groups and the root
+line of the upper prole.
+
+4. Work procedures
+
+To perform the measurement or inspection processes, the screw
+thread to be measured is set on the backlighting table then an
+image is captured and saved to a BMP le using the capturing soft-
+ware provided with the CCD camera. The captured image is then
+opened by the MISTVision software to perform the measurement
+and inspection processes as shown in the following sub-sections.
+
+4.1. Measurement of screw threads
+
+By referring to the main interface shown in Fig. 2, if the Auto-
+matic calculation check box is checked, the measurement process
+is performed automatically after opening the captured image of
+the screw thread to be measured. Otherwise, the user should click
+the Calculate button. The calculated features of the screw thread
+appear in the Thread Measurement section. If the system is cali-
+brated, as it will be discussed in Section 5, the thread features will
+be calculated in millimeters or inches. Otherwise, it will be calcu-
+lated in pixels. The calculated features can be saved to a text le
+and it can be used as a reference data for the inspection process
+as it will be discussed in the next section.
+
+where P8x and P8y are the x and y coordinates of P8, P9x and P9y
+are the x and y coordinates of P9, h3 equal to the half of the
+theoretical depth, h is the angle of inclination of the line P5 P6. For
+horizontal lines, h is equal to zero.
+After dening the effective diameter line, the axial thickness
+can be calculated as follows:
+
+4.2. Multi measurement process
+
+In metrology, usually one measurement is not enough to give
+accurate results; therefore, the MISTVision software can store up
+to ve measurements for the same screw thread in order to calcu-
+late the average values of the screw thread features. These mea-
+surements are stored to a list called Multi Measurement List
+
+h3
+
+h1
+
+P6
+
+P9
+
+P5
+
+h2
+
+P2
+
+P3
+
+fl1
+
+fl2
+
+fl3 
+
+P10
+
+P1
+
+P8
+Te
+
+Pitch 
+
+P11
+
+P4
+
+P7
+
+Effective 
+diameter line 
+
+fl4 
+
+Fig. 12. Calculating the effective diameter and other thread features.
+
+46
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+(6)
+
+(13)
+
+(12)
+
+(4)
+(5)
+
+(7)
+
+(16)
+
+(15)
+
+(14)
+
+(8)
+
+(9)
+
+(10)
+
+(11)
+
+(1)
+
+(3)
+
+(2)
+
+(17)
+
+(18)
+
+(1) Major diameter 
+(2) Minor diameter 
+(3) Effective diameter 
+(4) Pitch 
+(5) Axial thickness 
+(6) Crest Truncation 
+
+(7) Root Truncation 
+(8) Crest width/Radius 
+(9) Root width/Radius 
+(10) Addendum 
+(11) Dedendum 
+(12) Actual depth 
+
+(13) Theoretical depth 
+(14) Flank angle 1 
+(15) Flank angle 2 
+(16) Thread angle 
+(17) No of threads per inch 
+(18) No of threads per cm. 
+
+Fig. 13. Thread features that can be measured by the MISTVision software.
+
+(MML) and each measurement can be obtained from a different
+image for the same screw thread. Fig. 14 shows the MML for three
+measurements obtained from three different images for the same
+screw thread and the average value for each screw thread param-
+eter. The MML could be saved to a le for further usage.
+
+4.3. Inspection of the screw threads
+
+The inspection process is performed by comparing the mea-
+sured features of the screw thread to be inspected with the fea-
+tures of a standard screw thread within specied tolerances. In
+the main interface of the MISTVision software (Fig. 2), the Inspec-
+tion section deals with this process. The inspection process is per-
+formed using the following four steps:
+
+1. Entering the features for the reference screw thread:
+
+The standard features for the reference screw thread can be
+entered to the MISTVision software by two methods. In the rst
+method, the standard screw thread is measured by the vision sys-
+tem and the calculated features are stored as reference values by
+clicking the Set as Reference button in the Thread measurement
+section. One reference screw thread could be used to check many
+screw threads. In the second method, the reference values are set
+manually by clicking the Manual Ref. button.
+
+2. Selecting the screw thread features to be inspected:
+
+button. The features to be inspected should be checked and their
+allowable tolerances are assigned. Each parameter can be assigned
+unique tolerance values (lower and upper). Alternatively, the same
+tolerance value can be applied to all thread items by entering the
+required value in the text box Value for all thread items then click-
+ing the Assign button.
+
+3. Measuring the screw thread to be inspected
+
+The screw thread to be inspected is measured by the vision sys-
+tem, then the calculated features are compared with the standard
+screw thread features according to the tolerances given through
+the inspection tolerance dialog box.
+
+4. Taking an inspection decision
+
+The inspection decision is displayed automatically in the
+Inspection section (Fig. 2). The decision will be ＆＆Accepted§ if all
+inspected features of the screw thread to be inspected meet the
+corresponding features of the standard screw thread within the
+specied tolerances. Otherwise, the decision will be ＆＆Rejected§.
+The details of the comparison process can be displayed through
+the Inspection Details dialog box (Fig. 16), which can be displayed
+by clicking the Details button in Fig. 2.
+
+5. System verication
+
+This can be done through the Inspection Tolerances dialog box
+shown in Fig. 15, which can be displayed by clicking the Tolerances
+
+This section explains the calibration and the accuracy of the
+employed vision system. In addition, the verication of the system
+accuracy is explained.
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+47
+
+Fig. 14. The Multi Measurement List (MML).
+
+Fig. 15. Inspection tolerance dialog box.
+
+5.1. System calibration
+
+The units of the captured images are pixels. To calibrate the pro-
+posed vision system for actual units (i.e. millimeter or inches), the
+pixel size in y direction is calculated according to the major diam-
+eter of the screw thread to be measured as follows:
+
+1. The major diameter (Dmajor) of the screw thread to be measured
+or inspected should be entered by the user to the MISCVision
+software through the Input Data section in the main interface
+(Fig. 2). Also,
+the units of measurements
+should be
+selected from the Units combo box. If the major diameter is
+specied, the system will be calibrated automatically and the
+
+48
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+Fig. 16. The inspection details dialog box.
+
+measurements will be calculated in actual units, otherwise, it
+will be calculated in image pixels.
+2. The MISCVision software searches the edge pixels of the upper
+and lower proles for the opened image to nd the two pixels
+having the minimum and maximum y coordinates (Ymin, Ymax)
+then it calculates the maximum diameter of the screw thread
+in y direction (Dmax) as follows:
+
+)
+
+m
+
+
+
+(
+
+e
+
+z
+
+i
+
+S
+
+Dmax  Y max   Y min
+
+3. A calibration factor (CF) is calculated as follows:
+
+CF  Dmajor =Dmax
+
+l
+
+e
+x
+
+i
+
+P
+
+13
+
+14
+
+22
+20
+18
+16
+14
+12
+10
+8
+6
+4
+2
+0
+
+Pixe l Size
+Proce ssing Time
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+Image Size (Miga pixe ls)
+
+22
+20
+18
+16
+14
+12
+10
+8
+6
+4
+2
+0
+
+)
+
+c
+
+e
+
+s
+
+(
+
+e
+
+m
+
+i
+
+T
+
+g
+
+n
+
+i
+
+s
+s
+
+e
+
+c
+
+o
+
+r
+
+P
+
+4. All thread features are multiplied by the calibration factor (CF)
+except the ank and thread angles and the number of threads
+per inch or centimeter.
+
+Fig. 17. Relationship between the captured image size and both processing time
+and pixel size for thread M10 (major diameter = 10 mm).
+
+5.2. System accuracy
+
+5.3. System verication
+
+The accuracy of the employed vision system can be affected by
+two factors (1) the size of the measured screw thread and (2) the
+size of the captured image. For the rst factor, increasing the size
+of the measured screw thread increases the pixel size, i.e. decreases
+the accuracy of measurement. For the second factor, increasing the
+size of the captured image decreases the pixel size, i.e. increases
+the accuracy of measurement and increases the processing time.
+Fig. 17 shows the relationship between the size of the captured
+image and both of the pixel size and the processing time for thread
+type M10. From the gure, it can be seen that images with size of
+4.2 Mp (2048  2048 pixels) can produce a resolution of 5 lm/pixel
+for screw threads of 10 mm major diameter in a reasonable
+processing time (6.6 s).
+
+To verify the proposed vision system, an ISO metric thread plug
+gage (M16 coarse) with nominal major diameter equals to 16 mm
+and a pitch equals to 2 mm was measured by the proposed vision
+system. The measurement process was performed three times
+using the MML feature, offered by the proposed software, and
+the averages of the measurements were recorded. The features of
+the ISO metric thread plug gage were calculated according to its
+basic geometry. Table 3 shows a comparison between the values
+of the thread features for both the standard thread plug gauge
+and the measured features by the developed system. The differ-
+ences between the standard and measured features are listed in
+lm. It can be noticed that the maximum difference between the
+standard and measured values was ㊣5.4 lm.
+
+Table 3
+Comparison between the values of the thread features for both the standard thread plug gauge and the features measured by the vision system.
+
+E.S. Gadelmawla / Measurement 100 (2017) 36每49
+
+49
+
+No
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+Thread feature
+
+Measurements
+
+Difference
+
+Standard specimen
+
+Measured specimen
+
+Major diameter
+Minor diameter
+Effective diameter
+Pitch
+Axial thickness
+Crest truncation
+Root truncation
+Crest width
+Root width
+Addendum
+Dedendum
+Actual depth
+Theoretical depth
+Flank angle 1
+Flank angle 2
+Thread angle
+No of threads per inch
+No of threads per centimeter
+
+16.0000
+13.8340
+14.7000
+2.0000
+1.0006
+0.2165
+0.4330
+0.2500
+0.5000
+0.6500
+0.4330
+1.0830
+1.7325
+30.0000
+30.0000
+60.0000
+12.7000
+5.0000
+
+16.001
+13.837
+14.6979
+2.003
+1.0003
+0.2171
+0.4342
+0.2523
+0.5054
+0.6516
+0.4344
+1.086
+1.7373
+29.9752
+29.9884
+59.9636
+12.6810
+4.99251
+
+Units
+
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+degree
+degree
+degree
+每
+每
+
+Value
+ 1.00
+ 3.0
+ 3.0
+2.1
+0.3
+ 0.6
+ 1.2
+ 2.3
+ 5.4
+ 1.6
+ 1.4
+ 3.0
+ 4.8
+0.025
+0.012
+0.036
+0.019
+0.0075
+
+Units
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+degree
+degree
+degree
+每
+每
+
+6. Conclusions
+
+A vision system has been utilized, as a new non-contact mea-
+surement system, for measurement and inspection of various types
+of screw threads. Six computer vision algorithms have been devel-
+oped to analyze the captured images and perform the measure-
+ment and inspection processes from the captured images. The
+proposed vision system is capable of identifying most of the thread
+types automatically and calculating the most common screw
+thread features (18 features), which cannot be achieved by any
+other measuring system. The software is capable of inspecting
+screw threads based on reference values and specied tolerances
+for selected features. The system has been calibrated for both
+imperial and metric units and was veried by measuring a stan-
+dard ISO metric thread plug gage and comparing the results with
+the standard values. The results showed that the maximum differ-
+ence between the standard and measured values was ㊣5.4 lm,
+which provide a good accuracy.
+
+References
+
+[1] Eldar Fetullazade, Hamza K. Akyildiz, S. Saritas, Effects of the machining
+conditions on the strain hardening and the residual stresses at the roots of
+screw threads, Mater. Des. 31 (2010) 2025每2031.
+[2] J. Min, Comprehensive measurement system for screw thread parameter based
+on machine vision,
+in: 2015 International Conference on Computer and
+Computational Sciences (ICCCS), Reykjav赤k, Iceland, 1每3 June, 2015, 2015.
+[3] Screw-thread Gauging Systems for Determining Conformance to Thread
+Standards, CRTD- American Society of Mechanical Engineers Center for
+
+Research and Technology Development, 354 East 47th Street, New York, NY
+10017, vol. 37, 1996.
+[4] Aviation Fastener Audit, Federal Aviation Administration Aircraft Certication
+Service, 800 Independence Avenue S.W. Washington, D.C. 20591, Final Report,
+June 13, 2001.
+[5] Y. Dong, D.P. Hess, The effect of thread dimensional conformance on vibration-
+induced loosening, ASME, J. Vib. Acoust. 121 (1999).
+[6] F.M. Leon, N.G. Pai, D.P. Hess, The Effect of Thread Dimensional, Conformance
+on Yield and Tensile Strength , Department of Mechanical Engineering
+University of South Florida, Tampa, May 1999.
+[7] J. Greenslade, W. Matievich, Kenneth, McCullough, R. Shoberg, S. Vass, C.
+Wilson, Thread geometry and fastener performance, Mech. Eng. Mag. 118 (12)
+(1996).
+[8] R.K. Jain, Engineering Metrology, 17th ed., Khana Publisher, Khanna Pub., 2-B
+Nath Market, Nai Sarak, Delhi 110 006, 1999.
+[9] B. Laczik, Contributions to measuring of screw surfaces, Period. Polytechn. Ser.
+Mech. Eng. 43 (2) (1999) 89每96.
+[10] H. Fujun, C. Xuming, Z. Yonghong, H. Zhaozi, Non-contact measurement of oil
+tube thread and the application, in: Optical Technology and Image Processing
+for Fluids and Solids Diagnostics, SPIE-Beijing, 2002 (Abstract 050).
+[11] Hongyan Zhang, Guoxiong Zhang, An online measuring system for large screw
+threads, in: Proc. SPIE, vol. 7130, 71301X, 2008. http://dx.doi.org/10.1117/12.
+819608 (Fourth International
+Symposium on Precision Mechanical
+Measurements, December 2008).
+[12] Q.B. Tong, Z.L. Ding, J.C. Chen, L.L. Ai, F. Yuan, The research of screw thread
+parameter measurement based on position sensitive detector and laser, J.
+Phys: Conf. Ser. 48 (2006) 561每565.
+[13] E.S. Gadelmawla, A novel system for automatic measurement and inspection
+of screw threads, J. Eng. Manuf. I MECH E Part B 218 (B5) (2004) 545每556.
+[14] V.A. Kosarev, N.D. Sugrobova, Determination of the quality of an internal screw
+thread in treatment by means of plastic deformation, Meas. Tech. 56 (11)
+(2014) 1257每1260.
+[15] E.S. Gadelmawla, Computer vision algorithms for measurement and inspection
+of spur gears, Measurement 44 (9) (2011) 1669每1678.
+

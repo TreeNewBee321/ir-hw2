@@ -1,0 +1,4622 @@
+Detection of weak maneuvering target based on keystone transform  and matched ltering process 
+
+Zhi Sun, Xiaolong Li, Wei Yi 
+
+, Guolong Cui, Lingjiang Kong 
+
+
+
+School of Electronic Engineering, University of Electronic Science and Technology of China, Chengdu, Sichuan 611731, PR China 
+
+article
+
+info
+
+
+Article history: 
+Received 10 January 2017 
+Revised 5 April 2017 
+Accepted 11 May 2017 
+Available online 12 May 2017 
+
+Keywords: 
+Weak maneuvering target 
+Range migration 
+Doppler frequency migration 
+Keystone transform 
+Matched ltering process 
+
+abstract
+
+Detection of weak maneuvering target often suffers from the problems of the range migration (RM) and 
+the Doppler frequency migration (DFM) within the coherent pulse interval. In order to eliminate the RM 
+and DFM, a new coherent integration method based on keystone transform (KT) and matched ltering 
+process (MFP), i.e., KT-MFP, is proposed. Specically, this method rstly corrects the linear RM caused 
+by the unambiguous velocity via KT and then the MFP, which jointly searching in the fold factor and 
+acceleration domain, is carried out to remove the residual RM and compensate the DFM. At last, coherent 
+integration of the target＊s energy is achieved through the slow time Fourier transform (FT). The advantage 
+of the proposed method is that it can obtain superior coherent integration and detection performance for 
+both the slow-moving and fast-moving target, in comparison with the existing algorithms. In addition, 
+KT-MFP could avoid the blind speed sidelobe (BSSL) effect. Numerical simulations are performed to assess 
+the performance from different aspects, i.e., computational complexity, coherent integration for a low- 
+speed target, detection performance for a low-speed target, coherent integration for a high-speed target, 
+detection performance for a high-speed target and coherent integration for multi-targets. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+With the great progress of science and technology, maneuver- 
+ing target detection has drawn more and more attention in mod- 
+ern radar eld [1每9] . In general, there exists the problem of the 
+weak radar returns because of the low radar cross section (RCS) 
+of the maneuvering targets, which may make the detection more 
+dicult [10每13] . Increasing the integration time can improve the 
+detection performance effectively with the help of coherent inte- 
+gration technique [14,15] . Unfortunately, the conventional detection 
+method, e.g. moving target detection (MTD) algorithm, might be 
+confronted with a performance loss because of the range migra- 
+tion (RM) and the Doppler frequency migration (DFM) caused by 
+the complex motions (i.e., velocity and acceleration) of maneuver- 
+ing targets during the long coherent integration time [16每21] . In 
+order to solve the problems of RM and DFM, several methods are 
+introduced as follows. 
+The keystone transform (KT), which can eliminate the linear RM 
+effectively through rescaling the time axis, is one of the most pop- 
+ular methods [22每25] . Radon Fourier transform (RFT) is another 
+method which can integrate the energy via searching along the di- 
+rections of range and velocity [26,27] . However, the coherent in- 
+tegration methods mentioned above may suffer a serious perfor- 
+mance loss as long as the DFM effect appears. 
+In order to compensate the DFM and achieve the coherent in- 
+tegration, an ecient method based on KT and fractional Fourier 
+transform (FRFT), i.e., KT-FRFT, was proposed [28] . Another method 
+combining the improved axis rotation (IAR) and FRFT, named as 
+IAR-FRFT, was employed to realize the coherent integration for the 
+target with a constant acceleration [29] . The KT-FRFT or IAR-FRFT 
+could correct the linear RM induced by the target＊s velocity via 
+KT or IAR. After that, the DFM compensation and coherent inte- 
+gration can be obtained by FRFT. Nevertheless, these two methods 
+could not correct the quadratic RM caused by the target＊s accel- 
+eration which would lead to a performance loss. The generalized 
+Radon Fourier transform (GRFT) was then presented to remove 
+the quadratic RM and DFM and complete the coherent integration 
+[26,30] . Particularly, GRFT can achieve the coherent integration by 
+jointly searching along the target trajectory. Although GRFT could 
+obtain a good detection performance, it often suffers a huge com- 
+putational burden. Moreover, due to the discrete pulse sampling, 
+limited range resolution and nite integration time [31] , the blind 
+speed sidelobe (BSSL) effect would inevitably appear in the GRFT 
+output, which might bring about severe false alarm and the detec- 
+tion performance loss [30] . 
+In this paper, for the sake of removing the RM (including the 
+linear RM and the quadratic RM) and DFM to achieve the coherent 
+integration, a method based on KT and matched ltering process 
+(MFP), i.e., KT-MFP, is presented. In particular, KT is performed to 
+correct the linear RM induced by the unambiguous velocity at rst. 
+Then, the MFP, via jointly searching in the fold factor and accel- 
+eration domain, is conducted to eliminate the residual linear RM 
+caused by the blind velocity as well as the quadratic RM and DFM 
+effect resulted from the acceleration. In the end, the slow time 
+Fourier transform (FT) is performed to achieve the coherent inte- 
+gration. 
+Generally speaking, the presented method can obtain not only 
+the superior coherent integration but also the better detection per- 
+formance both for the low-speed target and high-speed target, in 
+compared with RFT, IAR-FRFT and KT-FRFT. Additionally, the KT- 
+MFP method has lower computational complexity than GRFT and 
+could avoid the BSSL effect. Eventually, numerical experiments are 
+performed to verify the effectiveness of the proposed method. 
+The remaining sections of this paper are organized as follows. 
+In Section 2 , the signal model is established. Then the proposed 
+coherent integration method, i.e., KT-MFP, is given in Section 3 . Be- 
+sides, we analyze the coherent integration for multi-targets as well 
+as the computational complexity of KT-MFP and GRFT in this sec- 
+tion. In Section 4 , we evaluate the performance via several numer- 
+ical experiments from several aspects, including coherent integra- 
+tion for a low-speed target, detection performance for a low-speed 
+target, coherent integration for a high-speed target, detection per- 
+formance for a high-speed target and coherent integration for mul- 
+tiple targets. At last, we make a conclusion in Section 5 . 
+
+2. Signal model and problem formulation 
+
+Consider that the pulse Doppler (PD) radar transmits a narrow- 
+band linear frequency modulated (LFM) signal with the mathemat- 
+ical model as follow [32,33] 
+
+(而 ,
+s 
+
+ t m 
+
+)
+
+=
+
+ rect 
+
+(cid:2)
+
+而
+
+T p 
+
+(cid:3)
+
+exp 
+
+(cid:4)
+
+j羽 污 而 2 
+
+(cid:5)
+
+exp [ j2 
+
+羽 f c 
+
+(而 +
+
+ t m 
+
+)
+
+ ] 
+
+,
+
+(1) 
+
+where 
+
+rect 
+0 
+>
+/
+,
+﹞) is the exponential function [26,27,30] . 
+而 denotes the fast 
+exp( 
+ 1 . M rep- 
+time and t m 
+ mT is the slow time, m 
+resents the total integration pulse number of radar and T indi- 
+cates the pulse repetition interval. T p and f c denote the pulse dura- 
+tion and the carrier frequency, respectively. 
+is the frequency 
+
+(cid:2)
+
+而
+
+T p 
+
+(cid:3)
+
+=
+
+(cid:6)
+
+1 
+
+|
+而 |
+|
+而 |
+
+≒ T p 
+
+/
+
+ 2 
+
+,
+
+ T p 
+
+ 2 
+
+=
+
+=
+
+ 0 
+ 1 
+ 2 
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ M 
+
+污 =
+
+B 
+
+T p 
+
+modulated rate and B is the signal bandwidth. 
+Ignoring the high order components and supposing that the in- 
+stantaneous slant range between the radar and a moving target 
+with an acceleration satises [29,34每38] 
+r (t m 
+)
+
+=
+
+ r 0 
+
++
+
+ a 1 t m 
+
++
+
+ a 2 t m 
+
+2 ,
+
+(2) 
+
+where r 0 
+is the initial slant range between the radar and the target, 
+and a 2 
+denote the radial velocity and acceleration, respectively. 
+(cid:4) c ( c denotes the speed of light) and then the 
+Assume | a 1 
+| 
+received baseband echo signal after the demodulation can be ex- 
+pressed as [39,40] 
+
+a 1 
+
+s r 
+
+(而 ,
+
+ t m 
+
+)
+
+=
+
+ A 0 rect 
+
+(cid:2)
+(cid:9)
+
+而  汕
+
+T p 
+
+(cid:3)
+
+exp 
+
+(cid:7)
+(cid:10)
+
+ j 
+4 
+羽 r (
+竹
+
+ t m 
+
+)
+
+(cid:8)
+
+℅ exp 
+
+j羽 污 (
+
+而  汕 )
+
+2 
+
+exp 
+
+(cid:7)
+
+ j 
+4 
+
+羽 a 1 t m 
+
+竹
+
+(cid:8)
+
+,
+
+(3) 
+
+where A 0 
+
+is the target reectance, 
+
+竹 =
+
+c 
+
+f c 
+
+represents the radar 
+
+wavelength, 
+is the delay time. 
+(而 )
+Then, we can use 
+the matched lter, 
+i.e., h 
+rect 
+(
+)
+ exp 
+( j羽 污 而 2 )
+ to realize the pulse compression (PC) 
+
+汕 =
+
+2 r (
+c 
+
+ t m 
+
+)
+
+=
+
+而
+
+T p 
+
+,
+
+and the compressed signal in the range frequency-slow time 
+( f 
+)
+ domain may be written as [5] 
+ j 
+
+ t m 
+
+S c 
+
+( f ,
+
+ t m 
+
+)
+
+=
+
+ A 1 rect 
+
+(cid:2)
+(cid:11)
+
+f 
+B 
+ j 
+4 
+
++
+
+ f d 
+
+/
+
+ 2 
+
+ f d 
+
+(cid:3)
+
+exp 
+
+(cid:2)
+
+羽 f d 
+2 
+
+污
+
+(cid:3)
+(cid:12)
+
+℅ exp 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
++
+
+ f d 
+
+)
+ r (
+
+ t m 
+
+)
+
+c 
+
+,
+
+(4) 
+
+where A 1 
+D denotes the complex amplitude of the signal 
+℅ T p is the pulse compression ratio [10] . 
+echoes after PC and D 
+2 a 1 竹 is the Doppler frequency. 
+Because of target＊s high-speed and the low pulse repetition fre- 
+quency (PRF) of radar, the velocity may exceed the value of PRF, 
+which will bring about the velocity ambiguity effect [41] . So the 
+velocity a 1 
+satises 
+
+=
+
+ A 0 
+
+℅ ﹟ 
+
+=
+
+ B 
+
+f d 
+
+=
+
+a 1 
+
+=
+
+ ka amb 
+
++
+
+ a 0 
+
+,
+
+(5) 
+
+where a amb 
+is the blind velocity, k is the fold fac- 
+tor, a 0 
+denotes the unambiguous velocity with the range of 
+ 2 ] [42] . 
+[ 
+Substituting (2) and (5) into (4) yields 
+ j 
+4 
+
+=
+
+竹PRF 
+2 
+
+a amb 
+
+/
+
+ 2 
+
+,
+
+ a amb 
+
+/
+
+S c 
+
+( f ,
+
+ t m 
+
+)
+
+=
+
+ A 2 exp 
+
+(cid:11)
+(cid:11)
+(cid:11)
+(cid:11)
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
++
+
+ f d 
+
+)
+
+ r 0 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
++
+
+ f d 
+
+)
+
+ a 0 t m 
+
+c 
+
+(cid:12)
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
++
+
+ f d 
+
+)
+
+ a 2 t m 
+
+2 
+
+c 
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
++
+
+ f d 
+
+)
+
+ ka amb t m 
+
+c 
+ j 
+(6) can be expressed as follow [5,6] 
+ j 
+4 
+
+(cid:12)
+
+,
+
+(6) 
+
+where A 2 
+
+=
+
+ A 1 rect 
+
+(cid:7)
+
+f +
+
+ f d 
+
+/
+ f d 
+
+ 2 
+
+B 
+
+(cid:8)
+
+exp 
+
+(cid:7)
+
+羽 f 
+
+2 
+d 污
+
+(cid:8)
+
+. Ignoring the effect of f d 
+, 
+
+S c 
+
+( f ,
+
+ t m 
+
+)
+
+=
+
+ A 2 exp 
+
+(cid:11)
+(cid:11)
+(cid:11)
+(cid:2)
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ a 0 t m 
+
+c 
+
+(cid:12)
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ a 2 t m 
+
+2 
+
+c 
+
+℅ exp 
+ j 
+4 
+c 
+℅ exp (
+ j2 
+羽 P RF kt m 
+)
+It should be pointed out that exp (
+(7) can be rewritten as 
+ j 
+4 
+
+羽 f ka amb t m 
+
+(cid:3)
+
+.
+
+(7) 
+
+ j2 
+羽 P RF kt m 
+)
+
+=
+
+ 1 [5,31] . So 
+
+S c 
+
+( f ,
+
+ t m 
+
+)
+
+=
+
+ A 2 exp 
+
+(cid:11)
+(cid:11)
+(cid:11)
+(cid:2)
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ a 0 t m 
+
+c 
+
+(cid:12)
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ a 2 t m 
+
+2 
+
+c 
+
+℅ exp 
+
+ j 
+4 
+
+羽 f ka amb t m 
+
+c 
+
+(cid:3)
+
+.
+
+(8) 
+
+Clearly, the last three exponential terms of (8) are all coupling 
+terms with respect to slow-time t m and range-frequency f . In par- 
+ticular, 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+129 
+
+ j 
+ exp [ 
+] denotes the term of unambiguous velocity, 
+which will cause the linear RM. 
+( j 
+ exp 
+)
+ represents the term of blind velocity, which 
+would also result in the linear RM. 
+ exp [ 
+ j 
+] may bring about the quadratic RM and 
+DFM which can make the integration energy dispersed. 
+
+羽 ( f +
+4 
+c 
+
+ f c 
+ a 0 
+
+)
+
+t m 
+
+4 
+
+羽 f ka amb 
+t m 
+
+c 
+羽 ( f +
+4 
+
+ f c 
+ a 2 
+
+)
+c 
+
+t m 
+2 
+
+In order to solve the problems of RM and DFM and obtain the 
+coherent accumulation, KT-MFP is proposed in the following sec- 
+tion. 
+
+3. Coherent integration via KT-MFP 
+
+In this section, the detailed processes of the proposed method, 
+i.e., KT-MFP, are introduced. Furthermore, the coherent integration 
+via the KT-MFP for the multi-targets is also analyzed. Finally, the 
+KT-MFP method is also compared with GRFT in terms of the com- 
+putational complexity. 
+
+3.1. Keystone transform 
+
+Firstly, apply KT, which is performed as t m 
+new slow-time variable), to eliminate the linear range migration 
+ t n domain as 
+[22,23,25] . Then (8) can be represented in the f 
+ j 
+4 
+
+=
+
+f c 
+
+f +
+
+ f c 
+
+t n ( t n is the 
+
+S KT 
+
+( f ,
+
+ t n 
+
+)
+
+=
+
+ A 2 exp 
+
+(cid:11)
+(cid:7)
+(cid:11)
+(cid:11)
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 0 t n 
+
+竹
+
+(cid:8)
+
+℅ exp 
+
+ j 
+4 
+
+羽 ka amb t n f 
+
+竹(
+
+ f 
+
++
+
+ f c 
+
+)
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 2 t n 
+2 f c 
+
+竹(
+
+ f 
+
++
+
+ f c 
+
+)
+
+(cid:12)
+
+.
+
+(9) 
+
+Consider that the radar transmits a narrowband signal, the 
+(cid:4) f c , so 
+＞ 1 
+range-frequency variable f satises f 
+and 
+[43] . Thus (9) can be recast as 
+
+f c 
+
+f +
+
+ f c 
+
+ f 
+
+f c 
+
+f 
+
++
+
+ f c 
+
+＞ f c 
+2 
+f c 
+
+ f 
+
+S KT 
+
+( f ,
+
+ t n 
+
+)
+
+=
+
+ A 2 exp 
+
+(cid:11)
+(cid:7)
+(cid:11)
+(cid:11)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 0 t n 
+
+竹
+
+(cid:8)
+
+℅ exp 
+
+ j 
+4 
+
+羽 ka amb t n f (
+c f c 
+
+ f c 
+
+ f )
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 2 t n 
+2 (
+
+ f c 
+
+ f )
+
+c 
+
+(cid:12)
+
+.
+
+(10) 
+
+Through the second exponential term in (10) , it can be seen 
+that the linear RM resulted from unambiguous velocity a 0 
+has been 
+corrected. However, the last two exponential terms indicate that 
+the linear RM caused by the blind velocity and the quadratic RM 
+induced by acceleration still exist. 
+
+3.2. Matched ltering process 
+
+To eliminate the residual RM and the DFM in (10) , we dene 
+the matched ltering function as 
+; k 
+
+H m 
+
+( f ,
+
+ t n 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+)
+
+=
+
+ exp 
+
+(cid:11)
+
+羽 k 
+4 
+j 
+
+(cid:7)
+
+ a amb t n f (
+c f c 
+羽 a 2 
+2 ( f c 
+
+ f c 
+
+ f )
+
+(cid:12)
+(cid:12)
+
+℅ exp 
+
+(cid:11)
+
+4 
+j 
+
+(cid:7)
+
+ t n 
+
+ f )
+
+c 
+
+,
+
+(11) 
+
+where k 
+ is the searching fold factor and a 
+acceleration. Multiplying (11) by (10) yields 
+; k 
+ j 
+4 
+
+(cid:7)
+
+(cid:7)
+
+2 
+
+denotes the searching 
+
+S KT 
+
+( f ,
+
+ t n 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+)
+
+=
+
+ A 2 exp 
+
+(cid:11)
+(cid:7)
+(cid:11)
+(cid:11)
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 0 t n 
+
+竹
+  k 
+4 
+羽 (k 
+)
+j 
+
+(cid:8)
+
+℅ exp 
+
+(cid:7)
+
+ a amb t n f (
+c f c 
+ a 2 
+2 
+
+ f c 
+
+ f )
+
+(cid:12)
+
+℅ exp 
+
+羽 (a 
+4 
+j 
+
+(cid:7)
+
+)
+
+ t n 
+
+2 (
+
+ f c 
+
+ f )
+
+c 
+
+(cid:12)
+
+.
+
+(12) 
+
+When k 
+ k and a 
+ namely, the searching fold factor and 
+the acceleration are matched with the target＊s fold factor and ac- 
+celeration, respectively. Therefore, (12) can be rewritten as 
+ j 
+4 
+
+(cid:7)
+
+ =
+
+(cid:7)
+
+2 
+
+=
+
+ a 2 
+
+,
+
+S match 
+
+( f ,
+
+ t n 
+
+)
+
+=
+
+ A 2 exp 
+
+(cid:11)
+(cid:7)
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 0 t n 
+
+竹
+
+(cid:8)
+
+.
+
+(13) 
+
+From (13) , one can see that the residual RM caused by the blind 
+velocity and the acceleration can be removed. Besides, the DFM 
+effect resulted from the acceleration could also be compensated. 
+After the RM and DFM compensation via KT and MFP, applying the 
+range IFT to (13) , we can get 
+而  2 r 0 
+c 
+
+s match 
+
+(而 ,
+
+ t n 
+
+)
+
+=
+
+ A 3 sinc 
+℅ exp 
+
+(cid:13)
+(cid:7)
+
+B 
+ j 
+4 
+
+(cid:7)
+
+(cid:8)(cid:14)
+(cid:8)
+
+exp 
+
+(cid:7)
+
+ j 
+4 
+
+羽 r 0 
+
+竹
+
+(cid:8)
+
+羽 a 0 t n 
+
+竹
+
+,
+
+(14) 
+
+where sinc 
+(x 
+)
+is the sinc function [11,30] . In addition, A 3 
+A 2 G r denotes the complex amplitude (after the range IFT) and G r 
+is the compression gain for range IFT. Finally, performing the slow 
+time FT on (14) , we can achieve the coherent integration, i.e., 
+而  2 r 0 
+c 
+
+=
+
+sin 
+羽 x 羽 x 
+
+=
+
+s int 
+
+(而 ,
+
+ f t n 
+
+)
+
+=
+
+ A 5 sinc 
+B 
+ j 
+gration amplitude (after the slow time FT) and G s indicates the 
+compression gain of the slow time FT. Additionally, CP I 
+ MT rep- 
+resents the coherent processing interval while f t n 
+is the Doppler 
+frequency with respect to t n . 
+From (14) and (15) , we can see that the coherent integration 
+reaches its maximum value when the searching fold factor k 
+ and 
+acceleration a 
+are precisely matched. Thus the estimated function 
+of k and a 2 
+, i.e., 
+(
+ k 
+)
+ k 
+
+(cid:13)
+
+(cid:7)
+
+(cid:8)(cid:14)
+
+sinc 
+
+(cid:13)
+
+CP I 
+
+(cid:7)
+
+f t n 
+
++
+
+2 a 0 
+
+竹
+
+(cid:8)(cid:14)
+
+,
+
+(15) 
+
+where A 5 
+
+=
+
+ A 4 exp 
+
+(cid:7)
+
+4 
+羽 r 0 竹
+
+(cid:8)
+
+. Furthermore, A 4 
+
+=
+
+ A 3 G s is the inte- 
+
+=
+
+(cid:7)
+
+(cid:7)
+
+2 
+
+,
+
+  a 2 
+
+,
+
+ can be achieved as follow 
+
+(
+
+,
+
+  a 2 
+
+)
+
+=
+
+ arg max 
+(cid:7)
+(cid:7)
+
+(k 
+)
+℅ H m 
+
+ ,a 
+
+2 
+
+|
+
+ FT 
+ IFT 
+; k 
+(﹞)
+ and FT 
+ indicate, respectively, the IFT over the range 
+
+t n 
+
+{
+
+f 
+
+[ S KT 
+
+( f ,
+
+ t n 
+
+)
+
+( f ,
+
+ t n 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+)] 
+
+}|
+
+.
+
+(16) 
+
+(﹞)
+where IFT 
+
+f 
+
+t n 
+
+frequency variable f and the FT with respect to the slow time vari- 
+able t n . 
+According to the peak location of (15) , we could also obtain the 
+value of the Doppler frequency f t n 
+ which has the relationship with 
+unambiguous velocity as a 0 
+ a 0 can be written as 
+
+,
+
+=
+
+ 竹 f t n 
+
+2 
+
+. Then the estimation value of 
+
+ a 0 
+
+=
+
+ 竹
+
+arg max 
+2 
+
+f t n 
+
+|
+
+ FT 
+
+t n 
+
+{
+
+ IFT 
+
+f 
+
+[ S KT 
+
+( f ,
+
+ t n 
+
+)
+
+ H m 
+
+( f ,
+
+ t n 
+
+; k 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+)] 
+
+}|
+
+.
+
+(17) 
+
+Thereby, we can achieve the value of  a 1 
+ which indicates the 
+estimated velocity, as follow 
+
+,
+
+ a 1 
+
+=
+
+  a 0 
+
++
+
+ k a amb 
+
+.
+
+(18) 
+
+130 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+Fig. 1. Flow chart of KT-MFP. 
+
+One can see that the coherent integration of target＊s energy can 
+be obtained from (15) . On condition that the peak value of (15) ex- 
+ceeds the given threshold, the target could be detected. It should 
+be noted that the searching scopes of k 
+ and a 
+are [ k 
+] and 
+[ a 
+] 
+ where the searching intervals are 
+(M f s 
+)
+(2 CP I 
+denotes the sampling rate) [5] and 
+ [11] , respec- 
+tively. Additionally, the summarized framework of the proposed 
+method is given in Algorithm 1 while the owchart is shown in 
+Fig. 1 . 
+
+(cid:7)
+
+(cid:7)
+
+2 
+
+(cid:7)
+
+min 
+
+,
+
+ k 
+ f c 
+
+(cid:7)
+
+max 
+
+(cid:7)
+
+2 min 
+
+,
+
+ a 
+
+(cid:7)
+
+2 max 
+
+,
+
+(cid:8)
+
+ k 
+
+(cid:7)
+
+ =
+
+/
+
+ ( f s 
+
+(cid:8)
+
+ a 
+
+(cid:7)
+
+2 
+
+=
+
+竹/
+
+2 )
+
+3.3. KT-MFP for multi-targets 
+
+Assume that there are L targets in the scene. Without loss of 
+generality, the derivation of KT-MFP for the l th target is given in 
+the following. The instantaneous slant range of the l th target with 
+complex motions satises [29,30,34] 
+
+r l 
+(t m 
+
+)
+
+=
+
+ r 0 l 
+
++
+
+ a 1 l t m 
+
++
+
+ a 2 l t m 
+
+2 ,
+
+(19) 
+
+where r 0 l 
+
+is the initial slant range from the radar to the l th target, 
+respectively indicate the l th target＊s radial velocity and 
+acceleration. 
+Note that the velocity of the l th target could be written as fol- 
+low 
+
+a 1 l 
+
+and a 2 l 
+
+a 1 l 
+
+=
+
+ k l a amb 
+
++
+
+ a 0 l 
+
+,
+
+(20) 
+
+where k l 
+represent the fold factor and the unambiguous 
+velocity of the l th target, respectively. 
+Furthermore, the received signal after PC could be expressed as 
+[20,44] 
+
+and a 0 l 
+
+S mc 
+
+( f ,
+
+ t m 
+
+)
+
+=
+
+L (cid:15)
+A 1 l rect 
+l=1 
+
+(cid:2)
+
+f 
+B 
+
++
+
+ f dl 
+ f dl 
+
+/
+
+ 2 
+
+(cid:3)
+
+exp 
+
+(cid:2)
+
+ j 
+
+羽 f dl 
+2 
+
+污
+
+(cid:3)
+
+℅ exp 
+
+(cid:11)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
++
+
+ f dl 
+
+)
+
+ r l 
+
+(
+
+ t m 
+
+)
+
+c 
+
+(cid:12)
+
+,
+
+(21) 
+
+where A 1 l 
+is the complex amplitude of the l th target after PC, f dl 
+denotes the l th target＊s Doppler frequency. 
+
+Algorithm 1: Summarize: the main procedures of the KT-MFP 
+method. 
+
+(而 ,
+1 Input: raw data s r 
+and 
+a 
+. 
+
+ t m 
+
+)
+
+ , searching scopes, i.e., 
+
+(cid:9)
+
+k 
+
+(cid:7)
+
+min 
+
+,
+
+ k 
+
+(cid:7)
+
+max 
+
+(cid:10)
+
+(cid:9)
+
+(cid:7)
+
+2 min 
+
+,
+
+ a 
+
+(cid:7)
+
+2 max 
+
+(cid:10)
+
+(而 ,
+)
+2 Pulse compression: Perform PC on s r 
+ , then apply the 
+而 to obtain the compressed signal S c 
+FT along the 
+( f ,
+)
+ by 
+(4). 
+( f ,
+3 Keystone transform: Apply KT on S c 
+( f ,
+)
+ through (9). 
+4 Matched ltering process: Go through each k 
+ in 
+k 
+with the interval 
+ and a 
+in 
+a 
+
+ t m 
+
+ t m 
+
+ t m 
+
+)
+
+ and obtain 
+
+S KT 
+
+ t n 
+
+(cid:7)
+
+(cid:9)
+
+(cid:7)
+
+min 
+
+,
+
+ k 
+
+(cid:7)
+
+max 
+
+(cid:10)
+
+(cid:8)
+
+ k 
+
+(cid:7)
+
+(cid:7)
+
+2 
+
+(cid:9)
+
+(cid:7)
+
+2 min 
+
+,
+
+ a 
+
+(cid:7)
+
+2 max 
+
+(cid:10)
+
+with the interval 
+5 for k 
+for a 
+do 
+; k 
+( f ,
+Multiply the matched ltering function H m 
+; k 
+( f ,
+)
+( f ,
+)
+ to obtain S KT 
+ via (12); 
+Apply the range IFT and the slow time FT on 
+; k 
+( f ,
+)
+; k 
+Preserve the peak value of S KT 
+( f ,
+end 
+
+(cid:8)
+﹞ ﹞ ﹞ ,
+
+ a 
+ k 
+
+(cid:7)
+
+2 
+
+. 
+
+(cid:7)
+
+ =
+
+ k 
+
+(cid:7)
+
+min 
+
+,
+
+(cid:7)
+
+max 
+
+do 
+
+6 
+
+(cid:7)
+
+2 
+
+=
+
+ a 
+
+(cid:7)
+
+2 min 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ a 
+
+(cid:7)
+
+2 max 
+
+7 
+
+ t n 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+)
+
+and S KT 
+
+ t n 
+
+ t n 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+8 
+
+S KT 
+
+ t n 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+ ; 
+
+9 
+
+ t n 
+
+(cid:7)
+
+ ,
+
+ a 
+
+(cid:7)
+
+2 
+
+)
+
+ ; 
+
+10 
+
+11 end 
+
+12 Find the maximal peak value, then the corresponding k 
+ and 
+ k and acceleration  a 2 . 
+are the estimated fold factor 
+(
+ k 
+)
+13 Output: 
+(
+ k 
+14 Coherent integration: Using 
+ to compensate 
+( f ,
+)
+( f ,
+)
+ by (13). Perform the range IFT and 
+the slow time FT on S match 
+( f ,
+)
+ , then one can achieve the 
+(而 ,
+coherent integration s int 
+ through (15). 
+
+(cid:7)
+
+a 
+
+(cid:7)
+
+2 
+
+,
+
+  a 2 
+
+ . 
+
+,
+
+  a 2 
+
+)
+
+S KT 
+
+ t n 
+
+ into S match 
+
+ t n 
+
+ t n 
+ f t n 
+
+)
+
+Ignoring the effect of f dl 
+, then substituting (19) and (20) into 
+(21) yields 
+
+S mc 
+
+( f ,
+
+ t m 
+
+)
+
+=
+
+L (cid:15)
+A 2 l exp 
+l=1 
+
+(cid:11)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 l 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+(cid:11)
+(cid:11)
+(cid:2)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ a 0 l t m 
+
+c 
+
+(cid:12)
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ a 2 l t m 
+
+2 
+
+c 
+
+℅ exp 
+
+ j 
+4 
+
+羽 f k l a amb t m 
+
+c 
+
+(cid:3)
+
+.
+
+(22) 
+
+ j 
+where A 2 l 
+rect 
+ j2 
+that exp (
+羽 P RF k l 
+)
+ 1 in the above equation. 
+Then, performing KT on (22) , we have 
+
+=
+
+ A 1 l 
+
+(cid:7)
+
+f +
+
+ f dl 
+/
+ f dl 
+
+ 2 
+
+B 
+t m 
+
+(cid:8)
+
+exp 
+
+(cid:7)
+
+羽 f 
+
+2 
+dl 污
+
+(cid:8)
+
+. It should also be noted 
+
+=
+
+S mKT 
+
+( f ,
+
+ t n 
+
+)
+
+=
+
+L (cid:15)
+A 2 l exp 
+l=1 
+
+(cid:11)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 l 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+(cid:7)
+(cid:11)
+(cid:11)
+
+ j 
+4 
+
+羽 a 0 l t n 
+
+竹
+
+(cid:8)
+
+℅ exp 
+
+ j 
+4 
+
+羽 k l a amb t n f 
+
+竹(
+
+ f 
+
++
+
+ f c 
+
+)
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 2 l t n 
+2 f c 
+
+竹(
+
+ f 
+
++
+
+ f c 
+
+)
+
+(cid:12)
+
+.
+
+(23) 
+
+(cid:4) f c ), 
+Similarly, since the radar transmits a narrowband signal ( f 
+＞ 1 
+ so (23) could be 
+
+thus we still have 
+
+f c 
+
+f +
+
+ f c 
+
+ f 
+
+f c 
+
+and f 
+
++
+
+ f c 
+
+＞ f c 
+2 
+f c 
+
+ f 
+
+,
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+131 
+
+reconstructed as 
+
+S mKT 
+
+( f ,
+
+ t n 
+
+)
+
+=
+
+L (cid:15)
+A 2 l exp 
+l=1 
+
+(cid:11)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 l 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+(cid:7)
+(cid:11)
+(cid:11)
+
+ j 
+4 
+
+羽 a 0 l t n 
+
+竹
+
+(cid:8)
+
+℅ exp 
+
+ j 
+4 
+
+羽 k l a amb t n f (
+c f c 
+
+ f c 
+
+ f )
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 2 l t n 
+2 (
+
+ f c 
+
+ f )
+
+c 
+
+(cid:12)
+
+.
+
+(24) 
+
+Next, we dene the matched ltering function for the l th target 
+
+as 
+
+H mul 
+
+( f ,
+
+ t n 
+
+; k l 
+
+(cid:7)
+
+ ,
+
+ a 2 l 
+
+(cid:7)
+
+ )
+
+=
+
+ exp 
+
+(cid:11)
+(cid:11)
+
+4 
+j 
+
+羽 k l 
+ a amb t n f (
+c f c 
+2 ( f c 
+
+(cid:7)
+
+ f c 
+
+ f )
+
+(cid:12)
+
+℅ exp 
+
+4 
+j 
+
+羽 a 2 l 
+
+(cid:7)
+
+ t n 
+
+ f )
+
+c 
+
+(cid:12)
+
+,
+
+(25) 
+
+where k l 
+ represents the searching fold factor of the l th target and 
+ is the l th target＊s searching acceleration. Multiplying (25) by 
+(24) , we can get 
+
+(cid:7)
+
+a 2 l 
+
+(cid:7)
+
+S mKT 
+
+( f ,
+
+ t n 
+
+; k l 
+
+(cid:7)
+
+ ,
+
+ a 2 l 
+
+(cid:7)
+
+ )
+
+=
+
+L (cid:15)
+A 2 l exp 
+l=1 
+
+(cid:11)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 l 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+(cid:7)
+(cid:11)
+(cid:11)
+
+ j 
+4 
+
+羽 a 0 l t n 
+  k l 
+
+竹
+
+(cid:8)
+
+℅ exp 
+
+4 
+j 
+
+羽 (
+
+ k l 
+
+(cid:7)
+
+)
+
+ a amb t n f (
+c f c 
+  a 2 l 
+
+ f c 
+
+ f )
+
+(cid:12)
+
+℅ exp 
+
+4 
+j 
+
+羽 (
+
+ a 2 l 
+
+(cid:7)
+
+)
+
+ t n 
+
+2 (
+
+ f c 
+
+ f )
+
+c 
+
+(cid:12)
+
+.
+
+(26) 
+
+When k l 
+ i.e., the searching fold factor and 
+searching acceleration are respectively equal to the l th target＊s fold 
+factor and acceleration. Then (26) could be recast as 
+ j 
+4 
+
+(cid:7)
+
+ =
+
+ k l 
+
+and a 2 l 
+
+(cid:7)
+
+ =
+
+ a 2 l 
+
+,
+
+S mul 
+
+( f ,
+
+ t n 
+
+)
+
+=
+
+ A 2 l exp 
+
+(cid:11)
+(cid:7)
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 l 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+ j 
+4 
+
+羽 a 0 l t n 
+
+竹
+
+(cid:8)
+
++
+
+ S other 
+
+( f ,
+
+ t n 
+
+)
+
+.
+
+(27) 
+
+where 
+
+S other 
+
+( f ,
+
+ t n 
+
+)
+
+=
+
+L (cid:15)
+g=1 
+,g(cid:9)
+
+=
+
+ l 
+
+A 2 g exp 
+
+(cid:11)
+
+ j 
+4 
+
+羽 (
+
+ f 
+
++
+
+ f c 
+
+)
+
+ r 0 g 
+
+c 
+
+(cid:12)
+
+℅ exp 
+
+(cid:2)
+(cid:11)
+(cid:11)
+
+ j 
+4 
+
+羽 a 0 g t n 
+
+竹
+
+(cid:3)
+
+℅ exp 
+
+4 
+j 
+
+羽 (
+
+ k g 
+
+(cid:7)
+
+  k l 
+
+)
+
+ a amb t n f (
+c f c 
+  a 2 l 
+
+ f c 
+
+ f )
+
+(cid:12)
+
+℅ exp 
+
+4 
+j 
+
+羽 (
+
+ a 2 g 
+
+(cid:7)
+
+)
+
+ t n 
+
+2 (
+
+ f c 
+
+ f )
+
+c 
+
+(cid:12)
+
+.
+
+(28) 
+
+From (27) , we can see that the RM and DFM of the l th target 
+are both corrected. By conducting the range IFT and the slow time 
+FT on (27) , we have 
+
+s mint 
+
+(而 ,
+
+ f t n 
+
+)
+
+=
+
+ A 5 l sinc 
+
+(cid:13)
+(cid:13)
+
+B 
+
+(cid:7)
+(cid:7)
+
+而  2 r 0 l 
+
+c 
+
+(cid:8)(cid:14)
+(cid:8)(cid:14)
+
+℅ sinc 
+
+CP I 
+
+f t n 
+
++
+
+2 a 0 l 
+
+竹
+
+ +
+
+ s other 
+
+(而 ,
+
+ f t n 
+
+)
+
+,
+
+(29) 
+
+where 
+
+s other 
+
+(而 ,
+
+ f t n 
+
+)
+
+=
+
+ FT 
+[ IFT 
+
+t n 
+
+f 
+
+(S other 
+
+( f ,
+
+ t n 
+
+))] 
+
+(30) 
+
+Table 1 
+Computational complexity of GRFT and KT-MFP. 
+
+Methods Multiplications 
+
+Additions 
+ 1)
+(M 
++(M 
+MN log 2 N 
+ 1)
+ 2 N )(M 
+M N log 2 
+M 
+
+GRFT 
+KT-MFP 
+
+MNN a 1 
+2 +
+
+N a 2 
+
+ NN a 1 
+N a 2 
+
+MN log 2 N /2 
++(M 
+ 2 M )
+ N
+MN log 2 
+M/
+
++
+
++
+
+ N k N a 2 
+
+ 2 
+
++
+
+ N k N a 2 
+
+Table 2 
+Simulation parameters of radar for the low-speed target. 
+
+Carrier frequency f c 
+
+2.4 GHz 
+
+Bandwidth B 
+Sample frequency f s 
+Pulse repetition frequency PRF 
+Pulse duration T p 
+Number of pulses M 
+
+40 MHz 
+60 MHz 
+1500 Hz 
+1 us 
+900 
+
+Table 3 
+Simulation parameters of radar for the high-speed target. 
+
+Carrier frequency f c 
+
+10 GHz 
+
+Bandwidth B 
+Sample frequency f s 
+Pulse repetition frequency PRF 
+Pulse duration T p 
+Number of pulses M 
+
+1 MHz 
+5 MHz 
+200 Hz 
+100 us 
+201 
+
+A 5 l 
+
+=
+
+ A 2 l 
+
+G r l 
+G sl 
+
+exp 
+
+(cid:7)
+
+ j 
+Moreover, G rl 
+is the compression gain for the range IFT and G sl 
+dicates the compression gain of the slow time FT. 
+
+4 
+
+羽 r 0 l 竹
+
+(cid:8)
+
+denotes the integration amplitude. 
+
+in- 
+
+Remark. Note that the KT is a linear transform and could simulta- 
+neously correct the effect of the linear RM induced by the unam- 
+biguous velocity. In addition, the MFP is also a linear procedure. 
+Therefore, there is no cross-talk among the multi-targets. More- 
+over, it should be pointed out that the KT-MFP method could ob- 
+tain the coherent integration for multiple targets simultaneously 
+when the scattering intensities of the targets are approximately 
+equal. However, if the scattering intensities of different targets are 
+strikingly different, the weak targets may be shadowed by the 
+strong ones and the coherent integration will become dicult for 
+the weak targets. Then, the CLEAN technique [44每46] could be ap- 
+plied to eliminate the effect of the strong targets and highlight the 
+weak ones. By this way, the coherent integration of the strong and 
+weak targets can be achieved iteratively [44每46] . 
+
+3.4. Computational complexity 
+
+In what follows, we analyze the computational complexity of 
+the major steps in GRFT [30] and the proposed method. As far as 
+the arithmetic types, the complex multiplication and addition op- 
+erations are presented. We dene the number of searching range 
+cells, echo pulses, searching velocity, searching acceleration and 
+searching fold factor as N,
+ respectively. In terms 
+of the KT-MFP method, the KT operation needs MN log 2 
+ 1)
+N/
+(M 
+ 2 M )
+ N multiplications and MN log 2 
+N 
+(M 
+ 2 N )(M 
+ ad- 
+ditions to correct the linear RM caused by the unambiguous ve- 
+locity. When we perform the MFP to eliminate the residual RM 
+and the DFM, N k 
+MN log 2 
+M/
+M N log 2 
+M are neces- 
+sary. While GRFT method needs MNN a 1 
+multiplications and 
+ 1)
+(M 
+additions [30] . The detailed computational com- 
+plexity of GRFT and KT-MFP is listed in Table 1 . Then, using respec- 
+tively the parameters of the radar in Table 2 (for the low-speed 
+target) and Table 3 (for the high-speed target), we can achieve the 
+ration of the computational complexity between GRFT and KT-MFP 
+(which varying with the pulse number), as shown in Fig. 2 . In par- 
+
+ M,
+
+ N a 1 
+
+,
+
+ N a 2 
+
+,
+
+ N k 
+
+,
+
+ 2 
+
++
+
+2 +
+
++
+
++
+
+N a 2 
+
+ 2 and N k 
+
+N a 2 
+N a 2 
+
+ NN a 1 
+N a 2 
+
+132 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+200
+
+400
+600
+Pulse number
+
+800
+
+1000
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+C
+
+o
+
+m
+
+u
+p
+o
+
+t
+f
+
+a
+
+i
+t
+
+a
+T
+n
+F
+o
+
+t
+l
+
+o
+c
+o
+
+m
+K
+
+p
+
+l
+
+y
+P
+F
+x
+e
+
+t
+i
+
+r
+
+a
+
+i
+t
+
+o
+
+R
+G
+
+
+T
+
+M
+
+(a)
+
+200
+
+400
+600
+Pulse number
+
+800
+
+1000
+
+400
+
+450
+
+500
+
+550
+
+600
+
+650
+
+700
+
+750
+
+800
+
+C
+
+o
+
+m
+
+u
+p
+o
+
+t
+f
+
+a
+
+i
+t
+
+a
+T
+n
+F
+o
+
+t
+l
+
+o
+c
+o
+
+m
+K
+
+p
+
+l
+
+y
+P
+F
+x
+e
+
+t
+i
+
+r
+
+a
+
+i
+t
+
+o
+
+R
+G
+
+
+T
+
+M
+
+(b)
+
+Fig. 2. Computational complexity ratio of GRFT to KT-MFP versus the pulse number. 
+(a) Ratio for the low-speed target. (b) Ratio for the high-speed target. 
+
+ticular, the computational complexity ratio for the low-speed tar- 
+get is shown in Fig. 2 (a). We can see that the computational com- 
+plexity ratio of GRFT to the proposed method is bigger than 8. As 
+for the computational complexity ratio for the high-speed target in 
+Fig. 2 (b), it is larger than 400. Overall, the computational complex- 
+ity of KT-MFP is lower than the GRFT＊s. 
+
+4. Numerical results 
+
+To evaluate the eciency of the proposed coherent integration 
+method, numerical simulations are provided in this section. In or- 
+der to carry out the comparison experiment for a single target with 
+low-speed or high-speed, several popular methods, i.e., RFT, IAR- 
+FRFT, KT-FRFT and GRFT are presented. Moreover, the detection 
+performance for the low-speed and high-speed target as well as 
+the coherent integration for multi-targets are also evaluated here- 
+inbelow. 
+
+4.1. Coherent integration for a low-speed target 
+
+We analyze the coherent integration for a single target with 
+low-speed via KT-MFP in Fig. 3 at rst. Note that we use the radar 
+
+parameters of Table 2 in this section. Suppose that the motion pa- 
+rameters of the low-speed target as r 0 
+ 200 km 
+ 120 m 
+and a 2 
+ 21 m 
+ respectively. The signal-to-noise ratio (SNR) af- 
+ter PC is 6 dB. Fig. 3 (a) shows the result after the PC, which indi- 
+cates that serious RM occurs. After applying the KT, Fig. 3 (b) shows 
+the jointly searching result of the fold factor and acceleration via 
+MFP. Through the peak value, we can easily nd that the estimated 
+acceleration is 21 m/s 
+2 and the estimated fold factor is equivalent 
+to 1. Besides, Fig. 3 (c) gives the unambiguous velocity estimation 
+result which is related to f t n 
+and the estimated value is 26.23 m/s. 
+So it is easily to work out the estimated velocity as 119.98 m/s. 
+Fig. 3 (d) shows the RM correction result with the estimated motion 
+parameters and it could be seen that all the RM has been removed. 
+After eliminating the effect of RM, the coherent integration result 
+through KT-MFP is shown in Fig. 3 (e), from which we can nd that 
+the energy is focused and integrated well. 
+With the purpose of contrast, the coherent integration results of 
+RFT, IAR-FRFT, KT-FRFT and GRFT are also given in Fig. 4 . Fig. 4 (a)每
+4 (d) show the integration results of the four methods above, re- 
+spectively. In particular, Fig. 4 (a) gives the integration result of 
+RFT and it cannot focus the energy at all because of the DFM in- 
+duced by target＊s acceleration. Fig. 4 (b) and 4 (c) show respectively 
+the integration results of IAR-FRFT and KT-FRFT. We can see that 
+although the target＊s energy is still accumulated, the integration 
+performance of IAR-FRFT or KT-FRFT will decrease because of the 
+quadratic RM, which will result in detection performance loss com- 
+pared with KT-MFP (as shown in Section 4.2 ). Besides, Fig. 4 (d) 
+gives the integration result of GRFT which can achieve the co- 
+herent integration of target＊s energy. However, the computational 
+complexity of GRFT is larger than the KT-MFP＊s. 
+
+=
+
+,
+
+ a 1 
+
+=
+
+/
+
+ s 
+
+=
+
+/
+
+ s 
+
+2 ,
+
+4.2. Detection performance for a low-speed target 
+
+In this section, we compare the detection performance of RFT, 
+IAR-FRFT, KT-FRFT, GRFT and the proposed method for a low-speed 
+target via the Monte Carlo trials. It is necessary to note that we 
+make use of the radar parameters in Table 2 and the same mo- 
+tion parameters in Fig. 3 . Subsequently, we set the false alarm 
+4 and all echoes are submerged in Gaus- 
+probability as P f a 
+ 10 
+sian noises [47,48] . Fig. 5 shows the detection probabilities of the 
+above-mentioned methods in different SNRs. The SNRs vary from 
+20 dB to 20 dB. It is clearly that the detection performance of the 
+proposed method precedes KT-FRFT, IAR-FRFT and RFT. Because of 
+the sinc-like interpolation of the KT, the proposed method suffers 
+slight performance loss, in comparison with GRFT. However, KT- 
+MFP requires lower computational cost than GRFT. 
+
+=
+
+4.3. Coherent integration for a high-speed target 
+
+In the following simulation, we assess the coherent integration 
+for a high-speed target via the proposed method in Fig. 6 . The 
+simulation parameters of radar in this section is listed in Table 3 . 
+The motion parameters of the high-speed target are r 0 
+ 500 km 
+ 30 0 0 
+ 310 m 
+2 . Here we also set the SNR af- 
+ter PC as 6 dB. According to Fig. 6 (a), we could see that serious 
+RM happens after the PC. Fig. 6 (b) shows the jointly searching re- 
+sult of the fold factor and acceleration after applying KT and MFP. 
+The peak value denotes that the estimated acceleration is equal 
+to 310 m/s 
+2 and the estimated fold factor is 10 0 0. Fig. 6 (c) gives 
+the unambiguous velocity estimation result is 0.81 m/s. So the esti- 
+mated velocity is equal to 30 0 0.81 m/s. Fig. 6 (d) shows that RM has 
+been corrected using the estimated motion parameters. After elim- 
+inating the effect of RM, the coherent integration result through 
+KT-MFP is given in Fig. 6 (e) where the energy of the high-speed 
+target is also integrated well. 
+
+=
+
+,
+
+a 1 
+
+=
+
+.
+
+ 8 m 
+
+/
+
+ s and a 2 
+
+=
+
+/
+
+ s 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+133 
+
+l
+l
+
+e
+c
+
+e
+g
+n
+a
+
+R
+
+220
+
+200
+
+180
+
+160
+
+140
+
+120
+
+100
+
+80
+
+60
+0
+
+s
+
+t
+
+u
+p
+
+t
+
+u
+o
+P
+F
+
+M
+
+
+T
+
+K
+
+f
+
+o
+
+e
+d
+u
+
+t
+i
+l
+
+p
+
+m
+A
+
+1400
+
+1200
+
+1000
+
+800
+
+600
+
+400
+
+200
+
+0
+
+200
+
+400
+Pulse number
+
+600
+
+800
+
+(a)
+
+(b)
+
+X: 26.23
+Y: 1316
+
+40
+
+30
+20
+10
+0
+10
+20
+30
+Estimation unambiguous velocity (m/s)
+
+40
+
+(c)
+
+l
+l
+
+e
+c
+
+e
+g
+n
+a
+
+R
+
+220
+
+200
+
+180
+
+160
+
+140
+
+120
+
+100
+
+80
+
+60
+0
+
+(e)
+
+200
+
+400
+Pulse number
+
+600
+
+800
+
+(d)
+
+Fig. 3. Coherent integration for a low-speed target via KT-MFP. (a) Result after PC. (b) Jointly searching result of the fold factor and acceleration. (c) Estimation result of 
+unambiguous velocity. (d) RM correction result. (e) Integration result of KT-MFP. 
+
+134 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+Fig. 4. Coherent integration for a low-speed target via RFT, IAR-FRFT, KT-FRFT and GRFT. (a) Integration result of RFT. (b) Integration result of IAR-FRFT. (c) Integration result 
+of KT-FRFT. (d) Integration result of GRFT. 
+
+y
+
+t
+i
+l
+i
+
+b
+a
+b
+o
+
+r
+
+t
+
+e
+
+D
+
+p
+n
+o
+
+i
+t
+
+c
+e
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+20
+
+15
+
+10
+
+5
+
+0
+SNR(dB)
+
+5
+
+10
+
+GRFT
+KTMFP
+KTFRFT
+IARFRFT
+RFT
+15
+
+20
+
+Fig. 5. Detection probability of RFT, IAR-FRFT, KT-FRFT, GRFT and KT-MFP for a low- 
+speed target. 
+
+In order to make a comparison, the coherent integration perfor- 
+mance of other popular methods, i.e., RFT, IAR-FRFT, KT-FRFT and 
+GRFT, is also shown in Fig. 7 . Fig. 7 (a)每 7 (d) show the integration 
+results of the aforementioned methods, respectively. Specically, 
+Fig. 7 (a) shows that RFT cannot accumulate the energy mainly be- 
+cause of the DFM effect caused by target＊s acceleration. Moreover, 
+Fig. 7 (b) and 7 (c) show respectively the integration results of IAR- 
+
+FRFT and KT-FRFT. Because of target＊s high speed and the high 
+radar carrier frequency, the undersampling along the slow time di- 
+mension would occur and then the FRFT-based integration meth- 
+ods (i.e., IAR-FRFT and KT-FRFT) will become invalid. Furthermore, 
+Fig. 7 (d) gives the integration result of the GRFT method. Although 
+GRFT also could obtain the coherent integration, there appears the 
+BSSL effect in the GRFT output, which might bring about severe 
+false alarm and reduce the multi-targets detection ability. 
+
+4.4. Detection performance for a high-speed target 
+
+=
+
+We compare the detection performance of RFT, IAR-FRFT, KT- 
+FRFT, GRFT and KT-MFP for a high-speed target in this simulation, 
+where the Monte Carlo trials are performed. One should point out 
+that we still use the radar parameters in Table 3 and the motion 
+parameters are identical to those in Fig. 6 . The false alarm prob- 
+4 and the Gaussian noises are added to 
+ability is set as P f a 
+ 10 
+the target＊s echoes. Fig. 8 shows the detection probabilities of the 
+KT-MFP method with other four methods in different SNR cases. 
+20 dB, 20 dB]. One could clearly see that 
+The SNRs also vary in [ 
+the detection performance of KT-MFP is far better than that of KT- 
+FRFT, IAR-FRFT and RFT. In fact, the undersampling of the slow 
+time might appear on account of target＊s high speed and radar＊s 
+high carrier frequency, so IAR-FRFT and KT-FRFT would become in- 
+valid and their detection performance decrease a lot. Although the 
+detection performance of the proposed method declines slightly 
+(still because of the sinc-like interpolation for KT) compared with 
+GRFT, the KT-MFP method has lower computational cost without 
+the BSSL effect. 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+135 
+
+l
+l
+
+e
+c
+
+e
+g
+n
+a
+
+R
+
+1000
+
+800
+
+600
+
+400
+
+200
+
+0
+0
+
+450
+
+400
+
+350
+
+300
+
+250
+
+200
+
+150
+
+100
+
+50
+
+s
+
+t
+
+u
+p
+
+t
+
+u
+o
+P
+F
+
+M
+
+
+T
+
+K
+
+f
+
+o
+
+e
+d
+u
+
+t
+i
+t
+i
+l
+
+p
+
+m
+A
+
+0
+1.5
+
+50
+
+100
+Pulse number
+
+150
+
+200
+
+(a)
+
+(b)
+
+X: 0.81
+Y: 409.2
+
+1
+
+0.5
+0
+0.5
+Estimation unambiguous velocity (m/s)
+
+1
+
+1.5
+
+(c)
+
+l
+l
+
+e
+c
+
+e
+g
+n
+a
+
+R
+
+1000
+
+800
+
+600
+
+400
+
+200
+
+0
+0
+
+(e)
+
+50
+
+100
+Pulse number
+
+150
+
+200
+
+(d)
+
+Fig. 6. Coherent integration for a high-speed target via KT-MFP. (a) Result after PC. (b) Jointly searching result of the fold factor and acceleration. (c) Estimation result of 
+unambiguous velocity. (d) RM correction result. (e) Integration result of KT-MFP. 
+
+136 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+Fig. 7. Coherent integration for a high-speed target via RFT, IAR-FRFT, KT-FRFT and GRFT. (a) Integration result of RFT. (b) Integration result of IAR-FRFT. (c) Integration result 
+of KT-FRFT. (d) Integration result of GRFT. 
+
+y
+
+t
+i
+l
+i
+
+b
+a
+b
+o
+
+r
+
+p
+n
+o
+
+i
+t
+
+D
+
+c
+e
+
+t
+
+e
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+20
+
+15
+
+10
+
+5
+
+0
+SNR(dB)
+
+5
+
+10
+
+GRFT
+KTMFP
+KTFRFT
+IARFRFT
+RFT
+15
+
+20
+
+Fig. 8. Detection probability of RFT, IAR-FRFT, KT-FRFT, GRFT and KT-MFP for a 
+high-speed target. 
+
+4.5. Coherent integration for multiple targets 
+
+In this section, we evaluate the coherent integration ability of 
+KT-MFP for multiple targets and the motion parameters of tar- 
+get A and B are listed in Table 4 . The radar parameters are given 
+in Table 2 and the SNRs (after PC) of the two targets are both 
+6 dB. The simulation results of KT-MFP for multiple targets are 
+
+Table 4 
+Motion parameters of two moving targets. 
+
+Motion parameters 
+
+Target A 
+
+Target B 
+
+Initial slant range 
+Radial velocity 
+Radial acceleration 
+SNR(after PC) 
+
+180 km 
+80 m/s 
+20 m/s 
+6 dB 
+
+2 
+
+/
+
+220 km 
+100 m 
+15 m 
+6 dB 
+
+/
+
+ s 
+ s 
+
+2 
+
+/
+
+ s 
+
+2 . 
+
+given in Fig. 9 . Particularly, Fig. 9 (a) shows the result after the 
+PC while Fig. 9 (b) gives the jointly searching result of fold fac- 
+tors and accelerations. Specically, the estimated fold factors are 
+1 for the two targets, separately. Besides, according to the 
+1 and 
+15 m 
+peak values, the estimated accelerations are 20 m/s 
+2 and 
+Fig. 9 (c) gives the estimation result of unambiguous velocities. As 
+13 
+for target A, the estimated unambiguous velocity is 
+ 82 m 
+and then we can work out that the estimation of target A＊s ve- 
+locity is 79.93 m/s. In terms of target B, the estimated unambigu- 
+6 
+ous velocity is 
+ 31 m 
+ s and the estimated velocity is equal to 
+100 
+ 06 m 
+ s . Furthermore, Fig. 9 (d) gives the coherent integration 
+result via the proposed method and we can see that the energy 
+of the two targets is well focused. It should be noted that if the 
+scattering intensities of different targets differ signicantly, we can 
+use the CLEAN technique to realize the coherent integration (as an- 
+alyzed in Section 3.3 ). Finally, we can conclude that KT-MFP is also 
+effective for the coherent integration of multiple targets. 
+Overall, for the low-speed target, the proposed method could 
+eliminate the RM and DFM effectively to integrate the energy well. 
+
+ s 
+
+/
+
+/
+
+/
+
+.
+
+.
+
+.
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+137 
+
+l
+l
+
+e
+c
+
+e
+g
+n
+a
+
+R
+
+s
+
+t
+
+u
+p
+
+t
+
+u
+o
+P
+F
+
+M
+
+
+T
+
+K
+
+f
+
+o
+
+e
+d
+u
+
+t
+i
+l
+
+p
+
+m
+A
+
+220
+
+200
+
+180
+
+160
+
+140
+
+120
+
+100
+
+80
+
+60
+0
+
+1500
+
+Target B
+
+Target A
+
+200
+
+400
+Pulse number
+
+600
+
+800
+
+(a)
+
+X: 6.309
+Y: 1397
+
+X: 13.82
+Y: 1283
+
+Target B
+
+1000
+
+Target A
+
+500
+
+0
+
+40
+
+30
+20
+10
+0
+10
+20
+30
+Estimation unambiguous velocity (m/s)
+
+40
+
+(c)
+
+(b)
+
+(d)
+
+Fig. 9. Coherent integration for multiple targets via the proposed method. (a) Result after PC. (b) Jointly searching result of the fold factors and accelerations. (c) Estimation 
+result of unambiguous velocities. (d) Integration result via the proposed method. 
+
+Moreover, it has a better detection performance than RFT, IAR- 
+FRFT and KT-FRFT. Although there is a slight loss for the detec- 
+tion performance compared with GRFT, the proposed method has 
+lower computational cost. While in terms of the coherent integra- 
+tion for a high-speed target, the proposed algorithm can still per- 
+form well to accumulate the energy when RFT, IAR-FRFT and KT- 
+FRFT all become invalid and there appears the BSSL effect for the 
+GRFT method. Additionally, the last simulation has validated the 
+coherent integration ability of KT-MFP for multiple targets. 
+
+energy is achieved via the slow time FT. The simulations about the 
+coherent integration ability and detection performance have been 
+carried out in detail. In general, the results show that the KT-MFP 
+method is able to perform well whether for the low-speed tar- 
+get or the high-speed target and could avoid the BSSL effect but 
+requires lower computational complexity compared with GRFT. In 
+addition, the detection performance of KT-MFP outperforms that of 
+RFT, IAR-FRFT and KT-FRFT. 
+
+5. Conclusion 
+
+Acknowledgments 
+
+In this paper, we have presented a new method named KT-MFP 
+for the weak maneuvering target detection. The KT-MFP method 
+can both eliminate the RM and DFM effects within the coherent 
+pulse interval. In particular, this method rstly corrects the linear 
+RM resulted from the unambiguous velocity via KT and then per- 
+forms the MFP in the range frequency-slow time domain to elim- 
+inate the residual RM (including the residual linear RM caused by 
+the blind velocity and the quadratic RM resulted from the accel- 
+eration) and the DFM. Finally, coherent integration of the target＊s 
+
+This work was supported by the Chang Jiang Scholars Pro- 
+gram, the Fundamental Research Funds of Central Universities un- 
+der Grants ZYGX2016J031, the Chinese Postdoctoral Science Foun- 
+dation under Grant 2014M550465 and Special Grant 2016T90845 . 
+
+References 
+
+[1] J. Yu , J. Xu , Y.N. Peng , X.G. Xia , Radon-Fourier transform (RFT) for radar target 
+detection (III): optimality and fast implementations, IEEE Trans. Aerosp. Elec- 
+tron.Syst. 48 (2) (2012) 991每1004 . 
+
+138 
+
+Z. Sun et al. / Signal Processing 140 (2017) 127每138 
+
+[2] X.L. Li , G.L. Cui , W. Yi , L.J. Kong , A fast maneuvering target motion parameters 
+estimation algorithm based on ACCF, IEEE Signal Process. Lett. 22 (3) (2015) 
+270每274 . 
+[3] S.Q. Zhu , G.S. Liao , D. Yang , H.H. Tao , A new method for radar high-speed ma- 
+neuvering weak target detection and imaging, IEEE Geosci. Remote Sens. Lett. 
+11 (7) (2014) 1175每1179 . 
+[4] J. Su , M. Xing , G. Wang , Z. Bao , High-speed multi-target detection with nar- 
+rowband radar, IET Radar Sonar Navig. 4 (4) (2010) 595每603 . 
+[5] M.D. Xing , J.H. Su , G.Y. Wang , Z. Bao , New parameter estimation and detection 
+algorithm for high speed small target, IEEE Trans. Aerosp. Electron.Syst. 47 (1) 
+(2011) 214每224 . 
+[6] J. Tian , W. Cui , S.L. Wu , A novel method for parameter estimation of space 
+moving targets, IEEE Geosci. Remote Sens. Lett. 11 (2) (2014) 389每393 . 
+[7] L.C. Qian , J. Xu , X.G. Xia , W.F. Sun , T. Long , Y.N. Peng , Fast implementation of 
+generalized radon-fourier transform for manoeuvring radar target detection, 
+Electron. Lett. 48 (22) (2012) 1427每1428 . 
+[8] G.H. Zhao , Z.Y. Wang , Q. Wang , G.M. Shi , F.F. Shen , Robust ISAR imaging 
+based on compressive sensing from noisy measurements, Signal Process. 92 
+(1) (2012) 120每129 . 
+[9] C. Sun , B.P. Wang , Y. Fang , K.F. Yang , Z.X. Song , High-resolution ISAR imaging of 
+maneuvering targets based on sparse reconstruction, Signal Process. 108 (2015) 
+535每548 . 
+[10] X. Rao , H.T. Huang , J. Xie , J. Su , W.P. Li , Long-time coherent integration de- 
+tection of weak manoeuvring target via integration algorithm, improved axis 
+rotation discrete chirp-Fourier transform, IET Radar Sonar Navig. 9 (7) (2015) 
+917每926 . 
+[11] X.L. Chen , J. Guan , N.B. Liu , Y. He , Maneuvering target detection via 
+Radon-Fractional Fourier transform-based long-time coherent integration, IEEE 
+Trans.Signal Process. 62 (4) (2014) 939每953 . 
+[12] X.L. Chen , J. Guan , Z.H. Bao , Y. He , Detection and extraction of target with mi- 
+cromotion in spiky sea clutter via short-time fractional fourier transform, IEEE 
+Trans. Geosci. Remote Sens. 52 (2) (2014) 1002每1018 . 
+[13] S.B. Peng , J. Xu , X.G. Xia , F. Liu , T. Long , J. Yang , Y.N. Peng , Multiaircraft forma- 
+tion identication for narrowband coherent radar in a long coherent integra- 
+tion time, IEEE Trans. Aerosp. Electron.Syst. 51 (3) (2015) 2121每2136 . 
+[14] X.L. Li , G.L. Cui , W. Yi , L.J. Kong , Coherent integration for maneuvering target 
+detection based on Radon-Lv＊s distribution, IEEE Signal Process. Lett. 22 (9) 
+(2015) 1467每1471 . 
+[15] X.L. Li , G.L. Cui , W. Yi , L.J. Kong , Radar maneuvering target detection and mo- 
+tion parameter estimation based on TRT-SGRFT, Signal Process. 133 (2017) 
+107每116 . 
+[16] P.H. Huang , G.S. Liao , Z.W. Yang , J.T. Ma , An approach for refocusing of 
+ground fast-moving target and high-order motion parameter estimation using 
+Radon-high-order time-chirp rate transform, Digital Signal Process. 48 (2016) 
+333每348 . 
+[17] C.S. Pang , S. Tao , R. Tao , N. Zhang , Detection of high-speed and accelerated 
+target based on the linear frequency modulation radar, IET Radar Sonar Navig. 
+8 (1) (2014) 37每47 . 
+[18] R. Tao , N. Zhang , Y. Wang , Analysing and compensating the effects of range 
+and doppler frequency migrations in linear frequency modulation pulse com- 
+pression radar, IET Radar Sonar Navig. 5 (1) (2011) 12每22 . 
+[19] X.L. Li , G.L. Cui , W. Yi , L.J. Kong , Manoeuvring target detection based on key- 
+stone transform and Lv＊s distribution, IET Radar Sonar Navig. 10 (7) (2016) 
+1234每1242 . 
+[20] J. Xu, Y.N. Peng, X.G. Xia, T. Long, E.K. Mao, A. Farina, Focus-before-detection 
+radar signal processing (I): challenges and methods, accepted for publication 
+in IEEE aerospace and electronic systems magazine. 
+[21] J. Xu, Y.N. Peng, X.G. Xia, T. Long, E.K. Mao, A. Farina, Focus-before-detection 
+radar signal processing (II): recent developments, accepted for publication in 
+IEEE aerospace and electronic systems magazine. 
+[22] R.P. Perry , R.C. Dipietro , R.L. Fante , SAR Imaging of moving targets, IEEE Trans. 
+Aerosp. Electron.Systems 35 (1) (1999) 188每200 . 
+[23] D.Y. Zhu , Y. Li , Z.D. Zhu , A keystone transform without interpolation for SAR 
+ground moving-target imaging, IEEE Geosci. Remote Sens. Lett. 4 (1) (2007) 
+18每22 . 
+[24] S.J. Yuan , T. Wu , M. Mao , G.J. Mei , X. Wei , Application research of keystone 
+transform in weak high-speed target detection in low-PRF narrowband chirp 
+radar, in: Proceedings of 2008 9th International Conference on Signal Process- 
+ing, Beijing, China, 2008, pp. 2452每2456 . 
+[25] G. Li , X.G. Xia , Y.N. Peng , Doppler keystone transform: an approach suitable for 
+parallel implementation of SAR moving target imaging, IEEE Geosci. Remote 
+Sens. Lett. 5 (4) (2008) 573每577 . 
+
+[26] J. Xu , J. Yu , Y.N. Peng , X.G. Xia , Radon-Fourier transform (RFT) for radar target 
+detection (I): generalized Doppler lter bank processing, IEEE Trans. Aerosp. 
+Electron.Syst. 47 (2) (2011) 1186每1202 . 
+[27] J. Xu , J. Yu , Y.N. Peng , X.G. Xia , Radon-Fourier transform (RFT) for radar tar- 
+get detection (II): blind speed sidelobe suppression, IEEE Trans. Aerosp. Elec- 
+tron.Syst. 47 (4) (2011) 2473每2489 . 
+[28] X.L. Li , G.L. Cui , W. Yi , L.J. Kong , An ecient integration method for maneu- 
+vering target detection, in: 2015 IET International Radar Conference, 2015, 
+pp. 1每6 . 
+[29] X. Rao , H.H. Tao , J. Su , J. Xie , X.Y. Zhang , Detection of cosntant radial accelera- 
+tion weak target via IAR-FRFT, IEEE Trans. Aerosp. Electron.Syst. 51 (4) (2015) 
+3242每3253 . 
+[30] J. Xu , X.G. Xia , S.B. Peng , J. Yu , Y.N. Peng , L.C. Qian , Radar maneuvering tar- 
+get motion estimation based on generalized radon-fourier transform, IEEE 
+Trans.Signal Process. 60 (12) (2012) 6190每6201 . 
+[31] X.L. Li , L.J. Kong , G.L. Cui , W. Yi , A low complexity coherent integration method 
+for manueuvering target detection, Digital Signal Process. 49 (2016) 137每147 . 
+[32] X.L. Chen , J. Guan , Y. Huang , N.B. Liu , Y. He , Radon-linear canonical ambiguity 
+function-based detection and estimation method for marine target with mi- 
+cromotion, IEEE Trans. Geosci. Remote Sens. 53 (4) (2015) 2225每2240 . 
+[33] P.H. Huang , G.S. Liao , Z.W. Yang , X.G. Xia , A fast SAR imaging method for 
+ground moving target using a second-order WVD transform, IEEE Trans. 
+Geosci. Remote Sens. 54 (4) (2016) 1940每1956 . 
+[34] Y. Wang , Y.C. Jiang , ISAR imaging of maneuvering target based on the L-Class 
+of fourth-order complex-lag PWVD, IEEE Trans. Geosci. Remote Sens. 48 (3) 
+(2010) 1518每1527 . 
+[35] Y. Wang , Y.C. Jiang , Inverse synthetic aperture radar imaging of maneuvering 
+target based on the product generalized cubic phase function, IEEE Geosci. Re- 
+mote Sens. Lett. 8 (5) (2011) 958每962 . 
+[36] Y.C. Li , M.D. Xing , Y.H. Quan , Z. Bao , A new algorithm of ISAR imaging for 
+maneuvering targets with low SNR, IEEE Trans. Aerosp. Electron.Syst. 49 (1) 
+(2013) 543每557 . 
+[37] J.B. Zheng , T. Su , W.T. Zhu , Q.H. Liu , ISAR imaging of targets with complex mo- 
+tions based on the keystone time-chirp rate distribution, IEEE Geosci. Remote 
+Sens. Lett. 11 (7) (2014) 1275每1279 . 
+[38] J.B. Zheng , T. Su , L. Zhang , W.T. Zhu , Q.H. Liu , ISAR imaging of targets with 
+complex motion based on the chirp rate-quadratic chirp rate distribution, IEEE 
+Trans. Geosci. Remote Sens. 52 (11) (2014) 7276每7289 . 
+[39] M.R. Sharif , S.S. Abeysekera , Ecient wideband signal parameter estimation 
+using a single slice of radon-ambiguity transform, in: Proceedings of IEEE In- 
+ternational Conference on Accoustics,Speech and Signal Processing, 5, 2005, 
+pp. 605每608 . 
+[40] M.R. Sharif , S.S. Abeysekera , Ecient wideband signal parameter estimation 
+using a Radon-ambiguity transform slice, IEEE Trans. Aerosp. Electron.Syst. 43 
+(2) (2007) 673每688 . 
+[41] G.C. Sun , M.D. Xing , X.G. Xia , Y.R. Wu , Z. Bao , Robust ground moving-target 
+imaging using Deramp-keystone processing, IEEE Trans. Geosci. Remote Sens. 
+51 (2) (2013) 966每982 . 
+[42] J. Tian , W. Cui , X.G. Xia , S.L. Wu , Parameter estimation of ground moving tar- 
+gets based on SKT-DLVT processing, IEEE Trans. Comput. Imaging 2 (1) (2016) 
+13每26 . 
+[43] P.H. Huang , G.S. Liao , Z.W. Yang , X.G. Xia , Long-time coherent integration for 
+weak maneuvering target detection and high-order motion parameter estima- 
+tion based on keystone transform, IEEE Trans.Signal Process. 64 (15) (2016) 
+4013每4026 . 
+[44] X.L. Li , L.J. Kong , G.L. Cui , W. Yi , CLEAN-based coherent integration method 
+for high-speed multi-targets detection, IET Radar Sonar Navig. 10 (9) (2016) 
+1671每1682 . 
+[45] J. Misiurewicz , K.S. Kulpa , Z. Czekala , T.A. Filipek , Radar detection of helicopters 
+with application of CLEAN method, IEEE Trans. Aerosp. Electron.Syst. 48 (4) 
+(2012) 3525每3537 . 
+[46] Q. Wang , M.D. Xing , G.Y. Lu , Z. Bao , SRMF-CLEAN imaging algorithm for space 
+debris, IEEE Trans. Antennas Propag. 55 (12) (2007) 3524每3533 . 
+[47] L.J. Kong , X.L. Li , G.L. Cui , W. Yi , Y.C. Yang , Coherent integration algorithm for 
+a maneuvering target with high-order range migration, IEEE Trans.Signal Pro- 
+cess. 63 (17) (2015) 4 474每4 486 . 
+[48] X.L. Li , G.L. Cui , L.J. Kong , W. Yi , Fast non-searching method for maneuvering 
+target detection and motion parameters estimation, IEEE Trans.Signal Process. 
+64 (9) (2016) 2232每2244 . 
+

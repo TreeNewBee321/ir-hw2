@@ -1,0 +1,915 @@
+Water desalination using visible light by disperse red 1 modied PTFE membrane
+
+Masahiro Fujiwara
+
+National Institute of Advanced Industrial Science and Technology (Tohoku Center), 4-2-1 Nigatake, Miyagino-ku, Sendai, Miyagi 983-8551, Japan
+
+H I G H L I G H T S
+
+
+Water permeated through DR1 modi-
+ed PTFE membrane by visible light ir-
+radiation.
+Water penetration through the mem-
+brane took place with photo isomeriza-
+tion of DR1.
+Desalination of NaCl solution was
+achieved by the light induced mem-
+brane permeation.
+Simulated solar light from solar simula-
+tor was effective for the water desalina-
+tion.
+
+article
+
+info
+
+
+
+Article history:
+Received 19 August 2016
+Received in revised form 1 November 2016
+Accepted 1 November 2016
+Available online 10 November 2016
+
+Keywords:
+Water treatment
+Solar desalination
+PTFE membrane
+Repetitive photo isomerization
+Disperse red 1
+
+abstract
+
+Water purication and seawater desalination are current desired technologies because global water shortage be-
+comes more serious. As this problem is related to global warming, the energy for the processes should be covered
+by renewable energies like solar light. It was found recently that water droplets on azobenzene modied anod-
+ized alumina membranes permeate the membrane under light irradiation to be puried and desalinated. This
+paper reports an advanced system of the light induced water treatment, where disperse red 1 (DR1) modied
+PTFE (polytetrauoroethylene) membranes are employed. Hydrophobic PTFE membrane inhibits the natural in-
+ltration of raw water into the membrane to prevent the contamination of treated water. Disperse red 1 photo-
+isomerizes only with visible light to adopt to the utilization of solar light. Waters on the DR1 modied PTFE mem-
+brane penetrated the membrane under visible light irradiation. 3.5% NaCl solution was desalinated to puried
+water (b 0.01% NaCl) by the membrane permeation process. A simulated solar light of a solar simulator was
+very effective for this desalination to produce claried water from an articial seawater. These results indicate
+that solar desalination is realizable with the DR1 modied PTFE membrane by the direct irradiation of solar
+light to the membrane.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Water purication and seawater desalination are now globally im-
+portant technologies. As the shortage of fresh water is involved with
+global warming (climate change) by the consumption of fossil fuels
+and the resulting carbon dioxide emission, renewable energies,
+especially solar light, free from fossil fuels should be employed for these
+water treatments [1每4]. Recently, the energy of light is actively applied
+to water purication processes using light-to-heat conversion materials,
+which promote the steam generation by water evaporation under light
+irradiation [5每11]. For example, Au plasmonic nanoparticle enables lo-
+calized heating and efcient water evaporation [6]. Titanium nitride
+nanoparticles as a lossy plasmonic nano-resonator are reported to be
+more active than gold nanoparticles for light induced steam generation
+[7]. Carbon materials based uids are also claimed to be effective for the
+direct vapor generation with solar light [8]. As the steams thus formed
+by water evaporation must be recovered from the plate located above
+water pools containing these heating materials, the corresponding
+water purication apparatuses are essentially regarded as variations of
+solar still system, which generally requires complicated equipments to
+collect vaporized and condensed water [12,13]. The puried water con-
+densed on the undersurface of transparent plate above raw water must
+be recovered carefully without its dripping into the raw water. This
+complicated operation is thought to prohibit the progress of the solar
+still. Membrane materials are also studied for the heat generation
+under light irradiation. For example, photo thermal membranes based
+on poly-pyrrole coated stainless steel mesh [9] and three layered mem-
+branes consisting TiO2 nanoparticles, Au nanoparticles and anodized
+aluminum oxides [10] are studied for vapor generation. Double-layer
+structure consisting of a carbon foam layer supporting an exfoliated
+graphite layer is active for vapor generation as well [11]. However,
+even in these cases, no water vapors produced by the heating processes
+penetrate the membranes, and the recovery manners of the treated wa-
+ters are essentially similar to the solar still [1每4,12,13]. Therefore, sim-
+pler systems of puried water production, especially in the recovery of
+the treated water, are desired for the practical water treatments with
+light energy.
+The application of azobenzene modied materials to control mass
+transport and diffusion under light irradiation are previously reported
+[14,15]. For example, the release of cholesterol from an azobenzene-
+tethered mesoporous silica powder is promoted by the simultaneous ir-
+radiation of UV and visible lights [14]. The ow rate of organic solvents
+through an azobenzene modied silica gel column can be accelerated by
+the same simultaneous light irradiation [15]. The UV and visible lights
+isomerize the azobenzene molecules from trans to cis isomer and
+from cis to trans isomer, respectively. The simultaneous irradiation of
+these two lights induces the repetitive photo isomerization of the
+azobenzene between the trans and cis isomer in the small spaces of sil-
+ica pores, activating the movement of nearby molecules to enhance
+their transfer. Although the molecular motions of azobenzene deriva-
+tives are well utilized for some intelligent and functional materials
+[16每18], the applications of these repetitive photo isomerizations are
+not so often reported [19每21]. Recently, azobenzene modied anodized
+alumina membranes were employed for a light promoted mass transfer
+[22]. When a water droplet on the azobenzene modied membrane was
+exposed to UV and visible lights, a certain volume of the water was re-
+covered under the membrane by membrane penetration, while no
+water permeation occurred without the UV and visible lights irradia-
+tion. It is thought that the repetitive photo isomerization of azobenzene
+elicited by the simultaneous irradiation provokes the evaporation of the
+water to result in the membrane permeation of water. When the solu-
+tions of rhodamine B and NaCl were used in the light induced mem-
+brane permeation, the penetrated waters were puried or desalinated.
+No rhodamine B was contained in the treated water and the salt water
+was converted into fresh water. From these results, an installation of
+seawater desalination using the azobenzene modied membrane
+under solar light irradiation was proposed in the paper [22]. Fig. 1 illus-
+trates the concept of this system that seawater in a pool on an
+azobenzene modied membrane is exposed to solar light to produce
+puried desalinated water under the membrane, which is readily col-
+lected in the container under the membrane. In this system, the energy
+for seawater desalination is provided from solar light.
+
+Fig. 1. A proposed membrane seawater desalination equipment using solar light energy.
+
+In the system of Fig. 1, the natural dropping-down of seawater
+through the membrane must be avoided for preventing the contamina-
+tion of the desalinated water under the membrane. In this point, the an-
+odized alumina membrane is not suitable because of its hydrophilic and
+fragile property. The hydrophilicity facilitates the natural dropping-
+down of raw water and the fragility is unfavorable in large scale sys-
+tems. On the other hand, 4-phenylazophenol mainly employed as the
+azobenzene compound in the previous paper [22] is inappropriate in
+the system of Fig. 1 using solar light, because its photo isomerization
+from trans to cis isomer requires UV light with wavelength of 350 nm
+that is scarcely contained in solar light. Then, this paper reports an im-
+proved light
+induced water
+treatment process, where PTFE
+(polytetrauoroethylene) membrane that is highly hydrophobic and
+more robust than the anodized alumina membrane and disperse red 1
+(DR1) that photo-isomerizes only with visible light of wavelength
+from 420 to 550 nm (Fig. 2) [23每27] were employed as alternative
+membrane and azobenzene compound, respectively. DR1 is known as
+a water-insoluble azobenzene dye, which is protable for preventing
+the contamination of treated water with DR1. This paper also presents
+the desalination of 3.5% NaCl solution and an articial seawater using
+the DR1 modied PTFE membrane under a simulated solar light,
+which is an important step toward the direct solar desalination using
+the system shown in Fig. 1.
+
+2. Experimental section
+
+2.1. Materials
+
+Polytetrauoroethylene (PTFE) membranes used in this study were
+Advantec PTFE membrane lters from Toyo Roshi Kaisha, 47 mm in di-
+ameter and 0.8 米m or 3.0 米m of pore size. Polyethersulfone (PES) mem-
+brane was PES membrane lter of As One Corporation (47 mm in
+diameter). Disperse
+red 1 [N-ethyl-N-(2-hydroxyethyl)-4-(4-
+nitrophenylazo)aniline] (Fig. 2) was purchased from Sigma-Aldrich
+Co. LLC. MARINE ART SF-1 for articial seawater [28] was bought from
+Osaka Yakken Co., Ltd. Other organic reagents and NaCl (special
+grade) were obtained from Wako Pure Chemical Industries, Ltd.
+
+2.2. Preparation of disperse red 1 modied membranes
+
+After wetting a sheet of PTFE membrane lter with isopropanol,
+2 mL of 0.1 g/mL solution of disperse red 1 (DR1) in DMF (N,N-
+dimethylformamide) was embrocated to the membrane lter in a
+
+M. Fujiwara / Desalination 404 (2017) 79每86
+
+81
+
+OH
+
+N
+
+NN
+
+N
+
+N
+
+O 2 N
+
+O 2 N
+
+N
+
+OH
+
+remosisnarT
+
+remosisiC
+
+Fig. 2. Photo isomerization of disperse red 1 (DR1).
+
+Teon vessel. After 3 days, the membrane was taken from the vessel and
+heated at 40 ～C for 1 day in air. This membrane was immersed in 50 mL
+of distillated water for 1 day. This washing treatment was repeated until
+the concentration of DR1 in the washing water decreased to b 1 ppb
+monitored by spectrometer analysis (using JASCO V-530 spectrometer).
+The concentration of DR1 in the rst washing water was b 1 ppb in near-
+ly every cases. The membrane thus treated was nally dried at 40 ～C for
+1 day. DR1 modied PTFE membranes using the membranes with 0.8 or
+3.0 米m of pore size were named as Memb-1 and Memb-2, respectively.
+DR1 modied PTFE membrane using 1 mL of a diluted DR1 solution
+(0.05 g/mL) was named as Memb-3. Double modied membrane
+(Memb-4) was obtained from a single modied PTFE membrane (one
+Memb-1 membrane) by the direct recoating with 0.5 mL solution of
+DR1 in DMF (0.1 g/mL) for 4 day. The following treatment was the
+same as above. DR1 modied PES membrane (Memb-5) was prepared
+by the immersion of a PES membrane in 2 mL of 0.1 g/mL isopropanol
+solution of DR1, because the PES membrane is soluble in DMF. Other
+procedures were the same as the DR1 modied PTFE membrane.
+
+2.3. Procedures of membrane permeation of distilled water
+
+The experiments of water permeation through membranes were
+performed with the apparatus system shown in Fig. 3. The membrane
+(47 mm in diameter) on a Teon holding ring platform (37 mm in ex-
+ternal diameter, 33 mm in internal diameter and 3 mm thick) was put
+into a glass petri dish. On the nearly central part of the membrane,
+0.5 mL of distilled water was dropped slowly (Fig. 4). The contact area
+of the droplet with the membrane was approximately 1.1 cm2 (roughly
+a circle of diameter 1.2 cm). In all tests using PTFE membranes, the con-
+tact areas of 0.5 mL of water were the same. A watch glass was overlaid
+on the petri dish. This watch glass transmits visible light, but lters out
+UV light. This apparatus system was placed in a dark space for obscuring
+room light. In all experiments, the system was not cooled purposefully.
+
+Visible light irradiation was carried out using a xenon light source MAX-
+301 (300 W xenon lamp; Asahi Spectra Co. Ltd.) equipped with a VIS
+mirror module (Asahi Spectra Co. Ltd.), which controls the irradiated
+light mainly in the range of from 385 to 740 nm in wavelength. This mir-
+ror module efciently eliminates near-infrared light from xenon lamp to
+be free from its heat effect. The distance between the lamp bottom and
+the membrane was xed to approximately 30 mm in the case of the vis-
+ible light irradiation. The light was irradiated to the whole water (see
+Graphical Abstract). The irradiation of a light with wavelength of
+440 nm was achieved by using a corresponding bandpass lters. After
+the light irradiation, the temperature of the remained water on mem-
+brane was measured with a sharpened thermocouple promptly, and
+the water was removed with a syringe to determine the volume by its
+scale. After picking up the membrane, the volumes of water on the bot-
+tom of the petri dish under the membrane and of water on the under-
+surface of the watch glass above the membrane were estimated with
+suitable microsyringes for HPLC, which could collect the water effective-
+ly by their at needle tip. When a solar simulator (Fiber Solar Simulator
+XEF-300, SAN-EI ELECTRIC CO., LTD.) was used, the light intensity at the
+surface of the membrane was xed at 1 SUN, where the distance be-
+tween the lamp bottom and the membrane was approximately
+220 mm. Other procedures were the same as the case of the xenon
+light source. On the other hand, 0.5 mL of water put on DR1 modied
+PES membrane did not form a droplet to be seeped into the whole
+membrane.
+
+2.4. Procedures of desalination of NaCl solution and articial seawater
+
+In the desalination experiment of NaCl solution, 3.5% NaCl solution
+prepared from NaCl and ultrapure water was used. An articial seawa-
+ter was obtained from MARINE ART SF-1 [28] and ultrapure water.
+The light induced water permeation was performed by the same
+
+Fig. 3. Schematic diagram of the experimental apparatus of water membrane permeation.
+
+Fig. 4. A droplet of distillated water (0.5 mL) on a DR1 modied PTFE membrane.
+
+82
+
+M. Fujiwara / Desalination 404 (2017) 79每86
+
+manner as the case of distilled water. After measuring the volume of
+permeated water under the membrane, the electric conductivity of
+the water and the corresponding NaCl concentration were analyzed
+by a conductance meter, B-771 LAQUAtwin compact conductivity
+meter (HORIBA, Ltd). As the volumes of the permeated water were in-
+sufcient for the conductivity meter (minimum volume: approximately
+120 米L), additional water (100每150 米L of distilled water; electric con-
+ductivity: 1每3 米S/cm) was mixed to the permeated water. After measur-
+ing the electric conductivity of the mixed water, the corrected electric
+conductivity of the permeated water was calculated by multiplying
+the electric conductivity by the reciprocal number of the dilution ratio.
+As the electric conductivity (and NaCl concentration) in the additional
+distilled water was not considered in this correction, the true value of
+the electric conductivity of the permeated water must be less than the
+value thus calculated. In the repeated experiments, NaCl solution on
+the membrane was replaced by fresh NaCl solution in each run. Howev-
+er, the membrane was not washed before the following experiment, be-
+cause the washing of the membrane after each experiment that
+removes NaCl in the membrane is not suitable for evaluating the inu-
+ence of NaCl fouling on the reproducibility of desalination. The repeated
+experiment with the articial seawater was performed in the same
+manner as the NaCl solution.
+
+2.5. Sample characterization
+
+The absorption spectra of solutions were analyzed by JASCO V-530
+spectrometer. The diffuse reectance UV每vis spectra of the membranes
+were recorded with JASCO V-550 spectrophotometer equipped with an
+integrating sphere. Kubelka-Munk function was used to indicate the dif-
+fuse reectance spectra of membranes. The images of scanning electron
+microscope (SEM) were obtained by JSM-6390 (JEOL).
+
+3. Results and discussion
+
+3.1. Preparation of disperse red 1 modied PTFE membranes
+
+At rst, the natural dropping-down of water through PTFE mem-
+brane was tested using the experiment apparatus shown in Fig. 3.
+After 0.5 mL of distilled water was put on a non-modied PTFE mem-
+brane for 1 h in a dark place, no water was found under the membrane
+and the whole volume of the water was remained on the membrane.
+Even after 5 h, nearly whole volume of the water was recovered on
+
+the membrane. Thus, no natural permeation of water through the
+PTFE membrane was conrmed.
+In the previous research [22],
+azobenzene derivatives are tethered onto the surface of anodized alu-
+mina membrane using a silane coupling reagent, because the alumina
+surface is applicable to the surface grafting process with the silane re-
+agent. However, as the surface of PTFE is unsuitable for this surface
+modication, a simple embrocation of DMF solutions of DR1 onto PTFE
+membrane was applied. The images of some membranes are shown in
+Fig. 5. The white original PTFE membrane (Fig. 5A) colored to dark red
+by the modication of DR1 (Fig. 5B; Memb-1). When this DR1 modied
+membrane was immersed in acetone, DR1 was gradually eliminated
+from the membrane. It is thought that the binding mode between DR1
+and PTFE is simple absorption. However, the elution of DR1 into water
+was negligible in soaking test in distilled water according to the visible
+spectra of the treated water solution. The DR1 modied membrane
+using a diluted solution (Memb-3) had a lighter red color than the
+membrane Memb-1. Fig. 6 compares the spectra of solar light (line A)
+and DR1. The spectrum of DR1 acetonitrile solution (line B) had the
+peak absorption around 500 nm in wavelength, which isomerizes DR1
+from trans to cis isomer. The photo isomerization from cis to trans iso-
+mer occurs under visible light irradiation with wavelength of longer
+than 530 nm [27]. As this visible light is the strongest component of
+solar light, DR1 is expected to absorb the solar light with high efciency.
+In the diffuse reectance spectrum of DR1 modied PTFE membrane
+(Memb-1) in Kubelka-Munk function (line C), the absorption peak of
+the membrane was shifted to shorter wavelength (approximately
+440 nm). As the wavelength of the absorption peak of DR1 solutions is
+signicantly affected by the solvents used [27], it seems that the interac-
+tion of DR1 with PTFE resulted in this blue shift. However, the photo
+isomerization of DR1 from trans to cis isomer is possible only by visible
+light even in the PTFE membrane. On the other hand, DR1 modied PES
+membrane (Memb-5) is in clear light red color (Fig. 5E), which had the
+absorption peak at approximately the same wavelength as the DR1 so-
+lution (line D of Fig. 6).
+To the membrane Memb-1, visible light with wavelength of 440 nm
+was irradiated for observing the photo isomerization of DR1 on PTFE
+membrane. The diffuse reectance UV每vis spectra of the membrane
+are shown in Fig. 7. The absorption around 440 nm in wavelength grad-
+ually decreased with the irradiation time (Fig. 7A). Thus, the photo
+isomerization of DR1 on the surface of PTFE membrane from trans to
+cis isomer by the light irradiation was ascertained. When visible light
+with wavelength ranging from 385 to 740 nm was irradiated to the
+
+Fig. 5. (A) Original PTFE membrane, (B) DR1 modied PTFE membrane (pore size: 0.8 米m: Memb-1), (C) DR1 modied PTFE membrane with diluted solution (Memb-3), (D) Original PES
+membrane, and (E) DR1 modied PES membrane (Memb-5).
+
+M. Fujiwara / Desalination 404 (2017) 79每86
+
+83
+
+k
+
+n
+u
+
+M
+
+-
+
+a
+
+k
+
+l
+
+e
+b
+u
+
+K
+
+,
+
+n
+o
+
+i
+
+t
+
+p
+
+r
+
+o
+
+s
+
+b
+
+A
+
+,
+
+e
+
+c
+
+i
+
+n
+a
+d
+a
+
+r
+r
+
+I
+
+Wavelength / nm
+
+Fig. 6. (A) Spectra of solar light (Irradiance), (B) DR1 in acetonitrile (Absorption), (C)
+diffuse reectance spectrum of DR1 modied PTFE membrane (Memb-1; Kubelka-
+Munk), and (D) diffuse reectance spectrum of DR1 modied PES membrane (Memb-5;
+Kubelka-Munk). The values of Y-axis are adjusted.
+
+membrane for 10 min, the decrease of the absorption around 440 nm
+was the same as the irradiation of 440 nm for 60 min (Fig. 7B). The
+light with a wider range of wavelength promoted the photo isomeriza-
+tion much more than that only of 440 nm. The longer irradiation of the
+visible light for 60 min decreased the absorption moderately. It is
+thought that the photo isomerization between trans and cis isomer
+reached a steady state in 10 min.
+
+3.2. Light induced water permeation through disperse red 1 modied
+membranes
+
+The light induced water permeation through membranes was next
+examined. At the beginning, the non-modied PTFE (original PTFE)
+membrane was tested. A droplet of 0.5 mL of distillated water was put
+on the central area of the membrane as shown in Fig. 3, and the visible
+light (from 385 to 740 nm in wavelength) was irradiated to the whole
+water. After 1 h irradiation, water was found neither on the bottom of
+the petri dish under the membrane (permeated water) nor on the un-
+dersurface of the watch glass above the membrane (vaporized water).
+The volume of the water remained on the PTFE membrane was approx-
+imately 0.5 mL to indicate the complete recovery of the water put on the
+membrane. Thus, no permeation of water through the non-modied
+PTFE membrane occurred even under the visible light irradiation.
+
+k
+n
+u
+
+M
+
+-
+
+l
+
+a
+k
+e
+b
+u
+
+K
+
+Table 1
+Water permeation and desalination under visible light irradiation.a
+
+Membrane
+
+Memb-1
+Memb-1b
+Memb-1c
+Memb-2
+Memb-3
+Memb-4
+Memb-1d
+Memb-1e
+Memb-1d,e
+Memb-1e,f
+
+Under
+membrane
+(米L)
+
+Above
+membrane
+(米L)
+
+Remain on
+membrane
+(mL)
+
+18
+9
+66
+18
+6
+29
+18
+30
+26
+32
+
+4
+b 2
+16
+5
+b 2
+12
+6
+5
+5
+5
+
+0.47
+0.49
+0.41
+0.45
+0.49
+0.43
+0.46
+0.43
+0.45
+0.43
+
+Electric
+conductivity
+(米S/cm)
+每
+每
+每
+每
+每
+每
+92 (b 0.01)g
+每
+87 (b 0.01)g
+54
+
+a 0.5 mL of deionized water was put on membrane. Irradiation of visible light with
+wavelength from 385 to 740 nm for 1 h.
+b Irradiation for 0.5 h.
+c Irradiation for 3 h.
+d 3.5% NaCl solution was used.
+e Irradiation from a solar simulator at 1 SUN.
+f Articial seawater obtained from MARINE ART SF-1 was used.
+g Concentration of NaCl (%).
+
+Next, the DR1 modied PTFE membranes were applied to the light in-
+duced water membrane permeation. The results are summarized in
+Table 1. When no irradiation (in dark place) and the irradiation of visi-
+ble light of 440 nm controlled by a band pass lter were used for 1 h,
+neither the permeated water nor the vaporized water was observed
+and nearly 0.5 mL of water was remained on the membrane. Moreover,
+no temperature elevation of the water was observed in both cases. Thus,
+no irradiation and the irradiation of the light that isomerizes DR1 only
+from trans to cis isomer had no effect for the water permeation through
+the membrane. On the other hand, after 1 h irradiation of visible light
+with wavelength from 385 to 740 nm, the volume of the water
+remained on the membrane decreased to approximately 0.47 mL
+(470 米L) and the temperature of the water was elevated slightly
+(about 4 ～C increase). The content of DR1 in the remained water was
+b 0.1 ppb to indicate no leaching of DR1 from the membrane. As men-
+tioned in the introduction part, DR1 is a water-insoluble azobenzene
+dye. Water dews were found both on the bottom of the petri dish
+formed by the water permeation of the membrane (permeated water)
+and on the undersurface of the watch glass by the vaporization (vapor-
+ized water). The volumes of the permeated and vaporized waters were
+approximately 18 and 4 米L, respectively. No DR1 was detected even in
+the permeated and vaporized waters according to spectrometer
+analyses.
+The light irradiation for 0.5 h and 3 h produced 9 and 66 米L of waters
+under the membrane, respectively. The volume of the permeated water
+
+k
+n
+u
+
+M
+
+-
+
+l
+
+a
+k
+e
+b
+u
+
+K
+
+Fig. 7. (A) Diffuse reectance spectra of DR1 modied PTFE membrane (Memb-1) under the irradiation of visible light with wavelength of 440 nm (Kubelka-Munk). (B) Diffuse reectance
+spectra of DR1 modied PTFE membrane (Memb-1) under the irradiation of visible light with wavelength of 385每740 nm or 440 nm (dot-line) (Kubelka-Munk).
+
+Wavelength / nm
+
+Wavelength / nm
+
+84
+
+M. Fujiwara / Desalination 404 (2017) 79每86
+
+increased basically with the irradiation time. However, the temperature
+elevation of the water remained on the membrane was only 6 ～C even
+after 3 h irradiation. The reproducibility of the water permeation was
+veried by the repeated experiments of 1 h irradiation. In ve trials,
+the volumes of the permeated and vaporized waters were in the range
+of 16每21 米L and 4每7 米L, respectively. No deterioration of the permeation
+ability occurred in these repeated experiments. The DR1 modied
+membrane obtained from a PTFE membrane with a larger pore
+(3.0 米m; Memb-2) resulted in the similar result to Memb-1. The pore
+size of the PTFE membrane is unlikely to be an important factor in this
+membrane permeation. On the other hand, when the DR1 modied
+PTFE membrane prepared with a diluted solution of DR1 (Memb-3)
+was used (The color was lighter than that of Memb-1 to show less
+DR1 on the membrane as shown in Fig. 5C.), the volumes of the perme-
+ated and vaporized waters decreased to 6 and 1.5 米L, respectively. The
+double modication of DR1 to PTFE membrane (Memb-4) improved
+the water penetration ability to increase the volume of the permeated
+water from 18 to 29 米L. Thus, the modication manner of DR1 on PTFE
+membrane was a signicant factor for the performance of the light in-
+duced water permeation.
+DR1 modied PES membrane (Memb-5) was also tried to the mem-
+brane permeation of water. When 0.5 mL of distilled water was put on
+this membrane, the water gradually seeped into the membrane to
+spread to the whole membrane after a period of time, probably because
+PES membrane is generally hydrophilic. After 1 h in dark place, a certain
+volume of water was found between the membrane and the Teon
+holding ring platform (see Fig. 3). This water was thought to penetrate
+through the membrane naturally, while no water was observed be-
+tween the PTFE membrane and the ring platform. This PES membrane
+could not prevent the natural dropping-down of water through the
+membrane, which must be avoided for preventing the contamination
+of the puried water with raw water. Therefore, the light induced mem-
+brane permeation using the DR1 modied PES membrane (Memb-5)
+was not tested. The employment of hydrophobic membrane must be es-
+sential for the light induced membrane permeation.
+
+3.3. Light induced desalination with disperse red 1 modied PTFE
+membranes
+
+Water desalination using the DR1 modied PTFE membrane was
+next examined. 3.5% NaCl aqueous solution (0.5 mL) was put on the
+DR1 modied PTFE membrane (Memb-1), and the visible light with
+wavelength from 385 to 740 nm was irradiated. After 1 h, about 18
+and 6 米L of waters were observed both on the bottom of the petri dish
+and on the undersurface of the watch glass. Approximately 0.46 mL of
+the NaCl solution was remained on the membrane. These results were
+nearly the same as those using distillated water. The estimated value
+of the electric conductivity of the permeated water under the mem-
+brane was 92 米S/cm, which corresponded to b 0.01% of NaCl concentra-
+tion. The purity of the water recovered under the membrane reached a
+high enough level of freshwater (b 0.05% NaCl). Thus, the DR1 modied
+PTFE membrane accomplished the desalination of the NaCl solution by
+the visible light irradiation. This light induced permeation of the NaCl
+solution was repeated three more times without washing the mem-
+brane (NaCl solution on the membrane was replaced in each case).
+The results in these three experiments were in the same ranges as the
+rst experiment.
+The mechanism of the water permeation by light irradiation is
+thought to be similar to the previous case [22]. The irradiated light
+causes the repetitive photo isomerization of DR1 between its trans
+and cis isomer. The molecular motion of DR1 induced by the photo
+isomerization activates water molecule located near DR1 on PTFE mem-
+brane to promote their evaporation. Finally, the water vapor penetrates
+the pore of PTFE membrane. In this study, the employments both of
+PTFE membrane and DR1 evolved this light induced water permeation
+and desalination system. The hydrophobic PTFE membrane efciently
+
+rejected the natural penetration of water through the membrane and
+DR1 that photo-isomerizes by the light with wavelength of N 440 nm en-
+ables the utilization of visible light. As the permeated water through the
+membrane is produced via water vapor, the recovered water under the
+membrane was puried and desalinated.
+This membrane permeation and the desalination of water is differ-
+ent from the common water evaporation systems like solar still [12,
+13], because the treated water could be readily collected under the
+membrane. In addition, as the temperature elevation of the water on
+membrane was modest as mentioned above (up to 6 ～C increase), the
+mechanism of water evaporation on the DR1 modied membranes
+using visible light is different from that of light-to-heat conversion ma-
+terials, because the materials rapidly elevate the temperature of water
+to produce steam [5每11]. The water treatment using the DR1 modied
+PTFE membranes resembles the process of membrane distillation [29每
+35], especially air-gap membrane distillation [34,35]. In the membrane
+distillation, the permeation of water vapor through hydrophobic mem-
+brane desalinates raw water, where the inhibition of the penetration of
+liquid water by hydrophobic membrane is a key function. While the raw
+water is often heated by articial energy in common membrane distilla-
+tion [29每35], solar energy is utilized in some recent systems, where
+heated water is produced in solar thermal systems separated from the
+membrane distillation part [32,33]. To the contrary, the membrane per-
+meation in this study employed light energy directly in the membrane
+process. The droplet of raw water on the DR1 modied membrane
+was exposed directly to the irradiated light. Therefore, the total water
+treatment system can be simplied and is suitable for the direct use of
+solar light energy.
+
+3.4. Seawater desalination with PTFE membranes using solar simulator
+
+The wavelength and intensity of the irradiated light controlled by
+the VIS mirror module is approximately constant from 400 to 750 nm
+in wavelength, which is apparently different from real solar light on
+the surface of the ground. Then, a simulated solar light irradiated from
+a solar simulator (XEF-300, SAN-EI ELECTRIC CO., LTD.) was used for
+the light induced membrane permeation of water, because a goal of
+this research is seawater desalination using real solar light free from fos-
+sil fuel energy. The simulated solar light was irradiated to 0.5 mL of dis-
+tilled water on the DR1 modied PTFE membrane (Memb-1) at 1 SUN.
+After 1 h irradiation, 30 米L of water, which was much more than that
+with the visible light (from 385 to 740 nm), was found on the petri
+dish under the membrane. As shown in Fig. 6, the absorption range of
+the DR1 modied PTFE membrane is suitable for the utilization of
+solar light. When the solar light was employed to the permeation of
+3.5% NaCl solution, 26 米L of water was obtained under the membrane.
+The electric conductivity of the permeated water was 87 米S/cm and
+the concentration of NaCl was b 0.01%. As the salinity of the water is
+equivalent to fresh water, the desalination of the NaCl solution using
+the simulated solar light certainly succeeded. This desalination experi-
+ment was repeated totally ve times without washing the membrane
+in the same manner as that described above. In all ve experiments,
+the volumes of the permeated waters were within the range of 22每
+26 米L, and their salinities were b 0.01%. Thus, the desalination process
+is repeatable with no obvious deterioration of the performance of the
+membrane. Fig. 8 illustrates the scanning electron microscope (SEM)
+images of original PTFE membrane, DR1 modied PTFE membrane be-
+fore use, and DR1 modied PTFE membrane after the utilization for
+the repeated permeation of NaCl solution. There are no clear differences
+among these three images. The modication of DR1 to the PTFE mem-
+brane did not change the morphology of the membrane from Fig. 8A
+and B. In the image of the used membrane (Fig. 8C), no observable foul-
+ing materials were found on the membrane. This membrane desalina-
+tion effectively suppressed the salt fouling to achieve no deterioration
+of the membrane performance.
+
+M. Fujiwara / Desalination 404 (2017) 79每86
+
+85
+
+Fig. 8. SEM images of PTFE membranes. (A) Original PTFE membrane, (B) DR1 modied PTFE membrane before used, and (C) DR1 modied PTFE membrane after the use for the repeated
+permeation of NaCl solution.
+
+At the end, an articial seawater obtained with MARINE ART SF-1,
+whose composition formula of minerals is the same as that of real sea-
+water [28], was employed. This articial seawater well duplicates real
+surface seawater. For example, the pH value of the articial seawater
+was 8.1 that is the same as that of current real surface seawater [36].
+On the other hand, 3.5% NaCl solution used in this study had a pH
+value of 5.4. As listed in Table 1, the volume of the permeated water
+was 32 米L by the irradiation of the simulated solar light. The electric con-
+ductivity of the permeated water was 54 米S/cm to be desalinated to pu-
+ried fresh water. In the same repeated experiments as the NaCl
+solution, the volumes of the permeated water and their electric conduc-
+tivity were within the range of 32每36 米L and of 39每54 米S/cm, respec-
+tively. Thus, the desalination of an articial seawater succeeded by a
+simulated solar light without deterioration.
+
+4. Conclusions
+
+This paper reports the light induced water permeation using DR1
+(disperse red 1) modied PTFE membranes. Hydrophobic PTFE mem-
+brane prevents the natural inltration of raw water into the membrane
+completely, while it can happen in anodized alumina membrane report-
+ed before [22]. DR1 conducts its repetitive photo isomerization only by
+visible light, requiring no UV light that is scarcely contained in solar
+light. The permeation of distilled water through the DR1 modied
+PTFE membrane took place under the irradiation of visible light (from
+385 to 740 nm), while no penetration occurred without the light. 3.5%
+NaCl solution and an articial seawater also permeated the membrane
+under the light irradiation, and the recovered water under the mem-
+brane was sufciently desalinated. The electric conductivity and the
+concentration of NaCl of the permeated water were b 100 米S/cm and
+0.01%, respectively. As the salinity of freshwater is b 0.05%, this light in-
+duced water permeation efciently converted the NaCl solution to a de-
+salinated freshwater. The water permeation and desalination were also
+accomplished by a simulated solar light, where the concentration of
+NaCl in the penetrated water decreased to b 0.01% as well. In addition,
+the desalination of an articial seawater to puried water was achieved
+by the light irradiation with a solar simulator. These results clearly show
+that the desalination process using solar light as a main energy source
+shown in Fig. 1 is realizable by the DR1 modied PTFE membrane. The
+most important advantage of the DR1 modied PTFE membranes is
+that the desalination of seawater as the most energy-requiring step is
+accomplished only by solar light energy, which extensively decreases
+the consumption of fossil fuels in the whole desalination process.
+
+Acknowledgement
+
+This work was supported by a Grant-in-Aid for Scientic Research
+(Grant Number: 16H03002) from the Japan Society for the Promotion
+of Science (JSPS). MF thanks for Dr. Mitsuhiro Kanakubo (AIST), Dr.
+Yoshio Masuda (AIST), Prof. Shingo Matsukawa (Tokyo University of
+
+Marine Science and Technology), and Mr. Masaki Kikuchi (Tohoku
+Gakuin University) for their helps.
+
+References
+
+[1] A.A. El-Sebaii, E. El-Bialy, Advanced designs of solar desalination systems: a review,
+Renew. Sust. Energ. Rev. 49 (2015) 1198每1212.
+[2] J.H. Reif, W. Alhalabi, Solar-thermal powered desalination: its signicant challenges
+and potential, Renew. Sust. Energ. Rev. 48 (2015) 152每165.
+[3] H. Sharon, K.S. Reddy, A review of solar energy driven desalination technologies,
+Renew. Sust. Energ. Rev. 41 (2015) 1080每1118.
+[4] C. Li, Y. Goswami, E. Stefanakos, Solar assisted sea water desalination: a review,
+Renew. Sust. Energ. Rev. 19 (2013) 136每163.
+[5] A.O. Govorov, H.H. Richardson, Generating heat with metal nanoparticles, Nano
+Today 2 (2007) 30每38.
+[6] N.J. Hogan, A.S. Urban, C. Ayala-Orozco, A. Pimpinelli, P. Nordlander, N.J. Halas,
+Nanoparticles heat through light localization, Nano Lett. 14 (2014) 4640每4645.
+[7] S. Ishii, R.P. Sugavaneshwar, T. Nagao, Titanium nitride nanoparticles as plasmonic
+solar heat transducers, J. Phys. Chem. C 120 (2016) 2343每2348.
+[8] G. Ni, N. Miljkovic, H. Ghasemi, X. Huang, S.V. Boriskina, C.-T. Lin, J. Wang, Y. Xu,
+M.M. Rahman, T.-J. Zhang, G. Chen, Volumetric solar heating of nanouids for direct
+vapor generation, Nano Energy 17 (2015) 290每301.
+[9] L. Zhang, B. Tang, J. Wu, R. Li, P. Wang, Hydrophobic light-to-heat conversion mem-
+branes with self-healing ability for interfacial solar heating, Adv. Mater. 27 (2015)
+4889每4894.
+[10] Y. Liu, J. Lou, M. Ni, C. Song, J. Wu, N.P. Dasgupta , P. Tao, W. Shang, T. Deng,
+Bioinspired bifunctional membrane for efcient clean water generation, ACS Appl.
+Mater. Interfaces 8 (2016) 772每779.
+[11] H. Ghasemi, G. Ni, A.M. Marconnet, J. Loomis, S. Yerci, N. Miljkovic, G. Chen, Solar
+steam generation by heat localization, Nature Commun. 5 (2014) 4449.
+[12] A. Kaushal, Varun, Solar stills: a review, Renew. Sust. Energ. Rev. 14 (2010) 446每453.
+[13] A.E. Kabeel, S.A. El-Agouz, Review of researches and developments on solar stills,
+Desalination 276 (2011) 1每12.
+[14] Y. Zhu, M. Fujiwara, Installing dynamic molecular photomechanics in mesopore: a
+multifunctional controlled-release nanosystem, Angew. Chem. Int. Ed. 46 (2007)
+2241每2244.
+[15] M. Fujiwara, M. Akiyama, M. Hata, K. Shiokawa, R. Nomura, Photo induced acceler-
+ation of efuent rate of developing solvents in azobenzene tethered silica gel, ACS
+Nano 2 (2008) 1671每1681.
+[16] A. Natansohn, P. Rochon, Photoinduced motions in azo-containing polymers, Chem.
+Rev. 102 (2002) 4139每4175.
+[17] G. Vives, J.M. Tour, Synthesis of single-molecule nanocars, Acc. Chem. Res. 42 (2009)
+473每487.
+[18] J.M. Abendroth, O.S. Bushuyev, P.S. Weiss, C.J. Barrett, Controlling motion at the
+nanoscale: rise of the molecular machines, ACS Nano 9 (2015) 7746每7768.
+[19] S. Angelos, E. Choi, F. Vgtle, L. De Cola, J.I. Zink, Photo-driven expulsion of molecules
+from mesostructured silica nanoparticles, J. Phys. Chem. C 111 (2007) 6589每6592.
+[20] J. Lu, E. Choi, F. Tamanoi, J.I. Zink, Light-activated nanoimpeller-controlled drug re-
+lease in cancer cells, Small 4 (2008) 421每426.
+[21] J. Lu, W. Bu, L. Pan, J. Shi, NIR-triggered anticancer drug delivery by upconverting
+nanoparticles with integrated azobenzene-modied mesoporous silica, Angew.
+Chem. Int. Ed. 52 (2013) 4375每4379.
+[22] M. Fujiwara, T. Imura, Photo induced membrane separation for water purication
+and desalination using azobenzene modied anodized alumina membranes, ACS
+Nano 9 (2015) 5705每5712.
+[23] Z. Sekkat, D. Morichere, M. Dumont, R. Loucif-Saibi, J.A. Delaire, Photoisomerization
+of azobenzene derivatives in polymeric thin lms, J. Appl. Phys. 71 (1992)
+1543每1545.
+[24] R. Loucif-Saibi, K. Nakatani, J.A. Delaire, M. Dumont, Z. Sekkat, Photoisomerization
+and second harmonic generation in disperse red one-doped and -functionalized
+poly(methyl methacrylate) lms, Chem. Mater. 5 (1993) 229每236.
+[25] N. Bhm, A. Materny, W. Kiefer, H. Steins, M.M. M邦ller, G. Schottner, Spectroscopic
+investigation of the thermal cis-trans isomerization of disperse red 1 in hybrid poly-
+mers, Macromolecules 29 (1996) 2599每2604.
+
+86
+
+M. Fujiwara / Desalination 404 (2017) 79每86
+
+[26] T. Buffeteau, F. Lagugn谷 Labarthet, M. P谷zolet, C. Sourisseau, Photoinduced orienta-
+tion of azobenzene chromophores in amorphous polymers as studied by real-time
+visible and FTIR spectroscopies, Macromolecules 31 (1998) 7312每7320.
+[27] M. Poprawa-Smoluch, J. Baggerman, H. Zhang, H.P.A. Maas, L. De Cola, A.M. Brouwer,
+Photoisomerization of disperse red 1 studied with transient absorption spectrosco-
+py and quantum chemical calculations, J. Phys. Chem. A 110 (2006) 11926每11937.
+[28] C. Fushimi, A. Umeda, Comparison of biodiesel production by a supercritical metha-
+nol method from microalgae oil using solvent extraction and hydrothermal liquefac-
+tion processes, Energy Fuel 30 (2016) 7916每7922.
+[29] K.W. Lawson, D.R. Lloyd, Membrane distillation, J. Membr. Sci. 124 (1997) 1每25.
+[30] A.M. Alklaibi, N. Lior, Membrane-distillation desalination: status and potential, De-
+salination 171 (2004) 111每131.
+[31] A. Alkhudhiri, N. Darwish, N. Hilal, Membrane distillation: a comprehensive review,
+Desalination 287 (2012) 2每18.
+
+[32] M. Khayet, Solar desalination by membrane distillation: dispersion in energy con-
+sumption analysis and water production costs, (a review), Desalination 308
+(2013) 89每101.
+[33] A.M. Elzahaby, A.E. Kabeel, M.M. Bassuoni, A.R.A. Elbar, Direct contact membrane
+water distillation assisted with solar energy, Energy Convers. Manag. 110 (2016)
+397每406.
+[34] G.W. Meindersma, C.M. Guijt, A.B. de Haan, Desalination and water recycling by air
+gap membrane distillation, Desalination 187 (2006) 291每301.
+[35] C. Feng, K.C. Khulbe, T. Matsuura, R. Gopal, S. Kaur, S. Ramakrishna, M. Khayet, Pro-
+duction of drinking water from saline water by air-gap membrane distillation using
+polyvinylidene uoride nanober membrane, J. Membr. Sci. 311 (2008) 1每6.
+[36] P.N. Pearson, M.R. Palmer, Atmospheric carbon dioxide concentrations over the past
+60 million years, Nature 406 (2000) 695每699.
+

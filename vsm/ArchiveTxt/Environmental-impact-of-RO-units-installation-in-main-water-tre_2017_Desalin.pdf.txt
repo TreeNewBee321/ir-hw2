@@ -1,0 +1,2397 @@
+Environmental impact of RO units installation in main water treatment plants of Basrah city/south of Iraq
+
+Kifah M. Khudair , Noor A. Eraibi
+
+Civil Engineering Department, College of Engineering, University of Basrah, Iraq
+
+H I G H L I G H T S
+
+ The impact of brine water discharge is clear in the upstream reach of the study area.
+ When RO units have 85% recovery percent, the max TDS increase is 5.9 % that exceeds the allowed salinity limit.
+ When RO units have 50% recovery percent of, the max TDS increase is 2.7% that is less than the allowed salinity limit.
+ The TDS increase values vary over the range (8.8-226.3 mg/l) which are b 4ppt (the regulation criteria limit).
+
+article
+
+info
+
+
+Article history:
+Received 28 August 2016
+Received in revised form 3 October 2016
+Accepted 7 November 2016
+Available online 22 November 2016
+
+Keywords:
+Shatt Al Arab River
+Environmental impact
+RO units
+Brine water discharge
+TDS
+HEC-RAS
+
+
+abstract
+
+The citizens of Basrah city are suffering from the problem of high salinity water supply. This problem is proposed
+to be solved by installing RO units in 16 water treatment plants of Basrah city. RO units produce high-salinity
+brine water. The aim of this study is to predict the environmental impact of RO units installation measured in
+terms of TDS increase of Shatt Al-Arab River water. The TDS increase was predicted using HEC-RAS software.
+The software was applied to simulate twelve cases of TDS distribution in water of Shatt Al-Arab River. During
+each of the twelve simulation cases, the proposed RO units were assumed to have recovery percent (RP) of
+50% and 85%. The simulation results indicated that when the proposed RO units have RP of 85%, the max percent-
+age of TDS increase is 5.9%. While, when the proposed RO units have RP of 50%, the max percentage of TDS is 2.7%.
+The comparison of these results with the regulation criteria of brine water discharge shows that; when the
+installed RO units have RP of 85%, the percentages of TDS increase will exceed the salinity limit of most regulation
+criteria (5%).
+
+ 2016 Elsevier B.V. All rights reserved.
+1. Introduction
+
+In south of Iraq, Basrah city is depending on Shatt Al Arab River as a
+main source of water supply. Until the year 2006, this river received
+fresh water from three main sources; Tigris, Euphrates and Al Karun
+Rivers. However, now it is receiving fresh water from Tigris River only.
+The downstream end of Shatt Al Arab River is affecting by tide phenom-
+enon from the north west of the Arabian Gulf. The decrease of fresh
+water ow causes the increase of salt intrusion into Shatt Al Arab
+River during tide period, which led to increase the salinity level of its
+water. In addition, Basrah city is supplying with potable water of low sa-
+linity by Sweet Water Canal (SWC). The SWC has suffered numerous
+failures since it was commissioned and requires continuous mainte-
+nance and monitoring. Several long sections of the canal embankment
+are structurally unstable, resulting in steadily worsening performance
+and an increasing rate of failure [1].
+All the above circumstances led to supply Basrah city citizens with
+high salinity water. Many workshops have held in Basrah city to put so-
+lutions to the problem of high salinity water supply. One of these work-
+shops was held on 15每16/Feb./2014, which is titled ※Basrah Water
+Crises and Shatt Al Arab Salinity Increase: Measures to Control§. During
+the workshop, a paper was submitted titled ※Practical Solutions for
+Water Supply Problem of Basrah City§. The paper suggested the installa-
+tion of reverse osmosis (RO) units in main water treatment plants of
+Basrah City to desalinate their product water and subsequently enhance
+the quality of water supply. After the submission of this paper, a ques-
+tion was asked about the environmental impact of RO units installation
+on water salinity of Shatt Al Arab River. This question is behind the per-
+formance of this study and its results will give the answer.
+Desalination process cannot be accomplished without environmen-
+tal and ecological inferences [2]. There are many environmental impacts
+depending on type of the applied desalination technology, such as
+energy consumption, land use, produced the emission of regular fuel
+combustion products, and discharge brine during regular operation.
+The most important environmental impact produced by desalination
+plants is the discharge of brine water [3,4,5]. The characteristics of reject
+brine water depend on feed water quality, type and recovery percent of
+desalination process and the chemical additives used [6]. Brine water
+might adversely affect water and sediment quality, reduce biodiversity,
+impairs marine biota or the vital functions of coastal ecosystems [7].
+An increased awareness of the environmental impact of discharging
+the brine water of desalination plants into the surface waters has
+prompted environmental studies in existing plants as well as increased
+attention to this issue in both the design and siting of new plants and
+plants now in the planning stage [8]. Generally, the rst paper to note
+that the brine and chemical discharges from desalination plants may
+impair the marine environment probably appeared in 1979 (cited in
+[9]). However, it took until the 1990s before the scientic interest in
+the marine environmental concerns of desalination plants became
+more pronounced, as reected in the large published number of studies.
+Examples of these studies include those conducted by; Hpner and
+Windelberg [10], Morton et al. [11], Oldeld and Todd [12], Hpner
+and Lattemann [13], El-Samanoudi et al. [14], El-Gamal and Abdrabbo
+[5], Elabbar and Elmabrouk [8], Medeazza [15], Tularam and Ilahee
+[16], Lattemann and Hpner [7,17], M邦nk [18], Abo Qdais [19],
+Fern芍ndez-Torquemada et al. [20], Al-Dousari [21], Dupavillon and
+Gillanders [2], Ahmed and Anwar [22], Dawoud and Al Mulla [23],
+Darwish et al. [24], Naser [25], Fern芍ndez-Torquemada et al. [26] and
+Hu [6]. The review of these studies shows that; most of them either ex-
+amined and compared the environmental impacts of MSF and RO desa-
+lination processes or conducted by collecting eld data from existing
+desalination plants.
+With regard to the use of modeling techniques (which is the tool
+used in this study) in studying the environmental impact of desalination
+plants, the review of previous studies shows that there are three com-
+mercial numerical softwares (CORMIX, VISUAL PLUMES, and VISJET)
+for modeling brine jet discharge. Palomar et al. [27] analyzed and vali-
+dated these softwares and indicated that they are limited to near eld
+region modeling and CORMIX is a steady-state model. In addition,
+Purnama et al. [28] developed a one-dimensional tidally averaged
+mathematical model to assess the impact of seawater desalination
+plants on water salinity of the Arabian Gulf and the Red Sea. They
+modeled each of the Arabian Gulf and the Red Sea as a semi-enclosed
+sea with simple depth topography, parabolic cross sections, and its val-
+ley bottom is uniformly descending. Also, Al-Barwani and Purnama [29]
+developed a model to simulate the long-time (or far eld) brine plumes
+steadily discharged into the seawaters using a two-dimensional advec-
+tion-diffusion equation. The model considered the effect of a tidally os-
+cillating ow on the long-time brine plume assuming a highly
+simplied vertical beach prole, and vertically well-mixed (over the
+water depth) brine plume.
+
+3. Overview on Basrah City water supply system
+
+Basrah governorate is supplied with water by 37 main water treat-
+ment plants (WTPs), out of which 20 WTPs are located in Basrah city
+and its surrounding area, to which the raw water is fed from Shatt Al
+Arab River and SWC. The rest is located outside of Basrah city. Table 2
+shows the source of water and the design capacity of Basrah city
+WTPs and Fig. 1 shows their locations.
+All of the WTPs of Basrah city apply conventional water treatment
+processes which include; pretreatment, chemical coagulation, rapid
+mixing, occulation, sedimentation, ltration and disinfection. Thus,
+these WTPs are not provided with facilities for reducing the TDS of
+water. To highlight the problem of high TDS water produced by WTPs
+in Basrah city, the readings of TDS in treated water were analyzed for
+the number of readings that satisfy the Iraqi standards for drinking
+water (max. TDS of 1000 mg/l). These readings were monthly taken
+during the years (2011每2014) by the staff of Central Laboratory of
+Water Analysis/ Basrah Water Administration. The results of analysis
+shows that; 735 out of 4477 readings satisfy the Iraqi standards and
+the max TDS of water supply in Basrah city is 9400 mg/l. These results
+indicate the urgent need for installing desalination units in WTPs of
+Basrah city.
+Table 2 shows that WTPs No. 17, 18, 19 and 20 (indicated with yel-
+low color in Fig. 1) are receiving water from SWC only. When the avail-
+able raw water from the SWC is reduced, the water is conveyed to these
+WTPs as a priority and the other plants use the water of Shatt Al Arab
+River. Therefore, the water of these treatment plants has low TDS and
+there is no need for installing RO units in them. Thus, these WTPs
+shall not be considered in this study, i.e., the RO units are proposed to
+be installed in WTPs No. 1 through 16.
+
+4. Water desalination using reverse osmosis
+
+RO process is used to produce freshwater by removing dissolved
+salts from seawater and brackish water, helping to overcome the prob-
+lem of freshwater shortage. RO plant consists of pre-treatment, high-
+pressure pump units and membranes, Fig. 2. The membranes are set
+in series within a pressure vessel. A pretreatment must be provide for
+feed water in order to remove inorganic solids and suspended solid,
+and for save the membranes from damage and fouling. The process
+starts by pumping the feed water (brackish water or seawater) under
+the forces of a pressure head that exceeds the osmotic pressure of the
+solution through the pressure vessel. As shown in Fig. 2, the fresh
+water permeates through the membranes, while, the brine water
+(high concentrated solution) is left behind [17]. The main design pa-
+rameters of RO plants are; recovery percent, feed and osmotic pressures.
+
+Table 1
+Regulations for selected desalination brine discharges [30].
+
+2. Regulatory criteria for brine water discharge
+
+Brine water discharge alternatives include [5]; surface water dis-
+charge, disposal to sewage treatment plants, deep well disposal, land
+applications, evaporation ponds and brine concentrators. Surface
+water discharge is the most used brine disposal method. Since the
+most direct waste product of desalination plants is the concentrated
+salt brine discharge, all the regulatory criteria of surface water discharge
+are concerning the impact of increasing the salinity of the receiving
+stream. Jenkins et al. [30] reviewed the regulations or guidelines for
+brine discharges around the world as listed in Table 1.
+Table 1 shows the variation in the putting regulations, however,
+nearly all have two common elements; a salinity limit and a boundary
+of mixing zone. The salinity limit is dened as an increment of no
+more than 1 to 4 ppt or 5% percent relative to ambient.
+
+Region/authority
+
+US EPA
+Increment ≒ 4 ppt
+Carlsbad, California
+Absolute ≒ 40 ppt
+Huntington Beach, California
+Absolute ≒ 40 ppt
+Western Australia guidelines
+Oakajee Port, Western Australia
+Increment ≒ 1 ppt
+Sydney, Australia
+Increment ≒ 1 ppt
+Gold Coast, Australia
+Increment ≒ 2 ppt
+Okinawa, Japan
+Increment ≒ 1 ppt
+Abu Dhabi
+
+Salinity limit
+
+Increment b 5%
+
+Increment ≒ 5%
+
+272
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+Table 2
+Water source and capacity of main WTPs in Basrah City.
+
+WTP no. WTP name
+
+Water source
+
+Design capacity (m3/day)
+
+Feed 
+water
+
+Pre-treatment
+
+High-
+pressure 
+pumps 
+
+Brine 
+water
+
+Fresh
+water
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+Al Hartha 25
+Shatt Al Arab and SWC 120,000
+Basrah Unied
+Shatt Al Arab and SWC 96,000
+Garma - 1
+Garmat Ali and SWC
+38,400
+Garma - 2
+Garmat Ali and SWC
+8400
+Al Maqil
+Shatt Al Arab and SWC 13,500
+Al Maqil-1
+Shatt Al Arab and SWC 14,400
+Jubaila Old
+Shatt Al Arab and SWC 24,000
+Jubaila - 2 CU
+Shatt Al Arab and SWC 24,000
+Ribat CU
+Shatt Al Arab and SWC 14,400
+Brad'ia - 1
+Shatt Al Arab and SWC 24,000
+Brad'ia - 2
+Shatt Al Arab and SWC 24,000
+Brad'ia - 3 CU
+Shatt Al Arab and SWC 4800
+Shatt Al Arab Old
+Shatt Al Arab and SWC 24,000
+Shatt Al Arab CU
+Shatt Al Arab and SWC 9600
+Abu Al Khasseb UP Shatt Al Arab and SWC 14,400
+Abu Al Khasseb CU Shatt Al Arab and SWC 19,200
+R-Zero
+SWC
+120,000
+Al-Shauaiba Old
+SWC
+19,200
+Al-Shauaiba CU
+SWC
+19,200
+Khor Al Zubair UP
+SWC
+19,200
+
+Fig. 2. Schematic diagram of RO process.
+
+simulating; (1) steady ow, (2) unsteady ow, (3) sediment transport,
+and (4) water quality.
+In order to apply HEC-RAS software to simulate TDS distribution in
+water of Shatt Al Arab River, it is necessary to run the water quality
+model. This model requires the input of unsteady ow eld of the
+study area. Thus, the unsteady ow model was run, at rst, to simulate
+the unsteady ow of this river. Then, the results of this model were used
+as inputs to run the water quality model. This section describes the ap-
+plications of these two models to simulate the unsteady ow and TDS
+distribution in Shatt Al Arab River.
+
+The recovery percent (RP) of the RO system is calculated as;
+
+5.1. Modeling of Shatt Al Arab River ow
+
+RP  Q P
+Q f
+
+ 100
+
+1
+
+where; Qp and Qf are the owrates of product water and feed water, re-
+spectively. The owrate of brine water (Qb) is obtained as [31];
+Q b  1RP=100
+
+  Q f
+
+2
+
+
+
+The concentration of total dissolved solids (TDS) in the brine water is
+obtained as [31];
+TDSb  CF  TDS f
+
+3
+
+where TDSb and TDSf are the TDS values of brine water and feed water,
+respectively, and CF is the concentration factor which is dened as [31];
+CF  100= 100RP
+
+4
+
+
+
+
+
+5. Methodology
+
+In this study, HEC-RAS (Hydrologic Engineering Centers-River Anal-
+ysis System) software was used to study the impact of discharging brine
+water from the proposed RO units on salinity distribution (measured in
+terms of TDS) in water of Shatt Al Arab River. HEC-RAS is an open access
+software includes four one-dimensional river analysis models for
+
+The data required to model the unsteady ow of Shatt Al Arab River
+applying HEC-RAC software are those necessary for specifying the ge-
+ometry of the study area and boundary and initial conditions.
+
+5.1.1. Geometry of the study area
+The following steps specied the geometry of the study area:
+
+1. Draw of a schematic diagram of Shatt Al River reach. The considered
+reach has a length of about 147 km starts from Al-Hartha city and
+ends at Al-Fao city as highlighted by red color in Fig. 3.
+2. Dene the bathometry of the study area using data of 32 cross sec-
+tions along the river reach. These sections are ordered in the reach
+from highest river station upstream (section No. 32, Al Hartha city)
+to lowest river station downstream (section No. 1, Al Fao city), Fig.
+3. The data of each cross section includes; cross section coordinates,
+downstream reach length, Manning's roughness coefcient (n)
+values (constant n value of 0.03 was used for all the cross sections)
+and main channel bank stations. However, after running the ow
+model, a warning appears if the specied cross sections in geometric
+data are not sufcient (the distance between the specied sections is
+too large). The warning message is combined with a request for
+adding new cross sections and can be ended by specifying more
+cross sections by interpolation. After adding the adequate cross sec-
+tions, the nal number of cross sections becomes 1465 (including
+the basic 32 sections) and the distance between two successive sec-
+tions varies over the range from 79.0每178.5 m.
+
+Fig. 1. Locations of main WTPs in Basrah city.
+
+Fig. 3. Shatt Al-Arab River and cross sections distribution.
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+273
+
+River: Shatt alarab  Reach: reach  RS: 1
+
+Legend
+
+Stage
+
+1.0
+
+0.5
+
+0.0
+
+-0.5
+
+-1.0
+
+)
+
+m
+
+(
+
+e
+g
+a
+
+t
+
+S
+
+-1.5
+0.0
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+2.5
+
+3.0
+
+Simulation Time (days)   
+
+Fig. 4. Stage hydrograph for ow simulation Cases-1 & 2.
+
+5.1.2. Boundary conditions
+The unsteady ow of the study area was simulated for two statuses;
+(1) the absence of brine water discharges (the current status of Shatt Al
+Arab River) and (2) the present of brine water discharges (the proposed
+status after the installation of RO units). In both statuses, all the lateral
+branches of Shatt Al Arab River have been neglected. For simulating
+the current status of Shatt Al Arab River ow, the applied boundary con-
+ditions include ow hydrograph at the upstream boundary of the study
+area (section No. 32) and stage hydrograph at the downstream bound-
+ary (section No. 1). The ow hydrograph was developed assuming
+steady owrate at the upstream boundary of the study area. This
+owrate equals to the owrate of Tigris River. Basrah Water Resources
+Administration measures the owrate of Tigris River periodically at
+the border of Basrah city. The records of Tigris River owrate were ob-
+tained for the years 2009 through 2014 and they were found to be var-
+ied over the range (9每97.4) m3/s. Thus, the ow in Shatt Al Arab River
+was simulated applying the minimum and maximum discharge values
+of Tigris River; 9.0 and 97.4 m3/s. The stage hydrograph was developed
+using unsteady tide levels at the downstream boundary of the study
+area. The tide data (levels of high and low tides) have been obtained
+from the tide tables published by the General Company for Ports of
+Iraq in Basrah for the year 2014. Generally, four cases were considered
+
+Fig. 6. Locations of eld measurement stations along the study area.
+
+for simulating the unsteady ow of Shatt Al Arab River. The applied
+boundary conditions for these four cases are shown in Table 3.
+For simulating the proposed status of unsteady ow in Shatt Al Arab
+River after the installation of RO units, additional boundary conditions
+were specied at the locations of point sources of brine water discharge
+(the considered WTPs). The additional boundary conditions include
+specication of lateral inow hydrograph at brine discharge points.
+The lateral inow of each point is the steady owrate of produced
+brine water (assuming that the WTPs work continuously at constant
+rates). As was shown in Eq. (2), the owrate of brine water is dependent
+on feed water owrate and recovery percent (RP). It was found, from
+the literature review, that the RP of brackish water RO desalination
+plants might reach a value of 90%. In this study, the environmental im-
+pact of brine water discharges has been simulated applying RP values of
+50% and 85%. The distances of the 16 brine water point sources mea-
+sured from section No. 1 and the applied lateral inow values for 50%
+and 85% recovery percentages are shown in Table 4. The lateral inow
+values were calculated using Eq. (2) with adopting RO feed owrates
+equal to the design capacities of the considered WTPs as given in
+Table 2.
+
+5.1.3. Initial conditions
+Initial conditions must be established at the start of unsteady ow
+simulation. They can be specied at any cross section of the river
+reach, but at least, they must be input at the upper end of the reach. In
+this study, the initial condition was specied at the upstream section
+of the study area (section No. 32) to be 9 m3/s for Cases-1 and 3 and
+97.4 m3/s for Cases-2 and 4.
+
+River: Shatt alarab  Reach: reach  RS: 1
+
+5.2. Modeling of Shatt Al Arab River water quality
+
+1.5
+
+1.0
+
+0.5
+
+0.0
+
+-0.5
+
+-1.0
+
+)
+
+m
+
+(
+
+e
+g
+a
+
+t
+
+S
+
+-1.5
+0.0
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+2.5
+
+3.0
+
+Simulation Time (days)   
+
+Fig. 5. Stage hydrograph for ow simulation Cases-3 & 4.
+
+Legend
+
+Stage
+
+The water quality model of HEC-RAS software is capable of simulat-
+ing water quality of rivers considering the one-dimensional distribution
+of different conservative and non-conservative constituents. It uses ex-
+plicit numerical scheme to solve the one-dimensional advection-disper-
+sion equation [32]. As in unsteady ow simulation, the water quality
+model has been applied to simulate TDS distribution in water of Shatt
+Al Arab River considering two statuses; (1) the absence of brine water
+discharges and (2) the present of brine water discharges. In both status-
+es, the run of water quality model requires the specication of ow ve-
+locity eld, dispersion coefcient and boundary and initial conditions.
+The ow velocity eld is specied using the results of ow model appli-
+cation on the study area and the adopted value of dispersion coefcient
+is 100 m2/s.
+
+5.2.1. Boundary conditions
+A time series boundary condition must be specied for the consid-
+ered constitute at all locations where ow enter the system including
+
+274
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+)
+l
+/
+
+g
+
+m
+
+(
+
+S
+D
+
+T
+
+16000
+14000
+12000
+10000
+8000
+6000
+4000
+2000
+0
+
+0
+
+3500
+
+3000
+
+2500
+
+2000
+
+)
+l
+/
+
+g
+
+m
+
+(
+
+S
+D
+
+T
+
+1500
+60000
+
+With out BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+50000
+100000
+Longitudinal Distance (m)
+(a) The whole reach of the study area
+
+150000
+
+With out BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+80000
+100000
+120000
+Longitudinal Distance (m)
+
+140000
+
+(b) The reach extends from km 60 to km 140 of the study area
+
+Fig. 7. Effect of BW discharge on TDS distribution in Shatt Al Arab River during HT of Case-2A.
+
+upstream and downstream boundaries of the river and its lateral in-
+ows. In this study, the applied boundary conditions include:
+
+the simulation of TDS distribution in water of Shatt Al Arab River
+with and without the presence of brine water discharges.
+
+1. Temporal varied TDS data: This boundary condition was applied at the
+downstream boundary of the study area (section No. 1) where TDS
+value is time dependent due to tide effect. It was adopted during
+
+2. Constant TDS value: This boundary condition was applied at the up-
+stream boundary of the study area (section No. 32) and all internal
+cross sections where brine water discharge points are specied.
+
+30000
+
+25000
+
+20000
+
+15000
+
+10000
+
+5000
+
+)
+l
+/
+
+g
+
+m
+
+(
+
+S
+D
+
+T
+
+0
+
+0
+
+5000
+
+4500
+
+4000
+
+3500
+
+3000
+
+2500
+
+)
+l
+/
+
+g
+
+m
+
+(
+
+S
+D
+
+T
+
+Without BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+50000
+100000
+Longitudinal distance (m)
+
+150000
+
+(a) The whole reach of the study area
+
+Without BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+2000
+60000
+
+70000
+
+80000
+
+90000 100000 110000 120000 130000 140000
+Longitudinal distance (m)
+
+(b) The reach extends from km 60 to km 140 of the study area
+
+Fig. 8. Effect of BW discharge on TDS distribution in Shatt Al Arab River during LT of Case-3C.
+
+However, the boundary conditions at the internal cross sections are
+applied to simulate the status of brine water discharges. Generally,
+for each ow simulation case, the water quality model has been
+run to simulate TDS distribution in water of Shatt Al Arab River con-
+sidering three simulation cases; A, B and C. The applied boundary
+conditions at the upstream the study area is constant TDS value of
+1600, 506, and 1890 mg/l for Cases A, B and C, respectively. These
+TDS values were selected from eld measurements conducted at
+the corresponding location by Basrah Environment Administration
+and Water Resources Administration in Basrah during the years
+
+2009 through 2014. The TDS of brine water has been determined
+adopting the following procedure:
+
+a. Run of the ow model to simulate the ow of Shatt Al Arab River
+during a period of four days and for the status of the absence of
+brine water discharges.
+b. Run of water quality model using the results of ow model.
+c. Specication of maximum TDS of Shatt Al Arab water at the locations
+of brine water discharges.
+
+(a) The whole reach of the study area
+
+(b) The reach extends from km 60 to km 140 of the study area
+
+0
+
+2000
+
+4000
+
+6000
+
+8000
+
+10000
+
+0
+
+50000
+100000
+Longitudinal distance (m)
+
+150000
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Without BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+2300
+2200
+2100
+2000
+1900
+1800
+1700
+1600
+1500
+60000
+
+80000
+100000
+120000
+Longitudinal distance (m)
+
+140000
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Without BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+Fig. 9. Effect of BW discharge on TDS distribution in Shatt Al Arab River during LT of Case-4A.
+
+10
+15
+20
+Time (hr)
+(a) Section No.31
+
+15
+20
+Time (hr)
+(b) Section No.27
+
+10
+15
+20
+Time (hr)
+(c) Section No.24
+
+10
+15
+20
+Time (hr)
+(d) Section No.22
+
+10
+15
+20
+Time (hr)
+(e) Section No.12
+
+10
+15
+20
+Time (hr)
+(f) Section No.4
+
+1600
+
+1650
+
+1700
+
+1750
+
+1800
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Without BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+1600
+
+1650
+
+1700
+
+1750
+
+1800
+
+0
+
+5
+
+10
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+1700
+
+1750
+
+1800
+
+1850
+
+1900
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+1800
+
+1850
+
+1900
+
+1950
+
+2000
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+1900
+
+1950
+
+2000
+
+2050
+
+2100
+
+2150
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+2050
+
+2100
+
+2150
+
+2200
+
+2250
+
+2300
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Fig. 10. Effect of BW discharge on temporal variation of TDS in 6 sections along Shatt Al Arab River during Case-4A.
+
+275
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+d. Put of feed water TDS of each WTP equals to the maximum TDS value
+of Shatt Al Arab River water at the corresponding location during the
+considered ow and TDS distribution cases.
+e. Determination of brine water TDS using Eq. (3)
+
+5.2.2. Initial conditions
+The water quality model of HEC-RAS software requires the input of
+at least one initial condition value for simulating the distribution of
+any constituent. It, then, generates a table of initial conditions at all
+water quality computational points by interpolation. In this study, for
+the rst run of water quality model, the initial TDS values were specied
+at the upstream and downstream boundaries (section Nos. 32 and 1) as
+shown in Table 4. While, for the subsequent run, the obtained results of
+TDS values at the last time step of the rst run were applied as initial
+conditions. In Table 5, the rst notation in case number denotes the
+
+ow simulation case, i.e., Case No. 1A denotes the TDS simulation case
+when ow condition of Case-1 and TDS boundary conditions of Case-A
+are applied.
+
+6. Results and discussion
+
+Two models of HEC-RAS software; ow and water quality models
+were applied on Shatt Al Arab River. The results of the ow model are
+used as input data to run the water quality model. The water quality
+model was applied on the study area to assess the environmental im-
+pact of installing RO units in 16 main WTPs of Basrah city. The environ-
+mental impact was assessed by studying the impact of discharging high
+TDS brine water on TDS of Shatt Al Arab water. This section presents the
+results of ow and water quality models validation. It, also, presents the
+results of environmental impact assessment of RO units installation.
+
+10
+15
+20
+Time (hr)
+(a) Section No.31
+
+15
+20
+Time (hr)
+(b) Section No.27
+
+10
+15
+20
+Time (hr)
+(c) Section No.24
+
+10
+15
+20
+Time (hr)
+(d) Section No.22
+
+10
+15
+20
+Time (hr)
+(e) Section No.12
+
+10 15
+20
+Time (hr)
+(f) Section No.4
+
+500
+
+520
+
+540
+
+560
+
+580
+
+600
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Without BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+500
+
+520
+
+540
+
+560
+
+580
+
+600
+
+0
+
+5
+
+10
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+620
+
+640
+
+660
+
+680
+
+700
+
+720
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+860
+840
+820
+800
+780
+760
+740
+720
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+800
+
+850
+
+900
+
+950
+
+1000
+
+1050
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+1000
+
+1050
+
+1100
+
+1150
+
+1200
+
+0
+
+5
+
+25 30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Fig. 11. Effect of BW discharge on temporal variation of TDS in 6 sections along Shatt Al Arab River during Case-4B.
+
+10 15 20 25 30
+Time (hr)
+(a) Section No.31
+
+15
+20
+Time (hr)
+(b) Section No.27
+
+10 15 20 25 30
+Time (hr)
+(c) Section No.24
+
+10
+15
+20
+Time (hr)
+(d) Section No.22
+
+15
+20
+Time (hr)
+(e) Section No.12
+
+10 15 20 25 30
+Time (hr)
+(f) Section No.4
+
+1900
+
+1950
+
+2000
+
+2050
+
+2100
+
+0
+
+5
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Without BW
+
+With BW at 50% RP
+
+With BW at 85% RP
+
+1900
+
+1950
+
+2000
+
+2050
+
+2100
+
+0
+
+5
+
+10
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+2400
+2350
+2300
+2250
+2200
+2150
+2100
+
+0
+
+5
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+2600
+2550
+2500
+2450
+2400
+2350
+2300
+
+0
+
+5
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+2400
+
+2500
+
+2600
+
+2700
+
+2800
+
+2900
+
+0
+
+5
+
+10
+
+25
+
+30
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+2800
+
+2900
+
+3000
+
+3100
+
+3200
+
+0
+
+5
+
+T
+
+S
+D
+
+(
+
+m
+
+g
+
+)
+l
+/
+
+Fig. 12. Effect of BW discharge on temporal variation of TDS in 6 sections along Shatt Al Arab River during Case-4C.
+
+276
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+Table 3
+Boundary conditions for unsteady ow simulation cases.
+
+Table 5
+Initial conditions for TDS distribution simulation cases (Without brine water discharges).
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+277
+
+Downstream
+
+Stage hydrograph of unsteady tide level as
+shown in Fig. 4
+
+Stage hydrograph of unsteady tide level as
+shown in Fig. 5
+
+Case no.
+
+1A and 2A
+1B and 2B
+1C and 2C
+3A and 4A
+3B and 4B
+3C and 4C
+
+TDS (mg/l)
+
+Upstream
+
+1600
+506
+1890
+1600
+506
+1890
+
+Downstream
+
+8000
+7600
+21,000
+7000
+6000
+12,000
+
+Case
+no.
+
+1
+
+2
+
+3
+
+4
+
+Boundary conditions
+
+Upstream
+Steady ow hydrograph of
+9.0 m3/s
+Steady ow hydrograph of
+97.4 m3/s
+Steady ow hydrograph of
+9.0 m3/s
+Steady ow hydrograph of
+97.4 m3/s
+
+6.1. Flow model validation
+
+To validate the results of ow model, the computed values of ow
+velocity were compared with those measured at a section located at
+the mouth of Umm Al Rasas Island in Shatt Al Arab River. This island is
+located at 35 km south of Basrah city. The ow velocity was measured
+by Al-Whaely et al. [33]. The comparison results are shown in Table 6.
+From this table, it can be noticed that the range of computed ow veloc-
+ities during the four simulation cases is (0.23每0.34) m/s which is in good
+agreement with that of the measured values (0.25每0.32) m/s.
+In addition, the computed owrates of the four simulation cases
+were compared with measured ones. The owrates were measured by
+Al-Maliky [34] at three stations (Nos. 1, 2 and 3) along Shatt Al Arab
+River. The distances of station Nos. 1, 2 and 3 measured from Al Fao
+city, are 10, 60 and 120 km, respectively. Table 7 shows the comparison
+results. From this table, it can be noticed that the computed owrates of
+the four cases at the three stations are within the ranges of the mea-
+sured ones.
+
+6.2. Water quality model validation
+
+The water quality model was validated by comparing its results with
+eld measurements of TDS. The model results include the temporal var-
+ied TDS distributions which were obtained by running the 12 simulation
+cases; 1A, 1B, 1C, 2A, 2B, 2C, 3A, 3B, 3C, 4A, 4B and 4C without the exis-
+tence of brine water discharges. The eld values of TDS were measured
+by Al-Maliky [35] and the crew of Water Resources Administration. Al-
+Maliky measured the TDS at station Nos. 1, 2, 3 and 4 and the crew of
+Water Resources Administration measured the TDS at station Nos. 5,
+6, 7 and 8. The locations of these stations along Shatt Al Arab River are
+shown in Fig. 6.
+
+Table 4
+Lateral inows of brine water discharge points.
+
+Point source no.
+
+Distance from
+downstream (m)
+
+Section no.
+
+Lateral inow
+(m3/s) at RP
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+
+138,535.7
+127,135.7
+127,035.7
+126,935.7
+118,335.7
+118,196.6
+113,058.6
+112,950.4
+109,520.4
+109,420.4
+109,320.4
+104,509.4
+104,409.4
+104,309.4
+94,862.39
+94,762.39
+
+31.7028*
+31.3088*
+31.3054*
+31.3019*
+31.0048*
+31
+29.1071*
+29
+26.7365*
+26.6706*
+26.6047*
+24.7177*
+24.7094*
+24.7011*
+23.5551*
+23.5106*
+
+50%
+
+0.69
+0.56
+0.22
+0.05
+0.08
+0.08
+0.14
+0.14
+0.08
+0.14
+0.06
+0.14
+0.14
+0.03
+0.08
+0.11
+
+85%
+
+0.21
+0.17
+0.07
+0.01
+0.02
+0.03
+0.04
+0.04
+0.03
+0.04
+0.02
+0.04
+0.04
+0.01
+0.03
+0.03
+
+For each simulation case, the min and max values of temporal varied
+TDS where obtained at the location of each measurement station. Then,
+the range of calculated TDS values at each station was obtained from the
+min and max values of all the simulation cases. This TDS range was com-
+pared with the range of measured TDS at the corresponding station. The
+comparison results are shown in Table 8. This table shows that the cal-
+culated TDS values at station Nos. 2, 5, 6 and 7 are within the measured
+ranges. While, the min calculated TDS values at station Nos. 1, 3, 4 and 8
+are lower than the corresponding measured ones. Also, the max calcu-
+lated TDS value at station No. 4 is greater than the corresponding mea-
+sured one. The differences between the measured and calculated TDS
+values are attributed to; (1) the applied boundary conditions which dif-
+fer from those actually occurred during the performance of eld mea-
+surements and (2) the simplications adopted during the applications
+of both ow and water quality models, such as neglecting the lateral
+branches of Shatt Al Arab River. However, for the aim of studying the en-
+vironmental impact of installing RO units in main WTPs of Basrah city,
+the water quality model results are thought to be accepted.
+
+6.3. TDS distribution in Shatt Al Arab water
+
+For all the simulation cases (12 cases), the results of TDS distribution
+in water of Shatt Al Arab River without the existence of BW, with the ex-
+istence of BW at 50% RP and with the existence of BW at 85% RP during
+low and high tide times were plotted to study the impact of BW dis-
+charges. Herein, examples of these plots are shown for Case-2A at
+high tide (HT), Case-3C at low tide (LT) and Case-4A at LT in Figs. 7, 8
+and 9, respectively. In each of these gures, the TDS longitudinal distri-
+bution in the study area is shown for the whole reach and for a reach ex-
+tends from km 60 to km 140 of the study area. From these gures and
+when the TDS distribution is plotted for the whole reach of Shatt Al
+Arab River, the TDS distributions without the existence of BW dis-
+charges cannot be distinguished from those with the existence of BW
+discharges. While, when the TDS distribution is plotted for a reach of
+the study area extending from km 60 to km 140, the effect of BW dis-
+charge on TDS distribution appears. Where it can be noticed that the
+TDS of Shatt Al Arab water increases when BW is discharged and if the
+installed RO units are of 85% RP, the increase of TDS values will be great-
+er than that obtained when the installed RO units are of 50% RP. The ef-
+fect of BW discharge appears in the specied reach of the study area
+because the locations of all the considered WTPs are distributed be-
+tween km 97.76 and km 138.54.
+
+Table 6
+Comparison of computed and measured ow velocities at the mouth of Umm Al Rasas
+Island.
+
+Cases no.
+
+Flow velocity (m/s)
+
+1
+2
+3
+4
+Measured [33]
+
+Min
+
+0.23
+0.24
+0.24
+0.26
+0.25
+
+Max
+
+0.30
+0.28
+0.34
+0.32
+0.32
+
+278
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+Table 7
+Comparison of computed and measured owrates at 3 stations in Shatt Al Arab River.
+
+Station no.
+
+Flowrates range (m3/s)
+
+1
+2
+3
+
+Computed
+
+Case-1
+2368.4每3057.8
+1027每1254.2
+518.9每598.8
+
+Case-2
+2415.3每2992.6
+1092.4每1194.8
+553.4每573.6
+
+Case-3
+2604.6每3256.5
+1132.3每1357.2
+481.0每645.2
+
+Case-4
+2640每3204.1
+1200.3每1265.6
+571.42每577.9
+
+Measured
+
+1126每3347.9
+413.7每2820.6
+479.3每1061.7
+
+For illustrating the effect of BW discharges on TDS of Shatt Al Arab
+River water, the results of TDS temporal variation during simulation
+Cases-4A, 4B and 4C have been plotted at six sections (section Nos. 31,
+27, 24, 22, 12 and 4) along this river. These sections are located at dis-
+tances of 118,199, 110,002, 95,865, 86,174, 73,210 and 61,539 m, re-
+spectively, from the downstream boundary of the study area (Section
+No. 1). The TDS temporal variation results of Cases-4A, 4B and 4C are
+shown in Figs. 10 through 12, respectively. In these gures, the blue,
+red and green lines represent the absence of BW discharge, the exis-
+tence of BW discharge at RP of 50% and the existence of BW discharge
+at RP of 85%, respectively.
+Figs. 10 through 12 show that the BW discharges increase the TDS of
+Shatt Al Arab water. This impact differs along the study area due to the
+interactions of; tide effect, location of WTPs and owrate and TDS of
+brine water. For example, if Fig. 10 is considered, it can be noticed that
+the TDS values at any section varies with time due to tide effect; in-
+crease during ood period and decrease during ebb period. This varia-
+tion reduces towards the upstream end of the study area due to the
+reduction of tidal range. At specic hour, the TDS increases in any sec-
+tion with the existence of BW discharge and the increase at 85% RP is
+greater than that at 50% RP.
+From the results of Figs. 10 through 12 and for each simulation case,
+the values of max and min TDS with and without the existence of BW
+discharges were obtained. From these values it was found that during
+Case-4A, the max TDS value at Section No. 31 increases from 1619.7 to
+1646.3 (with BW at 50% RP) and to 1666.5 (with BW at 85% RP). Thus,
+the percentages of TDS increase are 1.64 and 2.89% for BW at 50 and
+85%, respectively. While, the percentages of TDS increase at Section
+No. 4 are 0.50 and 2.19% for BW at 50 and 85%, respectively. I.e., the
+TDS increase near the upstream end of the study area is greater than
+that near the downstream end of the study area. That can be referred
+to; (1) the owrate of Shatt Al Arab River increases towards the down-
+stream end, thus, the impact of BW is inhibited by the high dilution of
+owing water and (2) all the considered WTPs are distributed between
+km 97.76 and km 138.54, i.e., near the upstream end of the study area.
+
+6.4. Environmental impact assessment of brine water discharge
+
+The environmental impact of RO units installation in 16 main WTPs
+of Basrah city is assessed in terms of max percentage of TDS increase due
+to brine water discharges from the proposed units. This percent was
+
+Table 8
+Comparison of calculated and measured TDS values at eight stations along Shatt Al Arab
+River.
+
+Station
+no.
+
+Location
+
+Distance from
+section no. 1 (km)
+
+1
+2
+3
+4
+5
+6
+7
+
+8
+
+Al Fao
+Al Seebh
+Mhelah
+Al Sindibad
+Sehan
+Labany
+Center of
+Basrah city
+Ktaban
+
+10
+60
+102
+120
+65
+96
+112
+
+144
+
+TDS range (mg/l)
+Calculated
+Measured
+3201.7每23,172.3 3334.4每30,976.0
+2113.6每3891.8
+1452.8每8147.2
+1439.9每2083.0
+1465.6每2726.4
+1039.2每1917.0
+1069.0每1766.4
+3107.9每14,174.0 2700.0每13,850.0
+2652.1每9764.2
+1810.0每11,715.0
+2278.1每7028.2
+1600.0每9970.0
+
+618.0每2214.6
+
+960.0每2250.0
+
+calculated at LT and HT times of each simulation case considering 50
+and 85% RP. The obtained max percentages of TDS increase along with
+their occurrence section numbers are listed in Table 9. In this table,
+the notation 1A50, as an example, denotes Case-1A with considering
+the installation of RO units have RP of 50% in all the considered water
+treatment plants. Table 9 shows the followings:
+
+1. During all the simulation cases, the max percentages of TDS increase
+occur at sections number distributed between 23.6928* and
+31.3088. This can be attributed to the locations of brine water dis-
+charge sources (WTPs location) which are distributed between sec-
+tion No. 23.5106 and section No. 31.7028, see Table 4. Thus, their
+combined impact on increasing the TDS of Shatt Al Arab water will
+be signicant in this reach.
+2. The highest max percentage of TDS increase in Shatt Al Arab River
+water is 5.9%. This percent occurs at section No. 26.6047* during sim-
+ulation Case-3C85 at HT time. That is because Case-3C85 is character-
+ized by;
+a. min owrate of Tigris River at the upstream boundary of the study
+area which is 9.0 m3/s,
+b. max tidal range at the downstream boundary of the study area,
+c. high TDS values at both upstream and downstream boundaries of
+the study area, and
+d. high TDS values of the discharged brine waters.
+3. When the installed RO units have RP of 50%, the results of all simula-
+tion cases give max percentages of TDS increase vary over the range
+(1.6每2.7%). With referring to Table 1, which listed the regulations
+concerning the allowed limits of brine water TDS, it can be shown
+that the max allowed salinity increase percentage is 5%. Thus, the
+max percentages of TDS increase in water of Shatt Al Arab River if
+RO units are of 50% shall be below the allowed limit.
+4. When the installed RO units have RP of 85%, the max percentages of
+TDS increase during simulation Case Nos. 1A, 1B, 1C, 3A, 3B and 3C
+(highlighted in yellow color) vary over the range (5.1 to 5.9%). That
+means, the TDS increase due to the installation of RO units shall ex-
+ceed the allowed limit (5%). During all these cases, the upstream
+water inow from Tigris River to the study area is 9.0 m3/s. This
+owrate value is the min recorded owrate value during ve years
+period. When the installed RO units have RP of 85%, the max percent-
+ages of TDS increase during simulation Case Nos. 2A, 2B, 2C, 4A, 4B
+and 4C vary over the range (3.9每4.4%). Thus, the max percentages
+are less than the allowed limit (5%). During these cases, the upstream
+water inow from Tigris River to the study area is 97.4 m3/s. This
+owrate value is the max recorded owrate value during ve years
+period.
+5. The results of all the simulation cases indicate that the max TDS in-
+crease vary over the range (8.8每226.3 mg/l). With referring to
+Table 1, some regulations specied the allowed limit of TDS increase
+to be no more than 1 to 4 ppt. Thus, the TDS increase due to the in-
+stallation of RO units in the considered WTPs of Basrah city shall be
+less than the allowed limit.
+
+7. Conclusions
+
+The environmental impact of installing RO units in 16 main WTPs of
+Basrah city has been assessed by simulating the TDS distribution in
+
+K.M. Khudair, N.A. Eraibi / Desalination 404 (2017) 270每279
+
+279
+
+Table 9
+TDS increase due to brine water discharges.
+
+Case 
+no.
+1A50
+1A85
+1B50
+1B85
+1C50
+1C85
+2A50
+2A85
+2B50
+2B85
+2C50
+2C85
+3A50
+3A85
+3B50
+3B85
+3C50
+3C85
+4A50
+4A85
+4B50
+4B85
+4C50
+4C85
+
+Sec.  no. of max
+TDS increase
+31.3088*
+31.3054*
+31.7028*
+31.3054*
+31.3088*
+31.3088*
+26.6706*
+24.7094*
+31.2881*
+24.7094*
+31.2881*
+24.7094*
+31.3054*
+31.3054*
+31.3054*
+31.3054*
+31.3054*
+26.6047*
+24.7094*
+24.6928*
+24.7094*
+24.7011*
+24.7094*
+23.6928*
+
+TDS increase due to brine water discharges
+Tide 
+TDS
+condition
+without BW (mg/l)
+HT
+2309.0
+HT
+2313.1
+HT
+836.3
+HT
+1363.6
+HT
+4399.2
+HT
+4399.2
+HT
+1752.6
+LT
+1895.0
+LT
+526.4
+HT
+797.3
+LT
+1950.1
+HT
+2747.2
+LT
+1993.5
+LT
+1993.5
+HT
+886.4
+HT
+887.4
+LT
+2626.7
+HT
+3357.8
+LT
+1683.6
+LT
+1685.1
+HT
+582.9
+LT
+591.8
+LT
+2046.6
+LT
+2049.3
+
+Max TDS 
+increase (mg/l)
+53.6
+120.8
+13.6
+69.9
+74.2
+226.3
+34.5
+79.3
+8.8
+35.2
+32.3
+119.1
+53.7
+106.2
+21.3
+50.8
+67.9
+197.9
+35.6
+65.9
+11.9
+25.5
+42.8
+82.8
+
+% of max  
+TDS increase
+2.3
+5.2
+1.6
+5.1
+1.7
+5.1
+1.9
+4.1
+1.7
+4.4
+1.7
+4.3
+2.7
+5.3
+2.4
+5.7
+2.6
+5.9
+2.1
+3.9
+2.0
+4.3
+2.1
+4.0
+
+Shatt Al Arab River considering 12 different cases. During each case, two
+RP of RO units were applied; 50 and 85%. From the assessment results,
+the following conclusions were drawn:
+
+1. The impact of brine water discharge varies along Shatt Al Arab River
+and it is obvious in a reach extends from km 60 to km 140 measured
+from the downstream end of the study area (Al Fao city).
+
+2. When the installed RO units have RP of 85%, the max percentages of
+TDS increase vary over the ranges (5.1 to 5.9%) and (3.9 to 4.4%) dur-
+ing the cases of min and max owrates of Tigris River, respectively.
+Thus, during the cases of min Tigris River owrate, the TDS increase
+percentages exceed the salinity limit of 5%.
+3. When the installed RO units have RP of 50%, the max percentages of
+TDS increase vary over the range (1.6 to 2.7%) which are lower than
+the salinity limit specied by all regulation criteria.
+4. During all the simulation cases, the TDS increase values vary over the
+range (8.8每226.3 mg/l) and they are lower than the specied limits
+by the regulation criteria which is no more than 4 ppt.
+
+References
+
+[1] Tokyo Engineering Consultants CO., LTD, The Feasibility Study on Improvement of
+The Water Supply System in Al-Basrah City and Its Surroundings in The Republic
+of Iraq, Ministry of Municipalities and Public Works, The Republic of Iraq, 2006.
+[2] Dupavillon, J. L. and Gillanders, B. M., ※Impacts of seawater desalination on the giant
+Australian cuttlesh Sepia apama in the Upper Spencer Gulf, South Australia§, Mar.
+Environ. Res., 2009, home page: http://dx.doi.org/1016/j.marenvres.2009.02.002.
+[3] T. Bleninger, G.H. Jirka, Modelling and environmentally sound management of brine
+discharges from desalination plants, Desalination 221 (2008) 585每597.
+[4] T. Bleninger, A. Niepelt, G. Jirka, Desalination plant discharge calculator, Desalin.
+Water Treat. 13 (2010) 156每173.
+[5] H.F. El-Gamal, M.F. Abdrabbo, Environmental impact and cost analysis of desalina-
+tion systems, Eighth International Water Technology Conference, IWTC8, Alexan-
+dria, Egypt, 2004.
+
+[6] Z. Hu, Comparison of Sustainability of Technologies for Water DesalinationM. Sc.
+Thesis Chemical and Process Engineering, School of Technology, Lappeenranta Uni-
+versity of Technology, 2014.
+[7] S. Lattemann, T. Hpner, Environmental impact and impact assessment of seawater
+desalination, Desalination 220 (2008) 1每15.
+[8] M.M. Elabbar, F.A. Elmabrouk, Environmental impact assessment for desalination
+plants in Labya case study: Benghazi North and Tobrouk desalination plants, Desa-
+lination 185 (2005) 31每44.
+[9] T. Bleninger, G.H. Jirka, Environmental Planning, Prediction and Management of
+Brine Discharge from Desalination Plants, Middle East Desalination Research Center,
+Muscat, Sultanate of Oman, 2010.
+[10] T. Hpner, J. Windelberg, Elements of environmental impact studies on coastal de-
+salination plants, Desalination 108 (1-3) (1997) 11每18.
+[11] A.J. Morton, I.K. Callister, N.M. Wade, Environmental impact of seawater distillation
+and reverse osmosis processes, Desalination 108 (1-3) (1997) 1每10.
+[12] J.W. Oldeld, B. Todd, Environmental aspects of corrosion in MSF and RO desalina-
+tion plant, Desalination 108 (1-3) (1997) 27每36.
+[13] T. Hpner, S. Lattemann, Chemical impacts from seawater desalination plants-a case
+study of the northern Red Sea, Desalination 152 (2002) 133每140.
+[14] M.A. El-Samanoudi, M.F. Abd-Rabbo, A.A. Sarhan, M. Attia, Impact of water desalina-
+tion technologies on environmental development, Seventh International Water
+Technology Conference Egypt, 1-3, 2003.
+[15] G.L. Medeazza, ※Direct§ and socially-induced environmental impact of desalination,
+Desalination 185 (1-3) (2005) 57每70.
+[16] G.A. Tularam, M. Ilahee, Environmental concerns of desalinating seawater using re-
+verse osmosis, J. Environ. Monit. 9 (2007) 805每813.
+[17] S. Lattemann, T. Hpner, Impacts of seawater desalination plants on the marine en-
+vironmental of the gulf, in: A.H. Abuzinada, H.J. Barth, F. Krupp, B. Ber, T.Z. Al
+Abdessalaam (Eds.), Protecting the Gulf Marine Ecosystems from Pollution, Springer
+Science & Business Media, 2008.
+[18] F. M邦nk, Ecological and Economic Analysis of Seawater Desalination PlantsDiploma
+thesis Institute for Hydromechanics, University of Karlsruhe, 2008.
+[19] H. Abu Qdais, Environmental impacts of the mega desalination project: the Red-
+Dead Sea conveyor, Desalination 220 (1-3) (2008) 16每23.
+[20] Y. Fern芍ndez-Torquemada, J.M. G車nzalez-Correa, A. Loya, L.M. Ferrero, M. D赤az-
+Vald谷s, J.L. S芍nchez-Lizaso, Dispersion of brine discharge from seawater reverse os-
+mosis desalination plants, Desalin. Water Treat. 5 (2009) 137每145.
+[21] A.E. Al-Dousari, Desalination leading to salinity variations in Kuwait marine waters,
+Am. J. Environ. Sci. 5 (3) (2009) 451每454.
+[22] M. Ahmed, R. Anwar, An assessment of the environmental impact of brine disposal
+in marine environmental, Int. J. Mod. Eng. Res. 2 (4) (2012) 2756每2761.
+[23] M.A. Dawoud, M.M. Al Mulla, Environmental impacts of seawater desalination: Ara-
+bian gulf case study, Int. J. Environ. Sustain. 1 (3) (2012) 22每37.
+[24] M. Darwish, A. Hassabou, B. Shomar, Using Seawater Reverse Osmosis (SWRO)
+desalting system for less environmental impacts in Qatar, Desalination 309 (2013)
+113每124.
+[25] H.A. Naser, Effects of multi-stage ash and reverse osmosis desalination on benthic
+assemblages in Bahrain Arabian gulf, J. Environ. Prot. 4 (2013) 180每187.
+[26] Y. Fern芍ndez-Torquemada, J.M. Gonz芍lez-Correa, J.L. S芍nchez-lizaso, Echinoderms as
+indicators of brine discharge impacts, Desalin. Water Treat. 51 (1-3) (2013) 567每573.
+[27] P. Palomar, J.L. Lara, I.J. Losada, M. Rodrigo, A. Alvarez, Near eld brine discharge
+modelling part 1: analysis of commercial tools, Desalination 290 (2012) 14每27.
+[28] A. Purnama, H.H. Al-Barwani, R. Smith, Calculating the environmental cost of seawa-
+ter desalination in the Arabian marginal seas, Desalination 185 (2005) 79每86.
+[29] H.H. Al-Barwani, A. Purnama, Simulating brine plumes discharged into the seawa-
+ters, Desalination 221 (2008) 608每613.
+[30] S. Jenkins, J. Paduan, P. Roberts, D. Schlenk, J. Weis, Management of brine discharges
+to coastal waters recommendations of a science advisory panel, State Water Re-
+sources Control Board, Technical Report, 694, 2012.
+[31] Ladewig, B. and Asquith, B., Desalination concentration management, Springer Briefs
+in Green Chemistry for Sustainability, 2012, home pages: http://www.springer.com/
+978-3-642-24851-1.
+[32] D.K. Jaiswal, A. Kumar, Analytical solution of advection-dispersion for varying pulse
+types input point source in one-dimension, Int. J. Eng. Sci. Technol. 3 (1) (2011) 22每29.
+[33] U.Q. Alwhaely, B.N. Albadran, S.T. Al-Mulla, Geomorphologic study of Umm Al Rasas
+island and its surrounding channel, Shatt Al-Arab River, Southern Iraq, J. Sci.
+Technol. 3 (4) (2013).
+[34] J.H. Al-Maliky, Analysis of Water Quality and the Impact of the Salt Wedge from the
+Arabian Gulf on the Shatt Al-Arab River, IraqM. Sc. thesis University of Queensland,
+Australia, 2012.
+

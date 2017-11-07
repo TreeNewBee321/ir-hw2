@@ -1,0 +1,3769 @@
+Handcrafted vs. non-handcrafted features for computer vision classication 
+
+Loris Nanni 
+
+, Stefano Ghidoni 
+a , Sheryl Brahnam 
+
+b 
+
+
+
+a , 
+
+a DEI, University of Padua, viale Gradenigo 6, Padua, Italy 
+b Computer Information Systems, Missouri State University, 901 S. National, Springeld, MO 65804, USA 
+
+article 
+
+info
+
+
+
+Article history: 
+Received 26 May 2016 
+Revised 16 April 2017 
+Accepted 28 May 2017 
+Available online 3 June 2017 
+
+Index Terms: 
+Deep learning 
+Transfer learning 
+Non-handcrafted features 
+Texture descriptors 
+Texture classication 
+Ensemble of descriptors 
+
+abstract
+
+This work presents a generic computer vision system designed for exploiting trained deep Convolutional 
+Neural Networks (CNN) as a generic feature extractor and mixing these features with more traditional 
+hand-crafted features. Such a system is a single structure that can be used for synthesizing a large num- 
+ber of different image classication tasks. Three substructures are proposed for creating the generic com- 
+puter vision system starting from handcrafted and non-handcrafter features: i) one that remaps the out- 
+put layer of a trained CNN to classify a different problem using an SVM; ii) a second for exploiting the 
+output of the penultimate layer of a trained CNN as a feature vector to feed an SVM; and iii) a third for 
+merging the output of some deep layers, applying a dimensionality reduction method, and using these 
+features as the input to an SVM. The application of feature transform techniques to reduce the dimen- 
+sionality of feature sets coming from the deep layers represents one of the main contributions of this 
+paper. Three approaches are used for the non-handcrafted features: deep transfer learning features based 
+on convolutional neural networks (CNN), principal component analysis network (PCAN), and the com- 
+pact binary descriptor (CBD). For the handcrafted features, a wide variety of state-of-the-art algorithms 
+are considered: Local Ternary Patterns, Local Phase Quantization, Rotation Invariant Co-occurrence Local 
+Binary Patterns, Completed Local Binary Patterns, Rotated local binary pattern image, Globally Rotation 
+Invariant Multi-scale Co-occurrence Local Binary Pattern, and several others. The computer vision system 
+based on the proposed approach was tested on many different datasets, demonstrating the generaliz- 
+ability of the proposed approach thanks to the strong performance recorded. The Wilcoxon signed rank 
+test is used to compare the different methods; moreover, the independence of the different methods is 
+studied using the Q-statistic. To facilitate replication of our experiments, the MATLAB source code will be 
+available at ( https://www.dropbox.com/s/bguw035yrqz0pwp/ElencoCode.docx?dl=0 ). 
+ 2017 Elsevier Ltd. All rights reserved. 
+
+1. Introduction 
+
+Many computer vision algorithms for image classication rely 
+on the detection and extraction of local characteristics in images; 
+as a result, much of the computer vision literature is focused on 
+discovering, understanding, characterizing, and improving features 
+that can be extracted from images. A large number of features re- 
+ported in the literature have been manually designed, or ※hand- 
+crafted,§ with an eye for overcoming specic issues like occlusions 
+and variations in scale and illumination. The design of handcrafted 
+features often involves nding the right trade-off between accuracy 
+and computational eciency. The powerful Scale Invariant Feature 
+Transform (SIFT) [1] , for example, is well-known for its robustness
+to object rotation and scale variations, but this robustness comes 
+at a high computational cost. The most widely used features of- 
+ten generate an ensemble of variants to tackle the inherent short- 
+comings in the speed and/or accuracy of the original versions. For 
+example, some fast variants of SIFT [2] have been proposed to be 
+used in real-time applications and on devices with low computa- 
+tional power. 
+The computation of handcrafted features, such as SIFT, is nor- 
+mally a two-step process [3] . First, a keypoint detector locates 
+characteristic regions of an image (e.g., corners), which are then 
+characterized by calculating a descriptor that is capable of distin- 
+guishing each particular keypoint from the others. This process is 
+outlined in detail in [4] . The set of cues considered for building the 
+descriptor depends on the specic feature being used. At a lower 
+level, a descriptor is a vector of measurements that can be used to 
+train a classier, such as a Support Vector Machine (SVM) [5] . 
+
+
+159 
+
+Table 1 
+Descriptive Summary of other deep transfer learning approaches. 
+
+Paper 
+
+Features extracted using CNN 
+
+here 
+[14] 
+[15] 
+[16] 
+[17] 
+[18] 
+[19] 
+[20] 
+[21] 
+
+Using deep layers, shallow layers, and the scores obtained by CNN 
+Representation of images as strings of the top layers of pretrained CNNs 
+The convolutional layers of a CNN are used as a lter bank 
+Representation of images using the seventh fully connected layer of a CNN on ImageNet 
+Representation of images using the last convolutional layer of a CNN 
+Representation of images using ve convolutional layers and two fully connected layers 
+Lower-layer features are used 
+Features are extracted from the rst few layers of a pre-trained CNN model 
+Top-layer activations are used as features 
+
+The deep learning paradigm [6] enables the creation of com- 
+plex networks for solving (among the others) the problem of image 
+classication, usually tackled by means of CNNs, where deep layers 
+in these complex networks act as a set of feature extractors that 
+are often quite generic and, to some extent, independent of any 
+specic classication task [7] . This means that deep learning ob- 
+tains a set of features learned directly from observations of the in- 
+put images [8] , possibly preprocessed using a pyramidal approach 
+[9] . The idea behind this approach is to discover multiple levels of 
+representation so that higher level features can represent the se- 
+mantics of the data, which in turn can provide greater robustness 
+to intra-class variability [10] . Of interest here are the characteris- 
+tics of the different layers in many deep neural networks that have 
+been trained on images: rst layer features resemble either Gabor 
+lters or color blobs and tend to be generalizable, i.e. transferable 
+to many different datasets and tasks [11] . Therefore, it is possible 
+to consider the deep layers of a CNN as a feature extractor, much 
+like SIFT, the major difference being that the features extracted by 
+a CNN are learned using the data in contrast to hand-crafted fea- 
+tures that are designed beforehand by human experts to extract a 
+given set of chosen characteristics. 
+Because the features extracted by the lower levels of a CNN 
+strongly depend on the training set, special care must be taken in 
+the selection of the dataset. The choice of a representative train- 
+ing dataset is usually performed by generating or selecting huge 
+training sets, in the order of millions of images [12] . This solu- 
+tion, however, is far from ideal, as it requires considerable human 
+effort in the selection of images suitable for building the train- 
+ing set and substantial computational power during the training 
+phase. Both these drawbacks can partially be overcome by exploit- 
+ing semi-supervised and unsupervised techniques [13] and parallel 
+computing to reduce the human labor and the computational costs 
+involved in the training. 
+In Table 1 , we provide a brief descriptive summary of several 
+recent deep transfer learning methods, including the approach pro- 
+posed here for comparison purposes. 
+In this paper, we are interested in exploiting features extracted 
+by the deep layers of a network to build a general, or General- 
+Purpose (GP), ensemble capable of handling a broad range of im- 
+age classication problems. An ideal GP system is capable of pro- 
+viding results comparable with state-of-the-art systems by work- 
+ing out-of-the-box with little or no ne-tuning. Some recent pa- 
+pers have investigated how it is possible to build heterogeneous 
+GP ensembles [22每23] . For example, in [22] , a GP ensemble per- 
+formed competitively compared with other state-of-the-art meth- 
+ods across sixteen benchmark datasets representing very different 
+problems (for instance, numerous medical problems, many image 
+classication problems, a vowel dataset, and a credit card dataset). 
+However, no single ensemble investigated in [22] worked consis- 
+tently well across all sixteen datasets. Nonetheless, one GP ensem- 
+ble worked well across all the image datasets〞on some datasets 
+performing even better than an SVM whose parameters had been 
+ne-tuned for that specic dataset. 
+
+Several papers have also investigated GP ensembles that exploit 
+the different types of information available using different feature 
+extraction methods and representations of the data. In [23] , for ex- 
+ample, the goal was to discover a GP ensemble for protein classi- 
+cation that combined different types of protein representations and 
+descriptors and that was capable of performing well across four- 
+teen protein classication datasets representing several different 
+classication problems. Again, no single ensemble was discovered 
+that obtained top performance across all fourteen datasets; how- 
+ever, it was shown that it is always possible to nd a more lim- 
+ited GP ensemble that performs consistently well across each type 
+of dataset. Finally, in [24] , a GP heterogeneous ensemble combin- 
+ing many handcrafted and non-handcrafted features, including fea- 
+tures taken from a specic layer of a deep neural network trained 
+on a specic dataset, was able to perform competitively well across 
+twenty-ve datasets (fourteen image datasets and eleven UCI data 
+mining datasets). In some cases, it outperformed an SVM classier 
+for which both the kernel and parameters selection were carefully 
+ne-tuned for the datasets. 
+Our goal in this paper is to build a better performing GP ensem- 
+ble by comparing and combining state-of-the-art handcrafted fea- 
+tures with non-handcrafted features. The handcrafted approaches 
+considered in this paper include Local Ternary Patterns, Local 
+Phase Quantization, Rotation Invariant Co-occurrence Local Bi- 
+nary Patterns, Completed Local Binary Patterns, Rotated Local Bi- 
+nary Pattern Image, Globally Rotation Invariant Multi-scale Co- 
+occurrence Local Binary Pattern, as well as several others. The 
+non-handcrafted features examined here include two recently pro- 
+posed methods, the Principal Component Analysis Network (PCAN) 
+[10] and the Compact Binary Descriptor (CBD) [25] ), as well as dif- 
+ferent methods of deep transfer learning. The deep transfer learn- 
+ing methods are based on Convolutional Neural Networks (CNN) 
+trained to perform classication on the ImageNet ILSVRC challenge 
+dataset. The approach chosen for the deep learners exploits the 
+features provided by the last layer of the CNN along with the fea- 
+ture set obtained from an internal layer. Two feature dimension- 
+ality reduction methods (discrete cosine transform and principal 
+component analysis) are used for reducing these feature sets since 
+they often have high dimensionality. The features extracted from 
+the CNN are then used to train a Support Vector Machine (SVM), 
+which implements the deep transfer learning approach. 
+The contributions of this paper are twofold. The rst is our 
+proposal of combining features extracted from the deep layers of 
+CNNs with powerful handcrafted approaches to solve a classica- 
+tion problem: in this way we are able to verify that each of the 
+two feature extraction paradigms is capable of extracting informa- 
+tion that is neglected by the other paradigm. In order to reduce the 
+extremely large feature vectors that are extracted from deep layers 
+(which could result in the curse of dimensionality [26每27] ), two 
+reduction methods are employed: Discrete Cosine Transform (DCT) 
+and Principal Component Analysis (PCA). The second contribution 
+is our wide and thorough evaluation of the possible combinations 
+of handcrafted and non-handcrafted features that are needed to 
+
+160 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+build a generic computer vision classication system. This can be 
+seen as a detailed guideline for synthesizing the GP computer vi- 
+sion system concept outlined above. Such a guideline is of general 
+interest because the system performance of our approach was eval- 
+uated over a mix of very different com puter vision classication 
+tasks in order to avoid any polarization of the proposed architec- 
+ture. 
+The different handcrafted and non-handcrafted features were 
+compared and combined in this work, with their independence ex- 
+amined using the Q-statistic [28] . The proposed GP ensemble ob- 
+tains state-of-the-art results on a large set of different datasets. 
+Performance differences among the methods are evaluated using 
+the Wilcoxon signed rank test. The MATLAB source code to repli- 
+cate our experiments will be available at ( https://www.dei.unipd. 
+it/node/2357 
+ Pattern Recognition and Ensemble Classiers). 
+
++
+
+2. Deep convolutional neural networks 
+
+Deep learning has revolutionized the eld of machine learning. 
+First proposed in 2006 [29] , the primary feature of deep learning is 
+its layered structure. Deep learning can be implemented by means 
+of several different algorithms, all of which are marked by a cas- 
+cade of many processing layers organized in a hierarchical struc- 
+ture. Each of these layers add a level of abstraction to the over- 
+all representation. In the image interpretation task, layers close to 
+the input deal with low-level features like edges and texture. These 
+low-level features can be combined together to build a more com- 
+plex representation. For example, at the second level, features like 
+image patches and contours might be considered. Layer by layer, 
+complexity increases. 
+The approach to deep learning considered in this paper is based 
+on Convolutional Neural Networks (CNNs) [30] . Several CNN soft- 
+ware packages and MATLAB toolboxes are available to researchers. 
+In this work, we use the MatConvNet toolbox for MATLAB, 
+1 where 
+CNNs are built by choosing a set of computational blocks (CBs) 
+(a naming convention employed in the MatConvNet toolbox) that 
+implements the data processing functions. These blocks are con- 
+nected following a Directed Acyclic Graph (DAG). Each CB takes an 
+input vector x and provides an output vector y that depends on x 
+and on a set of parameters w that are learned during the train- 
+ing phase. The MatConvNet toolbox provides a set of CBs that can 
+be rearranged to form many different networks, thereby exploiting 
+the modularity of the CNN structure. 
+Below, the deep learning-based approaches considered in this 
+work will be detailed. It should be pointed out that these ap- 
+proaches are used as feature extraction methods where the output 
+of each algorithm is considered as a feature vector and exploited in 
+a fashion similar to how handcrafted features are commonly em- 
+ployed. 
+
+2.1. Principal component analysis network (PCANet) 
+
+PCANet [10] is a simple deep learning network that is based on 
+cascading PCA to learn multistage lter banks and on binary hash- 
+ing and blockwise histograms for indexing and pooling. The idea 
+behind PCANet is to produce a basic yet competitive deep learner 
+for image classication that could be used to justify more com- 
+plex deep learning strategies. There are no nonlinear operations in 
+PCANet until the last output layer, which utilizes the binary hash- 
+ing and blockwise histograms. 
+PCANet implements a three stage process. Given a training set 
+℅ n and assuming a patch size or 2D 
+of N images 
+of size m 
+lter of size k 1 
+at all stages, then the three stages can be 
+described as follows: 
+
+{
+
+ I i 
+
+}
+
+N 
+=1 
+i 
+℅ k 2 
+
+1 The toolbox is freely available at http://www.vlfeat.org/matconvnet/ . 
+
+Stage 1 - PCA: a patch is taken around each pixel, and all over- 
+lapping patches of the i th image are collected: x i,
+denotes the j th vectorized patch in I i 
+, 
+ m 
+ . The mean patch is then subtracted 
+from each patch, obtaining X i 
+] , where x i, j 
+is a 
+mean-removed patch. Assuming the number of lters in layer i is 
+, PCA minimizes the reconstruction error within a family of or- 
+thonormal lters, with the leading principal eigenvectors captur- 
+ing the main variation of all the mean-removed training patches. 
+(
+(X X 
+The PCA lters are expressed as W 
+步 
+where XX 
+T are the L 1 
+principal eigenvectors, ma t k 1 
+(
+)
+ is a func- 
+tion mapping v 
+k 2 to a matrix W 
+( XX 
+T ) is the 
+L th principal eigenvector of XX 
+Stage 2 - PCA: this is a process similar to stage 1. Let the L th 
+lter output of stage 1 be I 
+ As in stage 1, all the overlapping 
+patches of I 
+can be collected and the patch mean subtracted from 
+each patch. The PCA lters W 
+of stage 2 can then be obtained. 
+The number of output images is L 1 
+. Stage 2 can be repeated if 
+need be to build a deeper architecture. 
+Stage 3 - Output (Hashing and Histograms): each of the 
+input images in I 
+for stage 2 has L 2 
+real value outputs 
+ W 
+. These outputs are binarized using a Heaviside step- 
+ W 
+ H (
+)
+like function 
+, whose value is 1 for positive entries 
+and 0 otherwise. Around each pixel, the binary bits of vector L 2 
+are 
+considered as a decimal number, thereby converting the L 2 
+outputs 
+into a single integer-valued ※image§ T 
+with every pixel integer in 
+L 2  1 ] . Each of the L 1 
+the range [ 0 
+images are then partitioned 
+into B blocks. A histogram with 2 
+L 2 bins of the decimal values in 
+each block is computed, and all B histograms are concatenated into 
+(T 
+)
+one vector Bhist 
+ The feature f i 
+of the input image I i 
+is dened 
+as the set of block-wise histograms: 
+
+ 1 
+
+,
+
+ x i,
+
+ 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ x i,
+
+  m  n 
+
+﹋
+
+R
+
+k 1 
+
+k 2 , where each x i, j 
+
+=
+
+ m 
+
+ (cid:4)
+
+ k 1 
+ 2 
+
+/
+
+(cid:5)
+
+ ,  n 
+
+=
+
+ n 
+
+ (cid:4)
+
+ k 2 
+ 2 
+
+/
+
+(cid:5)
+
+=
+
+ [ x i,
+
+ 1 
+
+,
+
+ x i,
+
+ 2 
+
+,
+
+.
+
+..,
+
+ x i,
+
+  m  n 
+
+L i 
+
+1 
+l 
+
+=
+
+ ma t k 1 
+,
+
+ k 2 
+
+ q 1 
+
+T )
+
+﹋
+
+R
+
+k 1 
+k 2 ,
+
+,
+
+ k 2 
+
+ v 
+
+﹋
+
+R
+
+k 1 
+
+﹋
+
+R
+
+k 1 
+
+k 2 , and q 1 
+
+T . 
+
+l 
+i 
+
+.
+
+l 
+i 
+
+2 
+l 
+
+L 2 
+
+L 1 
+l 
+i 
+
+l 
+i 
+
+{
+
+ I 
+
+2 
+l 
+
+}
+
+L 2 
+
+l=1 
+
+{
+
+ I 
+
+l 
+i 
+
+2 
+l 
+
+}
+
+L 2 
+
+l=1 
+
+l 
+i 
+
+,
+
+ 2 
+
+l 
+i 
+
+.
+
+f i 步 
+
+=
+
+(cid:2)
+
+Bhist 
+(T 
+
+1 
+i 
+
+)
+
+,
+
+. . .
+
+ Bhist 
+(T 
+
+L 1 
+
+i 
+
+)
+
+(cid:3)T ﹋﹋
+
+R
+
+(
+
+ 2 
+
+L 2 )
+
+ L 1 B .
+
+(1) 
+
+2.2. Compact binary descriptor (CBD) 
+
+The Compact Binary Descriptor (CBD) [25] , unlike most other 
+binary descriptors such as LBP, is not handcrafted but is based on 
+a learning method where Pixel Difference Vectors (PDVs) are ex- 
+tracted from local patches by computing the difference between 
+each pixel and its neighbors. Such PDVs are then projected in an 
+unsupervised manner onto low-dimensional binary vectors such 
+that the variance of the binary codes in the training set is maxi- 
+mized and the loss of information between the original real-value 
+codes and the binary codes is minimized. 
+Let X 
+ x n ] be the training set containing N sam- 
+≒ n 
+ples, where x n 
+d is the n th pixel difference vector and 1 
+≒ N , the aim of CBD is to learn K hash functions that map and 
+quantize each x n into a binary vector b n 
+℅ K that more compactly encodes the discriminative infor- 
+mation. 
+Letting W k 
+d be the projection vector for the k th function, 
+the k th binary code b nK of x n can be computed as b nK 
+≡ 0 and 
+1 otherwise. 
+(
+ sng(
+)
+)
+ , where sng ( v ) is 1 if v 
+The following optimization objective function for W achieves 
+the goals of making the learned binary codes discriminative and 
+compact: 
+
+=
+
+ [ x 1 
+ x 2 
+
+,
+
+,
+
+.
+
+.
+
+.,
+
+﹋
+
+R
+
+=
+
+ [ b n 1 
+ b n 2 
+
+,
+
+,
+
+.
+
+.
+
+.,
+
+ b nK ] 
+
+﹋
+
+{
+
+ 0 
+ 1 
+
+,
+
+}
+
+1 
+
+﹋
+
+R
+
+=
+
+ 0 
+ 5 
+
+.
+
+℅
+
+ w 
+
+T 
+x n 
+k 
+
++
+
+ 1 
+
+min 
+J (
+ W )
+
+W 
+
+=
+
+ tr 
+W 
+竹1 tr 
+W 
+ 2 
+℅ tr (
+ 0 
+℅ X 
+ 5 )
+℅ N 
+℅ tr 
+1 
+subject to W 
+
+(cid:4)
+
+T QW 
+
+(cid:5)
+
++
+
+(cid:4)
+
+T X X 
+T W 
+T W 
+℅k W 
+N℅1 
+1 
+T X 1 
+T W 
+
+(cid:5)
+
+ B 
+
+.
+
+))
+
+ 竹2 
+
+(cid:4)
+
+(cid:5)
+
+,
+
+=
+
+ I 
+
+,
+
+(2) 
+
+where 
+
+竹
+
+1 
+
+and 
+
+竹
+
+2 
+
+are two parameters that balance the effects 
+1 
+
+of the different terms, and Q 
+
+=
+
+/N 
+
+℅ (
+
+ X X 
+
+T  2 X M 
+T +
+
+ M M 
+
+T )
+
++
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+161 
+
+Fig. 1. Scheme for deep transfer learning. The same input is sent to three different CNNs, whose outputs are processed by three SVMs. The outputs of the SVMs are nally 
+combined by sum rule. 
+
+N℅ 1 1 
+℅N X 
+竹2 X 1 
+1 
+
+T , where M 
+Nxd is the mean matrix which is 
+a repeated column vector of the mean of all the PDVs in the train- 
+ing set, and B is the binary code matrix: 
+
+R
+
+﹋
+
+(cid:5)
+
+(cid:4)
+
+(cid:4)
+
+(cid:5)
+
+=
+
+B 
+
+.
+
+ 0 
+ 5 
+
+℅
+
+sgn 
+
+W 
+
+T X 
+
++
+
+ 1 
+
+﹋
+
+N℅K 
+
+R
+
+(3) 
+
+When W is xed, the optimization objective function for B takes 
+the relaxed form of ( 3 ) (see [25] ). 
+B and W are iteratively optimized following a two-stage 
+method that can be described algorithmically as follows: 
+
+Step 1 (initialization): initialize W to be the top K largest eigenval- 
+ues of XX 
+Step 2 (Optimization): for t 
+
+ 1 
+ 2 
+
+ T : 
+
+=
+
+T . 
+
+.,
+
+,
+
+,
+
+.
+
+.
+
+(2.1) Fix W and update B using (3); 
+(2.2) Fix B and update W using (2); 
+(2.3) if 
+ and t 
+ go to step 3. 
+
+T  W 
+t1 |
+
+ W 
+
+ 2 
+
+|
+
+<
+
+>
+
+汍
+
+,
+
+Step 3 (Output): Output matrix W . 
+
+2.3. Class scores used as features 
+
+.
+
+.
+
+.
+
+,
+
+,
+
+,
+
+{
+
+}
+
+=
+
+=
+
+=
+
+ a N 
+
+ f A 
+
+ a 0 
+ a 1 
+
+The classication system proposed in this paper remaps a given 
+deep CNN trained to solve a problem that is different from the one 
+for which it was originally trained. Suppose A 
+is a set of labels representing some classication problem into 
+which a given input x should be classied, and let y 
+(x 
+)
+ be the 
+classication function implemented by the deep CNN [30] . Such 
+a function takes the input vector x and provides an output vec- 
+tor y of length N that contains the scores assigned to all possible 
+outcomes considered in the classication problem. For example, 
+the classication problem Animal might have the following out- 
+come: Animal 
+ { pig, dog, horse }. A deep CNN trained on this prob- 
+lem would assign to each input image three values (under the im- 
+plicit assumption that an input image will contain a pig, a dog, 
+or a horse, or none of the three animal classes). The approach 
+taken in this paper is to solve a different classication problem, say 
+Tool 
+ { Hammer, drill, screwdriver }, by considering the CNN scores 
+assigned to some other problem, e.g. the Animal problem. 
+Consider the scheme in Fig. 1 . Given a problem Q , the input x is 
+sent to several different deep CNNs that have been trained to solve 
+several different classication problems (e.g. A , B, C ), each charac- 
+terized by a different number of labels ( M, N, and P, respectively). 
+The three deep networks provide three output vectors: { a 0 
+, ..., a M }, 
+, ..., b N }, and { c 0 
+, ..., c P }. These outputs then become the inputs to 
+three SVMs that are trained to provide a result that solves problem 
+Q . In other words, the SVMs learn the correlations between A , B, C , 
+
+{ b 0 
+
+=
+
+and Q . The outputs of the three SVMs are then combined using the 
+sum rule. 
+It is important to note that only the three SVMs need be trained 
+using this double-stage classication pipeline since the deep CNNs 
+implement models that have already been trained for different 
+problems〞a training phase, it should be noted, that was compu- 
+tationally very expensive to accomplish. 
+Input images are preprocessed before being sent to the CNNs. 
+A rst preprocessing step required by the CNNs should guarantee 
+a constant size for the input data. This means that images must be 
+resized in order to have the same number of rows and columns. 
+Furthermore, the average training image is subtracted from each 
+image before processing, minimizing the outlier effect (i.e. uncom- 
+mon pixel values) as suggested in [30] . The pretrained models used 
+in this work are those available with the MatConvNet 
+2 toolbox and 
+are those used in [31每33] . These models are able to classify 10 0 0 
+categories. 
+The rationale behind our approach is based on the supposition 
+that there is a certain degree of similarity between different classi- 
+cation problems. In other words, it is assumed that a class a i 
+be- 
+longing to classication problem A will have some degree of sim- 
+ilarity with another class b j 
+belonging to classication problem B . 
+Taken alone the degree of similarity will most likely be limited and 
+lacking in discriminant power. To build a robust GP system it is 
+necessary to consider multiple classication problems simultane- 
+ously, allowing each one to bring to the table its own degree of 
+similarity to the problem at hand. A system for assigning the sim- 
+ilarities to this larger set of classes then needs to be trained. 
+A large number of output classes is a key aspect of the CNNs 
+employed in our system. However, the large number of features 
+(partially correlated among them) provided by each CNN (which 
+are the inputs of each SVM), coupled with the relatively small 
+number of training samples that are commonly available in the 
+datasets of the new problems (in the order of 50 0每20 0 0 images), 
+can be a source of performance degradation due to the curse of 
+dimensionality. This problem can be limited using a random sub- 
+space (RS) ensemble [34] in place of a stand-alone classier since 
+RS only considers randomly drawn subsets of the group of input 
+features, resulting in a reduction of the number of input values. 
+In this work, each random subspace ensemble is composed of 50 
+SVMs combined by sum rule and trained using a random subset of 
+50% of the given input values. 
+
+2 The models are available at: http://www.vlfeat.org/matconvnet/pretrained/ . 
+
+162 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+Many state-of-the-art descriptors are based on LBP [40] . These ap- 
+proaches extract features that are general-purpose and are, there- 
+fore, most suitable for building a generic computer vision systems. 
+
+3.1. Local binary pattern (LBP) 
+
+Fig. 2. Working principle of the feature extraction from inner layers. The output 
+of each layer is considered as a feature vector; a dimensionality reduction method 
+(PCA and DCT) is possibly applied, depending on the vector size. All vectors are 
+then processed by an SVM to provide the nal output. 
+
+2.4. Inner layers 
+
+Unlike other approaches proposed in the literature, our system 
+is not limited to the analysis of the output layer of the consid- 
+ered CNN; rather, it extends the analysis to the features provided 
+by deeper layers, as shown in Fig. 2 . CNNs for classication tasks 
+are often designed in order to reduce the dimensionality of feature 
+vectors while approaching the shallow layers: deep layers, there- 
+fore, provide high dimensional vectors. Since these deep layer fea- 
+ture vectors serve as inputs to the individual SVMs [5] that are 
+used for synthesizing the transfer learning, the high dimensional- 
+ity of these vectors needs to be counterbalanced in order to avoid 
+the curse of dimensionality. 
+The dimensionality reduction methods employed in this work 
+are Principal Component Analysis (PCA) and discrete cosine trans- 
+form (DCT). PCA [35] is a popular method for unsupervised dimen- 
+sionality reduction. It maps feature vectors into a smaller num- 
+ber of uncorrelated directions calculated to preserve the global Eu- 
+clidean structure. PCA also extracts an orthogonal projection ma- 
+trix so that the variance of the projected vectors is maximized. The 
+DCT transform [36] is a good compromise between information 
+packing and computational complexity. Moreover, most DCT com- 
+ponents are very small in magnitude, because most of the salient 
+information exists in the coecients with low frequencies. For this 
+reason, removing small coecients from the representation intro- 
+duces only small errors in image reconstruction. 
+Both PCA and DCT are used here to limit the dimension of the 
+feature vector of each layer to 40 0 0 elements. What this means is 
+that an orthogonal basis of 40 0 0 dimensions is provided by PCA, 
+and the rst 40 0 0 frequencies are selected by DCT (the lower fre- 
+quencies provide the highest information content). The dimension- 
+ality reduction turned out to be quite strong, as the original feature 
+length for the layers considered in this work reached dimensions 
+of up to 10 0,0 0 0 as detailed below in Section 4.2 . 
+
+3. Handcrafted features 
+
+Handcrafted features have been used for more than a decade 
+in a number of computer vision applications, including object de- 
+tection and image classication. Over time, the number of features 
+have increased to better adapt to the various tasks being tackled 
+by researchers. Feature-based approaches can be considered state- 
+of-the-art for the generic computer vision problem we are building 
+in this paper. For this reason, we consider different f eature-based 
+approaches as a reference point against which to compare the per- 
+formance of feature-based systems exploiting a combination (en- 
+semble) of different features. We believe this to be the best choice 
+given that our recognition task is not specic but rather generic. 
+The handcrafted features used in our comparisons are variations 
+of three main approaches: Local Binary Pattern (LBP) [37] , Local 
+Ternary Pattern (LTP) [38] and Local Phase Quantization (LPQ) [39] . 
+
+Proposed by Ojala et al. [37] , LBP has rapidly become a popular 
+descriptor mainly because of its low computational complexity and 
+ability to code ne details. The canonical LBP operator [37] is com- 
+puted at each pixel location by considering the values of a small 
+circular neighborhood (with radius R pixels) around the value of a 
+central pixel I c , as follows: 
+
+LBP (
+
+ N,
+
+ R )
+
+=
+
+ I c 
+
+)
+
+ I n 
+
+n 
+
+ 2 
+
+(4) 
+
+s 
+(
+
+N1 (cid:6)
+n 
+=0 
+
+where N is the number of pixels in the neighborhood, R is the ra- 
+≡ 0, otherwise s( x ) 
+dius , and s( x ) 
+ 1 if x 
+ 0. The descriptor is the 
+histogram of these binary numbers. 
+
+=
+
+=
+
+3.2. Local ternary pattern (LTP) 
+
+(cid:7)
+
+One variant that has inspired many others is the Local Ternary 
+Patterns (LTP), proposed by Tan and Triggs [38] , which utilizes a 3- 
+valued encoding scheme that includes a threshold around zero for 
+the evaluation of the local gray-scale difference. The ternary coding 
+而 in the canonical 
+is accomplished by introducing the threshold 
+LBP s(x) function: 
+ x |
+
+1 
+0 
+Because of the length of the ternary coding, the original LTP 
+code is split into a positive and a negative LBP code. 
+
+≡ 而
+≒ 而
+
+ 1 
+ x 
+
+ |
+
+(5) 
+
+=
+
+ x )
+
+ x 
+
+s (
+
+,
+,
+
+<
+
+而
+
+,
+
+3.3. Local phase quantization (LPQ) 
+
+The LPQ operator, rst proposed by Ojansivu and Heikkila [39] , 
+is based on the blur invariance property of the Fourier phase spec- 
+trum and uses the local phase information extracted from the 2-D 
+short-term Fourier transform (STFT) computed over a rectangular 
+neighborhood at each pixel position of the image. 
+In the Fourier domain, the model for spatially invariant blurring 
+of an image, g( x ), is: 
+G (
+ u )
+ F (
+ u )
+ H (
+ u )
+
+(6) 
+
+=
+
+,
+
+.
+
+.
+
+.
+
+where G( u ), F(u), and H( u ) are the discrete Fourier transforms 
+(DFT) of the blurred image g ( x ), the original image f ( x ), and the 
+point spread function (PSF) h ( x ), respectively, and u is a vector of 
+coordinates [ u, v ] 
+The magnitude and phase aspects in ( 6 ) can be separated. Thus, 
+
+T . 
+
+|
+
+ G (
+ u )
+ G (
+ u )
+
+＋
+
+|
+
+ |
+
+=
+=
+
+|
+
+﹞ |
+
+ F (
+ u )
+ F (
+ u )
+
++
+
+ H (
+ u )
+ H (
+ u )
+
+.
+
+|
+
+ and 
+
+(7) 
+
+In the case where the blur h ( x ) is centrally symmetric, the 
+Fourier transform is always real-valued, and its phase is a two- 
+≡ 0, 
+valued function given by 
+ 0 if H ( u ) 
+羽 otherwise. 
+The LPQ method uses the local phase information extracted us- 
+ing STFT computed over a rectangular neighborhood N x of size M 
+by M at each pixel position x of the image f ( x ): 
+ y 
+f (x 
+)
+
+(cid:6)
+
+ j2 
+羽 u 
+
+T y =
+
+ H ( u ) 
+
+(8) 
+
+ w 
+
+ x )
+
+=
+
+F (
+
+=
+
+ u 
+
+ e 
+
+
+
+,
+
+T 
+f x 
+u 
+
+﹋
+
+y 
+
+ Nx 
+
+where w u is the basis vector of the 2-D DFT at frequency u , and f x 
+is a vector containing all M 
+2 image samples from N x . 
+Only four complex coecients are considered, however, corre- 
+= [ a ,0] 
+= [0, a ] 
+= [ a, a ] 
+sponding to the 2-D frequencies u 1 
+
+T , u 3 
+
+T , u 2 
+
+T , 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+163 
+
+Table 2 
+Brief description of some other state-of-the-art LBP variants. 
+
+Acronym Description 
+
+RICLBP 
+CLBP 
+disCLBP 
+RLBP 
+MrElbp 
+Msjlbp 
+HASC 
+GOLD 
+
+Rotation Invariant Co-occurrence LBP: a variant that takes the concept of co-occurrence among LBPs and incorporates rotation equivalence classes. 
+Complete Local Binary Pattern: an LBP variant that codes a given local region using a given central pixel. 
+Discriminative Completed Local Binary Pattern. 
+Rotated Local Binary Pattern: an LBP variant that computes the descriptor with respect to a local reference. 
+Median Robust Extended Local Binary Pattern: an LBP variant that compares regional image medians rather than raw image intensities. 
+Rotation Invariant Multi-scale Co-occurrence Local Binary Pattern. 
+Heterogeneous Auto-Similarities of Characteristics: an LBP variant that models linear and non-linear feature dependencies. 
+Gaussians of Local Descriptors: a exible local feature representation leveraging parametric probability density functions. 
+
+Ref 
+
+[41] 
+[42] 
+[43] 
+[44] 
+[45] 
+[46] 
+[47] 
+[43] 
+
+
+
+,
+
+
+
+{
+
+{
+
+,
+
+}
+
+=
+
+
+
+,
+
+}
+
+F x 
+
+,
+
+ F (
+
+ x )
+
+,
+
+ x )
+
+,
+
+ F (
+
+ F (
+
+ u 3 
+
+F 
+
+c 
+x 
+
+ u 2 
+
+ u 1 
+
+ [ Re 
+
+ G ( u ) 
+
+ H ( u ) 
+
+=
+=
+
+= [ a ,- a ] 
+and u 1 
+T where a is the rst frequency below the rst zero 
+≡ 0. 
+crossing of H( u ) that satises 
+ F ( u ) for all 
+If we let 
+ [ F (
+ x )
+
+ x )
+ ] and 
+
+(9) 
+,
+ Im 
+} and Im{ 
+} return the real and the imaginary parts of 
+where Re{ 
+a complex number, respectively, then the corresponding transform 
+matrix is 
+ [ Re {
+Thus, 
+
+ w u 1 
+ w u 2 
+ w u 3 
+ w u 4 
+
+ w u 1 
+ w u 2 
+ w u 3 
+ w u 4 
+
+(10) 
+
+ Im 
+
+ F 
+
+c 
+x 
+
+ F 
+
+c 
+x 
+
+,
+
+ u 4 
+
+W 
+
+ }
+
+,
+
+,
+
+}
+
+,
+
+T 
+
+ ] 
+
+T ,
+
+ ] 
+
+,
+
+,
+
+,
+
+{
+
+,
+
+,
+
+,
+
+=
+
+=
+
+F x 
+
+ W f x 
+
+.
+
+考 2 =
+
+Assuming that for f x the correlation coecient between adja- 
+cent pixel values is 
+老 and the variance of each sample is 
+ 1, 
+the covariance between positions x i 
+﹞ || denotes the L 2 
+and x j 
+becomes 
+where || 
+norm. 
+The covariance matrix of the transform coecient vector F x can 
+T . Where C is the covariance matrix of 
+be obtained from D 
+ WCW 
+all M samples in N x . 
+The coecients need to be decorrelated before quantization. 
+Assuming a Gaussian distribution, a whitening transform is ap- 
+plied: 
+
+= 老 || x i- x j || , 
+ij 
+
+=
+
+考
+
+=
+
+G x 
+
+ V 
+
+T F x 
+
+,
+
+(11) 
+
+(12) 
+
+ VI (Virus dataset) [49] : contains images of viruses extracted us- 
+ing negative stain transmission electron microscopy. Although 
+the dataset provides masks for removing the background of 
+each image, these were not used in our tests. 
+ CH (Chinese Hamster Ovary cells) [50] : contains uorescent mi- 
+croscopy images representing ve different classes taken from 
+Chinese Hamster Ovary cells. 
+ SM (smoke dataset) [51] : contains images of smoke used for 
+assessing intelligent video surveillance systems. The same divi- 
+sion into training and testing set proposed by the authors of 
+[51] is used in this paper. 
+ HI (Histopathology dataset) [52] : contains images of four fun- 
+damental types of tissues. 
+ BR (breast cancer dataset) [53] : contains images of malignant 
+and benign breast cancer. 
+ PR (DNA-binding and non-binding proteins) [54] : contains im- 
+ages where texture descriptors were used for protein classica- 
+tion. 
+ HE ( 2D HeLa dataset) [50] : contains images acquired using a 
+uorescence microscope. The images represent single cells di- 
+vided into ten staining classes. 
+ LO (Locate endogenous mouse sub-cellular dataset) [55] : con- 
+tains images unevenly distributed among ten classes of endoge- 
+nous proteins or features of specic organelles. 
+ TR (Locate transfected mouse sub-cellular organelles dataset) 
+[55] : contains 553 images unevenly distributed in eleven 
+classes of uorescence-tagged or epitope-tagged proteins tran- 
+siently expressed in specic organelles. 
+ PI (holy bible dataset) [56] : contains images extracted from dig- 
+italized pages of ancient editions of the Holy Bible dating from 
+1450 A.D. to 1471 A.D. The dataset is organized into thirteen 
+classes characterized by clear semantic meanings and signi- 
+cant search relevance. 
+ RN (y cell dataset): contains 200 uorescence microscopy im- 
+ages of y cells, evenly distributed among ten classes. 
+ PA (painting dataset) [57] : contains 2338 paintings by 50 
+artists, belonging to thirteen different painting styles. The di- 
+vision of training/testing sets was provided by the authors and 
+used in our tests. 
+ LE ( Brazilian ora dataset) [34] : contains 400 samples evenly 
+distributed among twenty classes. For each image, a subdivi- 
+℅ 128 pixels was manually 
+sion into three windows of size 128 
+performed that produced a total of 1200 texture samples. 
+ IS : (ISMIR 2004 Genre Classication dataset): contains 1458 
+music pieces assigned to six different genres: classical, elec- 
+tronic, jazz/blues, metal/punk, rock/pop, and world. This dataset 
+is one of the most widely used datasets in music information 
+retrieval research. In our tests the audio signal is converted into 
+a spectrogram image showing the spectrum of frequencies (ver- 
+tical axis) varying according to time (horizontal axis). Texture 
+descriptors are extracted from the whole spectrogram (for de- 
+tails, see [58] ) 
+
+where V is an orthonormal matrix derived from the singular value 
+decomposition (SVD) of the matrix D, and G x is computed for all 
+image positions. 
+The resulting vectors are quantized using a scalar quantizer, g j 
+≡ 0, otherwise 0. These 
+is the j th component of G x and q j 
+quantized coecients are represented as integers between 0 to 
+j1 . Finally, a histogram 
+255 using the binary coding b 
+2 
+of these integer values is composed and used as a feature vector. 
+
+j=1 
+q j 
+
+ 1 if g j 
+
+(cid:8)
+
+=
+
+=
+
+ 8 
+
+3.4. Other LBP variants 
+
+Variants explored in this paper that are based on the above 
+handcrafted methods are detailed in Table 2 , which provides a 
+brief description of each variant. 
+
+4. Experimental results 
+
+To test our approach, we selected several datasets that include 
+very different image types. A large variety of image types is crucial 
+for demonstrating the generalizability of our approach and for pro- 
+viding stable results and high accuracy irrespective of the specic 
+problem being addressed. The datasets selected include, among 
+many others, medical and subcellular images, pictures of smoke, 
+and images of ancient books, ora, and paintings. All the following 
+datasets used in our experiments are publicly available: 
+ PS (Pap Smear dataset) [48] : includes images of cells used in 
+the diagnosis of cervical cancer. 
+
+164 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+Table 3 
+Descriptive summary of the dataset. 
+
+Dataset #Classes #Samples 
+
+Sample size URL for Download 
+
+PS 
+VI 
+CH 
+SM 
+HI 
+BR 
+PR 
+HE 
+LO 
+TR 
+PI 
+RN 
+PA 
+LE 
+IS 
+KU 
+FM 
+SR 
+
+2 
+15 
+5 
+2 
+4 
+2 
+2 
+10 
+10 
+11 
+13 
+10 
+13 
+20 
+6 
+14 
+10 
+15 
+
+917 
+1500 
+327 
+2868 
+2828 
+584 
+349 
+862 
+502 
+553 
+903 
+200 
+2338 
+1200 
+1424 
+140 
+10 0 0 
+4485 
+
+Various 
+℅ 41 
+41 
+℅ 382 
+512 
+℅ 100 
+100 
+various 
+various 
+various 
+℅ 382 
+512 
+℅ 512 
+768 
+℅ 512 
+768 
+Various 
+℅ 1024 
+1024 
+Various 
+℅ 128 
+128 
+℅ 800 
+513 
+℅ 256 
+128 
+℅ 256 
+192 
+Various 
+
+http://labs.fme.aegean.gr/decision/downloads 
+gustaf/virustexture 
+http://www.cb.uu.se/ 
+http://ome.grc.nia.nih.gov/iicbu2008/hela/index.html#cho 
+yfn/vsd.html 
+http://staff.ustc.edu.cn/ 
+http://www.informed.unal.edu.co/histologyDS 
+upon request to Geraldo Braz Junior [ge.braz@gmail.com] 
+upon request to Loris Nanni [nanni@dei.unipd.it] 
+http://ome.grc.nia.nih.gov/iicbu2008/hela/index.html 
+http://locate.imb.uq.edu.au/downloads.shtml 
+http://locate.imb.uq.edu.au/downloads.shtml 
+http://imagelab.ing.unimo.it/les/bible _ dataset.zip 
+http://ome.grc.nia.nih.gov/iicbu2008/rnai/index.html 
+joost/painting91.html 
+http://www.cat.uab.cat/ 
+Upon request to [bruno@ifsc.usp.br] 
+upon request to Loris Nanni [nanni@dei.unipd.it] 
+upon request to Ylmaz Kaya [yilmazkaya1977@gmail.com] 
+http://people.csail.mit.edu/celiu/CVPR2010/FMD/ 
+http://www- cvr.ai.uiuc.edu/ponce _ grp/data/ 
+
+ KU (buttery dataset) [59] : contains 140 buttery images 
+representing fourteen different buttery species of the Styri- 
+dae family. Each of the buttery images was cropped to a 
+℅ 256 pixel image before processing and divided in two 
+256 
+equal regions (an upper and a lower region) without overlap. 
+For each region a different SVM was trained and combined by 
+sum rule. 
+ FM : Flickr Material Database: contains images of ten material 
+categories in the database: fabric, foliage, glass, leather, metal, 
+paper, plastic, stone, water and wood. Each category has 100 
+images, 50 of which are close-up views while the remaining 
+50 offer views at object-scale. There is a binary, human-labeled 
+mask associated with each image describing the location of the 
+object. We only consider pixels inside this binary mask for ma- 
+terial recognition and disregard all the background pixels. We 
+use the same split suggested by the authors of the dataset. 
+State-of-the-art computer vision systems still achieve a perfor- 
+mance level that is lower than that of humans (human beings 
+achieve an accuracy of 84.9%). 
+ SR (scene dataset) [60] : contains images of scenes divided into 
+fteen classes. This dataset is widely used in the literature. The 
+testing protocol established by other papers, which we follow, 
+requires ve experiments, each using 100 randomly selected 
+images per category for training and the remaining images for 
+testing. Each image is divided into four equal regions without 
+overlap and a central region of 1/2 the size of the original im- 
+age. For each region, a different SVM is trained, and the ve 
+SVMs are combined by sum rule. 
+
+The datasets detailed above are summarized in Table 3 , which 
+shows the number of classes, the number of samples, the image 
+size, and the URL for downloading the data. Unless otherwise spec- 
+ied in the description of the dataset, the protocol used in our ex- 
+periments is a ve-fold cross-validation method. 
+The area under the ROC curve (AUC) [61] is used to assess 
+performance. AUC is calculated using the one-versus-all approach 
+[62] for multiclass problems. Experiments were statistically vali- 
+dated using the Wilcoxon signed rank test [63] . 
+
+is reported in Table 4 for the following combinations of deep CNN 
+and SVM: 
+
+S1: the imagenet-vgg-verydeep-19 pretrained model and a 
+stand-alone SVM is used as the classier; 
+C1: the imagenet-vgg-verydeep-19 pretrained model; 
+C2: the imagenet-vgg-verydeep-16 pretrained model; 
+C3: the imagenet-vgg-f pretrained model; 
+C4: the imagenet-vgg-m pretrained model; 
+C5: the imagenet-vgg-s pretrained model; 
+C6: the imagenet-vgg-m-2048 pretrained model; 
+C7: the imagenet-vgg-m-1024 pretrained model; 
+C8: the imagenet-vgg-m-128 pretrained model; 
+C9: the imagenet-caffe-ref pretrained model; 
+C10: the imagenet-caffe-alex pretrained model. 
+
+Table 4 also reports the performance of the following ensem- 
+bles: 
+
+E1: the sum rule of C1 and C2; 
+E2: the sum rule of C1, C3, and C9; 
+E3: fusion, by sum rule, of all ten RS-SVMs trained with C1-C10. 
+
+Examining Table 4 , it is clear that the ensembles improve the 
+performance of the stand-alone CNN. The best performance is ob- 
+tained by combining all the CNNs, E3 outperforming all the other 
+methods with a p-value of 0.05. In addition, C1 (based on RS-SVM) 
+greatly outperforms S1 (based on the stand-alone SVM) with a p- 
+value of 0.01. We tested intersection, linear, and radial basis func- 
+tion kernels for SVM for all the tested descriptors. The optimal pa- 
+rameters were found using an internal 5-fold cross-validation pro- 
+tocol inside the training set. 
+It is interesting to note that RS boosts performance with the 
+non-handcrafted descriptors, a performance boost that is probably 
+due to the correlation among the features. In contrast, the RS en- 
+semble using handcrafted features results in only a very marginal 
+gain in performance [24] . 
+
+4.1. Class scores as features 
+
+The aim of the rst experiment, reported in Table 4 , is to es- 
+tablish the usefulness of extracting features using the proposed ap- 
+proach. If not specied, the RS-SVM is used as the classier. During 
+the testing phase, all the pretrained models provided by the Mat- 
+ConvNet toolbox were considered. The performance level achieved 
+
+To reduce the computation time, only stand-alone SVMs are 
+trained in the following tests. Preliminary tests showed that an RS 
+ensemble produced a very small performance improvement. We 
+use an Intersection kernel when the features are the output of a 
+layer of CNN or when the output is reduced by DCT. When the 
+output is reduced by PCA, a radial basis function (RBF) kernel is 
+
+4.2. Transfer learning 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+165 
+
+Table 4 
+Performance of the proposed approaches. 
+
+PS 
+
+VI 
+
+CH 
+
+SM 
+
+HI 
+
+BR 
+
+PR 
+
+HE 
+
+LO 
+
+TR 
+
+PI 
+
+RN 
+
+PA 
+
+LE 
+
+IS 
+
+KU 
+
+FM 
+
+SR 
+
+S1 
+C1 
+C2 
+C3 
+C4 
+C5 
+C6 
+C7 
+C8 
+C9 
+C10 
+E1 
+E2 
+E3 
+
+83.2 
+84.6 
+82.7 
+83.4 
+83.1 
+84.3 
+83.3 
+80.4 
+81.6 
+85.0 
+82.8 
+86.9 
+90.0 
+91.4 
+
+94.7 
+95.0 
+93.0 
+95.6 
+95.4 
+93.8 
+94.5 
+93.6 
+92.1 
+94.3 
+93.9 
+96.1 
+97.1 
+97.9 
+
+97.1 
+98.2 
+98.4 
+99.6 
+99.5 
+99.6 
+99.4 
+99.7 
+99.0 
+99.3 
+99.3 
+99.0 
+99.9 
+99.9 
+
+96.8 
+97.0 
+99.0 
+97.1 
+98.3 
+97.7 
+97.3 
+97.2 
+95.9 
+97.1 
+97.0 
+98.8 
+98.9 
+99.2 
+
+80.9 
+84.0 
+85.8 
+84.5 
+85.1 
+82.7 
+84.3 
+85.4 
+83.2 
+79.9 
+82.5 
+87.4 
+86.6 
+90.5 
+
+74.5 
+77.6 
+78.7 
+79.8 
+79.2 
+78.5 
+77.9 
+77.2 
+80.1 
+76.4 
+74.9 
+82.4 
+82.7 
+85.7 
+
+73.5 
+74.0 
+73.5 
+83.1 
+84.6 
+80.9 
+83.8 
+81.9 
+81.8 
+76.8 
+86.6 
+79.0 
+85.2 
+90.5 
+
+96.3 
+96.7 
+97.1 
+96.4 
+97.3 
+97.5 
+96.7 
+96.2 
+94.5 
+95.4 
+95.7 
+98.1 
+98.4 
+98.8 
+
+98.0 
+98.2 
+98.4 
+79.0 
+97.8 
+98.6 
+96.2 
+95.8 
+95.3 
+95.2 
+97.4 
+99.0 
+98.4 
+99.1 
+
+95.3 
+95.4 
+97.5 
+97.2 
+96.8 
+96.4 
+94.6 
+94.0 
+93.3 
+94.8 
+96.4 
+97.8 
+98.2 
+98.7 
+
+83.4 
+83.4 
+84.0 
+86.9 
+84.5 
+84.2 
+84.8 
+82.8 
+84.1 
+85.5 
+87.1 
+85.8 
+89.4 
+91.4 
+
+86.2 
+87.7 
+87.8 
+88.2 
+87.4 
+84.9 
+82.1 
+80.0 
+83.2 
+86.2 
+89.1 
+90.9 
+91.2 
+92.1 
+
+72.4 
+74.5 
+76.2 
+76.3 
+74.7 
+75.1 
+73.0 
+72.8 
+74.7 
+73.0 
+72.9 
+76.5 
+77.8 
+79.7 
+
+94.3 
+94.6 
+96.0 
+93.5 
+91.0 
+94.3 
+89.3 
+91.7 
+89.7 
+91.8 
+91.2 
+96.7 
+96.0 
+96.0 
+
+83.5 
+85.7 
+86.7 
+87.9 
+85.9 
+85.1 
+85.4 
+84.5 
+80.9 
+86.6 
+86.9 
+89.3 
+91.1 
+91.8 
+
+87.9 
+88.1 
+89.3 
+88.6 
+88.4 
+90.5 
+88.1 
+89.0 
+88.1 
+88.5 
+90.7 
+90.5 
+89.9 
+90.4 
+
+61.8 
+61.7 
+62.6 
+64.3 
+63.3 
+62.7 
+64.1 
+61.8 
+62.4 
+64.9 
+64.2 
+64.6 
+67.7 
+69.9 
+
+90.4 
+95.2 
+94.5 
+93.6 
+95.6 
+94.7 
+95.5 
+95.5 
+96.4 
+92.9 
+93.6 
+95.9 
+96.9 
+97.6 
+
+Table 5 
+Performance of the transfer learning. 
+
+PS 
+
+VI 
+
+CH 
+
+SM 
+
+HI 
+
+BR 
+
+PR 
+
+HE 
+
+LO 
+
+TR 
+
+PI 
+
+RN 
+
+PA 
+
+LE 
+
+IS 
+
+KU 
+
+FM 
+
+SR 
+
+base 
+DCT 
+PCA 
+B 
+B 
+B 
+38 
+ 40 
+30 
+ 38 
+38:42 
+MM 
+MM 
+
+91.8 
+92.6 
+89.6 
+92.9 
+92.3 
+92.8 
+92.7 
+94.0 
+92.6 
+95.3 
+95.1 
+
+97.5 
+97.0 
+91.1 
+97.6 
+97.6 
+97.6 
+97.7 
+98.0 
+97.7 
+98.2 
+98.3 
+
+99.7 
+99.6 
+98.8 
+99.7 
+99.7 
+99.7 
+99.7 
+99.8 
+99.7 
+99.9 
+99.9 
+
+99.8 
+99.6 
+98.9 
+99.9 
+99.7 
+99.7 
+99.9 
+99.9 
+99.9 
+99.9 
+99.9 
+
+90.0 
+89.8 
+78.8 
+90.1 
+89.9 
+90.8 
+91.0 
+91.7 
+91.2 
+92.8 
+92.8 
+
+85.1 
+84.6 
+84.0 
+86.2 
+86.4 
+86.5 
+86.7 
+87.0 
+87.1 
+89.3 
+89.3 
+
+88.5 
+89.6 
+81.6 
+89.7 
+89.5 
+90.1 
+89.7 
+91.4 
+89.7 
+93.4 
+93.3 
+
+98.3 
+98.2 
+96.6 
+98.4 
+98.5 
+98.5 
+98.5 
+99.2 
+98.5 
+99.4 
+99.4 
+
+99.1 
+98.7 
+97.3 
+99.1 
+99.1 
+99.1 
+99.2 
+99.5 
+99.2 
+99.6 
+99.7 
+
+98.8 
+98.1 
+95.0 
+98.9 
+98.7 
+98.7 
+98.8 
+99.1 
+98.9 
+99.5 
+99.6 
+
+89.8 
+92.8 
+89.3 
+91.5 
+92.7 
+94.1 
+94.9 
+97.5 
+92.4 
+96.9 
+97.3 
+
+79.5 
+66.3 
+84.1 
+79.5 
+82.8 
+82.4 
+81.8 
+82.5 
+81.5 
+85.6 
+91.3 
+
+93.1 
+93.2 
+90.5 
+94.1 
+93.8 
+94.2 
+94.3 
+95.3 
+94.4 
+95.9 
+95.3 
+
+96.7 
+93.6 
+84.6 
+95.8 
+96.8 
+96.5 
+97.0 
+95.6 
+97.2 
+96.1 
+96.9 
+
+91.5 
+89.4 
+89.3 
+91.7 
+92.4 
+92.1 
+92.5 
+92.8 
+92.5 
+94.1 
+94.1 
+
+92.1 
+92.0 
+89.1 
+92.3 
+91.2 
+91.7 
+91.5 
+90.8 
+91.6 
+90.8 
+90.8 
+
+65.0 
+65.8 
+51.8 
+66.4 
+64.9 
+66.4 
+65.0 
+66.2 
+64.9 
+71.8 
+72.7 
+
+99.4 
+99.2 
+97.7 
+99.4 
+99.4 
+99.4 
+99.4 
+99.4 
+99.4 
+99.3 
+99.3 
+
++
++
++
++
++
+
+ D 
+ P 
+ P 
+
++
+
+ D 
+
++
++
+
+ 42 
+ 42 
+
++
+
+℅ E3 
+ 0.33 
+
+used before feeding into an SVM. Experimentally DCT works bet- 
+ter with Intersection kernel and PCA with RBF kernel. The dimen- 
+sionality reduction methods were applied to features larger than 
+50 0 0 elements, which were shown by the imagenet-vgg-verydeep- 
+19 model in its layers #30 (100,352 elements) and #38 (25,088 el- 
+ements). Other layers considered in this study (#39, #40, #41 and 
+#42) produce feature vectors of 4096 elements that were not re- 
+duced. Both DCT and PCA were set to output a feature vector di- 
+mension of 40 0 0 elements: such a number is not a ratio of the 
+input dimension but rather was chosen to sidestep the curse of 
+dimensionality while training the SVM. For the sake of space, we 
+have reported only the most interesting results. 
+In Table 5 we compare different approaches for deep transfer 
+learning: 
+
+ Base: the CNN (the imagenet-vgg-verydeep-19 model), where 
+output of layer #42 is used for describing the images; 
+ DCT: the CNN (the imagenet-vgg-verydeep-19 model), where 
+output of layer #38 is reduced by DCT, and the DCT coecients 
+are used for describing the images; 
+ PCA: the CNN (the imagenet-vgg-verydeep-19 model), where 
+output of layer #38 is reduced by PCA, and the PCA coecients 
+are used for describing the images; 
+ B 
+ D: fusion by sum rule between Base and DCT; 
+ B 
+ P: fusion by sum rule between Base and PCA; 
+ B 
+ D: fusion by sum rule among Base, DCT, and PCA; 
+ 38 
+ 40 
+ 42: fusion by sum rule among Base (layers #42 and 
+#40), DCT (layer #38), and PCA (layer #38). For each feature set, 
+a different SVM is trained, then the four SVMs are combined by 
+sum rule; 
+ 30 
+ 38 
+ 42: fusion by sum rule among Base (layer #42), DCT 
+(layers #30 and #38), and PCA (layers #30 and #38). For each 
+feature set a different SVM is trained, then the ve SVMs are 
+combined by sum rule; 
+
++
++
++
++
++
+
+ P 
+
++
+
++
+
++
+
+Table 6 
+Layers used in each model. 
+
+Model 
+
+Layers 
+
+imagenet-vgg-verydeep-19 
+imagenet-vgg-verydeep-16 
+imagenet-vgg-f 
+imagenet-vgg-m 
+imagenet-vgg-s 
+imagenet-vgg-f 
+imagenet-vgg-m 
+imagenet-vgg-s 
+imagenet-vgg-m-2048 
+imagenet-vgg-m-1024 
+imagenet-vgg-m-128 
+
+30 38 42 
+28 35 37 
+6 16 21 
+8 18 21 
+10 18 20 
+6 20 21 
+7 16 21 
+10 18 20 
+8 18 21 
+8 18 21 
+8 18 21 
+
+ 38:42: all the approaches trained with the layers used between 
+#38 and #42, i.e. Base (layers #42, #41, #40, #39), DCT (layer 
+#38), and PCA (layer #38) combined by sum rule; 
+ MM: fusion of the different models (available at http://www. 
+vlfeat.org/matconvnet/pretrained/ ). The layers used in each 
+model are reported in Table 5 . 
+ MM 
+ E3: fusion by sum rule between MM and the methods la- 
+belled E3 in Table 4 . Before fusion, the scores of MM and E3 are 
+normalized to mean 0 and standard deviation 1. 
+
++
+
+As it can be seen from the results reported in Table 5 , a set 
+of SVMs using different layers improves performance: ( B 
+outperforms base with a p-value of 0.05; (30 
+ 38 
+ 42) outper- 
+forms ( B 
+ D ) with a p-value of 0.05; and (MM) outperforms 
+(30 
+ 38 
+ 42) with a p-value of 0.01. 
+In Table 6 we report the layers used for each model of the en- 
+semble labelled MM. It should be noted that if the feature set ex- 
+tracted from a layer has a dimension higher than 50 0 0 then it is 
+reduced by PCA and DCT. 
+In Figs. 3 每6 we provide a set of plots showing performance 
+vs layers for two CNN models, viz. the imagenet-vgg-verydeep- 
+
++
+
+ P 
+
++
+
+ D ) 
+
++
+
++
+
++
++
+
+ P 
+
++
+
++
+
+166 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+Fig. 3. Performance of imagenet-vgg-verydeep-19 on the PS dataset. 
+
+Fig. 4. Performance of imagenet-vgg-f on the PS dataset. 
+
+19(labelled model 1) and the imagenet-vgg-f (labelled model 3) on 
+PS (labelled dataset 1) and VR (labelled dataset 2). It is interest- 
+ing to observe that deep layers produce a good set of features for 
+describing the images. 
+
+feature approaches tested in this work, as well as the fusion of 
+SVM trained from features provided by CNN layers. 
+The following approaches are reported in Table 7: 
+
+4.3. Performance of other non-handcrafted features 
+
+In the following test, the results of which are summarized in 
+Table 7 , we report the performance of two other non-handcrafted 
+
+ PC: performance obtained by PCANet used to train a SVM with 
+Intersection Kernel (we report it because PCANet works poorly 
+with a RBF Kernel); 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+167 
+
+Fig. 5. Performance of imagenet-vgg-vary deep 19 on VI dataset. 
+
+Fig. 6. Performance of imagenet-vgg-f on the VI dataset. 
+
+168 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+Table 7 
+Performance obtained combining different non-handcrafted features. 
+
+PS 
+
+VI 
+
+CH 
+
+SM 
+
+HI 
+
+BR 
+
+PR 
+
+HE 
+
+LO 
+
+TR 
+
+PI 
+
+RN 
+
+PA 
+
+LE 
+
+IS 
+
+KU 
+
+FM 
+
+SR 
+
+PC 
+86.1 93.1 93.1 52.0 82.0 77.3 87.4 89.2 92.2 90.3 68.9 76.4 51.1 
+90.5 86.5 92.0 69.0 94.4 
+CB 
+83.4 88.7 88.9 80.8 75.6 78.9 89.5 82.9 93.3 92.0 67.5 86.3 79.1 85.8 88.5 92.3 80.9 92.5 
+B 
+92.8 97.6 99.7 99.7 90.8 86.5 90.1 98.5 99.1 98.7 94.1 82.4 94.2 96.5 92.1 91.7 66.4 99.4 
+(PC 
+ CB) 
+ (B 
+ D) 
+93.5 97.8 99.6 99.9 89.2 85.7 91.6 98.6 99.3 98.9 94.3 86.7 93.6 97.3 93.0 92.1 72.5 99.4 
+(PC 
+ CB)/2 
+℅ (30 
+ (B 
+ D) 
+93.4 97.8 99.7 99.9 90.4 86.3 91.1 
+98.6 99.3 99.1 94.3 85.0 94.0 96.9 92.9 91.9 71.4 99.4 
+(PC 
+ CB) 
+ 38 
+ 42) 
+96.0 98.1 98.8 98.8 94.7 92.4 94.9 98.5 98.7 98.5 97.4 92.4 94.9 96.2 93.3 91.5 69.9 99.4 
+℅ (PC 
+0.2 
+℅ (PC 
+ CB) 
+ (30 
+ 38 
+ 42) 
+℅ (E3) 
+ (E3) 96.1 98.4 99.1 99.1 95.2 93.1 95.7 98.8 98.9 98.9 98.1 95.6 92.8 97.4 93.5 91.2 71.7 99.2 
+0.1 
+ CB) 
+ MM 
+ 0.33 
+95.1 98.3 99.9 99.9 92.7 89.0 93.3 99.4 99.7 99.6 97.2 92.5 95.2 97.2 94.1 90.9 73.6 99.3 
+
++
++
++
++
++
+
+ P 
+
+ D 
+
++
+
++
+
+ P 
+ P 
+
++
++
+
++
+
++
++
++
++
+
++
++
++
+
+ 5 
+
++
++
+
++
++
+
++
+
+Table 8 
+Comparison of the proposed method with state-of-the-art approaches and further fusions. 
+
+PS 
+
+VI 
+
+CH 
+
+SM 
+
+HI 
+
+BR 
+
+PR 
+
+HE 
+
+LO 
+
+TR 
+
+PI 
+
+RN 
+
+PA 
+
+LE 
+
+IS 
+
+KU 
+
+FM 
+
+SR 
+
+LTP 
+℅ (PC 
+0.1 
+Fus 
+Q-stat 
+LPQ 
+℅ (PC 
+0.1 
+Fus 
+Q-stat 
+RIC 
+℅ (PC 
+0.1 
+Fus 
+Q-stat 
+disCLBP_v2 
+disCLBP 
+CLBP 
+RLBP 
+RLBPselec 
+MrElbp 
+msjlbp 
+HASC 
+GAB 
+GOLD 
+
+91.4 
+93.4 99.9 
+99.7 91.5 
+96.9 89.6 98.1 99.4 
+99.2 
+92.8 96.9 89.0 97.9 
+92.3 91.5 
+79.0 97.6 
+℅ (E3) 95.1 98.3 99.9 
+ 0.33 
+99.9 92.7 89.0 93.3 99.4 99.7 
+99.6 
+97.2 
+92.5 95.2 97.2 
+94.1 90.9 73.6 99.3 
+95.9 97.5 
+100 
+99.9 93.3 96.2 94.1 99.5 99.9 
+99.9 
+98.3 97.5 95.1 98.6 95.0 91.6 80.7 99.2 
+0.2 0.87 0.18 
+0.2 0.15 
+0.19 
+0.07 
+0.17 
+0.16 
+0.15 
+0.17 
+0.13 
+0.63 0.71 0.80 0.09 0.08 0.81 
+90.3 94.9 99.9 
+99.8 91.3 
+95.6 86.1 97.5 
+97.6 
+97.6 
+90.7 95.3 88.3 98.9 91.9 
+91.1 
+78.2 97.8 
+℅ (E3) 95.1 98.3 99.9 
+ 0.33 
+99.9 92.7 89.0 93.3 99.4 99.7 
+99.6 
+97.2 
+92.5 95.2 97.2 
+94.1 90.9 73.6 99.3 
+95.4 97.8 
+99.9 
+99.9 93.5 95.4 92.7 99.5 99.7 
+99.7 
+97.3 96.5 95.1 99.2 94.9 91.7 80.7 99.3 
+0.2 0.15 
+0.19 
+0.08 0.15 
+0.93 0.19 
+0.17 
+0.16 
+0.10 
+0.09 
+0.08 0.61 0.71 0.71 0.09 0.08 0.78 
+91.8 
+97.6 
+99.2 
+99.8 90.2 92.9 88.6 97.3 
+99.0 
+98.8 
+90.8 96.6 86.7 97.4 
+88.6 89.3 80.3 97.0 
+℅ (E3) 95.1 98.3 99.9 
+ 0.33 
+99.9 92.7 89.0 93.3 99.4 99.7 
+99.6 
+97.2 
+92.5 95.2 97.2 
+94.1 90.9 73.6 99.3 
+95.6 98.5 99.9 
+0.2 0.87 0.17 
+99.9 93.3 94.1 93.6 99.5 99.8 
+0.2 0.02 
+99.7 
+98.3 97.7 95.1 98.3 93.5 90.3 82.3 99.2 
+0.19 
+0.08 
+0.16 
+0.18 
+0.17 
+0.14 
+0.10 
+0.58 0.66 0.81 0.09 0.03 0.67 
+87.9 97.0 
+99.2 
+99.8 90.3 79.3 86.5 97.1 
+97.7 
+51.6 
+88.9 94.3 87.9 98.0 89.5 88.4 78.2 96.5 
+88.2 96.2 99.2 
+99.7 88.7 78.4 77.6 
+98.0 98.2 
+52.2 
+77.1 
+79.0 88.1 96.8 91.8 
+88.9 81.3 95.8 
+88.0 95.6 99.3 
+99.9 92.4 95.3 83.9 98.7 98.4 
+98.6 
+91.7 94.9 89.2 98.1 92.7 89.9 80.1 98.0 
+87.4 94.2 99.0 
+99.8 89.4 90.3 81.3 97.6 
+99.1 
+99.4 
+85.5 95.2 85.9 97.4 
+89.2 88.4 80.4 95.9 
+86.5 91.4 
+99.7 
+99.3 84.2 89.9 86.3 98.4 97.6 
+51.4 
+81.9 91.6 
+82.2 96.5 91.7 
+84.9 74.3 90.5 
+87.5 98.0 98.6 
+99.8 91.9 
+78.0 86.4 98.2 98.4 
+97.5 
+91.7 90.2 85.9 97.3 
+88.5 89.3 76.2 97.1 
+85.7 91.0 
+98.9 
+99.1 85.0 91.0 
+84.8 96.0 98.9 
+98.2 
+85.4 96.8 84.6 95.4 91.8 
+81.4 78.5 92.5 
+90.1 94.2 99.7 
+99.8 87.2 90.6 88.9 97.2 
+99.0 
+99.3 
+88.0 96.7 85.6 98.1 93.2 89.8 74.0 96.0 
+90.0 91.5 
+99.3 
+98.1 83.0 91.0 
+83.4 95.0 98.0 
+98.4 
+89.4 96.7 79.4 95.4 91.6 
+91.6 
+66.2 94.5 
+89.1 95.3 99.1 
+99.8 87.4 80.1 91.2 98.2 98.4 
+96.1 
+98.7 90.2 88.4 97.0 
+93.3 92.6 75.4 98.2 
+
++
+
+ CB) 
+
++
+
+ MM 
+
++
+
++
+
+ CB) 
+
++
+
+ MM 
+
++
+
++
+
+ CB) 
+
++
+
+ MM 
+
++
+
+ CB: performance obtained by CBD used to train a SVM with an 
+RBF Kernel (we report it because PCANet works poorly with In- 
+tersection Kernel); 
+℅ (B): the weighted sum rule between A with weight 1 
+ (A) 
+and B with weigh W. Before fusion, the scores of A and B are 
+normalized to mean 0 and standard deviation 1. 
+
++
+
+ W 
+
+Notice that when the performance of PC and CB is worse 
+than (30 
+ 38 
+ 42) their fusion improves the performance 
+of (30 
+ 38 
+ 42). Nonetheless, the performance of 0.1 
+℅ (E3) is similar to that obtained by MM 
+(PC 
+ CB) 
+ MM 
+ 0.33 
+℅ (E3). 
+or MM 
+ 0.33 
+
++
+
++
+
++
++
++
+
++
++
+
+℅
+
++
+
+4.4. Performance of handcrafted features and their fusions with 
+non-handcrafted features 
+
+The aim of the experiment reported in Table 8 is to compare 
+the proposed approach with the state-of-the-art texture descrip- 
+tors detailed in Section 3 . Below we provide details of the param- 
+eters used in this experiment: 
+ Local Ternary Patterns (LTP) [38] : features were extracted us- 
+ing a threshold of 3, and the concatenation of the feature sets 
+was obtained with (radius 
+ 1; number of neighborhood 
+ 8) 
+and (radius 
+ 2; number of neighborhood 
+ 16); only uniform 
+bins were extracted; 
+ Local Phase Quantization (LPQ) [39] : concatenation of the fea- 
+ture sets was obtained with local window sizes of 3 and 5; 
+ Rotation Invariant Co-occurrence LBP (RICLBP) [41] : features 
+were extracted by concatenating the feature sets obtained with 
+the scale of LBP radius (s) and the interval of LBP pair ( r ) of 
+( s 
+ 1, r 
+ 2) ( s 
+ 2, r 
+ 4) ( s 
+ 4, r 
+ 8); 
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+ Discriminative Completed Local Binary Pattern [43] (dis- 
+CLBP_v2): the best approach was used and labeled as in the 
+original paper dis(S 
+ M), with the number of neighborhoods 8 
+and with the radius 
+ 1, 3, and 5; 
+ disCLBP: as with disCLBP_v2, but with the following param- 
+eters: (radius 
+ 1; number of neighborhood 
+ 8), (radius 
+ 2; 
+number of neighborhood 
+ 16), and (radius 
+ 3; number of 
+neighborhood 
+ 24); 
+ Complete Local Binary Pattern (CLBP) [42] : features were 
+extracted by concatenating the feature set obtained with 
+(radius 
+ 1; number of neighborhood 
+ 8) and (radius 
+ 2; num- 
+ber of neighborhood 
+ 16). 
+ Rotated Local Binary Pattern image (RLBP) [44] : features were 
+extracted by concatenating the feature set obtained with 
+(radius 
+ 1; number of neighborhood 
+ 8) and (radius 
+ 2; num- 
+ber of neighborhood 
+ 16). Uniform bins are extracted; 
+ RLBPselec: all bins are extracted with (radius 
+ 1; num- 
+ber of neighborhood 
+ 8) and (radius 
+ 2; number of 
+neighborhood 
+ 16); then a feature selection process is ap- 
+plied based on the frequency of the patterns (exactly as in the 
+original paper [44] ) using a threshold of 0.9; 
+ MrElbp [45] : default parameter settings in the original journal 
+paper were used: radius taking the value of {2, 4, 6, 8} and a 
+point set of 8. Images are resized to a xed dimension (height 
+of 150 pixel) before feature extraction; 
+ Msjlbp [46] : using the default parameters for the code; 
+ HASC [47] : Heterogeneous Auto-Similarities of Characteristics; 
+ GAB [47] : the mean-squared energy and the mean amplitude 
+were calculated from 5 different scale levels and 14 different 
+
++
+=
+
+=
+=
+
+=
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+=
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+169 
+
+℅ 14 
+℅ 2 is 
+orientations. In this way, a feature vector of size 5 
+obtained; 
+ GOLD Gaussians of Local Descriptors [64] : here we train a dif- 
+ferent SVM from each region of the spatial pyramid and com- 
+bine them by sum rule. We also use one level spatial pyramid 
+decomposition. The decomposition consists of the entire image, 
+followed by level one, where the image is subdivided into four 
+quadrants. 
+
+>
+<
+
+In Table 8 the fusion between handcrafted and non-handcrafted 
+features is reported in the rows labelled Fus . As it can be observed, 
+handcrafted features capture information that is different from the 
+system proposed in this paper. We checked the error independence 
+with Yule＊s Q-statistic [28] (Q-stat). The values of Q are bounded 
+1,1]. Classiers that recognize the same patterns cor- 
+between [ 
+rectly have Q 
+ 0; those which commit errors on different pat- 
+terns have Q 
+ 0. In Table 8 , the Q-statistic is reported between 
+handcrafted and non-handcrafted features in the row labelled Q- 
+stat . Results show that different descriptors train a set of partially 
+uncorrelated classiers. For this reason, the fusion between hand- 
+crafted and non-handcrafted features outperforms the handcrafted 
+features ( p -value 0.01). 
+To avoid presenting a large table, we report the fusion and the 
+q-statistic between the handcrafted and non-handcrafted features 
+for the three best performing handcrafted features only. 
+For the state-of-the-art handcrafted feature approaches, we 
+used methods where the original code is available, and we used 
+the parameters settings suggested by the original authors. Some 
+performance differences, com pared to the original papers, are ob- 
+tained on some datasets (e.g. disCLBP in the PS dataset). This is 
+due to the different parameter testing protocols. We used the same 
+split for the training/testing sets for all the methods tested in this 
+paper, as well as the same approach for nding the parameters of 
+SVM. 
+Of course, a higher performance could be obtained if different 
+feature descriptors were combined with different classiers. The 
+aim of this work, however, is not to propose the best ensemble 
+of descriptors that optimizes the classication step; rather, it is to 
+show how to use different pre-trained CNNs and the different lay- 
+ers of these CNNs for obtaining a very high performing set of fea- 
+tures. Since the proposed method is tested on several different im- 
+age datasets, we are fairly condent about the generalizability of 
+the proposed approach. 
+
+4.5. Validation against ensembles proposed in the literature 
+
+In this subsection, we have reported the performance of a sys- 
+tem based on handcrafted and non-handcrafted features in a set 
+of bioimage datasets used in literature for validating ensembles of 
+descriptors for medical images (cell phenotype recognition, subcel- 
+lular localization, and histopathological classication). Our method 
+obtains a performance that is comparable with the best ensemble 
+proposed in the literature [65] . Moreover, as Table 9 shows, our 
+method outperforms several other approaches that have been pro- 
+posed in the last few years. An advantage of our method is that 
+it is not based on complex, computationally expensive image-level 
+statistics of a dense set of local descriptors, as is the case with [65] . 
+Furthermore, the full MATLAB source code for reproducing our ex- 
+periments is freely available, while the source code used in [65] is 
+not. Thus, our method could be very useful for practitioners. 
+For the non-handcrafted features, we use the best approach 
+℅ (PC 
+℅ (E3)) named 
+proposed in this work (0.1 
+ CB) 
+ MM 
+ 0.33 
+NonH in Table 9 . For the handcrafted features, we have used the 
+set of handcrafted features proposed in the best ensemble reported 
+in [66] , adding the local binary patterns variant proposed in [67] . 
+In Table 9 , the set of handcrafted features is named Hand. Our pro- 
+
++
+
++
+
++
+
+Table 9 
+Comparison with other set of features proposed in the literature. 
+
+CH 
+
+HE 
+
+RN 
+
+TB 
+
+LY 
+
+MA 
+
+LG 
+
+LA 
+
+Hand 
+NonH 
+Here 
+[65] 
+[69] 
+[70] 
+
+[71] 
+[72] 
+0 
+[73] 
+[74] 
+
+97.85 
+99.69 
+100 
+99.90 
+98.50 
+93 
+53 
+93.1 
+99.0 
+73.0 
+98.4 
+〞
+
+94.42 
+93.14 
+95.93 
+98.30 
+94.4 
+84 
+99 
+68.3 
+84. 
+55.0 
+90.7 
+〞
+
+90.50 
+56.00 
+91.50 
+86.50 
+67.5 
+82 
+51 
+55.0 
+
+70.62 
+71.03 
+72.58 
+64.80 
+44.6 
+49 
+
+92.00 
+74.67 
+90.93 
+96.80 
+〞
+85.0 
+
+91.67 
+90.42 
+92.92 
+97.90 
+〞
+
+100 
+99.67 
+100 
+99.60 
+〞
+
+99.62 
+97.90 
+100 
+100 
+〞
+
+51.1 
+
+70.9 
+
+89.6 
+
+91.7 
+
+73.8 
+
+66.0 
+90.1 
+〞
+
+〞
+〞
+〞
+
+99 
+〞
+92.7 
+
+89.0 
+〞
+〞
+
+〞
+99.2 
+
+〞
+96.4 
+
++
+
+posed ensemble, named HERE, is given by the weighted sum rule 
+℅ Hand 
+2 
+ NonH. Before fusion the scores of Hand and NonH are 
+normalized to mean 0 and standard deviation 1. 
+The set of biological images is labelled IICBU 2008 Benchmark 
+[68] ; some datasets in that suite (CH, HE and RN) are already de- 
+tailed in Table 3 . The other datasets referenced in Table 9 are the 
+following: 
+ Muscle aging (MA): the classes are images of C. elegans muscles 
+at 4 ages; 
+ Terminal bulb aging (TB): images of C. elegans terminal bulb at 
+7 ages (hence, 7 classes); 
+ Lymphoma (LY): malignant lymphoma of three subtypes; 
+ Liver gender (LG): liver tissue sections from 6-month male and 
+female mice on a caloric restriction diet (the classes are the 2 
+genders); 
+ Liver aging (LA): liver tissue sections from female mice on ad- 
+libitum diet of 4 ages. 
+
+As was the case in all the experiments reported above, for 
+our descriptors we always use the same parameters across all the 
+tested datasets to avoid any overtting. It will also be noted that 
+in Table 9 we use accuracy as the performance indicator as this is 
+the performance indicator that is used in the literature when ac- 
+cessing an ensemble＊s performance on the IICBU 2008 benchmark 
+dataset. 
+Except for [65] , our method HERE outperforms all the other ap- 
+proaches reported in Table 9 with a p-value of 0.1. HERE also out- 
+performs the ensemble of handcrafted features named Hand. It is 
+clear that our set of features extracted using CNN builds a very 
+high performing ensemble of descriptors. 
+
+5. Conclusions 
+
+In this work, the exploitation of deep learning-based features 
+for synthesizing a generic image classication system was ana- 
+lyzed. This was done by describing an input image using a feature 
+vector built with non-handcrafted features: deep transfer learn- 
+ing features based on convolutional neural networks, principal 
+component analysis network, and the compact binary descriptor. 
+The image representation method developed in this paper is gen- 
+eral, geared to work eciently for any image classication prob- 
+lem. This is veried by the high number of different datasets and 
+classication tasks employed while developing the system. Non- 
+handcrafted features extracted from the input images were used 
+for training an SVM on a wide range of image classication prob- 
+lems. Several CNNs were used for extracting a set of feature vec- 
+tors from an image, which were then used to feed an ensemble of 
+SVMs that were nally combined by sum rule. 
+The proposed method was compared with an analogous sys- 
+tem based on handcrafted features, an image description method 
+
+170 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+widely used in the literature. Several state-of-the-art handcrafted 
+descriptors (LTP and LPQ, and some other powerful LBP variants) 
+were used to compare the eciency of the image description 
+method proposed in this paper against the state of the art on a 
+number of different datasets. 
+The large dimensionality of feature sets extracted from the deep 
+layers cannot be handled using the best performing feature selec- 
+tion techniques like [75] : for this reason, DCT and PCA were used 
+in this work. However, this approach can be developed further, us- 
+ing, for example, high performing feature selection, such as kernel 
+partial least square [76] or Lagrange multipliers [77] ; these could 
+be applied to the output of DCT and PCA for a further dimensional- 
+ity reduction, thereby limiting the curse of dimensionality. Alterna- 
+tively, faster feature selection methods, like Fisher score, Gini index 
+or T-test (Duda, Hart, Stork, and pattern classication), can be di- 
+rectly applied to the original feature sets extracted from the deep 
+layers. 
+The experimental results demonstrated that the performance 
+achieved using our transfer learning scheme is higher than what is 
+achievable by other standard approaches. The experimental results 
+comparing handcrafted features against non-handcrafted features 
+show that the two systems extract different information from the 
+input images. As a result, the fusion of handcrafted features with 
+the novel features proposed in this paper greatly outperforms the 
+standard approaches with a p-value of 0.01. 
+The MATLAB source code to replicate our experiments 
+will be made 
+available 
+at 
+( https://www.dropbox.com/s/ 
+bguw035yrqz0pwp/ElencoCode.docx?dl=0 ). 
+
+References 
+
+[1] D.G. Lowe , Distinctive image features from scale-invariant keypoints, Int. J. 
+Comput. Vis. 60 (2004) 91每110 . 
+[2] H. Bay , T. Tuytelaars , L.V. Gool , SURF: speeded up robust features, in: European 
+Conference on Computer Vision, 1, 2006, pp. 404每417 . 
+[3] A.I. Awad , M. Hassaballah , Image feature detectors and descriptors: founda- 
+tions and applications, Studies in Computational Intelligence, Springer1, Berlin, 
+2016 . 
+[4] J. Shi , C. Tomasi , Good features to track, in: IEEE Computer Society Conference 
+on Computer Vision and Pattern Recognition (CVPR＊94), 1994, pp. 593每600 . 
+[5] N. Cristianini , J. Shawe-Taylor , An Introduction to Support Vector Machines and 
+Other Kernel-Based Learning Methods, Cambridge University Press, Cambridge, 
+UK, 20 0 0 . 
+[6] J. Schmidhuber , Deep learning in neural networks: an overview, Neural Netw. 
+61 (2015) 85每117 . 
+[7] Y. LeCun , Y. Bengio , G. Hinton , Deep learning, Nature 521 (2015) 436每4 4 4 
+7553 . 
+[8] K. Bora , M. Chowdhury , L.B. Mahanta , M.K. Kundu , A.K. Das , Pap smear image 
+classication using convolutional neural network, in: Tenth Indian Conference 
+on Computer Vision, Graphics and Image Processing, 2016, p. 55 . 
+[9] X.-H. Han , J. Lei , Y.-W. Chen , HEp-2 cell classication using k-support spatial 
+pooling in deep CNNs, in: Deep Learning and Data Labeling For Medical Appli- 
+cations, Springer, Berlin, 2016, pp. 3每11 . 
+[10] T.-H. Chan , K. Jia , S. Gao , J. Lu , Z. Zeng , Y. Ma , Pcanet: a simple deep learn- 
+ing baseline for image classication? IEEE Trans. Image Process. 24 (2015) 
+5017每5032 . 
+[11] J. Yosinski , J. Clune , Y. Bengio , H. Lipson , How Transferable are Features in Deep 
+Neural Networks?, Cornell University, 2014 arXiv:1411.1792 . 
+[12] Q.V. Le , Building high-level features using large scale unsupervised learning, 
+in: IEEE International Conference on Acoustics, Speech and Signal Processing 
+(ICASSP), 2013, pp. 8595每8598 . 
+[13] D. Erhan , Y. Bengio , A. Courville , P.A. Manzagol , P. Vincent , S. Bengio , Why does 
+unsupervised pre-training help deep learning? J. Mach. Learn. Res. 11 (2010) 
+625每660 . 
+[14] C. Barat , C. Ducottet , String representations and distances in deep convolu- 
+tional neural networks for image classication, Pattern Recognit. Bioinf. 54 
+(2016) 104每115 . 
+[15] M. Cimpoi, S. Maji, A. Vedaldi Deep Filter Banks for Texture Recognition and 
+Segmentation IEEE Conference on Computer Vision and Pattern Recognition, 
+2015. 
+[16] Y. Gong , L. Wang , R. Guo , S. Lazebnik , Multi-scale orderless pooling of deep 
+convolutional activation features, European conference on computer vision 
+2014, 2014, pp. 392每407 . 
+[17] K. He , X. Zhang , S. Ren , S. Sun , Spatial pyramid pooling in deep convolu- 
+tional networks for visual recognition, in: Computer Vision 每 ECCV 2014, 2014, 
+pp. 346每361 . 
+
+[18] R. Girshick , J. Donahue , T. Darrell , J. Malik , Rich feature hierarchies for accurate 
+object detection and semantic segmentation, CVPR, IEEE, 2014 . 
+[19] B. Athiwaratkun, K. Kang, Feature representation in convolutional neural net- 
+works, arXiv.org, arXiv:1507.02313 (2015). 
+[20] B. Yang , B. Yan , B. Lei , S.Z. Li , Convolutional channel features, IEEE International 
+Conference on Computer Vision (ICCV), 2015 . 
+[21] A.S. Razavian , H. Azizpour , J. Sullivan , S. Carlsson , CNN features off-the-shelf: 
+an astounding baseline for recognition, CoRR 1403 (2014) 6382 . 
+[22] L. Nanni , S. Brahnam , A. Lumini , Double committee adaBoost, J. King Saud Univ. 
+25 (2013) 29每37 . 
+[23] L. Nanni , A. Lumini , S. Brahnam , An empirical study of different approaches for 
+protein classication, Sci. World J. (2014) 1每17 Article ID 236717 . 
+[24] L. Nanni , S. Brahnam , S. Ghidoni , A. Lumini , Toward a general-purpose hetero- 
+geneous ensemble for pattern classication, Comput. Intell. Neurosci. (2015) 
+1每10 Article ID 909123 . 
+[25] J. Lu , E.L. Venice , Z. Xiuzhuang , J. Zhou , Learning compact binary face descrip- 
+tor for face recognition, IEEE Trans. Pattern Anal. Mach. Intell. 37 (10) (2015) 
+2041每2056 . 
+[26] Z. Pan , Z.T. Deng , Dimensionality reduction via kernel sparse representation, 
+Front. Comput. Sci. 8 (2014) 807每815 . 
+[27] Y.Y. Zhang , J.C. Zhang , Z.C. Pan , Q. Z.D. , Multi-view dimensionality reduction 
+via canonical random correlation analysis, Front. Comput. Sci. 10 (2016) 
+856每869 . 
+[28] L.I. Kuncheva , C.J. Whitaker , Measures of diversity in classier ensembles 
+and their relationship with the ensemble accuracy, Mach. Learn. 51 (2003) 
+181每207 . 
+[29] G. Hinton , S. Osindero , Y.-W. Teh , A fast learning algorithm for deep belief nets, 
+Neural Comput. 18 (2006) 1527每1554 . 
+[30] A. Vedaldi , K. Lenc , MatConvNet-convolutional Neural Networks for MATLAB, 
+Cornell University, 2014 arXiv:1412.4564 . 
+[31] K. Simonyan , A. Zisserman , Very Deep Convolutional Networks For Large-Scale 
+Image Recognition, Cornell University, 2014 arXiv:1409.1556v6 . 
+[32] K. Chateld , K. Simonyan , A. Vedaldi , A. Zisserman , Return of the devil in the 
+details: delving deep into convolutional networks, BMVC, 2014 . 
+[33] A. Vedaldi , Y. Jia , E. Shelhamer , J. Donahue , S. Karayev , J. Long , R. Girshick , 
+S. Guadarrama , T. Darrell , Convolutional Architecture For Fast Feature Embed- 
+ding, Cornell University, 2014 arXiv:1408.5093v1 . 
+[34] D. Casanova , J. Joaci de Mesquita , O.M. Bruno , Plant leaf identication using 
+gabor wavelets, Int. J. Imaging Syst. Technol. 19 (2009) 236每243 . 
+[35] R.O. Duda , P.E. Hart , Pattern Classication and Scene Analysis, Academic Press, 
+London, 1973 . 
+[36] E. Feig , S. Winograd , Fast algorithms for the discrete cosine transform, IEEE 
+Trans. Signal Process. 49 (1992) 2174每2193 . 
+[37] T. Ojala , M. Pietikainen , T. Maeenpaa , Multiresolution gray-scale and rotation 
+invariant texture classication with local binary patterns, IEEE Trans. Pattern 
+Anal. Mach. Intell. 24 (2002) 971每987 . 
+[38] X. Tan , B. Triggs , Enhanced local texture feature sets for face recognition under 
+dicult lighting conditions, in: Analysis and Modelling of Faces and Gestures, 
+4778, 2007, pp. 168每182 . 
+[39] V. Ojansivu , J. Heikkila , Blur insensitive texture classication using local phase 
+quantization, in: ICISP, 2008, pp. 236每243 . 
+[40] G.-H. Liua , L. Zhang , Y.-K. Hou , Z.-y. Li , J.-Y. Yang , Image retrieval based on 
+multi-texton histogram, Pattern Recognit. 43 (2010) 2380每2389 . 
+[41] R. Nosaka , C.H. Suryanto , K. Fukui , Rotation invariant co-occurrence among ad- 
+jacent LBPs, in: ACCV Workshops, 2012, pp. 15每25 . 
+[42] Z. Guo , L. Zhang , D. Zhang , A completed modeling of local binary pattern 
+operator for texture classication, IEEE Trans. Image Process. 19 (2010) 
+1657每1663 . 
+[43] Y. Guo , G. Zhao , M. Pietikainen , Discriminative features for texture description, 
+Pattern Recognit. Lett. 45 (2012) 3834每3843 . 
+[44] R. Mehta , K. Egiazarian , Dominant rotated local binary patterns (drlbp) for tex- 
+ture classication, Pattern Recognit. Lett. 71 (2015) 16每22 . 
+[45] L. Liu , S. Lao , P. Fieguth , Y. Guo , X. Wang , M. Pietikainen , Median robust ex- 
+tended local binary pattern for texture classication, IEEE Trans. Image Process. 
+25 (3) (2016) 1368每1381 . 
+[46] X. Qi , S. Linlin , G. Zhao , Q. Li , M. Pietikainen , Globally rotation invariant multi- 
+-scale co-occurrence local binary pattern, Image Vis. Comput. 43 (2015) 16每26 . 
+[47] M. San Biagio , M. Crocco , M. Cristani , S. Martelli , V. Murino , Heterogeneous 
+auto-similarities of characteristics (HASC): exploiting relational information for 
+classication, in: IEEE Computer Vision (ICCV13), 2013, pp. 809每816 . 
+[48] J. Jantzen , J. Norup , G. Dounias , B. Bjerregaard , Pap-smear benchmark data for 
+pattern classication, in: Nature inspired Smart Information Systems (NiSIS), 
+Albufeira, Portugal, 2005, pp. 1每9 . 
+[49] G. Kylberg , M. Uppstrm , I.-M. Sintorn , Virus texture analysis using local bi- 
+nary patterns and radial density proles, in: S. Martin, S.-W. Kim (Eds.), 18th 
+Iberoamerican Congress on Pattern Recognition (CIARP), 2011, pp. 573每580 . 
+[50] M.V. Boland , R.F. Murphy , A neural network classier capable of recognizing 
+the patterns of all major subcellular structures in uorescence microscope im- 
+ages of HeLa cells, BioInformatics 17 (2001) 1213每1223 . 
+[51] F. Yuan , Video-based smoke detection with histogram sequence of LBP and 
+LBPV pyramids, Fire Saf. J. 46 (2011) 132每139 . 
+[52] A . Cruz-Roa , J.C. Caicedo , F.A . Gonz芍lez , Visual pattern mining in histology im- 
+age collections using bag of features, Artif. Intell. Med. 52 (2) (2011) 91每106 . 
+[53] G.B. Junior , A. Cardoso de Paiva , A.C. Silva , A.C. Muniz de Oliveira , Classica- 
+tion of breast tissues using Moran＊s index and Geary＊s coecient as texture 
+signatures and SVM, Comput. Biol. Med. 39 (2009) 1063每1072 . 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+171 
+
+[54] L. Nanni , J.-Y. Shi , S. Brahnam , A. Lumini , Protein classication using texture 
+descriptors extracted from the protein backbone image, J. Theor. Biol. 3 (2010) 
+1024每1032 . 
+[55] N. Hamilton , R. Pantelic , K. Hanson , R.D. Teasdale , Fast automated cell pheno- 
+type classication, in: BMC Bioinf., 1, 2007, pp. 8每110 . 
+[56] D. Borghesani , C. Grana , R. Cucchiara , Miniature illustrations retrieval and in- 
+novative interaction for digital illuminated manuscripts in multimedia systems, 
+Multimedia Syst. 20 (2014) 65每79 . 
+[57] F. Khan , S. Beigpour , J. van de Weijer , M. Felsberg , Painting-91: a large scale 
+database for computational painting categorization, Mach. Vis. Appl. 25 (2014) 
+1385每1397 . 
+[58] L. Nanni , Y.M.G. Costa , A. Lumini , M.Y. Kim , S.R. Baek , Combining visual and 
+acoustic features for music genre classication, Expert Syst. Appl. 45 (2015) 
+108每117 . 
+[59] Y. Kaya , L. Kayci , Application of articial neural network for automatic detec- 
+tion of buttery species using color and texture features, Vis. Comput. (2013) 
+30 . 
+[60] A . Oliva , A . Torralba , Modeling the shape of the scene: a holistic representation 
+of the spatial envelope, Int. J. Comput. Vis. 42 (2001) 145每175 . 
+[61] T. Fawcett , ROC graphs: Notes and Practical Considerations For Researchers, HP 
+Laboratories, Palo Alto, USA, 2004 . 
+[62] T. Landgrebe , R. Duin , A simplied extension of the area under the ROC to the 
+multiclass domain, in: Seventeenth Annual Symposium of the Pattern Recog- 
+nition Association of South Africa, 2006, pp. 241每245 . 
+[63] J. Demar , Statistical comparisons of classiers over multiple data sets, J. Mach. 
+Learn. Res. 7 (2006) 1每30 . 
+[64] G. Serra , C. Grana , M. Manfredi , R. Cucchiara , Gold: Gaussians of local descrip- 
+tors for image representation, Comput. Vis. Image Understanding 134 (2015) 
+22每32 . 
+[65] Y. Song , W. Cai , H. Huang , D. Feng , Y. Wang , M. Chen , Bioimage classication 
+with subcategory discriminant transform of high dimensional visual descrip- 
+tors, BMC Bioinf. 17 (2016) 465 . 
+[66] L. Nanni , M. Paci , F.L.C.D. Santos , S. Brahnam , J. Hyttinen , Review on texture 
+descriptors for image classication, in:, in: S. Alexander (Ed.), Computer Vi- 
+sion and Simulation: Methods, Applications and Technology, Nova Publications, 
+Hauppauge, NY, 2016 . 
+
+[67] Z. Zhu , X. You , C.L.P. Chen , D. Too , W. Ou , X. Jiang , J. Zoe , An adaptive hy- 
+brid pattern for noise-robust texture analysis, Pattern Recognit. 48 (2015) 
+2592每2608 . 
+[68] L. Shamir , N.V. Orlov , D.M. Eckley , I. Goldberg , IICBU 2008: a proposed bench- 
+mark suite for biological image analysis, Med. Biol. Eng. Comput. 46 (2008) 
+943每947 . 
+[69] L.P. Coelho , J.D. Kangas , A.W. Naik , E. Osuna-Highley , E. Glory-Afshar , 
+M. Fuhrman , R. Simha , P.B. Berget , J.W. Jarvik , R.F. Murphy , Determining the 
+subcellular location of new proteins from microscope images using local fea- 
+tures, Bioinformatics 29 (2013) 2343每2352 . 
+[70] L. Shamir , N. Orlov , M. E.D. , T.J. Macura , J. Johnston , I.G. Goldberg , Wndchrm - 
+an open source utility for biological image analysis, Source Code Biol. Med. 3 
+(2008) 13 . 
+[71] J. Zhou , S. Lamichhane , G. Sterne , B. Ye , H. P. , BIOCAT: a pattern recognition 
+platform for customizable biological image classication and annotation, BMC 
+Bioinf. 14 (2013) 291 . 
+[72] V. Uhlmann , S. Singh , A.E. Carpenter , CP-CHARM: segmentation-free image 
+classication made accessible, BMC Bioinf. 17 (2016) 51 . 
+[73] B. Zhang , T.D. Pham , Phenotype recognition with combined features and ran- 
+dom subspace classier ensemble, BMC Bioinf. 12 (2011) 128 . 
+[74] T. Meng , L. Lin , M. Shyu , S. Chen , Histology image classication using super- 
+vised classication and multimodal fusion, in: IEEE International Symposium 
+on Multimedia, 2010, pp. 145每152 . 
+[75] W. Shao , Y. Ding , H.-B. Shen , D. Zhang , Deep model-based feature extraction 
+for predicting protein subcellular localizations from bio-images, Front. Comput. 
+Sci. 11 (2017) 243每252 . 
+[76] M. Gutkin , R. Shamir , G. Dror , SlimPLS: a method for feature selection in gene 
+expression-based disease classication, PLoS ONE 4 (2009) e6416 . 
+[77] S. Sun , Q. Peng , X. Zhang , Global feature selection from microarray data using 
+Lagrange multipliers, Knowl. Based Syst. 110 (2016) 267每274 . 
+
+172 
+
+L. Nanni et al. / Pattern Recognition 71 (2017) 158每172 
+
+Loris Nanni received his Master Degree cum laude on June-2002 from the University of Bologna, and the April 26th 2006 he received his Ph.D. in Computer Engineering 
+at DEIS, University of Bologna. His research interests include pattern recognition, bioinformatics, and biometric systems (ngerprint classication and recognition, signature 
+verication, face recognition). 
+
+Stefano Ghidoni received his Master Degree from the University of Parma, Italy, on April 2004 and in 2008 he received his Ph.D. degree in Information Technology for his 
+work on Articial vision. Now he is a Researcher at University of Padua. He is interested in pattern recognition, robotics and computer vision. 
+
+Sheryl Brahnam received her Ph. D. (Computer Science) from the Graduate Center at the City University of New York (2002). Now she is an Associate Professor at Missouri 
+State University. She is interested in pattern recognition, face recognition, medical image analysis. 
+

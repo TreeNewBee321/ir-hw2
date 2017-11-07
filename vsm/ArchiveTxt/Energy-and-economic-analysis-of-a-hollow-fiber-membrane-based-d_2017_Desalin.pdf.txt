@@ -1,0 +1,2289 @@
+Energy and economic analysis of a hollow ber membrane-based desalination system driven by solar energy
+
+Li-Zhi Zhang a,b,, Guo-Pei Li a
+
+a Key Laboratory of Enhanced Heat Transfer and Energy Conservation of Education Ministry, School of Chemistry and Chemical Engineering, South China University of Technology, Guangzhou
+510640, China
+b State Key Laboratory of Subtropical Building Science, South China University of Technology, Guangzhou 510640, China
+
+H I G H L I G H T S
+
+
+ Hollow ber membrane module is used
+for water desalination.
+ Solar energy is used.
+ Optimum ratio of the storage tank vol-
+ume to solar collector area is about
+12 L/m2.
+ The water production cost is about
+16.97 $/m3.
+article
+
+info
+
+Article history:
+Received 11 May 2016
+Received in revised form 28 October 2016
+Accepted 4 November 2016
+Available online 18 November 2016
+
+Keywords:
+Solar energy
+Hollow-ber membrane
+Humidication
+Dehumidication
+Desalination
+
+
+abstract
+
+A novel solar energy driven and membrane-based air humidication-dehumidication desalination (MHDD)
+system is designed and constructed. To realize a water-salt separation, a hollow ber membrane module is
+employed as the humidier to humidify air with solar energy heated saline water. The humidied air is then
+cooled and condensed to obtain distilled water. A detailed theoretical model is developed and validated to eval-
+uate the performance of the proposed MHDD system. The whole model includes submodels for the solar collec-
+tor, the water tank, the membrane humidier, and the vapor condenser. At a specied membrane area, the effects
+of the water tank volume and solar collector area on the system performance such as the electric energy con-
+sumption for water production (SEC), the coefcient of performance (COP), etc., are analyzed. The optimal
+water tank volume and the optimal solar collector area for the desalination system are evaluated. In addition,
+an economic analysis on the whole system reveals that the system needs a low maintenance cost to make the
+water production competitive. Generally it provides an attractive alternative to small-scale, stand-alone desalina-
+tion systems that could provide high purity drinkable water.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+Global population growth and economic development have resulted
+in a sharp increase in the demand for fresh water [1]. Water shortage is
+becoming a worldwide challenge. Although over 71% of the earth's sur-
+face is covered with water, about 97.5% of water on the earth is sea or
+brackish water which contains large amounts of salt. As a result, desali-
+nation of sea or brackish water becomes the most feasible solution to
+overcome fresh water shortage. Desalination can be accomplished by
+a number of techniques [2每10]. Generally, these techniques can be di-
+vided into following categories: (1) Thermal processes that involve
+phase change like Multi-Effect Distillation (MED) [2] and Multi Stage
+Flash (MSF) [3]. (2) Membrane processes without phase change like Re-
+verse Osmosis (RO) [4,5], Nano Filtration (NF) [6] and Electro Dialysis
+(ED) [7]. (3) Hybrid processes that involve both phase change and
+membranes like membrane distillation (MD) [8每10].
+Above thermal processes are energy intensive [11,12]. Application of
+MSF helps the Middle East to hold nearly about 50% of the world's desali-
+nation capacity. However, recently with the development of membrane
+technology, RO desalination method has rapidly been adopted since the
+1960s. It now surpasses the thermal processes in new plant installations.
+At the end of 2009, over 15,000 desalination plants were in operation
+world-wide, and approximately 50% of those were RO plants [12]. How-
+ever, reverse osmosis based membrane technology is relied heavily on
+precious high-pressure mechanical energy. Besides energy intensive, it
+has maintenance problems [13].
+The use of solar energy in desalination represents a promising trend.
+Because solar thermal energy is a low-grade heat, desalination systems
+that can be driven by low-grade heat should be searched. In this respect,
+the solar powered air humidication-dehumidication desalination
+process is regarded as a favorable technique [14,15]. According to this
+concept, solar heated sea water is used to humidify the air. The humid-
+ied air is then cooled and condensed to produce distilled water. Air hu-
+midication can be effectively realized even if the sea water is heated to
+60 to 80 ～C, so it's a good candidate for solar energy use. There have been
+many studies of solar energy driven desalination with humidication-
+dehumidication cycles. Usually packed columns, where the hot sea
+water and air stream are in a direct contact, are used for air humidica-
+tion. Farsad et al. [16] studied a solar desalination unit with humidica-
+tion每dehumidication cycle. A packed tower as a humidier was used
+in the system. The heated solution from solar collector is immediately
+transported to the humidier and it is in a direct contact with air on
+the surface of packing. Al-Sulaiman [17] also set up a solar desalination
+system using humidication-dehumidication processes. The air is hu-
+midied through the direct contact with the water in the humidier.
+Zhani [18] constructed a plant consisting of a at plate solar air collector,
+a at plate solar water collector, a pad humidier, an evaporation tower
+and a condensation tower. For solar powered systems, heat storage is
+necessary due to the intermittent nature of solar energy heating [19,
+20]. However the above mentioned studies did not have thermal energy
+storage devices. Most importantly, all these plants used packed columns
+to humidify. The coherent problem with direct contact packed columns
+is that sea water droplets may be carried over to air streams, which
+would subsequently condensed into the production water. As a result,
+the purity of the production water would be sacriced. Another setback
+of packed columns is that the humidication efciency is low due to
+ow maldistribution.
+To overcome these problems, this research set up a solar energy
+driven membrane-based humidication dehumidication desalination
+system (MHDD). Instead of a packed column a hollow ber membrane
+module, in which air is humidied by water through membranes, is
+used to substitute the packed column. Since water and air stream are
+separated by membranes, the problem of water droplets crossover is
+thus solved. Besides, a water tank is used to storage solar energy, thus
+the problem from the intermittent nature of solar energy use is over-
+come. To theoretically investigate the system, a mathematical model
+of the system is developed. The humidier, the dehumidier, the solar
+collector and the thermal energy storage unit are modeled in detail to
+analyze the system performance. The optimum sizes of the solar collec-
+tor and the storage tank for the given membrane module are investigat-
+ed. An economic analysis on the whole system is also performed to
+investigate the feasibility.
+
+2. System description and experimental setup
+
+2.1. System description
+
+Based on the membrane type humidication每dehumidication pro-
+cesses, a solar energy powered MHDD system is designed and set up in
+SCUT. The real photos and the schematic sketch of the system are pre-
+sented in Figs. 1 and 2 respectively. The system mainly consists of a
+solar collector (contains 36 U-tube glass evacuated tube solar collec-
+tors), a heat storage water tank with a coil heat exchanger inside, a
+membrane-based humidier (a hollow ber membrane module) and
+a dehumidier (a n-and-tube heat exchanger). The solar collector
+combined with a heat storage tank is employed to capture and store
+the uctuant solar energy. In this experiment, NaCl solution with a
+mass fraction of 3.5% is used to substitute sea water. The collected ener-
+gy is transferred to the NaCl solution in the tank by the heat transfer
+media (distilled water) through the coil heat exchanger. The novel
+cross-ow hollow ber membrane module developed in our laboratory
+is used as the humidier. The bers are made with modied porous
+membranes. Composite membranes in the module are composed of
+two layers: a porous polymer PVDF (polyvinylidene uoride) layer
+and a dense PVAL (polyvinyl alcohol) skin layer. The hydrophobic
+PVDF layer mainly provides the mechanical strength. It also prevents
+liquid molecules from entering the pores of membranes which has
+been veried by a long time experiment. Meanwhile the hydrophilic
+PVAL skin layer provides the permselectivity and improves the perme-
+ate ux due to low resistance for moisture transfer. The physical struc-
+ture, composition and heat and mass transport data of the membrane
+bers including membrane thickness (汛m), ber outer diameter (do),
+thermal conductivity of membrane (竹m) and moisture diffusivity in
+membrane (Dvm) are described elsewhere [21] and also listed in Table
+2. The heated saline water then ows through the bers, while the
+fresh air from a fan ows outside the bers in the shell side of the mod-
+ule. The surface tension forces between the water and the hydrophobic
+membrane prevent liquid molecules from entering the pores of mem-
+branes. Under trans-membrane vapor partial pressure differences,
+water vapor from saline water inside the bers can pass through the
+pores. It is then absorbed by the air stream outside the bers. Thus,
+heat and mass transfer are achieved between the hot saline water and
+the air streams. Then the saline water ows back to the water tank to
+be heated again. The heated and humidied air at the exit of the humid-
+ier then passes through the dehumidier, where it is cooled and the
+vapor contained is condensed into distilled water. The produced fresh
+water is collected at the bottom of the dehumidier and it is stored in
+the fresh water storage tank.
+
+2.2. Experimental setup
+
+An experimental study is conducted to investigate the feasibility of
+using solar energy for the MHDD system. The whole system is divided
+into the outdoor part (a solar collector) and the indoor part (a heat stor-
+age water tank and a humidication-dehumidication desalination
+unit) as shown in Fig. 1.
+The solar collector of glass evacuated tube type has high efciencies
+compared to at plate type collectors because it has a highly selective
+surface coating and a vacuum insulation for the absorber element [22].
+U-tube evacuated solar collector as one of the glass evacuated tube
+solar collectors has the advantages of high-pressure-bearing ability. It
+can also eliminate the impact of glass evacuated tube cracking caused
+by frequent cold and hot water alternate shocking, because the water
+is in U copper tubes instead of in the glass tubes. In view of the above
+characteristics, a 36 U-tube evacuated solar collector is used in this sys-
+tem, and each collector tube is double-glazed. Between the outer and
+inner glass, a vacuum jacket is made to eliminate the convective heat
+losses from the collector to the outside environment. A U copper tube
+is wedged inside an aluminum n that is in a close contact with the
+
+202
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+Fig. 1. Real photos of the system. (a) The outdoor part: the solar collector, (b) the indoor part: heat storage tank unit and the humidication-dehumidication desalination system.
+
+Fig. 2. Schematic diagram of the solar powered membrane-based humidication-dehumidication desalination system (MHDD).
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+203
+
+Table 1
+Parameters of the solar collector and the heat storage tank for this system.
+
+Material
+
+Parameters
+
+Symbol
+
+Unit
+
+Value
+
+Outer glass tube
+
+Inner absorber tube
+
+Heat storage tank
+
+Surface area
+Coil heat exchanger
+
+Heat transfer area
+
+Outer diameter
+Thickness
+Transmissivity
+Outer diameter
+Thickness
+Absorptivity
+Effective length
+Tube number
+Effective absorption area
+Diameter
+Height
+Capacity
+Heat loss coefcient
+
+W m 2 K 1
+
+At
+Outer diameter
+Thickness
+Effective length
+Heat transfer coefcient
+
+W m 2 K 1
+Acoil
+
+do
+
+汛o
+而
+
+di
+
+汛i
+汐
+
+L
+
+ncol
+
+Ae
+每
+每
+每
+Ut
+0.8
+m2
+每
+汛
+
+L
+
+Ucoil
+
+250
+m2
+
+mm
+mm
+每
+mm
+mm
+每
+m
+每
+m2
+m
+m
+L
+
+2.5
+mm
+mm
+m
+
+1.884
+
+58
+2
+0.9
+47
+2
+0.9
+1.71
+36
+4.13
+0.46
+1.5
+150
+
+12
+1
+50
+
+inner glass tube, as shown in Fig. 1(a). In order to transfer the heat en-
+ergy between the collector and the saline water inside the tank, a
+50 m long coiled tube made of 316L stainless steel is used and placed in-
+side the tank. The outside of the heat storage tank is covered by a 5 cm
+thick polyurethane foam to insulate heat transfer from the inside to the
+environment. The inner shell of the tank is made of 304 stainless steel.
+304 and 316L stainless steels are used to ensure the equipment are cor-
+rosion resistant to saline water. The U-tubes in the evacuated solar col-
+lector and the coiled tube in the heat storage tank are lled with
+distilled water in advance as the heat transport media. Parameters of
+the solar collector, the heat storage tank and the coil heat exchanger
+are listed in Table 1. In this system, a hollow ber membrane module
+made in our laboratory is used as the humidier. The detailed illustra-
+tion of the structure is shown in Fig. 3(a). The production process and
+the real photo of the module can be found in [23]. The silicone tube is
+used as distilled water and saline water lines. The membrane module
+and the saline water lines are covered by PVC (polyvinyl chloride)
+heat insulation cotton to reduce the heat losses. The dehumidier is a
+n-and-tube heat exchanger. 42 tubes made with 316L stainless steel
+are mounted by aluminum ns. At the bottom of the dehumidier, a
+collecting trough is designed to collect the produced fresh water into
+
+Fig. 4. Schematic diagram of the dehumidier.
+
+the fresh water storage tank as depicted in Fig. 4. The structure and
+the physical parameters of the humidier and the dehumidier are
+listed in Table 2. The n-and-tube heat exchanger is used as the dehu-
+midier because heat transfer coefcient at the air side is signicantly
+lower than that of solution side. Those aluminum ns provide greater
+heat transfer areas, improving heat transfer efciency at the air side.
+In addition, one 6 W corrosion resistant magnetic circulating pump is
+used to transport the hot solution to the humidier. Another one is
+used to transport the cold water (substitute sea water) to the dehumid-
+ier. A centrifugal fan with frequency conversion governor is used to
+supply various air volumes for the system. A control display panel is
+used to display the water temperature at inlet and outlet of the collec-
+tor. A Data Transmission System (DTS) is used to collect temperature
+and humidity data of the uids. They are then transferred to a computer.
+Several screens are placed inside and along the air duct to uniformly dis-
+tribute the air stream. In order to maintain constant inlet air states, the
+indoor part of the system is installed in an air-conditioned room whose
+temperature and humidity conditions are set to the typical local weath-
+er conditions.
+
+2.3. Measurement devices
+
+In order to evaluate the system performance, several key parameters
+are to be measured such as, ow rates of air and solution streams,
+
+Fig. 3. Schematic of the hollow ber membrane humidier: (a) The illustration of structure of module; (b) Schematic diagram of the model calculation.
+
+204
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+Table 2
+Physical and transport properties of the humidier and the dehumidier under design operating conditions.
+
+Humidier
+
+Symbol
+LH
+WH
+HH
+nf
+do
+di
+Av
+
+耳
+
+NL
+
+Atot
+
+汛m
+竹m
+
+Dvm
+Redo,max
+htot
+
+kW m 2 K 1
+
+ktot
+
+Unit
+mm
+mm
+mm
+每
+mm
+mm
+m2/m3
+每
+每
+m2
+mm
+
+W m 1 K 1
+
+m2/s
+每
+
+0.0921
+m/s
+
+Value
+90
+90
+90
+1400
+1.5
+1.3
+814
+0.30
+40
+0.59
+0.1
+0.17
+9 ℅ 10 7
+113
+
+Ai
+0.0073
+
+Dehumidier
+
+Symbol
+LD
+WD
+HD
+PL
+PT
+PF
+Do
+Di
+Dc
+Dh
+Nr
+
+汛n
+Ap,o
+Aff
+
+m2
+Ah
+
+Unit
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+每
+mm
+m2
+m2
+
+m2
+
+Value
+200
+150
+200
+25.4
+22.0
+2.2
+9.52
+8.20
+10.2
+3.63
+6
+0.12
+0.25
+0.021
+
+0.216
+2.95
+
+the collector to the surrounding. It can be obtained from the following
+formula [24]:
+
+ 
+
+
+
+
+qsolar  Sqloss;c  F R I t 而汐AeAaU L T f ;iT e
+
+
+
+
+
+temperature of solution at inlet and outlet of the humidier, relative hu-
+midity and temperature of air at inlets and outlets of the humidier and
+the dehumidier. Three digital
+temperature-humidity sensors
+(AF3485Y) with an accuracy of ㊣ 2.5% and a resolution of 0.1% are
+used to measure the temperature and relative humidity of the air.
+PT100 temperature sensors with an accuracy of ㊣ 0.1 ～C are used to
+measure the solution temperature at inlets and outlets of the humidier
+and the dehumidier. All sensors are calibrated before the experiment.
+Air ow rates are obtained by a hot wire anemometer (TESTO 425) with
+an accuracy of ㊣ 0.15%. To measure the ow rates of water entering the
+humidier and the dehumidier, two rotor-ow meters are used with
+an accuracy of ㊣ 0.5%. A solar radiation sensor (RS232) working in the
+range from 0 to 2000 W/m2 with an accuracy of ㊣ 2% is used to measure
+the outdoor solar radiation, which is also transported to the computer. A
+conductivity meter (DDS-307) combined with a DJS-1 platinum black
+electrode with an accuracy of ㊣ 0.5% is used to measure the electrical
+conductivity of the produced water.
+
+3. Mathematical modeling
+
+3.1. Evacuated solar collector
+
+The solar collector used in this system consists of 36 U-tube evac-
+uated so lar co l lectors , wh ich are connected in ser ies by the p ipe
+header . A solar radiation sensor placed at the same slope with the
+collector is used to measure the outdoor solar radiation as shown
+in Fig. 1(a). To obtain the useful energy collected by the solar collec-
+tor, the mathematical model is established taking into account the
+following assumptions:
+
+(1) The energy stored in the collector is negligible.
+(2) The ow rate of water inside the collector tube is constant.
+(3) In the vacuum jacket, air convective heat loss and heat conduc-
+tion loss are negligible.
+(4) The uid temperature remains under 100 ～C. During the opera-
+tion time, the uid has no phase change.
+(5) Solar energy absorption by the outer glass is negligible. Only the
+energy absorbed by the inner absorber glass is considered.
+
+The collector heat removal factor (FR) is the ratio of useful heat ob-
+tained in collector to the heat collected by collector, and it can be
+expressed as:
+
+
+
+
+
+
+
+0
+
+F R  m f cpf
+AaU L
+
+1 exp  AaU L F
+
+m f cpf
+
+3
+
+where
+Ap  ncoldi L; Aa  羽Ap and Ae  1:43Ap
+where, It is the global solar radiation, 而 is transmissivity of the outer
+glass, 汐 is absorptivity of the selective absorbing coating, F∩＊ is the collec-
+tor efciency factor taken as 0.9 for this collector [25]; UL is the collector
+overall heat loss coefcient which can be estimated from [25] as UL =
+0.003(T  Te) + 0.89; Ap is the projection area of absorber tubes, Aa
+is outer surface area of absorber tubes, Ae is effective heat absorption
+area of absorber tubes, Te is the outside environment temperature, mf
+is the ow rate of the distilled water in the tube.
+The energy conservation of the distilled water in the solar collectors
+is written as:
+
+ 
+
+
+
+qsolar  cpf m f T f ;oT f ;i
+
+where, Tf,i and Tf,o are the inlet and outlet water temperature to/from
+the collector respectively.
+The instantaneous collector efciency, 灰i, is the ratio of useful energy
+obtained in the collector to solar radiation to the collector. It can be for-
+mulated as:
+
+
+
+
+
+T f ;iT e
+
+I t
+
+灰
+
+i
+
+ qsolar
+
+I t Ae
+
+ F R 而汐 F R AaU L
+Ae
+
+3.2. Coil heat exchanger
+
+1
+
+2
+
+4
+
+5
+
+Based on the above assumption, the useful solar energy (qsolar) is
+equal to the energy absorbed (S) minus the heat losses (qloss,c) from
+
+A coil heat exchanger placed in the heat storage tank is used to trans-
+fer the energy collected by the solar collector to the water in the tank, as
+
+shown in Fig. 2. The following equations present the corresponding
+model:
+
+cpf m f T f ;oT f ;i
+
+ 
+
+  U coilAcoil
+
+忖T 2忖T 1
+ln 忖T 2 =忖T 1
+
+
+
+
+
+
+
+
+
+6
+
+where, Ucoil is the overall heat transfer coefcient of the coil in the stor-
+age tank, Acoil is the heat transfer area of the coil, those structure param-
+eters of the coil heat exchanger can be found in Table 1.
+Assuming that the inlet and outlet water temperatures of the coil
+heat exchanger are equal to the outlet and inlet water temperatures of
+the solar collector respectively, and then 忖T2 and 忖T1 can be written as:
+忖T 2  T f ;oT s and 忖T 1  T f ;iT s
+
+7
+
+where Ts is the temperature of water in the heat storage tank.
+
+3.3. Heat storage tank
+
+Due to the intermittent nature of solar energy, a thermal energy
+storage unit (TES) is used in this system. For the energy balance and
+governing equations of the heat storage tank the following assumptions
+are considered:
+
+(1) Water tank is a completely mixed storage tank, and the temper-
+ature distribution inside the saline water storage tank is homoge-
+neous.
+(2) For this well mixed model, solution temperature (Ts) and con-
+centration (Xs) in the tank is equal to the inlet solution tempera-
+ture (Ts,i) and concentration (Xs,i) of the humidier.
+(3) The heat loss coefcient from the tank to the environment is con-
+stant.
+(4) Since water tank is located indoors, the temperature of the in-
+door environment is equal to the inlet air temperature to the hu-
+midier (Ta,i).
+
+In the process of dynamic operation, the water in the tank has a var-
+iable level and a variable temperature. The energy balance equation of
+the storage tank without makeup water is represented as follows:
+
+老s cps
+
+d T sV tank
+
+
+
+
+
+dt
+
+ qsolarqoutqloss;t
+
+8
+
+where Ts and Vtank are the temperature and the volume of water in the
+heat storage tank. qout is the output heat load:
+
+qout  cpsms;i T s;icpsms;o T s;o
+
+9
+
+where Ts,i is the temperature to the humidier (leaving the tank), and
+Ts,o is the temperature outlet the humidier (reaching the tank). ms,i
+and ms,o are the inlet and outlet mass ow rates of the saline water of
+the humidier respectively as shown in Fig. 3. Based on mass conserva-
+tion, ms,o can be written as:
+
+ms;o  ms;ima 肋a;o肋a;i
+
+ 
+
+
+
+10
+
+where 肋a,i and 肋a,o are the inlet air humidity and the outlet air humidity
+of the humidier respectively. In Eq. (8), qloss,t is the heat loss from the
+tank to the indoor environment:
+
+qloss;t  U t At T sT a;i
+
+ 
+
+
+
+11
+
+3.4. Hollow ber membrane humidier
+
+As a separation equipment, the hollow ber membrane module is a
+key unit in the system. It is like a cross-ow shell-and-tube heat mass
+
+exchanger. Air stream ows in a cross ow manner across the hollow
+ber tube bank. The ber-to-ber modeling is not likely considering
+that there are numerous bers. Therefore a parallel-plates heat mass ex-
+changer modeling as an alternative approach is used in this section. The
+detail is described in Ref [23]. The convective heat transfer coefcients h
+(kW m 2 K 1) and the convective mass transfer coefcient k (m/s) of
+solution and air can be represented by Nusselt numbers and Sherwood
+number respectively as:
+
+Nu  hd
+
+竹
+
+12
+
+Sh  kd
+D
+
+ Nu
+
+Le1=3
+
+13
+
+where 竹 is heat conductivity, Le is the Lewis Number. D is diffusivity,
+which represents Dws, water diffusivity in solution for the tube side,
+and Dva, moisture diffusivity in air for the shell side, respectively.
+Since the Re for the air stream and the solution stream (in the ne -
+bers) are all much less than 2300, both air and solution can be considered
+to be laminar. For fully developed laminar heat transfer in round tubes:
+Nus  3:658
+
+14
+
+Nusselt numbers of air stream are given in [26]:
+Nua  1:13C 1 Rem
+
+do ; max Pr0:33
+a
+
+15
+
+where the constants C1 and m can be found in [26], Pr is Prandtl number.
+Redo,max is calculated by the maximum air stream velocity occurring
+within the hollow ber tube bank (ua,max):
+
+Redo; max  ua; max do
+
+糸a
+
+16
+
+Overall heat and mass transfer coefcients of the hollow ber mem-
+brane humidier [27]:
+ 汛m
+竹m
+
+1
+
+htot
+
+ 1
+
+hs
+
+do
+di
+
+ 
+ 
+
+do
+d
+
+ 
+ 
+
+ 1
+
+ha
+
+17
+
+1
+
+ktot
+
+ 1
+
+ke
+
+s
+
+do
+di
+
+ 汛m
+
+Dvm
+
+do
+d
+
+ 1
+
+ka
+
+18
+
+where ke s is the equivalent moisture transfer coefcient in the solution
+side, 汛m is membrane thickness, d is mean diameter of membrane, Dvm is
+the moisture diffusivity in membrane.
+For the air and solution streams, normalized governing equations for
+heat and moisture conservation are described as follows:
+
+T a
+y
+
+ htot Atot
+
+ma cpaW
+
+T sT a
+
+
+
+
+
+19
+
+肋a
+y
+
+ 老a ktot Atot
+
+maW
+
+肋s肋a
+
+
+
+
+
+20
+
+T s
+x
+
+ htot Atot
+
+ms cps L
+
+T aT s
+
+
+
+  老a ktot AtotHw
+
+ms cps L
+
+肋a肋s
+
+
+
+
+
+21
+
+X
+x
+
+ 老a ktotAtot
+
+ms L
+
+肋s肋a
+
+
+
+
+
+22
+
+In equations above-mentioned, x and y are coordinates, X is solution
+concentration, T is temperature, 肋a is the air humidity, 肋s is the air equi-
+librium humidity with solution at the temperature Ts and the concentra-
+tion Xs, Hv is evaporation heat of vapor.
+
+205
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+206
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+The boundary conditions are given as:
+
+x  0; T s  T s;i 肋s  肋s;i
+
+y  0; T a  T a;i 肋a  肋a;i
+
+23
+
+24
+
+where 肋s,i is the air equilibrium humidity with solution at the inlet with
+a temperature Ts,i and a concentration Xs,i.
+
+The relative humidity (RH) is calculated by humidity (肋) and tem-
+perature (T) of the air as [28]:
+
+RH
+
+肋
+
+ e5294=T
+
+106
+
+1:61RH
+
+25
+
+Eqs. (19)每(22) are the governing partial differential equations for
+heat and moisture transfer in the membrane module. Considering that
+heat and mass transfer are closely coupled in the process, a nite differ-
+ence method is used to discretize and solve these equations. The
+
+Fig. 5. Flow chart for solution procedure in simulation of the whole system.
+
+schematic diagram of the calculation domain is showed in Fig. 3(b). A grid
+independence test is done. It can be found that 40 ℅ 40 grids had enough
+numerical accuracy (less than 0.1%) compared with 50 ℅ 50 grids.
+In the shell side of the membrane module, the air stream ows
+across the hollow ber tube bank, the pressure drop is:
+
+忖P a;H  NL C 2
+
+老au2
+2
+
+a; max
+
+f a
+
+26
+
+In the equation, NL is the number of bers along the air stream ow
+direction, C2 is a correction factor, fa is friction factor of air owing across
+the tube bank. C2 and fa are listed in Ref [26].
+For laminar ow in round tubes, solution side pressure drop is:
+
+忖P s;H  64
+LH
+Res
+di
+3.5. Dehumidier
+
+老s u2
+2
+
+s
+
+27
+
+The dehumidier is a n-and-tube heat exchanger as shown in Fig. 4.
+The effectiveness-Number of Transfer Units (汍-NTU) method is used for
+this n-and-tube heat exchanger [29]. The effectiveness can be written as:
+汍  1 exp NT U 0:22 exp C rNT U 0:78
+
+
+
+
+
+1
+
+h
+
+i
+
+=C r
+
+n
+
+o
+
+28
+
+where
+
+NTU  UA
+
+ma cpa
+
+and C r  ma cpa
+
+mc cpc
+
+29
+
+The total thermal resistance of the heat exchanger can be written as:
+ Rw  1
+灰
+
+1
+UA
+
+ 1
+
+hiAi
+
+o Ah ha
+
+30
+
+The rst term of the right-hand-side of Eq. (30) indicates the tube-
+side thermal resistance, the second term means the tube wall resistance
+and the last term is the air-side thermal resistance. Ai is the surface area
+inside the tubes. 灰o is n efciency, which is available in Ref [26]. Ah is
+the surface area in hot air side.
+In the dehumidier, solution in the tubes is in single-phase forced
+convection. The Reynolds numbers for the solution stream are far
+more than 4000 (about 15,343). For turbulent ow in pipes, the tube-
+side heat transfer coefcient hi can be evaluated with the Gnielinski cor-
+relation [30]:
+hi  竹i
+ReDi
+1000
+Pr f i =2
+1:07  12:7
+Di
+f i =2
+Pr2=31
+f i  1:58 ln ReDi
+
+ 
+ 
+
+ 
+
+
+p
+
+
+
+
+
+
+
+
+
+
+31
+
+3:28
+
+2
+
+32
+
+where ReDi is Reynolds number based on the inside diameter of the
+tube, fi is the friction factor in the tube.
+The airside heat transfer characteristics are presented in terms of the
+Colburn j factor:
+ha  j
+
+Ga cpa
+Pr2=3
+
+33
+
+where Ga is maximum air mass ow rate along air ow direction
+among ns. j is Colburn j factor, which is a dimensionless heat transfer
+factor to perform the heat transfer characteristics of air side. Consider-
+ing the number of tube row (Nr) is six in this dehumidier, j can be cal-
+culated as [31]:
+
+j  0:4Re0:4680:04076N r
+Dc
+
+Ao
+
+Ap;o
+
+
+
+0:159
+
+N r
+
+1:261
+
+34
+
+where
+
+ReDc  GaDh
+
+糸a 老a
+
+; Ga  ma
+
+Aff
+
+and Dh  4Ac
+旭 c
+
+35
+
+in Eqs. (34)每(35), Ao is total surface area of the dehumidier, Ap,o is ex-
+ternal surface area of tube, Aff is minimum free ow area in the ow
+channel with ns, Dh is the hydraulic diameter of the air ow channel
+as showed in Fig. 4, Ac is area of air channel, 旭c is wet perimeter of chan-
+nel. The detail structure and physical parameters of the dehumidier
+are listed in Table 2.
+Under dehumidifying conditions, the maximum theoretical heat
+transfer rate (qmax) and the real heat transfer rate (qreal) can be written as:
+
+qmax  qreal
+qreal  mc cpc T c;oT c;i
+
+汍
+
+ ma Ha;iHc;i
+  ma Ha;iHa;o
+
+ 
+
+
+
+36
+
+ 
+
+ 
+
+
+
+37
+
+where, Ha,i and Ha,o are the enthalpy of inlet air and outlet air of the dehu-
+midier. Hc,i is the enthalpy of saturated moist air at the temperature Tc,i.
+The outlet air of the dehumidier is saturated moist air, so the relative hu-
+midity of the outlet air is 100%. Then the outlet air temperature (TD,a,o)
+and humidity (肋D,a,o) can be obtained.
+In the dehumidier, the air stream ows across tube bank with ns,
+the pressure drop is:
+
+忖P a;D  G2
+2
+
+a V i
+
+1  A2
+A2
+
+ff
+
+fr
+
+!
+
+V o
+V i
+
+1
+
+
+
+
+
+ f
+
+Ao V m
+
+Aff V i
+
+"
+
+#
+
+38
+
+where Aff is minimum free ow area in the ow channel with ns, Afr is
+the windward area of the dehumidier, f is friction factor, which is avail-
+able in Ref [26]. Vi and Vo are the specic volume of the inlet and outlet
+air (1/老), Vm is the average of Vi and Vo.
+For turbulent ow in round tubes, solution side pressure drop is:
+
+忖P s;D  f D
+
+l
+Di
+
+老s u2
+2
+
+s
+
+39
+
+where fD is the friction factor in the tube of the dehumidier.
+
+3.6. Performance indices
+
+To evaluate the performance of the system, several parameters need
+to be dened.
+
+Fig. 6. Measured variations of solar radiation and environment temperature with time on
+28 Aug, 2015.
+
+207
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+208
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+COP (the coefcient of performance of the whole system) and COPE
+(electric COP) are dened:
+AP  Hw
+
+Z
+
+ 
+
+COP 
+
+44
+
+
+
+qsolar  W pump  W fan
+
+dt
+
+Z
+
+COPE 
+
+ 
+
+AP  Hw
+
+W pump  W fan
+
+
+
+dt
+
+45
+
+where, Hw is the water latent heat of condensation. Wpump and Wfan are
+pump and fan power consumption, which can be written as:
+and W fan  ma 忖P a;H  忖P a;D
+
+46
+
+ 
+
+
+
+W pump  ms忖P s
+pump
+
+老s 灰
+
+老a 灰
+
+fan
+
+Fig. 7. Calculated (solid lines) and tested (dotted lines) values of the tank water
+temperature and the accumulated water production during operation time.
+
+3.7. Calculation method
+
+where 灰pump and 灰fan are pump efciency and fan efciency respectively.
+
+
+
+Instantaneous freshwater production rates (IP) and accumulated
+water production during the operation period (AP) are dened as:
+
+IP  ma 肋D;a;i肋D;a;o
+
+AP 
+
+ma 肋D;a;i肋D;a;o
+
+
+
+dt
+
+40
+
+41
+
+where, 肋D,a,i and 肋D,a,o are the humidity of inlet air and outlet air of the
+dehumidier.
+Salt rejection was calculated using the following equation:
+
+ 
+
+ 
+
+Z
+
+
+
+
+
+竹D
+竹S
+
+R j  1
+
+42
+
+where, 竹S and 竹D are the electric conductivity of saline water and distil-
+late respectively.
+Specic electric energy consumption for unit volume of water pro-
+duction (SEC) is as follow:
+
+Z
+
+ 
+
+
+
+老w
+
+SEC 
+
+W pump  W fan
+
+AP
+
+dt
+
+43
+
+Fig. 5 demonstrates the ow chart of the numerical calculation. The
+detailed solution procedure is introduced as follows:
+
+(1) Input initial condition. Input the operating parameters like the
+mass ow rate of the distilled water in the collector tube (mf);
+the inlet temperature (Ta,i), humidity (肋a,i) and volumetric ow
+rate (Va,i) of air to the humidier; the volumetric ow rates of
+hot saline water (Vs,i) and cold water (Vc), and the inlet temper-
+0), the concentration
+ature of cold water (Tc,i); the volume (Vs
+(Xs
+0), and the temperature (Ts
+0) of saline water in the heat storage
+tank at the beginning; the device parameters like the humidier,
+dehumidier, solar collector, heat storage tank, etc. The time step
+(忖t) is 15 s.
+(2) Assume initial values for the temperature and volume of the sa-
+line water in the heat storage tank (Ts
+i, Vs
+i).
+(3) The saline water concentration (Xs
+i) is calculated from the total
+mass of NaCl and the water volume of the tank (Vs
+i) at tempera-
+i.
+ture Ts
+(4) Assume an initial temperature difference (忖T).
+(5) Set the inlet water temperature to the collector tube (guessed
+) as Ts
+i + 忖T. Extract weather data like solar radiation and
+environment temperature and solve Eqs. (1)每(5) for the evacu-
+ated solar collector and calculate its outlet water temperature
+i ), the useful energy collected by the solar collector (qsolar
+)
+and the collector efciency (灰i).
+
+Tf , i(gue)
+i
+
+(Tf , o
+
+i
+
+Fig. 8. Variations of the electric conductivity of the saline water and the produced fresh water and the salt rejection during the whole-day operation time.
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+209
+
+i
+
+i
+
+(肋a , o
+i
+
+i
+
+(6) Solve Eqs. (6)每(7) for the coil heat exchanger and calculate its
+outlet temperature. This temperature is also the solar collector
+inlet temperature (calculated Tf , i(cal)
+). Then calculate a new tem-
+perature difference (忖T∩ = Tf , i(cal)
+ sTs
+i). If the deviations be-
+tween 忖T'and 忖T are within the convergence criterion, go to
+(7); otherwise, let 忖T = (忖T  + 忖T)/2 and return to (5) until
+convergence criterion is satised.
+(7) Set the inlet solution temperature (Ts , i
+i ) and concentration (Xs , i
+i )
+to the humidier equal to the current solution temperature (Ts
+i)
+i) in the heat storage tank. Solve Eqs.
+and concentration (Xs
+(12)每(27) for the humidier and calculate the outlet tempera-
+ture (Ts , o
+i ), concentration (Xs , o
+i ) of the hot saline water from the
+humidier. Calculate the outlet temperature (Ta , o
+i ), humidity
+) of the air from the humidier. Calculate the output heat
+load (qout
+).
+(8) Set the outlet temperature, humidity of the air from the humidi-
+er as the inlet temperature, humidity of the air to the dehumid-
+ier. Solve the Eqs. (28)每(39) for the dehumidier and calculate
+), humidity (肋D , a , o
+the outlet temperature (TD , a , o
+) and enthalpy
+i ) of the air from the dehumidier. Calculate the outlet tem-
+i ) from the dehumidier.
+perature of cold water (Tc , o
+(9) Solve Eqs. (8)每(11) for the heat storage tank, calculate the tem-
+perature (Ts , (cal)
+) and the volume (Vs , (cal)
+) of the saline water
+in the tank. If the deviations between Ts , (cal)
+and Ts
+and
+Vs
+i are within the convergence criterion, go to (10); otherwise,
+let Ts
++ Ts
+i)/2 and Vs
++ Vs
+i)/2, then return
+to (3) until convergence criterion is satised.
+(10) Go to next time step (i = i + 1) and return to (2) until the re-
+quired time is reached. Then calculate performance indices.
+
+i = (Vs , (cal)
+i
+
+i = (Ts , (cal)
+i
+
+i, Vs , (cal)
+i
+
+(Ha , o
+
+i
+
+i
+
+i
+
+i
+
+i
+
+Fig. 10. Variations of the instantaneous collector efciency with time.
+
+15m3/h for the inlet air at 35 ～C and 65% RH. In addition, the initial solu-
+tion temperature of the tank is set to 50 ～C after an overnight insulating,
+with a concentration 3.5%, and a volume 80 L. The inlet temperature of
+the cold water is 28 ～C (under the condition of room temperature)
+and cold water ow rate is chose at 160 L/h. The experiments were car-
+ried out on 28 Aug., 2015 and the measured operating values of solar ra-
+diation and ambient temperature during a day in Guangzhou, China, are
+shown in Fig. 6. Considering that there is almost no solar radiation be-
+fore 6 o'clock and after 19 o'clock, the system is operated from 6:00 to
+19:00. Based on the above mentioned operating conditions, the calcu-
+lated and tested values of the tank water temperature (Ts) and the accu-
+mulated water production (AP) during operation time are given in Fig.
+7. As it is shown, the agreements between the calculated and the tested
+results are good. The relative deviations between the calculated and the
+tested values of Ts and AP are within 1.9% and 4.0% respectively. There-
+fore the mathematical model is reliable and could be used to study the
+plant. Furthermore, during the operation, although there is a slight
+rise, the electric conductivity of the produced fresh water is still basical-
+ly less than 12 米S/cm, the salt rejection is also stable in the range of
+99.978%每99.984%, as showed in Fig. 8. It means that the membrane
+pore wetting has not occurred and saline water droplets have not
+
+4. Results and discussion
+
+4.1. Model validation
+
+The validity of the present mathematical model is examined by com-
+paring the simulation results with the experimental results obtained
+from the test rig. There are many inuencing parameters. Optimal oper-
+ating conditions including the inlet seawater, air ow rates to the hu-
+midier and the packing fractions of the humidier have been found
+previously [32]. Those optimal parameters are used in this study. The
+structural parameters of the humidier used in this experiment are
+listed in Table 2. For the size and structure of this humidier, the inlet
+hot saline water ow rate is chose at 140 L/h. The ow rate is chose at
+
+Fig. 9. Efciencies of the evacuated solar collector.
+
+Fig. 11. Effects of water tank volumes on the water temperature in the tank during the
+operation time.
+
+210
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+Fig. 12. Effects of water tank volumes on the instantaneous water production rate during
+the operation time.
+
+been carried over to air streams, which would subsequently condensed
+into the production water. Therefore this system is a promising method
+to obtain high purity water.
+
+4.2. Evacuated solar collector performance
+
+The solar collector is an important component of the solar powered
+MHDD system. In fact, most of the driving energy for the system is col-
+lected by this equipment. So its performance represents a critical factor
+to the efciency of the whole system. A measure of its performance is
+the collection efciency written in Eq. (5), dened as the radio of the
+useful energy gain over some specied time period to the incident
+solar energy. Under above operating conditions, the instantaneous col-
+lector efciencies for the collector with a 4.13 m2 effective area are illus-
+trated in Fig. 9. The collection efciency for this collector can be tted
+linearly as a function of the parameter [(Tf,i  Te)/It]:
+
+
+
+
+
+ 0:652:59
+
+灰
+
+i
+
+T f ;iT e
+
+I t
+
+47
+
+As shown in Eq. (47), the highest efciency of the evacuated solar
+collector can reach 0.65 when the inlet water temperature of the
+
+Fig. 14. Variations of COP and COPE with varying water volumes in the tank.
+
+collector is equal to the outside environmental temperature. In general,
+this U-tube evacuated solar collector has a superior energy-collecting
+efciency compared with other plate solar collector or evacuated tube
+collectors [33,34]. Fig. 10 shows variations of the instantaneous collector
+efciency with time during operation time. The collector efciency
+varies between 0.33 and 0.55 during the hours of operations and
+reaches a maximum at about 10:00 am. The reason is that at 10:00 the
+solar radiation is 683 W/m2 (about 85% of the noon time value) while
+the temperature difference between Tf,i and Te is not so large. As a result
+the ratio of temperature difference to solar radiation reaches a mini-
+mum and the collector efciency attains a maximum.
+
+4.3. Effects of water volumes in the tank
+
+The sizes of the storage tank are simulated. The system with a 50 ～C
+initial saline water temperature is operated from 6:00 until the temper-
+ature is below 50 ～C in the afternoon. The effective collector area is
+4.13m2 and other operation conditions are all specied as before.
+Fig. 11 shows the effects of tank volumes on the water temperature
+in the tank. The instantaneous water production rate during the opera-
+tion time is shown in Fig. 12. It is observed that water temperature in
+the tank uctuates in response to the daily solar insolation and ambient
+temperatures. However the water temperature decreases between 6:00
+
+Fig. 13. Variations of the accumulated water production and SEC with varying water
+volumes in the tank.
+
+Fig. 15. Effects of collector area on the water temperature in the tank during the operation
+time.
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+211
+
+Fig. 16. Effects of collector area on the instantaneous water production rate during the
+whole-day operation time.
+
+and 7:00 because during this period the solar radiation is not strong
+enough to meet the system demand. The fall in water temperature
+also results in a reduction in the instantaneous water production rate
+during 7:00每8:00 as shown in Fig. 12. The water tank temperature
+reaches a maximum value from 13:00 to 15:00. The instantaneous
+water production rate also reaches a maximum after half an hour
+delay. Compared to the tanks of small volumes, water temperature in
+a big volume tank responds slowly to the daily solar insolation. There-
+fore, a big volume water tank can store more sensible heat from the in-
+tense radiations at noon and it can then supply enough energy for the
+system operation when the sunlight is weak. In this way, the running
+time of the system with a 160 L volume tank has an extension of
+2.31 h from that with a 40 L volume tank. The system can still run
+even without solar energy input (after 19:00) as shown in Fig. 11.
+The accumulated water production and SEC with varying water vol-
+umes in the tank are plotted in Fig. 13. The Variations of COP and COPE
+are plotted in Fig. 14. The systems stop running when the water temper-
+ature is below 50 ～C in the afternoon. As seen, though the system with a
+160 L water volume has a longer running time than that with a 40 L
+water volume, the accumulated water production is only increased by
+1.5%. Longer running time means more electric energy consumption.
+Therefore with the increase in water volume in the tank, the SEC
+
+Fig. 17. Variations of the accumulated water production and SEC with varying collector
+areas.
+
+Fig. 18. Variations of COP and COPE with varying collector areas.
+
+increases and COPE falls gradually as shown in Figs. 13 and 14. Since a
+greater volume of water tank has a lower average water temperature
+throughout the day, and a longer running time, consequently more
+solar energy is used. In contrast, a weak AP increase results in a dimin-
+ished COP. It can be concluded that on the one hand, a larger water
+tank would be able to reduce the impact of uctuating solar energy
+and to store sufcient amount of heat to drive the desalination system
+when the light is weak. On the other hand there are no further benets
+to increase the water tank volume above 40 L. The hollow ber mem-
+brane module is specied at an area of 0.59 m2.
+
+4.4. Effects of solar collector areas
+
+Solar collector is the most important component of the solar heating
+system. Usually the collector is the most expensive member for the solar
+desalination system. So it is necessary to search the optimal value of col-
+lector area for the system. In this section, the water volume in the tank is
+set to 40 L and other operating conditions are set as before. Effects of col-
+lector area on the water temperature in the tank are shown in Fig. 15.
+The instantaneous water production rates during the operation time
+are illustrated in Fig. 16. It is obvious that the collector area has a great
+inuence on the performance of the system. Increasing collector area
+causes signicant improvements in water temperature in the tank as
+well as the instantaneous water production rates. Water temperature
+with a 5.51 m2 collector area reaches as high as 77.9 ～C at 13:00. With
+a 1.38 m2 area, the maximum temperature is only about 53.6 ～C at
+14:00. As a result, the maximum instantaneous water production rate
+of the former system is 3.4 times of the latter one.
+The variations of AP, SEC, COP and COPE with varying collector areas
+are shown in Figs. 17 and 18 respectively. It can be observed that SEC is
+decreased by 16% when the area is increased from 1.38 m2 to 3.44 m2.
+However with the area increasing, the SEC increases instead. The reason
+is that larger collector area means more U-tube evacuated solar collec-
+tors. And the latter reason causes a greater uid pressure drop, which
+means more electricity consumption for centrifugal pumps. The in-
+crease in the accumulated water production becomes slower with the
+
+Table 3
+Data and assumptions used in the economic study.
+
+Parameters
+
+Plant capacity (AP)
+SEC
+Plant availability (f) [37]
+Plant life (n) [37]
+Interest rate (i) [38]
+Amortization factor (a)
+
+Unit
+
+kg/d
+kWh/m3
+每
+Year
+每
+每
+
+Value
+
+15.85
+11.79
+0.9
+20
+5%
+0.08
+
+212
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+Table 4
+Cost items for the capital investment, operation and maintenance.
+
+Item
+
+Unitary cost Quantity
+
+Direct capital costs
+Fan
+Pump
+Dehumidier
+Piping and instrumentation
+Membrane
+Solar collector
+Heat storage tank
+Total investment (Cxed)
+Annual xed charges (Axed)
+
+O&M costs
+Electricity cost (Aelectric)
+Membrane replacement
+
+(Amembrane)
+
+Maintenance cost (Amaintenance)
+Annual O&M cost (AO&M)
+
+Acost
+
+WPC
+
+27.3 $
+28.8 $
+76.0 $
+30.4 $
+36 $/m2
+120 $/m2
+1200 $/m3
+
+1
+3
+1
+每
+0.59 m2
+4.13 m2
+0.04 m3
+
+Estimated
+cost
+
+27.3 $
+86.4 $
+76.0 $
+30.4 $
+21.2 $
+495.6 $
+48.0 $
+784.9 $
+62.8 $/year
+
+0.136 $/kWh 61.3 kWh/year 8.3 $/year
+20%/year
+21.2 $
+4.2 $/year
+[37]
+
+The annual capital and operating cost (Acost) is the sum of the annual
+direct capital cost (Axed) and the annual operating and maintenance
+cost (AO&M) given as:
+
+Acost  Afixed  AO&M
+Afixed  a  C fixed
+AO&M  Aelectric  Amembrane  Amaintenance
+Amaintenance  0:2Afixed
+
+49
+50
+51
+52
+
+where, Cxed is the total investment of the system. Amembrane is annual
+membrane replacement cost considering the possible effect of bio-foul-
+ing in the saline water environment. Aelectric and Amaintenance are annual
+electricity cost and annual maintenance cost respectively. The WPC of
+the system can be written as:
+
+12.6 $/year
+25.1 $/year
+87.9 $/year
+16.88 $/m3
+
+WPC 
+
+Acost
+
+
+
+AP  f
+
+  365
+
+53
+
+area increasing as shown in Fig. 17. Accordingly, the SEC has a minimum
+of 10.8 kWh/m3 at 3.44 m2 collector area, when the COPE reaches a max-
+imum of 63.3 as shown in Fig. 18. This is similar to the tread of the COP of
+the system. When the collector area is larger than 3.44 m2, the higher
+water temperature leads to more heat losses from the system to the en-
+vironment. This is another reason for the decline of the COP.
+
+4.5. Economic evaluation
+
+In order to determine the economic feasibility of the proposed solar
+powered MDHD system, an economic analysis has been made to calcu-
+late the nal cost for water production (WPC) for the optimized system.
+Assuming that the required fund for the system is loaned from the
+bank, the annual interest payment for capital cost is obtained by multi-
+plying the capital cost by an amortization factor a, which is given as:
+a  i 1  i
+1  i
+n1
+
+48
+
+n
+
+
+
+
+
+where f is the plant availability and can be assumed to be 90% per year
+[37,38].
+Cxed, Axed, AO&M and WPC are all listed in Table 4. As seen in Table 4,
+the solar collector cost contributes to around 63% of the total investment
+of the system, and the annual operation and maintenance cost is only
+about 28% of the total water production cost. From Table 4, the nal
+cost for water production is about 16.88 $/m3, which is comparable to
+other small-scale renewable energy sources-powered distillation units.
+The nal cost for water production (WPC) is given. The performance is
+compared to other systems in references as listed in Table 5. Even though
+the cost for water production is high compared to other industrial scale
+desalination technology like MSF, whose cost is $2.66/m3 [41], small
+membrane-based humidication dehumidication plants like this system
+are still very attractive because they are exible due to their modularity
+and simplicity in operation. This system also provides an alternative desa-
+lination system for remote isolated areas as a small-scale, stand-alone sys-
+tem with low maintenance needs. Furthermore, considering the cost of
+solar collector accounts for most of the total investment, the future devel-
+opment of solar collector technology could reduce the cost of solar collec-
+tor and ultimately result in reducing the water cost signicantly.
+
+5. Conclusions
+
+where i is the annual interest rate, n is the life time of the plant. The
+values used in Eq. (48) are shown in Table 3. Also listed are other data
+and assumptions used in the economic study. The operating conditions
+are a 40 L heat storage tank, with a 4.13 m2 solar collector area, and a
+0.59 m2 membrane module. Based on these operating conditions, the
+accumulated water production (AP) is 15.85 kg/d. The SEC is only
+11.79 kWh/m3, which means that this process is an energy saving alter-
+native to conventional desalination processes such as MSF and RO [35,
+36]. The electricity rate used here is 0.136 $/kWh, a 2015 market price
+in Guangzhou.
+
+Feasibility of a solar energy driven and membrane-based air humid-
+ication dehumidication desalination (MHDD) system has been stud-
+ied in this paper. A mathematical model for the whole system is built
+and validated by experimental data. Both energy and economic analysis
+are performed to draw following conclusions:
+
+(1) The study conrmed that using hollow ber membrane module
+as a humidier for air humidication is a promising method to
+provide high purity drinkable water. During the operation time,
+
+Table 5
+Final cost for water production (WPC) and comparison of performance with different desalination systems.
+
+Reference
+
+[42,43]
+[39]
+[36]
+[36]
+[41]
+[37]
+[37]
+[40]
+[40]
+This work
+
+Year
+
+1987
+1998
+2005
+2005
+2006
+2008
+2008
+2009
+2009
+2015
+
+Separation processes
+
+Energy source details
+
+Photovoltaic-ED
+Solar energy-MED
+Solar still
+Photovoltaic-RO
+MSF
+Solar energy-MD
+Solar energy-MD
+Photovoltaic-solar still
+Solar still
+Solar energy-MD
+
+25 kWp PV
+38 m2 solar collector area
+3 m2 effective basin area
+每
+Steam and electricity
+5.73 m2 solar collector area
+72 m2 solar collector area
+0.15 kWp PV
+1 m2 effective basin area
+4.13 solar collector area
+
+Membrane area (m2)
+每
+每
+每
+每
+每
+10
+40
+每
+每
+0.59
+
+Capacity (L/d)
+
+WPC ($/m3)
+
+10,000
+505
+7.5
+17
+5000
+100
+500
+4.6
+1.3
+15.85
+
+2.38
+80
+50
+80
+2.66
+15
+18
+65.1
+39.5
+16.88
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+213
+
+the electric conductivity of the produced fresh water is less than
+12 米S/cm.
+(2) The thermal energy storage unit plays an important role to solve
+the uctuating nature of solar energy. The system can thus work
+during weak sunlight hours and even in the night. However for a
+system with 0.59 m2 membrane area, there are no benets to fur-
+ther increase the hot water storage tank above 40 L.
+(3) The accumulated water production increases signicantly with
+an increase in solar collector area. The optimum ratio of the stor-
+age tank volume to the effective area of solar collector is about
+12 L/m2.
+(4) Economic evaluation of the whole system indicates that the sys-
+tem has a low maintenance cost. The water production cost is
+about 16.88 $/m3, which is an acceptable price for a small-scale,
+stand-alone system to provide clean potable water, especially
+in remote areas or isolated islands.
+
+Acknowledgements
+
+This Project was supported by the National Science Fund for Distin-
+guished Young Scholars of China, No. 51425601. It was also supported
+by the Project of National Key Research and Development Program of
+China, 2016YFB0901404.
+
+References
+
+[1] K.P. Lee, T.C. Arnot, D. Mattia, A review of reverse osmosis membrane materials for
+desalination〞development to date and future potential, J. Membr. Sci. 370 (2011)
+1每22.
+[2] R. Matz, Z. Zimerman, Low-temperature vapour compression and multi-effect distil-
+lation of seawater. Effects of design on operation and economics, Desalination 52
+(1985) 201每216.
+[3] H. El-Dessouky, H.I. Shaban, H. Al-Ramadan, Steady-state analysis of multi-stage
+ash desalination process, Desalination 103 (1995) 271每287.
+[4] E.S. Mohamed, G. Papadakis, E. Mathioulakis, V. Belessiotis, An experimental com-
+parative study of the technical and economic performance of a small reverse osmo-
+sis desalination system equipped with an hydraulic energy recovery unit,
+Desalination 194 (2006) 239每250.
+[5] C.J. Gabelich, M.D. Williams, A. Rahardianto, J.C. Franklin, Y. Cohen, High-recovery
+reverse osmosis desalination using intermediate chemical demineralization, J.
+Membr. Sci. 301 (2007) 131每141.
+[6] A. Hassan, M. Al-So, A. Al-Amoudi, A. Jamaluddin, A. Farooque, A. Rowaili, A. Dalvi,
+N. Kither, G. Mustafa, I. Al-Tisan, A new approach to membrane and thermal seawa-
+ter desalination processes using nanoltration membranes (part 1), Desalination
+118 (1998) 35每51.
+[7] J. Ortiz, E. Exp車sito, F. Gallud, V. Garc赤a-Garc赤a, V. Montiel, A. Aldaz, Photovoltaic
+electrodialysis system for brackish water desalination: modeling of global process,
+J. Membr. Sci. 274 (2006) 138每149.
+[8] F. Banat, N. Jwaied, M. Rommel, J. Koschikowski, M. Wieghaus, Performance evalua-
+tion of the ※large SMADES§ autonomous desalination solar-driven membrane distil-
+lation plant in Aqaba, Jordan, Desalination 217 (2007) 17每28.
+[9] M.R. Qtaishat, F. Banat, Desalination by solar powered membrane distillation sys-
+tems, Desalination 308 (2013) 186每197.
+[10] H. Geng, H. Wu, P. Li, Q. He, Study on a new air-gap membrane distillation module
+for desalination, Desalination 334 (2014) 29每38.
+[11] S.A. Kalogirou, Seawater desalination using renewable energy sources, Prog. Energy
+Combust. Sci. 31 (2005) 242每281.
+[12] L.F. Greenlee, D.F. Lawler, B.D. Freeman, B. Marrot, P. Moulin, Reverse osmosis desa-
+lination: water sources, technology, and today's challenges, Water Res. 43 (2009)
+2317每2348.
+[13] Y.G. Lee, Y.S. Lee, M. Park, D.R. Yang, J.H. Kim, A fouling model for simulating long-term
+performance of SWRO desalination process, J. Membr. Sci. 401 (2012) 282每291.
+[14] K. Zhani, H.B. Bacha, T. Damak, Modeling and experimental validation of a humidi-
+cation每dehumidication desalination unit solar part, Energy 36 (2011)
+3159每3169.
+[15] A. Kabeel, M.H. Hamed, Z. Omara, S. Sharshir, Experimental study of a humidica-
+tion-dehumidication solar technique by natural and forced air circulation, Energy
+68 (2014) 218每228.
+[16] S. Farsad, A. Behzadmehr, Analysis of a solar desalination unit with humidication每
+dehumidication cycle using DoE method, Desalination 278 (2011) 70每76.
+[17] F.A. Al-Sulaiman, M.I. Zubair, M. Atif, P. Gandhidasan, S.A. Al-Dini, M.A. Antar, Hu-
+midication dehumidication desalination system using parabolic trough solar air
+collector, Appl. Therm. Eng. 75 (2015) 809每816.
+[18] K. Zhani, H.B. Bacha, Experimental investigation of a new solar desalination proto-
+type using the humidication dehumidication principle, Renew. Energy 35
+(2010) 2610每2617.
+
+[19] J. Navarrete-Gonzalez, J. Cervantes-de Gortari, E. Torres-Reyes, Exergy analysis of a
+rock bed thermal storage system, Int. J. Exergy 5 (2008) 18每30.
+[20] K. omakl, U. akr, M. Kaya, K. Bakirci, The relation of collector and storage tank
+size in solar heating systems, Energy Convers. Manag. 63 (2012) 112每117.
+[21] L.-Z. Zhang, S.-M. Huang, Coupled heat and mass transfer in a counter ow hollow
+ber membrane module for air humidication, Int. J. Heat Mass Transf. 54 (2011)
+1055每1063.
+[22] Y. Kim, T. Seo, Thermal performances comparisons of the glass evacuated tube solar
+collectors with shapes of absorber tube, Renew. Energy 32 (2007) 772每795.
+[23] L.-Z. Zhang, Coupled heat and mass transfer in an application-scale cross-ow hol-
+low ber membrane module for air humidication, Int. J. Heat Mass Transf. 55
+(2012) 5861每5869.
+[24] J.A. Dufe, W.A. Beckman, Solar Energy Thermal Processes, University of Wisconsin-
+Madison, Solar Energy Laboratory, Madison, WI, 1974.
+[25] L. Ma, Z. Lu, J. Zhang, R. Liang, Thermal performance analysis of the glass evacuated
+tube solar collector with U-tube, Build. Environ. 45 (2010) 1959每1967.
+[26] T.L. Bergman, F.P. Incropera, A.S. Lavine, Fundamentals of Heat and Mass Transfer,
+John Wiley & Sons, 2011.
+[27] L.Z. Zhang, Conjugate Heat and Mass Transfer in Heat Mass Exchanger Ducts,
+Elsevier, 2013.
+[28] C.J. Simonson, R.W. Besant, Energy wheel effectiveness: part I〞development of di-
+mensionless groups, Int. J. Heat Mass Transf. 42 (1999) 2161每2170.
+[29] L. Zhang, Energy performance of independent air dehumidication systems with en-
+ergy recovery measures, Energy 31 (2006) 1228每1242.
+[30] V. Gnielinski, New equations for heat and mass transfer in turbulent pipe and chan-
+nel ows, Int. Chem. Eng. 16 (1976) 359每368.
+[31] C.-C. Wang, Y.-c. Hsieh, Y.-t. Lin, Performance of plate nned tube heat exchangers
+under dehumidifying conditions, J. Heat Transf. 119 (1997) 109每117.
+[32] G.P. Li, L.Z. Zhang, Investigation of a solar energy driven and hollow ber mem-
+brane-based humidication每dehumidication desalination system, Appl. Energy
+177 (2016) 393每408.
+[33] J. Huang, S. Pu, W. Gao, Y. Que, Experimental investigation on thermal performance
+of thermosyphon at-plate solar water heater with a mantle heat exchanger, Energy
+35 (2010) 3563每3568.
+[34] I. Budihardjo, G. Morrison, Performance of water-in-glass evacuated tube solar
+water heaters, Sol. Energy 83 (2009) 49每56.
+[35] M. Darwish, N.M. Al-Najem, Energy consumption by multi-stage ash and reverse
+osmosis desalters, Appl. Therm. Eng. 20 (2000) 399每416.
+[36] S. Bouguecha, B. Hamrouni, M. Dhahbi, Small scale desalination pilots powered by
+renewable energy sources: case studies, Desalination 183 (2005) 151每165.
+[37] F. Banat, N. Jwaied, Economic evaluation of desalination by small-scale autonomous
+solar-powered membrane distillation units, Desalination 220 (2008) 566每573.
+[38] S. Al-Obaidani, E. Curcio, F. Macedonio, G. Di Proo, H. Al-Hinai, E. Drioli, Potential of
+membrane distillation in seawater desalination: thermal efciency, sensitivity study
+and cost estimation, J. Membr. Sci. 323 (2008) 85每98.
+[39] H. M邦ller-Holst, M. Engelhardt, M. Herve, Solarthermal seawater desalination sys-
+tems for decentralised use, Renew. Energy 14 (1998) 311每318.
+[40] S. Kumar, G.N. Tiwari, Life cycle cost analysis of single slope hybrid (PV/T) active
+solar still, Appl. Energy 86 (2009) 1995每2004.
+[41] A.S. Nafey, H.E.S. Fath, A.A. Mabrouk, Thermo-economic investigation of multi effect
+evaporation (MEE) and hybrid multi effect evaporation-multi stage ash (MEE-
+MSF) systems, Desalination 201 (2006) 241每254.
+[42] O. Kuroda, S. Takahashi, K. Wakamatsu, An electrodialysis sea water desalination
+system powered by photovoltaic cells, Desalination 65 (1987) 161每169.
+[43] M.T. Ali, H.E.S. Fath, P.R. Armstrong, A comprehensive techno-economical review of
+indirect solar desalination, Renew. Sust. Energ. Rev. 15 (2011) 4187每4199.
+
+Nomenclature
+
+cpa
+cps
+
+a amortization factor:
+Aa outer surface area of absorber tubes (m2):
+Acost Annual capital and operating cost:
+Ae
+effective heat absorption area of absorber tubes (m2):
+the projection area of absorber tubes (m2):
+Ap
+Av packing density (m2/m3):
+specic heat of air (kJ/kg K1):
+specic heat of solution (kJ/kg K1):
+d/D diameter (m):
+Dh hydraulic diameter (m):
+Dvm moisture diffusivity in membrane (m2/s):
+f
+friction factor, plant availability:
+FR
+the collector heat removal factor:
+H enthalpy (kJ/kg), height (m):
+Hw latent heat of water evaporation (kJ/kg):
+h convective heat transfer coefcient (kW m2 K1):
+i
+the annual interest rate:
+It
+the global solar radiation (W/m2):
+J Colburn j factor:
+k convective mass transfer coefcient (m/s):
+l/L
+length (m):
+Le
+Lewis number:
+m mass ow rate (kg/s):
+n the life time of the plant (year):
+ncol number of solar collector tubes:
+nf number of bers:
+NL number of bers along air ow direction:
+
+214
+
+L.-Z. Zhang, G.-P. Li / Desalination 404 (2017) 200每214
+
+Nr number of tube row:
+NTU Number of Transfer Units:
+Nu Nusselt number:
+P pressure (Pa):
+PF
+Fin pitch (mm):
+PL
+Longitudinal pitch (mm).:
+PT Transverse pitch (mm):
+Pr Prandtl number:
+q heat transfer rate (kW):
+Re Reynolds number:
+RH relative humidity (%):
+Rw thermal conduction resistance (K/W):
+Sh Sherwood number:
+T temperature (K):
+U heat transfer coefcient (W m2 K1):
+the collector overall loss coefcient (W m2 K1):
+UL
+u velocity (m/s):
+V specic volume (m3/kg):
+W width (m), power (kW):
+X solution concentration (%):
+x
+spatial coordinate (m):
+y spatial coordinate (m):
+
+Greek letters
+
+汍
+
+汐 absorptivity of the selective absorbing coating:
+汛 thickness (m):
+effectiveness:
+朴 packing fraction:
+灰i
+instantaneous collector efciency:
+灰o: n efciency
+竹 heat conductivity (Wm1 K1):
+electric conductivity (米S/cm):
+糸 kinematic viscosity (m2/s):
+老 density (kg/m3):
+
+竹E
+
+而 transmissivity of the outer glass:
+肋 humidity (kg/kg):
+旭c wet perimeter of channel (m):
+
+Subscripts
+
+a air:
+c
+cold side, channel:
+coil
+coil heat exchanger in the heat storage tank:
+Cal
+calculated:
+D dehumidier:
+e
+environment:
+E electrical:
+f distilled water in the collector tube:
+fan fan:
+n aluminum ns in the dehumidier:
+h shot side:
+H humidier:
+i
+inlet, inner:
+m membrane:
+max maximum value:
+min minimum value:
+o outlet, outer:
+O&M operation and maintenance.:
+p the absorber tube.:
+pump. pump.:
+real.
+real.:
+s
+solution:
+solar
+solar energy:
+t heat storage tank:
+tot
+total:
+test
+tested:
+w water:
+

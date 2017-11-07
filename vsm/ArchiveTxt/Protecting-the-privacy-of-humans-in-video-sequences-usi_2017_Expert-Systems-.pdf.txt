@@ -1,0 +1,2559 @@
+Protecting the privacy of humans in video sequences using a computer vision-based de-identication pipeline 
+
+Karla Brki c 
+
+, Tomislav Hrka c, Zoran Kalafati c 
+
+
+
+University of Zagreb, Faculty of Electrical Engineering and Computing, Unska 3, HR-10 0 0 0 Zagreb, Croatia 
+
+article
+
+info
+
+Article history: 
+Received 12 October 2016 
+Revised 5 May 2017 
+Accepted 27 May 2017 
+
+Keywords: 
+Privacy protection 
+De-identication 
+Computer vision 
+Video processing 
+
+abstract
+
+We propose a computer vision-based de-identication pipeline that enables automated protection of pri- 
+vacy of humans in video sequences through obfuscating their appearance, while preserving the natu- 
+ralness and utility of the de-identied data. Our pipeline specically addresses de-identifying soft and 
+non-biometric features, such as clothing, hair, skin color etc., which often remain recognizable when sim- 
+pler techniques such as blurring are applied. Assuming a surveillance scenario, we combine background 
+subtraction based on Gaussian mixtures with an improved version of the GrabCut algorithm to nd and 
+segment pedestrians. De-identication is performed by altering the appearance of the segmented pedes- 
+trians through the neural art algorithm that uses the responses of a deep neural network to render the 
+pedestrian images in a different style. Experimental evaluation is performed both by automated classi- 
+cation and through a user study. Results suggest that the proposed pipeline successfully de-identies a 
+range of hard and soft biometric and non-biometric identiers, including face, clothing and hair. 
+
+ 2017 Elsevier Ltd. All rights reserved. 
+
+1. Introduction 
+
+Surveillance cameras are becoming widespread in public places 
+such as city streets, subway stations, banks, shopping centers, air- 
+ports etc. Although indispensable in improving personal safety, 
+the ubiquity of video surveillance also raises privacy concerns. A 
+wealth of privacy-sensitive information can be mined on every 
+recorded individual, including for example his whereabouts at a 
+given time of the day, whom he associates with, which bank he 
+uses, which shops he prefers. Given recent advances in computer 
+vision, retrieving this information now requires considerably less 
+effort from a potentially malicious observer ( Baltieri, Vezzani, & 
+Cucchiara, 2014; Garcia et al., 2016 ). 
+Recognizing the importance of privacy protection, many na- 
+tions implement strict regulations for governing personal data (see 
+e.g. the Data Protection Directive of the European Union 
+1 ). To be in 
+compliance with such legislation, modern video surveillance sys- 
+tems should aim at minimum information disclosure in accordance 
+with the chain of authority, so that each person able to access 
+privacy-sensitive data is authorized by law for their particular level 
+of access. At the same time, the utility of the data should be pre- 
+served throughout the chain of authority. For example, an em- 
+ployee of a video surveillance company should be able to view 
+surveillance footage and assess whether a dangerous situation is 
+occurring, but should not be aware of the identities of all the peo- 
+ple in the scene. Ideally, personally identifying features should be 
+obfuscated or removed, while the actions occurring in the scene 
+should still be clearly shown, hence retaining the utility of the data 
+and at the same time protecting the privacy of the lmed individu- 
+als. Persons of higher authority, for example police ocers, should 
+be able to view the original data with personally identifying fea- 
+tures, given that there is a legal justication for them to do so. 
+In this paper, we consider automated de-identication in 
+surveillance videos based on computer vision. De-identication in 
+images and video sequences is the process of obfuscating the iden- 
+tities of the recorded people in order to protect their privacy. It 
+is achieved by removing or obfuscating various identifying per- 
+sonal features, including hard biometric features such as the face, 
+and soft and non-biometric features such as hair and eye color, 
+gait, body posture, clothing, birthmarks and tattoos etc. ( Ribari c, 
+Ariyaeeinia, & Pavei c, 2016 ). Perhaps one of the most well known 
+and commonly used examples of de-identication is the blurring 
+of faces seen nowadays on services such as Google Street View. Al- 
+though this method offers a certain level of privacy protection, the 
+identity of the person can still be easily inferred from other cues 
+even if the entire body of the person is blurred. Example reveal- 
+ing cues include characteristic clothing, personal items and simi- 
+2001 ) and its extension ( Viola, Jones, & Snow, 2005 ), the detec- 
+tor based on integrating local and global cues via probabilistic top- 
+down segmentation ( Leibe, Seemann, & Schiele, 2005 ), the detector 
+based on pictorial structures ( Andriluka, Roth, & Schiele, 2009 ), the 
+detectors based on integral channel features ( Benenson, Omran, 
+Hosang, , & Schiele, 2014; Dollar, Tu, Perona, & Belongie, 2009 ), and 
+deformable part models ( Felzenszwalb, Girshick, McAllester, & Ra- 
+manan, 2010 ). In line with current interest of the computer vision 
+community in deep learning, there are also approaches for pedes- 
+trian detection based on convolutional neural networks ( Ouyang & 
+Wang, 2012; Ouyang, Zeng, & Wang, 2013; Sermanet, Kavukcuoglu, 
+Chintala, & LeCun, 2013 ). 
+Comparative studies of the most popular pedestrian detectors 
+( Benenson, Omran, Hosang, , & Schiele, 2014; Dollar, Tu, Perona, 
+& Belongie, 2009; Dollar, Wojek, Schiele, & Perona, 2012; Garc赤a- 
+Mart赤n & Mart赤nez, 2015; Zhang, Benenson, Omran, Hosang, & 
+Schiele, 2016 ) indicate that there are still many open challenges in 
+achieving reliable pedestrian detection. In ( Dollar, Wojek, Schiele, 
+& Perona, 2012 ), the problems that modern pedestrian detectors 
+face are identied by benchmarking a total of sixteen detectors on 
+six datasets. It is shown that the performance of all the consid- 
+ered detectors leaves much to be desired even in ideal conditions, 
+e.g. 20-30% of all pedestrians are missed when dealing with large 
+scale pedestrians in the scene, no occlusions, and requiring a maxi- 
+mum of one false alarm per 10 images. When introducing unfavor- 
+able conditions (small scale pedestrians, occlusions) performance 
+degrades even further. In ( Benenson, Omran, Hosang, , & Schiele, 
+2014 ), more than 40 detectors that have reported results on the 
+Caltech pedestrian detection benchmark are studied. It is qualita- 
+tively analyzed which components of the detectors contribute most 
+to the achieved detection rates. The analysis indicates that better 
+performance is driven by using better features, additional data, and 
+context information. The best performing detector combines sev- 
+eral techniques within the integral channel features framework. 
+In order to protect the privacy of persons in video sequences, 
+we need to ensure that each individual is correctly detected so 
+their identifying features can be obfuscated. Given that the out- 
+put of static image person detectors alone has been shown to be 
+somewhat unreliable, we utilize the assumption that our camera 
+is static and that our target application is surveillance, meaning 
+that in a simplied scenario it can be expected that the major- 
+ity of motion in the scene is due to pedestrians. Using the as- 
+sumption of pedestrian motion, we can obtain rough estimates of 
+pedestrian locations using background subtraction. Even if there 
+are other objects moving in the scene generating false positive de- 
+tections, erring on the side of false positives is not a major concern 
+in our application, as de-identifying non-persons does no harm, 
+while failing to detect and de-identify persons could jeopardize 
+their privacy. 
+Background subtraction is a video-based computer vision algo- 
+rithm that enables labeling moving (foreground) pixels and static 
+(background) pixels in each frame. The background is represented 
+using a model, and the foreground in each frame is determined 
+by subtracting the background model from the frame. There are 
+many different background subtraction algorithms that vary in the 
+manner in which the background model is constructed ( Brutzer, 
+Hoferlin, & Heidemann, 2011; Cheung & Kamath, 2004; Herrero & 
+Besc車s, 2009 ). A comparative overview of several background sub- 
+traction algorithms for detecting pedestrians and vehicles in urban 
+scenes can be found in ( Cheung & Kamath, 2004 ). Considered al- 
+gorithms include simple frame differencing, median ltering, lin- 
+ear predictive ltering, non-parametric estimate of the pixel den- 
+sity function, approximated median lter, Kalman lter and mix- 
+tures of Gaussians. Experimental evidence in the overview sug- 
+gests that mixtures of Gaussians ( Stauffer & Grimson, 1999; Wren, 
+Azarbayejani, Darrell, & Pentland, 1997; Zivkovic, 2004 ) produce 
+
+Fig. 1. Shortcomings of de-identication by blurring. The person is blurred, but 
+there are still many identifying features remaining: clothing color and texture, body 
+shape, personal bag etc. 
+
+lar, as illustrated in Fig. 1 
+2 . Additionally, it has been shown that 
+blurring itself is easily thwarted by a re-identication attack called 
+parrot recognition ( Newton, Sweeney, & Malin, 2005 ), enabling an 
+attacker with access to another image of the same person to auto- 
+matically determine the identity of the person. 
+To address the shortcomings of simpler forms of de- 
+identication and advance the state of the art, we introduce a 
+computer vision-based de-identication pipeline that enables au- 
+tomated pixel-precise segmentation of humans in videos and ef- 
+fective concealment of their identities. In contrast to blurring 
+and similar approaches, our pipeline de-identies soft and non- 
+biometric features, at the same time preserving the utility of the 
+data. The pipeline consists of three stages: (i) pedestrian detection, 
+(ii) pedestrian segmentation and (iii) de-identication. Assuming a 
+surveillance scenario in which the camera is static and the motion 
+in the scene is mainly due to passing pedestrians, we obtain ini- 
+tial estimates of person locations using a background subtraction 
+algorithm based on mixtures of Gaussians ( Zivkovic, 2004 ). Pixel- 
+precise segmentation of persons is achieved using our improved 
+version of the GrabCut algorithm ( Hrka c & Brki c, 2015; Rother, 
+Vladimir, & Blake, 2004 ). De-identication is performed by trans- 
+ferring the style of another image to the segmented person image 
+through the use of the neural art algorithm ( Gatys, Ecker, & Bethge, 
+2015a ) and blending the result with the original image. 
+
+2. Related work 
+
+The three stages of our pipeline address three research topics 
+that are often studied independently: (i) pedestrian detection, (ii) 
+pedestrian segmentation and (iii) de-identication. 
+
+2.1. Pedestrian detection 
+
+Pedestrian detection has been a very active topic of research in 
+recent years, resulting in a considerable amount of proposed detec- 
+tors. Some of the most widespread include the seminal HOG detec- 
+tor based on oriented gradients ( Dalal & Triggs, 2005 ), the detec- 
+tor based on AdaBoost and Haar-like image features ( Viola & Jones, 
+
+2 Image by Juanjo Zanabria Masaveu, licensed under CC BY 2.0. 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+43 
+
+the best results. Mixtures of Gaussians are also found to be one 
+of the top-performing methods in a comparative study ( Herrero 
+& Besc車s, 2009 ), alongside 
+聿 2 modeling and simple median l- 
+tering. Given these ndings, we use mixtures of Gaussians as our 
+background subtraction algorithm to obtain an initial estimate of 
+the locations of persons. Specically, we employ adaptive Gaussian 
+mixture model-based background subtraction ( Zivkovic, 2004 ). 
+While in this work we assume a simplied surveillance scenario 
+and consider background subtraction a suciently good estimate 
+of candidate pedestrian locations, in general surveillance scenarios 
+this assumption does not always hold, as there can be other mov- 
+ing objects in the scene. If this is the case, we envision several 
+strategies for improving the detection results: (i) background sub- 
+traction outputs can be pruned using outputs of a pedestrian de- 
+tector (see a comprehensive overview of pedestrian detectors for 
+surveillance ( Garc赤a-Mart赤n & Mart赤nez, 2015 )) , (ii) prior knowl- 
+edge of certain areas that contain moving objects, but not people, 
+could be incorporated in the system (e.g. road regions), (iii) ad- 
+ditionally, the detector condence maps could be used to further 
+separate people and background, as in ( Garc赤a-Mart赤n, Cavallaro, 
+Mart赤nez, & Mart赤nez, 2012 ). The goal should be to utilize as many 
+cues as possible to improve detection. Finally, if background sub- 
+traction itself is completely unreliable in the target application, one 
+should consider switching to more complex motion-based pedes- 
+trian detectors ( Garc赤a-Mart赤n & Mart赤nez, 2015 ) or using a more 
+sophisticated multi-cue detection system, as e.g. in ( Garc赤a-Mart赤n 
+& Mart赤nez, 2012 ), where a complex detection system is proposed 
+that integrates appearance, motion and tracking information. 
+
+2.2. Pedestrian segmentation 
+
+Having a rough estimate of pedestrian locations obtained by 
+background subtraction, we apply a segmentation algorithm to ob- 
+tain well separated pedestrian silhouettes. Our segmentation algo- 
+rithm is based on the GrabCut algorithm ( Rother, Vladimir, & Blake, 
+2004 ) for segmenting objects in static images. The original Grab- 
+Cut algorithm is semi-automatic in the sense that the user is re- 
+quired to draw a rectangle around an object. The area outside the 
+rectangle is considered to denitely belong to background, while 
+the area inside the rectangle is considered to be an approxima- 
+tion of the foreground. Alternatively, the user can specify areas be- 
+longing to foreground and background by selecting foreground and 
+background regions using a brush in a graphic editor. The algo- 
+rithm maintains the models of foreground and background based 
+on Gaussian mixtures. The segmentation task is formulated as an 
+energy minimization problem and solved by an iterative graph 
+cut optimization technique, as proposed in ( Boykov & Jolly, 2001 ). 
+There are two notable weaknesses of the original GrabCut algo- 
+rithm: rst, it is very supervised and only semi-automatic, and sec- 
+ond, poor segmentation often occurs in certain cases that are com- 
+mon in real world sequences. For example, poor segmentation can 
+occur when parts of the object share characteristics with parts of 
+the background, when high contrast color changes are present in 
+the background near the object or inside the object, or when the 
+object is concave. We propose several improvements to the orig- 
+inal GrabCut algorithm that are specically designed to overcome 
+its limitations. These improvements in part rely on the output of 
+background subtraction, which we use for segmentation initializa- 
+tion and as prior in other parts of the algorithm. 
+Several researchers have also considered combining background 
+subtraction with GrabCut. As noted in ( Sun, Tang, & Shum, 2006 ), 
+straightforward use of the result of background subtraction as a 
+mask for GrabCut often gives unsatisfactory results if the static 
+background contains high-contrast elements. To address this prob- 
+lem, they propose an adaptive background contrast attenuation 
+method. The method assumes that what is background is known 
+
+from background subtraction, and then attenuates the contrast in 
+the background, simultaneously preserving the contrast at the fore- 
+ground/background boundary. In ( Poullot & Satoh, 2014 ), an algo- 
+rithm called VabCut is proposed for video foreground object seg- 
+mentation in videos taken using a moving camera. VabCut ex- 
+tends the RGB color domain with a motion layer M, calculated 
+after RANSAC-based frame alignment. Bounding box and a larger 
+super bounding box around the moving object are calculated and 
+only the area between these two bounding boxes is used for back- 
+ground modeling, in order to avoid visual similarities between 
+foreground and background in case of large backgrounds. Addi- 
+tionally, the numbers of Gaussians in the Gaussian mixtures for 
+foreground and background models are independently optimized. 
+In ( Hernandez-Vela, Reyes, Ponce, & Escalera, 2012 ), tracking and 
+segmentation are combined and a fully automatic spatio-temporal 
+GrabCut human segmentation method is proposed. GrabCut initial- 
+ization is performed by combining several detectors: HOG pedes- 
+trian detector, a face detector, and a skin color model. Segmenta- 
+tion results in concave regions (typical in images of humans) are 
+improved by rening the background mask through adding to it 
+the pixels that have greater probability of belonging to the back- 
+ground. This information is calculated based on foreground and 
+background color models. Temporal component is utilized by fa- 
+voring segmentations that are close to the results obtained in the 
+previous frame. 
+Through the combination of background subtraction and our 
+improved GrabCut algorithm we are able to determine which pix- 
+els belong to individual persons in each considered video frame. 
+Focusing on the classication of individual pixels, rather than nd- 
+ing bounding boxes around the persons, ensures that the outline of 
+each person can be retained in the de-identied sequence. Retain- 
+ing the outline adds to the understandability of the scene, while 
+simultaneously ensuring maximum protection of privacy through 
+de-identication of the person pixels denoted by the outline. 
+
+2.3. De-identication 
+
+The interest in computer vision-based de-identication has 
+been growing in recent years, with a number of methods be- 
+ing proposed ( Gross, Sweeney, Cohn, De la Torre, & Baker, 
+2009; Padilla-L車pez, Chaaraoui, & Florez-Revuelta, 2015; Ribari c, 
+Ariyaeeinia, & Pavei c, 2016 ). While primary focus still seems 
+to be on de-identifying faces only ( Gross, Sweeney, Cohn, De la 
+Torre, & Baker, 2009 ), there are methods devoted to full body de- 
+identication ( Agrawal & Narayanan, 2011; Park & Trivedi, 2005 ), 
+as well as works on soft and non-biometric features detection and 
+recognition ( Han & Jain, 2013; Hein, Scheirer, & Boult, 2012; Kim, 
+Parra, Yue, Li, & Delp, 2015; Reid, Samangooei, Chen, Nixon, & Ross, 
+2013 ). Simple approaches to face de-identication include pix- 
+elization, blurring and applying various image distortions ( Gross, 
+Sweeney, Cohn, De la Torre, & Baker, 2009 ). As noted previously, 
+although seemingly effective, these kinds of approaches have been 
+shown to be vulnerable to re-identication attacks. In ( Newton, 
+Sweeney, & Malin, 2005 ), it is shown that a classier trained on 
+blurred or otherwise transformed images of a person can easily 
+recognize that person in other, previously unseen images. As a so- 
+lution, the k -same algorithm is introduced (see also the extensions 
+of the algorithm in ( Gross, Airoldi, Malin, & Sweeney, 2006a; Gross, 
+Sweeney, de la Torre, & Baker, 2006b )). The k -same algorithm clus- 
+ters face images and computes the average of each cluster. All of 
+the face images belonging to one cluster are replaced with the av- 
+erage face. The idea of replacing the face with something else is 
+utilized in other works as well. In ( Lin, Wang, Lin, & Tang, 2012 ) 
+face swapping is performed by building 3D head models for frontal 
+faces. In ( Bitouk, Kumar, Dhillon, Belhumeur, & Nayar, 2008 ), a sys- 
+
+44 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+tem for face replacement that relies on selecting a similar face 
+from a database of face images is introduced. 
+In this work, we introduce a novel de-identication approach 
+that utilizes the neural art algorithm ( Gatys, Ecker, & Bethge, 
+2015a ) to de-identify persons in videos. We have previously pro- 
+posed a similar approach intended for faces only ( Brki c, Hrka c, 
+Sikiri c, & Kalafati c, 2016 ). The algorithm uses the responses of a 
+deep neural network to transfer the style of one image to another. 
+In the original work ( Gatys, Ecker, & Bethge, 2015a ), the trans- 
+fer is done from an artwork to a target photograph, i.e. the al- 
+gorithm renders the photograph in the style of the artwork. This 
+means that the content of the photograph, i.e. global structure 
+and arrangement, remains preserved, while the style, i.e. colors 
+and local structures, is obtained from the artwork. We apply the 
+neural art algorithm on the segmented pedestrian images using a 
+database containing a wide variety of style images, including real- 
+istic photographs, artworks and synthetic renderings. Through al- 
+tering the style of the segmented images and preserving the con- 
+tent, we obtain images that still distinctly represent humans, but 
+with changed appearance features, in effect de-identifying them. 
+Our work advances the state of the art in computer vision- 
+based de-identication through proposing a complete pipeline for 
+de-identication of surveillance videos that de-identies both hard 
+biometric features (e.g. the face) and soft and non-biometric fea- 
+tures (e.g. hair color and clothing). Individual elements of the 
+pipeline also present more fundamental contributions in terms of 
+segmentations of objects in video and human appearance altering 
+through novel applications of the neural art algorithm. In the fol- 
+lowing sections, we give a detailed overview of the stages of our 
+pipeline. 
+
+3. Pedestrian detection and segmentation 
+
+The rst two stages of our pipeline are (i) pedestrian detection 
+and (ii) pedestrian segmentation. The detection step is based on 
+background subtraction and provides rough estimates of candidate 
+pedestrian locations. These estimates are then precisely segmented 
+using our improved GrabCut algorithm. The algorithm is the result 
+of our previous work ( Hrka c & Brki c, 2015 ). In this section we de- 
+scribe the algorithm in detail for the sake of completeness. 
+
+3.1. Obtaining initial background subtraction estimates 
+
+When an image enters our de-identication pipeline, we start 
+by obtaining an initial foreground 每 background estimation us- 
+ing background subtraction based on Gaussian mixture models 
+(GMMs) ( Zivkovic, 2004 ). In this algorithm, the distributions of 
+values of each pixel over time are modeled with a mixture of 
+weighted Gaussian distributions. As a new frame arrives, the 
+weights of the Gaussians are updated. The inuence of older 
+frames diminishes over time. In order to estimate foreground and 
+background, the algorithm assumes that the highest weights in the 
+Gaussians for each pixel will be assigned to background, given a 
+suciently wide time window. In other words, when observing 
+each pixel through time, the color that most commonly appears 
+is likely to belong to the background. This assumption holds in 
+a surveillance scenario where it is reasonable to expect that the 
+number of frames in which the background is occluded is smaller 
+than the number of frames in which the background is visible. 
+The background subtraction algorithm is a probabilistic fore- 
+ground/background mask, as illustrated in Fig. 2 (b) (the original 
+image is shown in Fig. 2 (a)). As can be seen on this example, the 
+resulting foreground pixels often do not cover all pedestrian pix- 
+els. Some pedestrian pixels are marked as background, and there 
+is some noise in the output. Our goal in this stage of the pipeline 
+
+is to label all pedestrian pixels as foreground. We binarize the out- 
+put foreground/background mask and use it as input to an algo- 
+rithm for contour extraction and lling, resulting in an improved 
+mask, as illustrated in Fig. 2 (c) . To remove small and unconnected 
+regions and noise, we follow this step with applying the morpho- 
+logical operation of closing (dilation followed by erosion), as illus- 
+trated in Fig. 2 (d). Through these steps, we obtain a foreground 
+mask that roughly corresponds to the desired pedestrian segmen- 
+tation, but is too coarse to be used as a nal result. The result- 
+ing coarse foreground mask is used as an input to our improved 
+GrabCut algorithm that smooths the contours and provides precise 
+pedestrian segmentations. 
+As mentioned previously, this approach to pedestrian detec- 
+tion relies on motion as a detection cue, so non-pedestrian objects 
+moving in the scene will trigger false positive detections. However, 
+assuming that the number of these false positives is suciently 
+small not to jeopardize the naturalness of the scene, de-identifying 
+these false positives does not present a problem. In applications 
+where there is no motion, or where there are many non-human 
+moving objects, more complex detection strategies should be used 
+(see the discussion in Section 2.1 ). 
+
+3.2. The improved GrabCut algorithm 
+
+The second stage of our pipeline is pedestrian segmentation 
+achieved using an improved version of the GrabCut segmentation 
+algorithm. We apply the foreground mask obtained in the detec- 
+tion stage as a foreground prior for the segmentation. 
+
+=
+
+
+
+=
+
+,
+
+汐
+
+i 
+
+汐
+
+i 
+
+汐
+
+i 
+
+.
+
+.
+
+.
+
+,
+
+,
+
+. . .
+
+,
+
+ z N 
+
+汐N 
+
+(R i 
+
+,
+
+(z 1 
+
+,
+
+ G i 
+ B i 
+
+=
+汐 =
+
+3.2.1. An overview of the original GrabCut algorithm 
+The original GrabCut algorithm ( Rother, Vladimir, & Blake, 
+2004 ) is intended for user-supervised segmentation of objects in 
+images. Example scenarios necessitating the use of user-supervised 
+segmentation include common image editing tasks, medical seg- 
+mentation etc. By either drawing a rectangle around the object or 
+using a brush to highlight parts of the object and/or background, 
+the user implicitly provides a prior estimate on two categories 
+of pixels: sure background (areas outside the rectangle or areas 
+brushed as background) and/or sure foreground (areas inside the 
+rectangle or areas brushed as foreground). Formally, we represent 
+the color image I as an array z 
+)
+ of N pixels in RGB 
+)
+space, where z i 
+is a triplet of color values, z i 
+ . Each 
+pixel z i 
+is assigned a label 
+, indicating whether it belongs to 
+background ( 
+ 0 ) or foreground ( 
+ 1 ). Thus, the segmentation 
+(汐1 
+)
+of the image is dened by an array 
+ {0, 1}. 
+Internally, the algorithm works with a trimap T over the image, 
+consisting of three regions: T B , T F and T U that specify pixels be- 
+longing to sure background, sure foreground, and uncertain pix- 
+els, respectively. The initial values of T B and T U are set according 
+to user input, while T F is set to 
+ . In other words, the foreground 
+marked by the user is treated as uncertain pixels, while the back- 
+ground is treated as sure background (a vice versa scheme could 
+also be applied). The algorithm then iteratively labels uncertain 
+pixels as either foreground or background. The value 
+is initial- 
+ized to 0 for pixels in T B and to 1 for pixels in T F 
+The algorithm keeps two full covariance Gaussian mixture mod- 
+els (GMMs) of K components, one GMM for foreground and one 
+GMM for background. Each of the models is parametrized as: 
+ K }
+where the j -th component of the model is dened by its weight 
+羽 , its mean 
+米 and its covariance matrix 
+ . The algorithm uses 
+ K }
+an array k 
+ where k i 
+ indicates the com- 
+ponent of the background or foreground GMM (according to 
+) 
+the pixel z i 
+belongs to. The segmentation task is formulated as an 
+energy minimization problem, where low energy indicates a good 
+
+牟 =
+
+汐 ﹋
+
+ (汐 ,
+
+羽 (汐 ,
+
+米(汐 ,
+
+,
+
+ 0 
+ 1 
+
+ T U . 
+
+ j )
+
+,
+
+ j )
+
+,
+
+ j )
+
+,
+
+,
+
+ k 1 
+
+ k n 
+
+,
+
+ 1 
+
+=
+
+,
+
+ 1 
+
+.
+
+.
+
+.
+
+.
+
+,
+
+.
+
+.
+
+.
+
+,
+
+,
+
+ j 
+
+}
+
+,
+
+,
+
+汐
+
+汐
+
+i 
+
+汐
+
+i 
+
+{
+
+﹋
+
+=
+
+{
+
+﹋
+
+i 
+
+,
+
+(1) 
+
+{
+
+}
+
+﹍
+
+.
+
+.
+
+,
+
+=
+
+{
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+45 
+
+Fig. 2. Background subtraction in the rst stage of our pipeline: (a) the original frame, (b) the output of the background subtraction algorithm (levels of gray denote the 
+probability that the pixel is foreground), (c) the extracted and lled contours, (d) the output after morphological closing. 
+
+segmentation. The energy is a sum of two components: the so- 
+called data term and the so-called smoothness term: 
+ z )
+ U (汐 ,
+ z )
+ z )
+
+E (汐 ,
+
+(2) 
+
+(汐 ,
+
+=
+
++
+
+ k,
+
+ k,
+
+ V 
+
+牟 ,
+
+牟 ,
+
+,
+
+The data term U enforces the consistency of the segmentation 
+with the observed foreground and background models, while the 
+smoothness term V enforces the solidity of the object in terms of 
+color similarity. Specically, the data term is dened as: 
+( log 
+(羽 (汐i 
+
+(cid:2)
+
+ p(z i 
+
+U (汐 ,
+
+汐i 
+
+牟 ))
+
+(3) 
+
+ k i 
+
+ k i 
+
+=
+
+ z )
+
+ k,
+
+牟 ,
+
+|
+
+)
+
+,
+
+,
+
+,
+
+.
+
+i 
+
+The data term takes on small values when the current segmen- 
+tation results in pixel assignments conforming to prior models of 
+foreground and background, and its value increases as the segmen- 
+tation diverges from the foreground and background priors. 
+The smoothness term is dened as: 
+ z )
+汐m ] exp 
+
+(汕 ||
+
+ z n 
+
+(cid:2)
+
+(汐 ,
+V 
+
+汐n 
+
+(4) 
+
+ z m 
+
+||
+
+=
+
+=
+
+2 )
+
+[ 
+
+污
+
+,
+
+{
+
+}﹋
+
+ m,n 
+
+ C 
+
+=
+
+||
+
+ z m 
+
+2 (cid:8)
+
+汐 n 
+
+(cid:7)||
+
+1 ,
+
+汕 =
+
+ z n 
+
+where C is a set of pairs of neighbouring pixels (8-way connectivity 
+is used), [ 
+汐m ] is the indicator function that takes values 0 or 
+汕 is a param- 
+1 according to the truth value of the condition, and 
+eter that weights the color contrast. The authors of the GrabCut 
+(2 
+)
+algorithm suggest setting 
+ where 
+ is the 
+expectation operator. The expression exp 
+ measures 
+the contrast between the neighbouring pixels, taking on low values 
+if the contrast is high and vice versa. The factor [ 
+汐m ] ensures 
+that the smoothness term captures the contrast information only 
+along the segmentation boundary. Dening the smoothness term 
+in this way ensures that segmentations where adjacent pixels of 
+similar colors are labeled differently are penalized. 
+Minimizing the energy function E is performed using the it- 
+erated graph cut algorithm ( Boykov & Jolly, 2001 ). Each iteration 
+
+(汕 ||
+
+ z n 
+
+(cid:7)﹞(cid:8)
+
+汐 n 
+
+ z m 
+
+||
+
+=
+
+2 )
+
+results in a more precise segmentation, improving the underlying 
+Gaussian mixture models. The iterations can either be repeated un- 
+til convergence or for a xed number of times. 
+
+3.3. GrabCut limitations and our improvements 
+
+As shown previously, rough estimates of pedestrian locations 
+can be obtained via background subtraction and morphological op- 
+erations, assuming a static camera where the motion is mainly due 
+to passing pedestrians. We propose to use these estimates to auto- 
+matically initialize GrabCut without the need for human input. For 
+each blob obtained by background subtraction and morphological 
+operations, the idea is to run GrabCut initialized with the blob re- 
+gion as uncertain foreground and every other pixel of the image as 
+sure background. However, a number of problems with the original 
+algorithm stand out when applied in this scenario ( Hrka c & Brki c, 
+2015; Sun, Tang, & Shum, 2006 ). Namely, GrabCut prefers segment- 
+ing uniform colors, while it is quite common for humans to wear 
+a shirt and pants in contrasting colors, which typically results in 
+only a part of the person being segmented. Also, the color of hu- 
+man clothing can often match the color of the background (e.g. a 
+person in a white shirt walking near a white wall), resulting in un- 
+wanted segmentation of the background. Finally, the shape of the 
+human silhouette is concave, while GrabCut prefers smooth convex 
+boundaries. 
+Our improvements are designed to emphasize the importance 
+of the initial silhouette estimate obtained by background subtrac- 
+tion, hence implicitly enforcing motion as an important segmen- 
+tation cue. First, in building foreground and background models, 
+we weight the inuence of each pixel according to its distance 
+from the blob boundary. Second, we modify the probabilities of a 
+pixel belonging to foreground or background in accordance with 
+
+46 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+Fig. 3. The weighing of pixels used to construct foreground and background GMMs 
+in our algorithm, as opposed to the original GrabCut. 
+
+Fig. 4. The prior probability weights for a pixel belonging to foreground or back- 
+ground in our algorithm, as opposed to the original GrabCut algorithm. 
+
+the output of background subtraction, taking into account its es- 
+timated reliability. Third, we discourage segmentation boundaries 
+that are far away from the initial silhouette estimate, to prevent 
+partial segmentations due to e.g. contrasting garments. We now re- 
+view each of the improvements in detail. 
+
+3.3.1. Improvements to GMM construction 
+When building foreground and background Gaussian mixture 
+models, we introduce weighing the inuence of each pixel depend- 
+ing on where the pixel is in relation with the background sub- 
+traction blob. We assume that background subtraction provides a 
+strong prior on approximate object shape, so the pixels that are 
+important for segmentation lie close to the blob boundary. How- 
+ever, based on our experimental observation that pixels lying ex- 
+actly on the boundary tend to be misclassied due to imprecisions 
+introduced by noise and morphological operations, we simultane- 
+ously downweigh the inuence of pixels very close to the bound- 
+ary. 
+The weight factor w i 
+( 
+) of a pixel z i 
+nary background subtraction-based classication 
+ground or foreground) is: 
+
+with a prelimi- 
+ {0, 1} (back- 
+
+, z i 
+i 
+
+﹋
+
+汐
+
+汐
+
+i 
+
+w i 
+
+(汐i 
+
+,
+
+)
+
+ z i 
+
+=
+
+百F d min 
+百G d min 
+
+(i 
+)
+ for 
+(i 
+)
+ exp 
+
+ 1 
+
+汐i 
+(而 d min 
+
+(i 
+))
+
+ for 
+
+汐i 
+
+=
+
+ 0 
+
+=
+
+(5) 
+
+(cid:3)
+
+﹋
+
+
+
+ i w i 
+
+百 G 
+
+where d min 
+( i ) is the distance of the pixel from the prior object 
+而 is an empirically determined constant, and 
+百 F and 
+boundary, 
+are normalizing constants used to ensure that 
+ [0, 1]. As can 
+be seen from Eq. 5 , the weighting scheme differs for foreground 
+and background pixels, as illustrated in Fig. 3 . This scheme is based 
+on our empirical observations of background subtraction outputs, 
+indicating low relevance of pixels on the boundary itself, higher 
+relevance of background pixels with small distances to the bound- 
+ary with an exponential drop (the pixels close to the boundary 
+are the most important to delineate background and foreground), 
+and linearly increasing relevance of foreground pixels that are fur- 
+ther from the object boundary (pixels closer to the center of the 
+blob are more likely to be correctly classied as foreground). After 
+weighting is applied, the energy function is formulated according 
+to the original GrabCut setup ( Eq. 2 ). 
+
+3.3.2. Improvements to the data term 
+In the original GrabCut, the data term U indicates the consis- 
+tency of the pixel with active background and foreground mod- 
+els. In our improved data term, we also take into account the ini- 
+tial classication of the pixel obtained by background subtraction, 
+weighting the likelihood that the pixel had initially been correctly 
+classied. The reasoning is similar as in the previous section; we 
+
+introduce a parameter that measures the probability of correct ini- 
+tial classication based on the distance of the pixel from the back- 
+ground subtraction blob boundary. Expecting that the pixels close 
+to the blob boundary will be misclassied, we multiply the original 
+probability of a pixel belonging to the opposite category by a value 
+that decreases with the distance of the pixel from the boundary. 
+Our modied data term is: 
+ log 
+
+(cid:2)
+
+U (汐 ,
+
+牟 ))
+
+(6) 
+
+=
+
+ z )
+
+ k,
+
+牟 ,
+
+|
+
+)
+
+)
+
+,
+
+,
+
+,
+
+(P i 
+
+(汐i 
+
+羽 (汐i 
+
+,
+
+ p(z i 
+
+汐i 
+
+,
+
+ k i 
+
+ k i 
+
+ z i 
+
+i 
+
+, z i 
+i 
+
+where P i 
+( 
+) represents the prior probability of each pixel be- 
+longing to foreground or background (according to 
+), based on 
+the background subtraction blob. The value P ( 
+) is calculated 
+as: 
+
+, z i 
+i 
+
+汐
+
+汐
+
+i 
+
+汐
+
+(cid:4)
+
+(汐i 
+
+,
+
+P i 
+
+)
+
+ z i 
+
+=
+
+ 1 for d min 
+0 for d min 
+ d min 
+
+(i 
+)
+(i 
+)
+(i 
+)
+
+1 
+
+>
+<
+
+ D 
+ D 
+
+(汐i 
+)
+ 汐i 
+(1 
+)
+ 汐i 
+(1 
+)
+ otherwise 
+
+.
+
+/D max 
+
+(7) 
+
+汐
+
+i 
+
+i 
+
+汐
+
+The factor D ( 
+), the so-called distance threshold, is used to regu- 
+late how far the pixel should be from the background subtraction 
+blob boundary to consider its preliminary classication as fore- 
+ground or background as correct. We determine this factor em- 
+pirically. The value D max ( 
+) is the maximum distance of all fore- 
+ground or background pixels from the preliminary object bound- 
+ary. Eq. 7 ensures that for pixels far away from the blob boundary 
+the initial background subtraction-based classication is strongly 
+favored. For pixels near the boundary, the original GrabCut prob- 
+ability of belonging to the opposite category is multiplied by a 
+factor that decreases with the distance of the pixel to the bound- 
+ary. An illustration of prior probabilities in our algorithm compared 
+with the original GrabCut is shown in Fig. 4 . 
+
+3.3.3. Improvements to the smoothness term 
+In the original GrabCut, the smoothness term V ensures that 
+the segmentation boundary is not placed at locations where neigh- 
+boring pixels share the same color, strongly favoring placing the 
+boundary between contrasting regions. In our application, contrast- 
+ing regions corresponding to differently clothed garments the per- 
+son is wearing are common, as are situations when one of the 
+garments of the person matches the color of the background. Ad- 
+ditionally, long and concave blob boundaries, as are the bound- 
+aries of pedestrians, strongly contribute to the total energy. When 
+keeping the original smoothness term, the algorithm prefers short 
+boundaries, resulting in cutting through the object and/or erro- 
+neously segmenting parts of the background as foreground. There- 
+fore, we propose a modied smoothness term that discourages 
+placing boundaries far away from the initial background subtrac- 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+47 
+
+Fig. 5. Smoothness correction in our algorithm, as opposed to the original GrabCut 
+algorithm. 
+
+tion blob boundary and through the background: 
+
+(汐 ,
+V 
+
+ z )
+
+=
+
+污
+
+(cid:2)
+
+{
+
+ m,n 
+
+}﹋
+
+ C 
+
+[ 
+
+汐n 
+
+=
+
+汐m ] exp 
+
+(汕 (||
+
+ z m 
+
+ z n 
+
+||
+
+2 + 竹(d min 
+
+(i 
+)
+
+ 汛0 
+)))
+
+.
+
+(8) 
+
+As can be seen from Eq. 8 , the original smoothness term (see Eq. 4 ) 
+ 汛0 
+is multiplied by another exponential, exp 
+(汕 竹(d min 
+(i 
+)
+))
+ where 
+竹 and 
+are empirically determined constants. The constant 
+ensures that the penalization is not high for pixels near the back- 
+ground subtraction blob boundary, while 
+竹 is a normalizing fac- 
+tor intended to scale the inuence of the additional exponential to 
+the inuence of the original smoothness term. The illustration of 
+the effects of this change to the smoothness term compared to the 
+original GrabCut algorithm is shown in Fig. 5 . 
+
+,
+
+汛
+
+0 
+
+汛
+
+0 
+
+3.4. An example of performance 
+
+Our improved GrabCut combined with background subtraction 
+provides high quality person silhouettes with precise boundary 
+segmentations and very little noise, as shown in an illustrative ex- 
+ample in Fig. 6 . We see that the original GrabCut has problems 
+with cutting through the pedestrians due to contrasting garments 
+worn, while our improved version correctly segments all pedes- 
+trians. Exact knowledge of which pixels belong to a person is a 
+prerequisite for adequate de-identication, that is in our pipeline 
+achieved through neural art. 
+
+4. Neural art-based de-identication 
+
+The main idea of the de-identication step in our pipeline is 
+to utilize the neural art algorithm to obfuscate the appearance of 
+the segmented pedestrian. We used similar idea in our previous 
+work ( Brki c, Hrka c, Sikiri c, & Kalafati c, 2016 ) where neural art was 
+used for de-identication of face images, while here we propose 
+an approach to de-identify the appearance of whole pedestrian sil- 
+houettes. 
+In general, the neural art algorithm is intended for transfer- 
+ring the style of one image to the content of another, utilizing the 
+responses of a deep neural network. An illustration is shown in 
+Fig. 7 . In this work, we choose style images that result in obfuscat- 
+ing the appearance of persons, including obfuscating faces, clothing 
+style, clothing color, skin color etc. 
+The neural art algorithm maintains two representations: a rep- 
+resentation of content of the target image, and a representation 
+of style of the image that is the source for style transfer. The re- 
+sult image is obtained by a joint minimization of the distance of a 
+white noise image from the style and the content images. We now 
+review the algorithm in detail. 
+
+4.1. Content representation 
+
+When looking at a convolutional neural network, the position of 
+a network layer in the processing hierarchy determines the amount 
+of contextual information that layer encodes. Earlier layers usually 
+specialize for raw pixel values and low-level image features, while 
+layers further along the processing hierarchy encode higher level 
+concepts, such as objects and their relations. The neural art algo- 
+rithm utilizes this fact to built its content representation. Assuming 
+a layer of n l 
+feature maps, with the total dimension of each feature 
+map (its width times its height) equal to m l 
+, we dene the n l 
+l as a matrix of network responses in layer l . The element 
+matrix F 
+F 
+l ( i, j ) is the response of the i -th feature at position j . The encoded 
+content at a given layer is reconstructed by starting with an initial 
+white noise image and performing gradient descent optimization 
+until an image that matches the feature responses of the original 
+image is obtained. The loss function is dened as: 
+ F 
+
+℅ m l 
+
+L
+
+ content 
+
+(I C 
+
+,
+
+ I G 
+
+,
+
+ l )
+
+=
+
+1 
+2 
+
+(cid:2)
+
+i, j 
+
+(F 
+
+l 
+G 
+
+(i,
+
+ j )
+
+l 
+C 
+
+(i,
+
+ j ))
+
+2 ,
+
+(9) 
+
+where I C is the image containing the modeled content with the 
+matrix of responses F 
+ while I G is the generated image with the 
+matrix of responses F 
+. 
+The gradient is computed using standard error backpropagation, 
+using the derivative of the loss: 
+ F 
+(i,
+ j )
+(i,
+ j )
+
+l 
+C 
+l 
+G 
+
+,
+
+ L
+
+ content 
+ F 
+(i,
+ j )
+
+l 
+G 
+
+=
+
+(cid:3)
+
+F 
+
+l 
+G 
+
+l 
+C 
+
+if F 
+
+l 
+G 
+l 
+G 
+
+(i,
+(i,
+
+ j )
+ j )
+
+>
+
+ 0 
+
+0 
+
+if F 
+
+≒ 0 
+The optimization starts with a random image I G , and the image 
+is updated until the difference between feature responses is mini- 
+mized. 
+
+.
+
+(10) 
+
+4.2. Style representation 
+
+The style representation of an image in the neural art algorithm 
+at a given network layer is obtained by computing the correlations 
+between feature responses at that layer ( Gatys, Ecker, & Bethge, 
+2015b ). The correlations are dened by a Gram matrix G 
+rows and columns, where G 
+l ( i, j ) is the inner product of attened 
+vectors of feature responses i and j . To nd a texture image that 
+matches the style of the input image, a random image is initialized 
+and gradient descent optimization is performed with respect to the 
+style representation. The loss function 
+)
+ is the sum of 
+losses E l 
+
+l with n l 
+
+L
+
+ style 
+
+(I S 
+
+,
+
+ I G 
+
+across all network layers: 
+
+L
+
+ style 
+
+(I S 
+
+,
+
+ I G 
+
+)
+
+=
+
+(cid:2)
+
+l 
+
+w l E l 
+
+,
+
+(11) 
+
+where I S is the style image, I G is the generated image and w l 
+are 
+the contributing weights of each layer. The loss of an individual 
+layer E l 
+is dened as: 
+1 
+4 n 
+m 
+
+E l 
+
+=
+
+2 
+l 
+
+2 
+l 
+
+(cid:2)
+
+i, j 
+
+(G 
+
+l 
+G 
+
+(i,
+
+ j )
+
+ G 
+
+l 
+S 
+
+(i,
+
+ j ))
+
+2 ,
+
+(12) 
+
+where G 
+is the Gram matrix of the style image and G 
+is the Gram 
+matrix of the generated image, n l 
+is the number of feature maps, 
+and m l 
+is the total dimension of each feature map. 
+The derivatives of E l 
+with respect to activations in layer l are: 
+
+l 
+S 
+
+l 
+G 
+
+ E l 
+
+ F 
+
+l (i,
+
+ j )
+
+=
+
+(cid:4)
+
+(F 
+
+l )
+
+T (G 
+l 
+G 
+
+G 
+(i, j )
+(i, j )))
+n 
+m 
+
+l 
+S 
+
+2 
+l 
+
+2 
+l 
+
+if F 
+
+l (i,
+l (i,
+
+ j )
+ j )
+
+>
+
+ 0 
+
+0 
+
+if F 
+
+≒ 0 
+
+.
+
+(13) 
+
+4.3. Generating the mixed images 
+
+To generate the image that mixes the content of one image with 
+the style of another, the neural art algorithm initializes a white 
+
+48 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+Fig. 6. Output comparisons for two frames from the sequence ※backdoor§ from the CDnet 2014 Pedestrian Detection dataset ( Wang et al., 2014 ): (a,e) original frames, (b,f) 
+raw background subtraction output, (c,g) GrabCut, (d,h) our method. 
+
+Fig. 7. Example output of the neural art algorithm ( Gatys, Ecker, & Bethge, 2015a ). The style of the artwork (a) is mixed with the content of the image (b) to obtain the 
+output image (c). 
+
+noise image and jointly minimizes the content loss in one layer 
+and the style loss across multiple levels. The loss function is: 
+
+L
+
+(I C 
+
+,
+
+ total 
+
+,
+
+ I S 
+ I G 
+
+)
+
+=
+
+汐L
+
+ content 
+
+(I C 
+
+,
+
++
+
+汕 L
+
+)
+
+ I G 
+
+(I S 
+
+,
+
+ style 
+
+)
+
+ I G 
+
+.
+
+(14) 
+
+The end result of this optimization is the image I G that is a mix 
+of content from the image I C and style from the image I S . 
+
+4.4. De-identication and its reversibility 
+
+In order to de-identify segmented persons in our pipeline, we 
+alter their style using the neural art algorithm. We limit the ap- 
+plication of the algorithm to the segmented persons only, so the 
+background remains natural and untampered with. In practice, this 
+is achieved by applying the neural art algorithm on the entire in- 
+put image, cutting the resulting image according to the segmented 
+persons＊ silhouettes and blending the result back with the input 
+image. 
+In terms of source style images, we use a database of richly tex- 
+tured images with lots of details. Any kind of photograph, artwork 
+or synthetic image could be used, lending more or less natural- 
+ness and credibility to the nal de-identied image. In order to 
+de-identify a person, we randomly select a style image from the 
+database, apply the neural algorithm and integrate the result into 
+the original image. 
+
+One example of de-identication with neural art is shown in 
+Fig. 8 . The person from the content image (a) is segmented, the 
+style from the style image (b) is applied on the entire content im- 
+age, and the result is cut out and blended back with the original 
+image (c). It can be seen that the method has many desirable prop- 
+erties of good de-identication: it is recognizable what the person 
+is doing, but the appearance of the person has been altered, with 
+changed clothing, shoes, hairstyle, body shape, and an added hint 
+of a personal bag that was not there before. It has been made dif- 
+cult to recognize the person from secondary cues, i.e. soft and 
+non-biometric identiers. 
+In most de-identication applications, the ability to be able to 
+securely store and, if need be, reverse the de-identifying transfor- 
+mation is one of the key requirements. In our pipeline, we envision 
+that the reversibility could be achieved by either (i) securely en- 
+crypting and separately storing the original image, or (ii) stegano- 
+graphically encoding the original image (either encrypted or unen- 
+crypted, depending on the level of protection needed) in the de- 
+identied image itself (see e.g. our work ( Blaevi c, Brki c, & Hrka c, 
+2015 )). In applications that involve crowded scenes, separate en- 
+cryption of the original image is a better solution, as larger vol- 
+umes of steganographically-encoded data include progressive dete- 
+rioration of the carrier image quality. 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+49 
+
+Table 1 
+Average precisions, recalls and F1 measures for each of the ten sequences in the 
+CDnet 2014 Pedestrian Dataset. 
+
+Sequence 
+
+GrabCut 
+
+Ours 
+
+AP 
+
+AR 
+
+F1 
+
+AP 
+
+AR 
+
+F1 
+
+backdoor 
+bus station 
+cubicle 
+copy machine 
+oce 
+pedestrians 
+PETS 2006 
+people in shade 
+skate 
+sofa 
+
+0.9938 
+0.9770 
+0.9901 
+0.9900 
+0.9943 
+1.0 0 0 0 
+1.0 0 0 0 
+0.8890 
+1.0 0 0 0 
+0.9659 
+
+0.3784 
+0.1186 
+0.3642 
+0.2266 
+0.1184 
+0.5917 
+0.4171 
+0.5364 
+0.5102 
+0.1651 
+
+0.5481 
+0.2115 
+0.5325 
+0.3687 
+0.2116 
+0.7434 
+0.5886 
+0.6690 
+0.6756 
+0.2819 
+
+0.9298 
+0.8569 
+0.7339 
+0.5847 
+0.7625 
+1.0 0 0 0 
+1.0 0 0 0 
+0.7555 
+1.0 0 0 0 
+0.6841 
+
+0.9175 
+0.5039 
+0.7924 
+0.3988 
+0.2400 
+0.9383 
+0.7169 
+0.7233 
+0.6788 
+0.5449 
+
+0.9236 
+0.6346 
+0.7620 
+0.4741 
+0.3650 
+0.9681 
+0.8351 
+0.7390 
+0.8086 
+0.6066 
+
+as our improvements ensure that the background subtraction blob 
+outline is smoothed, while pixel contributions become dependent 
+on the position of the pixels relative to the boundary subtraction 
+blob. In terms of run time performance, our algorithm runs at a 
+speed similar to the reference implementation of GrabCut. 
+We conclude that the detection and the segmentation stages of 
+our pipeline provide reliable pedestrian detections with precise sil- 
+houettes. The number of false positives produced by the segmen- 
+tation stage is somewhat higher than when the original GrabCut is 
+used, but in the context of de-identication this is not a concern 
+(we do not expect the naturalness of the scene to be severely im- 
+pacted by de-identifying a small number of pixels not belonging to 
+pedestrians). 
+
+5.2. De-identication 
+
+Our experimental evaluation of the effectiveness of the pro- 
+posed de-identication technique consists of two complementary 
+approaches. The rst approach focuses on automatically evaluating 
+the effects of de-identication by measuring the performance of 
+detection and classication algorithms on original vs. de-identied 
+images. The second approach systematically studies how humans 
+perceive the de-identied images using a series of questionnaires. 
+Our rationale is that for a de-identication method to be consid- 
+ered successful, it must thwart the identication of subjects both 
+by automated methods and by human observers. 
+
+5.2.1. The employed datasets 
+As described previously, the neural art algorithm that we use 
+for de-identication requires two images as input: a content image 
+that is to be transformed, and a style image whose style is used 
+to transform the content image. In these series of experiments, we 
+use walking sequences from the Human3.6m dataset ( Ionescu, Pa- 
+pava, Olaru, & Sminchisescu, 2014 ) as our content images. The se- 
+quences are lmed with a static camera of a relatively high reso- 
+℅ 10 02 pixels), and depict different subjects walking. 
+lution (10 0 0 
+The Human3.6m dataset was selected for our de-identication ex- 
+periments because the high resolution of the images meant that 
+the effects of de-identication on individual features on the face 
+and the body would be more pronounced. In contrast, in the CD- 
+Net 2014 dataset that we used for detection and segmentation ex- 
+periments pedestrians tend to be very small, so it is often impos- 
+sible to discern their facial features and other details of their ap- 
+pearance, therefore making it hard to closely study the effects of 
+de-identication. 
+While the content images for de-identication experiments 
+come from the Human3.6m dataset, for style images we need 
+a more versatile dataset containing a variety of styles, local 
+textures and colors. Therefore, we have manually compiled a 
+dataset of 23 diverse images primarily obtained from ImageNet 
+
+Fig. 8. Neural art-based de-identication. The pedestrian from the image (a) is seg- 
+mented, combined with the style image (b) and the result is pasted into original 
+image (c). 
+
+5. Experiments 
+
+The experimental evaluation of our pipeline consists of two 
+parts: (i) the evaluation of pedestrian detection and segmentation, 
+and (ii) the evaluation of de-identication. 
+
+5.1. Pedestrian detection and segmentation 
+
+=
+
+(汐
+
+i 
+
+=
+
+,
+
+汛0 
+
+(汐
+
+,
+
+i 
+
+.
+
+ 0 
+ 2 
+
+竹 =
+
+而 =
+
+﹞ D max 
+
+In order to experimentally validate the performance of our 
+method in terms of pedestrian detection and segmentation, we 
+employ sequences from the CDnet 2014 Pedestrian Detection 
+dataset ( Wang et al., 2014 ), containing ten videos with a total 
+of 26,248 frames. Example frames from each of the ten videos 
+are shown in Fig. 9 . We compare the performance of our im- 
+proved GrabCut algorithm to a reference implementation of the 
+original GrabCut from the OpenCV library ( Bradski, 20 0 0 ). Both 
+algorithms are initialized using the same background subtraction 
+blobs obtained after morphological postprocessing. Pipeline param- 
+eters are initialized as follows: morphological opening of 5 pixels, 
+)
+)
+morphological closing of 9 pixels, 
+ 10 . D 
+ 20 0 0 0 
+ 8 . The values were determined empirically. 
+We adhere to the evaluation methodology for the CDnet 2014 
+dataset proposed in ( Wang et al., 2014 ), evaluating the perfor- 
+mance on a per-pixel basis. We measure average precisions, recalls 
+and F1 measures over all frames for each sequence in the dataset. 
+The results are shown in Table 1 . In terms of F1 measure (the har- 
+monic mean of precision and recall), our method outperforms the 
+reference GrabCut implementation in all the considered sequences. 
+The improvement of the F1 measure is caused by a signicantly 
+improved recall, as many more foreground pixels are correctly seg- 
+mented when our algorithm is applied instead of the original Grab- 
+Cut implementation. However, our algorithm produces somewhat 
+more false positives classied as foreground, resulting in a rela- 
+tively small drop of precision. 
+An example comparing the performance of our algorithm with 
+the original GrabCut is shown in Fig. 6 . As can be seen, the original 
+GrabCut performs poorly as there is a signicant color difference 
+in individual clothing items worn by each of the pedestrians. On 
+the other hand, our algorithm correctly segments all pedestrians, 
+
+50 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+Fig. 9. Example frames from the CDnet 2014 Pedestrian Dataset videos. 
+
+Fig. 10. A few style images used for de-identication. 
+
+( Russakovsky et al., 2015 ). The selected style images range from ev- 
+eryday situations depicting people to textures and artwork. A few 
+of the style images can be seen in Fig. 10 . 
+
+case, a person is walking). We now verify these observations quan- 
+titatively. 
+
+5.2.2. Qualitative evaluation 
+Some results of our initial, qualitative evaluation of de- 
+identication using the described datasets are shown in Fig. 11 . 
+The rst row depicts the used style images, the rst column the 
+original frames, and combined images are shown in correspond- 
+ing rows and columns. While the pose and the body shape of the 
+persons remains visible in all de-identied images, we see consid- 
+erable changes in their appearance. Clothing appears to be colored 
+and textured differently and in some cases replaced by a differ- 
+ent type (shirts and pants can become differently colored dresses). 
+Bare skin sometimes gets covered by made up clothes. Facial fea- 
+tures tend to get obfuscated or removed. The changes are depen- 
+dent both on style and content. As can be seen, not every style 
+changes the content image in the same way. In the rst column, 
+the clothing of the person in the rst row turns blue due to the 
+selection of blue features from the style image, while the clothing 
+of the person in the second row is re-colored using yellowish fea- 
+tures and textures from the style image. However, the sneakers of 
+the person are rendered blue. 
+Depending on the applied style image, the de-identied images 
+could look somewhat unnatural and create a distraction for human 
+observers such as security personnel. However, this holds for all 
+de-identication methods and we do believe that our method of- 
+fers a better degree of naturalness than some similar works. Fur- 
+thermore, unlike pixelization, blurring and scrambling, the pro- 
+posed method keeps a higher degree of data utility. In Fig. 12 we 
+show several examples of alternative de-identication approaches, 
+such as pixelization, blurring and DCT-block scrambling similar to 
+( Dufaux & Ebrahimi, 2008 ). 
+Qualitative evaluation suggests that through applying our de- 
+identication pipeline we can obfuscate or remove many biomet- 
+ric, soft biometric and non-biometric identiers (e.g. face, hair 
+color, birthmarks, tattoos, clothing, skin color etc.) while still re- 
+taining information about what is occurring in the scene (in this 
+
+5.2.3. Detection performance on de-identied images 
+To investigate whether the body shapes and the faces of the 
+persons remain automatically detectable after applying our de- 
+identication method, we employ four detectors: (i) a pedestrian 
+detector based on deformable part models ( Felzenszwalb, Girshick, 
+McAllester, & Ramanan, 2010 ), (ii) a pedestrian detector based on 
+integral channel features ( Dollar, Tu, Perona, & Belongie, 2009 ), (iii) 
+a pedestrian detector based on histograms of oriented gradients 
+(HOG) ( Dalal & Triggs, 2005 ) and support vector machines (SVM) 
+( Cortes & Vapnik, 1995 ), (iv) the Viola-Jones object detector ( Viola 
+& Jones, 2001 ) based on boosted Haar cascade classiers, trained 
+for detecting either just the face or the whole upper body. We use 
+open source implementations from the CCV and OpenCV libraries 
+( Bradski, 20 0 0 ). 
+We build a series of de-identied images using sequences of 
+ve subjects from the Human3.6m dataset and all style images 
+from the compiled style dataset, resulting in a total of 1127 de- 
+identied images created from 49 original subject images. We then 
+compute the baseline performance of individual detectors on the 
+original images and compare it to performance on de-identied 
+images. The results are summarized in Table 2 . 
+As can be seen, the detection performance of the DPM detector 
+trained on full body is similar on original and de-identied im- 
+ages (the detection rate on the de-identied images is decreased 
+by 5%). This result is to be expected, given that DPM is a detector 
+based on capturing the shape of the detected object. In our case, 
+the de-identied silhouettes of humans still retain a natural human 
+shape, therefore triggering the detection. Detection rates are also 
+similar for original and de-identied images for ICF, HOG and the 
+Viola-Jones detector trained on upper body. We note that the per- 
+formance of the ICF detector is in itself low and we attribute this 
+to the fact that we used an open source implementation trained 
+on fully front-facing pedestrians, while in the frames from the Hu- 
+man3.6m dataset pedestrians are lmed from various angles. 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+51 
+
+Fig. 11. Applying four different styles (rst row) to four different input images (rst column). Level of transparency is 0.8. 
+
+Face detection using the Viola-Jones detector drops more than 
+threefold on de-identied images, as facial structures are obfus- 
+cated through de-identication. We note the initial low perfor- 
+mance of the Viola-Jones face detector (accuracy of only 35%) 
+which we attribute to the fact that in the test sequences the sub- 
+ject faces are often very small and poorly discernible. 
+In summary, experimental results regarding the detection of 
+the persons de-identied by our pipeline indicate that the over- 
+all shape of the person remains detectable at a similar rate as in 
+the original images. Should the target application call for lower 
+full body detection rates, these could be achieved by altering the 
+overall shape of the person (e.g. using random distortions on the 
+
+3 
+
+3 Even though the CDNet 2014 dataset was selected because the image resolution 
+is higher than in average surveillance datasets, in many frames the subject is simply 
+too far from the camera for the face to be recognizable even to human observers. 
+
+segmented outline), therefore sacricing a degree of naturalness in 
+the scene. In this work, our goal is to preserve as much natural- 
+ness as possible while obfuscating identifying features. Therefore, 
+while preserving the overall body shape, our method alters facial 
+features so that the face detection rate is more than three times 
+smaller compared to the face detection rate on the original images. 
+Only 11% of faces are correctly detected. 
+
+5.2.4. Classication performance on de-identied images 
+We have shown that our de-identication pipeline enables re- 
+liable automatic detection of human silhouettes and thwarts auto- 
+matic detection of faces. We now investigate whether the pipeline 
+suciently de-identies humans to cause attempts at automated 
+person identication to fail. We use the same 49 subject images 
+and 1127 de-identied images described in Subsection 5.2.3 . We 
+assume that we have a perfect detector that correctly segments the 
+
+52 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+Fig. 12. Several examples of de-identication approaches: pixelization, blurring, DCT-block scrambling and the proposed method. 
+
+Table 2 
+Detector performance on original and de-identied images, in terms of detection accu- 
+racy and the average number of false positives per image. 
+
+Detector 
+
+Trained for 
+
+Accuracy [%] 
+
+FP rate (# per im.) 
+
+original 
+
+de-identied 
+
+original 
+
+de-identied 
+
+DPM 
+ICF 
+HOG 
+Viola-Jones 
+Viola-Jones 
+
+full body 
+full body 
+full body 
+upper body 
+frontal face 
+
+88.0 
+44.0 
+81.6 
+79.6 
+35.0 
+
+83.4 
+40.9 
+75.9 
+70.6 
+11.0 
+
+0.22 
+0.14 
+0.52 
+0.44 
+0.75 
+
+0.25 
+0.12 
+0.45 
+0.51 
+0.77 
+
+outline of the person in each image and build two databases of de- 
+scriptors of segmented persons: (i) a database of persons as they 
+appear in the original frames, and (ii) a database of de-identied 
+persons. We then test whether the descriptors of de-identied per- 
+sons can be automatically matched with the descriptors of the 
+original persons, i.e. whether it is possible to determine the iden- 
+tity of the person using the de-identied image. We compare these 
+ndings with a baseline established on matching with person im- 
+ages that were not de-identied. 
+For person descriptors we use either 3D histograms of RGB, 
+weighted histograms of per-pixel gradient orientations of the seg- 
+mented persons, or a concatenation of both. The color histograms 
+are built using 8 bins in three dimensions, resulting in a descriptor 
+of size 256, while histograms of gradients are built using 16 bins. 
+Matching the descriptors is performed using the k nearest neigh- 
+聿 2 as a distance measure ( Altman, 
+bors algorithm ( k -NN) using 
+1992 ). To nd the identity of the person, the algorithm retrieves 
+k database descriptors that are nearest to the query descriptor. The 
+identity of the person is determined by nding the most common 
+person in the retrieved k descriptors. If a tie happens (e.g. in 4- 
+
+聿 2 
+
+NN classication two retrieved descriptors belong to person A, and 
+two to person B) the nal identity is assigned by randomly select- 
+ing one of the candidate identities. In the case of the concatenated 
+descriptor, the distance between two descriptors is computed as 
+a sum of 
+聿 2 distances between the two color histograms and 
+distances between the two gradient histograms. 
+Baseline classication accuracies obtained using leave-one-out 
+cross-validation on the database of person descriptors from the 
+original frames are shown in Fig. 13 (a). Fig. 13 (b) shows classi- 
+cation accuracies when matching de-identied person descrip- 
+tors with the original person descriptors. In spirit similar to the 
+baseline leave-one-out methodology, we remove the descriptor of 
+the original person that generated the query de-identied person 
+when searching for the nearest neighbors. Therefore, the classica- 
+tion accuracies are obtained under the assumption that the exact 
+same image used as content for the de-identied image is not in 
+the descriptor database. 
+We see that classication accuracies for the de-identied im- 
+ages are much lower than classication accuracies for the original 
+images. While the original images can be classied with as high 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+53 
+
+Fig. 13. The effects of de-identication on k -NN classication accuracy, depending on the number of neighbors k . (a) Classication accuracy of non-de-identied person 
+descriptors, obtained using leave-one-out cross-validation on the descriptor database built from original images. (b) Classication accuracy when matching de-identied 
+person descriptors with the descriptor database built from original images. Three descriptor types are shown: 3D RGB color histograms (RGB), histograms of gradient (Grad) 
+and concatenation of both (RGB+Grad). 
+
+how humans perceive and classify the de-identied images pro- 
+duced by the pipeline. The goals of the study are (i) to investigate 
+whether humans are capable of correctly determining the identi- 
+ties of the de-identied persons, and (ii) to determine to what de- 
+gree the soft and non-biometric identiers in the de-identied im- 
+ages are obfuscated. 
+In the study, the user is rst presented with a de-identied im- 
+age and asked to nd an image of the same person among ve 
+non de-identied choices. Next, the user is asked to classify indi- 
+vidual soft biometric and non-biometric identiers using the de- 
+identied image. We repeat the process for six de-identied sub- 
+jects and record the responses of 40 users. The results are sum- 
+marized in Table 3 , while the de-identied subjects are shown in 
+Fig. 15 . 
+It is interesting to note the high variance of user accuracy de- 
+pending on the experiment. In some of the de-identied images it 
+was very hard to guess the identity of the person, as well as qual- 
+ify other features of the image (e.g. experiment 4), while for some 
+images almost all users classied everything correctly (e.g. exper- 
+iment 6). The degree of success of de-identication seems to be 
+highly dependent on how the mixture of the original content im- 
+age and the randomly selected style image turns out. 
+In summary, the user study has shown that humans are able 
+to guess the identities of the persons de-identied by our pipeline 
+rather well when presented with an original full-body image of the 
+person. As the silhouette of the person remained preserved, the 
+users often identied the person based on the body shape. When 
+interacting with the users, we learned that sex was also inferred 
+mainly based on the body shape, although hair length and cloth- 
+ing type were used as secondary clues. In a large scale application 
+with a database of thousands of persons, we expect that identi- 
+cation by humans would be considerably harder than in this study 
+where we had a database of only 10 persons with a lot of different 
+body shapes. 
+Users often misclassied hair color and clothing color, indicat- 
+ing that these features are de-identied well. While the clothing 
+type and hair length were classied with a relatively high accu- 
+racy, we believe that color is a much stronger cue than the type 
+of clothing or hair length. Therefore, we believe that the perfor- 
+mance of our pipeline is adequate for a reasonable level of de- 
+identication. 
+
+Fig. 14. The effects of de-identication on k -NN classication accuracy when 
+matching de-identied person descriptors with the descriptor database built from 
+original images, depending on the number of neighbors k . Three descriptor types 
+are shown: 3D RGB color histograms (RGB), histograms of gradient (Grad) and con- 
+catenation of both (RGB+Grad). In contrast to Fig. 13 (b), here we allow matching 
+the de-identied descriptor with the descriptor of the exact original image used to 
+generate the de-identied image, resulting in a signicant increase in performance 
+for the gradient-based descriptor. 
+
+as 90% accuracy, the accuracy for de-identied images is around a 
+constant 20% regardless of the value of k or the type of descriptor 
+used. The descriptor based on histograms of gradients is perform- 
+ing particularly poorly. The reason for this is that the descriptor is 
+very sensitive to the silhouette of the person ( Dalal & Triggs, 2005 ), 
+and in our database each subject is represented with an average of 
+only ve images lmed from different angles. As the original im- 
+age is removed from the database in both experiments depicted in 
+Fig. 13 , there are almost no similar silhouettes in the database cor- 
+responding to the same person. In comparison, if the original im- 
+age is retained, we see a large performance increase when using 
+histograms of gradients, as shown in Fig. 14 
+The ndings from this experiment indicate that our pipeline 
+de-identies the persons suciently to signicantly decrease au- 
+tomated person identication. 
+
+5.2.5. A user study 
+In an approach complementary to automated evaluation of our 
+de-identication pipeline, we perform a user study to evaluate 
+
+54 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+Table 3 
+Recognition accuracy of various features in the user study for six de-identied images shown in Fig. 15 , based on the responses of 40 users. 
+
+Identication [%] 
+
+Sex [%] Hair length [%] Hair color [%] 
+
+Clothing type [%] 
+
+Clothing color [%] 
+
+Footwear type [%] 
+
+Experiment 1 
+Experiment 2 
+Experiment 3 
+Experiment 4 
+Experiment 5 
+Experiment 6 
+
+Total 
+
+92.5 
+60.0 
+92.5 
+67.5 
+67.5 
+95.0 
+
+79.2 
+
+90.0 
+95.0 
+89.7 
+79.5 
+95.0 
+100.0 
+
+91.5 
+
+45.0 
+80.0 
+87.2 
+47.5 
+90.0 
+97.5 
+
+74.5 
+
+47.5 
+20.0 
+45.0 
+35.0 
+32.5 
+52.5 
+
+38.8 
+
+50.0 
+70.0 
+77.5 
+57.5 
+95.0 
+100.0 
+
+75.0 
+
+5.0 
+10.0 
+27.5 
+15.0 
+35.0 
+56.4 
+
+24.8 
+
+40.0 
+7.5 
+72.5 
+80.0 
+82.5 
+87.5 
+
+61.7 
+
+Fig. 15. The six de-identied images used in our user study. The letters a-f correspond to experiment numbers 1每6. 
+
+6. Conclusion 
+
+We have presented a computer vision-based pipeline for auto- 
+mated de-identication of humans in surveillance video sequences. 
+The pipeline utilizes background subtraction based on Gaussian 
+mixture models to obtain initial estimates of human locations, 
+an improved GrabCut algorithm for precise human segmentation 
+and the neural art algorithm to de-identify the segmented humans 
+by altering their appearance. Experimental evidence suggests that 
+the proposed pipeline successfully detects humans and produces 
+highly accurate human segmentations. Through the application of 
+the neural art algorithm, the appearance of the segmented humans 
+is altered so that the detection of the faces of de-identied humans 
+and the automated classication of their identity is unreliable. In a 
+user study, we have shown that humans perceive a number of ap- 
+pearance features in the de-identied images as different than in 
+the original images (e.g. hair and clothing color). Simultaneously, 
+the silhouettes of the de-identied humans are preserved, helping 
+maintain the naturalness of the scene. 
+Both our automatic evaluation and our user study have shown 
+that body shape is a revealing feature that signicantly helps 
+to identify a person de-identied by our pipeline. Given a large 
+enough database of persons, this problem should be somewhat 
+
+mitigated, as there would be a number of persons with very simi- 
+lar body shapes. However, our future work will involve investigat- 
+ing whether body shape alterations can be incorporated into our 
+pipeline while still maintaining the naturalness of the scene and 
+the recognizability of what the person is doing. 
+
+Acknowledgements 
+
+This work was supported by the Croatian Science Foundation 
+( DeMSI , UIP-11-2013-1544 ). This support is gratefully acknowl- 
+edged. 
+
+References 
+
+Agrawal, P., & Narayanan, P. J. (2011). Person de-identication in videos. IEEE Trans- 
+actions on Circuits and Systems for Video Technology, 21 (3), 299每310. doi: 10.1109/ 
+TCSVT.2011.2105551 . 
+Altman, N. S. (1992). An introduction to kernel and nearest-neighbor nonparametric 
+regression. The American Statistician, 46 (3), 175每185. doi: 10.2307/2685209 . 
+Andriluka, M. , Roth, S. , & Schiele, B. (2009). Pictorial structures revisited: People de- 
+tection and articulated pose estimation. Ieee conference on computer vision and 
+pattern recognition (CVPR) . 
+Baltieri, D., Vezzani, R., & Cucchiara, R. (2014). Mapping appearance descriptors on 
+3d body models for people re-identication. International Journal of Computer 
+Vision, 111 (3), 345每364. doi: 10.1007/s11263- 014- 0747- z . 
+Benenson, R. , Omran, M. , Hosang, J. , & Schiele, B. (2014). Ten years of pedestrian 
+detection, what have we learned? ECCV, cvrsuad workshop . 
+
+K. Brki c et al. / Expert Systems With Applications 87 (2017) 41每55 
+
+55 
+
+Bitouk, D., Kumar, N., Dhillon, S., Belhumeur, P., & Nayar, S. K. (2008). Face swap- 
+ping: Automatically replacing faces in photographs. ACM Trans. Graph., 27 (3), 
+39:1每39:8. doi: 10.1145/1360612.1360638 . 
+Blaevi c, M. , Brki c, K. , & Hrka c, T. (2015). Towards reversible de-identication in 
+video sequences using 3d avatars and steganography. CoRR, abs/1510.04861 . 
+Boykov, Y., & Jolly, M.-P. (2001). Interactive graph cuts for optimal boundary amp; 
+region segmentation of objects in n-d images. In Computer vision, 2001. ICCV 
+2001. proceedings. eighth IEEE international conference on: 1 (pp. 105每112vol.1). 
+doi: 10.1109/ICCV.2001.937505 . 
+Bradski, G. (20 0 0). The openCV library. Dr. Dobb＊s Journal of Software Tools . 
+Brki c, K., Hrka c, T., Sikiri c, I., & Kalafati c, Z. (2016). Towards neural art-based face 
+de-identication in video data. In 2016 rst international workshop on sensing, 
+processing and learning for intelligent machines (spline) (pp. 1每5). doi: 10.1109/ 
+SPLIM.2016.7528406 . 
+Brutzer, S. , Hoferlin, B. , & Heidemann, G. (2011). Evaluation of background subtrac- 
+tion techniques for video surveillance. In Proceedings of the 2011 ieee conference 
+on computer vision and pattern recognition . In CVPR ＊11 (pp. 1937每1944). Wash- 
+ington, DC, USA: IEEE Computer Society . 
+Cheung, S.-C. S. , & Kamath, C. (2004). Robust techniques for background subtrac- 
+tion in urban trac video. Visual Communications and Image Processing 2004, 
+5308 (1), 881每892 . 
+Cortes, C., & Vapnik, V. (1995). Support-vector networks. Mach Learn, 20 (3), 273每
+297. doi: 10.1023/A:1022627411411 . 
+Dalal, N. , & Triggs, B. (2005). Histograms of oriented gradients for human detection. 
+In Proc. CVPR (pp. 886每893) . 
+Dollar, P., Tu, Z., Perona, P., & Belongie, S. (2009). Integral channel features. In Pro- 
+ceedings of the british machine vision conference . BMVA Press . doi: 10.5244/C.23. 
+91 . 
+Dollar, P., Wojek, C., Schiele, B., & Perona, P. (2012). Pedestrian detection: An eval- 
+uation of the state of the art. IEEE Transactions on Pattern Analysis and Machine 
+Intelligence, 34 (4), 743每761. doi: 10.1109/TPAMI.2011.155 . 
+Dufaux, F., & Ebrahimi, T. (2008). Scrambling for privacy protection in video surveil- 
+lance systems. IEEE Transactions on Circuits and Systems for Video Technology, 
+18 (8), 1168每1174. doi: 10.1109/TCSVT.2008.928225 . 
+Felzenszwalb, P. F. , Girshick, R. B. , McAllester, D. , & Ramanan, D. (2010). Object de- 
+tection with discriminatively trained part based models. IEEE Transactions on 
+Pattern Analysis and Machine Intelligence, 32 (9), 1627每1645 . 
+Garcia, J., Martinel, N., Gardel, A., Bravo, I., Foresti, G. L., & Micheloni, C. (2016). 
+Modeling feature distances by orientation driven classiers for person re- 
+identication. Journal of Visual Communication and Image Representation, 38 , 
+115每129. http://dx.doi.org/10.1016/j.jvcir.2016.02.009 . 
+Garc赤a-Mart赤n, A., Cavallaro, A., Mart赤nez, J., & Mart赤nez, J. M. (2012). People- 
+background segmentation with unequal error cost. In 2012 19th IEEE inter- 
+national conference on image processing (pp. 157每160). doi: 10.1109/ICIP.2012. 
+6466819 . 
+Garc赤a-Mart赤n, A., & Mart赤nez, J. M. (2012). On collaborative people detection and 
+tracking in complex scenarios. Image Vision Comput., 30 (4每5), 345每354. doi: 10. 
+1016/j.imavis.2012.03.005 . 
+Garc赤a-Mart赤n, A. , & Mart赤nez, J. M. (2015). People detection in surveillance: Classi- 
+cation and evaluation. IET Computer Vision, 9 . 779每788(9) 
+Gatys, L. A. , Ecker, A. S. , & Bethge, M. (2015a). A neural algorithm of artistic style. 
+CoRR, abs/1508.06576 . 
+Gatys, L. A. , Ecker, A. S. , & Bethge, M. (2015b). Texture synthesis and the con- 
+trolled generation of natural stimuli using convolutional neural networks. CoRR, 
+abs/1505.07376 . 
+Gross, R. , Airoldi, E. , Malin, B. , & Sweeney, L. (2006a). In G. Danezis, & D. Martin 
+(Eds.), Integrating utility into face de-identication (pp. 227每242)). Berlin, Heidel- 
+berg: Springer Berlin Heidelberg . 
+Gross, R. , Sweeney, L. , Cohn, J. F. , De la Torre, F. , & Baker, S. (2009). Protecting privacy 
+in video surveillance (pp. 129每146)). Springer Publishing Company, Incorporated . 
+Gross, R., Sweeney, L., de la Torre, F., & Baker, S. (2006b). Model-based face de- 
+identication. In IEEE workshop on privacy research in vision, in conjunction with 
+cvpr (p. 161). doi: 10.1109/CVPRW.2006.125 . 
+Han, H., & Jain, A. K. (2013). Tattoo based identication: Sketch to image matching. 
+In Biometrics (icb), 2013 international conference on (pp. 1每8). doi: 10.1109/ICB. 
+2013.6613003 . 
+Hein, B., Scheirer, W., & Boult, T. E. (2012). Detecting and classifying scars, marks, 
+and tattoos found in the wild. In Biometrics: Theory, applications and systems 
+(btas), 2012 IEEE fth international conference on (pp. 31每38). doi: 10.1109/BTAS. 
+2012.6374555 . 
+Hernandez-Vela, A., Reyes, M., Ponce, V., & Escalera, S. (2012). Grabcut-based hu- 
+man segmentation in video sequences. Sensors, 12 , 15376每15393. doi: 10.3390/ 
+s121115376 . 
+
+Herrero, S. , & Besc車s, J. (2009). Background subtraction techniques: Systematic eval- 
+uation and comparative analysis. In Proceedings of the 11th international confer- 
+ence on advanced concepts for intelligent vision systems . In ACIVS (pp. 33每42). 
+Berlin, Heidelberg: Springer-Verlag . 
+Hrka c, T., & Brki c, K. (2015). Iterative automated foreground segmentation in video 
+sequences using graph cuts. In Pattern recognition: 37th german conference, gcpr 
+2015, aachen, germany, october 7每10, 2015, proceedings (pp. 308每319). Cham: 
+Springer International Publishing. doi: 10.1007/978- 3- 319- 24947- 6 _ 25 . 
+Ionescu, C. , Papava, D. , Olaru, V. , & Sminchisescu, C. (2014). Human3.6m: Large scale 
+datasets and predictive methods for 3d human sensing in natural environments. 
+IEEE Transactions on Pattern Analysis and Machine Intelligence, 36 (7), 1325每1339 . 
+Kim, J., Parra, A., Yue, J., Li, H., & Delp, E. J. (2015). Robust local and global shape 
+context for tattoo image matching. In Image processing (icip), 2015 IEEE interna- 
+tional conference on (pp. 2194每2198). doi: 10.1109/ICIP.2015.7351190 . 
+Leibe, B., Seemann, E., & Schiele, B. (2005). Pedestrian detection in crowded scenes. 
+In Proceedings of the 2005 IEEE computer society conference on computer vision 
+and pattern recognition (cvpr＊05) - volume 1 - volume 01 . In CVPR ＊05 (pp. 878每
+885). Washington, DC, USA: IEEE Computer Society. doi: 10.1109/CVPR.2005.272 . 
+Lin, Y., Wang, S., Lin, Q., & Tang, F. (2012). Face swapping under large pose varia- 
+tions: A 3d model based approach. In 2012 IEEE international conference on mul- 
+timedia and expo (pp. 333每338). doi: 10.1109/ICME.2012.26 . 
+Newton, E. M., Sweeney, L., & Malin, B. (2005). Preserving privacy by de-identifying 
+face images. IEEE Transactions on Knowledge and Data Engineering, 17 (2), 232每
+243. doi: 10.1109/TKDE.2005.32 . 
+Ouyang, W., & Wang, X. (2012). A discriminative deep model for pedestrian detec- 
+tion with occlusion handling. In Computer vision and pattern recognition (cvpr), 
+2012 IEEE conference on (pp. 3258每3265). doi: 10.1109/CVPR.2012.6248062 . 
+Ouyang, W., Zeng, X., & Wang, X. (2013). Modeling mutual visibility relationship in 
+pedestrian detection. In Computer vision and pattern recognition (cvpr), 2013 IEEE 
+conference on (pp. 3222每3229). doi: 10.1109/CVPR.2013.414 . 
+Padilla-L車pez, J. R., Chaaraoui, A. A., & Florez-Revuelta, F. (2015). Visual privacy pro- 
+tection methods: A survey. Expert Systems with Applications, 42 (9), 4177每4195. 
+http://dx.doi.org/10.1016/j.eswa.2015.01.041 . 
+Park, S., & Trivedi, M. M. (2005). A track-based human movement analysis and pri- 
+vacy protection system adaptive to environmental contexts. In Advanced video 
+and signal based surveillance, 2005. AVSS 2005. ieee conference on (pp. 171每176). 
+doi: 10.1109/AVSS.2005.1577262 . 
+Poullot, S. , & Satoh, S. (2014). Vabcut: A video extension of grabcut for unsupervised 
+video foreground object segmentation. In Proc. VISAPP . 
+Reid, D. , Samangooei, S. , Chen, C. , Nixon, M. , & Ross, A. (2013). Soft biometrics for 
+surveillance: An overview. In Machine learning: Theory and applications . In 31 
+(pp. 327每352). Elsevier . 
+Ribari c, S., Ariyaeeinia, A., & Pavei c, N. (2016). De-identication for privacy protec- 
+tion in multimedia content: A survey. Signal Processing: Image Communication, 
+47 , 131每151. http://dx.doi.org/10.1016/j.image.2016.05.020 . 
+Rother, C. , Vladimir, K. , & Blake, A. (2004). ※grabcut§ - interactive foreground extrac- 
+tion using iterated graph cuts. In Proc. SIGGRAPH . 
+Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., . . . Fei-Fei, L. (2015). 
+Imagenet large scale visual recognition challenge. IInt. J. Comput. Vision, 115 (3), 
+211每252. doi: 10.1007/s11263- 015- 0816- y . 
+Sermanet, P. , Kavukcuoglu, K. , Chintala, S. , & LeCun, Y. (2013). Pedestrian detection 
+with unsupervised multi-stage feature learning. In Proc. CVPV (pp. 3626每3633) . 
+Stauffer, C. , & Grimson, W. E. L. (1999). Adaptive background mixture models for 
+real-time tracking. In Cvpr (pp. 2246每2252) . 
+Sun, J. , Zang, W. , Tang, X. , & Shum, H.-Y. (2006). Background cut. In Proc. CCCV 
+(pp. 628每641) . 
+Viola, P. , & Jones, M. (2001). Robust real-time object detection. International journal 
+of computer vision . 
+Viola, P., Jones, M. J., & Snow, D. (2005). Detecting pedestrians using patterns 
+of motion and appearance. Int. J. Comput. Vision, 63 (2), 153每161. doi: 10.1007/ 
+s11263- 005- 6644- 8 . 
+Wang, Y. , Jodoin, P.-M. , Porikli, F. , Konrad, J. , Benezeth, Y. , & Ishwar, P. (2014). CDnet 
+2014: An expanded change detection benchmark dataset. In in proc. ieee work- 
+shop on change detection (cdw-2014) at cvpr-2014 (pp. 387每394) . 
+Wren, C. R. , Azarbayejani, A. , Darrell, T. , & Pentland, A. P. (1997). Pnder: Real每
+time tracking of the human body. IEEE Trans. Pattern Anal. Mach. Intell., 19 (7), 
+780每785 . 
+Zhang, S. , Benenson, R. , Omran, M. , Hosang, J. , & Schiele, B. (2016). How far are we 
+from solving pedestrian detection? Cvpr . 
+Zivkovic, Z. (2004). Improved adaptive Gaussian mixture model for background sub- 
+traction. In Icpr (2) (pp. 28每31) . 
+

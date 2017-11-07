@@ -1,0 +1,673 @@
+Investigation of salt removal using cyclopentane hydrate formation and washing treatment for seawater desalination
+
+Songlee Han a,b, Young-Woo Rhee a,, Seong-Pil Kang b,
+
+a Department of Chemical Engineering, Chungnam National University, 99 Daehak-ro, Yuseong-gu, Daejeon 34134, Republic of Korea
+b Climate Change Research Division, Korea Institute of Energy Research, Daejeon 34129, Republic of Korea
+
+H I G H L I G H T S
+
+ Cyclopentane hydrate formation in seawater was investigated.
+ Hydrate formation followed by ltration and washing treatment was carried out.
+ Major salt ions were analyzed during hydrate formation, ltration, and washing.
+ Salt removal according to conversion and amount of wash water was examined.
+
+article
+
+info
+
+Article history:
+Received 28 July 2016
+Received in revised form 24 October 2016
+Accepted 7 November 2016
+Available online 15 November 2016
+
+Keywords:
+Gas hydrate
+Cyclopentane
+Washing
+Seawater
+Pre-treatment
+
+
+
+abstract
+
+Salt removal via formation of gas hydrate was investigated by experimental measurement of the salt concentra-
+tion in ltered water and water retrieved from hydrate crystals. Gas hydrate formation was carried out at
+277.15 K, using seawater of 3.4 wt% salinity and 3 mol% cyclopentane to water-cyclopentane mixture. Single-
+stage hydrate formation followed by ltration removed 63% of the salt ions. Successive washing treatment
+with 274.15 and 277.15 K freshwater was applied with different amounts of washing water, and several major
+cations and anions in seawater were analyzed in each treatment step. Ions having larger radii showed less salt
+removal by hydrate formation, and salt removal decreased as the conversion of water to hydrate progressed.
+However, salt removal was improved by washing treatment to nearly the same degree regardless of the kind
+of salt ions and the salt removal efciency improved up to 42% more than that of ltration only. The results pre-
+sented in this study can be used as basic design values for the development of a hydrate-based desalination
+process.
+
+ 2016 Published by Elsevier B.V.
+1. Introduction
+
+It has become increasingly difcult to secure safe sufcient water
+because of the pollution of water resources and severe climate abnor-
+malities resulting from explosive population growth and rapid industri-
+alization. Securing abundant clean water serves social, economic, and
+ecological interests; so a great variety of studies have been performed
+to solve these problems [1]. From a technical point of view, to obtain
+sufcient water of the quality desired, it is essential not only to conserve
+and protect existing water but also to discover new water resources [2,
+3]. Accordingly, a variety of desalination technologies has attracted the
+interest of researchers because seawater is the largest water reserve on
+Earth (97%), whereas only 0.5% of surface water on Earth is freshwater.
+The problem with using seawater directly for daily life is that it contains
+unacceptable levels of organic matter and salinity. Thus, desalination of
+seawater is an obvious and good alternative to nding new source of
+clean freshwater [3].
+Existing reliable desalination methods at industrial scale are based
+on either multi-stage thermal distillation or seawater reverse osmosis
+(SWRO) ltration. Distillation is a prevailing method, but requires a
+large amount of phase transition energy, that is the heat of vaporization
+of water from liquid to vapor, so that it is quite expensive. SWRO meth-
+od uses membrane to allow the selective transport of water along with
+polymeric barrier at pressurized condition. Developing the materials for
+membrane and energy recovery devices, reverse osmosis (RO) process
+has dropped its energy consumption to around 3.0 kWh/m3-produced
+water [4,5]. According to the literature [6,7], as of 2011, RO ltration
+method is spreading out the market up to 66% of installed desalination
+capacity, and nearly all new plants. However, this energy requirement
+is still higher than other forms of water supply at 0.1 to 1 kWh/m3,
+therefore much of efforts have been made on the development of hybrid
+systems, such as RO with thermal process or renewable energy source,
+for improving the economics aspect [8]. Pre-treatment for RO method
+is another important step, due to the nature of membrane design, that
+is, only one-way ow through membrane. Because the accumulated
+material cannot be removed from the membrane surface, they easily be-
+come fouling, which means loss of production capacity.
+Freezing is another attractive method, but still not widely used
+commercially. This method utilizes the phase change phenomenon of
+water to solid ice crystal so that the coexisting ions and impurities are
+excluded, and nally thawing produces puried water. Considering
+the energy required to induce the phase change of water during boiling
+(40.7 kJ/mol) and freezing (6.02 kJ/mol), seawater desalination by
+freezing method is more advantageous. In addition, freezing desalina-
+tion process has a low operating temperature, which minimizes scaling
+and corrosion problems, and even inexpensive plastics or low cost ma-
+terials can be used at low temperature [9]. Gas hydrate formation meth-
+od for desalination could be one of the novel desalination processes,
+which is also classied into a freezing, crystallization method. Because
+of the additional chemicals called guest, such as gas/liquid hydrocar-
+bons and CO2, gas hydrate forms at higher temperature than the freez-
+ing point of ice, and this leads to an expectation of the improved energy
+efciency [10,11]. The hydrate crystals form under suitable temperature
+and pressure, and are collected to be dissociated by breaking the tem-
+perature or pressure. In the next stage, the guest shall be recovered
+from the dissociated water for further use, and freshwater is produced
+[12]. Gas hydrate technology is still under development, but when ap-
+plicable at larger scale, it could be a cheap alternative to the traditional
+thermal and membrane desalination process [8]. Diminution in energy
+consumption for water production is the main concern, so in this regard,
+gas hydrate method as a pre-treatment step for RO process was tried to
+investigate its feasibility by simulation study [13]. Pre-treated feed by
+gas hydrate step would reduce the load of salt removal on RO process.
+According to the report, 90% of salt removal efciency using CO2 hydrate
+formation step and 0.80 of the subsequent RO recovery ratio with ener-
+gy recovery device showed 2.74 kWh/m3 of total energy consumption,
+which is able to compete with the SWRO system with energy recovery
+device. In addition, the heat of hydrate formation is just 4.84 kJ/mol
+(for cyclopentane hydrate [14]), thus the energy consumption could
+be decreased further, comparing the enthalpies of the phase change.
+The use of gas hydrates for desalination has been investigated during
+the last 50 years, and a variety of hydrate formers and formation
+methods were investigated to obtain improved kinetics and conversion
+[4,15每18]. In most of the previous works, CO2 [19], light hydrocarbons
+[20], and chlorouorocarbon refrigerants (e.g. R141b and R22
+[21每23]) were tried as hydrate formers. However, they would require
+relatively higher pressure for the operation. Recently, some researchers
+tried to use cyclopentane as a hydrate former for the desalination pro-
+cess because it forms solid hydrate crystals at atmospheric pressure
+[24,25] and 280.95 K [26]. Moreover, cyclopentane is nearly immiscible
+with water and shows extremely low mutual solubility. Therefore, it
+could be recovered simply by decanting from the liquid-liquid phase
+mixture after collecting and dissociating the hydrate crystals. Coral
+et al. investigated the effect of the degree of subcooling, and of the
+ratio of cyclopentane to water on the formation rate [24]. Like freezing
+method, however, the water molecules containing salt ions are conned
+within solid crystals of gas hydrate as well. Thus, subsequent post-
+treatments are required. In our previous work, we investigated the for-
+mation of cyclopentane hydrate in 3.5 wt% NaCl synthetic seawater and
+observed the hydration number and conversion of water to hydrate
+[26]. Optimal operation temperature and concentration of cyclopentane
+were decided from the measured results. Post-treatment of hydrate
+crystals (e.g., washing, centrifuging and sweating) was also tried in
+efforts to enhance salt removal efciency, and we found that optimized
+washing can be a promising candidate among possible post-treatments,
+to raise the efciency of the hydrate-based desalination process.
+In this work, the investigation was extended to an experimental
+hydrate-based desalination process using cyclopentane with real sea-
+water, and the effectiveness of washing method as post-treatment
+
+was examined. While adopting the optimum temperature and concen-
+tration of cyclopentane for hydrate formation, and ratio of washing
+water to produced water, determined in our previous work, the effect
+of a few anions and cations on the salt removal efciency in the pro-
+posed process was investigated by analyzing the ion concentration in
+ltered water, and in water retrieved after dissociating the hydrate par-
+ticles. The salt removal efciency for each ion, and the proportion of
+water converted to hydrate, the amount of wash water, and the feed
+concentration were also examined.
+
+2. Experiment
+
+2.1. Materials
+
+The seawater samples were obtained from the east cost of Jeju is-
+land, Korea (33～33∩47.3∪ North, 126～,46∩26.2∪ East) and used as it was
+without any further treatment. The seawater samples were analyzed
+to obtain the ion concentration using ion chromatography. Results
+from a detailed analysis of the concentrations of ions in the seawater
+samples are presented in Table 1. The presence of other minor ions
+was neglected. Cycopentane was purchased from Sigma-Aldrich (98%
+purity, reagent grade) and used as a hydrate former without further
+treatment.
+
+2.2. Apparatus
+
+A round-bottomed two-necked ask was placed in a temperature
+controlled cooling bath to be used as a hydrate crystallizer. A thermo-
+couple was inserted into the aqueous solution to measure the tempera-
+ture of the seawater during the experiments. The contents of the
+hydrate crystallizer were stirred using a magnetic spin bar. An external
+chiller was used to control the bath temperature. A vacuum-lter assay
+device was used to lter the hydrate slurry, and a membrane lter was
+applied to separate the hydrate crystals from the remaining liquid. A
+vacuum oven was utilized to evaporate cyclopentane from the water
+for mass analysis. A detailed description of the hydrate crystallizer and
+post-treatment experiments was presented in our previous work [26].
+The concentration of each ion was measured using ion chromatography
+(Metrohm, 881 Compact IC pro) with an autosampler (Metrohm, 863
+Compact Autosampler). Appropriate ion analysis columns were used
+for cations (Metrohm, Metrosep C4) and anions (Shodex, IC 82904A).
+
+2.3. Experimental procedure
+
+To provide the primary cleaning treatment, the seawater samples
+were passed through a lter paper to remove oating substances and
+other particulate. Then, a mixture of seawater and cyclopentane was
+placed in the hydrate crystallizer and well mixed by a magnetic spin
+bar. In this experiment, the stirring rate of the spin bar was xed at
+700 rpm for all the experiments. Next, the temperature of the contents
+in the crystallizer was cooled to a specic experimental temperature.
+After the system temperature became stable, a few small ice particles
+were added to the crystallizer to induce the commencement of hydrate
+nucleation. The temperature over time was recorded throughout the ex-
+periment. As the cyclopentane hydrate particles formed, the crystallizer
+was left as it was for about two hours to grow hydrate crystals. The tem-
+perature increased for a moment because of the exothermic hydrate for-
+mation reaction, but instantly reverted. At this point, the content of the
+
+Table 1
+Concentration of ions in seawater samples.
+
+Total Dissolved
+Solids (TDS)
+(mg/L)
+
+Cation (mg/L)
+
+Na+
+
+K+
+
+Ca2+
+
+Mg2+
+
+Anion (mg/L)
+Cl
+
+2
+
+SO4
+
+34,027.56
+
+10,832.56
+
+605.86
+
+1054.49
+
+1323.08
+
+17,627.38
+
+2548.19
+
+134
+
+S. Han et al. / Desalination 404 (2017) 132每137
+
+hydrate crystallizer was a slurry of hydrate particles and liquid
+consisting of un-reacted water and cyclopentane. Then, the hydrate
+slurry was separated into hydrate particles and remaining liquid by
+the vacuum ltration using OMNIPORE membrane lters (Millipore,
+10.0 ml JC). The ltered hydrate particles were subjected to further
+washing using a specic amount of fresh water. Immersion of hydrate
+particles into distilled water was expected to be an effective surface
+cleaning method to remove the clinging salt ions to the hydrate particles
+[26]. The washed hydrate particles were subjected to the vacuum ltra-
+tion step again. In every step, the remaining liquid and dissociated
+water from the hydrate particles were collected and analyzed, to obtain
+the ion concentration. Finally, the removal efciency of each ion was
+calculated from the measurement data using following equation.
+
+Salt removal efficiency %
+  CoC f
+Co
+
+ 100
+
+where Co was the initial concentration of a specic salt ion in the feed,
+and Cf was the nal concentration of the specic salt ion in the dissoci-
+ated water from hydrate crystals.
+There was unreacted or dissociated water and cyclopentane present
+at each ltration and washing step, so that we had to measure the mass
+and ion concentration in each samples to conrm the mass balance. Im-
+miscible two-phase liquids consisting of water and cyclopentane were
+separated carefully by decanting. A small amount of accompanying
+cyclopentane in the water was removed by evaporation in an oven for
+2 h, at 323.15 K. A more detailed description of this procedure can be
+found in a previous report [26].
+
+3. Results and discussion
+
+In our previous work [26], the equilibrium dissociation temperature
+of cyclopentane hydrate was determined to be 280.95 K for pure water,
+and 279.75 K for 3.5 wt% NaCl aqueous solution. We rst measured the
+melting temperature of the cyclopentane hydrate in actual seawater
+(salinity given in Table 1), and determined it to be 279.45 K. Based on
+this temperature information, we performed experiments on hydrate
+formation and washing at 274.15 and at 277.15 K, which provided
+subcooling of 5.3 and 2.3 K, respectively. This means that the driving
+force of this system became slightly less than that of the simulated sys-
+tem although the experimental temperatures were the same. In addi-
+tion, we used the same concentration of cyclopentane (3 mol%)
+relative to the total moles of the water-and-cyclopentane mixture as
+in our previous work, because it was found that the addition of 3 mol%
+cyclopentane was suitable for the formation of hydrate slurry. Hydrate
+of 3 mol% cyclopentane with seawater was formed at 277.15 K, and
+the crystals were ltered and collected. A subsequent washing step
+was done with 2 wt% portion of produced water at 274.15 and
+277.15 K. The salt removal efciencies calculated from these results
+are presented in Fig. 1. The hydrate formation and initial ltration
+steps resulted in removal of 63% of the salt ions. Subsequent washing
+with water at 274.15 and 277.15 K further increased the salt removal ef-
+ciency to 72 and 83%, respectively. More salt ions were removed by
+washing with water at 277.15 K than at 274.15 K. It seems that warmer
+water affects the surfaces of the hydrate crystals, dissolving ions
+adsorbed to the crystal surface. Of course, it should be considered that
+washing with water of higher temperature would also decrease the
+amount of hydrate crystals. We determined that washing crystals with
+277.15 K water was most suitable for further treatment, so that all the
+subsequent washing steps were done at 277.15 K.
+During these experiments, each salt ion in seawater was measured
+after each ltration and washing step. The removal efciencies of the re-
+spective ions were calculated and presented in Fig. 2. As can be seen in
+the gure, the ltration step was better at removing small ions and cat-
+ions. Large anions were less well removed during hydrate formation
+and ltration steps. However, after each washing step, the salt removal
+
+Fig. 1. Effect of washing on salt removal after formation of cyclopentane hydrate: The ratio
+of washing water to produced water was 0.02.
+
+efciencies did not show any distinctions related to the ion radius or
+kind of ion. Nearly similar ion removal efciencies were obtained after
+washing step. Park et al. reported the characteristics of cation removal
+from seawater by gas hydrate formation method [27]. They used CO2
+as a hydrate former and even made use of a newly developed apparatus
+that could crystallize hydrate particles and simultaneously shape them
+into pellets. From their results, it was found that the removal efciency
+of each cation increased according to its ionic radius. Kang et al. also re-
+ported the removal characteristics of cations and anions from seawater
+hydrate using the apparatus of Park et al., with CO2 and CH4 as hydrate
+formers [28]. After pelletizing, the hydrate particles were dried by wip-
+ing the pellet surface with paper tissue. The use of CO2 as a former gave
+better results than did CH4 for salt removal, and the removal efciency
+of ions increased according to the ion radius, regardless of surface wash-
+ing. Given that hydrate formation methods were different, and that our
+results showed trends different from those in [27,28], we draw the con-
+clusion that the adhesion characteristics of ions to the hydrate surface is
+diverse, depending on the kind of ion and the hydrate former.
+Here, it seems necessary to discuss the morphological difference of
+hydrates formed from cyclopentane and those formed from gases.
+Cyclopentane forms structure II hydrates, and the morphology of
+cyclopentane hydrate is different from that gas formers such as CO2
+and CH4 (structure I). In addition, the morphology of the crystals formed
+has a signicant dependence on the degree of subcooling. As a general
+
+Fig. 2. Removal efciency of each major ion in seawater according to ion radius: hydrates
+were formed and washed at 277.15 K, and washing water/produced water was 0.02.
+
+S. Han et al. / Desalination 404 (2017) 132每137
+
+135
+
+trend, when the subcooling is ≡ 3.0 K, the shape of the hydrate crystals is
+typically sword-like or in the form of triangular dendrites. When the
+subcooling is 2.0每3.0 K, the crystal shape changes to a polygon of skele-
+tal crystals, and when the subcooling is ≒ 2.0 K, the crystals are large
+polygons with one side of polygon for the gaseous formers (e.g., CH4,
+C2H6, C3H8 [29] or CO2 [30]). This trend does not change when applied
+to an aqueous solution of salts. As for the hydrate formed from hydro-
+phobic cylopentane in seawater, the crystal shape is hexagonal or
+square at 1.4每4.5 K subcooling, and triangular for subcooling N 5.4 K
+[31,32]. According to this information, the shape of the hydrate crystals
+formed in Park et al. [27] and Kang et al. [28] would be dendritic, while
+those formed in this work would be polygonal. Dendritic gas hydrate
+crystals more easily contain water than polygonal crystals do, as long
+as the hydrate crystal grows at a suitably low rate. This is because a
+higher growth rate of hydrate crystal implies increased potential to in-
+clude more water (and salt ions) among crystals. The salt removal ef-
+ciency obtained in this work was about 83% after washing with 277.15 K
+water, but that of CO2 hydrate reached nearly the same value when ex-
+treme hydraulic pressure (≡ 70 kgf/cm2 [28]) was applied. The possibil-
+ity of the emulsion formation for cyclopentane-water system should be
+considered as a matter of course. Throughout these experiments, the
+mixture of water and cyclopentane formed an oil-in-water emulsion
+at rst; then the hydrate slurry formed as the temperature cooled
+down to initial temperature. Due to the formation of an emulsion, it
+may be possible that the cyclopentane is entrapped inside the formed
+crystals [14]. Accordingly, when the crystal is dissociated to retrieve
+the produced water, the emulsion can form again, and cyclopentane
+can be recovered in small drops as well. In future work, a well-
+developed method for the dispersion of water and cyclopentane should
+be devised to avoid this situation.
+Fig. 3 shows a scatterplot with regression line, of the salt removal ef-
+ciency after ltration of hydrate crystals according to the conversion of
+water to cyclopentane hydrate, reacting at 277.15 K with 3 mol% of
+cyclopentane. Cyclopentane hydrate can contain 17 mol of water per
+mole of cyclopentane to form a structure II hydrate, so the theoretical
+conversion of water to hydrate becomes 52.58%. As can be seen in the
+gure, the salt removal efciency declined as the conversion increased.
+Even though the temperature difference was xed at 2.3 K, the stochas-
+tic nature of crystallization resulted in scattered conversion values from
+41.2 to 53.3%, and the corresponding salt removal efciency also varied
+from 53.7 to 70.8%. The average conversion and salt removal efciency
+were 51% and 63%, respectively. Because we previously found that
+post-treatment by washing makes it possible to decrease the salt re-
+moval efciency, there is no need to worry about the inclusion or
+
+adhesion of salt ions to hydrate crystals during hydrate formation. Con-
+version of water to cyclopentane hydrate is relevant not only to the con-
+centration ratio of cyclopentane to water and to the degree of
+subcooling, but also to the reaction time, reactor shape, and so forth.
+As mentioned above, we xed the ratio of cyclopentane to water, the
+degree of subcooling, and reaction time according to the results from
+our previous work. Accordingly, we would like to discuss briey the re-
+actor here. When a large scale desalination process using hydrate for-
+mation is to be actualized, the amount of hydrate slurry with a high
+concentration of hydrate crystals should be increased as much as possi-
+ble for the best productivity. To accomplish this goal, the ratio of
+cyclopentane to water, degree of subcooling, and the reaction time
+had better be increased. However, we already found in our previous
+study that the suitably adjusted values of each parameter resulted in
+better salt removal efciency.
+A continuously stirred tank reactor with mechanical stirring is gen-
+erally employed for hydrate production. Stirring is an important
+means to obtain better mass contact between water and the gas for-
+mers. However, in this work, immiscible cyclopentane formed a two
+liquid-phase mixture and even an emulsion with water when stirred.
+A large amount of hydrate slurry with high conversion could be obtain-
+ed easily in a comparatively short time by using a dispersion tool such as
+a homogenizer. Compared to ordinary mechanical mixing, a dispersion
+homogenizer would seem more effective for emulsifying cyclopentane
+and water. Highly dispersed cyclopentane in water forms a ne emul-
+sion, and this should make it possible to achieve a higher conversion
+to hydrate crystals. This shape of reactor can increase the rate of hydrate
+formation, but it is expected that its salt removal efciency will not be
+good, according to Fig. 3. Although post-treatment of washing mitigates
+the effect of inclusion or adhesion of salt ions to hydrate crystals, the
+amount of wash water and the details of washing (method and equip-
+ment) should be deliberated. In other experiments, we found that this
+type of reactor system does not promote favorable salt removal efcien-
+cy, even after washing, when compared to the results using a more typ-
+ical mixing type reactor. It seems that a carefully developed unique
+reactor is required to accomplish rapid, large scale production of hy-
+drate slurry. We have begun investigations on the characteristics of
+cyclopentane hydrate production according to the reactor type, and
+will present these ndings in a later report.
+We also investigated the salt removal efciency of washing treat-
+ment according to the amount of washing water. After hydrate forma-
+tion with 3 mol% cyclopentane at 277.15 K, the slurry was ltered, and
+then the collected hydrate crystals were washed using fresh water of
+which the amount was varied according to a specic ratio of wash
+water to produced water. The results presented in Fig. 4 show that
+
+Fig. 3. Salt removal efciency after ltering the hydrate crystals, according to the
+conversion of water to hydrate.
+
+Fig. 4. Effect of the amount of washing water on salt removal after hydrate formation and
+ltration.
+
+136
+
+S. Han et al. / Desalination 404 (2017) 132每137
+
+hydrate crystals are cleaned by washing with water. Moreover, the salt
+removal efciency was extremely enhanced (up to 90%, 42% improved
+from ltering only case), compared to that of ltration only. However,
+the increase in efciency increase nearly ceases when wash/produced
+water ratio exceeds 0.035. Thus, to maximize the efciency of the wash-
+ing treatment, an appropriately chosen amount of washing water
+should be applied. This optimal ratio of wash water to produced water
+is likely to be near 0.03. In general, the amount of wash water should
+be at most a few percent of the total produced water [33]. Large scale
+hydrate slurry production with efcient washing should be done to re-
+alize a competitive desalination process. For this purpose, equipment
+suitable for production should take into account the size and type of re-
+actor and lters. In particular, a lter system should be designed that en-
+ables the continuous operation with the smallest amount of wash water
+possible. There are several types of lter systems that can be operated in
+continuous operation (e.g., rotary vacuum-drum, belt), and other self-
+cleaning mechanical aids. When selecting the best ltration system
+from among the candidates, our experimental data could provide im-
+portant criteria for the decision.
+Although the cyclopentane hydrate formation method removes 63%
+of salt ions (up to 90% with successive washing treatment step), this
+level of salt removal value is not acceptable for the nal goal of seawater
+desalination, namely acquiring potable water. As reported in the recent
+literatures [24每28], the salt removal efciencies reported for gas hy-
+drate formation method ranged from 60% to 93%, depending on the
+kind of gas hydrate former and post-treatment condition. Therefore, an-
+other post-process to complete salt removal is required when the hy-
+drate formation method is applied to obtain drinking water through
+seawater desalination. Recent trend is to combine methods as hybrid,
+as mentioned in the Introduction section. Lee et al. [13] carried out the
+simulation of a reverse osmosis desalination process coupled with a hy-
+drate formation method as a pre-treatment step for reverse osmosis
+process. According to their result, the gas hydrate formation method
+as a pre-treatment step is acceptable for a reverse osmosis process if
+the salt removal efciency of the gas hydrate process can reach 78% at
+least. They used energy consumption value as an important criterion
+for the allowance, so that the economic efciency of the reverse osmosis
+desalination process would be improved further, if the energy con-
+sumption in the hydrate formation step could be reduced more. To be
+a competitive desalination process, total energy consumption should
+be maintained below 3.0 kWh/m3 and this could be accomplished
+when the gas hydrate pre-treatment step is operated at 84% of salt re-
+moval (1.6 kWh/m3). The energy consumption by gas hydrate process
+is reported above 1.58 kWh/m3 {Javanmardi:2003gd}. The principal
+reason for energy consumption in the gas hydrate formation method
+is attributed to the compression need to achieve the conditions suitable
+for gas hydrate formation. However, liquid cyclopentane can remove
+this requirement so that the energy consumption is markedly
+diminished. Another important point is the operation temperature.
+Considering the seawater temperature, the most favorable operation
+temperature is as close as possible to room temperature. Gas hydrate
+formation generally requires relatively low temperature, which is an-
+other shortcoming. To overcome this disadvantage, Cha and Seol
+{Cha:2013dc} introduced a secondary hydrate former (CO2 gas) so
+that the operation temperature could be increased to 289.15 K, although
+the operation pressure remained high (up to 3.0 MPa). In addition, the
+hydrate formation method could be another meaningful position as a
+pre-treatment step for RO process. As mentioned before, RO process is
+susceptible to the feed condition, such as the salinity and solids within
+water, but on the other hand, gas hydrate method is relatively robust
+to such condition. Rejection of salt and oating solids by gas hydrate for-
+mation at a certain level could make the RO process solid and reliable
+much more. Therefore, it is worthwhile to carry out the overall simula-
+tion of a desalination process using gas hydrate formation as a pre-
+treatment followed by reverse osmosis, considering the operation con-
+ditions in detail. Nevertheless, the gas hydrate formation process could
+
+also be a promising method for recovery or purication of water pollut-
+ed during oil and natural gas production or of industrial wastewater.
+
+4. Conclusion
+
+A hydrate-based desalination process involving hydrate crystal for-
+mation, ltration, and water washing steps was investigated to clarify
+detailed salt ion removal efciencies in detail. A single-step hydrate for-
+mation reaction of cyclopentane and seawater without any further
+treatment was carried out at 277.15 K (corresponding subcooling was
+2.3 K), 3 mol% cyclopentane, and atmospheric pressure. The total salin-
+ity of the seawater was 3.4%, and about 63% of the salt ions were re-
+moved by hydrate formation and ltration. The concentration of each
+cation and anion was analyzed in ltered water and water retrieved
+from the hydrate crystals, from which the removal efciency of each
+salt ion was calculated. To improve removal of salt inclusions in the
+crystals, or salt adhered to the crystal surfaces; a wash treatment of
+277.15 K freshwater was applied after ltration. This washing increased
+the salt removal efciency as much as 42%, compared to the result from
+ltration only, and all of the cations and anions considered in this study
+were removed at similar levels. The relationship between the salt re-
+moval efciency and water conversion to hydrate was also investigated.
+As the conversion of water to hydrate increased up to the theoretical
+limit, the salt removal efciency decreased by about 15%. Accordingly,
+it seems that higher conversion is not good from the point of view of
+salt removal. However, the successive washing treatment was able to
+eliminate this concern so that large scale production of cyclopentane
+hydrate slurry using an appropriate reactor may soon be considered.
+The efcacy of the amount of wash water used in the washing treatment
+was also investigated in relation to the salt removal efciency. The salt
+removal efciency increased as much as 42% when washing was ap-
+plied, compared to hydrate formation and ltration, and considering
+the amount of wash water. It is expected that the experimental data
+presented in this study will be useful as basic design parameters when
+the hydrate-based desalination method is embodied into a concrete
+process. Study on the most effective reactor design and ltration meth-
+od, as well as simulation of the overall process, is currently under
+investigation.
+
+Acknowledgment
+
+This work was conducted under the framework of Research and De-
+velopment Program of the Korea Institute of Energy Research (KIER)
+(B5-2435).
+
+References
+
+[1] M. Elimelech, W.A. Phillip, The future of seawater desalination: energy, technology,
+and the environment, Science 333 (2011) 712每717, http://dx.doi.org/10.1126/
+science.1200488.
+[2] R. Deng, L. Xie, H. Lin, J. Liu, W. Han, Integration of thermal energy and seawater de-
+salination, Energy 35 (2010) 4368每4374, http://dx.doi.org/10.1016/j.energy.2009.
+05.025.
+[3] R. Saidur, E.T. Elcevvadi, S. Mekhilef, A. Safari, H.A. Mohammed, An overview of dif-
+ferent distillation methods for small scale applications, Renew. Sust. Energ. Rev. 15
+(2011) 4756每4764, http://dx.doi.org/10.1016/j.rser.2011.07.077.
+[4] A. Subramani, J.G. Jacangelo, Emerging desalination technologies for water treat-
+ment: a critical review, Water Res. 75 (2015) 164每187, http://dx.doi.org/10.1016/
+j.watres.2015.02.032.
+[5] H. Dashti, L.Z. Yew, X. Lou, Recent advances in gas hydrate-based CO2 capture, J. Nat.
+Gas Sci. Eng. 23 (2015) 195每207, http://dx.doi.org/10.1016/j.jngse.2015.01.033.
+[6] IDA, Desalination Yearbook 2012每13, International Desalination Association,
+Topseld, MA, USA, 2012.
+[7] J.A. Sanmartino, M. Khayet, M.C. Garc赤a-Payo, Desalination by membrane distillation,
+Emerging Membrane Technology for Sustainable Water Treatment, Elsevier 2016,
+pp. 77每109, http://dx.doi.org/10.1016/B978-0-444-63312-5.00004-8.
+[8] Y. Ghalavand, M.S. Hatamipour, A. Rahimi, A review on energy consumption of de-
+salination processes, Desalin. Water Treat. 54 (2015) 1526每1541, http://dx.doi.org/
+10.1080/19443994.2014.892837.
+[9] M.S. Rahman, M. Ahmed, X.D. Chen, Freezing-melting process and desalination: I.
+review of the state-of-the-art, Sep. Purif. Rev. 35 (2006) 59每96, http://dx.doi.org/
+10.1080/15422110600671734.
+
+S. Han et al. / Desalination 404 (2017) 132每137
+
+137
+
+[10] Y.F. Makogon, Hydrates of Hydrocarbons, Pennwell Publishing Company, Tulsa,
+Oklahoma, 1997.
+[11] E.D. Sloan, C. Koh, Clathrate Hydrates of Natural Gases, third ed. CRC Press, Boca
+Raton, FL, USA, 2008.
+[12] J. Javanmardi, M. Moshfeghian, Energy consumption and economic evaluation of
+water desalination by hydrate phenomenon, Appl. Therm. Eng. 23 (2003)
+845每857, http://dx.doi.org/10.1016/S1359-4311(03)00023-1.
+[13] H. Lee, H. Ryu, J.H. Lim, J.O. Kim, J.D. Lee, S. Kim, An optimal design approach of gas
+hydrate and reverse osmosis hybrid system for seawater desalination, Desalin.
+Water Treat. 57 (2016) 9009每9017, http://dx.doi.org/10.1080/19443994.2015.
+1049405.
+[14] P.U. Karanjkar, J.W. Lee, J.F. Morris, Calorimetric investigation of cyclopentane hy-
+drate formation in an emulsion, Chem. Eng. Sci. 68 (2012) 481每491, http://dx.doi.
+org/10.1016/j.ces.2011.10.014.
+[15] R.A. McCormack, G.A. Niblock, Build and operate clathrate desalination pilot plant,
+Water Treatment Technology Program Report 31, US Department of the Interior,
+Bureau of Reclamation, 1998.
+[16] R.W. Bradshaw, J.A. Greathouse, R.T. Cygan, B.A. Simmons, D.E. Dedrick, E.H.
+Majzoub, Desalination Utilizing Clathrate Hydrates (LDRD Final Report), http://
+prod.sandia.gov/techlib/access-control.cgi/2007/076565.pdf2008.
+[17] W.G. Knox, M. Hess, G.E. Jones, H.B. Smith, The hydrate process, Chem. Eng. Prog. 57
+(1961) 66每71.
+[18] M.D. Max, Hydrate Desalination for Water PuricationUS 6991722 B2 2006.
+[19] M. Yang, J. Zheng, W. Liu, Y. Liu, Y. Song, Effects of C3H8 on hydrate formation and
+dissociation for integrated CO2 capture and desalination technology, Energy 93
+(2015) 1971每1979, http://dx.doi.org/10.1016/j.energy.2015.10.076.
+[20] A.J. Barduhn, H.E. Towlson, Y.C. Hu, The properties of some new gas hydrates and
+their use in demineralizing sea water, AIChE J 8 (1962) 176每183, http://dx.doi.
+org/10.1002/aic.690080210.
+[21] M. Karamoddin, F. Varaminian, Water desalination using R141b gas hydrate forma-
+tion, Desalin. Water Treat. 52 (2014) 2450每2456, http://dx.doi.org/10.1080/
+19443994.2013.798840.
+[22] K. Maeda, Y. Katsura, Y. Asakuma, K. Fukui, Concentration of sodium chloride in
+aqueous solution by chlorodiuoromethane gas hydrate, Chem. Eng. Process. Pro-
+cess Intensif. 47 (2008) 2281每2286, http://dx.doi.org/10.1016/j.cep.2008.01.002.
+[23] B.A. Simmons, R.W. Bradshaw, D.E. Dedrick, D.W. Anderson, Complex Admixtures of
+Clathrate Hydrates in a Water Desalination MethodUS7560028 2009.
+
+[24] D. Corak, T. Barth, S. Hiland, T. Skodvin, R. Larsen, T. Skjetne, Effect of subcooling
+and amount of hydrate former on formation of cyclopentane hydrates in brine, De-
+salination 278 (2011) 268每274, http://dx.doi.org/10.1016/j.desal.2011.05.035.
+[25] J.-H. Cha, Y. Seol, Increasing gas hydrate formation temperature for desalination of
+high salinity produced water with secondary guests, ACS Sustain. Chem. Eng. 1
+(2013) 1218每1224, http://dx.doi.org/10.1021/sc400160u.
+[26] S. Han, J.-Y. Shin, Y.W. Rhee, S.-P. Kang, Enhanced efciency of salt removal from
+brine for cyclopentane hydrates by washing, centrifuging, and sweating, Desalina-
+tion 354 (2014) 17每22, http://dx.doi.org/10.1016/j.desal.2014.09.023.
+[27] K.-N. Park, S.Y. Hong, J.W. Lee, K.C. Kang, Y.C. Lee, M.G. Ha, J.D. Lee, A new apparatus
+for seawater desalination by gas hydrate process and removal characteristics of dis-
+solved minerals (Na+, Mg2+, Ca2+, K+, B3+), Desalination 274 (2011) 91每96,
+http://dx.doi.org/10.1016/j.desal.2011.01.084.
+[28] K.C. Kang, P. Linga, K.-N. Park, S.-J. Choi, J.D. Lee, Seawater desalination by gas hy-
+drate process and removal characteristics of dissolved ions (Na+, K+, Mg2+, Ca2+,
+B3+, Cl, SO4
+2), Desalination 353 (2014) 84每90, http://dx.doi.org/10.1016/j.desal.
+2014.09.007.
+[29] R. Tanaka, R. Sakemoto, R. Ohmura, Crystal growth of clathrate hydrates formed at
+the interface of liquid water and gaseous methane, ethane, or propane: variations
+in crystal morphology, Cryst. Growth Des. 9 (2009) 2529每2536, http://dx.doi.org/
+10.1021/cg9001048.
+[30] R. Ohmura, W. Shimada, T. Uchida, Y.H. Mori, S. Takeya, J. Nagao, et al., Clathrate hy-
+drate crystal growth in liquid water saturated with a hydrate-forming substance:
+variations in crystal morphology, Philos. Mag. 84 (2004) 1每16, http://dx.doi.org/
+10.1080/14786430310001623542.
+[31] R. Sakemoto, H. Sakamoto, K. Shiraiwa, R. Ohmura, T. Uchida, Clathrate hydrate crys-
+tal growth at the seawater/hydrophobic-guest-liquid interface, Cryst. Growth Des.
+10 (2010) 1296每1300, http://dx.doi.org/10.1021/cg901334z.
+[32] M. Kishimoto, S. Iijima, R. Ohmura, Crystal growth of clathrate hydrate at the inter-
+face between seawater and hydrophobic-guest liquid: effect of elevated salt concen-
+tration, Ind. Eng. Chem. Res. 51 (2012) 5224每5229, http://dx.doi.org/10.1021/
+ie202785z.
+[33] G. Grossman, Melting, freezing, and channeling phenomena in ice counterwashers,
+AIChE J 22 (1976) 1033每1042, http://dx.doi.org/10.1002/aic.690220613.
+

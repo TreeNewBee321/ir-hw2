@@ -1,0 +1,3138 @@
+Shale gas owback water desalination: Single vs multiple-effect evaporation with vapor recompression cycle and thermal integration
+
+Viviani C. Onishi a,, Alba Carrero-Parreo a, Juan A. Reyes-Labarta a, Rub谷n Ruiz-Femenia a,
+Raquel Salcedo-D赤az a, Eric S. Fraga b, Jos谷 A. Caballero a
+
+a Department of Chemical Engineering, University of Alicante, Ap. Correos 99, 03080 Alicante, Spain
+b Centre for Process Systems Engineering, Department of Chemical Engineering, University College London, London WC1E 7JE, UK
+
+H I G H L I G H T S
+
+ New NLP model for the SEE/MEE systems design including MVR and thermal integration
+ SEE/MEE model application to the high-salinity shale gas owback water treatment.
+ Optimization by minimizing costs to achieve brine salinity close to ZLD conditions.
+ Sensitivity analysis to assess the system performance in distinct feed salinities
+ Results highlight the model accuracy to cost-effectively synthesize SEE/MEE systems.
+
+article
+
+info
+
+
+Article history:
+Received 24 May 2016
+Received in revised form 26 September 2016
+Accepted 4 November 2016
+Available online 22 November 2016
+
+Keywords:
+Shale gas
+Single-effect evaporation (SEE)
+Multiple-effect evaporation (MEE)
+Mechanical vapor recompression (MVR)
+Thermal integration
+Zero liquid discharge (ZLD)
+
+abstract
+
+This paper introduces a new optimization model for the single and multiple-effect evaporation (SEE/MEE) sys-
+tems design, including vapor recompression cycle and thermal integration. The SEE/MEE model is specially de-
+veloped for shale gas owback water desalination. A superstructure is proposed to solve the problem,
+comprising several evaporation effects coupled with intermediate ashing tanks that are used to enhance ther-
+mal integration by recovering condensate vapor. Multistage equipment with intercooling is used to compress the
+vapor formed by ashing and evaporation. The compression cycle is driven by electricity to operate on the vapor
+originating from the SEE/MEE system, providing all the energy needed in the process. The mathematical model is
+formulated as a nonlinear programming (NLP) problem optimized under GAMS software by minimizing the total
+annualized cost. The SEE/MEE system application for zero liquid discharge (ZLD) is investigated by allowing brine
+salinity discharge near to salt saturation conditions. Additionally, sensitivity analysis is carried out to evaluate the
+optimal process conguration and performance under distinct feed water salinity conditions. The results high-
+light the potential of the proposed model to cost-effectively optimize SEE/MEE systems by producing fresh
+water and reducing brine discharges and associated environmental impacts.
+ 2016 The Authors. Published by Elsevier B.V. This is an open access article under the CC BY-NC-ND license
+
+1. Introduction
+
+Natural gas extracted from tight shale formations or ※shale gas§, is
+expected to play an important role in meeting the rising global energy
+demand. In the U.S., it is estimated that natural gas production from
+shale deposits will increase from 35% in 2012 to 50% in 2035 [1,2].
+This prediction is supported by the rapid progress achieved in recent
+years in horizontal drilling and hydraulic fracturing technology, which
+has enhanced technically and economically the exploration of extensive
+shale formations around North America [3每5]. In fact, the current ad-
+vances in shale gas production have signicantly altered the worldwide
+energy scenario for any foreseeable future [6,7]. In Europe, shale gas ex-
+ploration has emerged as an attractive energy source mainly due its
+supply reliability. Contrarily to petroleum-based energy sources, natural
+gas production from unconventional reservoirs like shale deposits does
+not depend of unstable foreign markets that often dictate elevated
+prices.
+Natural gas production from shale formations requires well stimula-
+tion for starting and maintaining the process, due to the low gas perme-
+ability on the rock [8,9]. Hence, the wells must be drilled and fractured
+to retrieve the tight gas trapped in the shale rock formations. For this
+reason, shale gas production consists of an unconventional gas drilling
+technology that requires large amounts of water for hydraulic fracturing
+of each well [10]. The fracturing uids are injected into the horizontal
+well under high pressure creating a complex articial fracture network
+to promote gas exhaustion. Usually, six or more wells are drilled hori-
+zontally through an extension of up to 2000 m, with a fracture network
+depth that can reach 500 m into the shale formation [11].
+Actually, the development of technologies for drilling and hydro
+fracturing of shale gas plays are strongly conditioned by the water avail-
+ability and owback water disposal [5,12]. Recent studies estimate that
+the hydraulic fracturing of one single horizontal well demands approx-
+imately 3每6 million gallons of water (10,500每21,500 m3) [13,14]. The
+hydraulic fracturing uid is predominantly composed by water and
+sand ( 98%) containing several chemicals such as corrosion inhibitors,
+surfactants, friction reducers, acids, ow improvers [3]. Approximately
+10每80% of the amount of injected uid ows back to surface during
+the rst two weeks from the beginning of well exploitation [11,15].
+Along with the chemical additives utilized for fracturing the wells,
+owback water also contains high concentrations of salts and other
+minerals. Table 1 presents average and maximum values achieved for
+the owback water salinity from important U.S. shale plays, expressed
+in terms of the total dissolved solids (TDS). The owback water can be
+recovered for recycling as injection water or for other purposes, de-
+manding specic treatment before any disposal and/or reuse.
+Several works have been dedicated to the design and operation of
+shale gas supply chains for optimal water management [1,4,16每19].
+Other studies have focused on the minimization of water consumption
+[5,13] and gaseous emissions [3,20] during shale gas production. How-
+ever, available literature about the treatment of high-salinity owback
+water is scarce. It is worth noting that the water produced from shale
+gas drilling and fracturing can represent a serious environmental prob-
+lem, due to high concentrations of TDS and other pollutants.
+The great potential of shale gas production at global scale highlights
+the need to develop more cost-effective processes for the treatment of
+the shale gas owback water. Shaffer et al. [21] have critically reviewed
+promising technologies for desalination of high-salinity produced water
+from shale gas exploration. According to the authors, mechanical vapor
+recompression (MVR) systems are often more advantageous than
+membrane-based technologies for water desalination [22]. MVR sys-
+tems require less extensive pretreatment processes because they are
+usually less susceptible to fouling problems caused by the presence of
+grease and oil.
+There are several publications addressing the optimization problem
+of multiple-effect evaporation (MEE) systems. The rst references in the
+eld date from 1840, with the MEE system being one of the oldest and
+most widely used water desalination process around the globe [23].
+Halil and Sylemez [24] have developed a mathematical modeling ap-
+proach for the design and simulation of MEE processes for seawater de-
+salination, considering forward feed conguration and renewable
+energy sources. Gautami and Khanam [25] have proposed nonlinear
+programming (NLP) models for MEE synthesis and optimization. The
+optimal design conguration is chosen according to the steam economy
+in the process. In the work of Druetta et al. [26], a nonlinear mathemat-
+ical model based on energy and mass balances is presented to predict
+
+Table 1
+Flowback water salinity from different U.S. shale plays expressed in terms of total dis-
+solved solids (TDS).
+
+Report
+
+U.S. Shale play
+
+Acharya et al. [12]
+
+Fayetteville
+Woodford
+Barnett
+Marcellus
+Haynesville
+
+TDS, ppm
+
+Average
+
+13 k
+30 k
+80 k
+120 k
+110 k
+
+Hayes [63]
+Haluszczak et al. [15]
+Marcellus
+Thiel and Lienhard [69]
+Marcellus
+Jiang et al. [70]
+Marcellus
+a TDS values for the owback water in 14th day of hydraulic fracturing.
+
+157ka
+145 k
+每
+
+Maximum
+
+20 k
+40 k
+N 150 k
+N 280 k
+N 200 k
+
+228ka
+每
+261 k
+
+the optimal MEE performance in terms of energy efciency. The MEE
+model is successfully applied to seawater desalination, and the sensitiv-
+ity analysis and simulations show good accuracy with realistic designs.
+Posteriorly, the model has been extended in Druetta et al. [27] to deter-
+mine the equipment capacity and operational conditions by considering
+the minimization of process costs as the objective function. Al-Mutaz
+and Wazeer [28] have proposed mathematical models to evaluate the
+performance of distinct congurations of conventional MEE systems, in-
+cluding forward, backward and parallel/cross feed. More recently, Al-
+Mutaz [23] has published a comparative study on different seawater de-
+salination plants. His work indicates power consumption efciency as
+the main feature for making the MEE process more attractive than the
+dominant multistage ash (MSF) [29每32] and reverse osmosis (RO)
+[33每38] desalination processes. Piacentino [39] has introduced an in-
+depth cost analysis for multiple-effect distillation plants, through the
+calculation of exergetic efciency at subcomponent levels. His study in-
+troduces some key considerations when developing thermo-economi-
+cal models.
+EI-Dessouky et al. [32,40每44] have made important contributions in
+mathematical modeling and design of MEE systems with/without me-
+chanical (MVR) or thermal vapor recompression (TVR). In EI-Dessouky
+et al. [40], different models are presented for MEE systems design in-
+cluding MVR and TVR for seawater desalination. Mathematical models
+for optimizing single-effect evaporation (SEE) systems with mechanical
+vapor recompression can be found in several studies in the literature
+[44每52]. Al-Juwayhel [45] have developed a comprehensive design
+model for the design of SEE including MVR process. The model has pos-
+teriorly been expanded by Ettouney [44] for determining the geometri-
+cal characteristics of the evaporator, in addition to the heat transfer area
+and power consumption calculations. The optimization of SEE systems
+with MVR using mathematical programming has also been studied by
+Mussati et al., [53] considering several non-convex constraints. Never-
+theless, it should be underlined that all of the above-mentioned works
+were applied only to seawater desalination. Therefore, in previous stud-
+ies no considerations have been made about the treatment of very con-
+centrated feed and achievement of zero liquid discharge (ZLD) of brine.
+ZLD systems have been studied by Thu et al. [54], by considering an
+advanced multiple-effect adsorption process. The desalination process
+is developed to efciently deal with high-salinity feed water, including
+brine from other seawater desalination plants. Chung et al. [55] have
+also investigated ZLD application for the desalination of highly concen-
+trated water by allowing brine discharge close to NaCl saturation condi-
+tions. In their work, an approach based on nite differences is used to
+numerically simulate a multistage membrane distillation process. Al-
+though the process can represent an attractive alternative over usual
+thermal desalination systems due to scale facility, by analyzing
+exergetic and energetic process efciencies, the authors have concluded
+that the required specic membrane area will determine its economic
+viability.
+To surpass the aforementioned limitations, we introduce a new
+mathematical programming model for optimizing single and multiple-
+effect evaporation (SEE/MEE) systems, including vapor recompression
+cycle and thermal integration. The SEE/MEE process is conceived for
+the treatment of high-salinity owback water originated during shale
+gas hydraulic fracturing process. The main objective of the proposed
+SEE/MEE system is to produce fresh water and concentrated saline
+close to ZLD, considering the outow brine salinity near to salt satura-
+tion conditions. For this purpose, the multiple-effect superstructure for
+owback water desalination includes as many evaporation effects as
+there are ashing tanks, placed intermittently. As a result, process ener-
+gy efciency is further enhanced by recuperating the condensate vapor.
+The evaporation system is designed with a counter-current ow cong-
+uration. Thus, concentrated brine is recovered in the rst evaporator ef-
+fect, while feed water is added to the last one after preheating. In
+addition, the vapor formed by evaporation and condensate ashing is
+compressed through multistage electric-driven mechanical equipment
+
+232
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+containing intercoolers. Consequently, the SEE/MEE process does not
+require any other external energy source.
+The superstructure is mathematically formulated as an NLP
+model solved using GAMS, minimizing the total annualized cost of the
+process. The SEE and MEE optimal congurations including vapor
+recompression cycle and heat integration are compared in terms of
+their ability to achieve ZLD conditions for the brine concentrate. Sensi-
+tivity analysis is performed to assess the optimal evaporation process
+conguration and performance under different owback water salin-
+ities. In addition, the obtained results are validated by simulations
+using Aspen HYSYS software.
+The main novelties introduced by this work include: (i) develop-
+ment of a more comprehensive and robust NLP model for the optimal
+simultaneous synthesis of SEE/MEE systems,
+including vapor
+recompression cycle and thermal integration; (ii) application of the pro-
+posed SEE/MEE model to the treatment of high-salinity owback water,
+originating from the hydraulic fracturing process in shale gas produc-
+tion; (iii) SEE/MEE model application to ZLD conditions of the concen-
+trated brine and the high recovery ratio of fresh water; (iv) capability
+of the SEE/MEE model to effectively deal with very high concentrations
+of the feed water; and, (v) facility of process scaling.
+This paper is structured as follows: Section 2 presents the formal
+problem statement, wherein the study boundaries are dened and the
+major process features are described in detail. In Section 3, we develop
+the mathematical NLP model for the simultaneous SEE/MEE synthesis.
+The capabilities of our developed SEE/MEE model are evaluated in
+Section 4, by applying it to a case study based on shale gas production.
+In addition, this section shows the main results and discussions about
+the sensitivity analysis and HYSYS simulations, and the most important
+computational aspects. Finally, the conclusions of the work are present-
+ed in Section 5.
+
+2. Problem statement
+
+Given is a high-salinity owback water stream from shale gas pro-
+duction, with a known supply state (inlet mass owrate, salinity, tem-
+perature and pressure) and target specication dened by the brine
+concentration. Additionally, equipment (for promoting heat exchange,
+evaporation, compression and separation) and energy services (includ-
+ing cooling water and electric power) are also provided, with their re-
+spective costs. The goal is to identify the optimal SEE/MEE system
+conguration, considering the vapor recompression cycle and thermal
+integration, by minimizing the process total annualized cost. The opti-
+mal process conguration should achieve a high recovery ratio of
+fresh water produced and brine close to the ZLD condition. The objective
+function is composed of the capital cost of investment in equipment and
+the operating expenses related to cold utility and electricity.
+It should be highlighted that improving the process cost-effective-
+ness through the reduction of brine discharges (i.e., achieving ZLD con-
+ditions and consequently, increasing the fresh water production),
+allows lessening the environmental impacts associated to energy con-
+sumption and waste disposal. Shale gas exploration is a recent technol-
+ogy that requires further development, particularly in the framework of
+the owback water treatment. To the best of our knowledge, this is the
+rst work proposing the ZLD application to the treatment of the
+owback water from shale gas fracking, through a SEE/MEE system in-
+cluding MVR and thermal integration. The multiple-effect superstruc-
+ture proposed for the desalination of shale gas owback water is
+showed in Fig. 1.
+The following equipment are considered in the MEE system with
+vapor recompression and thermal integration:
+
+(i) Shell-and-tube preheater (for the heat exchange between feed
+water and condensate).
+(ii) Multiple-effect evaporator.
+(iii) Multistage electricity-driven compressor with intercoolers.
+
+(iv) Flashing tanks.
+(v) Pumps and mixers.
+
+The MEE system comprises i evaporation effects intermediately
+coupled to ashing tanks that are used to recover condensate vapor, en-
+hancing process energy efciency. Note that the SEE system corre-
+sponds to a simplication of the MEE process, being composed of a
+single-effect evaporator without a ash tank. In this case, vapor ashing
+is not allowed due to the low amount of recoverable energy from the
+condensate, which makes unfeasible the capital cost related to the allo-
+cation of such equipment.
+In the proposed MEE system, the evaporation effects are numbered
+according to the direction of the heat ow (i.e., from 1 to i). The evapo-
+rator effect i is composed of the shell containing droplet separator (to
+remove water from the saturated vapor), spaces for the saturated
+vapor and saline pool, brine spray nozzles and evaporation/condensa-
+tion tubes. A counter-current ow conguration is considered such
+that the vapor from the last evaporation effect and the condensate
+vapor from the last ash tank are compressed, through a mechanical
+equipment composed by j stages. Thus, the superheated compressed
+vapor is added in the rst evaporation effect, whereas the feed water
+(corresponding to the shale gas owback water) is inserted in the last
+one. It should be noted that the vapor recompression process is cyclic.
+Thus, the entire amount of vapor formed in the last evaporator effect
+is routed to the mechanical vapor compressor together with the ashed
+off condensate vapor from last ash tank 〞to be superheated to a de-
+sired target condition〞 before being added to the rst evaporation ef-
+fect. It should be emphasized that the vapor recompression cycle
+allows further enhancing heat integration in evaporation systems, be-
+cause it operates on all the vapor originated from the evaporation sys-
+tem, providing the energy required in the process [56].
+Under this system conguration, the rst evaporation effect should
+present the highest temperature and pressure, while the last effect i
+should be subjected to the lowest conditions for these variables. More-
+over, the vapor formed in the system follows the direction of dropping
+pressure (and temperature). The brine (feed) ows in the opposite di-
+rection. The superheated vapor from compression (for effect 1), as
+well as the vapor formed in previous effects (for effects 2 to i), are intro-
+duced inside the evaporator tubes. The feed water (i.e., brine from sub-
+sequent stages for effects 1 to i-1; and, shale gas owback water in effect
+i) is sprayed on the tubes in the shell-side to promote evaporation. In
+this way, the vapor is condensed on the tube-side by transferring its la-
+tent heat to the falling lm formed by the sprayed feed. Observe that in
+the rst effect, the formed falling lm outside tubes absorbs the latent
+heat from the compressed vapor starting the process of feed (i.e., brine
+from effect 2) evaporation. The vapor formed is used to drive effect 2.
+This process occurs successively until last effect i. Still in effect 1, sensi-
+ble heat is responsible for the temperature change in the tube-side,
+wherein the condensed vapor changes from the inlet superheated
+vapor temperature to its desired outlet condition. Note that the conden-
+sate outlet temperature should correspond to the inlet vapor saturation
+pressure.
+After each evaporation effect, the condensed vapor is sent to ash
+tanks to reduce its pressure (and temperature) and, consequently, re-
+cover energy. The small amount of ashed off condensate vapor in an ef-
+fect i, plus the vapor formed by boiling in the previous effect are added
+to the tube-side of the subsequent evaporation effect. For this reason,
+both streams should be at the same pressure. Before entering into the
+evaporator, the feed water is preheated taking in advantage the sensible
+heat from the condensed vapor (i.e., produced fresh water) to improve
+heat integration in the evaporation system [57]. The increase in the
+feed temperature is essential for improving the energy recovery and
+maintaining the system productivity in the presence of climatic changes
+throughout the year.
+The SEE/MEE synthesis with MVR and thermal integration is a
+complex process and we seek the optimal system conguration
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+233
+
+Fig. 1. Multiple-effect evaporation superstructure proposed for the desalination of high-salinity owback water from shale gas fracking.
+
+corresponding to lower heat transfer area and minimum services con-
+sumption (including thermal utilities and electricity). For this purpose,
+all ows properties (i.e., temperature, pressure, specic enthalpy, con-
+centration and owrate) are unknown variables needing optimization.
+Fig. 2 (a) shows the main process variables for the effect i of the
+
+evaporator and ash tank i, while Fig. 2 (b) displays the system variables
+for the stage j of compression. Moreover, the elevated number of tem-
+perature constraints to guarantee the optimal equipment functioning,
+allied to the high non-convexity and nonlinearity of the cost correla-
+tions further increase the complexity of the model.
+
+Fig. 2. Process decision variables for (a) the effect i of the evaporator and ash tank i; and, (b) the stage j of the compressor.
+
+234
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+For the desalination of the shale gas owback water, it is assumed
+that the feed water has been previously treated to remove all contami-
+nants, including chemical additives (such as ow improvers, acids, sur-
+factants, friction reducers, and corrosion inhibitors), oils, greases and
+sand. Water pretreatment technologies can include ltration, chemical
+and physical precipitation, sedimentation and otation. However, the
+shale gas owback water still has high TDS concentration after pretreat-
+ment. The objective of the proposed SEE/MEE system is to supply, in
+combination with suitable water pretreatment technologies, high
+cost-effective recovery of fresh water for reuse or for safe disposal.
+Also, the system should operate at low pressure and temperature to pre-
+vent equipment instability and avoid corrosion and fouling problems,
+which can be caused by the high salt concentration and the presence
+of remaining oils and greases. In addition, the lower operation temper-
+atures allow for reducing process scaling and thermodynamic losses,
+allowing for minimal thermal insulation [41,43].
+Due to the use of an electric-driven mechanical compressor, the SEE/
+MEE system does not require an external energy source. An energy gen-
+erator can be used when electricity services are not available, making
+the SEE/MEE process suitable for use in remote off-grid locations.
+Other advantages of the SEE/MEE system include the consideration of
+horizontal tube conguration, in which the falling lm formed allows
+for higher heat transfer coefcients and lower heat transfer areas [58].
+This reduces the capital costs of investment and equipment size, making
+the process more compact and therefore more easily transported. More-
+over, the MEE system permits the simple inclusion of additional evapo-
+ration effects due to its modular feature.
+The following assumptions are considered to simplify the mathe-
+matical formulation:
+
+(vi) Steady state operation.
+(vii) Heat losses in all thermal and mechanical equipment are
+neglected.
+(viii) The non-equilibrium allowance (NEA) is neglected.
+(ix) Pressure drops in all thermal and mechanical equipment are
+neglected.
+(x) Zero salinity for the condensate (product).
+(xi) Vapor streams from each evaporator effect behave as ideal gases.
+(xii) All effects of the evaporator are built with nickel (to avoid corro-
+sion).
+(xiii) The multi-stage compressor is centrifugal (without drivers)
+built with carbon steel.
+(xiv) Starter energy required for the multi-stage compressor is
+neglected.
+(xv) Effect of surging and choking is disregarded in the multi-stage
+compressor.
+(xvi) The vapor multi-stage compression is isentropic.
+(xvii) Shell-and-tube preheater and ash tanks are built with carbon
+steel.
+(xviii) Capital costs of pumps and mixers are negligible.
+
+The mathematical formulation of the proposed model including
+equality and inequality constraints for the optimal SEE/MEE process
+synthesis is presented in the following section.
+
+3. Mathematical programming model
+
+The mathematical programming model for optimizing SEE/MEE sys-
+tems is formulated based on the superstructure presented in Fig. 1. The
+proposed superstructure is composed by i evaporation effects coupled
+intermediately to i ashing tanks, and j compression stages. The inlet
+feed_water), mass owrate (Fin
+temperature (Tin
+feed_water) and salt concentra-
+feed_water) of the feed water (i.e., shale gas owback water) are
+tion (Sin
+known parameters for the model. The outlet conditions of the produced
+fresh water〞including temperature (Tout
+fresh_water) and owrate
+
+(Fout
+
+fresh_water)〞are variables that must be optimized by considering
+brine salinity specications (Sout
+brine). All intermediate streams tempera-
+tures (T), pressures (P), specic enthalpies (H), salt concentrations (S)
+and mass owrates (F), as well as the system performance characteris-
+tics (including compression work W, heat transfer area A and heat ow
+Q) are decision variables requiring optimization. The mathematical
+model formulation comprises mass and energy balances on all equip-
+ment and mixing points, and design constraints involving stream tem-
+peratures and pressures to avoid solutions without physical meaning.
+The objective function accounts for the total annualized process cost,
+which is composed by operational expenses and capital investment.
+The resulting NLP-based model is developed in the next sections, in
+which the SEE/MEE superstructure is generated according to the follow-
+ing steps.
+
+3.1. Sets denition
+
+The following sets are required to develop the NLP model.
+I  i=i is an evaporator effect
+J  j= j is a compression stage
+
+f
+f
+
+g
+g
+
+Note that the number of evaporation effects and compression stages
+can be chosen arbitrarily. However, the selection of larger values for
+these indices will increases the problem size and complexity and, conse-
+quently, the difculty in obtaining a solution.
+
+3.2. Multiple-effect evaporator
+
+The multiple-effect evaporator design is as follows.
+
+3.2.1. Evaporator mass balances
+For effects 1 to i-1, the feed water corresponds to the brine from sub-
+sequent effects at Fi+ 1
+brine conditions. In the last effect i, the feed
+stream is the shale gas owback water to be treated (under Fi
+and Sin
+feed_water conditions). Thus, the mass balances for the effect i-1 of
+the multiple-effect evaporator are given by:
+
+brine and Si+ 1
+
+feed_water
+
+F brine
+i1  F brine
+i
+
+ F vapor
+i
+
+1 ≒ i ≒ I1
+
+F brine
+i1  Sbrine
+i1  F brine
+i
+
+ Sbrine
+i
+
+1 ≒ i ≒ I1
+
+1
+
+2
+
+Observe that for the rst effect, the salinity of the brine should corre-
+spond to its outlet specication Sout
+brine. In this study, we consider the
+brine outlet specication near to salt saturation concentration to
+achieve zero liquid discharge conditions. For the last evaporation effect,
+the mass and salt balances are:
+
+F feed water
+i
+
+ F brine
+i
+
+ F vapor
+i
+
+i  I
+
+F feed water
+i
+
+ Sfeed water
+in
+
+ F brine
+i
+
+ Sbrine
+i
+
+i  I
+
+3
+
+4
+
+3.2.2. Ideal temperature
+The ideal temperature Ti
+ideal is dened as the temperature that an ef-
+fect i should have if its brine salinity is equal to zero. The ideal temper-
+ature in effect i is estimated by Eq. (5).
+
+ln P vapor
+i
+
+ a  b= T ideal
+
+i  c
+
+i﹋I
+
+5
+
+ 
+
+
+
+
+
+
+
+The values for the Antoine parameters a, b and c in the Eq. (5) are
+12.98437,  2001.77468 and 139.61335, respectively. These correlation
+parameters have been obtained from HYSYS-OLI process simulator by
+considering the temperature in a range of 10 ≒ Ti ≒ 120oC and salt mass
+
+fractions XSi
+brine between 0 and 0.3, under the electrolytes thermody-
+namic package.
+
+3.2.3. Boiling point elevation (BPE)
+The boiling point elevation (BPE) corresponds to the increase in the
+boiling point temperature caused by the brine salt concentration. The
+BPE is calculated as a function of the salt mass fraction (XSi
+the ideal temperature (Ti
+ideal) in an evaporation effect i.
+BPEi  0:1581  2:769  X Sbrine
+0:002676  T ideal
+ 41:78 X Sbrine
+2  0:134  X Sbrine
+
+brine) and
+
+i
+
+i
+ T ideal
+i
+
+i
+
+
+
+1 =
+
+i
+
+6
+
+In which,
+
+X Sbrine
+i
+
+ 0:001  Sbrine
+
+i
+
+i﹋I
+
+7
+
+3.2.4. Brine temperature
+The brine temperature (Ti
+brine) in an evaporation effect i should be
+equal to its BPE added to its ideal temperature (Ti
+ideal). In fact, the
+brine temperature is considered to be the effect temperature. Thus,
+the brine and outlet vapor in an effect i (Ti
+vapor) should be at the same
+temperature Ti
+i  BPEi i﹋I
+
+brine.
+
+T brine
+i
+
+ T ideal
+
+8
+
+3.2.5. Evaporator energy balances
+The overall energy balance for effect i should include the heat ows
+added to the system boundary from feed water and condensed vapor,
+and the vapor and brine energy outows. The overall energy balances
+in each effect of the evaporator is given by Eq. (9) and Eq. (10).
+
+Q evaporator
+i
+
+ F brine
+i1  Hbrine
+i1  F brine
+i
+ F feed water
+ H feed water
+i
+i
+
+ Hbrine
+i
+
+ F vapor
+i
+
+ Hvapor
+i
+
+ibI
+
+9
+
+Q evaporator
+i
+
+ F brine
+i
+
+ Hbrine
+i
+
+ F vapor
+i
+
+ Hvapor
+i
+
+i
+
+ I
+
+10
+
+For which the specic enthalpies of the vapor, brine and feed water
+(i.e., shale gas owback water) streams are estimated by the following
+correlations:
+
+Hvapor
+i
+
+ 13470  1:840  T brine
+
+i
+
+i﹋I
+
+11
+
+Hbrine
+i
+
+ 15940  8787  X Sbrine
+
+i
+
+ 3:557  T brine
+
+i
+
+i﹋I
+
+12
+
+H feed water
+i
+
+ 15940  8787  X Sfeed water
+
+i
+
+ 3:557  T feed water
+i
+
+i  I 13
+
+As mentioned before, the vapor and brine streams are at the same
+temperature Ti
+brine in effect i. However, the specic enthalpy estimation
+for the brine and for feed water in the last effect should also consider the
+inuence of their salinity in addition to the temperature.
+
+3.2.6. Heat requirements in the evaporator
+In the rst evaporation effect, the term Qi
+evaporator in the Eq. (9) com-
+prises the latent heat needed to condense the superheated vapor from
+the compressor, and the sensible heat required to achieve the target
+condensate temperature (Ti
+
+condensate).
+
+Q evaporator
+i
+
+ F spv
+i
+
+ Cpvapor  T spv
+j
+
+T condensate
+i
+
+
+
+
+
+ F spv
+i
+
+ H cv
+i  1; j  J
+
+i
+
+H condensate
+i
+
+
+
+
+
+14
+
+In Eq. (14), Cpvapor is the specic heat for the vapor stream. In this
+work, it is considered to be constant in order to simplify the model.
+Ti
+spv and Ti
+condensate are the superheated vapor and condensate tempera-
+tures, respectively. The condensate temperature Ti
+condensate is estimated
+by considering the outlet compressor pressure Pj
+spv in Antoine equation
+given by Eq. (5). Moreover, Hi
+cv and Hi
+condensate are the specic enthalpies
+for the vapor and liquid phases of the condensate, respectively. These
+variables are estimated by Eq. (11) and Eq. (12), considering the outlet
+condensate temperature Ti
+condensate. Note that the salt mass fraction in
+Eq. (12) should be equal to zero for the liquid specic enthalpy estima-
+tion. The variable Fi
+spv indicates the superheated vapor owrate, which
+includes the vapor owrates from the last evaporator effect and ashing
+tank:
+
+F spv
+1  F vapor
+i
+
+ F vapor
+ci
+
+i  I
+
+15
+
+For effects 2 to i, the heat requirements include the contributions of
+the vaporization latent heat added by the boiling vapor, and the ashed
+off condensate vapor from previous effect. The heat ows in each evap-
+oration effect are given by the following equation.
+
+Q evaporator
+i
+
+ F vapor
+i1  竹i  F vapor
+
+ci1
+
+ 竹i
+
+iN1
+
+16
+
+In Eq. (16), Fi  1
+vaporare the boiling vapor and ashed off
+condensate vapor owrates from the previous effect, respectively. The
+latent heat of vaporization 竹i is calculated by the following correlation:
+竹i  2502:52:3648  T sv
+i  1:840 T sv
+
+vapor and Fci 1
+
+i1T sv
+i
+
+ 
+
+
+
+iN1
+
+17
+
+In which Ti
+sv is the saturated vapor temperature estimated by Eq. (5)
+corresponding to the saturated vapor pressure Pi
+
+sv.
+
+3.2.7. Feasibility of pressure and temperature between evaporator effects
+The outlet vapor pressure throughout the different effects of the
+evaporator should decrease monotonically. Moreover, the outlet vapor
+pressure Pi
+vapor in effect i should be equal to the saturated vapor pressure
+from the following effect i + 1 to avoid instabilities in the equipment.
+
+P vapor
+i
+
+≡ P vapor
+i1  忖Pmin
+
+ibI
+
+18
+
+P vapor
+i
+
+ P sv
+
+i1
+
+ibI
+
+19
+
+3.2.8. Overall heat transfer coefcient. The overall heat transfer coefcient
+Ui
+evaporator is estimated using the correlation presented by Al-Mutaz and
+Wazeer [28].
+
+U evaporator
+i
+
+ 0:001  1939:4  1:40562  T brine
+
+i
+
+0:00207525  T brine
+
+i
+
+
+
+2  0:0023186  T brine
+
+i
+
+
+
+3
+
+
+
+
+
+20
+
+3.2.9. Evaporator heat transfer area. The evaporator is designed to be a
+compact piece of equipment composed of several evaporation effects.
+For this reason, a total heat transfer area should be determined for esti-
+mating costs. The total heat transfer area of the evaporator effects (Ai-
+evaporator) is given by Eq. (21).
+
+Aevaporator 
+
+XI
+
+i1
+
+Ai 
+
+XI
+
+i1
+
+Q i = U i  LMT Di
+
+
+
+
+
+21
+
+In the rst effect of the evaporator, the heat transfer area should be
+equal to the sum of the sensible and latent heat transfer areas. For the
+calculation of the transfer area for sensible heat, the overall heat transfer
+
+235
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+coefcient US is considered as a known parameter.
+
+Ai  A1
+i  A2
+
+i
+
+i  1
+
+22
+
+A1
+
+i  F spv
+i
+
+ Cpvapor  T spv
+j
+
+T condensate
+i
+
+
+
+
+
+= U S  LMT Di
+
+
+
+
+
+
+i  1; j  J
+
+23
+
+A2
+
+i  F spv
+i
+
+ H cv
+
+i
+
+H condensate
+i
+
+
+
+
+
+=U i  T condensate
+i
+
+T brine
+i
+
+
+
+i  1
+
+24
+
+In order to avoid numerical difculties related to matching temper-
+ature differences, Chen's approximation [59] is used to determine the
+logarithmic mean temperature difference (LMTDi).
+
+LMT Di  0:5  牟1i  牟2i
+
+
+
+ 牟1i  牟2i
+
+
+
+
+
+
+
+1 =
+
+3
+
+i﹋I
+
+25
+
+In which,
+
+牟1i  T spv
+T brine
+i
+j
+T sv
+T brine
+i
+i
+T condensate
+T brine
+i
+i1
+T brine
+T sv
+i1
+i
+T sv
+T feed
+i
+i
+
+i  1; j  J
+iN1
+
+(
+8><
+>:
+
+and 牟2i
+
+
+
+i  1
+
+1bibI
+i  I
+
+26
+
+For obtaining a more uniform area distribution, the following restric-
+tions are considered:
+
+Ai ≒ n  Ai1
+
+iN1
+
+27
+
+Ai ≡ Ai1
+
+iN1
+
+28
+
+In which n is set to be equal to 3. However, it should be noted that
+the parameter n can be chosen arbitrarily according to the designer
+need. If necessary, the constraint can be easily removed from the model.
+
+3.2.10. Temperature constraints
+Constraints on temperature must be used to avoid temperature
+crossovers in the evaporator effects. These constraints are dened by
+the Eqs. (29)每(36).
+
+T spv
+j
+
+≡ T condensate
+i
+
+ 忖T 1
+
+min
+
+i  1; j  J
+
+29
+
+T brine
+i1
+
+≡ T condensate
+i
+
+ 忖T 1
+
+min
+
+iN1
+
+30
+
+T brine
+i
+
+≡ T brine
+i1  忖T stage
+min
+
+ibI
+
+31
+
+T brine
+i
+
+≡ T feed
+
+i  忖T 2
+
+min
+
+i  I
+
+32
+
+T condensate
+i
+
+≡ T brine
+i1  忖T min
+
+ibI
+
+33
+
+T condensate
+i
+
+≡ T feed
+
+i  忖T min i  I
+
+34
+
+T condensate
+i
+
+≡ T brine
+i
+
+ 忖T min
+
+i﹋I
+
+35
+
+T sv
+i
+
+≡ T brine
+i
+
+ 忖T min
+
+i﹋I
+
+36
+
+3.3. Condensate ashing tanks
+
+The condensate ashing tanks are modeled using the following
+equations.
+
+3.3.1. Mass balances in the ashing tank i
+The mass balances in each ash tank i are given by the equations:
+
+F spv
+i  F vapor
+ci
+
+ F liquid
+ci
+
+i  1
+
+37
+
+F vapor
+i1  F vapor
+ci1  F liquid
+ci1  F vapor
+ci
+
+ F liquid
+ci
+
+iN1
+
+38
+
+In which Fci
+liquid are the mass owrates for the ashed off
+vapor and liquid phases of the condensate, respectively.
+
+vapor and Fci
+
+3.3.2. Energy balances in the ashing tank i
+The energy balances in each ash tank i are given by the equations:
+
+F spv
+i
+
+ H condensate
+i
+
+ F vapor
+ci
+
+ Hvapor
+ci
+
+ F liquid
+ci
+
+ H liquid
+ci
+
+i  1
+
+39
+
+F vapor
+i1  F vapor
+ Hcondensate
+ F liquid
+ F vapor
+ Hvapor
+ F liquid
+i
+ H liquid
+ci
+ci
+ci
+ci
+
+ci1
+
+
+
+
+
+ci1
+
+ H liquid
+
+ci1
+
+iN1
+
+40
+
+In which Hi
+liquid are the liquid specic enthalpies esti-
+mated by the Eq. (12) considering the temperatures of condensate Ti-
+ideal, respectively. In both cases, salt mass fraction
+equal to zero (i.e., XSi
+brine = 0) is assumed in Eq. (12). The specic enthal-
+py for the ash off vapor Hci
+vapor from the condensate is obtained by Eq.
+(11), considering the ideal temperature in the effect.
+
+condensate and Hci
+
+condensate and ideal Ti
+
+3.3.3. Volume of the ashing tank i
+The volume of each ashing tank i is given by the following equa-
+tions:
+
+V flash
+i  F spv
+i
+
+ t
+
+ 
+
+
+
+
+=老 i  1
+
+41
+
+V flash
+i  F vapor
+i1  F liquid
+
+ci1
+
+
+
+ t=老 iN1
+
+42
+
+In which t indicates the retention time of the condensate inside the
+ash tank, and 老 the water density. In this study, a retention time
+equal to 5 min is considered for ashing tanks design.
+
+3.4. Condensate/feed preheater
+
+The condensate/feed preheater used to heat the feed water is de-
+signed using the following equations.
+
+3.4.1. Energy balance in the condensate/feed preheater
+The energy balance in the preheater is given by Eq. (43).
+
+ Cpcondensate
+ T ideal
+T fresh water
+F liquid
+ci
+i
+i
+out
+ F feed water
+ Cpfeed
+ T feed water
+T feed
+in
+in
+i
+in
+
+
+
+
+
+
+
+
+
+i  I
+
+43
+
+In which Tin
+feed is the inlet feed temperature of the shale gas owback
+water. Cpi
+feed are the specic heats of the condensate (i.e.,
+fresh water produced) and feed water, respectively. The liquid specic
+heats are estimated by the following correlations:
+
+condensate and Cpin
+
+Cpfeed
+
+in  0:001 
+
+4206:86:6197  Sfeed water
+1:1262  5:418e2  Sfeed water
+
+in
+
+ 1:2288e2  Sfeed water
+in
+ T feed
+in
+
+
+
+2
+
+
+
+
+
+
+
+
+in
+
+
+
+2
+64
+
+3
+
+75 i  I
+
+44
+
+Cpcondensate
+i
+
+ 0:001  4206:81:1262  T ideal
+
+i
+
+
+
+
+
+i  I
+
+45
+
+236
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+3.4.2. Heat transfer area of the condensate/feed preheater
+The heat transfer area Apreheaterof the condensate/feed preheater is
+determined by the equation:
+
+Apreheater  F liquid
+ Cpcondensate
+ci
+i
+LMT Dpreheater
+
+ T ideal
+i
+
+T fresh water
+out
+
+
+
+
+
+=U preheater
+
+i  I
+
+46
+
+In which, the overall heat transfer coefcient Upreheater is estimated
+by Eq. (20) considering the ideal temperature Ti
+idealfor the last evapora-
+tor effect. In this case, the log mean temperature difference (LMTD-
+preheater) is calculated by Eq. (25), with the temperature difference in
+the hot and cold terminals given by:
+
+牟preheater
+1
+
+ T ideal
+T feed water
+ T fresh water
+i
+i
+T feed
+out
+in
+
+i  I and 牟preheater
+2
+
+47
+
+3.5. Multistage mechanical compressor
+
+The multistage mechanical compressor with intercooling is designed
+using the following mathematical formulation.
+
+3.5.1. Heat duty
+The amount of heat Qj
+cooler exchanged by the intercooler is given by
+Eq. (48).
+
+Q cooler
+j
+
+ F spv
+i
+
+ Cpvapor  T spv
+j1
+
+T c
+
+j
+
+
+
+
+
+jN1
+
+48
+
+In which Tj 1
+spv is the inlet temperature in the intercooler that should
+correspond to the compressor outlet temperature from the previous
+stage. On the other hand, Tj
+c is the intercooler outlet temperature,
+which should be equal to the inlet temperature in the next compression
+stage.
+
+3.5.2. Constraints on intercoolers temperatures
+Constraints are necessary to ensure that the outlet temperature from
+an intercooler is lower than the correspondent inlet temperature on it
+(i.e., the vapor stream should be cooled):
+
+T spv
+j1
+
+≡ T c
+
+j  忖T cooler
+min
+
+jN1
+
+49
+
+Note that the outlet intercooler temperature should be above the
+saturation temperature in order to avoid the presence of liquid in the
+compressor, and related operational issues.
+
+3.5.3. Energy balance in the mixer
+An energy balance is needed in the mixer allocated before the com-
+pressor, to guarantee that the inlet vapor temperature in such equip-
+ment is at mixture temperature Ti
+m.
+
+F vapor
+ci
+
+T m
+
+i
+
+T ideal
+i
+
+
+
+
+
+ F vapor
+i
+
+ T brine
+i
+
+T m
+
+i
+
+
+
+
+
+i  I
+
+50
+
+3.5.4. Isentropic temperature
+The isentropic temperature of the compressed/superheated vapor is
+given by the equations:
+污1 =污 273:15
+污1 =污 273:15
+
+T is
+
+j  T m
+i  273:15
+
+ 
+
+
+
+ P spv
+j
+
+=P vapor
+i
+
+
+
+i  I ; j  1
+
+51
+
+T is
+
+j  T c
+j  273:15
+
+
+
+
+
+ P spv
+j
+
+=P spv
+j1
+
+
+
+jN1
+
+52
+
+In which 污 is the heat capacity ratio. The outlet pressure of the super-
+heated vapor Pj
+spv in the stage j should be limited to a maximum com-
+pression ratio:
+
+P spv
+j
+
+≒ CRmax  P vapor
+i
+
+i  I ; j  1 and P spv
+
+j
+
+≒ CRmax  P spv
+j1
+
+jN1
+
+53
+
+3.5.5. Temperature of the superheated vapor
+The superheated vapor temperature, i.e. the compressor outlet tem-
+perature in the stage j is calculated by the equation:
+
+T spv
+
+j  T c
+j  1=灰  T is
+
+j
+
+T c
+
+j
+
+
+
+
+
+ j﹋ J
+
+54
+
+In which 灰 is the isentropic efciency of the compressor.
+
+3.5.6. Constraints on compressor temperatures and pressures
+In the compression stage j, an increase of the vapor temperature and
+pressure is expected:
+
+T spv
+j
+
+≡ T c
+
+j
+
+ j﹋ J
+
+55
+
+P spv
+j
+
+≡ P vapor
+i
+
+i  I ; j  1
+
+56
+
+P spv
+j
+
+≡ P spv
+j1
+
+jN1
+
+57
+
+3.5.7. Compression work
+The total compression work is expressed in terms of the enthalpies
+difference of the compressed superheated vapor Hj
+spv and the inlet com-
+pressor vapor Hj
+c in each stage j:
+
+W 
+
+XJ
+
+j1
+
+W j 
+
+XJ
+
+j1
+
+F spv
+i
+
+ Hspv
+j
+
+H c
+
+j
+
+
+
+
+
+i  1
+
+58
+
+In which Hj
+spv and Hj
+c are the specic enthalpies for the vapor streams
+estimated by Eq. (11), considering the inlet (Tj
+c) and outlet (Tj
+spv) com-
+pressor temperatures, respectively. For allowing a more uniform com-
+pression capacities distribution,
+the following restrictions are
+considered:
+W j ≒ m  W j1
+
+jN1
+
+59
+
+W j ≡ W j1
+
+jN1
+
+60
+
+In which m is set to be equal to 3. The parameter m can be chosen ar-
+bitrarily according to the designer specication. Note that the equip-
+ment is more expensive as higher uniformity is required for the
+compressor construction. If necessary, the constraint can be easily re-
+moved from the model.
+
+3.6. Design specication
+
+To achieve the ZLD condition, the brine salinity at rst effect should
+be at least equal to its design specication.
+
+Sbrine
+i
+
+≡ Sbrine
+out
+
+i  1
+
+61
+
+All correlations presented in the mathematical formulation 〞includ-
+ing the correlations for estimation of the BPE (Eq. (6)), liquid and vapor
+specic enthalpies (Eq. (11)每(13)), latent heat of vaporization (Eq.
+(17)); and, liquid specic heat (Eq. (44) and Eq. (45)) 〞 have been ob-
+tained from HYSYS-OLI simulator by using the thermodynamic package
+for electrolytes, and considering salt mass fractions between 0 and 0.30.
+
+237
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+238
+
+3.7. Objective function
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+The objective function corresponds to the minimization of the total
+annualized cost of the SEE/MEE process with mechanical vapor
+recompression and heat recovery. The objective function is dened by
+the following mathematical formulation.
+
+3.7.1. Total annualized cost
+The total annualized cost of the SEE/MEE system with mechanical
+vapor recompression and thermal integration should be equal to the
+sum between capital costs (CAPEX) and operational expenses (OPEX)
+as described by Eq. (62).
+TAC  CAPEX  OPEX
+
+62
+
+3.7.2. Total capital expenditures
+The total capital costs CAPEX should account for the investment cost
+of all equipment in the SEE/MEE system with mechanical vapor
+recompression and thermal integration. Therefore, the calculation of
+the total capital cost includes the expenditures for the preheater, multi-
+ple-effect evaporator, multistage compressor and ashing tanks.
+
+
+
+CAPEX  fac  CEPC I2015
+CEPC I2003
+
+
+XI
+
+i1
+
+0
+B@
+
+
+
+CPOevap  FBMevap  F P evap  CPOcomp  FBMcomp  F P comp
+CPOflash
+ FBM flash  F P flash  CPOpreh  FBMpreh  F Ppreh
+i
+
+1
+CA
+
+63
+
+In which fac is the annualization factor for the capital cost as dened
+by Smith [60]:
+fac  r 1  r
+1  r
+y1
+
+64
+
+y
+
+
+
+
+
+In which r is the fractional interest rate per year and y is the number
+of years (amortization period). In Eq. (63), CPO indicates the basic cost
+of a unitary equipment (in kUS$) operating at pressure close to ambient
+conditions. CPO is estimated using the correlations presented by Turton
+et al. [61] for the preheater and ashing tanks. For the cost estimation of
+the evaporator and the multistage compressor, the correlations pro-
+posed by Couper et al. [62] are considered. FBM corresponds to the fac-
+tor of correction for the basic unitary cost, in which the construction
+materials and the operational pressure of these equipment units are
+correlated. Moreover, the total annualized cost must be corrected for
+the relevant year using the CEPCI index (Chemical Engineering Plant
+Cost Index).
+
+3.7.3. Operational expenditures
+Operational expenditures comprise the electricity and cooling ser-
+vices consumed by the multistage compressor:
+
+OPEX  Ec 
+
+W j  Cc 
+
+Q cooler
+j
+
+65
+
+XJ
+
+j1
+
+XJ
+
+j1
+
+In which Ec and Cc are the cost parameters for electricity and cooling
+services, respectively.
+
+4. Case study
+
+A case study is performed to verify the accuracy of the proposed
+mathematical model for optimizing SEE/MEE systems, considering
+vapor recompression cycle and thermal integration. It should be
+highlighted that the problem data used in this example are based on
+
+real data obtained from important U.S. shale plays such as Marcellus
+and Barnett [63每66]. The capacity of the centralized treatment plant
+should be 900 m3 day 1 (or 10.42 kg s 1) of shale gas owback
+water. Interestingly, Lira-Barrag芍n et al. [4] report in a recent work
+that under an uncertain scenario as the amount of water required to
+complete each well (i.e., considering a standard deviation of 10% in the
+shale plays data),
+the choice of
+the aforementioned value
+(900 m3 day 1) has 100% probability of guaranteeing that the plant ca-
+pacity is adequate to treat the total amount of owback water. These au-
+thors have considered a mean value of 15 k m3 (in a range of 12每
+18 k m3) for the amount of water needed for the hydraulic fracturing
+of each well, from which 25% is expected to return to surface as
+owback water during the rst 3 weeks. Additionally, the total number
+of wells to be treated is divided in fracturing crews following an annual
+scheduling capable for answering the hydraulic drilling of 20 wells per
+year [4].
+Typical salinity average values (measured as total dissolved solids -
+TDS) for the shale gas owback water from the Marcellus play are re-
+ported in the literature in a range of 120每157 k ppm [12,15,63]. Howev-
+er, it should be mentioned that other U.S. shale plays can present very
+distinct salt concentrations for the owback water as shown in Table
+1. For this reason, an initial mean value of 70 k ppm (or 70 g kg 1) is
+considered for the feed salinity in the SEE/MEE system design. Never-
+theless, it should be noted that the model is robust enough to guarantee
+optimal solutions for a large range of salinities and owrates of the
+owback water, underlining the facility for process scaling. Model per-
+formance and system sensitivity are evaluated under higher salinities
+in the next sections. Table 2 presents the problem data, while Fig. 1
+shows the general superstructure proposed for the desalination of the
+high-salinity owback water from shale gas fracking.
+Additional problem data include the minimum pressure and tem-
+perature drop between evaporator effects equal to 0.1 kPa and 0.1 ～C, re-
+spectively. Moreover, the minimum temperature approach between the
+outlet vapor and concentrated brine, as well as between the superheat-
+ed vapor (i.e., vapor after compression) and condensate (fresh water) in
+an evaporator effect is 忖Tmin = 2oC. The unknown minimum ideal tem-
+perature in the evaporation effect i is considered in a range of 1每100 ～C
+to avoid operational problems (including rusting and fouling), while the
+saturated vapor pressure is restricted to 1每200 kPa. Most importantly,
+concentrate discharge salinity is specied to be equal to 300 g kg 1
+(very close to salt saturation condition of ~ 350 g kg 1) in order to
+achieve ZLD operation. In the case study, a factor of annualized capital
+cost (fac) of 0.16 is considered; this corresponds to 10% interest rate
+over a period of 10 years.
+
+Table 2
+Problem data for the case study based on the shale gas production.
+
+Feed water (shale gas owback water)
+Mass owrate
+Salinity
+Temperature
+Pressure
+Multistage compressor with intercooling
+Type/material
+Isentropic efciency
+Heat capacity ratio
+Maximum compression ratio
+Cooling services temperature
+Specications
+Brine salinity
+Cost data
+Electricity costa
+Cooling services cost
+Factor of annualized capital cost
+
+37.5 m3 h 1 (10.42 kg s 1)
+70 g kg 1
+25 ～C
+50 kPa
+
+Centrifugal/carbon steel
+0.75
+1.33
+3 per stage
+20每25 ～C
+
+300 g kg 1
+
+850.51 US$ (kW year) 1
+100 US$ (kW year) 1
+0.16 (10% - 10 years)
+
+a Data obtained from Eurostat [71] database for industrial consumers in European
+Union (2015 - S1).
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+239
+
+4.1. Optimizing the SEE/MEE system conguration
+
+Several SEE/MEE system congurations are evaluated for their cost-
+effectiveness in obtaining concentrated brine at ZLD conditions and
+fresh water. In all cases, the minimization of the total annualized cost
+of the evaporation process is considered to be the objective function,
+which is composed by operational expenses and capital cost of invest-
+ment. Initially, the system is optimized considering multiple-effect
+evaporation (MEE) without any additional equipment. In this case,
+steam at 120 ～C and 50 kPa provided from an external source
+〞Cvapor = 418.8 US$(year kW)坼1〞 is added to the rst evaporation ef-
+fect. The counter-current ow conguration is considered: the feed
+water (shale gas owback water) is introduced in the last effect of the
+evaporator. In this way, the last evaporator effect is submitted to the
+lowest pressure and temperature of the system. The optimization of
+the MEE process is carried out by varying the number of evaporation ef-
+fects. Thus, the optimal conguration obtained consists of 3 evaporator
+effects with heat transfer areas (and heat ow) equal to 204.16 m2
+(7086.95 kW), 176.91 m2 (6896.88 kW) and 114.27 m2 (6159.42 kW),
+respectively. The total annualized cost
+(TAC)
+is equal
+to
+3237 k US$ year 1, comprising 2579 k US$ year 1 related to operating
+expenses (OPEX) and 658 k US$ year 1 to capital cost of investment
+(CAPEX). Note that the evaporator with 2 effects presents a TAC equal
+to 4557 k US$ year 1 (OPEX= 4043k US$ year 1 and CAPEX= 514k US$
+year 1) while the evaporation equipment with 4 effects has a total cost
+of 4812 k US$ year 1 composed by OPEX = 2205k US$ year 1 and
+CAPEX = 2607k US$ year 1. Therefore, the operating costs related to
+the consumed steam in the process is signicantly reduced as the num-
+ber of effects is increased (~ 36% of reduction from 2 to 3 effects) in the
+evaporator. This fact is related to the increment in the total heat transfer
+area that reduces the amount of heat required in the equipment. Note
+that, although the operational costs are decreasing with the increasing
+in the evaporator area, there is a threshold (3th effect) from that the
+
+increment in the capital costs needed do not compensate such reduc-
+tion in the amount of energy.
+
+4.2. Single-effect evaporation process with vapor recompression
+
+The proposed model can be used to optimize a single-effect evapora-
+tion process with a single-stage compressor (SEE-SVR). In this situation,
+the evaporator heat transfer area (and heat ow) is equal to 782.99 m2
+(20,387.27 kW) and the compressor needed should has capacity of
+1367.97 kW. Fig. 3 (a) shows the optimal solution obtained for the
+major decision variables for the SEE-SVR process. The total annualized
+cost for the SEE-SVR process is 2585 k US$ year 1,
+including
+1421 k US$ year 1 in capital cost and 1164 k US$ year 1 in electricity
+expenses. Thus, the TAC is 20.2% lower than the optimal solution obtain-
+ed for the MEE process with external vapor source.
+By the inclusion of a feed-condensate preheater to promote thermal
+integration, the heat transfer area of the single-effect evaporator (SEE-
+SVR including thermal
+integration) is increased for 834.17 m2
+(19,780.44 kW). The compressor capacity is also increased for
+1452.19 kW to compensate for the heat ow required in the SEE-SVR in-
+cluding the thermal integration process. Moreover, the preheater re-
+quired in the system has 4.80 m2 of heat transfer area for exchanging
+403.28 kW of heat between the feed and condensate streams. Fig. 4
+shows the optimal solution obtained for the major decision variables
+for the SEE-SVR process including thermal integration. In this case, the
+capital cost of investment in equipment is equal to 1511 k US$ year 1,
+and the operating expenses related to electricity are 1235 k US$ year 1.
+Thus, the total annualized cost for the SEE-SVR conguration is equal to
+2746 k US$ year 1. Therefore, it is possible to achieve savings on total
+process costs around 15.2% in comparison with the optimal solution ob-
+tained for the MEE containing an external steam source (i.e., 3-effect
+evaporator). However, the SEE-SVR system with thermal integration is
+6.3% more expensive that the same process without preheated feed.
+
+Fig. 3. Optimal solution obtained for the main decision variables for the single-effect evaporation process with (a) single-stage (SEE-SVR); and, (b) multistage (SEE-MVR) vapor
+recompression cycle.
+
+240
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+Fig. 4. Optimal solution obtained for the main decision variables for the single-effect evaporation process with single-stage vapor recompression cycle (SEE-SVR) and thermal integration.
+
+This result is due to the increasing in both the capital costs and opera-
+tional expenses obtained for the SEE-SVR conguration with a
+preheater.
+Then, the model is used to optimize the single-effect evaporation
+process with a multistage compressor (SEE-MVR). In this case, the evap-
+orator heat transfer area (and heat ow) is equal to 793.92 m2
+(20,387.26 kW). In addition, the process requires a 2-stage compressor
+with capacities of 327.60 kW and 982.79 kW, respectively. The multi-
+stage compressor demands 380.22 kW of energy related to cooling ser-
+vices. Fig. 3 (b) shows the optimal solution obtained for the major
+decision variables for the SEE-MVR process. The total annualized cost
+for the SEE-MVR process is 2576 k US$ year 1, comprising
+1423 k US$ year 1 in capital cost and 1153 k US$ year 1 in operational
+expenses. Thus, the TAC is 20.4% lower than the optimal solution obtain-
+ed for the MEE process with external vapor source. Additionally, the
+SEE-MVR process is 6.2% more economical than SEE-SVR system and
+0.4% cheaper than the SEE-SVR with thermal integration. In the last
+case, the decrease in the total annualized cost is due to the reduced op-
+erational expenses related to the use of a multistage compressor.
+The SEE-MVR system including thermal integration presents a heat
+transfer area for evaporation (and heat ow) equal to 847.51 m2
+(19,780.44 kW). Furthermore, the optimal conguration requires a 2-
+stage compressor with capacities of 346.82 kW and 1040.45 kW, respec-
+tively. In this case, the multistage compressor consumes 395.16 kW of
+energy related to the intercooler. The feed-condensate preheater used
+in the process has 4.80 m2 of heat transfer area for exchanging
+403.28 kW of energy. The capital cost of investment in equipment is
+equal to 1515 k US$ year 1, and the operating expenses related to the
+consumption of electricity are 1219 k US$ year 1. Thus, the total annu-
+alized cost for the SEE-MVR conguration considering heat integration
+is equal to 2734 k US$ year 1. Fig. 5 shows the optimal solution obtain-
+ed for the major decision variables for the SEE-MVR process including
+thermal integration. It should be noted that the optimal SEE-MVR sys-
+tem conguration obtained is 6.2% more expensive than the same pro-
+cess without thermal integration. The increase in the total annualized
+cost is a consequence of the elevation in both capital costs and opera-
+tional expenses. Note that the inclusion of a preheater in the SEE-MVR
+system reduces the vapor pressure and, consequently, the temperature
+in the evaporator. As a consequence, the heat ow provided by vapor
+recompression is reduced elevating the heat
+transfer area of
+
+evaporation. As expected, higher temperatures in the evaporator (as ob-
+tained for the SEE-MVR system without thermal integration) imply
+higher overall heat transfer coefcients and, consequently, lower heat
+transfer areas of evaporation.
+On the other hand, the SEE-MVR system with thermal integration is
+0.4% cheaper than the SEE-SVR system with preheated feed. The de-
+crease in the total annualized cost is essentially due to the reduction
+in the work capacity and related operational expenses. In addition, it
+should be observed that the advantage of substituting the external
+vapor source 〞by a mechanical multistage compressor〞 is again veri-
+ed in the SEE-MVR process with thermal integration. In this case, the
+optimal conguration obtained presents the total annualized cost
+15.5% lower than the MEE system. Therefore, although the thermal inte-
+gration does not provide better solutions for the single-stage evapora-
+tion with vapor recompression, the multistage compressor reduces
+operational costs 〞and consequently, the total annualized cost of the
+process〞 in all cases studied.
+
+4.3. Multiple-effect evaporation process with vapor recompression
+
+In this section, the multiple-effect evaporation system is designed
+considering the replacement of the external source of steam by a sin-
+gle-stage equipment for vapor recompression (MEE-SVR). In this case,
+the optimal solution is obtained for the MEE-SVR process composed of
+2 effects of evaporation. The corresponding heat transfer areas (and
+heat ow) are equal to 343.84 m2 (10,225.23 kW) and 282.21 m2
+(10,262.95 kW), respectively. Under this conguration, the process de-
+mands a single-stage compressor with the capacity of 820.41 kW. The
+operating expenses related to the consumption of electricity are equal
+to 698 k US$ year 1, while the capital costs of investment in all process
+equipment are 1119 k US$ year 1. Thus, the total annualized cost of the
+MEE system with this conguration is 1817 k US$ year 1.
+It should be observed that contrary to the MEE evaporation process
+with external steam source, the TAC is signicantly increased as the
+number of effects is augmented in the multiple-effect evaporator. Con-
+sequently, if a 3-effect evaporator 〞with heat transfers areas (and heat
+ow) of 450.23 m2 (6752.5 kW), 469.13 m2 (6780.68 kW) and
+304.19 m2 (6697.59 kW), respectively〞 including mechanical vapor
+recompression (599.31 kW) is considered as the treatment plant, the
+total annualized cost will be increased to 2289 k US$ year 1
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+241
+
+Fig. 5. Optimal solution obtained for the main decision variables for the single-effect evaporation process with multistage vapor recompression cycle (SEE-MVR) and thermal integration.
+
+(OPEX = 510k US$ year 1 and CAPEX = 1779k US$ year 1). This value
+corresponds to an increment of 25.9% in relation to the TAC obtained
+for the design with 2 effects of evaporation. Note that the increase in
+the total annualized cost is due to the need for bigger evaporator heat
+transfer areas, in which capital costs are signicantly augmented
+when considering three (~ 59% more expensive) or more evaporation
+effects. On the other hand, the total annualized cost obtained consider-
+ing the MEE-SVR system with 2 evaporation effects (and single-stage
+compressor) is 43.9% lower than the optimal solution found for the
+steam-driven MEE process. This reduction in the total costs is possible
+because, although a pressure manipulation equipment is used in the
+process 〞requiring an increased total heat transfer area of evapora-
+tion〞 the additional costs related to the inclusion in the MEE-SVR sys-
+tem of such mechanical compressor (including operational expenses
+and capital costs) do not exceed the expenses associated to external
+steam source (~ 270% more expensive than electricity expenses). More-
+over, the MEE-SVR process is 29.4% cheaper than the best solution ob-
+tained for the single-effect evaporation process (i.e., SEE-MVR without
+thermal integration). In this case, capital costs and operating expenses
+related to electricity consumption are both reduced when considering
+the multiple-effect evaporation process.
+Afterwards, the MEE-SVR process is optimized considering thermal
+integration through the inclusion of ash tanks and feed-condensate
+preheater. In this case, the optimal conguration is again obtained
+with 2 effects in the evaporator. The heat transfer areas (and heat
+ow) of each evaporator effect are 246.25 m2 (9718.77 kW) and
+247.38 m2 (9702.26 kW), respectively. Moreover, a single-stage me-
+chanical compressor with the capacity of 823.11 kW is needed for meet-
+ing the energy required in the process. In this case, thermal integration
+is allowed in the process by using a preheater with area of 46.97 m2 able
+to exchange 1774.31 kW of heat between the fresh water (distillate)
+and the feed water. Additionally, 2 ashing tanks 〞with volumes
+equal to 1.19 m3 and 2.39 m3, respectively〞 are used to separate the
+distillate vapor, providing a further energy recovery in the MEE-SVR
+
+system. Fig. 6 shows the optimal MEE-SVR process conguration obtain-
+ed for this case study. The total annualized cost of the process with this
+conguration is 1689 k US$ year 1, composed of 989 k US$ year 1 re-
+lated to capital cost of investment in equipment and 700 k US$ year 1
+to operating expenses of electricity consumption. Note that, the process
+designed with 3 evaporation effects has a total annualized cost of
+1904 k US$ year 1, composed of OPEX = 568k US$ year 1 and
+CAPEX= 1336k US$ year 1. Therefore, analogously to the behavior ob-
+served for the MEE-SVR system without thermal integration, the pro-
+cess total annualized cost is signicantly increased when more
+evaporator effects are considered in the system.
+It should be highlighted that the MEE-SVR process design with ther-
+mal integration is 38.5% cheaper than the SEE-SVR system with
+preheating of the feed water. Moreover, the MEE-SVR process is 34.4%
+less expensive than the best solution obtained for the single-effect evap-
+oration process (i.e., SEE-MVR without thermal integration). In addition,
+this MEE-SVR conguration (i.e., containing ash tanks and preheater)
+allows for reducing costs in 7.1%, comparing with the optimal solution
+obtained for the MEE-SVR without heat integration; and, 47.8% when
+compared with the optimal solution found for the MEE process. By ana-
+lyzing these results, it is possible to observe that the heat recovery in the
+MEE-SVR process reduces signicantly the total heat transfer area
+(~ 21% of reduction) required in the evaporator, in comparison with
+the MEE-SVR without thermal integration. The equipment size reduc-
+tion is responsible for the considerable decrease in the capital cost of in-
+vestment (~ 12% of reduction) and, subsequently, in the total annualized
+cost. Therefore, the thermal integration associated with the vapor
+recompression cycle in the MEE-SVR system is essential for enhancing
+energy efciency and, consequently, for reducing process costs.
+After the single-stage compression step, the developed mathemati-
+cal model is used to optimize the multiple-effect evaporation system,
+considering multistage vapor recompression and thermal integration
+(MEE-MVR). Observe that the optimization is performed considering
+no pressure drop in the intercooler, and the inlet temperature in the
+
+242
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+Fig. 6. Optimal solution obtained for the main decision variables for the multiple-effect evaporation process with single-stage vapor recompression cycle (MEE-SVR) and thermal
+integration.
+
+rst compression stage can be different from the inlet temperature in
+the subsequent stage. In this case, the optimal conguration obtained
+is composed of 2 effects of evaporation with heat transfer areas (and
+heat ows) equal to 346.77 m2 (10,225.20 kW) and 282.21 m2
+(10,262.92 kW), respectively. In addition, the process requires a 2-
+stage compressor with capacities of 197.64 kW and 591.48 kW, respec-
+tively. The multistage compressor demands 176.59 kW of energy relat-
+ed to cooling services. The total annualized cost for the MEE-MVR
+system with this conguration is 1805 k US$ year 1, comprising
+1116 k US$ year 1 of capital cost of investment and 689 k US$ year 1
+of operating expenses, related to cooling services and electricity con-
+sumed by the compressor.
+It should be noted that the total annualized cost obtained for the
+MEE-MVR process represents 44.3% of savings in comparison with the
+MEE process (with an external source of vapor). Moreover, the MEE-
+MVR process is 29.9% cheaper than the best solution obtained for the
+single-effect evaporation process (i.e., SEE-MVR without thermal inte-
+gration). Additionally, the MEE-MVR system with thermal integration
+is 0.7% cheaper than the MEE-SVR system without feed preheating.
+The decrease in the total annualized cost is essentially due to the reduc-
+tion in the work capacity and related electricity expenses.
+Finally, the MEE-MVR process is optimized considering thermal in-
+tegration by using intermediate ash tanks and feed-condensate pre-
+heater. In this case, the optimal conguration is again obtained with 2
+effects in the evaporator system. The heat transfer areas (and heat
+ow) of each evaporation effect are 245.54 m2 (9660.40 kW) and
+268.67 m2 (9646.39 kW), respectively. In addition, the optimal congu-
+ration requires a 2-stage compressor with capacities of 204.13 kW and
+612.40 kW, respectively. In this case, the multistage compressor con-
+sumes 107.82 kW of energy related to the intercooler. A heat exchanger
+of 80.53 m2 (1897.99 kW) is used to preheat the feed water, taking ad-
+vantage of the energy from the condensate (fresh water). Additional en-
+ergy is recovered in the MEE-MVR system by using 2 ashing tanks with
+
+capacities of 1.19 m3 and 2.39 m3, respectively. Fig. 7 shows the optimal
+MEE-MVR system conguration obtained for this case. The capital cost
+of investment in equipment is equal to 1015 k US$ year 1, and the op-
+erating expenses related to the consumption of electricity are
+705 k US$ year1. Thus, the total annualized cost for the MEE-MVR con-
+guration considering heat integration is equal to 1720 k US$ year 1.
+Thus, the total annualized cost obtained for the MEE-MVR process
+with thermal integration represents 46.9% of savings in comparison
+with the MEE process (with an external source of vapor). The process
+presents a reduction of 46.9% in the cost of the produced fresh water,
+and 72.7% of decreasing in the energy consumed per cubic meter of pro-
+duced water. Observe that the MEE-MVR process with this congura-
+tion is 33.2% cheaper than the best solution obtained for the single-
+effect evaporation process (i.e., SEE-MVR without thermal integration).
+This reduction in the process expenses represent savings of ~ 33% in the
+cost of the cubic meter of fresh water; and, the decrease of ~ 39% in the
+electric power consumption per cubic meter of produced water. More-
+over, the MEE-MVR process is 4.7% less expensive than the same process
+without thermal integration. Note that, in this case, the possibility of
+using the feed-distillate preheater allied to a larger compressor reduces
+signicantly the heat transfer area of evaporation (~ 18% of reduction),
+compensating even the increment in the operational expenses related
+to the additional electricity consumption required by the process.
+Table 3 shows the optimal results obtained for the distinct evaporation
+systems congurations considered for the optimization of the desalina-
+tion process.
+Therefore, among all process congurations evaluated, the best op-
+tion for the desalination of the shale gas owback water (at
+70 g kg 1) is the MEE-SVR including thermal integration. In this case,
+the cost of the produced fresh water is 6.70 US$ per cubic meter, pre-
+senting an electric power consumption of 2.78 US$ per cubic meter of
+fresh water. However, it should be emphasized that the optimal cong-
+uration obtained is strongly dependent on the salinity of the owback
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+243
+
+Fig. 7. Optimal solution obtained for the main decision variables for the multiple-effect evaporation process with multistage vapor recompression cycle (MEE-MVR) and thermal
+integration.
+
+water to be treated. This dependence is studied in the following section.
+Lastly, it is remarked that in all SEE/MEE systems congurations studied,
+the specication of the brine salinity (300 g kg 1) close to salt satura-
+tion condition allows for obtaining high recovery ratios of fresh water
+(0.77 in all cases) as it is shown in Table 3.
+
+4.4. Analyzing the SEE/MEE model sensitivity
+
+The proposed model can be used for the SEE/MEE process design
+considering a wide range of feed water salinities. A simple analysis of
+the SEE/MEE model sensitivity is performed to assess the inuence of
+
+Table 3
+Optimal results obtained for the different evaporation systems congurations.a
+
+Process conguration
+
+Fresh water production cost (US$
+m 3)
+
+Steam/electric power consumed
+(US$ m 3)
+
+Total annualized cost (kUS$
+year 1)
+
+10.24
+4.62
+
+Multiple-effect evaporation with external steam source (MEE)
+Single-effect evaporation with single-stage vapor recompression
+(SEE-SVR)
+SEE-SVR including thermal integration
+Single-effect evaporation with multistage vapor recompression
+(SEE-MVR)
+SEE-MVR including thermal integration
+Multiple-effect evaporation with single-stage vapor recompression
+(MEE-SVR)
+MEE-SVR including thermal integration
+Multiple-effect evaporation with multistage vapor recompression
+(MEE-MVR)
+MEE-MVR including thermal integration
+6.83
+2.80
+1720.3
+a Results obtained by specifying brine salinity levels near to salt saturation concentration (i.e., 300 g kg1). In all cases, this consideration allows to recover concentrated brine at
+2.43 kg s1 and fresh water production ratio at 7.99 kg s1 (Conversion ratio: CR= Fcondensate/Ffeed= 0.77).
+
+2746.0
+2575.7
+
+3237.1
+2584.6
+
+2734.1
+1817.3
+
+4.90
+4.57
+
+4.84
+2.77
+
+2.78
+2.73
+
+1688.6
+1804.6
+
+12.85
+10.26
+
+10.90
+10.22
+
+10.85
+7.21
+
+6.70
+7.16
+
+244
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+the feed water salinity on system performance and total process costs.
+Thus, the optimal solutions found in the design step (considering feed
+water salinity equal to 70 g kg 1) for the single and multiple-effect sys-
+tems congurations have been evaluated under salinity conditions
+varying from 10 to 220 g kg 1 (10每220 k ppm). In all cases, the brine
+specication remains the same (i.e., 300 g kg 1) to achieve discharges
+close to ZLD conditions. It should be remembered that the consideration
+of higher salinities implies the need for lower brine concentration, since
+the system is always designed to achieve the same outlet condition (i.e.,
+brine concentrate near to salt saturation condition). The results obtain-
+ed for the SEE-MVR system without thermal integration present a linear
+decrease in the total annualized cost of the process, as higher salinities
+are considered for the feed water. Fig. 8 (a) displays the effect of the
+owback water salinity on the SEE-MVR process costs. The total annual-
+ized cost of the system is equal to 3167 k US$ year 1 for feed salinity of
+10 g kg 1. Under more elevated concentrations, a signicant reduction
+in the total costs is observed for this conguration. At feed salinity of
+220 g kg 1, the total annualized cost of the process is 1147 k US$ year 1.
+This value represents a diminution of approximately 64% in comparison
+with the optimal solution found for the process at lower salinity condi-
+tion. In this case, the system conguration exhibits a proportional less-
+ening in both curves for capital costs and operational expenses. This
+fact is due to the smaller equipment size (~ 61% of reduction between
+the evaluated extremes points) and the consequent need for lower en-
+ergy consumption (~ 67% of savings in operational expenses). Therefore,
+the performance of the system (measured by the total evaporation area
+and compression capacity) is considerably affected for the shale gas
+
+owback water salinity. In this case, the evaporator area is reduced by
+~ 69%, whereas the compression work is decreased by ~ 66%.
+The total costs for the MEE-MVR system with thermal integration for
+different feed water salinities are shown in Fig. 8 (b). In this case, the re-
+duction observed in the total annualized cost for the salinity extreme
+conditions (10 and 220 g kg1) is not so expressive as in the single-ef-
+fect process. For the rst salinity, the MEE-MVR system presents a total
+annualized cost of 1959 k US$ year 1, which is composed by
+1166 k US$ year 1 related to capital costs and 793 k US$ year 1 associ-
+ated to operational expenses. For the feed water with 220 g kg 1, the
+total annualized cost of the system is equal to 1216 k US$ year 1
+(OPEX = 391k US$ year 1 and CAPEX = 825k US$ year 1). This value
+constitutes a decrease of ~ 38% in the total annualized cost, (~ 29% in
+the capital cost and ~ 51% in the operational expenses) when both con-
+ditions are compared. Concerning the system performance, the com-
+pression work is substantially more affected by the increase in the
+feed water salinity over the total evaporation area. Therefore, the com-
+pression work is decreased by ~ 52% while the evaporator area is re-
+duced by ~ 29%.
+The MEE-SVR process with thermal integration is the last system to
+be analyzed. The results obtained for this conguration are displayed in
+Fig. 8 (c).
+In this case, the total annualized cost is equal to
+1925 k US$ year 1 for the treatment of the feed water at 10 g kg 1.
+The total annualized cost comprises 1147 k US$ year 1 associated to
+capital costs and 778 k US$ year 1 to operational expenses. At feed
+water salinity of 220 g kg 1, the total annualized cost of the MEE-SVR
+process is 1839 k US$ year 1 (OPEX = 238k US$ year 1 and
+
+Fig. 8. Effect of the owback water salinity on the process costs of: (a) single-effect evaporation system with multistage vapor recompression cycle (SEE-MVR); (b) multiple-effect
+evaporation system with multistage vapor recompression cycle (MEE-MVR) and thermal integration; (c) multiple-effect evaporation system with single-stage vapor recompression
+cycle (MEE-SVR) and thermal integration; and, (d) comparison between the total annualized costs obtained for the processes SEE-MVR, MEE-MVR and MEE-SVR under different feed
+salinity conditions.
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+245
+
+CAPEX = 1601k US$ year 1). This value represents a reduction of ~ 5% in
+comparison with the optimal solution found for the process at
+10 g kg 1. The system with this conguration presents ~ 69% of savings
+in operational expenses. On the other hand, the capital cost of invest-
+ment is increased by ~ 40%. This fact is due to the signicant increase
+in the total evaporation area (~ 93%), whereas the compression work
+is reduced by ~ 70%. However, the MEE-SVR system conguration ex-
+hibits an inection point at the feed water salinity equal to 80 g kg 1.
+Therefore, the process presents a minimum total annualized cost of
+1646 k US$ year 1 under this condition.
+Finally, Fig. 8 (d) shows the comparison between the total annual-
+ized costs obtained for the processes SEE-MVR, MEE-MVR and MEE-
+SVR under different feed salinity conditions. In this gure, it is possible
+to observe that the MEE-SVR process (with thermal integration) pre-
+sents the lower total costs at salinities between 10 and 100 g kg 1. In
+this concentration range, the SEE-MVR (without thermal integration)
+is the most expensive process for the treatment of the shale gas
+owback water. Between the salinities of 100 to 150 g kg 1, the MEE-
+MVR system (with thermal integration) becomes the most economical
+process to achieve brine discharges close to ZLD conditions. From salin-
+ities higher than 150 g kg 1, the MEE-SVR system is the less benecial
+process. Note that the MEE-SVR system presents the lower compared
+total annualized cost for the feed salinity at 70 g kg 1. Interestingly,
+the SEE-MVR system has the lower total annualized cost for salinities
+higher than 180 g kg 1. Observe that the SEE-MVR process is widely
+used in the seawater desalination industry, in which there is no need
+to achieve ZLD conditions.
+
+4.5. Simulating the MEE process
+
+To verify the accuracy of the proposed mathematical programming
+model, a simulation of the process has been carried out using the com-
+mercial software Aspen HYSYS (version V8.8). With this aim, the MEE-
+MVR superstructure shown in Fig. 1 has been simulated considering
+steady state conditions. The resulting MEE-MVR process ow diagram
+in Aspen HYSYS is displayed in Fig. 9. The MEE-MVR system has been se-
+lected due to its elevated complexity in comparison with the other sys-
+tems designed.
+The thermodynamic package NTRL-electrolytes has been chosen for
+the process simulation. Moreover, the results obtained for the decision
+variables (i.e., inlet and outlet pressures and temperatures, and mass
+owrates) in the design step (shown in Fig. 7) have been introduced
+in the simulator to estimate the work capacities or heat ows of all
+equipment. A reasonably good agreement has been observed between
+the design and simulated values for the MEE-MVR process. The simula-
+tion results showed that the compressor stages should have the capac-
+ities of 208.7 kW and 618.3 kW, respectively. In this case, the intercooler
+consumes 111.8 kW of energy. These values present differences of 0.9%,
+2.2% and 3.7%, respectively, in relation to the design ones. In the simula-
+tion, the effects of the evaporator present heat ows equal to 9555 kW
+and 9652 kW, respectively. The difference between the values obtained
+from the model and the simulated ones are equal to 1.2% and 0.1%,
+respectively.
+The simulation of the preheater has also shown high precision with
+the modeled results. The difference between the two values is equal to
+
+Fig. 9. MEE-MVR process ow diagram in Aspen HYSYS used to validate the results obtained in the system design step.
+
+246
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+0.8%. In this case, the heat duty simulated is equal to 1882 kW. More-
+over, all the remaining simulated values (including some inlet or outlet
+temperatures, pressures and mass owrates) exhibit variations in rela-
+tion to the design values lower than 1%. It should be highlighted that the
+low differences obtained between the modeling and simulation are
+mainly due to the use of correlations to estimate some decision vari-
+ables in the mathematical model.
+
+4.6. Computational aspects
+
+The proposed NLP model for the optimal design of SEE/MEE systems
+was implemented in GAMS software (version 24.6.1) and optimized
+using CONOPT solver [67]. It is emphasized that the optimization of NLP
+problems using reduced gradient method-based solver 〞like CONOPT〞
+cannot guarantee global optimal solutions, unless the problem is convex
+(i.e., convex objective function and constraints) [68]. However, good solu-
+tions can be expected due to the problem size and robustness of the pro-
+posed model. All examples studied were solved using a computer with an
+Intel Core i5-2520 M 2.5 GHz processor and 8 GB RAM running Windows
+8.1. The CPU time did not exceed 1 s for any of the CONOPT optimizations.
+The statistics of the SEE/MEE model and computational efforts for solving
+the problem are reported in Table 4.
+It should be highlighted that the imposition of limits (i.e., lower and
+upper bounds) on all decision variables are essential to solve the SEE/
+MEE model. These bounds should be carefully dened to guarantee
+that all functions can be properly evaluated by the NLP solver. Thus, it
+is crucial to ensure all achievable exibility in the lower and upper
+bounds. Additionally, it is very important to provide good starting
+points by setting level values on all decision variables. In general, a
+NLP solver (CONOPT) is not able to nd optimal or at least feasible solu-
+tions when bad starting points are chosen.
+
+5. Conclusions
+
+A new optimization model for the simultaneous synthesis of SEE/
+MEE systems is proposed, including mechanical vapor recompression
+and thermal integration. To the best of our knowledge, this is the rst
+work proposing the SEE/MEE process (including MVR and thermal inte-
+gration) for the treatment of high-salinity owback water from shale
+gas production. The mathematical model is formulated as a NLP prob-
+lem and solved using GAMS software, by minimizing the total annual-
+ized cost of desalinating the shale gas owback water. For this
+purpose, a multiple-effect superstructure is developed including several
+effects of evaporation and multistage mechanical compression. In addi-
+tion, condensate ashing tanks and feed/condensate preheater are used
+to enhance energy recovery. As the compressor with intercooling is an
+electricity-driven device, no additional energy source is needed in the
+
+SEE/MEE process. Nevertheless, the mathematical model allows for eas-
+ily changing the energy supply if electricity services are not available.
+The optimal SEE/MEE conguration should achieve high recovery
+ratio of produced fresh water and brine near to ZLD condition 〞through
+the specication of the outow brine salinity near to salt saturation con-
+ditions〞, by minimizing the process costs. The objective function ac-
+counts for the capital cost of investment in equipment, and operating
+expenses related to cooling services and electricity consumption. It is
+worth noting that improving the process cost-effectiveness by reducing
+brine discharges allows decreasing the environmental impacts associat-
+ed to energy consumption and waste disposal.
+It is remarked that the SEE/MEE design considering MVR and ther-
+mal integration is a complex process, seeking to nd the optimal system
+conguration with minimum heat transfer area and use of energy ser-
+vices. All streams properties are unknown decision variables for the pro-
+cess design. In addition to the raised number of variables and
+constraints, the high non-convexity and nonlinearity of the cost correla-
+tions further increase the model complexity.
+First, the SEE and MEE systems have been compared in terms of their
+applicability to produce fresh water and achieve ZLD conditions. Among
+all process congurations studied, the MEE-SVR including thermal inte-
+gration has presented the lower total annualized cost of process
+(1689 k US$ year 1). Therefore, this conguration represents the best
+option for the desalination of the shale gas owback water with salinity
+of 70 g kg 1. The MEE-SVR process including thermal integration also
+presents the lower value for the cost of the produced fresh water
+(6.70 US$ per cubic meter). However, all congurations evaluated
+have obtained high recovery ratios of fresh water (77% in all cases),
+and they have successfully achieved brine outlet specication (i.e.,
+brine discharges near ZLD conditions).
+Sensitivity analysis has been performed to assess the optimal SEE/
+MEE process conguration and performance under distinct feed water
+salinity conditions. The results obtained highlight the robustness of the
+proposed model to cost-effectively optimize SEE/MEE systems under
+low and high feed water concentrations. Moreover, sensitivity analysis
+emphasizes that the optimal process conguration is strongly dependent
+of the salinity of the owback water to be treated. The MEE-MVR system
+conguration is the most benecial process for the treatment of feed
+water at lower salinities (10每100 g kg1), whereas the SEE-MVR is the
+most economical at salinities higher than 180 g kg1.
+Lastly, simulation results by using Aspen HYSYS emphasize the accu-
+racy of the proposed model for synthesizing the MEE-MVR system. A
+good agreement has been observed between the design and simulated
+values, showing high model accuracy in relation to realistic data of de-
+sign. The difference between the design and simulated performance pa-
+rameters (including heat ows and compression work) of the process
+have not exceeded 4%. This small difference is attributed to the correla-
+tions (of the data obtained from HYSYS-OLI by using a more rigorous
+
+Table 4
+Model statistics and computational efforts for solving the problem considering different process congurations.a
+
+SEE/MEE model
+
+Continuous
+variables
+
+Constraints (equality and
+inequality)
+
+Jacobian elements
+(non-zeros)/non-linear
+
+Multiple-effect evaporation with external steam source (MEE)
+Single-effect evaporation with single-stage vapor recompression
+(SEE-SVR)
+SEE-SVR including thermal integration
+Single-effect evaporation with multistage vapor recompression
+(SEE-MVR)
+SEE-MVR including thermal integration
+Multiple-effect evaporation with single-stage vapor recompression
+(MEE-SVR)
+MEE-SVR including thermal integration
+Multiple-effect evaporation with multistage vapor recompression
+(MEE-MVR)
+MEE-MVR including thermal integration
+
+31
+42
+
+53
+51
+
+62
+60
+
+88
+70
+
+97
+
+88
+47
+
+57
+60
+
+70
+72
+
+100
+85
+
+113
+
+a The CPU time for all cases studied is lower than 1 s, optimizing by using the CONOPT solver under GAMS software.
+
+226/83
+123/46
+
+158/60
+160/61
+
+195/75
+189/67
+
+285/109
+226/82
+
+322/124
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+247
+
+thermodynamic package for electrolytes) used in the mathematical
+model formulation.
+Further development of the process technology is needed to ensure
+the best possibilities for the treatment of the shale gas owback water.
+Thus, future works include the study of the inuence of the overall heat
+transfer coefcient on the process conguration and performance; anal-
+ysis of the uncertainty associated to the concentration data of the wells;
+and, consideration of the salinity variation as a function of the explora-
+tion time. Finally, the assessment of environmental impacts following
+LCA principles should also be considered for the optimal design of
+more environmentally conscious processes.
+
+Nomenclature
+
+Roman letters
+
+A
+BPE
+CAPEX
+Cc
+Cp
+CPO
+
+CRmax
+
+Ec
+fac
+F
+FBM
+FP
+H
+LMTD
+OPEX
+P
+
+忖Pmin
+
+Q
+r
+S
+T
+t
+
+忖Tmin
+
+TAC
+U
+V
+XS
+y
+W
+
+heat transfer area, m2
+boiling point elevation, ～C
+capital expenses, kUS$ year1
+cost parameter for the cooling services, US$ (kW year)1
+specic heat, kJ (kg ～C) 1
+cost of equipment unit, kUS$
+maximum compression ratio
+cost parameter for electricity, US$ (kW year) 1
+factor of annualized capital cost
+mass owrate, kg s 1
+correction factor for the capital cost
+parameter for the capital cost estimation
+specic enthalpy, kJ kg 1
+logarithmic mean temperature difference
+operational expenses, kUS$ year 1
+pressure, kPa
+minimum pressure approach, kPa
+heat ow, kW
+fractional interest rate per year
+salinity, g kg 1
+temperature, ～C
+retention time in the ash tanks, min
+minimum temperature approach, ～C
+total annualized cost, kUS$ year 1
+overall heat transfer coefcient, kW m 2 K 1
+volume, m3
+Salt mass fraction
+number of years
+compression work, kW
+
+Subscripts
+
+c
+i
+j
+
+condensate
+evaporator effects
+compressor stages
+
+Superscript
+
+c
+is
+m
+cv
+sv
+spv
+
+compressor
+isentropic
+mixture
+condensate vapor
+saturated vapor
+superheated vapor
+
+Acronyms
+
+CEPCI
+GAMS
+LCA
+MEE
+MSF
+MVR
+NLP
+RO
+SEE
+TDS
+TVR
+ZLD
+
+Chemical Engineering Plant Cost Index
+General Algebraic Modeling System
+Life Cycle Assessment
+Multiple-Effect Evaporation
+Multistage Flash
+Mechanical Vapor Recompression
+Nonlinear Programming
+Reverse Osmosis
+Single-Effect Evaporation
+Total Dissolved Solids
+Thermal Vapor Recompression
+Zero Liquid Discharge
+
+Greek letters
+
+污
+灰
+牟
+竹
+老
+
+heat capacity ratio
+isentropic efciency
+temperatures difference, ～C
+latent heat of vaporization, kJ kg 1
+water density, kg m 3
+
+Acknowledgements
+
+This project has received funding from the European Union's
+Horizon 2020 Research and Innovation Programme under grant agree-
+ment No. 640979. The nancial support provided by the National
+Council for Scientic and Technological Development of Brazil (CNPq),
+under process No. 233953/2014-0 is also gratefully acknowledged.
+
+References
+
+[1] J. Gao, F. You, Shale gas supply chain design and operations toward better economic
+and life cycle environmental performance: MINLP model and global optimization al-
+gorithm, ACS Sustain. Chem. Eng. 3 (2015) 1282每1291, http://dx.doi.org/10.1021/
+acssuschemeng.5b00122.
+[2] B. Xiong, A.L. Zydney, M. Kumar, Fouling of microltration membranes by owback
+and produced waters from the Marcellus shale gas play, Water Res. (2016), http://
+dx.doi.org/10.1016/j.watres.2016.04.049.
+[3] T. Stephenson, J.E. Valle, X. Riera-Palou, Modeling the relative GHG emissions of con-
+ventional and shale gas production, Environ. Sci. Technol. 45 (2011) 10757每10764,
+http://dx.doi.org/10.1021/es2024115.
+[4] L.F. Lira-Barrag芍n, J.M. Ponce-Ortega, G. Guill谷n-Gos芍lbez, M.M. El-Halwagi, Optimal
+water management under uncertainty for shale gas production, Ind. Eng. Chem. Res.
+55 (2016) 1322每1335, http://dx.doi.org/10.1021/acs.iecr.5b02748.
+[5] J.-P. Nicot, B.R. Scanlon, Water use for shale-gas production in Texas, U.S. Environ.
+Sci. Technol. 46 (2012) 3580每3586, http://dx.doi.org/10.1021/es204602t.
+[6] C.L. Weber, C. Clavin, Life cycle carbon footprint of shale gas: review of evidence and
+implications, Environ. Sci. Technol. 46 (2012) 5688每5695, http://dx.doi.org/10.
+1021/es300375n.
+[7] M.S. Mauter, P.J.J. Alvarez, A. Burton, D.C. Cafaro, W. Chen, K.B. Gregory, G. Jiang, Q.
+Li, J. Pittock, D. Reible, J.L. Schnoor, Regional variation in water-related impacts of
+
+248
+
+V.C. Onishi et al. / Desalination 404 (2017) 230每248
+
+shale gas development and implications for emerging international plays, Environ.
+Sci. Technol. 48 (2014) 8298每8306, http://dx.doi.org/10.1021/es405432k.
+[8] A. Vengosh, N. Warner, R. Jackson, T. Darrah, The effects of shale gas exploration and
+hydraulic fracturing on the quality of water resources in the United States, Procedia
+Earth Planet. Sci. 7 (2013) 863每866, http://dx.doi.org/10.1016/j.proeps.2013.03.213.
+[9] E. Barbot, N.S. Vidic, K.B. Gregory, R.D. Vidic, Spatial and temporal correlation of
+water quality parameters of produced waters from devonian-age shale following
+hydraulic fracturing, Environ. Sci. Technol. 47 (2013) 2562每2569, http://dx.doi.
+org/10.1021/es304638h.
+[10] C. He, X. Wang, W. Liu, E. Barbot, R.D. Vidic, Microltration in recycling of Marcellus
+shale owback water : solids removal and potential fouling of polymeric
+microltration membranes, J. Membr. Sci. 462 (2014) 88每95, http://dx.doi.org/10.
+1016/j.memsci.2014.03.035.
+[11] M.A. Cluff, A. Hartsock, J.D. MacRae, K. Carter, P.J. Mouser, Temporal changes in mi-
+crobial ecology and geochemistry in produced water from hydraulically fractured
+Marcellus shale gas wells, Environ. Sci. Technol. 48 (2014) 6508每6517, http://dx.
+doi.org/10.1021/es501173p.
+[12] H.R. Acharya, C. Henderson, H. Wang, Cost effective recovery of low-TDS frac
+owback water for re-use, Glob. Res. 1每100 (2011).
+[13] C.E. Clark, R.M. Horner, C.B. Harto, Life cycle water consumption for shale gas and
+conventional natural gas supporting information, Environ. Sci. Technol. 47 (2013)
+1每9, http://dx.doi.org/10.1021/es4013855.
+[14] J.B. Jacquet, Review of risks to communities from shale energy development, Envi-
+ron. Sci. Technol. 48 (2014) 8321每8333, http://dx.doi.org/10.1021/es404647x.
+[15] L.O. Haluszczak, A.W. Rose, L.R. Kump, Geochemical evaluation of owback brine
+from Marcellus gas wells in Pennsylvania, USA, Appl. Geochem. 28 (2013) 55每61,
+http://dx.doi.org/10.1016/j.apgeochem.2012.10.002.
+[16] I.E. Cafaro, D.C. Grossmann, Strategic planning, design, and development of the shale gas
+supply chain network, AICHE J. 60 (2014) 6每21, http://dx.doi.org/10.1002/aic.14405.
+[17] B.G. Rahm, S.J. Riha, Toward strategic management of shale gas development: re-
+gional, collective impacts on water resources, Environ. Sci. Pol. 17 (2012) 12每23,
+http://dx.doi.org/10.1016/j.envsci.2011.12.004.
+[18] L. Yang, I.E. Grossmann, J. Manno, Optimization models for shale gas water manage-
+ment, AIChE J. 60 (2014) 3490每3501, http://dx.doi.org/10.1002/aic.14526.
+[19] X. Zhang, A.Y. Sun, I.J. Duncan, Shale gas wastewater management under uncertain-
+ty, J. Environ. Manag. 165 (2016) 188每198, http://dx.doi.org/10.1016/j.jenvman.
+2015.09.038.
+[20] P.L. Staddon, M.H. Depledge, Fracking cannot be reconciled with climate change
+mitigation policies, Environ. Sci. Technol. (2015) 8269每8270, http://dx.doi.org/10.
+1021/acs.est.5b02441.
+[21] D.L. Shaffer, L.H. Arias Chavez, M. Ben-Sasson, S. Romero-Vargas Castrill車n, N.Y. Yip,
+M. Elimelech, Desalination and reuse of high-salinity shale gas produced water:
+drivers, technologies, and future directions, Environ. Sci. Technol. 47 (2013)
+9569每9583, http://dx.doi.org/10.1021/es401966e.
+[22] L.M. Camacho, L. Dum谷e, J. Zhang, J. Li, M. Duke, J. Gomez, S. Gray, Advances in mem-
+brane distillation for water desalination and purication applications, Water 5
+(2013) 94每196, http://dx.doi.org/10.3390/w5010094.
+[23] I.S. Al-Mutaz, Features of multi-effect evaporation desalination plants, Desalin. Water
+Treat. 54 (2015) 3227每3235, http://dx.doi.org/10.1080/19443994.2014.910842.
+[24] . Halil, M.S. Sylemez, Design and computer simulation on multi-effect evaporation
+seawater desalination system using hybrid renewable energy sources in Turkey, De-
+salination 291 (2012) 23每40, http://dx.doi.org/10.1016/j.desal.2012.01.022.
+[25] G. Gautami, S. Khanam, Selection of optimum conguration for multiple effect evap-
+orator system, Desalination 288 (2012) 16每23, http://dx.doi.org/10.1016/j.desal.
+2011.12.005.
+[26] P. Druetta, P. Aguirre, S. Mussati, Optimization of multi-effect evaporation desalination
+plants, Desalination 311 (2013) 1每15, http://dx.doi.org/10.1016/j.desal.2012.10.033.
+[27] P. Druetta, P. Aguirre, S. Mussati, Minimizing the total cost of multi effect evapora-
+tion systems for seawater desalination, Desalination 344 (2014) 431每445, http://
+dx.doi.org/10.1016/j.desal.2014.04.007.
+[28] I.S. Al-Mutaz, I. Wazeer, Comparative performance evaluation of conventional
+multi-effect evaporation desalination processes, Appl. Therm. Eng. 73 (2014)
+1194每1203, http://dx.doi.org/10.1016/j.applthermaleng.2014.09.025.
+[29] O.A. Hamed, K. Ba-mardouf, H. Al-Washmi, K. Al-Shail, H. Abdalla, A. A. Al-, Model-
+ing and simulation of multistage ash distillation process 〞 Part II, Technical Report
+(2004) 1每49.
+[30] O.A. Hamed, M.A.K. Al-So, G.M. Mustafa, K. Ba-Mardouf, H. Al-Washmi, Modeling
+and simulation of multistage ash distillation process, Technical Report (1999) 1每44.
+[31] A.S. Nafey, H.E.S. Fath, A.A. Mabrouk, Thermoeconomic analysis of multi stage ash-
+thermal vapor compression (MSF-TVC) desalination process, Tenth International
+Water Technology Conference (2006) 189每203.
+[32] F.M.H. El-Dessouky, H. Ettouney, H. Al-Fulaij, Multistage ash desalination com-
+bined with thermal vapor compression, Chem. Eng. Process. Process Intensif. 39
+(2000) 343每356.
+[33] C. Fritzmann, J. Lwenberg, T. Wintgens, T. Melin, State-of-the-art of reverse osmosis
+desalination, Desalination 216 (2007) 1每76, http://dx.doi.org/10.1016/j.desal.2006.
+12.009.
+[34] L.F. Greenlee, D.F. Lawler, B.D. Freeman, B. Marrot, P. Moulin, P. Ce, Reverse osmosis
+desalination: water sources, technology, and today's challenges, Water Res. 43
+(2009) 2317每2348, http://dx.doi.org/10.1016/j.watres.2009.03.010.
+[35] S. Zhao, L. Zou, C.Y. Tang, D. Mulcahy, Recent developments in forward osmosis: op-
+portunities and challenges, J. Membr. Sci. 396 (2012) 1每21, http://dx.doi.org/10.
+1016/j.memsci.2011.12.023.
+[36] Y. Lu, Y. Hu, X. Zhang, L. Wu, Q. Liu, Optimum design of reverse osmosis system
+under different feed concentration and product specication, J. Membr. Sci. 287
+(2007) 219每229, http://dx.doi.org/10.1016/j.memsci.2006.10.037.
+
+[37] N.M. Al-Bastaki, A. Abbas, Modeling an industrial reverse osmosis unit, Desalination
+126 (1999) 33每39, http://dx.doi.org/10.1016/S0011-9164(99)00152-6.
+[38] G. Chen, Z. Wang, L.D. Nghiem, X.M. Li, M. Xie, B. Zhao, M. Zhang, J. Song, T. He,
+Treatment of shale gas drilling owback uids (SGDFs) by forward osmosis: mem-
+brane fouling and mitigation, Desalination 366 (2015) 113每120, http://dx.doi.org/
+10.1016/j.desal.2015.02.025.
+[39] A. Piacentino, Application of advanced thermodynamics, thermoeconomics and
+exergy costing to a multiple effect distillation plant: in-depth analysis of cost forma-
+tion process, Desalination 371 (2015) 88每103, http://dx.doi.org/10.1016/j.desal.
+2015.06.008.
+[40] H.T. EL-Dessouky, H.M. Ettouney, F.A.L.J. Yhel, Multiple effect evaporation-vapour
+compression desalination processes, Trans. IChemE. 78 (2000) 662每676 0263-
+8762/00/$10.00+ 0.00.
+[41] H.T. El-Dessouky, H.M. Ettouney, Fundamentals of Salt Water Desalination, rst ed.
+Elsevier Science, 2002.
+[42] H.T. El-Dessouky, H.M. Ettouney, Multiple-effect evaporation desalination systems:
+thermal analysis, Desalination 125 (1999) 259每276, http://dx.doi.org/10.1016/
+S0011-9164(99)00147-2.
+[43] H.M. Ettouney, H.T. EI-Dessouky, Al-Atiqi, Understand thermal desalination, Chem.
+Eng. Prog. 95 (1999) 43每54.
+[44] H.M. Ettouney, Design of single-effect mechanical vapor compression, Desalination
+190 (2006) 1每15, http://dx.doi.org/10.1016/j.desal.2005.08.003.
+[45] F. Al-Juwayhel, H.T. El-Dessouky, H.M. Ettouney, Analysis of single-effect evaporator
+desalination systems combined with vapor compression heat pumps, Desalination
+114 (1997) 253每275.
+[46] J.M. Veza, Mechanical vapour compression desali- nation plants 〞 a case study, De-
+salination 101 (1995) 1每10.
+[47] M.A. Darwish, Thermal analysis of vapor compression desalination system, Desali-
+nation 69 (1988) 275每295.
+[48] H.M. Ettouney, H.T. El-Dessouky, Y. Al-Roumi, Analysis of mechanical vapor com-
+pression desalination process, Int. J. Energy Res. 23 (1999) 431每451.
+[49] N.H. Aly, A.K. El-Fiqi, Mechanical vapor compression desalination systems 〞 case
+study, Desalination 158 (2003) 143每150.
+[50] A. Karameldin, A. Lotfy, S. Mekhemar, The Red Sea area wind-driven mechanical
+vapor compression desalination system, Desalination 153 (2003) 47每53.
+[51] H.S. Aybar, Analysis of a mechanical vapor com- pression desalination system, Desa-
+lination 142 (2002) 181每186.
+[52] R. Bahar, M.N.A. Hawlader, L.S. Woei, Performance evaluation of a mechanical vapor
+compression desalination system, Desalination 166 (2004) 123每127.
+[53] S. Mussati, N. Scenna, E. Tarifa, S. Franco, J.A. Hernandez, Optimization of the me-
+chanical vapor compression (MVC) desalination process using mathematical pro-
+gramming, Desalin. Water Treat. 5 (2009) 124每131, http://dx.doi.org/10.5004/
+dwt.2009.572.
+[54] K. Thu, Y.-D. Kim, M.W. Shahzad, J. Saththasivam, K.C. Ng, Performance investigation
+of an advanced multi-effect adsorption desalination (MEAD) cycle, Appl. Energy 159
+(2015) 469每477, http://dx.doi.org/10.1016/j.apenergy.2015.09.035.
+[55] H.W. Chung, J. Swaminathan, D.M. Warsinger, J.H. Lienhard, Multistage vacuum
+membrane distillation (MSVMD) systems for high salinity applications, J. Membr.
+Sci. 497 (2016) 128每141, http://dx.doi.org/10.1016/j.memsci.2015.09.009.
+[56] A. Matsuda, K. Kansha, Y. Fushimi, C. Tsutsumi, A. Kishimoto, Advanced Energy Sav-
+ing and its Applications in Industry, Springer, New York, 2013.
+[57] I. Kemp, Pinch Analysis and Process Integration, Butterworth, 2007.
+[58] H.T.
+El-Dessouky, H.M.
+Ettouney,
+F.
+Al-Juwayhel, Multiple
+effect
+evaporation〞vapour compression desalination processes, Chem. Eng. Res. Des. 78
+(2000) 662每676, http://dx.doi.org/10.1205/026387600527626.
+[59] J.J.J. Chen, Comments on improvements on a replacement for the logarithmic mean,
+Chem. Eng. Sci. 42 (1987) 2488每2489, http://dx.doi.org/10.1016/0009-
+2509(87)80128-8.
+[60] R. Smith, Chemical Process Design and Integration, second ed. John Wiley and Sons
+Ltd., England, 2005.
+[61] R.C. Turton, R.C. Bailie, W.B. Whiting, Analysis, Synthesis, and Design of Chemical
+Processes, fourth ed., 2012.
+[62] J.R. Couper, W.C. Penney, J.R. Fair, S.M. Walas, Chemical Process Equipment, Selec-
+tion and Design, 2 second ed. Elsevier, USA, 2010.
+[63] T. Hayes, Sampling and Analysis of Water Streams Associated With the Develop-
+ment of Marcellus Shale Gas, 10, Rep. by Gas Technol. Institute, Des Plaines, IL,
+2009 Marcellus Shale Coalit.
+[64] P. Slutz, J. Anderson, J. Broderick, R. Horner, Key shale gas water management strat-
+egies: an economic assessment tool, SPE/APPEA Int. Conf. Heal. Safety, Environ. Oil
+Gas Explor. Prod. Perth, Aust. (2012) Sept. 2012.
+[65] R.D. Vidic, S.L. Brantley, J.M. Vandenbossche, J.D. Abad, Impact of shale gas develop-
+ment on regional water quality, Science 340 (2013).
+[66] J. Zammerilli, A. Murray, R.C. Davis, T. Littleeld, Environmental Impacts of Uncon-
+ventional Natural Gas Development and Production, 800, 2014 553每7681.
+[67] A.S. Drud, CONOPT: A System for Large Scale Nonlinear Optimization, Reference
+Manual for CONOPT Subroutine Library, ARKI Consulting and Development A/S,
+Bagsvaerd, Denmark, 1996.
+[68] I.E. Grossmann, J.A. Caballero, H. Yeomans, Advances in mathematical programming
+for the synthesis of process systems, Lat. Am. Appl. Res. 284 (2000) 263每284.
+[69] G.P. Thiel, J.H.V. Lienhard, Treating produced water from hydraulic fracturing: com-
+position effects on scale formation and desalination system selection, Desalination
+346 (2014) 54每69, http://dx.doi.org/10.1016/j.desal.2014.05.001.
+[70] Q. Jiang, J. Rentschler, R. Perrone, K. Liu, Application of ceramic membrane and ion-ex-
+change for the treatment of the owback water from Marcellus shale gas production,
+J. Membr. Sci. 431 (2013) 55每61, http://dx.doi.org/10.1016/j.memsci.2012.12.030.
+[71] European Commission, Eurostat, 2016.
+

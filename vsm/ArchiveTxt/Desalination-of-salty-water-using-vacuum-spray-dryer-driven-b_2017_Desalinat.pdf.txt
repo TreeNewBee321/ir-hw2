@@ -1,0 +1,977 @@
+Desalination of salty water using vacuum spray dryer driven by solar energy
+
+Ihsan Hamawand a,, Larry Lewis b, Noreddine Ghaffour c, Jochen Bundschuh d,e,f
+
+a National Centre for Engineering in Agriculture (NCEA), University of Southern Queensland, Toowoomba 4350, QLD, Australia
+b Scotia, NY, USA
+c King Abdullah University of Science and Technology (KAUST), Water Desalination and Reuse Center (WDRC), Biological and Environmental Sciences & Engineering Division (BESE),
+Thuwal 23955-6900, Saudi Arabia
+d Deputy Vice-Chancellor's Ofce (Research and Innovation), University of Southern Queensland, Toowoomba, QLD, 4350, Australia
+e Faculty of Health, Engineering and Sciences, University of Southern Queensland, Toowoomba, QLD, 4350, Australia
+f Royal Institute of Technology, Sweden
+
+H I G H L I G H T S
+
+ Theoretical analysis for desalination under reduced pressure aided by solar energy,
+ New approach and design for a solar-aided desalination system under reduced pressure,
+ New approach and design for solar energy collector using spherical-shaped system,
+ Recycled latent heat of evaporation, waste heat from the vacuum pump, heat collected from the solar panels and droplet colour were considered in the theoret-
+ical analysis.
+
+article
+
+info
+
+Article history:
+Received 19 July 2016
+Received in revised form 29 September 2016
+Accepted 7 November 2016
+Available online 18 November 2016
+
+Keyword:
+Vacuum
+Evaporation
+Solar energy
+Waste heat
+Desalination
+
+abstract
+
+This paper addresses evaporation under vacuum condition with the aid from solar energy and the recovered
+waste heat from the vacuum pump. It is a preliminary attempt to design an innovative solar-based evaporation
+system under vacuum. The design details, equipment required, theoretical background and work methodology
+are covered in this article. Theoretically, based on the energy provided by the sun during the day, the production
+rate of pure water can be around 15 kg/m2/day. Assumptions were made for the worst case scenario where only
+30% of the latent heat of evaporation is recycled and the ability of the dark droplet to absorb sun energy is around
+50%. Both the waste heat from the pump and the heat collected from the photovoltaic (PV) panels are proposed to
+raise the temperature of the inlet water to the system to its boiling point at the selected reduced pressure.
+ 2016 Elsevier B.V. All rights reserved.
+
+
+1. Introduction
+
+Water and energy are fundamental necessities for life on Earth
+and to sustain the modern world . In many parts of the world , the
+control and exploitation of water and energy has driven economic
+deve lopment . In many other places there are shortages in fresh
+water and energy supp l ies . Dr ink ing water of acceptable qua l ity
+has become a scarce commodity not to mention unevenly distributed
+geographically worldwide [14,24] . The World Health Organization
+(WHO) has estimated that lack access to drinking water may be an
+issue for more than a billion people [15]. The vast majority of these
+people are from undeveloped countries and/or living in rural areas
+where there is low popu lat ion dens ity . In remote locat ions it is
+very difcult and costly to install conventional clean water solutions,
+[25]. In many countries where there are shortages of clean and fresh
+water, there are many other water resources that have potential to
+be transformed. Such resources seawater, brackish/saline or contam-
+inated groundwater , and coal seam gas water [26] . These kinds of
+water require an innovative technique of treatment that uses sus-
+tainable and low cost energy to produce clean water.
+Desalination of saline water is known to be one of the most sus-
+tainable alternative solutions to provide fresh water. This resource
+can play a signicant role in soc ioeconomic development in many
+deve lop ing countr ies such as Afr ica , Pac ic As ia and countr ies in
+the Middle East [16] and Latin America. Desalination is a process in
+which sal ine water is separated into two parts: one that has a low
+concentration of dissolved salts (fresh water), and the other which
+has a much higher concentration of dissolved salts than the original
+feed water (brine concentrate), [27]. Reverse Osmosis (RO), a con-
+ventional desalination technology, produces brine (70每55% of intake
+ow) depending of feed water quality; the dissolved salt concentra-
+tion of the brine varies from 50 to 75 g/L resulting in a much higher
+dens ity than seawater (Hamawand et a l . , 2013) . Desa l inat ion o f
+salty water/seawater is expensive, mostly because of the energy re-
+qu ired [17] . However , desa l ination is a growing eld around the
+world where the needs for drinkable water are crucial [2]. All con-
+ventional seawater desalination techniques such as RO, thermal dis-
+t i l lat ion such as mu lt i stage ash (MSF) , electro-d ia lys is , or the ir
+combinations consume a large amount of energy and they do not re-
+cover the salt eventually. These techniques may also cause air pollu-
+tion due to the large consumption of energy derived from fossil fuels
+[19 ,20] . Furthermore , the br ine rema ins from these processes are
+huge and represent another potential environmental problem [18].
+There is a potential for using algae to clean the water after amending
+it with some chemicals, however this has not been carried out exper-
+imentally [11]. Therefore, the utilization of renewable energy can be
+considered as one of energy sources of seawater desalination [3 ,5 ,
+17].
+A complete separation of salt from salty water is something that
+cannot be achieved by many of the conventional methods. One con-
+ventional, most efcient and reliable method for complete separa-
+tion is evaporation . Evaporation of water at atmospheric pressure
+requires large amounts of energy to raise the water temperature to
+the boiling point. In addition, at atmospheric pressure the evapora-
+tion rate is slow unless more vigorous heat is supplied. This problem
+can be overcome by carrying out the evaporation under reduced
+pressure where water can be evaporated at temperatures below its
+atmospher ic pressure bo i l ing po int . Water evaporat ion under re-
+duced pressure is energy efcient according to the laws of thermody-
+namics, and can be driven by low-grade thermal energy sources such
+as solar heat or process waste heat. While the evaporation under re-
+duced pressure wi ll acce lerate the evaporat ion rate , one must be
+concerned with potent ia l freez ing prob lems [4] . Heat is requ ired
+for water droplets to evaporate, heat is provided from the surround-
+ing. Without supplemental heat there is a risk that the equipment
+parts get chilled and the remaining droplets freeze [1]. Carey et al.
+[21] conducted experiments under contract to NASA related to evap-
+oration of water under vacuum. The set up consisted of 0.6 m3 envi-
+ronmental vacuum chamber and a 250 mL beaker with 25 mL o f
+liquid water at a temperature of 20 ～C. The liquid took approximately
+150 min to evaporate under reduced pressure of 0.38 kPa. In this ex-
+periment no external heat was provided neither to the liquid or the
+chamber.
+Valuable information on desalination of seawater using solar en-
+ergy has been reported, however, the desalination of sea water using
+vacuum spray dryer has not been fully elucidated . This study pre-
+sents an innovative design for evaporation of water using renewable
+energy from the sun and recycles the latent heat of evaporation. Also
+the waste heat from the pumps and collected heat from PV panels
+that provide the pump with electricity are suggested as another
+source of energy [7,8].
+
+2. Theory
+
+Water such as concentrated salty water produced from other
+desalination processes such as RO process, brackish/saline groundwater
+
+and/or seawater can be sprayed inside a double walled glass column
+(evaporation column) exposed to sun light, Fig. 1. The double walled
+co lumn w i l l reta in the heat ins ide the column and a l low a fu l l
+exposure to sun l ight . The column will be operated under reduced
+pressure to lower the water boiling point temperature. The generat-
+ed vapour wil l condense on the ch il led column (condensat ion
+co lumn) attached to the doub le g lass ing evaporat ion co lumn as
+shown in Fig . 1 . This will allow the recovery of the energy ( latent
+heat of evaporation) used to evaporate the water. After evaporating
+the water , the salt will end up at the bottom of the double wa lled
+column as pure dry salt.
+A dark wa te r so lub le dye w i l l be d isso lved in the sa l ty wa te r
+be fore be ing introduced to the system to enhance its absorpt ion
+o f the sun l igh t . Sun l ight reec ted o r abso rbed sun l igh t by an
+aeroso l depends p r imar i ly on the compos i t ion and co lour o f the
+par t ic les d is so lved in i t . In gene ra l , br igh t -co lou red / t rans lucen t
+particles tend to reect radiation in all directions and darker aero-
+sols can absorb signicant amounts of light [12] . Dark blue to black
+surfaces can absorb so lar rad iat ion to an approx imate fract ion of
+0 .8 to 0 .9 o f the inc ident rad ia t ion . A s tudy by Ga ry e t a l . [13 ] ,
+showed tha t d ispe rsed ca rbon b lack dus t o f s ize b 0 .1 米m can
+absorb solar energy as high as 5124 .4 J/g/s (2 ℅ 1010 ca l Ib 1 per
+10 h).
+The heat required for the evaporation of the water droplets can
+be suppl ied/recovered from the fol lowing sources and sect ions in
+the process (Fig. 1); sun light, double walled insulated glassing ef-
+fect, black colour effect, heat generated by the vacuum pump, heat
+co l lec ted f rom the PV pane ls and la tent hea t recove red from the
+gene rated vapour . The pump can run on so lar energy us ing so lar
+PV cells.
+The evaporation process will be carried out under reduced pres-
+sure , in other words , this means that there will be a very small
+amount of a ir in the co lumn . The water drop let w i l l be released
+very close to the one of the opposite walls inside the middle column,
+to be specic it will be released next to the wall which is farther away
+from the sun light. This will create a smaller laminar sub-layer at that
+wall and will result in a higher heat transfer coefcient in compari-
+son to the opposite wal l. The fast fall ing of the droplet next to the
+wall will produce vortices ( in the evaporated vapour) and turbu-
+lence wh ich lead to reduct ion of the lam inar sub- layer th ickness ,
+Fig. 2.
+Water evaporates at a specic temperature at a specic pressure,
+in this design there will be three zones. The rst zone is the double
+wall glassing that faces the sun l ight , the pressure inside this end-
+closed column will be above the atmospheric and the temperature
+is the highest among the whole system because it is facing the sun
+light. The second zone is the middle column, the pressure is below
+atmospheric and the temperature is almost as the same as or slightly
+lower than room temperature (depending on the number of droplets
+evaporated). The lower temperature is due to proximity of the vacu-
+um pump and droplet evaporation. This zone can also be maintained
+at higher than the droplet boiling point temperature (under vacu-
+um) if the number of the droplets is maintained in balance with the
+energy introduced to the system. The last zone is the vapour channel,
+the evaporated water from the droplets in the middle column now
+transports to the outside driven by the vacuum pump. The pressure
+inside this zone is the same as the middle column and the tempera-
+ture is the lowest among the whole system. Inside this channel con-
+densation may happen because the space available is smaller than
+the middle column and it is closer to the droplet. The space available
+inside the middle column is high enough to maintain almost con-
+stant temperature. The front side is exposed to sun light while, the
+other side of the wall where the vapour is transport driven by the
+vacuum pump has lower space which makes the change in tempera-
+ture more possible, and furthermore is furthest away from the sun
+light.
+3. Mathematical model
+
+When a free water sur face is in contact with pure vapour , the
+equilibrium rate of molecule transfer from vapour phase to the liquid
+or from the liquid phase to the vapour is given by kinetic theory of
+gases. When the system is not at equilibrium, the net rate of evapo-
+ration or condensation per unit droplet surface area is governed by
+mod ied Hertz-Knudsen equat ion [10 ,28] , rst proposed by Alty
+1931 [29] . Maa [29] , stud ied the evaporation rate of different sol-
+vents including water. This study by Maa showed that there is little
+
+s
+
+
+"
+
+老w  dr
+dt
+
+
+
+Mw
+
+2  羽  Rg
+
+where,
+
+or no resistance of molecules crossing the vapour-liquid interface .
+This means that the evaporation coefcient is unity and can be repre-
+sented by the Eq. (1), below, which estimates the rate of evaporation
+from the water droplet:
+
+ P sat T d
+
+
+
+p  Pmed
+
+T d
+
+#
+p
+
+
+T med
+
+1
+
+Fig. 2. A schematic diagram of a small portion of the single column spray evaporator, theory explanation.
+
+I. Hamawand et al. / Desalination 404 (2017) 182每191
+
+185
+
+Tmed
+
+Pmed
+Psat(Td)
+
+is the operation pressure of the evaporation medium (kPa),
+is the saturation vapour pressure of water at droplet surface
+temperature (kPa),
+Mw is the molecular weight of water (kg/mol),
+Rg
+is the universal gas constant (J/mol﹞K),
+Td
+is the droplet temperature (K),
+is the evaporation medium temperature (K),
+r
+is the droplet radius (m), and
+老w is the water density (kg/m3).
+Eq. (1) presents the rate of evaporation from the water droplet
+as a function of its radius (dr/dt), if condensation happens then the
+rad ius o f the drop let w i l l increase otherw ise it w i l l decrease . In
+case the droplet presented at its boiling point temperature , initial
+condensation, or in other words increase in the droplet radius can
+be neglected.
+The saturation vapour pressure of water at the droplet's surface can
+be given using Antoine's equation (Eq. (2)) where temperature is in ～C
+and pressure is in kPa;
+
+LnP sat T p   16:3873885:7= T d  230:17
+
+
+
+
+
+2
+
+Ln refers to the natural logarithm. Using numerical method, nite
+difference Euler's method, Eqs. (1) and (2) can be rewritten as Eqs. (3)
+and (4), respectively;
+
+s
+
+
+"
+
+#
+p
+
+
+
+
+p  Pmed
+
+T d
+
+T med
+
+3
+
+  r i 
+r i1
+
+忖t
+老w
+
+Mw
+
+2  羽  Rg
+
+ P sat T d
+
+where r i1 represents the radius of the droplet after a very small inter-
+val of time (忖t) and r i represents the initial radius.
+
+LnP sat T d
+
+  16:3873885:7= T d  230:17
+
+
+
+
+
+4
+
+Eqs. (3) and (4) can be used to predict the time interval required
+for the entire droplet to evaporate and the rate the droplet evapo-
+rates . The rate of evaporation of the droplet is calculated from the
+change in the radius of the droplet. The radius of the water receding
+
+front is an indication for the amount of water evaporated from the
+droplet's surface.
+These equations assume that the droplet is entering the system at
+the temperature of evaporation (depending on the system's pressure)
+which means neglecting initial condensation is applicable. By introduc-
+ing the waste heat from the vacuum pump, recycled latent heat of evap-
+oration and heat collected from the PV panels, it is possible to introduce
+the droplet to the system at its boiling point to avoid initial condensa-
+tion phenomenon. The temperature of the droplet will remain constant
+at its boiling point due to continuous evaporation while provided with
+sufcient heat. Also, the saturation vapour pressure of the water droplet
+will be constant based on Eq. (4). Furthermore, the vacuum pump is as-
+sumed to be efcient and is able to keep the pressure inside the system
+constant.
+The evaporation will be dominated by the heat transfer from the
+medium (mostly vapour) to the droplet plus that received directly
+from the sun via radiation. For simplicity, at steady state conditions,
+the medium receives energy from the sun which is transferred to the
+droplet; the temperature of the medium is assumed to be constant
+and slightly above the droplet temperature due to losing its heat to
+the droplet via convection . Based on this assumption, the amount
+of water evaporated is ca lculated to ma inta in these cond itions in
+the system.
+
+4. Simple scenario
+
+Assume low vacuum pressure of 6.9 KPa, this means that the droplet
+needs to enter the system at 38.7 ～C to start evaporating instantly (no
+initial condensation).
+The maximum amount of energy received from the sun in ideal cir-
+cumstances is 1000 W/m2. Fig. 3 shows the energy received from the
+sun per square meter on a clear day. The energy varies between 100
+and 1000 W/m2 depending on time of day. The data for the actual ener-
+gy received which is provided by the sun on a clear day was retrieved
+from a book by Stine and Geyer [9], Fig. 3.
+In this simple case, the recycled latent heat was not included in the
+calculation which otherwise would enhance the system efciency. The
+waste heat from the pump has been assumed to provide heat for the
+droplet before entering the system to increase its temperature to the
+boiling point along with piping system connected to the solar PV
+panel if required. In this scenario, the system (medium, surroundings)
+the temperature is assumed to be constant at 38.7 + 5 ～C (this is a rea-
+sonable assumption under clear day and direct contact with the sun
+light) and the extra temperature (heat) gained from the sun will be
+
+Fig. 3. An example of irradiance for a mostly clear day on a horizontal surface in Greenbelt, MD [30]: global solar radiation for the day was 27.1 MJ/m2 [9].
+
+186
+
+-3
+
+x 10
+
+2.5
+
+3 mm droplet
+4 mm droplet
+5 mm droplet
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+)
+
+m
+
+(
+
+i
+
+s
+u
+d
+a
+
+R
+
+I. Hamawand et al. / Desalination 404 (2017) 182每191
+
+g
+k
+
+,
+
+d
+e
+
+t
+
+a
+
+r
+
+o
+p
+a
+v
+e
+
+s
+s
+a
+
+M
+
+0.0007
+
+0.0006
+
+0.0005
+
+0.0004
+
+0.0003
+
+0.0002
+
+0.0001
+
+0
+
+0
+
+No latent heat recycled
+
+30% latent heat recycled
+
+5
+
+10
+
+15
+
+20
+
+25
+
+Time, s
+
+Fig. 5. Mass of water that can be evaporated per second during different times of the day
+without and with 30% of the latent heat recycled.
+
+-0.5
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+t ime(sec )
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+Fig. 4. Time required for evaporating a water droplet (3, 4 and 5 mm diameter) under
+reduced pressure.
+
+used to evaporate the droplets. For a droplet of 3 mm diameter (0.014 g
+weight), the model shows that it takes approximately 0.6 s to evaporate
+(Fig. 4) the droplet. Furthermore, the height of the system required to
+accommodate the 0.6 s time required for evaporation the droplets was
+estimated. Based on the speed the droplet travels to reach the base of
+the system, 3 m height column is required.
+The results in Fig. 4 show that in order to evaporate one droplet
+every 0.6 s, it is required to raise the temperature of the input water
+to 38.7 ～C and the temperature of the medium (mostly vapour) where
+the droplet travel to 38.7 + 5 ～C. It is assumed that the initial tempera-
+ture of the water and the medium is 20 ～C. The energy required to raise
+the temperature of the water to 38.7 ～C is; m ℅ Cp ℅ 忖T =
+0.00001413 kg ℅ 4.18 kJ/kg﹞K ℅ (38.7  20) K = 1.104 J. As mentioned
+previously the calculation is for 1 m2 area exposed to sun light; in case
+the depth of the evaporation compartment is 0.3 m then the volume
+occupied is 0.3 m3. However, since the system is under vacuum, con-
+tinuous vapour is produced which a lso gains energy from the sun
+and the walls of the compartment which later transfers to the drop-
+let. The specic heat of water vapour at 43.7 ～C is 1.871 kJ/kg﹞K and
+the density at standard conditions is 0.804 kg/m3. To raise the tem-
+perature of the med ium to 38 .7 + 5 ～C; m ℅ Cp ℅ 忖T =
+(0.804 ℅ 0.3) kg ℅ 1.871 kJ/kg﹞K ℅ ((38.7 + 5)  20) K = 10.7 J of
+energy is required. The total amount of energy required to maintain
+the system at the condition assumed is 11 .8 J for evaporating one
+droplet each 0.6 s. The sun provides an average 579 J/s (27.1 MJ/m2/-
+day (13 h)) and the latent heat of evaporat ion requ ired is 34 .25 J
+(2424 K J/kg ℅ 0 .01413 ℅ 10 3 kg) for each drop let each 0 .6 s .
+A lso , in 0 .6 s , the water drop let m ixed w ith dark co lour is ab le
+to absorb 43 .4 J [5124 .4 J/g/s (energy absorbed by 1 g black
+carbon) ℅ 0.01413 g (droplet mass) ℅ 0.6 s]. This gain of energy con-
+rms the possibility of providing the droplet with enough energy to
+evaporate even only from the direct irradiation to the droplet. Based
+on the data above, the mass of water that can be evaporated in this
+system was calculated.
+In this case the droplet obtains 10.7 J from the medium/recycled la-
+tent heat/pump waste heat and/or the pipes connected to the solar sys-
+tem. And 23.55 J (53% of the 43.4 J) absorbed directly from the sun; the
+number of droplets that can be evaporated is around 16.9 droplets (579/
+34.25) and the amount evaporated in one day (13 h) is 11.2 kg/m2/day
+(16.9 ℅ 0.00001413 kg ℅ 13 h ℅ 3600 s). In case 30% of the latent heat of
+
+evaporation has been recycled then 24.15 droplets (579/(34.25 ℅ 0.7))
+can be evaporated and total amount of 15.9 kg per day is obtained. Fig. 5
+shows the distribution of the mass of water that can be evaporated per
+second during the day from 0600 to 2000. The maximum mass of water
+that can be evaporated is around 4 g and 6 g which occurs around 0100
+(middle of the day) when the maximum energy received from the sun
+(1000 W/m2) for both cases, respectively.
+In case that the temperature of the inlet water to the system rises
+above 38.7 ～C and/or the temperature of the medium rises above
+38.7 + 5 ～C then the time required for evaporation will reduce, see
+Fig. 65. A high temperature condition will not impact the amount of
+water evaporated because the received energy from the sun per second
+is the same as the previous case. It is very important then to balance the
+energy received from the sun (plus the recycled latent heat and waste
+energy) with the droplet size and the time of evaporation to avoid freez-
+ing the system.
+
+5. Methodology, challenges and feasibility
+
+5.1. Methodology
+
+The experimental evaluation will be carried out as following;
+ Empty column evaluation: estimate the heat accumulation in a one
+square meter area system with time.
+ The water can be heated to a variety of temperatures prior to spread-
+ing in the spray column; this will help to indicate the optimum tem-
+perature of the water and at the same time help to evaluate the
+efciency of using the waste heat from the vacuum pump.
+ The variables that should be considered in regards to the droplet will
+be: size, colour, residence time, temperature and salt concentration.
+ Measure the temperature inside the system at different heights and
+widths.
+ Wall temperatures inside and outside of the system, in addition to
+the outdoor temperature.
+ Measure the moisture content of the solid salt produced.
+
+5.2. Sensors and equipment
+
+The equipment required for building a lab-scale system includes the
+following;
+ Temperature sensors to monitor the temperature of the water inlet,
+water produced, salt produced and inside the chamber. Also, sensors
+to monitor the intensity of energy received from the sun.
+ Vacuum pumps are able to maintain a constant and consistent re-
+duced pressure up to 99.99% vacuum and high suction rates of up to
+1200 m3/h is possible [22].
+
+-3
+
+x 10
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+)
+
+m
+
+(
+
+i
+
+s
+u
+d
+a
+
+R
+
+I. Hamawand et al. / Desalination 404 (2017) 182每191
+
+187
+
+3 mm droplet
+4 mm droplet
+5 mm droplet
+
+a
+
+)
+
+m
+
+(
+
+i
+
+s
+u
+d
+a
+
+R
+
+-3
+
+x 10
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+3 mm droplet
+4 mm droplet
+5 mm droplet
+
+b
+
+-0.5
+
+0
+
+0.1
+
+0.2
+
+0.3
+0.4
+t ime (sec )
+
+0.5
+
+0.6
+
+0.7
+
+-0.5
+
+0
+
+0.005
+
+0.01
+
+0.015
+
+0.025
+
+0.03
+
+0.035
+
+0.04
+
+0.02
+t ime (sec )
+
+Fig. 6. Droplet radius decrease with time for: (a) where temperature of the medium increased by 10 ～C instead of 5 ～C and droplet temperature is at 38.7 ～C and (b) where temperature of
+the droplet increased by 5 ～C above boiling point and medium temperature is at 38.7 ～C.
+
+Fig. 7. A schematic diagram for the proposed prototype setting for the evaporation system under vacuum, large-scale setting.
+
+188
+
+I. Hamawand et al. / Desalination 404 (2017) 182每191
+
+ Multi droplets system, it will be limited to a specic droplets num-
+ber per cubic unit of space; exceeding this limit may lead to ex-
+haust ion of the heat in that specic space and may lead to
+freezing the entire system.
+ The nozzle can be designed to release droplet at a specic reduced
+pressure. Reduced pressure in the device can be kept at a specic
+value but above that required for the nozzle to function. A pulse
+vacuuming can be introduced to reduce the pressure in the device
+to that required for the nozzle to function in order to release and
+control the time and amount of the droplets release.
+
+Fig. 8. Another design option.
+
+5.4. Feasibility
+
+ The operation is at a low range vacuum condition. Vacuum ranges are
+categorized as following: 3300每100,000 Pa low, 0.1每3300 pa medium
+and 0.0001每0.1 Pa high [23].
+ Vacuum pumps such as Rotary Piston Mechanical Pump, Oil Sealed
+Mechanical Pump, and Sorption Pump can be used to generate low
+vacuum conditions [23].
+ Thermal and high speed camera to monitor the temperature of the
+droplet and its diameter while traveling through the system.
+ Mon i to r the waste heat co l lected from the vacuum pump and
+the co l lected heat by the heat exchanger attached to the so lar
+panel.
+
+ For a concentrated salty water of 50% dissolved salt, the ability of
+water treatment will be doubled (half of the amount is required to
+be evaporated).
+ For more efcient use of the sun energy the amount of water pro-
+duced per day may be increased.
+ Including the recycled latent heat of evaporation, waste heat from the
+pump and the droplet colour effect will all contribute in enhancing the
+system efciency.
+
+Fig. 7 shows a schematic diagram of an industrial scale system where
+multi droplets are spread. Based on this design, two products can be re-
+covered cold pure water and pure coloured salt.
+
+5.3. Challenges
+
+6. Other design option
+
+ The nozzle should be very fast in spray ing the droplet to avo id
+evaporation at its tip. This may block the nozzle either by the re-
+ma ining salt after evaporation of the water or the droplet may
+freeze at its tip.
+
+The other des ign opt ion is a rotat ing b lack co loured conveyer
+where the droplet sprayed over and travels instead of traveling in
+the vacuum (most ly vapour) . In th is case the ent ire surface w i l l
+collect the energy from the sun and will be transferred to the droplet
+by conduction. The droplet will travel from one end of the conveyer
+
+Fig. 9. Spherical shape light (energy) trapping system, to the left the entire system, right top is the bre optic spreader and the right bottom is the pipes implemented to collect the heat
+accumulated in the system.
+
+to the other end where the dry sa lt can be co l lected by scrapp ing
+(Fig. 8).
+
+ Thermal energy production via heat exchanger placed inside the
+sphere (Fig. 9), this also help to cool the cells.
+
+I. Hamawand et al. / Desalination 404 (2017) 182每191
+
+189
+
+7. Innovative system for harvesting solar energy
+
+Another option for the design of the system is a spherical closed en-
+vironment. This system can be used to trap the sun light inside the sys-
+tem. In case the system used for evaporation, mirrors attached to the
+inside of the spherical shaped system (Fig. 9) are capable of reecting
+the energy without losing it for more efcient energy collection and
+more efcient evaporation.
+In case the spherical system is used for collecting heat and electricity,
+the system should covered with PV cells, this new shape allows more
+exposed surface to the sun light with less footprint occupied. The solar
+cells are protected against the weather disturbance and make better
+use of the light.
+Simple calculation of the Spherical Solar Cell system;
+The internal surface area for a sphere with diameter of 1.0 m
+
+S:A  4羽r2  4羽 0:05 m
+2  羽  3:14 m2
+
+
+
+Number of small hemisphere with diameter of 0.1 m spread on 1 m
+diameter of the big entire sphere (1 m diameter) is (each hemisphere
+will occupy an area equivalent to an area occupied by a circle with
+0.1 m);
+
+No  3:14 m2 =羽 0:05
+2m2  400
+
+
+
+sphere =
+
+Surface area created by a half sphere of 0.1 m diameter =
+2羽(0.05)2 m2 = 1.57 ℅ 10 2 m2
+Surface area created by the 400 small half
+400 ℅ 1.57 ℅ 10 2m2 = 6.28 m2
+A complete closed sphere will:
+ Protect the surface of the silicon cells from the weather condition
+ Possibility of using a rough surface for more light absorbent, uncov-
+ered cells/very low reection of light
+ Creates 6.3 m2 for each 1 m2 of footprint
+ Higher intensity of light inside the globe
+ No escape of light entering the sphere
+ Easy to control and direct toward the sun light
+
+The system includes placing a large elliptical shaped sun light collec-
+tor at the top of the sphere and then focuses it to the inside of the
+sphere. A light spreader placed in the middle of the sphere will be re-
+quired to spread the light inside the sphere space.
+The energy prov ided by the sun dur ing a c lear day (Fig . 7) is
+around 27.1 MJ/day/m2. If 50% this energy trapped in the spherical
+system, then the amount of water that can be introduced to the
+vacuum evaporator at 100 ～C can be around 40.5 kg/day or this can
+be at lower amount but with higher temperature . This water rst
+will be circulated in the spherical system (Fig. 8) to collect the energy
+from the sun and it is based on 1 m2 surface area available for collecting
+the sun energy;
+
+f27:1 MJ=day  50%  m  Cp  忖T
+ m kg=day  4:182 kJ=kg=K  10020
+ K  40:5 kg=day
+
+
+
+This spherical collector will eliminate the initial condensation phe-
+nomena in the vacuum system and at the same time provides extra en-
+ergy to the vacuum system. Also, the solar panel inside the sphere will
+provide electricity to drive the vacuum pump.
+
+8. Conclusions
+
+To conclude, the innovative approach and design presented in this
+article shows a promising potential of more efcient use of solar desali-
+nation when combined with vacuum action and waste heat/latent heat/
+solar heat recycling. PV cells can be used to drive the vacuum pump in
+the system. Around 15 kg/m2/day of pure water can be produced in ad-
+dition to by-product salt. Spherical closed system that is capable of trap-
+ping sun light will have a better efciency than an open design to collect
+the heat and electricity from the sun light. In the vacuum system, it is
+very important to keep balance between the received energy from the
+sun, recycled latent heat, waste heat from the pump and the heat
+collected from PV panel with the droplet size, number and speed of
+traveling.
+
+Acknowledgement
+
+The authors would like to thank Professor David Buttsworth (USQ/
+Australia) for his valuable advice and help to achieve this work.
+
+190
+
+Appendix
+
+I. Hamawand et al. / Desalination 404 (2017) 182每191
+
+MATLAB program used to generate the data in Figs. 4 and 6.
+
+I. Hamawand et al. / Desalination 404 (2017) 182每191
+
+191
+
+References
+
+[1] B. Kanegsberg, E. Kanegsberg, Handbook for critical cleaning, second ed. CRC Press,
+2011.
+[2] T. Ayhan, H. Al Madani, Feasibility study of renewable energy powered seawater de-
+salination technology using natural vacuum technique, Renew. Energy 35 (2010)
+506每514.
+[3] H. Bauschlicher, W. Wohlk, Production of vacuum salt based on seawater as raw
+materials, Sixth International Symposium on Salt, 11, 1983.
+[4] Y. Tatemoto, K. Miyazawa, Drying of suspensions in a uidized bed of inert particles
+under reduced pressure, Dry. Technol. 29 (2011) 1204每1209.
+[5] V.G. Gude, N. Nirmalakhandan, Desalination at low temperatures and low pressures,
+Desalination 244 (2009) 239每247.
+[7] K. Thu, H. Yanagi, B.B. Saha, K.C. Ng, Performance analysis of a low-temperature
+waste heat-driven adsorption desalination prototype, Int. J. Heat Mass Transf. 65
+(October 2013) 662.
+[8] V.G. Gude, Energy storage for desalination processes powered by renewable energy
+and waste heat sources, Appl. Energy 137 (1 January 2015) (Pages 877nced).
+[9] W.B. Stine, M. Geyer, Power From the Sun, Retrieved in April 2016 from, 2001.
+http://www.powerfromthesun.net/book.html.
+[10] I. Hamawand, Drying steps under superheated steam: a review and modeling, Ener-
+gy Environ. Res. 3 (2) (2013).
+[11] I. Hamawand, T. Yusaf, J. Bennett, Study and modelling drying of banana slices under
+superheated steam, Asia Pac. J. Chem. Eng. 9 (2014) 591每603.
+[12] NASA, Aerosols and Incoming Sunlight (Direct Effects), Retrieved August 2016 from,
+2016. http://earthobservatory.nasa.gov/Features/Aerosols/page3.php.
+[13] W.M. Gary, W.M. Frank, M.L. Corrin, C.A. Stokes, Weather modication by carbon
+dust absorption of solar energy, J. Appl. Methodol. 15 (1976).
+[14] I. Hamawand, L. Lewis, Innovative pit design and sludge dewatering for rural areas, J.
+Environ. Chem. Eng. 4 (2016) 3775每3778.
+[15] World Health Organization (WHO) Website, 2016. http://www.who.int/en/.
+[16] J. El Kharraz, A. El-Sadek, N. Ghaffour, E. Mino, Water scarcity and drought in WANA
+countries, Procedia Eng. 33 (2012) 14每29.
+[17] N. Ghaffour, T.M. Missimer, G.L. Amy, Technical review and evaluation of the eco-
+nomics of water desalination: current and future challenges for better water supply
+sustainability, Desalination 309 (2013) 197每207.
+
+[18] S. Lattemann, Development of an Environ Impact Assessment and Decision Support
+System for Seawater Desal Plants, (PhD thesis), 2010. CRC Press, Balkema, 2010
+(http://repository.tudelft.nl/search/ir/?q=lattemann&faculty=&department=
+&type=&year= (last accessed: 18.01.2013)).
+[19] N. Ghaffour, J. Bundschuh, H. Mahmoudi, M.F.A. Goosen, Renewable energy-driven
+desalination technologies: a comprehensive review on challenges and potential ap-
+plications of integrated systems, Desalination 356 (2015) 94每114.
+[20] N. Ghaffour, S. Lattemann, T.M. Missimer, K.C. Ng, S. Sinha, G. Amy, Renewable ener-
+gy-driven innovative energy-efcient desalination technologies, Appl. Energy 136
+(2014) 1155每1165.
+[21] E.M. Carey, J. Castillo-Rogez, J.E.C. Scully, C.T. Russell, Rate of evaporation of water
+under low-pressure conditions, 45th Lunar and Planetary Science Conference, 2014.
+[22] FESTO, Basic Principles of Vacuum Technology, Brief Overview, Viewed on 21/09/
+2016, retrieved from:, 2016. https://www.festo.com/net/SupportPortal/Files/
+286804/Basic_Vacuum_Technology_Principles.pdf.
+[23] N. Marquardt, Introduction to the Principles of Vacuum Physics, 1999. Institute for Ac-
+celerator Physics and Synchrotron Radiation, University of Dortmund, Germany, 1999
+retrieved from, http://www.chem.elte.hu/foundations/altkem/vakuumtechnika/
+CERN01.pdf.
+[24] M. Mohammed, Low cost nanomaterials for water desalination and purication,
+Final Technical Report, United Nations UNSCO, 2011.
+[25] M. Qiblawey, F. Banat, Solar thermal desalination technologies, Desalination 220
+(2008) 633每644.
+[26] I. Hamawand, T. Yusaf, S.G. Hamawand, Coal seam gas and associated water: a re-
+view paper, Renew. Sust. Energ. Rev. 22 (2013) 550每560.
+[27] O.K. Buros, The ABCs of desalting, 2nd edition International Desalination Association,
+Massachusetts, USA, 2000 30.
+[28] Z. Chen, W. Wu, P.K. Agarwal, Steam drying of coal part 1. Modeling the behavior of
+a single particle, Fuel 79 (8) (2000) 961每974.
+[29] J. Maa, Evaporation coefcient of liquid, Ind. Eng. Chem. Fundam. 6 (4) (1967)
+504每518.
+[30] M.P. Thekaekara, Solar Radiation Measurement: Techniques and Instrumentation,
+Sol. Energy 18 (4) (1976) 309.
+

@@ -1,0 +1,6297 @@
+Minimum error rate detection: An adaptive bayesian approach 
+
+A. Boudjellal 
+
+a , 
+
+, K. Abed-Meraim 
+a , A. Belouchrani 
+b , Ph. Ravier 
+
+a 
+
+a PRISME Laboratory, University of Orl谷ans, 12 Rue de Blois, Orl谷ans 45067, France 
+b EE Dept./LDCCP, Ecole Nationale Polytechnique, EL Harrach, Algiers 16200, Algeria 
+
+article
+
+info
+
+Article history: 
+Received 24 January 2016 
+Revised 29 April 2017 
+Accepted 3 May 2017 
+Available online 4 May 2017 
+
+Keywords: 
+Bayesian MER detector 
+Cell-averaging 
+Order-statistics 
+Chi-2 targets 
+Interfering targets 
+Delay estimation 
+
+
+
+abstract
+
+This paper addresses the thresholding problem which is an important issue in detection theory. A new 
+thresholding methodology is proposed, namely the Minimum Error Rate (MER), related to the minimiza- 
+tion of the error probability instead of minimizing only the miss probability for a Constant False Alarm 
+Rate (CFAR). In an adaptive detection scheme, the proposed thresholding technique is combined with Cell 
+Averaging (CA) and Order-Statistics OS estimation methods giving birth to the (CA-MER) and (OS-MER) 
+detectors. Their performance statistics are analyzed for both homogeneous and heterogeneous environ- 
+ments. Moreover, a simplied approximate threshold expression is proposed and its effect on the whole 
+detection process is studied. Theoretical and numerical results show that the MER-based detectors oper- 
+ate better than the classical CFAR-based ones. In particular, the proposed method is shown to be robust 
+w.r.t. estimation errors on the different parameters (priors). Comparative study of MER versus CFAR-based 
+detectors used for the delay detection in multipath context show that OS-MER detector outperforms the 
+OS-CFAR which induces more accurate mobile positioning. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Detection theory is a powerful statistical tool used for mak- 
+ing decisions on the occurrence or non-occurrence of some event 
+of interest. This tool has been largely used in many elds, in- 
+cluding radar, sonar, communications, speech, image processing, 
+biomedicine, and seismology [1,2] . 
+The considered detection problem is a binary hypothesis testing 
+problem of the simple hypothesis H 0 
+(no target is present) versus 
+the simple hypothesis H 1 
+(a target is present). The most powerful 
+tool that can be used to solve this problem is the Neyman每Pearson 
+(NP) lemma [3,4] which maximizes the probability of detection P d 
+under the constraint of a constant (xed) probability of false alarm 
+. The optimal solution to the NP criterion is the Likelihood Ratio 
+Test (LRT): 
+灰 where 
+灰 is a xed threshold ensuring a xed P fa 
+ is the likelihood ratio. 
+and 
+Originally for the NP-based detection, the background environ- 
+ment was assumed known, so that a xed threshold could be used. 
+However, a realistic radar environment is spatially and temporally 
+variant, so that to maintain a constant P fa 
+, the threshold 
+灰 has 
+to be adaptively updated taking into account the changes that oc- 
+cur in the environment. This method of automatically tracking the 
+灰 is referred to as Constant False Alarm Rate (CFAR) de- 
+threshold 
+
+P fa 
+tection. In this kind of adaptive thresholding techniques, a Proba- 
+bility Density Function (PDF) of the noise is assumed belonging to 
+a set of parametric laws where the parameters are unknown and 
+have to be estimated. Under the assumption of clean and homo- 
+geneous environment, measurements from the surrounding area 
+are then used to estimate the unknown parameters on which an 
+appropriate threshold is obtained. The simplest adaptive detector 
+is the Cell-Averaged Constant False Alarm Rate (CA-CFAR) detector 
+rst investigated by Finn and Johnson in 1968 [5,6] . 
+The CA-CFAR is asymptotically equivalent to a Generalized Like- 
+lihood Ratio Test (GLRT) where the unknown parameters are esti- 
+mated using the Maximum Likelihood (ML) approach. In general, 
+ to a constant threshold 
+the comparison of the likelihood ratio 
+S to another 
+灰 reduces to the comparison of a Sucient Statistic 
+S for making a deci- 
+污 . Using only the statistic 
+constant threshold 
+sion leads to very simple decision scheme that made the success of 
+the CA-CFAR detector and its wide range of applications, e.g. [7,8] . 
+However, this simplicity is achieved at the expense of the optimal- 
+ity. In fact, the CFAR-based detectors exhibit some losses in target 
+sensitivity as compared to the sensitivity of the optimal NP-based 
+detectors. 
+As mentioned earlier, the CFAR-based detectors maximize the 
+detection probability while keeping under control the probability 
+of false alarm. This kind of constraint, although suitable for certain 
+applications like radar detection and biomedical hypothesis testing, 
+can lead to an inappropriate solution for detection problem where 
+the two detection errors have to be under control. Moreover, in 
+some detection problems, we have prior knowledge about the sig- 
+nals to be detected which is not considered in the NP criterion. 
+The question now is how to nd a new general decision ap- 
+proach that takes into account the two detection errors as well as 
+the eventual prior knowledge while keeping the scheme simplicity 
+and eciency of the CFAR. 
+In this paper, we introduce a new class of adaptive detectors 
+based on the Bayes decision rule while using the same scheme 
+as in the CFAR-based ones. In contrast to the above mentioned 
+approaches, this new methodology, referred to as Minimum Error 
+Rate (MER), is based on the closed-form minimization of the error 
+probability. The main difference between the MER and the CFAR 
+污 is se- 
+resides in the process by means of which the threshold 
+lected. In contrast to the Neyman每Pearson criterion, the threshold 
+污 is selected such that the detection error probability is minimal. 
+Moreover, an appropriate explicit form of 
+污 is given based on the 
+Bayesian criterion. 
+Like the CFAR-based detectors, MER-based methods can be used 
+with different estimators of the background noise power giving 
+birth to plethora of variants that can be used in different situations 
+and environments. 
+This new methodology has been used for the time-delay esti- 
+mation for mobile localization in the context of multipath com- 
+munications systems. Two variants have been proposed for the de- 
+tection of the rst arriving signal; the Cell-Averaging Minimum Er- 
+ror Rate (CA-MER) which is ecient if only one nger is present 
+within the reference window or if the power of the rst peak 
+is high enough to shadow the other ones [11] , and the Order- 
+Statistics Minimum Error Rate (OS-MER) more appropriate for sit- 
+uations where several closely spaced paths are present within the 
+reference window [12] . Part of this work has been presented in 
+[11] and [12] where the optimization of the probability of error has 
+been done numerically. Herein, we consider the general case of in- 
+污 that minimizes 
+tegrated signals and an approximate threshold 
+the error probability is given in a closed-form. 
+The main contributions of this paper are: (i) the introduction 
+of a new thresholding methodology with derivation of an analyti- 
+cal approximate threshold value that prevents the use of fastidious 
+numerical optimization resolution; (ii) the analysis of the gap be- 
+tween these two thresholds for both CA and OS-based noise power 
+estimation; (iii) the derivation of the detection and false alarm 
+probabilities of the CA-MER detector for the homogeneous case; 
+(iv) the derivation of the detection and false alarm probabilities of 
+the OS-MER detector for the homogeneous case; (v) the derivation 
+of the detection and false alarm probabilities of the OS-MER de- 
+tector for the heterogeneous case; and (vi) the application to the 
+mobile localization and illustration of the performance gain in this 
+context. 
+The remaining of this paper is organized as follows: in 
+Section 2 , we introduce the statistical formulation of the detec- 
+tion problem. Section 3 introduces the proposed adaptive detec- 
+tion scheme. In Section 4 , we provide the distributions of the de- 
+tection statistics that are used later for the performance analysis. 
+Section 5 is dedicated to some comments and discussions on the 
+proposed MER detector. In Sections 6 , we study the performance of 
+the CA-MER and OS-MER detectors, respectively. The application of 
+the MER detector to the mobile localization problem is introduced 
+in Section 7 . In Section 8 , the performance of the two detectors are 
+assessed and discussed through extensive numerical experiments. 
+
+2. Statistical formulation of the detection problem 
+
+ t=1: n of the signal 
+We consider n measurements (samples) 
+under investigation. Based on these observations x 
+we are interested in determining whether a received digital sig- 
+
+{
+
+ x t 
+
+}
+
+=
+
+ [ x 1 
+ x 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+ x n ] 
+
+,
+
+nal x t contains a signal s t embedded in random background noise 
+w t or, on the contrary, x t is just a confusing manifestation of the 
+noise. 
+
+T
+
+ : 
+
+(cid:2)
+
+H 0 : 
+H 1 : 
+
+x t 
+x t 
+
+=
+=
+
+ w t 
+ s t 
+
++
+
+ w t 
+
+
+
+(cid:2)
+
+H 0 : 
+H 1 : 
+
+考 2 
+x 
+考 2 
+x 
+
+=
+=
+
+考 2 
+w 
+考 2 
+w 
+
+(1 
+
++
+
+ S )
+
+(1) 
+
+where s t , w t , and x t are i.i.d. Gaussian and circular complex-valued 
+random processes such that s t 
+(0 
+)
+(0 
+)
+ and 
+(0 
+)
+(1 
+ S )
+ with 
+ and S 
+being the 
+signal-to-noise ratio. We assume that the signal samples s t are in- 
+dependent from the noise ones w t . 
+One way to solve this statistical hypotheses test is to use the 
+classical approach pioneered by Neyman and Pearson which max- 
+)
+(
+)
+imizes the test power 
+ reject H 0 
+ H 1 is true 
+ while keep- 
+ing the test level 
+(
+ reject H 0 
+ H 0 is true 
+)
+1 xed at a low 
+汐 , i.e., 
+constant value 
+
+ N
++
+
+,
+
+ 2 
+
+考 2 
+s 
+
+,
+
+ w t 
+
+ N
+
+,
+/考 2 
+
+ 2 
+
+考 2 
+w 
+
+,
+
+x t 
+
+ N
+
+,
+
+ 2 
+
+考 2 
+x 
+
+考 2 
+x 
+
+=
+
+考 2 
+w 
+
+=
+
+考 2 
+s 
+
+w 
+
+汕牟 (T
+汐牟 (T
+)
+
+=
+
+ P 
+
+|
+
+=
+
+ P 
+
+|
+
+Maximize P 
+(
+
+ reject H 0 
+
+|
+
+ H 1 
+
+)
+
+ s.t .
+
+ P 
+
+(
+
+ reject H 0 
+
+|
+
+ H 0 
+
+)
+
+≒ 汐
+
+(2) 
+
+where P ( A ) stands for the probability of the event A and 
+this case, the unknown signal and noise variances. 
+Using the Neyman每Pearson lemma leads to an LRT-equivalent 
+S (x 
+)
+test based on the comparison of the sucient statistic 
+2 to a xed threshold 
+污 chosen to satisfy a constraint on 
+the test level: 
+f (x 
+f (x 
+
+牟 is, in 
+
+=
+
+(cid:3)
+
+ n 
+
+t=1 
+
+|
+
+ x t 
+
+|
+
+LRT 
+
+(x 
+)
+
+=
+
+; H 1 
+; H 0 
+
+)
+)
+
+
+
+灰 
+
+S (x 
+)
+
+
+
+污 =
+
+ T 
+
+考 2 
+w 
+
+(3) 
+
+where T is a scaling factor. The Neyman每Pearson-based detector is 
+the optimal 
+2 one over all 
+汐 -level tests and is referred to as a clair- 
+voyant detector and can serve as a reference upper bound to which 
+the performance of other sub-optimal detectors are compared. 
+When the distribution parameters of the observation are un- 
+known, the Neyman每Pearson criterion gives rise to another sub- 
+optimal detector. The unknown parameters are estimated and in- 
+jected in the LRT giving birth to a new test referred to as the Gen- 
+eralized Likelihood Ratio Test (GLRT): 
+f (x 
+f (x 
+
+GLRT 
+
+(x 
+)
+
+=
+
+; (cid:4) 考x 
+; (cid:5) 考w 
+
+,
+
+ H 1 
+ H 0 
+
+)
+)
+
+,
+
+
+
+灰 
+
+S (x 
+)
+
+
+
+污 =
+
+ T Z 
+
+(4) 
+
+S (x 
+)
+The test statistic 
+ is compared with the adaptive threshold 
+which is the product of the noise power estimate Z 
+and the 
+scaling factor T . The method used for estimating the noise power 
+and calculating the scaling factor denes the detector scheme and 
+performance. 
+
+污
+
+=
+
+(cid:5)
+
+ 考 2 
+w 
+
+3. Adaptive detection scheme 
+
+The variable and non-stationary nature of the background en- 
+vironment makes the estimation of the unknown distribution pa- 
+rameters a challenging task. An automatic process for adaptive 
+tracking of the unknown parameters, and hence of the detection 
+threshold, needed to keep the GLRT-level at a constant value has 
+been previously introduced. The adaptive detector in Fig. 1 is an 
+implementation of the statistical test in (4) . The in-phase and 
+quadrature components of the received signal x t are processed by 
+a square-law detector and, eventually, an integrator. The resulting 
+signals are set serially in a shift register referred to as the analyz- 
+ing window. 
+The noise power is estimated using the measurements within 
+the reference window composed of m Reference Cells under the as- 
+sumption that the noise power is invariant over the reference cells 
+
+汕牟 (T
+汐牟 (T
+1 In detection theory, the test power 
+)
+)
+ and the test level 
+ are referred 
+to as the probability of detection P d and the probability of false alarm P fa , respec- 
+tively. 
+2 It is the Uniformly Most Powerful one for any SNR value [3,13] . 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+3 
+
+Fig. 1. Adaptive detection scheme commonly used in Radar. 
+
+time period (local stationarity assumption). The Guard Cells , imme- 
+diate neighbors of the Cell Under Investigation (CUI), are excluded 
+from the estimation process to avoid an eventual spillover from 
+the CUI. The scaling factor T is obtained via an optimization pro- 
+cess where the criterion is function of the probabilities of the two 
+erroneous decisions the miss probability P m 
+being the 
+detection probability) and the false alarm probability P fa 
+, dened 
+as: 
+
+=
+
+ 1 
+
+ P d 
+
+( P d 
+
+P f a 
+
+=
+
+(cid:6)
+(cid:6)
+
+ +
+
+﹢
+
+0 
+
+f Z 
+
+(z )
+
+(cid:7)(cid:6)
+(cid:7)(cid:6)
+
+ +
+
+﹢
+
+T z 
+
+f S |
+
+ H 0 
+
+(s 
+
+|
+
+ H 0 
+
+)
+
+ ds 
+
+(cid:8)
+(cid:8)
+
+dz 
+
+P d 
+
+=
+
+ +
+
+﹢
+
+0 
+
+f Z 
+
+(z )
+
+ +
+
+﹢
+
+T z 
+
+f S |
+
+ H 1 
+
+(s 
+
+|
+
+ H 1 
+
+)
+
+ ds 
+
+dz 
+
+(5) 
+
+This adaptive thresholding process described above is known as 
+the CFAR-based detection technique, a process by means of which 
+a continuously changed threshold is used maintaining a constant 
+. Thus, for a xed and completely controlled P fa 
+, the rst type 
+of detection errors, the second type of detection errors, the P m , is 
+minimized at the best. 
+This way of thinking is well adapted for radar or sonar appli- 
+cations where a false alarm, in general, costs more than a miss 
+event. Nevertheless, in other type of detection applications, this is 
+not true, and both error types have to be taken into account when 
+optimizing the detection process. For example, localization tech- 
+niques based on propagation time delay, when detecting the rst 
+peak of the correlation function between the received signal and 
+the transmitted pilot sequence, a false alarm or a miss of detec- 
+tion are equally harmful and both lead to localization errors. 
+We propose in this paper, based on the Bayes criterion, another 
+optimization approach for an adaptive detection scheme that takes 
+into account the two types of errors, false alarm and miss of de- 
+tection, and takes advantage from the prior knowledge about the 
+two considered hypothesis. The proposed cost function is the error 
+probability P e : 
+
+P fa 
+
+P e 
+
+=
+
+ P H 0 
+
+P f a 
+
++
+
+ P H 1 
+
+P m 
+竹P f a 
+竹 and P H 1 
+
+=
+
++
+
+ 竹)(1 
+(1 
+(6) 
+ 竹 represent prior probabilities of ab- 
+where P H 0 
+sence and presence of a signal of interest, respectively. The optimal 
+scaling factor is: 
+
+ P d 
+
+)
+
+=
+
+=
+
+ 1 
+
+T MER 
+
+=
+
+ argmin 
+
+(P e 
+
+)
+
+(7) 
+
+The analytical expression of P e is derived in Section 6 . The obtained 
+scaling factor depends on the prior knowledge 
+竹 and is highly in- 
+uenced by the method by which noise power is estimated. It is 
+clear that (6) is a non linear and very complex function especially 
+when the background environment is heterogeneous, the signals to 
+
+be detected are uctuating and a process of non-coherent integra- 
+tion is used. A closed-form solution for such a function is not easy 
+to nd and numerical methods can not ensure accurate solution 
+because of the sensitivity of this function that can take values very 
+close to zero. The second challenging problem is how to combine 
+MER optimization method with the classical CFAR variants without 
+loosing the strong aspects that makes the celebrity of CFAR-based 
+detectors for radar detection problems, i.e., the simplicity of the 
+detection＊s statistic and scheme. 
+
+4. Distributions of the detection statistics 
+
+Before proceeding to the analysis of the proposed thresholding 
+technique and the computation of its performance, it is worthwhile 
+to summarize some statistics that will be used for this purpose. If 
+a Swerling-I model [14] is assumed for both primary and interfer- 
+ing signals, and if the noise is Gaussian, then the square law de- 
+tector outputs are governed by an exponential distribution [14,15] . 
+In general, n signal samples are incoherently-integrated before set- 
+ting them to the serial shift register in the aim of improving their 
+S is a Chi- 
+signal-to-noise ratio. It follows that the CUI content 
+square random variable with 2 n degrees of freedom ( 
+): 
+; s 
+
+S
+
+ 缶 聿 2 
+
+2 n 
+
+f S |
+
+ H j 
+
+(s 
+
+|
+
+ H j 
+
+)
+
+=
+
+s 
+(缶 )
+
+1 e 
+s/缶
+n 
+
+n  (n 
+)
+
+>
+
+ 0 
+
+(8) 
+
+with: 
+
+缶 =
+
+(cid:2)
+
+2 
+2 
+
+考 2 
+w 
+考 2 
+w 
+
+H 0 : noise alone 
+ H 1 : noise + signal 
+
+(1 
+
++
+
+ S )
+
+(9) 
+
+Also the reference cell contents Y i 
+ 1 : m are Chi-square dis- 
+tributed random variables with 2 n degrees of freedom: 
+  2 
+If r interfering signals are present within the reference window, 
+the r samples U i 
+are Chi-square random variables with 2 n degrees 
+of freedom: 
+  2 
+
+,
+
+ i 
+
+=
+
+Y 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ Y m 
+
+i.i.d.
+
+考 2 
+w 
+
+聿 2 
+2 n 
+
+(10) 
+
+U 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ U r 
+
+i.i.d.
+
+考 2 
+w 
+
+(1 
+
++
+
+ I )
+
+聿 2 
+2 n 
+
+(11) 
+
+where I 
+is the interference-to-noise ratio and 
+is the 
+3 Next, two different methods for 
+power of the interfering signals. 
+adaptive noise power estimation by processing the reference cell 
+contents are presented. 
+
+=
+
+考 2 
+r 
+
+/考 2 
+
+w 
+
+考 2 
+r 
+
+4.1. Distribution of the cell-averaging output 
+
+The Cell-Averaging (CA) process is the ML-based estimation of 
+the noise power estimate Z 
+. Under the assumption of ho- 
+mogeneous environment, Z is Chi-square distributed with 2 nm de- 
+grees of freedom: 
+ 2 
+Z 
+In presence of r interfering signals within the reference cells, the 
+ r noise samples Y i 
+m 
+and the r interfering samples U i 
+are Chi- 
+square random variables with 2 n degrees of freedom: 
+ r 
+
+=
+
+(cid:3)
+
+ m 
+
+=1 
+Y i 
+i 
+
+考 2 
+w 
+
+聿 2 
+2 nm 
+
+(12) 
+
+Y i 
+U j 
+
+i.i.d.
+
+ 
+ 
+
+2 
+
+考 2 
+w 
+考 2 
+w 
+
+聿 2 
+2 n 
+
+,
+
+i 
+
+=
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ m 
+
+i.i.d.
+
+2 
+
+(
+
+ 1 
+
++
+
+ I )
+
+聿 2 
+2 n 
+
+,
+
+j 
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ r 
+
+(13) 
+
+Hence, the noise power estimate is the sum of two independent 
+random variables not equally distributed Y and U : 
+ 2 
+ 2 
+The PDF of Z is a function of those of U and Y and can be computed 
+as the convolution of the two distributions: 
+ y 
+(z 
+)
+
+Y 
+U 
+
+=
+=
+
+(cid:3)
+(cid:3)
+(cid:6)
+
+ m 
+
+r 
+=1 
+Y i 
+i 
+=1 
+U i 
+i 
+
+
+
+
+ Y 
+ U 
+
+考 2 
+聿 2 
+r )
+w 
+2 n 
+(m 
+考 2 
+聿 2 
+w 
+2 nr 
+
+ r 
+
+(
+
+ 1 
+
++
+
+ I )
+
+(14) 
+
+f Z 
+
+(z )
+
+=
+
+f U 
+
+ f Y 
+
+(y 
+)
+
+ dy 
+
+(15) 
+
+3 We consider herein that the r interfering signals have the same power 
+
+考 2 
+r 
+
+. 
+
+4 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+4.2. Distribution of the order-statistics output 
+
+The Order-Statistics method has been successfully used for es- 
+timating the noise power in heterogeneous environment or in 
+presence of interfering signals, e.g. [9] . In this method, the ref- 
+erence cells＊ contents are sorted in increasing order Y (1)
+. Then, the noise power is estimated as the 
+content of reference cell having the k th rank [16每19] 
+
+≒ Y (2)
+
+≒
+
+. 
+.
+
+.
+
+≒ Y (k 
+)
+
+≒ .
+
+.
+
+.
+
+≒ Y (m 
+)
+
+Z 
+
+=
+
+ Y (k 
+)
+
+(16) 
+
+Under the assumptions of homogeneous environment, the distribu- 
+tion of the k th-rank sample Y ( k ) 
+are given by [20] : 
+
+f Z 
+
+(z )
+
+=
+=
+
+ kC 
+
+m (cid:9)
+m 
+k 
+
+(
+
+ 1 
+
+ F Y 
+
+(y 
+)
+
+ )
+
+m 
+
+k (
+
+ F Y 
+
+(y 
+)
+
+ )
+
+1 f Y 
+k 
+ j 
+m 
+
+(y 
+)
+
+F Z 
+
+(z )
+
+j=
+
+ k 
+
+C 
+
+m 
+j 
+
+(
+
+ F Y 
+
+(y 
+)
+
+ )
+
+j (
+
+ 1 
+
+ F Y 
+
+(y 
+)
+
+ )
+
+(17) 
+
+f Y ( y ) being the probability density function given by (10) and F Z ( z ) 
+refers to the cumulative function of Z . 
+However, if r interfering signals appear in the reference win- 
+dow, the noise power estimate Z is chosen as the content of 
+reference cell having the k th rank in the more general set 
+. The probability distribution function 
+
+(cid:10)
+
+U j 
+
+(cid:11)
+
+j=1 
+
+,
+
+ 2 
+
+,
+
+...
+,r 
+
+﹍
+
+ {
+
+ Y i 
+
+}
+
+ i 
+
+=1 
+
+,
+
+ 2 
+
+,
+
+...
+,m 
+
+r 
+
+of Z can be computed using those of the Chi-square random vari- 
+ables U i 
+and Y i 
+, given in (13) , as follows: 
+
+F Z 
+
+(z )
+
+=
+
+m (cid:9)
+i 
+
+=
+
+ k 
+
+r )
+max 
+(i,m 
+
+ (cid:9)
+
+j=
+
+ min 
+(0 
+
+,i 
+
+r )
+
+C 
+
+r 
+m 
+j 
+
+C 
+
+r 
+ j 
+i 
+ F U 
+
+(
+
+ F Y 
+
+(y 
+)
+
+ )
+
+j 
+
+(
+
+ 1 
+
+ F Y 
+
+(y 
+)
+
+ )
+
+m 
+
+r j (
+
+ F U 
+
+(u 
+)
+
+ )
+
+i 
+
+ j (
+
+ 1 
+
+(u 
+)
+
+ )
+
+ri 
+
++
+
+ j 
+
+(18) 
+
+5. Discussions 
+
+We present herein some comments on the proposed detection 
+scheme as well as a useful threshold approximation and its statis- 
+tical analysis. 
+
+5.1. MER vs CFAR 
+
+A main advantage of the CFAR as compared to MER detector lies 
+in the fact that the scaling factor for the former is easy to com- 
+pute (an analytical expression exist) and depends on the P fa 
+only 
+[13] . For the MER we need, as for the GLRT, to estimate (or a pri- 
+ori known) other system parameters which are 
+竹 and S . As will be 
+shown in Section 8 , when the number of samples is moderate or 
+large, the sensitivity of the MER is robust against estimation errors 
+on these two parameters. On the other hand, the MER outperforms 
+the CFAR in terms of error probability in a large range of SNR val- 
+ues depending on the sample size n and hence is more adequate 
+for the mobile localization problem discussed next. 
+
+5.2. Approximate threshold expression 
+
+The MER-based thresholding consists of nding the optimal 
+scaling factor T that minimizes the error probability in (6) . As 
+stated in Section 3 , the complex formulas of P d 
+and the 
+numerical sensitivity of the error function P e makes the minimiza- 
+tion of (6) a hard optimization problem. 
+For this reason, we introduce herein an approximate analyti- 
+cal expression of the scaling factor T . Indeed, the derivation of the 
+MER-based detector can be seen as a special case of the more gen- 
+eral Bayesian detector given by the Conditional Likelihood Ratio Test 
+(CLRT) [1,10] : 
+
+and P fa 
+
+CLRT 
+
+(x 
+)
+
+=
+
+f (x 
+f (x 
+
+|
+|
+
+ H 1 
+ H 0 
+
+)
+)
+
+
+
+灰 =
+
+P H 0 
+P H 1 
+
+
+
+S (x 
+)
+
+
+
+污 =
+
+ T 
+
+考 2 
+x 
+
+(19) 
+
+S (x 
+)
+where 
+ is the sucient statistic and T is the scaling factor that 
+minimizes the error probability in (6) and given by 
+
+4 : 
+
+T 
+
+=
+
+ log 
+
+(cid:12)
+
+(
+
+(1 
+
++
+
+ S )
+
+n 灰 )
+
+1+
+
+ S 
+
+S 
+
+(cid:13)
+
+(20) 
+
+In a case, the noise power 
+to: 
+
+考 2 
+w 
+
+is replaced by its estimate Z leading 
+
+污 =
+
+ T Z 
+
+=
+
+ T 
+
+考 2 
+w 
+
+(21) 
+
+where T 
+
+=
+
+ T 
+
+Z 
+
+考 2 w 
+
+. Thus, in this case, the scaling factor that mini- 
+
+mizes (6) is a random variable. If Z is a consistent estimator of 
+the noise power, then the scaling factor T in (20) will be a good 
+approximation of T . The behavior of this estimate is analyzed nu- 
+merically in Section 8 . Below, we provide a theoretical analysis of 
+the rst and second order statistics of T . 
+
+5.3. Statistical analysis of T 
+
+The aim of this subsection is to compute a condence inter- 
+val for T and see if the approximate threshold T is included in- 
+side it. For the CA-MER detection, the noise power is estimated 
+as the mean of 2 nm Gaussian samples x t 
+ 1 : 2 nm . It follows 
+that Z 
+is Chi-square distributed with 2 nm degrees of free- 
+
+,
+
+ t 
+
+=
+
+=
+
+(cid:5)
+
+ 考 2 
+w 
+
+dom Z 
+
+ 考 2 w 
+
+2 nm 
+
+聿 2 
+2 nm 
+
+. Hence, T 
+
+=
+
+ T 
+
+Z 
+ T 
+2 nm 
+
+考 2 w 
+
+is also Chi-square distributed 
+
+with 2 nm degrees of freedom T 
+
+聿 2 
+2 nm 
+
+such that 
+
+米
+
+T 
+
+=
+
+ T and 
+
+考 2 
+T 
+
+=
+
+T 
+nm 
+
+2 
+
+↙
+
+ 0 
+
+nm 
+
+↙﹢
+
+. 
+
+Once the statistical distribution of scaling factor T is completely 
+dened, we can infer the following exact condence interval I 
+level 
+
+1 汐 of 
+
+汐 =
+
+汐1 
+
++
+
+汐2 : 
+
+T 
+
+﹋
+
+ I 
+
+1 汐 =
+
+(cid:14)
+
+T 
+
+Q 聿 2 
+2 nm 
+
+,汐1 
+
+2 nm 
+
+,
+
+ T 
+
+Q 聿 2 
+2 nm 
+
+,
+
+ 1 
+
+汐2 
+
+2 nm 
+ 汐 . The quantities Q 聿 2 nm 
+are the quantiles of the Chi-square distribution of level 
+and 1 
+ respectively. In our simulation experiments ( Fig. 4 ), one uses 
+(22) with 汐1 
+ 025 . 
+
+(cid:15)
+
+(22) 
+
+such that P 
+(
+
+ T 
+
+﹋
+
+ I 
+
+1 汐 )
+
+=
+
+ 1 
+
+,汐
+
+1 
+
+and Q 聿 2 nm 
+,
+
+ 1 
+
+汐
+
+2 
+
+汐
+
+1 
+
+
+
+汐2 
+
+,
+
+=
+
+汐2 
+
+=
+
+ 0 
+
+.
+
+5.4. Analysis of the noise power estimate in OS-MER 
+
+The noise power is evaluated in OS-MER case as the k th order 
+statistic, thus, as we will see, Z is a biased estimation of 
+. Below 
+we evaluate the bias of this estimate in both homogeneous and 
+heterogeneous environment cases. Under the statistical model in 
+(13) , the mean value of Z (given by (16) , in the heterogeneous case, 
+is equal to: 
+
+考 2 
+w 
+
+E [ Z ] 
+
+=
+
+ 2 
+
+m (cid:9)
+考 2 
+w 
+i 
+
+=
+
+ k 
+
+r )
+min 
+(i,m 
+
+ (cid:9)
+
+j=
+
+ max 
+(0 
+
+,i 
+
+r )
+rq 
+1 
+t=0 
+
+C 
+
+r 
+m 
+j 
+
+C 
+
+j (cid:9)
+r 
+ j 
+i 
+p=0 
+=0 
+q 
+
+i 
+
+ j (cid:9)
+
+C 
+
+j 
+p 
+
+C 
+
+ j 
+i 
+q 
+
+(1)
+
+ pq 
+i 
+
+(cid:9)
+
+|
+
+↙
+
+ i 
+
+|
+
+=
+
+ m 
+
+r p 
+
+C 
+
+r p 
+m 
+1 
+t=0 
+
+i 1 
+
+,
+
+...
+
+,i n 
+1 
+i t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+(cid:9)
+
+(cid:17)(cid:17)(cid:17)↙
+(cid:17)(cid:17)(cid:17)=
+
+ j 
+
+ rq 
+
+C 
+
+j 0 
+
+,
+
+...
+
+, j n 
+1 
+j t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+(cid:18)
+
+1 
+
+1+
+
+ I 
+
+(cid:19)(cid:3)
+
+ n 
+
+1 
+t=0 
+
+t j t 
+
+(cid:18)(cid:3)
+
+ n 
+
+1 
+t=0 
+(i t 
+rq 
+
++
+
+ j t 
+
+)
+
+ t 
+
++
+
+ 1 
+
+(cid:19)
+
+(cid:18)
+
+ r 
+ p 
+m 
+
++
+
+1+
+
+ I 
+
+(cid:19)(cid:3)
+
+ n 
+
+1 
+t=0 
+(i t 
+
++
+
+ j t 
+
+ t+1 
+)
+
+(23) 
+
+and in the homogeneous case (under the statistical model in (17) ), 
+the mean value of Z is given by: 
+
+E [ Z ] 
+
+=
+
+ 2 
+
+考 2 
+w 
+
+kC 
+ (n 
+)
+
+m 
+k 
+
+k 
+
+1 (cid:9)
+
+=0 
+i 
+
+C 
+
+1 
+k 
+i 
+
+(1)
+
+i 
+1 
+k 
+
+4 The derivation of (20) comes from (19) and the Gaussian assumption i.e. x t 
+N (0 
+)
+)
+
+H 1 
+
+,
+
+ 2 
+
+考 2 
+x 
+
+H 0  N (0 
+ and x t 
+
+,
+
+ 2 
+
+考 2 
+w 
+
+ . 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+5 
+
+℅
+
+(cid:9)
+
+(cid:17)(cid:17)(cid:17)↙
+(cid:17)(cid:17)(cid:17)=
+
+ j 
+
+ m 
+
+1 
+i 
+
+C 
+
+1 
+i 
+m 
+1 
+t=0 
+
+j 0 
+
+,
+
+...
+
+, j n 
+1 
+j t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+
+
+(cid:18)(cid:3)
+
+ n 
+
+1 
+t=0 
+t j t 
+(
+
++
+
+ n 
+
++
+
+ 1 
+
+(cid:19)
+
+(
+
+ m 
+
+ i )
+
+(cid:3)
+
+ n 
+
+1 
+t=0 
+t j t 
+
++
+
+ n 
+
++1)
+
+(24) 
+
+where 
+
+↙
+
+ j 
+
+=
+
+( j 0 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ j n 
+
+1 
+
+)
+
+,
+
+|
+
+↙
+
+ j 
+
+|
+
+=
+
+(cid:3)
+
+ n 
+
+1 
+t=0 
+
+j t and C 
+
+1 
+i 
+m 
+
+,
+...
+, j n 
+1 
+j 0 
+
+are the 
+
+multinomial coecients. Clearly this is of the form E [ Z ] 
+where C depends on k (the statistic order) and I (the interference 
+to noise ratio). In the homogeneous case, C depends on k only and 
+hence the estimator bias can be ＊corrected＊ which reduces the per- 
+formance loss (as compared to CA-CFAR in the homogeneous case). 
+This issue will be the focus of future work. 
+
+=
+
+ C 
+
+考 2 
+w 
+
+6. Performance analysis 
+
+In this section, we assess the performance of the adaptive MER 
+detector presented in Fig. 1 which is an implementation of the hy- 
+pothesis test given in (3) . By detector performance we mean the 
+detection and false alarm probabilities needed for the derivation 
+of the optimal scaling factor T . 
+
+6.1. Performance analysis of CA-MER detector 
+
+For an homogeneous environment, the pdf of Z is given in 
+(12) and the detection probability is expressed by [15] : 
+
+P d 
+
+=
+
+(1 
+
++
+
+ V 
+
+)
+
+mn 
+
+n 
+
+1 (cid:9)
+
+=0 
+i 
+
+1 
+i ! 
+
+ (mn 
+ (mn 
+)
+
++
+
+ i 
+
+)
+
+(cid:20)
+
+V 
+1 
+
++
+
+ V 
+
+(cid:21)i 
+
+(25) 
+
+with V 
+
+=
+
+T 
+
+1+
+
+ S 
+
+,
+
+ and 
+ (.) is the gamma function. 
+
+6.2. CA-MER losses in heterogeneous environment 
+
+When the assumption of homogeneous background environ- 
+ment is no longer respected, the performance of the MER detec- 
+tor degrades in a drastically manner. If in addition to the primary 
+signal, r i.i.d interfering signals are then present in the reference 
+cells, the pdf of Z is given by (14) and (15) and the probability of 
+detection is given by the following theorem. 
+
+Theorem 1. Under the assumptions presented in (14) for the hetero- 
+geneous model, the detection probability of the test presented in (3) , 
+when using the cell averaging for the noise power estimate, is given 
+by: 
+
+P d 
+
+=
+
+(
+ I )
+ rn 
+ (rn 
+) (mn 
+)
+
+ 1 
+
++
+
+rn 
+
+(cid:18)
+
+I 
+
+1+
+
+ I 
+
+(cid:19)mn 
+rn 
+i n (cid:9)
+=0 
+i 
+(cid:8)rn 
+rn 
+l=0 
+i mn 
+rn 
+
+1 (cid:9)
+
+C 
+
+1 
+rn 
+i 
+
+(1)
+
+ rn 
+i  (mn 
+
++
+
+ i 
+
+)
+
+(cid:2)(cid:7)
+(cid:7)
+
+I 
+
+1 
+
++
+
+ T 
+
+1+
+1+
+
+ I 
+ S 
+
+(cid:8)
+
+ i 
+ (rn 
+l ! 
+
++
+
+ l )
+
+(cid:7)
+
+(cid:8) j 
+T 
+1 
+
+1+
+
+ S 
+
+1+
+
+ I 
+
++
+
+T 
+
+1+
+
+ S 
+
+(cid:8)l 
+
+
+℅ n (cid:9)
+
+I 
+
+1+
+1+
+
+ I 
+
+1 
+
++
+
+T 
+
+ S 
+
+1 (cid:9)
++
+
+ i 
+
+j=0 
+
+1 
+j! 
+
+(cid:7)
+
+(cid:8)l 
+I 
+
+1+
+1+
+
+ I 
+
+1 
+
++
+
+T 
+
+ S 
+
+l=0 
+
+ i 
+ (rn 
+l ! 
+
++
+
+ j 
+
++
+
+ l )
+
+(cid:7)
+
+T 
+
+1+
+1+
+
+ S 
+
+1 
+
++
+
+T 
+
+ S 
+
+(cid:22)
+
+(26) 
+
+Proof. The proof is given in Appendix A . 
+
+(cid:3)
+
+The probabilities of false alarm P fa 
+are obtained by setting S 
+in the Eqs. (25) and (26) . 
+
+=
+
+ 0 
+
+6.3. Performance analysis of OS-MER detector 
+
+The CA-CFAR and CA-MER are ecient approaches when the 
+background environment is homogeneous. However, if some out- 
+liers take place within the m noise samples, the averaging of the 
+
+latter leads to biased estimation of the noise power which affects 
+drastically the whole detection process. To cope with this problem, 
+a robust CFAR-based detector, namely the Order-Statistics Constant 
+False Alarm Rate (OS-CFAR), has been introduced in [16] . The ref- 
+erence cell outputs are sorted in increasing order and the noise 
+power is adaptively estimated as the content of reference cell hav- 
+ing the k th rank. For the OS-MER, the same estimate of the noise 
+power is used leading to the following detection probability in the 
+homogeneous environment. 
+
+Theorem 2. Under the assumptions given in (17) for homogeneous 
+model, the detection probability of the test presented in (3) , when us- 
+ing the kth order statistic for the noise power estimate, is given by: 
+
+P d 
+
+=
+
+kC 
+ (n 
+)
+
+m 
+k 
+
+k 
+
+1 (cid:9)
+
+=0 
+i 
+
+C 
+
+1 
+k 
+i 
+
+(1)
+(cid:21)l 
+l ! 
+m 
+ i 
+
+i 
+1 
+k 
+
+(cid:9)
+
+(cid:17)(cid:17)(cid:17)↙
+(cid:17)(cid:17)(cid:17)=
+
+ j 
+
+ m 
+
+1 
+i 
+
+C 
+
+1 
+i 
+m 
+1 
+t=0 
+
+j 0 
+
+,
+
+...
+
+, j n 
+1 
+j t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+℅ n 
+l=0 
+
+1 (cid:9)
+
+(cid:20)
+
+T 
+1 
+
++
+
+ S 
+
+(cid:18)(cid:3)
+
+ n 
+
+1 
+t=0 
+t j t 
+
++
+
+ n 
+
++
+
+ l 
+
+(cid:19)
+
+(cid:18)
+
++
+
+T 
+
+1+
+
+ S 
+
+(cid:19)(cid:3)
+
+ n 
+
+1 
+t=0 
+t j t 
+
++
+
+ n 
+
++
+
+ l 
+
+(27) 
+
+Proof. The proof is given in Appendix B . 
+
+(cid:3)
+
+6.4. OS-MER losses in heterogeneous environment 
+
+In this subsection, our aim is to quantify the performance 
+degradation of the OS-MER detector caused by the presence of r 
+interfering signals. In this context, the probability of detection is 
+given by the following theorem. 
+
+Theorem 3. Under the assumptions given in (18) for the heteroge- 
+neous model, the detection probability of the test presented in (3) , 
+when using the kth order statistic for the noise power estimate, is 
+given by: 
+
+P d 
+
+=
+
+(cid:18)
+
+T 
+
+1+
+
+ S 
+
+(cid:19)
+
+m (cid:9)
+n 
+i 
+
+ (n 
+)
+
+=
+
+ k 
+
+r )
+min 
+(i,m 
+
+ (cid:9)
+
+j=
+
+ max 
+(0 
+
+,i 
+
+r )
+
+C 
+
+r 
+m 
+j 
+
+C 
+
+j (cid:9)
+r 
+ j 
+i 
+p=0 
+=0 
+q 
+
+i 
+
+ j (cid:9)
+
+C 
+
+j 
+p 
+
+C 
+
+ j 
+i 
+q 
+
+(1)
+
+ pq 
+i 
+
+(cid:9)
+
+|
+
+↙
+
+ p |
+
+=
+
+ m 
+
+r p 
+
+C 
+
+r p 
+m 
+1 
+t=0 
+
+p 0 
+
+,
+
+...
+
+, p n 
+1 
+p t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+(cid:9)
+
+|
+
+↙
+
+ q |
+
+=
+
+ rq 
+
+C 
+
+rq 
+1 
+t=0 
+
+q 0 
+
+,
+
+...
+
+,q n 
+1 
+q t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+(cid:18)
+(cid:18)
+
+1 
+
+1+
+
+ I 
+
+(cid:19)(cid:3)
+
+ n 
+
+1 
+t=0 
+
+t q t 
+
+(cid:18)(cid:3)
+
+ n 
+
+1 
+t=0 
+( p t 
+rq 
+
++
+
+ q t 
+ n 
+
+)
+
+ t 
+
++
+
+ n 
+
+(cid:19)
+
+ r 
+ p 
+m 
+
++
+
+T 
+
+1+
+
+ S 
+
++
+
+1+
+
+ I 
+
+(cid:19)(cid:3)
+
+1 
+t=0 
+( p t 
+
++
+
+ q t 
+
+ t+
+)
+
+ n 
+
+(28) 
+
+Proof. The proof is given in Appendix C . 
+
+(cid:3)
+
+7. Application to mobile positioning 
+
+We consider herein the application of the MER concept to the 
+detection of the rst channel path for mobile positioning in the 
+context of multipath communications system. 
+
+7.1. Multipath channel model 
+
+In mobile communications, the specular Channel Impulse Re- 
+sponse (CIR) is often modeled as a noisy version of a time-varying 
+linear lter [21,22] : 
+
+h 
+(t )
+
+=
+
+(cid:23)
+
+R (cid:9)
+汐 j 
+j=1 
+
+(t )
+
+ 而 j 
+汛 (t 
+(t ))
+
+(cid:24)
+
++
+
+ w 
+
+(t )
+
+(29) 
+
+where 
+( t ) and 
+( t ) are the time-varying delay and the time- 
+varying complex amplitude of the j th path, respectively, R is the 
+number of the signal copies at the receiver end, and w ( t ) is a 
+zero-mean Gaussian complex-valued noise with variance 2 
+. It is 
+usual to assume that paths＊ complex amplitudes remain constant 
+over a slot (packet) duration and are modeled as i.i.d slot-varying 
+Gaussian random complex-valued processes. Time delays are usu- 
+ally assumed constant over several slots ( n slots) [23] . Taking into 
+
+而
+
+j 
+
+汐
+
+j 
+
+考 2 
+w 
+
+6 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+account these two assumptions, the shaping lter effect, and as- 
+suming that the CIR vanishes outside an interval [0, M ], where M 
+represents the channel length, 
+5 the CIR over the slot l will be [24] : 
+
+h l 
+
+(i 
+)
+
+=
+
+(cid:23)
+
+R (cid:9)
+j=1 
+
+汐
+
+j,l g(iT s 
+
+ 而 j 
+)
+
+(cid:24)
+
++
+
+ w l 
+
+(i 
+)
+
+,
+
+ i 
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ M 
+
+(30) 
+
+where iT s is the sampled version of t and g (.) denotes the shap- 
+ing lter. Note that index l has been added to refer to the slot- 
+dependency of the considered channel parameters. 
+
+7.2. Time of arrival estimation 
+
+In a multipath context, the Time of Arrival Estimation (ToA) is 
+estimated as the location of the rst peak of the Power Delay Pro- 
+le (PDP)-like function dened as the mean of the CIR over n slots: 
+(i 
+)
+ M Our objective now is to detect the 
+rst peak of the PDP-like function P i 
+and estimate its correspond- 
+ing delay 
+. Peak detection requires the use of a threshold 
+污 to 
+detect only peaks corresponding to effective channel ngers. 
+
+P i 
+
+=
+
+(cid:3)
+
+ n 
+
+l=1 
+
+|
+
+ h l 
+
+|
+
+2 ,
+
+ i 
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+而
+
+1 
+
+7.3. Detection scheme and stochastic assumptions 
+
+We assume that the rst nger of the communications chan- 
+nel is our primary target. The other ngers are considered as in- 
+terfering targets, and all of them are buried in a homogeneous 
+background noise. For the path detection, we consider the detec- 
+tion scheme in Fig. 1 with m 
+ M reference cells in the vicinity 
+of the CUI. We assume that the observation in the CUI is inde- 
+pendent from the m outputs of the reference cells. The latter are 
+mutually independent but are not identically distributed if some of 
+their outputs are considered as interfering peaks. 
+Channel fading coecients 
+for j 
+ 1 are slot-varying Gaus- 
+sian variables of variance 
+(1 
+ I )
+ and their corresponding de- 
+lays 
+are constant over an observation period of n slots. Under 
+these assumptions, the PDP-like samples P i 
+ M are Chi- 
+square distributed random variables with 2 n degrees of freedom 
+7 : (i) 
+according to one of the following three situations 
+缶 is: 
+for the CUI the value of 
+
+<
+
+汐
+
+j, l 
+
+=
+
+6 2 
+考 2 
+w 
+
++
+
+而
+
+j 
+
+,
+
+ i 
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+P i 
+
+ 缶 聿 2 
+
+2 n 
+
+缶 =
+
+(cid:2)
+
+2 
+2 
+
+考 2 
+w 
+考 2 
+w 
+
+H 0 : noise alone 
+ H 1 : noise 
+ rst peak 
+
+(1 
+
++
+
+ S )
+
++
+
+(31) 
+
+where S 
+is the signal-to-noise ratio of the rst peak. 
+(ii) for the m reference cells 
+ (iii) if one or more inter- 
+fering peaks appear in the reference cells, the m observations are 
+statistically independent, but are no more identically distributed. 
+In this case, for the reference cells which contain an interfering 
+(1 
+ I )
+peak, 
+Under the above assumptions, the considered problem is 
+similar to the one theoretically analyzed in the previous sec- 
+tions and hence the developed theory can be used to solve it. 
+Section 8 present some results of applying the MER detection 
+method for the estimation of the signal delay. Once the signal 
+delays are estimated w.r.t. different base stations (at least three), 
+one estimates the mobile position using the trilateration technique 
+[25] . 
+
+=
+
+考 2 
+1 
+
+/考 2 
+
+w 
+
+缶 =
+
+ 2 
+
+考 2 
+w 
+
+,
+
+缶 =
+
+ 2 
+
+考 2 
+w 
+
++
+
+ . 
+
+5 In practical situations, the channel is estimated by correlating pilot signal with 
+received signal in which case M would represent the length of estimated correlation 
+sequence. 
+6 We assumed here that all interfering paths have equal powers. 
+7 For simplicity, we do not take into account the shaping lter g (in practice the 
+latter is known ant its effect can be mitigated). 
+
+0
+
+n=1, PeCAMER
+n=1, PeCACFAR
+n=3, PeCAMER
+n=3, PeCACFAR
+n =100, PeCAMER
+n=100, PeCACFAR
+10
+20
+
+30
+SNR (dB)
+
+40
+
+50
+
+60
+
+108
+
+106
+
+104
+
+102
+
+100
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+t
+i
+l
+i
+
+y
+
+Fig. 2. CA-MER vs CA-CFAR: Error probability vs SNR. 
+
+8. Numerical results 
+
+Some numerical results are presented in this section in order to 
+assess the performance of the adaptive MER detector. Basically, two 
+scenarios will be conducted, one for each used estimation method 
+i.e. CA and OS. For these two scenarios, performance of MER-based 
+detectors are compared to those of CFAR-based ones. In all the fol- 
+lowing simulations, unless specied otherwise, the size of the ref- 
+erence cells m is set to 15, the pre-xed probability of false alarm 
+of the CFAR-based detectors is set to 10 
+ and the number of in- 
+terfering signals within the reference window r is set to 0. 
+These simulation experiments are divided in four different parts 
+dedicated to the performance assessment of CA-MER, the perfor- 
+mance assessment of OS-MER, an analysis of the scaling factor sen- 
+sitiveness w.r.t. different system parameters and to the mobile lo- 
+calization application, respectively. 
+
+4 ,
+
+8.1. CA-MER performance assessment 
+
+Fig. 2 depicts the behavior of the probability of error vs SNR. 
+One can see that the error probability of the CA-MER is less than 
+that of the CA-CFAR for all SNR values. The gap between the two 
+curves becomes signicant for high SNR values (SNR 
+ 50 dB). The 
+reason of this is that the error probability of the CA-CFAR detec- 
+tor is dominated by the a priori xed probability of false alarm for 
+high SNR values. The same results can be obtained for relatively 
+low SNR if incoherent integration process is used which is advan- 
+tageous for the CA-MER detector. Indeed, the Fig. 2 shows that we 
+obtain similar results at 20 dB for n 
+ 3 and at 0 dB for n 
+ 100 . 
+Fig. 3 shows that for high SNR (SNR 
+ 50 dB) a small loss in the 
+detection probability of the CA-MER as compared to the CA-CFAR 
+is noticed. However, the false alarm rate of the latter is hundreds 
+times higher than that of the CA-MER. 
+The set of curves presented in Fig. 4 depicts the behavior of the 
+optimal scaling factor T vs SNR for n 
+ 1 . We see that the exact 
+scaling factor, referred to as T Ex , obtained through numerical opti- 
+mization of (7) is approximately within the 95% Condence Interval 
+(CI) of the approximated scaling factor given in (21) , referred to as 
+T Ap . The effect of approximating the scaling factor by its theoreti- 
+cal formulas is presented in Fig. 5 . For small SNR values, there is 
+no noticeable difference between the probability of error computed 
+using the approximated scaling factor and the probability of error 
+computed using the exact scaling factor. The gap between the two 
+curves increases as the SNR increases. 
+
+>
+
+=
+
+=
+
+>
+
+=
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+7 
+
+0
+
+20
+
+40
+SNR (dB)
+
+60
+
+80
+
+100
+
+108
+
+106
+
+104
+
+102
+
+100
+
+D
+
+e
+
+t
+
+c
+e
+
+i
+t
+
+n
+o
+
+&
+
+a
+F
+
+l
+
+e
+s
+
+A
+
+l
+
+a
+
+r
+
+m
+
+P
+
+r
+
+b
+a
+b
+o
+
+i
+t
+i
+l
+i
+
+s
+e
+
+PfCAMER
+PmCAMER
+PfCACFAR
+PmCACFAR
+
+Fig. 3. CA-MER vs CA-CFAR: False alarm and miss probabilities. 
+
+0
+20
+
+0
+
+20
+
+40
+SNR (dB)
+
+60
+
+80
+
+100
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+N
+
+o
+
+r
+
+m
+
+a
+
+i
+l
+
+S
+d
+e
+z
+
+a
+c
+
+i
+l
+
+c
+a
+F
+g
+n
+
+t
+
+o
+
+r
+
+T
+
+/
+
+m
+
+TCAMEREx
+TCAMERAp
+TCACFAR
+
+CI(95%)
+CI(95%)
+
+Fig. 4. CA-MER vs CA-CFAR: Scaling factor vs SNR for n 
+
+=
+
+ 1 . 
+
+0
+
+10
+
+20
+
+30
+SNR (dB)
+
+40
+
+50
+
+60
+
+108
+
+106
+
+104
+
+102
+
+100
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+t
+i
+l
+i
+
+y
+
+n=1, Pe(TEx)
+n=1, Pe(TAp)
+n=3, Pe(TEx)
+n=3, Pe(TAp)
+
+Fig. 5. CA-MER: Scaling factor approximation effect. 
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+1010
+
+108
+
+106
+
+104
+
+102
+
+100
+
+SNR (dB)
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+t
+i
+l
+i
+
+y
+
+n=1,r=0, PeCACFAR
+n=1,r=1, PeCACFAR
+n=1,r=0, PeCAMER
+n=1,r=1, PeCAMER
+
+Fig. 6. CA-MER vs CA-CFAR: Interfering signals effect. 
+
+0
+
+10
+
+20
+
+30
+SNR (dB)
+
+40
+
+50
+
+60
+
+108
+
+106
+
+104
+
+102
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+t
+i
+l
+i
+
+y
+
+n=1, PeOSMER
+n=3, PeOSMER
+n=1, PeOSCFAR
+n=3, PeOSCFAR
+
+Fig. 7. OS-MER vs OS-CFAR: Error probability vs SNR. 
+
+The effect of interfering signals on the CA-MER detector is pre- 
+sented in Fig. 6 . One can see that for only one interfering signal 
+(i.e. r 
+ 1 and I 
+ 20 dB), the performance of the CA-CFAR and CA- 
+MER detectors present serious degradation with small advantage 
+in favor of the latter detector. 
+
+=
+
+=
+
+8.2. OS-MER performance assessment 
+
+In the second set of numerical experiments, the order-statistics 
+are combined with the MER thresholding technique giving birth to 
+the OS-MER detector which is supposed to be more robust regard- 
+ing the interference effect. Unless specied otherwise, the rank of 
+the reference cell chosen as estimate of the noise power k is set to 
+2 m /3. 
+The error probabilities of OS-CFAR and OS-MER detectors are 
+presented in Fig. 7 for r 
+ 0 . Like the CA-MER detector, for high 
+SNR values, the error probability of the OS-MER detector is very 
+small comparatively to the error probability of the OS-CFAR de- 
+tector. This result can be obtained for relatively small SNR values 
+when n increases (e.g. 15 dB for n 
+ 3 ). 
+The set of curves presented in Fig. 8 depicts the behavior of the 
+scaling factor versus SNR. As we can see, the gap between approx- 
+imated and exact threshold values increases with the SNR value 
+and hence the effectiveness of the approximated scaling factor T Ap 
+
+=
+
+=
+
+8 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+0
+5
+
+0
+
+5
+
+10
+
+15
+
+20
+SNR (dB)
+
+25
+
+30
+
+35
+
+40
+
+45
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+S
+
+a
+c
+
+i
+l
+
+c
+a
+F
+g
+n
+
+t
+
+o
+
+r
+
+T
+
+n=1, TEx
+n=1, TAp
+n=3, TEx
+n=3, TAp
+
+Fig. 8. OS-MER: Approximated and exact scaling factors vs SNR. 
+
+0
+
+20
+
+40
+SNR (dB)
+
+60
+
+80
+
+100
+
+108
+
+107
+
+106
+
+105
+
+104
+
+103
+
+102
+
+101
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+t
+i
+l
+i
+
+y
+
+n=1, Pe(TAp)
+n=1, Pe(TEx)
+n=3, Pe(TAp)
+n=3, Pe(TEx)
+
+Fig. 9. OS-MER: Scaling factor approximation effect. 
+
+holds for low or medium SNRs only. Fig. 9 shows the effect of ap- 
+proximating the scaling factor by the formula (20) . For n 
+ the 
+gap between the two thresholds appears at very high SNR (SNR 
+70 dB) while for n 
+ 3 it starts from SNR 
+ 20 dB. 
+Figs. 10 and 11 depict the effect of interfering signals on the 
+OS-MER detector performance for n 
+ 1 and n 
+ respectively. As 
+one can see, the OS-MER present small performance losses for r 
+6 interfering signals. Drastic performance losses are noticed for r 
+≡ 6. Although the OS-MER present less performance degradation 
+as compared to the OS-CFAR, this latter is robust just for a limited 
+≒ m 
+ k . 
+number of interfering signals r 
+
+=
+
+ 1 
+
+,
+
+>
+
+=
+
+=
+
+=
+
+=
+
+ 2 
+
+,
+
+<
+
+8.3. Sensitiveness analysis 
+
+In the following, we investigate the sensitiveness of the scal- 
+竹. 
+ing factor to the estimation error on the SNR S and the prior 
+The plots in Figs. 12 and 13 illustrate the dependency of the scal- 
+ing factor on the SNR for different integrated pulse number n and 
+different reference cell number m , respectively. From these plots, 
+one can see that the only way to reduce the sensitiveness of the 
+scaling factor w.r.t. estimation errors on the SNR S would be to in- 
+crease the reference cell size m . 
+In Fig. 14 , we illustrate the performance loss when the thresh- 
+olding factor is computed with an erroneous value of parameter S . 
+
+0
+
+10
+
+20
+
+30
+SNR (dB)
+
+40
+
+50
+
+60
+
+104
+
+103
+
+102
+
+101
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+t
+i
+l
+i
+
+y
+
+r=1, PeOSMER
+r=5, PeOSMER
+r=6, PeOSMER
+r=1, PeOSCFAR
+r=5, PeOSCFAR
+r=6, PeOSCFAR
+
+Fig. 10. OS-MER vs OS-CFAR: Interfering signals effect for n 
+
+=
+
+ 1 . 
+
+0
+
+10
+
+20
+
+30
+SNR (dB)
+
+40
+
+50
+
+60
+
+107
+
+106
+
+105
+
+104
+
+103
+
+102
+
+101
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+i
+t
+i
+l
+i
+
+s
+e
+
+r=1, PeOSMER
+r=5, PeOSMER
+r=6, PeOSMER
+r=1, PeOSCFAR
+r=5, PeOSCFAR
+r=6, PeOSCFAR
+
+Fig. 11. OS-MER vs OS-CFAR: Interfering signals effect for n 
+
+=
+
+ 2 . 
+
+0
+20
+
+0
+
+20
+
+40
+SNR (dB)
+
+60
+
+80
+
+100
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+S
+
+a
+c
+
+i
+l
+
+c
+a
+F
+g
+n
+
+t
+
+o
+
+r
+
+T
+
+n=1
+n=2
+n=5
+
+Fig. 12. Scaling Factor vs SNR for different n values. 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+9 
+
+0.2
+20
+
+0
+
+20
+
+40
+SNR (dB)
+
+60
+
+80
+
+100
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+2.2
+
+S
+
+a
+c
+
+i
+l
+
+c
+a
+F
+g
+n
+
+t
+
+o
+
+r
+
+T
+
+m=15
+m=20
+m=30
+
+Fig. 13. Scaling Factor vs SNR for different m values. 
+
+10
+
+0
+
+10
+
+20
+30
+SNR(dB)
+
+40
+
+50
+
+60
+
+1010
+
+108
+
+106
+
+104
+
+102
+
+100
+
+E
+
+r
+r
+
+o
+
+r
+
+P
+
+r
+
+b
+a
+b
+o
+
+t
+i
+l
+i
+
+y
+
+0%
+5%
+10%
+15%
+20%
+
+Fig. 14. Inuence of SNR estimation error on P e . 
+
+We consider the OS-MER detector for n 
+ 0 with different 
+levels of SNR estimation errors corresponding to relative standard 
+deviations equal to 5%, 10%, 15% and 20%, respectively. The per- 
+formance loss is quite small for 5% or 10% estimation error levels. 
+Even for higher estimation error levels, the performance of the OS- 
+MER remains better than that of the OS-CFAR (which error proba- 
+4 ). 
+bility is higher than 10 
+Fig. 15 illustrates the dependency between the scaling factor 
+竹 for differ- 
+and the prior about the absence of a signal of interest 
+ent pulse integration number n . One can see that there are strong 
+dependency between these two parameters for the ranges 
+ 0.1 
+and 
+ 0.9 which means that small shift of 
+竹 leads to an impor- 
+tant shift of the scaling factor. Weak dependency can be achieved 
+by increasing the pulse integration number n . Also, the depen- 
+ 0 
+dency is quite weak in the range [0 
+ 9] . 
+
+=
+
+ 3 
+ r 
+
+,
+
+=
+
+竹 <
+
+竹 >
+
+.
+
+ 1 
+
+.
+
+8.4. MER application to mobile localization 
+
+Finally, to assess the performance of the proposed OS-MER 
+thresholding method and to compare its behavior w.r.t. OS-CFAR 
+method when using it for delay estimation in a mobile localiza- 
+tion context, the following numerical experiment is conducted. 
+A Rayleigh fading channel modeling a multipath suburban out- 
+door environment is generated. According to [26] , it consists of 
+a B-Channel corresponding to a pedestrian mobile with speed of 
+
+0
+
+0.2
+0.4
+0.6
+0.8
+prior about the absence of a signal of interest 竹
+
+1
+
+0.1
+
+0.15
+
+0.2
+
+0.25
+
+0.3
+
+0.35
+
+0.4
+
+0.45
+
+0.5
+
+S
+
+a
+c
+
+i
+l
+
+c
+a
+F
+g
+n
+
+t
+
+o
+
+r
+
+T
+
+n=1
+n=2
+n=5
+n=10
+
+Fig. 15. Scaling Factor vs 
+竹 for different n values. 
+
+Table 1 
+Outdoor pedestrian B-Channel parameters [26] . 
+
+Finger 
+Delay (nsec) 
+Avg. Power (dB) 
+
+1 
+0 
+0 
+
+2 
+200 
+0.9 
+
+3 
+800 
+4.9 
+
+4 
+1200 
+8.0 
+
+5 
+2300 
+7.8 
+
+6 
+3700 
+23.9 
+
+0
+
+200
+
+400
+
+600
+
+800
+1000
+1200
+Position Error (m)
+
+1400
+
+1600
+
+1800
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+C
+
+u
+
+m
+
+a
+u
+
+l
+
+i
+t
+
+e
+v
+
+D
+
+s
+n
+e
+
+t
+i
+
+c
+n
+u
+F
+y
+
+i
+t
+
+n
+o
+
+(
+
+D
+C
+
+F
+
+)
+
+OSMER
+OSCFAR
+
+Fig. 16. OS-MER vs OS-CFAR: Cumulative Density Function. 
+
+3 km/h. The B-Channel contains six ngers and is the median 
+spread delay case that occurs frequently (see Table 1 ). This gen- 
+erated fading channel is buried in complex-valued Gaussian noise 
+5 dB. The noisy channel coecients are sequentially 
+of variance 
+passed through an analyzing window formed of m 
+ 15 reference 
+cells surrounding the CUI. The probability of a peak value is set 
+to 1 
+/m . The slot number n is set to 3 and the statistic- 
+order k is set to 9. The OS-CFAR and OS-MER detectors are used 
+for delay estimation and the trilateration technique [25] is used to 
+estimate the mobile station position, located at (40 0 m, 120 0 m) 
+using delay measurements relative to four base stations (BS) lo- 
+cated at (0 m, 1325 m), (325 m, 10 0 0 m), (325 m, 1650 m), 
+and (650 m, 1325 m). 
+Fig. 16 shows the cumulative density functions (CDFs) of the lo- 
+cation error of the detectors. One can see that for the considered 
+scenario, the positioning algorithm based on the OS-MER detec- 
+tor performs better than the one based on the OS-CFAR detector. 
+
+=
+
+ 竹 =
+
+ 1 
+
+10 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+When using the OS-MER-based detector, the positioning errors are 
+less than 200 m for 85% of the time while they are more than 
+300 m for the same probability using the CFAR-based detector to 
+estimate the delay. 
+
+9. Conclusion 
+
+In this paper the thresholding step in a detection process has 
+been explored through many theoretical results that have been as- 
+sessed by numerical experiments. A new detection methodology, 
+referred to as Minimum Error Rate (MER), is proposed tacking ad- 
+vantage from the simplicity and eciency of the CFAR-based de- 
+tectors but in contrast to the latter, the detection threshold is com- 
+puted through the minimization of the error probability which is 
+appropriate in many application elds including the mobile local- 
+ization problem. The proposed MER-based detection technique has 
+the advantage of taking into account the prior knowledge about 
+the presence of the signal of interest. Another contribution is an 
+approximate threshold expression easier to evaluate and suitable 
+in many application contexts. The consistence of MER-based de- 
+tection methodology is illustrated through numerical experiments 
+in both homogeneous and heterogeneous background environment. 
+In particular, the numerical analysis has shown a good robustness 
+of the proposed thresholding technique w.r.t. estimation errors on 
+竹. 
+parameters S and 
+
+Appendix A 
+
+To evaluate the performance losses of the CA-MER detector 
+caused by the presence of interfering signals when detecting 
+incoherently-integrated signals we need to develop the PDF of the 
+noise power estimate Z rst. The latter can be computed, in this 
+case, using (14) and (15) . Considering the following notations a 
+(
+ S )
+(
+ I )
+2 
+ the PDF of 
+Z will be: 
+
+=
+
+考 2 
+w 
+
+ 1 
+
++
+
+,
+
+ b 
+
+=
+
+ 2 
+
+考 2 
+w 
+
+ 1 
+
++
+
+,
+
+ c 
+
+=
+
+ 2 
+
+考 2 
+w 
+
+,
+
+ d 
+
+=
+
+b 
+ (nr )
+
+nr 
+
+c 
+nr )
+ (nm 
+
+nm 
+
++
+
+ nr 
+
+,
+
+f Z 
+
+(z )
+
+=
+
+ d e 
+
+nr1 (cid:9)
+z/b 
+nr1 (cid:9)
+=0 
+k 
+=0 
+k 
+
+(cid:6)
+
+ z 
+
+0 
+1 
+rn 
+k 
+
+ y 
+(z 
+)
+
+nr1 y 
+nr1 e 
+y 
+nm 
+(I/b)
+(cid:21)nm 
+nm 
+0 
+
+ dy 
+
+=
+
+ d 
+
+C 
+
+(1)
+
+nr1 
+k e 
+z/b 
+k z 
+
+(cid:6)
+
+ z 
+
+y 
+
+nr1+
+
+ k e 
+
+y 
+(I/b)
+
+ dy 
+
+=
+
+ d 
+
+C 
+
+1 
+rn 
+k 
+
+(1)
+
+nr1 
+k e 
+z/b 
+k z 
+
+(cid:20)
+
+I 
+b 
+
+nr+
+
+ k 
+
+℅污
+
+(cid:20)
+
+ nr 
+ k,
+nm 
+t dt 
+  (s,
+污 (s,
+)
+with 
+t 
+t dt is the upper incomplete 
+ is the lower incomplete 
+ (s,
+)
+gamma function, 
+t dt is the complete gamma 
+ (s 
+)
+gamma function, and 
+t 
+function. The lower incomplete gamma function in (A.1) is given 
+by: 
+
++
+
+Iz 
+b 
+ (s 
+)
+t 
+
+(cid:21)
+
+(A.1) 
+
+ x 
+
+)
+
+=
+
+(cid:25)
+
+ x 
+
+0 
+
+1 e 
+s 
+
+=
+=
+
+ x 
+
+ x 
+
+(cid:25)
+
+ ﹢
+ ﹢
+1 (cid:9)
+nr+
+
+x 
+
+1 e 
+s 
+1 e 
+s 
+
+=
+
+(cid:25)
+
+0 
+
+ (
+
+ nr 
+ nm 
+
++
+
+ k )
+
+(cid:26)
+
+ e 
+1 
+
+z/c 
+nm 
+(cid:21)nm 
+j=0 
+
+ k 
+
+(zI/b)
+j! 
+
+j 
+
+e 
+
+zI/b 
+
+(cid:27)
+
+(A.2) 
+
+Substituting (A.2) in (A.1) leads to: 
+
+f Z 
+
+(z )
+
+=
+
+ d 
+
+nr1 (cid:9)
+=0 
+k 
+
+C 
+
+1 
+rn 
+k 
+
+(1)
+
+k 
+
+(cid:20)
+
+I 
+b 
+
+nr+
+1 (cid:9)
+nr+
+
+ k 
+
+ (
+
+ nr 
+ nm 
+
++
+
+ k )
+
+(cid:23)
+
+z 
+
+nr1 
+k e 
+z/b  nm 
+
+ k 
+
+j=0 
+
+(I/b)
+j! 
+
+j 
+
+z 
+
+nr1 
+k 
+
++
+
+ j e 
+
+z/c 
+
+(cid:24)
+
+(A.3) 
+
+To calculate the detection probability dened in (5) , we need to 
+develop the following integral I (T z )
+(s 
+)
+ ds . By Re- 
+placing f S |
+(s 
+)
+ S )
+ given in (8) with 
+ the integral 
+
+=
+缶 =
+
+(cid:25)
+
+ +
+
+﹢
+
+T z 
+考 2 
+w 
+
+f S |
+
+ H 1 
+
+|
+
+ H 1 
+
+ H 1 
+
+|
+
+ H 1 
+
+ 2 
+
+(1 
+
++
+
+,
+
+will be: 
+
+I (T z )
+
+=
+
+(cid:6)
+
+ +
+
+﹢
+
+T z 
+
+f S |
+
+ H 1 
+
+(s 
+
+|
+
+ H 1 
+
+)
+
+ ds 
+
+=
+
+(cid:6)
+
+ +
+
+﹢
+
+T z 
+
+s 
+
+1 e 
+s/
+n 
+考 2 
+w 
+
+ 2 
+
+考 2 
+w 
+
+(1+
+
+ S )
+
+(cid:18)
+
+2 
+
+(1 
+
++
+
+ S )
+
+(cid:19)
+
+n  (n 
+)
+
+ds 
+
+=
+
+
+
+(cid:18)
+
+n,
+ (n 
+)
+
+T z 
+a 
+
+(cid:19)
+
+=
+
+ e 
+
+T z/a 
+n 
+(cid:21)nm 
+l=0 
+
+1 (cid:9)
+
+(T z/a 
+)
+l ! 
+
+l 
+
+(A.4) 
+
+Substituting (A.3) and (A.4) in (5) , detection probability is: 
+
+P d 
+
+=
+
+ d 
+
+nr1 (cid:9)
+=0 
+k 
+
+C 
+
+1 
+rn 
+k 
+
+(1)
+
+k 
+
+(cid:20)
+
+I 
+b 
+
+nr+
+
+ k 
+
+ (
+
+ nr 
+ nm 
+
++
+
+ k )
+
+(cid:28)
+
+ n 
+
+1 (cid:9)
+
+l=0 
+
+(T 
+l ! 
+
+/a 
+
+)
+
+l 
+
+(cid:6)
+
+ +
+
+﹢
+
+0 
+
+z 
+
+nrk 
+
++
+
+ l1 e 
+z(1 
+/b+
+
+ T /a 
+
+)
+
+  nm 
+
+1 (cid:9)
+nr+
+
+ k 
+
+j=0 
+
+(I/b)
+j! 
+
+j 
+
+n 
+
+1 (cid:9)
+
+l=0 
+nr1 (cid:9)
+=0 
+k 
+n 
+
+(T 
+l ! 
+
+/a 
+
+)
+
+l 
+
+(cid:6)
+
+ +
+
+﹢
+
+0 
+
+z 
+
+nr1 
+k 
+(cid:21)nm 
+
++
+
+ j+
+
+ l e 
+
+z(1 
+/c+
+
+ T /a 
+
+)
+
+ dz 
+
+(cid:22)
+
+(A.5) 
+
+Performing the two integrals in (A.5) , leads to: 
+
+P d 
+
+=
+
+ d 
+
+C 
+
+1 
+rn 
+k 
+
+(1)
+
+k 
+
+(cid:20)
+
+I 
+b 
+ k 
+ (nr 
+/a )
+ k 
+污 (nr 
+(
+/a )
+
+nr+
+
+ k 
+
+ (
+
+ nr 
+ nm 
+
++
+
+ k )
+
+(cid:2)
+
+1 (cid:9)
+1 (cid:9)
+
+l=0 
+
+(T 
+l ! 
+
+/a 
+
+)
+
+l 
+
++
+
+ l )
+
+(
+
+ 1 
+
+/b 
+
++
+
+ T 
+
+nrk 
+
++
+
+ l 
+
+ nm 
+
+1 (cid:9)
+nr+
+
+ k 
+
+j=0 
+
+(I/b)
+j! 
+
+j 
+
+n 
+
+l=0 
+
+(T 
+l ! 
+
+/a 
+
+)
+
+l 
+
++
+
+ j 
+
++
+
+ l )
+
+ 1 
+
+/c 
+
++
+
+ T 
+
+nrk 
+
++
+
+ j+
+
+ l 
+
+(cid:22)
+
+(A.6) 
+
+Replacing a, b, c , and d by their values and performing some sim- 
+plications, the detection probability is given in (26) . 
+
+Appendix B 
+
+For incoherently-integrated signals (in the interference free 
+case), the PDF of the sample having the rank k in the ordered sam- 
+ple＊s set can be obtained by substituting F Y ( y ) and f Y ( y ) given in 
+(10) in (17) : 
+
+f Z 
+
+(z )
+
+=
+
+ kC 
+
+m 
+k 
+
+(cid:7)
+
+z 
+n  (n 
+)
+c 
+
+1 e 
+z/c 
+n 
+n (cid:9)
+z/c 
+l=0 
+
+(cid:8)(cid:26)
+
+e 
+
+n (cid:9)
+z/c 
+l=0 
+1 
+
+(z/c )
+l ! 
+
+l 
+
+(cid:27)
+
+ m 
+
+k 
+
+℅
+
+(cid:26)
+
+ e 
+1 
+
+(z/c )
+l ! 
+
+l 
+
+(cid:27)
+
+ k 
+
+(B.1) 
+
+By developing the last term in (B.1) , the PDF of Z will be: 
+
+f Z 
+
+(z )
+
+=
+
+ kC 
+
+m 
+k 
+
+(cid:7)
+
+z 
+n  (n 
+)
+c 
+
+1 e 
+z/c 
+n 
+n (cid:9)
+z/c 
+l=0 
+
+(cid:8)
+
+k 
+
+1 (cid:9)
+
+=0 
+i 
+
+C 
+
+1 
+k 
+i 
+1 
+i 
+
+(1)
+
+i 
+1 
+k 
+
+℅
+
+(cid:26)
+
+e 
+
+(z/c )
+l ! 
+
+l 
+
+(cid:27)
+
+ m 
+
+(B.2) 
+
+Developing again the last term in (B.2) leads to: 
+
+f Z 
+
+(z )
+
+=
+
+kC 
+ (n 
+)
+
+m 
+k 
+
+k 
+
+1 (cid:9)
+
+=0 
+i 
+
+C 
+
+1 
+k 
+i 
+
+(1)
+
+i 
+1 
+k 
+
+℅
+
+(cid:9)
+
+(cid:17)(cid:17)(cid:17)↙
+(cid:17)(cid:17)(cid:17)=
+
+ j 
+
+ m 
+
+1 
+i 
+
+C 
+
+1 
+i 
+m 
+1 
+t=0 
+
+j 0 
+
+,
+
+...
+
+, j n 
+1 
+j t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+1 
+c 
+
+(cid:20)
+
+z 
+c 
+
+(cid:21)(cid:3)
+
+ n 
+
+1 
+t=0 
+t j t 
+
++
+
+ n 
+
+1 
+
+e 
+
+(m 
+i 
+)
+
+ z/c 
+
+(B.3) 
+
+A . Boudjellal et al. / Signal Processing 140 (2017) 1每11 
+
+11 
+
+Substituting (B.2) and (8) in (5) and performing the following vari- 
+able change z 
+ cx , the detection probability is given by: 
+
+=
+
+P d 
+
+=
+
+kC 
+ (n 
+)
+
+m 
+k 
+n (cid:9)
+l=0 
+
+k 
+
+1 (cid:9)
+
+=0 
+i 
+
+C 
+
+1 
+k 
+i 
+
+(1)
+
+i 
+1 
+k 
+
+(cid:9)
+
+(cid:17)(cid:17)(cid:17)↙
+(cid:17)(cid:17)(cid:17)=
+
+ j 
+
+ m 
+
+1 
+i 
+
+C 
+
+1 
+i 
+m 
+1 
+t=0 
+
+j 0 
+
+,
+
+...
+
+, j n 
+1 
+j t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+(cid:18)
+
+T 
+
+1+
+
+ S 
+
+(cid:19)
+
+l 
+
+l ! 
+
+(cid:6)
+
+ ﹢
+
+0 
+
+x 
+
+(
+
+(cid:3)
+
+ n 
+
+1 
+t=0 
+t j t 
+
++
+
+ l+
+
+ n 
+
+1)
+
+ e 
+
+(m 
+i 
+
++
+
+ a 
+
+)
+
+ x dx 
+
+(B.4) 
+
+Computing the integral (B.4) and replacing a by its value, the de- 
+tection probability is nally given in (27) . 
+
+Appendix C 
+
+For incoherently-integrated signals (in the presence of r inter- 
+ference), the distribution of Z is obtained using the statistics of Y i 
+and U i 
+given in (13) and (18) : 
+
+F Z 
+
+(z )
+
+=
+
+m (cid:9)
+i 
+
+=
+
+ k 
+
+r )
+max 
+(i,m 
+n (cid:9)
+r )
+ min 
+(0 
+z/c 
+l=0 
+
+ (cid:9)
+
+j=
+
+,i 
+
+C 
+
+r 
+m 
+j 
+
+C 
+
+r 
+ j 
+i 
+
+℅
+
+(cid:26)
+(cid:26)
+
+e 
+
+(z/c )
+l ! 
+
+l 
+
+(cid:27)
+
+ m 
+
+r j 
+
+(cid:26)
+(cid:26)
+
+e 
+
+n (cid:9)
+z/b 
+l=0 
+n (cid:9)
+z/b 
+l=0 
+
+(z/b)
+l ! 
+
+l 
+
+(cid:27)
+
+ ri 
+
++
+
+ j 
+
+℅
+
+ e 
+1 
+
+n (cid:9)
+z/c 
+l=0 
+
+(z/c )
+l ! 
+
+l 
+
+(cid:27)
+
+ j 
+
+ e 
+1 
+
+(z/b)
+l ! 
+
+l 
+
+(cid:27)
+
+ i 
+
+ j 
+
+(C.1) 
+
+Developing the last two terms in (C.1) leads to: 
+
+F Z 
+
+(z )
+
+=
+
+m (cid:9)
+i 
+
+=
+
+ k 
+
+r )
+max 
+(i,m 
+
+ (cid:9)
+(cid:9) 
+(cid:16)
+(cid:9)
+
+j=
+
+ min 
+(0 
+
+,i 
+
+r )
+
+C 
+
+r 
+m 
+j 
+
+C 
+
+j (cid:9)
+r 
+ j 
+i 
+p=0 
+=0 
+q 
+
+i 
+
+ j (cid:9)
+
+C 
+
+j 
+p 
+
+C 
+
+ j 
+i 
+q 
+
+(1)
+
+ pq 
+i 
+
+℅
+
+|
+
+↙
+
+ p |
+
+=
+
+ m 
+
+r p 
+m 
+1 
+r p 
+t=0 
+rq 
+1 
+t=0 
+
+C 
+
+p 0 
+
+,
+
+...
+
+, p n 
+1 
+p t 
+
+ n 
+
+(t !)
+
+℅
+
+|
+
+↙
+
+ q |
+
+=
+
+ rq 
+
+C 
+
+q 0 
+
+,
+
+...
+
+,q n 
+1 
+q t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+(cid:20)
+
+z 
+c 
+
+(cid:21)(cid:3)
+
+ n 
+
+1 
+t=0 
+
+t ( p t 
+
++
+
+ q t 
+
+)
+
+e 
+
+(m 
+r p)
+
+ z/c(rq 
+)
+
+ z/b 
+
+(C.2) 
+
+The detection probability is computed using the following: 
+d I (T z )
+d z 
+
+P d 
+
+=
+
+(cid:6)
+
+ ﹢
+
+0 
+
+I (T z )
+
+ f Z 
+
+(z )
+
+ d z 
+
+=
+
+
+
+(cid:6)
+
+ ﹢
+
+0 
+
+F Z 
+
+(z )
+
+ d z 
+
+(C.3) 
+
+with I (T z )
+and 
+z 
+stituting (C.2) and the derivative of I ( Tz ) with respect to z in 
+(C.3) and performing the following variable change z 
+ cx leads 
+to: 
+
+=
+
+ e 
+
+T z/a 
+
+(cid:3)
+
+ n 
+
+1 
+(T z/a 
+)
+l=0 
+l ! 
+
+l 
+
+dI (T z )
+dz 
+j (cid:9)
+r 
+ j 
+i 
+p=0 
+=0 
+q 
+rq 
+1 
+t=0 
+
+=
+
+ (T 
+)
+ (n 
+)
+
+/a 
+n 
+
+1 e 
+T z/a . Sub- 
+n 
+
+=
+
+P d 
+
+=
+
+(cid:18)
+
+T 
+
+1+
+
+ S 
+
+(cid:19)
+
+m (cid:9)
+n 
+i 
+
+ (n 
+)
+
+=
+
+ k 
+
+r )
+max 
+(i,m 
+
+ (cid:9)
+(cid:16)
+
+j=
+
+r )
+ min 
+(0 
+r p 
+m 
+1 
+t=0 
+
+,i 
+
+C 
+
+r 
+m 
+j 
+
+C 
+
+i 
+
+ j (cid:9)
+
+C 
+
+j 
+p 
+
+C 
+
+ j 
+i 
+q 
+
+(1)
+
+ pq 
+i 
+
+℅
+
+(cid:9)
+
+|
+
+↙
+=
+ ﹢
+
+ p |
+
+ m 
+
+r p 
+
+C 
+
+p 0 
+
+,
+
+...
+
+, p n 
+1 
+p t 
+
+ n 
+
+(t !)
+
+(cid:9)
+
+|
+
+↙
+
+ q |
+
+=
+
+ rq 
+
+C 
+
+q 0 
+
+,
+
+...
+
+,q n 
+1 
+q t 
+
+(cid:16)
+
+ n 
+
+(t !)
+
+℅
+
+(cid:6)
+
+0 
+
+(
+x 
+
+(cid:3)
+
+ n 
+
+1 
+t=0 
+
+t ( p t 
+
++
+
+ q t 
+
+)+
+
+ n 
+
+1 )
+
+ e 
+
+(
+
+ m 
+
+r p+
+
+T 
+
+1+
+
+ S 
+
++
+
+rq 
+
+1+
+
+ I 
+
+)
+
+ x dx 
+
+(C.4) 
+
+The detection probability is then given in (28) . 
+
+References 
+
+[1] S.M. Kay , Fundamentals of Statistical Signal Processing: Detection Theory, Pren- 
+tice-Hall, Inc., Upper Saddle River, NJ, USA, 1993 . 
+[2] F. Gini , A. Farina , M. Greco , Selected list of references on radar signal process- 
+ing, IEEE-Tr-AES 37 (1) (2001) . 
+[3] J. Neyman , E.S. Pearson , On the problem of the most ecient tests of statistical 
+hypotheses, Philos. Trans. R. Soc.London Ser. A 231 (1933) 289每337 . 
+[4] E.L. Lehmann , J.P. Romano , Testing Statistical Hypotheses, Springer Texts in 
+Statistics, third edition, Springer, New York, 2005 . 
+[5] M. Skolnik , Radar Handbook, McGraw-Hill Education, 2008 . 
+[6] H.M. Finn , R.S. Johnson , Adaptive detection mode with threshold control as a 
+function of spatially sampled clutter level estimates, RCA Review 29 (1968) 
+414每464 . 
+[7] H.E. Bouchlaghem , M. Hamadouche , F. Soltani , K. Baddari , Adaptive clutter-map 
+CFAR detection in distributed sensor networks, AEU - Int. J. Electron. Commun. 
+70 (2016) . 
+[8] K. Berbra , M. Barkat , F. Gini , M. Greco , P. Stinco , A fast spectrum sensing for 
+CP-OFDM cognitive radio based on adaptive thresholding, Signal Process. 128 
+(2016) 252每261 . 
+[9] A. Zaimbashi , M.R. Taban , M.M. Nayebi , Y. Norouzi , Weighted order statistic 
+and fuzzy rules CFAR detector for weibull clutter, Signal Process. 88 (3) (2008) 
+558每570 . 
+[10] Y. Zhou , L.-r. Zhang , Knowledge-aided bayesian radar adaptive detection in het- 
+erogeneous environment: GLRT, rao and wald tests, AEU - Int. J. Electron. Com- 
+mun. 66 (2012) . 
+[11] A. Boudjellal , K. Abed-Meraim , A. Belouchrani , P. Ravier , A new methodology 
+for optimal delay detection in mobile localization context, in: 2013 IEEE Inter- 
+national Conference on Acoustics, Speech and Signal Processing (ICASSP), 2013, 
+pp. 6357每6361 . 
+[12] A. Boudjellal , K. Abed-Meraim , A. Belouchrani , P. Ravier , Order-statistics mini- 
+mum error detector for optimal delay detection in multipath Rayleigh fading 
+channel context, 2013 8th International Workshop on Sys., SP and their App. 
+(WoSSPA), 2013 . 
+[13] P. Grieve , The optimum constant false alarm probability detector for relatively 
+coherent multichannel signals in gaussian noise of unknown power, Inf. Theory 
+IEEE Trans. 23 (1977) 708每721 . 
+[14] M. Barkat , Signal Detection and Estimation, Artech House radar library, Artech 
+House, Norwood, 2005 . 
+[15] B.R. Mahafza , Radar Systems Analysis and Design Using MATLAB, 1st edition, 
+CRC Press, Inc., Boca Raton, FL, USA, 20 0 0 . 
+[16] H. Rohling , Radar CFAR thresholding in clutter and multiple target situations, 
+IEEE-Tr-AES 19 (4) (1983) . 
+[17] M. Shor , N. Levanon , Performances of order statistics CFAR, IEEE-Tr-AES 27 (2) 
+(1991) . 
+[18] C.H. Lim , H.S. Lee , Performance of order-statistics CFAR detector with non- 
+coherent integration in homogeneous situations, IEE Proc. Radar SP 140 (5) 
+(1993) 291每296 . 
+[19] P.P. Gandhi , S.A. Kassam , Optimality of the cell averaging CFAR detector, IEEE 
+Trans. Inf. Theory 40 (4) (1994) 1226每1228 . 
+[20] H.C. Yang , M.S. Alouini , Order Statistics in Wireless Communications: Diversity, 
+Adaptation, and Scheduling in MIMO and OFDM Systems, Cambridge Univer- 
+sity Press, 2011 . 
+[21] J. Proakis , Digital Communications, 4 edition, McGraw-Hill, 20 0 0 . 
+[22] J.C. Liberti , T.S. Rappaport , Smart Antennas for Wireless Communications: IS-95 
+and Third Generation CDMA Applications, Prentice Hall PTR, Upper Saddle 
+River, NJ, USA, 1999 . 
+[23] B. Sklar , Digital Communications: Fundamentals and Applications, Pren- 
+tice-Hall, Inc., Upper Saddle River, NJ, USA, 1988 . 
+[24] J.-M. Chaufray , P. Loubaton , P. Chevalier , Consistent estimation of rayleigh fad- 
+ing channel second-order statistics in the context of the wideband CDMA 
+mode of the UMTS, Signal Process. IEEE Trans. 49 (12) (2001) 3055每3064 . 
+[25] A . Boudjellal , A . Belouchrani , K. Abed-Meraim , ＆a new ToAs＊ CA-CFAR Wiener 
+Rake estimator for downlink mobile positioning in UMTS-FDD system, in: 2011 
+7th International Workshop on Systems, SP and their Applications (WOSSPA), 
+2011, pp. 343每347 . 
+[26] 3GPP TR 101.112 UMTS, ※Selection procedures for the choice of radio transmis- 
+sion technologies of the UMTS (UMTS 30.03 version 3.1.0),§ Tech. Rep., UMTS, 
+Avril 1988. 
+

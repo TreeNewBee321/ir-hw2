@@ -1,0 +1,6514 @@
+Stability analysis of nonlinear digital systems under hardware overow constraint for dealing with nite word-length effects of digital technologies 
+
+Muhammad Umair Amjad 
+a , Muhammad Rehan 
+Haroon Ur Rashid 
+
+a 
+
+, Muhammad Tufail 
+a , Choon Ki Ahn 
+
+b , 
+
+
+
+a , 
+
+a Department of Electrical Engineering, Pakistan Institute of Engineering and Applied Sciences (PIEAS), Islamabad, Pakistan 
+b School of Electrical Engineering, Korea University, Seoul 136-701, Korea 
+
+article 
+
+info
+
+Article history: 
+Received 14 December 2016 
+Revised 1 May 2017 
+Accepted 3 May 2017 
+Available online 10 May 2017 
+
+Keywords: 
+Stability analysis 
+Digital hardware overow 
+Finite word-length effects 
+Nonlinear digital systems 
+Linear matrix inequality 
+
+abstract
+
+The purpose of this paper is to examine stability and originate stability criteria for nonlinear digital sys- 
+tems under the inuence of saturation overow, both in the absence and presence of external interfer- 
+ence. The developed approaches can be employed to analyse overow oscillation-free implementation 
+of a nonlinear digital system under saturation overow nonlinearity, caused by the nite word-length 
+limitation of a digital hardware, such as computer processor or micro-controller. Asymptotic stability is 
+examined in the absence of disturbance, whereas in the presence of external interference, the form of 
+stability ensured is uniformly ultimately bounded stability, in which the states trajectories converge to an 
+ellipsoidal region around the origin. In most of the studies reported so far, the authors have performed 
+the overow stability analysis of linear systems but very little (if any) work has been reported on the 
+overow oscillation elimination (for nonlinear systems). In the present work, sector conditions derived 
+from saturation constraint along with Lipschitz condition are used with a suitable Lyapunov function for 
+the stability analysis of nonlinear digital systems under overow. The validity and ecacy of these crite- 
+ria are tested by using examples from real nonlinear physical systems, including Moon chaotic system＊s 
+observer and recurrent neural network. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+An electrical signal, having specic magnitude and frequency, 
+can be processed by a digital lter to suppress the noisy com- 
+ponents. There are many applications of digital lters, such as 
+speech signal processing, digital image processing, medical elec- 
+tronics, geophysics, seismographic data processing, thermal pro- 
+cesses, heating water stream, communication, defense, and spec- 
+trum and vibration analyses [1每3] and [4每6] . Implementation of 
+digital systems in hardware causes problems due to nite word- 
+length limitation of the hardware that can result into overow os- 
+cillations, limit cycles, instabilities and performance degradation. 
+This highlights the signicance of analysis and design of digi- 
+tal systems under the repercussions of overow and quantization 
+nonlinearities [7每12] (see also the works in [13每18] ). It may be 
+noted that decoupling of overow and quantization effects can be 
+achieved if the number of quantization steps is suciently large 
+[13,14,19] . Moreover, several low order digital lter units are gen- 
+erally cascaded to realize a high order digital lter, prompting mu- 
+tual interference problem, that may lead to performance degrada- 
+tion and even complete failure of the digital lter [1] . 
+Many studies have discussed the elimination of overow os- 
+cillations in linear digital lters and systems such as [20每30] . In 
+[20] , zero-input overow oscillation elimination analysis has been 
+reported for arbitrary order lossless digital integrators and differ- 
+entiators, provided certain conditions are satised. Stability criteria 
+development for the elimination of overow oscillations for direct- 
+form digital lters, in the presence of saturation overow, has been 
+dealt with, in the work [21] , which proclaims the global asymp- 
+totic stability of the states of a lter. The criterion presented in 
+[24] also deals with the global stability in the presence of sat- 
+uration overow nonlinearity. However, compared to [21] , xed- 
+point state-space digital lters with zero-input have been consid- 
+ered and structural properties of multiple saturation nonlinearities 
+are investigated in [24] . The paper [22] presents a criterion for 
+
+H
+
+ ﹢
+
+140 
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+,
+
+ ﹢
+
+ ﹢
+
+ ﹢
+
+H
+
+H
+
+H
+
+disturbance elimination, which guarantees exponential and robust 
+stability for the linear digital systems with saturation arithmetic in 
+the absence and presence of external interference. The results in 
+[23,26] incorporate the impact of different combinations of over- 
+ow and quantization nonlinearities for the global asymptotic sta- 
+bility of xed-point state-space digital lters. 
+The research paper in [25] presents a less conservative and 
+multi-bound-dependent stability criterion that includes bound- 
+dependent delay under overow constraint for the xed-point 
+state-space digital systems. In the work [27] , a new criteria for 
+the externally interfered and saturation overow affected direct- 
+form digital lters to ensure input or output to state stability has 
+been developed, which also guarantees output to state stability and 
+asymptotic stability in the absence of disturbance. A dissipativity 
+criterion has been established for the externally interfered xed- 
+point digital lters under overow nonlinearity in [28] , which in- 
+troduces 
+ passivity and mixed 
+ /passivity performances in a 
+combined structure. Recently, in [30] one-dimensional (1-D) dig- 
+ital lter＊s local stability has been investigated, under overow 
+constraint, by developing LMI-based stability criteria while utiliz- 
+ing the local saturation arithmetic. One of these criteria is a lo- 
+cal asymptotic stability criterion, considering zero external distur- 
+bance, and the other one is an 
+ criterion for analyzing external 
+interferences rejection performance. Global stability analysis has 
+been treated as a special case of the presented local stability anal- 
+ysis in the same work. 
+Linear two-dimensional (2-D) systems [31] under overow and 
+external interferences form the subject matter of the works [32每
+36] , with the noise assumed to be deterministic in [33,34] . For 
+the local state-space (LSS) Fornasini每Marchesini modeled two- 
+dimensional digital lters, new criteria for the global asymptotic 
+overow stability have been established in [32] , which are less 
+conservative than the previously cited works. The approach of 
+[33] actually considers the effect of both quantization and over- 
+ow nonlinearities for the 2-D lter case. Another work on stability 
+analysis of the digital systems under overow function in [35] con- 
+siders the Wiener-type stochastic external noise for the stability in- 
+vestigation, which is more realistic than the case of deterministic 
+perturbations. In another work, [36] , the proposed stability crite- 
+rion to eliminate overow oscillations, can be deployed for linear 
+parameter varying time-variant digital lters, considering overow 
+effects, and disturbance in states and output of the system. The 
+same criterion in [36] , certies both, the overow stability in ab- 
+sence of input, and 
+ performance. In [29] , two new criteria have 
+been established for input to state stability, by utilizing the input- 
+output information, for xed-point state-space and direct form dig- 
+ital lters by considering the effects of external interference. 
+It has been observed that most of the available literature, in- 
+cluding the above-mentioned works, addresses the stability anal- 
+ysis of linear digital systems in the presence of overow con- 
+straint. Even if stability analysis of nonlinear digital systems is dis- 
+cussed, the effects of overow are not incorporated [37每41] . There 
+are many examples of nonlinear digital systems implemented on a 
+hardware like a computer processor, eld-programmable gate array 
+(FPGA), digital signal processing (DSP) kits or a micro-controller 
+for signal processing, control and communication applications by 
+considering the hardware constraints as observed in the litera- 
+ture [42每44] . For instance, observer or state lter for the nonlin- 
+ear systems [45] are also nonlinear, which are implemented digi- 
+tally. Similarly, digital controllers for nonlinear systems [46] used 
+to regulate the behavior by taking advantages of the digital tech- 
+nology are also nonlinear. Neural networks, implemented in digi- 
+tal hardware, contain nonlinear components [47] , which are em- 
+ployed for several ltering, control, image processing, and pattern 
+recognition applications. Adaptive systems and controllers are also 
+inherently nonlinear, therefore, their digital implementation con- 
+
+H
+
+ ﹢
+
+stitutes a nonlinear digital system [48] . Another example of non- 
+linear digital system is controller for feedback linearization [49] . 
+Recursive least square (RLS) algorithm can also be referred to as 
+a nonlinear digital system which can be realized in a digital hard- 
+ware [50] . Practically, digital nonlinear systems hold a great deal of 
+importance, and therefore, stability analysis for these systems is an 
+important task in the presence of overow, which is inevitable in 
+any digital hardware, and also in the presence of inescapable ex- 
+ternal interferences. However, this non-trivial problem of stability 
+analysis of nonlinear digital systems subject to the hardware over- 
+ow constraints, having remarkable practical importance, is not ev- 
+idently addressed in the previous methods. 
+This research work focuses on the development of overow sta- 
+bility criteria for (xed-point) Lipschitz nonlinear systems in the 
+absence or presence of external perturbations to examine overow 
+oscillation-free implementation of the digital system on a com- 
+puter processor, FPGA, DSP kits or a micro-controller. Stability con- 
+ditions have been derived using the Lyapunov theory along with 
+the sector condition attained from the saturation nonlinearity and 
+the Lipschitz condition. These stability criteria have been presented 
+in form of linear matrix inequalities (LMIs), which offers computa- 
+tional convenience for the stability analysis. In the absence of the 
+external interferences, the proposed criterion can be used to anal- 
+yse asymptotic stability of the nonlinear digital system under over- 
+ow. Furthermore, a condition for external interference attenuation 
+analysis of the nonlinear digital system with the saturation-type 
+overow has been provided, which ensures convergence of the sys- 
+tem＊s states into an ellipsoidal region. 
+In contrast to the previous works on the stability analysis of 
+the digital systems (or lters) under overow constraint (like [20每
+30,32每36] ), the effects of both the overow nonlinearity and the 
+nonlinear dynamical digital component have been studied while 
+acquiring the stability conditions for the nonlinear digital systems 
+for consideration of hardware implementation. The present work 
+addresses a fundamental and inaugural problem of the stability 
+analysis of the digital systems with hardware constraints and in- 
+herent nonlinear complexity. Therefore, the proposed approach can 
+handle the nonlinear ltering algorithms and can also be readily 
+applied to the linear counterpart as a specic case. In addition, the 
+resultant analysis conditions can be applied to the nonlinear digital 
+systems under overow nonlinearity in the presence of bounded 
+external interferences to attain an idea of the external interfer- 
+ences attenuation level of a lter. The stability criteria have been 
+applied to the overow oscillation elimination analysis of two non- 
+linear physical systems, including state lter for the observer of 
+Moon chaotic system and recurrent neural network (RNN) and the 
+solutions attained are provided to depict validity of the proposed 
+approaches. 
+The organization of the remaining paper is as follows: 
+Section 2 presents the general structure of the concerned digital 
+system and associated assumptions. Detailed stability analysis for 
+the nonlinear digital systems, without disturbance, and representa- 
+tion of the nal results in form of LMIs are provided in Section 3 . 
+The results are extended in Section 4 to consider the external dis- 
+turbance. The proposed methods have been employed for overow 
+stability analysis of two physical nonlinear systems and the re- 
+sults are presented in Section 5 . Finally, conclusions are drawn in 
+Section 6 . 
+Notations : The notation 
+(R 
+)
+ means the maximum eigen- 
+value of a positive-denite matrix R . 
+
+ 0 denotes that the ma- 
+
+trix 
+is negative-denite. Similarly, a positive-denite matrix P 
+is symbolized by P 
+ is the Euclidean norm operator. k and t 
+are independent variables indicating sample number and time in- 
+n represents that the vector di- 
+stant, respectively. The symbol 
+℅1, while 
+℅m shows that the matrix dimension is 
+mension is n 
+℅m . 
+n 
+
+竹max 
+
+(cid:4)﹞(cid:4)
+
+ 0 . 
+
+<
+
+>
+
+1 
+
+1 
+
+n 
+
+R
+
+R
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+141 
+
+2. System description 
+
+The concerned digital system is expressed as 
+x 
+(k 
+ 1)
+ f (
+(k 
+))
+(k 
+)
+
++
+=
+
+=
+
+ y 
+
++
+
+ B w w 
+
+,
+
+(1) 
+
+y 
+(k 
+)
+
+ Ax 
+(k 
+)
+﹞ ﹞ ﹞ x n 
+(k 
+)
+(k 
+)
+(k 
+)] 
+where x 
+﹞ ﹞ ﹞ w m 
+ denotes the state vec- 
+(k 
+)
+(k 
+)
+(k 
+)
+(k 
+)] 
+m represents exter- 
+tor, and w 
+nal interference. The vector inuenced by overow is indicated 
+﹞ ﹞ ﹞ y n 
+℅n is the coecient 
+(k 
+)
+(k 
+)
+(k 
+)
+(k 
+)] 
+by y 
+℅m is a matrix of known constants associated 
+matrix and B w 
+with the disturbance vector. The important term in this system is 
+﹞ ﹞ ﹞ g(x n 
+g(
+(k 
+))
+(k 
+))
+(k 
+))
+(k 
+))] 
+n compared to the 
+existing works, which represents the nonlinear component of the 
+system. 
+﹞) represents the saturation overow nonlinearity 
+The function f ( 
+satisfying 
+
++
+
+ g(
+(k 
+))
+(k 
+)
+
+ x 
+
+,
+
+(2) 
+
+=
+
+ [ x 1 
+ x 2 
+ [ w 1 
+ w 2 
+
+T ﹋
+
+R
+
+n ,
+T ﹋
+
+=
+
+R
+
+=
+
+ [ y 1 
+
+ y 2 
+
+T ﹋
+
+R
+
+n ,
+
+ A 
+
+﹋
+
+R
+
+n 
+
+﹋
+
+R
+
+n 
+
+ x 
+
+=
+
+ [ g(x 1 
+
+ g(x 2 
+
+T ﹋
+
+R
+
+f (y i 
+(k 
+))
+
+=
+
+
+ 
+ 
+
+1 
+(k 
+)
+(k 
+)
+ 1 
+1 
+When a system is implemented in a digital hardware like a pro- 
+cessor, DSP kits or a micro-controller, overow of the states occur 
+(due to nite word-length effect) may cause severe performance 
+degradation. For the present case, the nonlinear digital system 
+given by (1) 每(2) is considered under the effect of saturation over- 
+ow. A large number of digital systems contain nonlinear compo- 
+nents and examples of such systems include digital state-space l- 
+ters, neural networks, adaptive systems, controllers and observers. 
+
+if y i 
+
+(k 
+)
+ 1 
+(k 
+)
+
+>
+
+ 1 
+
+,
+
+y i 
+
+if 
+
+≒ y i 
+
+≒ 1 
+
+,
+
+if y i 
+
+<
+
+.
+
+(3) 
+
+Assumption 1. The nonlinearity g(
+(k 
+))
+ g(
+≒ L 
+ x 
+ g(
+(k 
+))
+ x 
+(k 
+))
+(k 
+)
+(k 
+)
+where x 
+(k 
+)
+ x 
+(k 
+)
+n and L is the Lipschitz constant of a known 
+nite value. 
+
+ x 
+
+ satises 
+
+(cid:4)
+
+ x 
+
+(cid:4)
+
+(cid:4)
+
+ x 
+
+(cid:4)
+
+,
+
+(4) 
+
+,
+
+﹋
+
+R
+
+Remark 1. Assumption 1, well-known as the Lipschitz condition, 
+is a property used to ensure continuity of a function g(
+(k 
+))
+ . This 
+condition can be validated for all differentiable functions; there- 
+fore, a large number of the digital systems satises this condition. 
+It is required to ensure well-posedness of a digital system like (1) 每
+(2) . If Assumption 1 is validated, a nonlinear digital system of type 
+(1) 每(2) can be smoothly implemented via digital technologies. 
+
+ x 
+
+Assumption 2. The amplitude of the external interference is 
+bounded, that is, 
+(k 
+)
+
+w 
+
+T (k 
+
+)
+
+ w 
+
+≒ 汛.
+
+(5) 
+
+The present study assumes that the value of tolerable bound on 
+the amplitude of external interference, in the form of 
+汛 , is known 
+a priori for the stability analysis. In most of the cases, a guess 
+of the worst case amplitude of external perturbations is available, 
+汛 can be obtained. Based on the value 
+through which an idea of 
+汛 , our approach aims to provide an estimate of the region in 
+of 
+which state of the nonlinear digital lter converges. If the value of 
+汛 is unknown, we can still obtain the stability information; how- 
+ever, estimate of the region cannot be obtained. 
+
+Remark 2. Most of the existing research work has been accom- 
+plished to devise stability criteria for the linear digital systems un- 
+der overow in the presence or absence of external interferences 
+[20每24] (see also [25每30,32每36] ). These existing works have ig- 
+nored the presence of any nonlinearity in a digital system. In the 
+present work, we have incorporated a nonlinear function g( x (k), 
+which satises the Lipschitz condition in Assumption 1. Time- 
+derivatives of many nonlinearities have bounded values, which sat- 
+isfy the Lipschitz condition. Therefore, Assumption 1 is valid for a 
+
+large number of digital systems since most of the nonlinearities are 
+either globally or locally Lipschitz and satisfy the inequality (4) . 
+
+The following sector condition is obtained from the saturation 
+condition (3) : 
+
+f 
+
+T (
+
+ y 
+
+(k 
+))
+
+ f (
+
+ y 
+
+(k 
+))
+
+≒ y 
+
+T (k 
+
+)
+
+ y 
+
+(k 
+)
+
+.
+
+(6) 
+
+The condition (6) can be employed to derive the stability investiga- 
+tion criteria for the nonlinear system (1) 每(2) , under overow. The 
+aim of this research is to develop a criterion to study asymptotic 
+stability for a nonlinear digital system under saturation overow 
+constraint in the absence of external interference. Another criterion 
+will be developed for the system (1) 每(2) to examine uniformly ul- 
+timately bounded stability in the presence of external disturbances. 
+
+3. Stability analysis for nonlinear digital system 
+
+In this section, a criterion for the asymptotic stability is estab- 
+lished for nonlinear digital systems without external interferences 
+under overow nonlinearity. 
+
+Theorem 1. Suppose there exist positive-denite matrices N (diago- 
+
+nal), P 
+ and Q 
+ and positive scalars 
+, 
+, 
+, and 
+. If the LMI 
+ 0 holds, where 
+
+,
+
+,
+
+汍
+
+ 1 
+
+汍
+
+ 2 
+
+汍
+
+ 3 
+
+汍
+
+ 4 
+
+1 
+
+<
+
+1 
+
+=
+
+
+ 
+ 
+ 
+ 
+
+11 A 
+T N 
+T 
+22 
+
+0 
+0 
+
+0 
+
+汍
+
+ 1 A 
+
+T 
+
+NA 
+0 
+0 
+
+汍
+
+ 2 A 
+
+T 
+
+N 
+0 
+0 
+
+0 
+
+Q 
+
+ 汍
+
+ 2 I 
+
+0 
+
+汍
+
+ 2 A 
+
+0 
+0 
+
+汍
+
+ 2 I 
+
+ 汍
+
+ 4 I 
+
+汍
+
+ 1 A 
+
+N 
+
+T 
+
+0 
+
+汍
+
+ 1 I 
+
+ 汍
+
+ 3 I 
+
+
+ 
+ 
+ 
+ 
+
+,
+
+(7) 
+
+where 
+
+11 
+22 
+
+=
+=
+
+P 
+ Q 
+ 2 N 
+then asymptotic stability is ensured for the Lipschitz nonlinear dig- 
+ital system (1) 每(2) under saturation overow nonlinearity and zero 
+external interference. 
+
++
+
+汍
+
+ 1 A 
+
+T A 
+
++
+ 汍
+
+汍
+
+ 3 L 
+ 1 I 
+
+2 I 
+
+,
+
+ P 
+
++
+
+汍
+
+ 2 A 
+
+T A 
+
++
+
+汍
+
+ 4 L 
+
+2 I 
+
+,
+
+Proof. Consider, the overow-constrained digital system (1) 每(2) 
+and let the Lyapunov function be 
+
+V 
+(
+
+ x 
+
+(k 
+))
+
+=
+
+ x 
+
+T (k 
+
+)
+ Px 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+ Q f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+,
+(8) 
+℅n and Q 
+℅n are positive-denite symmetric ma- 
+where P 
+trices. Taking the rst difference of V ( x ( k )), we obtain 
+ V 
+(k 
+ 1))
+(
+(k 
+))
+ 1)
+(k 
+ 1)
+ Px 
+(k 
+ 1)
+ g(
+ Ax 
+ x 
+(k 
+ 1)))
+(k 
+)))
+ Q f (
+ Ax 
+(k 
+)
+
++
+
+ f 
+
+T (
+
++
+
+ x 
+
++
+
+ x 
+
+﹋
+
+R
+
+n 
+
+﹋
+
+R
+
+n 
+
+V 
+(
+
+ x 
+
+(k 
+))
+
+=
+=
+
+ V 
+
+(
+
+ x 
+
++
++
+
+ x 
+
+ x 
+
+T (k 
+T (
+
++
++
+
++
++
++
+
+ f 
+
++
+
+ x 
+
+(k 
+ 1)))
+)
+(k 
+)
+ Px 
+ g(
+(k 
+)))
+
++
+
+ Q f (
+
+ Ax 
+(k 
+(k 
+)
+ Ax 
+
++
+
+ 1)
+
+ g(
+ g(
+
+ x 
+
++
+
+T (k 
+
++
+
+ f 
+
+T (
+
+ x 
+
++
+
+ x 
+
+.
+
+Substituting Ax 
+(k 
+)
+
++
+
+ g(
+
+ x 
+
+(k 
+))
+
+ for y 
+(k 
+)
+
+ and simplifying, we have 
+ Q ] f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))[ P 
+ Ax 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+(k 
+)
+P f (
+ Ax 
+(k 
+)
+(k 
+)))
+)
+(k 
+)
+ A f (
+(k 
+))
+(k 
+))
+(k 
+)))
+ Q f (
+ A f (
+(k 
+))
+ x 
+(k 
+))
+(k 
+)))
+)
+ Px 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+ N [ Ax 
+(k 
+)
+ g(
+(k 
+))
+ 2 f 
+ f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))] 
+(k 
+))
+(k 
+)
+
+V 
+(
+
+ x 
+
+(k 
+))
+
+=
++
++
++
++
++
++
+
+ f 
+
+T (
+
++
++
+
+ x 
+
++
+
+ g(
+
+ x 
+
+(k 
+)))
+
+ f 
+
+T (
+
+ x 
+
+ PB w w 
+
+ w 
+
+T (k 
+T (k 
+
+)
+
+ B 
+
+T 
+w 
+
++
++
+
+ g(
+
+ x 
+
+ w 
+
+ B 
+
+T 
+PB w w 
+w 
+
+ f 
+
+T (
+
+ y 
+
++
+
+ AB w w 
+ AB w w 
+
+(k 
+)
+(k 
+)
+
+ g( f (
+ g( f (
+
+ y 
+
++
++
++
+
+ B w w 
+
+ y 
+
++
+
+ y 
+
+ B w w 
+
+T (k 
+
+ 2 f 
+
+T (
+
+ x 
+
++
+
+ x 
+
+ f (
+
++
+
+ x 
+
+T (
+
+ y 
+
+ N [ y 
+
+ y 
+
+(k 
+))] 
+(9) 
+
+,
+
+142 
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+for a positive-denite diagonal matrix N 
+tion (6) yields 
+
+﹋
+
+R
+
+n 
+
+℅n . The sector condi- 
+
+f 
+
+T (
+
+ y 
+
+(k 
+))
+
+ f (
+
+ y 
+
+(k 
+))
+
+=
+≒ (
+
+ f 
+
+T (
+
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+
++
+
+ x 
+
+ f (
+ Ax 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+
++
+
+ g(
+(k 
+)))
+(k 
+)))
+
+ x 
+
++
+
+ x 
+
+T (
+
++
+
+ x 
+
+,
+
+(10) 
+
+f 
+
+T (
+
+ y 
+
+(k 
+ 1))
+ f (
+(k 
+ A f (
+(k 
+))
+℅ f 
+(
+(
+(k 
+))
+ A f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+ A f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+
++
+
+ y 
+
++
+
+ 1))
+
+=
+
+ f 
+
+T (
+
+ y 
+
++
++
+
+ AB w w 
+ AB w w 
+
+(k 
+)
+(k 
+)
+
++
++
+
+ g( f (
+(k 
+))
+(k 
+)))
+ g( f (
+(k 
+))
+(k 
+)))
+(k 
+)
+ g( f (
+(k 
+))
+(k 
+)
+ g( f (
+(k 
+))
+
+ y 
+
++
++
+
+ B w w 
+ B w w 
+ y 
+
+ A f 
+
+ y 
+
+ y 
+
+≒ (
+℅(
+
++
++
+
+ x 
+
++
++
+
+ AB w w 
+ AB w w 
+
++
++
+
++
++
+
+ B w w 
+ B w w 
+
+(k 
+)))
+(k 
+)))
+(11) 
+
+T 
+
+ x 
+
+ y 
+
+.
+
+Rearranging (10) and multiplying it with a positive scalar 
+get 
+
+汍
+
+1 
+
+, we 
+
+F 1 
+
+(k 
+)
+
+=
+
+汍
+
+ 1 [ x 
+
+T (k 
+T (
+
+)
+
+ A 
+
+T A x 
+
+(k 
+)
+(k 
+))
+ Ax 
+(k 
+)
+) + g(
+ Ax 
+(k 
+
++
++
+
+ x 
+
+T (k 
+T (
+
+)
+
+ A 
+
+T g(
+(k 
+))
+(k 
+))
+ g(
+(k 
+))
+) + g(
+ f (
+ Ax 
+(k 
+
+ x 
+
++
+
+ g 
+
+ x 
+
+ g 
+
+ x 
+
+ x 
+
+ f 
+
+T (
+
+ x 
+
+(k 
+)))
+
+ x 
+
+≡ 0 
+(k 
+)))] 
+
+.
+
+(12) 
+
+Similarly, for (11) , we have 
+
+F 2 
+
+(k 
+)
+
+=
+
+汍
+
+ 2 [ f 
+
+T (
+
+ Ax 
+(k 
+)
+(k 
+)
+ Ax 
+ Ax 
+(k 
+)
+
++
++
++
+
+ g(
+ g(
+ g(
+T A f (
+A 
+
+ x 
+
+(k 
+)))
+(k 
+)))
+(k 
+)))
+ Ax 
+(k 
+)
+(k 
+)
+(k 
+))
+(k 
+))
+(k 
+))
+
+ A 
+
+T A f (
+
+ Ax 
+(k 
+)
+(k 
+)
+T g( f (
+(k 
+))
+ g(
+(k 
+)))
+)
+
++
+
+ g(
+
+ x 
+
+(k 
+)))
+
++
++
++
++
++
++
++
+
+ f 
+
+T (
+
+ x 
+
+ A 
+
+T AB w w 
+
+ f 
+
+T (
+
+ x 
+
+ A 
+
+ y 
+
++
+
+ B w w 
+
+(k 
+))
+
+ w 
+
+T (k 
+T (k 
+
+)
+
+ B 
+
+T 
+w 
+
++
++
++
++
+
+ x 
+
+ w 
+
+)
+
+ B 
+
+T 
+w 
+
+A 
+
+T AB w w 
+
+ w 
+
+T (k 
+
+ B 
+
+T 
+w 
+
+A 
+T g( f (
+(k 
+))
+ A f (
+(k 
+))
+ g( f (
+(k 
+))
+) + g( f (
+(k 
+(k 
+)
+ g( f (
+
+ y 
+
+(k 
+))
+(k 
+)
+ Ax 
+(k 
+)
+(k 
+))
+
+ B w w 
+
+(k 
+))
+ g(
+(k 
+)))
+T ( f (
+(k 
+))
+ f 
+)) +
+ A f (
+(k 
+℅ f 
+(
+(
+(k 
+))
+≡ 0 
+
++
++
+
+ g 
+
+T ( f (
+T ( f (
+
+ y 
+
+ B w w 
+
+ x 
+
+ g 
+
+ y 
+
+ B w w 
+
+ AB w w 
+
+ g 
+
+ y 
+
++
+
+ B w w 
+
+ y 
+
++
+
+ B w w 
+
+T (
+
+ y 
+
+ AB w w 
+ AB w w 
+
+ y 
+
+)) +
+(k 
+(k 
+))
+
+ B w w 
+ B w w 
+
+(k 
+)))
+(k 
+)))] 
+(13) 
+
+ A f 
+
+ y 
+
++
+
++
+
+ y 
+
++
+
+.
+
+Now employing the inequalities (12) and (13) in (9) we obtain 
+≒ f 
+ Q ] f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))[ P 
+ Ax 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+(k 
+)
+P f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+(k 
+))
+(k 
+)
+ g( f (
+(k 
+))
+(k 
+))
+(k 
+)
+ g( f (
+(k 
+))
+)
+ Px 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+ f (
+(k 
+))
+(k 
+)
+ g(
+(k 
+)))] 
+ Ax 
+ f (
+(k 
+))
+(k 
+)
+(k 
+))] 
+
+V 
+(
+
+ x 
+
+(k 
+))
+
+T (
+
++
+
+ x 
+
++
+
+ g(
+
+ x 
+
+(k 
+)))
+
++
++
++
+
+ f 
+
+T (
+
++
+
+ x 
+
+ PB w w 
+
+ w 
+
+T (k 
+T (
+
+)
+
+ B 
+
+T 
+w 
+
++
+
+ x 
+
++
+
+ w 
+
+T (k 
+
+)
+
+ B 
+
+T 
+PB w w 
+w 
+
+(k 
+)
+(k 
+)))
+(k 
+)))
+(k 
+)
+ N [ Ax 
+
+ f 
+
+ A f (
+(
+
+ y 
+
++
++
++
+
+ AB w w 
+ AB w w 
+T (
+
++
++
++
+
+ y 
+
++
++
+
+ B w w 
+ B w w 
+
+ Q 
+
+℅ f 
+(
+ x 
+ g(
+ 2 f 
+
+ A f 
+
+ y 
+
+ y 
+
+T (k 
+
+ 2 f 
+
+ x 
+
++
+
+ x 
+
++
+
+ x 
+
+T (
+
+ y 
+
+ N [ y 
+
+ y 
+
++
+
+ F 1 
+
+(k 
+)
+
++
+
+ F 2 
+
+(k 
+)
+
+.
+
+(14) 
+
+For positive scalars 
+汍
+≒ x 
+(k 
+)
+ 1))
+
+3 
+T (k 
+2 x 
+
+and 
+
+汍
+
+4 
+
+, Assumption 1 implies 
+
+g 
+
+T (
+
+ x 
+
+(k 
+))
+(k 
+)
+(k 
+
+ g(
+
+ x 
+
+(k 
+))
+
+)
+
+ L 
+
+T L x 
+T (
+
+(k 
+)
+
+,
+
+F 3 
+T (
+
+=
++
+
+汍
+
+ 3 x 
+
+T (k 
+
+)
+
+ L 
+
+ 汍
+
+ 3 g 
+
+ x 
+
+(k 
+))
+ 1)
+
+ g(
+
+ x 
+
+(k 
+))
+(k 
+
+≡ 0 
+ 1)
+
+,
+
+g 
+
+ x 
+
+ 1))
+
+ g(
+
+ x 
+
+(k 
+
++
+
+≒ x 
+
+T (k 
+
++
+
+ L 
+
+T L x 
+
++
+
+,
+
+(15) 
+
+F 4 
+
+(k 
+)
+
+=
+
+汍
+
+ 4 [ f 
+
+T (
+
+ Ax 
+(k 
+)
+(k 
+)
+ Ax 
+
++
++
+
+ g(
+ g(
+2 f (
+L 
+(k 
+))
+
+ x 
+
+(k 
+)))
+(k 
+)))
+(k 
+)
+ Ax 
+
+ L 
+
+2 f (
+
+ Ax 
+(k 
+)
+(k 
+)
+ g(
+(k 
+)))
+(k 
+))
+ g( f (
+
++
+
+ g(
+
+ x 
+
+(k 
+)))
+
++
++
+ 汍
+
+ f 
+
+T (
+
+ x 
+
+ L 
+
+2 B w w 
+
+ w 
+
+T (k 
+
+)
+
+ B 
+
+T 
+w 
+
++
+
+ x 
+
++
+
+ w 
+
+T (k 
+
+)
+
+ B 
+
+T 
+w 
+
+L 
+(k 
+))
+
+2 B w w 
+
+(k 
+)] 
+≡ 0 
+(16) 
+
+ 4 g 
+
+T ( f (
+
+ y 
+
++
+
+ B w w 
+
+ y 
+
+(k 
+))
+
++
+
+ B w w 
+
+.
+
+The conditions (15) and (16) are added to the inequality (14) to 
+obtain an upper bound on 
+V 
+(
+(k 
+))
+ as 
+≒ f 
+ Q ] f (
+V 
+(
+(k 
+))
+ Ax 
+(k 
+)
+ g(
+(k 
+)))[ P 
+ Ax 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+(k 
+)
+P f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+(k 
+))
+(k 
+)
+ g( f (
+(k 
+))
+(k 
+)
+ g( f (
+)
+ Px 
+(k 
+)
+ Ax 
+(k 
+)
+ g(
+(k 
+))
+ Ax 
+(k 
+)
+(k 
+))] 
+
+ x 
+
+ x 
+
+T (
+
++
+
+ x 
+
++
+
+ g(
+
+ x 
+
+(k 
+)))
+
++
++
++
+
+ f 
+
+T (
+
++
+
+ x 
+
+ PB w w 
+
+ w 
+
+T (k 
+T (
+
+)
+
+ B 
+
+T 
+w 
+
++
+
+ x 
+
++
+
+ w 
+
+T (k 
+
+)
+
+ B 
+
+T 
+PB w w 
+w 
+
+(k 
+)
+(k 
+)))
+(k 
+)))
+(k 
+)
+ N [ Ax 
+
+ f 
+
+ A f (
+(
+
+ y 
+
++
++
++
+
+ AB w w 
+ AB w w 
+T (
+
++
++
++
+
+ y 
+
+(k 
+))
+(k 
+))
+(k 
+)))
+
++
++
+
+ B w w 
+ B w w 
+
+ Q 
+
+℅ f 
+(
+ x 
+ g(
+ f (
+ f (
+
+ A f 
+
+ y 
+
+ y 
+
+T (k 
+
+ 2 f 
+
+ x 
+
++
+
+ x 
+
++
++
+
+ g(
+
+ x 
+
+ 2 f 
+(k 
+)))] 
+(k 
+)
+(k 
+)
+
+T (
+
+ y 
+
+(k 
+))
+(k 
+)
+Under zero external interferences, that is, w 
+(k 
+)
+values of F 1 
+(k 
+)
+(k 
+)
+(k 
+)
+(k 
+)
+ we have 
+≒ f 
+ Q 
+ 2 N 
+V 
+(
+(k 
+))
+ Ax 
+(k 
+)
+ g(
+(k 
+)))[ P 
+2 I ] f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))
+(k 
+)
+
+ N [ y 
+
+(k 
+)
+(k 
+)
+
+ y 
+
+ F 1 
+
++
+
+ F 2 
+
++
+
+ F 3 
+
++
+
+ F 4 
+
+.
+
+(17) 
+
+=
+
+ 0 
+
+,
+
+ and using the 
+
+,
+
+ F 2 
+
+,
+
+ F 3 
+
+,
+
+ and F 4 
+
+,
+
+ x 
+
+T (
+
++
++
+
+ x 
+
+ 汍
+
+ 1 I 
+
++
++
++
++
++
++
++
++
++
++
++
++
+
+汍
+
+ 2 A 
+
+T A 
+T (k 
+T (
+
+汍
+
+ 4 L 
+
++
+
+ x 
+
+ x 
+
+P 
+)[ 
+(k 
+))[ 
+汍
+(k 
+))
+ A f (
+(k 
+))
+ g( f (
+(k 
+))))[ Q 
+ A f (
+(k 
+))
+ g( f (
+(k 
+))))
+T ( f (
+(k 
+)))[ 
+汍
+2 I ] g( f (
+(k 
+)))
+)[ 
+T ] g(
+(k 
+))[ 
+汍
+ Ax 
+(k 
+)
+ g(
+T ] g( f (
+T ( f (
+(k 
+)))[ 
+汍
+ Ax 
+(k 
+)
+ g(
+ Ax 
+(k 
+)
+ g(
+(k 
+)))[ NA ] x 
+(k 
+)
+)[ A 
+T ] f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))] 
+ Ax 
+(k 
+)
+ g(
+(k 
+)))[ N ] g(
+(k 
+))
+(k 
+))[ N 
+T ] f (
+ Ax 
+(k 
+)
+ g(
+(k 
+)))] 
+ f (
+(k 
+))
+(k 
+)
+(k 
+))] 
+
++
+
+汍
+
+ 1 A 
+
+T A 
+ 3 I ] g(
+ 2 I ] f (
+
++
+
+汍
+
+ 3 L 
+
+2 I ] x 
+
+ g 
+
+ x 
+
+ 1 I 
+
+ 汍
+ 汍
+ 汍
+
+ x 
+
++
+
+ f 
+
+T (
+
+ y 
+
+ y 
+
+ y 
+
++
+
+ y 
+
+ g 
+
+ y 
+
+ 2 I 
+
+ 4 L 
+
+ y 
+
+ x 
+
+T (k 
+T (
+
+汍
+
+ 1 A 
+
+ x 
+
+(k 
+))
+(k 
+)))[ 
+汍
+
++
+
+ g 
+
+T (
+
+ x 
+
+ 1 A ] x 
+
+(k 
+)
+(k 
+)))
+(k 
+)))
+
+ f 
+
++
+
+ x 
+
+ 2 A 
+
+ y 
+
+ g 
+
+ y 
+
+ 2 A ] f (
+
++
+
+ x 
+
+ f 
+
+T (
+
++
+
+ x 
+
+ [ x 
+
+T (k 
+T (
+
+T N 
+
++
+
+ x 
+
+T 
+
+ f 
+
++
+
+ x 
+
+ x 
+
+ [ g 
+
+T (
+
+ x 
+
++
+
+ x 
+
+T 
+
+ 2 f 
+which is equivalent to 
+≒ T 
+V 
+(
+(k 
+))
+(k 
+)
+
+T (
+
+ y 
+
+ N [ y 
+
+ y 
+
+,
+
+(18) 
+
+ x 
+
+1 
+
+1 
+1 
+
+(k 
+)
+
++
+
+ (k 
+)
+
+,
+
+(19) 
+
+where 
+
+ (k 
+)
+
+=
+
+2 f 
+
+T (
+
+ y 
+
+(k 
+))
+
+ N [ y 
+
+(k 
+)
+
+ f (
+
+ y 
+
+(k 
+))] 
+
+,
+
+(20) 
+
+1 
+
+(k 
+)
+
+=
+
+ [ x 
+
+T (k 
+
+)
+
+ f 
+
+T (
+
+ Ax 
+(k 
+)
+
++
+
+ g(
+(k 
+))] 
+ <
+It can be easily seen that 
+obtain 
+V 
+(
+(k 
+))
+
+ x 
+
+(k 
+)))
+
+ f 
+
+T (
+
+ A f (
+
+ y 
+
+(k 
+))
+
++
+
+ g( f (
+
+ y 
+
+(k 
+))))
+
+g 
+T ( f (
+
+ y 
+
+(k 
+)))
+
+ g 
+
+T (
+
+ x 
+
+.
+
+(21) 
+
+ 0, therefore, from inequality (19) we 
+
+ x 
+
+<
+
+T 
+1 
+
+(k 
+)
+
+1 
+1 
+
+(k 
+)
+
+.
+
+(22) 
+
+Consequently, 
+ 0 implies 
+V 
+(
+(k 
+))
+ which ensures that 
+(k 
+)
+the state vector x 
+ asymptotically converges to the origin. 
+
+
+
+1 
+
+<
+
+ x 
+
+<
+
+ 0 
+
+,
+
+(cid:2)
+
+Remark 3. A large number of digital systems, like state lters, tun- 
+able lters, observers, estimators, controllers, adaptive systems and 
+neural networks, are inherently nonlinear. The problem of stabil- 
+ity analysis of these nonlinear systems under any form of over- 
+ow arithmetic is rarely addressed in literature. Therefore, the cri- 
+teria developed in the previous papers, like [20每30,32每36] , work 
+only for the linear systems, and may not guarantee overow con- 
+sequences elimination under nonlinear dynamics. In contrast, the 
+proposed criterion (7) in Theorem 1 investigates asymptotic stabil- 
+ity for the nonlinear systems by considering the nonlinear dynam- 
+ics under saturation overow caused by nite word-length limita- 
+tion of digital technologies and can be effectively employed for the 
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+143 
+
+consideration of implementation of complex digital systems and 
+algorithms. 
+
+Remark 4. It should be noted that derivation of a stability con- 
+dition for the nonlinear digital systems under an overow non- 
+linearity, such as in Theorem 1 , is a non-trivial research problem. 
+Mainly, the digital system (1) 每(2) contains two nonlinearities: an 
+overow nonlinearity and an inherently present dynamical nonlin- 
+earity. Further complexity arises since the dynamical nonlinearity 
+g(
+(k 
+)
+ is nested in f (
+(k 
+))
+(k 
+)
+(k 
+)
+ g(
+(k 
+))
+ as y 
+ Ax 
+ . These nested 
+nonlinearities form a complex nonlinear function, which has been 
+addressed in the present study for overow oscillation elimination 
+analysis for dealing hardware implementation issues. 
+
+ x 
+
+ y 
+
+=
+
++
+
+ x 
+
+4. Extension to external interference rejection 
+
+In this section, we address establishment of a criterion for the 
+uniformly ultimately bounded stability of nonlinear digital sys- 
+tems in the presence of external interferences (caused by electro- 
+magnetic interference of cascade structures) and overow nonlin- 
+earity (due to nite-word length issue of a digital hardware). Uni- 
+formly ultimately bounded stability applies to the systems with 
+amplitude-bounded disturbances and provides a bound on the am- 
+plitude of the state of the lter. In most of the cases, the am- 
+plitudes of disturbances, noises and perturbations are bounded; 
+therefore, the uniformly ultimately bounded stability can be a suit- 
+able choice for the dynamical systems. 
+
+Theorem 2. Suppose there exist positive-denite matrices N (diago- 
+nal) P 
+ and S 
+ and positive scalars 
+, 
+, 
+, and 
+such that 
+the LMI 
+
+ 0, holds, where 
+
+,
+
+ Q 
+ R 
+
+,
+
+,
+<
+
+,
+
+汍
+
+ 1 
+
+汍
+
+ 2 
+
+汍
+
+ 3 
+
+汍
+
+ 4 
+
+2 
+ 11 A 
+T N 
+T 
+ 22 
+
+2 
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+0 
+0 
+
+0 
+
+0 
+
+汍
+
+ 1 A 
+
+T 
+
+NA 
+0 
+0 
+0 
+
+ 24 
+
+汍
+
+ 2 A 
+
+T 
+
+N 
+0 
+0 
+0 
+
+0 
+
+ 33 
+
+0 
+
+0 
+A 
+
+ 42 
+
+0 
+0 
+0 
+
+ 44 
+ 2 AB w 
+
+汍
+
+ 2 B 
+
+T 
+w 
+ 55 
+
+T 
+
+汍
+
+ 2 A 
+
+汍
+
+汍
+
+ 1 A 
+
+N 
+
+T 
+
+0 
+
+0 
+
+ 66 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+,
+
+(23) 
+
+ 11 
+ 22 
+ 24 
+ 33 
+ 42 
+ 44 
+ 55 
+ 66 
+
+=
+=
+=
+=
+=
+=
+=
+=
+
+P 
+ Q 
+ 2 N 
+
++
+
+汍
+
+ 1 A 
+
+T A 
+
++
+ 汍
+
+ S 
+
++
++
++
+
+汍
+
+ 3 L 
+
+2 I 
+T A 
+
+,
+
+ P 
+
+ 1 I 
+
+汍
+
+ 2 A 
+
++
+
+汍
+
+ 4 L 
+
+2 I 
+
+,
+
+ PB w 
+
++
+ 汍
++
+
+汍
+
+ 2 A 
+
+T AB w 
+
+汍
+
+ 4 L 
+
+2 IB w 
+
+,
+
+ Q 
+
+ 2 I 
+
+,
+
+ B 
+
+T 
+w 
+
+P 
+
+汍
+
+ 2 B 
+
+T 
+w 
+
+A 
+
+T A 
+T 
+w 
+T 
+T AB w 
+w 
+
++
+
+汍
+
+ 4 B 
+
+L 
+ RI 
+
+2 I 
+
+,
+
+ B 
+
+T 
+PB w 
+w 
+
++
+
+汍
+
+ 2 B 
+
+A 
+
++
+
+汍
+
+ 4 B 
+
+T 
+w 
+
+L 
+
+2 IB w 
+
+,
+
+汍
+
+ 2 I 
+
+ 汍
+ 汍
+
+ 4 I 
+
+,
+
+汍
+
+ 1 I 
+
+ 3 I 
+
+.
+
+Then uniformly ultimately bounded stability is ensured for the Lip- 
+schitz nonlinear digital system (1) 每(2) to an ellipsoidal region of the 
+≒ 1 for a positive scalar 
+灰x 
+)
+(k 
+)
+灰 under saturation over- 
+form 
+ Sx 
+ow nonlinearity and external interferences. 
+
+T (k 
+
+Proof. Adding and subtracting x 
+ Sx 
+(k 
+)
+ and w 
+ Rw 
+(k 
+)
+ terms 
+to the inequality (17) for symmetric positive-denite matrices S 
+℅n and R 
+ we attain 
+V 
+(
+(k 
+))
+
+T (k 
+
+)
+
+T (k 
+
+)
+
+﹋
+
+R
+
+n 
+
+﹋
+
+R
+
+m 
+
+℅m ,
+
+ x 
+
+≒ T 
+(k 
+)
+
+2 
+
+2 
+2 
+T (k 
+
+(k 
+)
+(k 
+)
+ Rw 
+
++
+
+ (k 
+)
+
+ x 
+
+T (k 
+
+)
+
+ Sx 
+(k 
+)
+
++
+
+ w 
+
+)
+
+,
+
+(24) 
+
+where 
+
+2 
+
+(k 
+)
+
+=
+
+ [ x 
+
+T (k 
+T (
+
+)
+
+f 
+ A f (y 
+(k 
+))
+
+T (
+
+ Ax 
+(k 
+)
+
++
+
+ g(
+(k 
+)
+
+ x 
+
+(k 
+)))
+ g( f (
+
+f 
+
++
+
+ AB w w 
+
++
+
+ y 
+
+(k 
+))
+
++
+
+ B w w 
+
+(k 
+)))
+
+w 
+
+T (k 
+
+)
+
+g 
+T ( f (
+
+ y 
+
+(k 
+))
+
++
+
+ B w w 
+
+(k 
+))
+
+g 
+
+T (
+
+ x 
+
+(k 
+))
+
+ ] 
+
+.
+
+(25) 
+
+ <
+Since 
+
+ 0, the inequality 
+
+x 
+which further reduces to 
+x 
+under Assumption 2 and the fact 
+cases arise: 
+x 
+)
+(k 
+)
+V 
+(
+Case 1: If 
+ Sx 
+ we have 
+汛 . Assigning 
+for the region x 
+)
+ Sx 
+(k 
+)
+(
+)
+we obtain x 
+)
+ Sx 
+(k 
+)
+ that is, the lter states x 
+(k 
+)
+ will con- 
+≒ 1 in the steady-state. 
+verge to the ellipsoidal region 
+灰x 
+)
+ Sx 
+(k 
+)
+x 
+)
+(k 
+)
+(
+)
+汛 ≡ 0 . It implies that the states x 
+Case 2: In the second case, we take 
+ Sx 
+(k 
+)
+ of the lter are bounded in 
+≒ 1 . 
+the ellipsoid 
+灰x 
+)
+ Sx 
+(k 
+)
+From this discussion, it can be concluded that the digital system 
+(1) 每(2) is stable and the states trajectory remain bounded in the 
+steady-state. Hence, the proposed criterion, given by (23) , ensures 
+uniformly ultimately bounded stability for the digital system (1) 每
+(2) . This concludes the proof. 
+
+2 
+T (k 
+
+<
+
+ 0 implies that 
+
+V 
+(
+
+ x 
+
+(k 
+))
+
+<
+
+T (k 
+
+)
+
+ Sx 
+(k 
+)
+
++
+
+ w 
+
+)
+
+ Rw 
+(k 
+)
+
+,
+
+(26) 
+
+V 
+(
+
+ x 
+
+(k 
+))
+
+<
+
+T (k 
+
+)
+
+ Sx 
+(k 
+)
+
++
+
+竹max 
+竹max 
+
+(
+
+ R 
+
+)
+
+汛,
+
+(27) 
+≡ R . The following two 
+
+(
+
+ R 
+
+)
+
+ I 
+
+T (k 
+T (k 
+
++
+
+竹max 
+竹max 
+
+(
+(
+
+ R 
+ R 
+
+)
+汛 <
+)
+
+ 0 
+
+,
+
+ x 
+ R 
+
+(k 
+))
+
+<
+灰1 ,
+
+ 0 
+
+>
+灰1 ,
+
+竹max 
+
+汛 =
+
+T (k 
+
+>
+
+T (k 
+
+T (k 
+
++
+
+竹max 
+
+ R 
+
+T (k 
+
+(cid:2)
+
+Remark 5. Digital systems and algorithms are affected by distur- 
+bances and perturbations when implemented on a hardware. Many 
+practical applications require multiple cascade stages of digital l- 
+ters, which are inuenced by interferences from different stages. 
+These external perturbations may cause severe performance degra- 
+dation of the digital systems in the presence of overow and dy- 
+namical nonlinearities. The approach presented in Theorem 1 can- 
+not be used to analyse overow effects elimination of digital l- 
+ters under external perturbations. Consequently, the proposed ap- 
+proach in Theorem 2 is derived to study the ability of a digital l- 
+ter to deal with the disturbances in addition to overow and lter 
+nonlinearities. The later methodology ensures uniformly ultimately 
+bounded stability, rather than asymptotic stability, of a lter sub- 
+jected to unwanted signals. 
+
+Remark 6. The approach provided in Theorem 2 investigates uni- 
+formly ultimately bounded stability of a digital system (1) 每(2) un- 
+der external perturbations by examining the convergence of the l- 
+≒ 1 . To esti- 
+(k 
+)
+灰x 
+)
+(k 
+)
+ter state x 
+ into the ellipsoidal region 
+ Sx 
+mate the actual effect of the external interference on the system＊s 
+≒ 1 should be 
+state, the ellipsoidal region dened by 
+灰x 
+)
+ Sx 
+(k 
+)
+minimized. For this purpose, one approach can be to minimize 
+灰x 
+)
+(k 
+)
+the semi-major axis of the ellipsoid 
+ Sx 
+1 )
+ which can 
+(S 
+be achieved through minimization of 
+≡ 汎 I and 
+ . Therefore, ad- 
+ditional constraints of S 
+ 0 can be introduced in 
+Theorem 2 and 
+汎 can be maximized through convex LMI routines, 
+汎 1 gives a bound on 
+1 )
+(S 
+where 
+ . Consequently, the matrices 
+≒ 1 
+灰x 
+)
+(k 
+)
+R and S can be employed to attain a small region 
+ Sx 
+in which the states of the lter converge. In addition, the values 
+of R and S can be selected through convex routines to attain the 
+feasibility of the constraints in Theorem 2 . 
+
+T (k 
+
+T (k 
+
+T (k 
+竹max 
+
+=
+
+ 1 
+
+,
+
+汎 >
+
+竹max 
+
+T (k 
+
+,
+
+When the conditions derived in Theorems 1 and 2 are not fea- 
+sible, the stability of a nonlinear digital system can be checked 
+through the diagonally dominant matrices based approach pre- 
+sented in [51] . For instance, the scalars 
+, 
+, 
+, and 
+can be 
+replaced with the diagonally dominant positive-denite matrices 
+ 4 to improve the results for feasibility. Let l (
+)
+ and 
+represent the number of rows and entries of the matrices 
+ . The corresponding extension is given below in 
+
+汍
+
+1 
+
+汍
+
+2 
+
+汍
+
+3 
+
+汍
+
+4 
+
+P
+
+ 1 
+
+,
+
+P
+P
+
+ 2 
+ v z 
+
+,
+
+P
+
+ 3 
+
+,
+
+P
+
+P
+
+ i,
+
+ v t 
+
+and 
+for i 
+Theorem 3 . 
+
+ i,
+
+P
+
+ i 
+
+=
+
+ 1 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ 4 
+
+.
+
+Theorem 3. Suppose there exist positive-denite matrices N (di- 
+agonal), P 
+ and S 
+ and diagonally dominant positive-denite 
+matrices 
+] 
+ for i 
+ such that the LMIs 
+
+ 0, 
+
+,
+
+ Q 
+ R 
+ [ 
+ v z 
+
+,
+
+,
+
+,
+
+P
+
+ i 
+
+=
+
+P
+
+ i,
+
+,
+
+=
+
+ 1 
+ 2 
+ 3 
+ 4 
+
+,
+
+,
+
+,
+
+,
+
+3 
+
+<
+
+144 
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+P
+
+ i,
+
+ vv 
+and 
+where 
+
+≡ (cid:11) l (
+=1 
+t 
+
+P
+
+ i,
+
+ v t 
+
+)
+
+,t 
+
+=
+
+ v 
+
+(cid:12)
+
+P
+
+ i,
+
+ v t 
+ v t 
+
++
+
+Q
+
+ i,
+
+ v t 
+ 1 
+
+(cid:13)
+
+>
+
+ 0 
+ i 
+ 1 
+ 4 
+ t 
+
+,
+
+=
+
+,
+
+﹞ ﹞ ﹞ ,
+=
+﹞ ﹞ ﹞ ,
+
+ v 
+ 4 
+
+,
+
+=
+P
+
+ 1 
+
+,
+
+﹞ ﹞ ﹞ ,
+=
+
+ l (
+
+P
+
+ i,
+
+ v t 
+
+)
+
+,
+
+Q
+
+ i,
+
+ v t 
+
+≡ 0 
+
+,
+
+P
+
+ i,
+
+≡ 0 
+
+,
+
+ i 
+
+=
+
+,
+
+﹞ ﹞ ﹞ ,
+
+,
+
+ 1 
+
+,
+
+ l (
+
+ i,
+
+ v t 
+
+)
+
+,
+
+ v 
+
+ t ,
+
+ hold, 
+
+3 
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+’11 A 
+T N 
+T 
+’22 
+
+0 
+0 
+
+0 
+
+0 
+A 
+0 
+A 
+
+A 
+N 
+0 
+0 
+0 
+
+T P
+
+ 1 
+
+NA 
+0 
+0 
+0 
+
+’24 
+
+T P
+
+ 2 
+
+0 
+
+’33 
+
+0 
+
+’42 
+
+0 
+0 
+0 
+
+’44 
+ 2 AB w 
+
+B 
+
+T P
+T 
+w 
+’55 
+
+ 2 
+
+P
+
+ 2 A 
+
+P
+
+P
+
+ 1 A 
+
+N 
+
+T 
+
+0 
+
+0 
+
+’66 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+,
+
+ (28) 
+
+’11 
+’22 
+’24 
+’33 
+’42 
+’44 
+’55 
+’66 
+
+=
+=
+=
+=
+=
+=
+=
+=
+
+P 
+ Q 
+ 2 N 
+
++
+
+ A 
+
+T P
+
+ 1 A 
+
++
+ P
+
+ S 
+
++
++
++
+
+P
+
+ 3 L 
+ A 
+ 2 A 
+ 4 L 
+
+2 ,
+T P
+2 B w 
+2 P
+
+ P 
+
+ 1 
+
++
+
+P
+
+ 4 L 
+
+2 ,
+
+ PB w 
+
++
+ P
++
+ P
+ P
+
+ A 
+
+T P
+
+ 2 AB w 
+T P
+T 
+w 
+
+P
+
+,
+
+ Q 
+ B 
+ B 
+
+ 2 
+ B 
+
+,
+
+T 
+w 
+T 
+PB w 
+w 
+
+P 
+
+T 
+w 
+
+A 
+
+ 2 A 
+
++
+
+ B 
+
+T 
+w 
+ 2 AB w 
+
+L 
+ R 
+
+ 4 
+
+,
+
++
+
+ B 
+
+A 
+
+T P
+
++
+
+ L 
+
+2 B 
+T 
+w 
+
+P
+
+ 4 B w 
+
+,
+
+P
+P
+
+ 2 
+
+ 4 
+ 3 . 
+
+,
+
+ 1 
+
+Then uniformly ultimately bounded stability is ensured for the Lip- 
+schitz nonlinear digital system (1) 每(2) to an ellipsoidal region of the 
+≒ 1 under saturation overow nonlinearity and ex- 
+灰x 
+)
+(k 
+)
+form 
+ Sx 
+ternal interferences. 
+
+T (k 
+
+The proof can be easily followed by application of the approach 
+in [51] to the proposed results of Theorem 2 ; therefore, it is left for 
+the readers. To ensure matrices 
+ and 
+ 4 as diagonally 
+dominant, the same approaches provided in [51] can be adopted 
+by employing additional constraints. Compared to the approach in 
+Theorem 2 , the methodology developed in Theorem 3 has more 
+computational complexity; however, it can be readily employed to 
+address the infeasibility issue of Theorem 2 and can be used to 
+attain less conservative performance estimates than Theorem 2 . 
+The present study explored stability of the digital systems un- 
+der inherent complexity and overow nonlinearity by considering 
+a nonlinear model with xed parameters. Often, we encounter dig- 
+ital lters and systems with varying parameters due to adaptive, 
+switching and fuzzy nature of the models as observed in the meth- 
+ods [52每57] . Consequently, future work is needed to investigate 
+stability of the nonlinear digital systems of varying co-ecient ma- 
+trices under external interferences and nite word-length effects. 
+
+P
+
+ 1 
+
+,
+
+P
+
+ 2 
+
+,
+
+P
+
+ 3 
+
+,
+
+P
+
+5. Simulation results 
+
+This section provides numerical simulation results for overow 
+stability analysis of two nonlinear digital systems including an ob- 
+server for a Moon system [58] and recurrent neural network (RNN) 
+[59] . 
+
+5.1. Example 1: observer for Moon system 
+
+Moon system is a physical system, comprising of a pendulum 
+attached to a bracket, which has some exibility. There is a metal 
+ball attached at the end of the pendulum, and two magnets are 
+xed around the pendulum, which are at equal distance from it 
+when the overall system of pendulum and bracket is not moving. A 
+harmonic oscillatory movement is utilized, which has constant am- 
+plitude, to excite the bracket and drag the pendulum into motion 
+[58] . Consider a Moon chaotic system, which has been discretized 
+using Euler＊s method, as 
+
+x p1 
+
+(k 
+
++
+
+ 1)
+
+=
+
+ x p1 
+
+(k 
+)
+
++
+
+ T x p2 
+
+(k 
+)
+ mT 
+(1 
+)
+(k 
+))
+
+,
+
+(29) 
+
+x p2 
+
+(k 
+
++
+
+ 1)
+
+=
+
+T 
+2 
+ T 
+
+x p1 
+
+(k 
+)
+
++
+
+ x p2 
+
+(k 
+)
+
+(10 x p1 
+
+(k 
+)
+
++
+
+ x p2 
+
+ x p1 
+
+(k 
+)
+
++
+
+ T I s 
+
+,
+
+(30) 
+
+y p 
+
+(k 
+)
+
+=
+
+ 10 x p1 
+
+(k 
+)
+
++
+
+ x p2 
+
+(k 
+)
+
+,
+
+(31) 
+
+where x p 1 
+( k ) are the states, y p ( k ) is the output, I s is 
+the stimulation applied to the system, m is the mass of the metal 
+ball, and T is the sampling time. With m 
+ 15 
+ chaotic behav- 
+ior is evinced by the system. In [58] , an observer for the Moon 
+chaotic system has been developed for the state ltering purpose. 
+The equations for the observer of the system (29) 每(31) are given 
+by 
+
+( k ) and x p 2 
+
+=
+
+ 0 
+
+.
+
+,
+
+ x p1 
+
+(k 
+
++
+
+ 1)
+
+=
+
+  x p1 
+
+(k 
+)
+
++
+
+ T  x p2 
+
+(k 
+)
+
++
+
+ 0 
+
+.
+
+ 0998(y p 
+(k 
+)
+
+  y p 
+
+(k 
+))
+
+,
+
+(32) 
+
+ x p2 
+
+(k 
+
++
+
+ 1)
+
+=
+
+T 
+2 
+ T 
+
+ x p1 
+
+(k 
+)
+
++
+
+ mT 
+(1 
+)
+(k 
+))
+(k 
+))
+
+  x p2 
+
+(k 
+)
+
+(10  x p1 
+
+(k 
+)
+ 2051(y p 
+(k 
+)
+
++
+
+  x p2 
+  y p 
+
+  x p1 
+
+(k 
+)
+
++
+
+ T I s 
+
++
+
+ 0 
+
+.
+
+,
+
+(33) 
+
+ y p 
+
+(k 
+)
+
+=
+
+ 10  x p1 
+
+(k 
+)
+
++
+
+  x p2 
+
+(k 
+)
+
+.
+
+(34) 
+
+By substituting  y p 
+(k 
+)
+ from Eq. (34) into Eqs. (32) and (33) , the 
+state ltering system becomes 
+
+ x p1 
+
+(k 
+
++
+
+ 1)
+
+=
+
+  x p1 
+
+(k 
+)
+(k 
+)
+ 0 
+ 0998(10  x p1 
+(k 
+)
+
++
+
+ T  x p2 
+
++
+
+ 0 
+
+.
+
+ 0998 y p 
+(k 
+)
+(k 
+))
+
+.
+
++
+
+  x p2 
+
+,
+
+(35) 
+
+ x p2 
+
+(k 
+
++
+
+ 1)
+
+=
+
+T 
+2 
+ T 
+
+ x p1 
+
+(k 
+)
+
++
+
+ mT 
+(1 
+)
+(k 
+))
+(k 
+)
+ 0 
+ 2051(10  x p1 
+(k 
+)
+(k 
+)
+(k 
+)
+
+  x p2 
+
+(k 
+)
+
+(10  x p1 
+
+(k 
+)
+ 2051 y p 
+(k 
+)
+
++
+
+  x p2 
+
+  x p1 
+
++
+
+ T I s 
+
++
+
+ 0 
+
+.
+
+.
+
++
+
+  x p2 
+
+(k 
+))
+
+.
+
+(36) 
+
+Setting x 1 
+(k 
+)
+be represented as 
+
+=
+
+  x p1 
+
+(k 
+)
+
+ and x 2 
+
+=
+
+  x p2 
+
+,
+
+ the Eqs. (35) 每(36) can 
+
+x 
+(k 
+
++
+
+ 1)
+
+=
+
+ Ax 
+(k 
+)
+
++
+
+ g(
+
+ x 
+
+(k 
+))
+
++
+
+ u F 
+
+,
+
+(37) 
+
+where 
+
+A 
+
+=
+
+(cid:14)
+
+ 0 
+0 
+ 002 
+T 
+ 0998 
+T 
+ 2 
+ mT 
+ 0 
+ 051 1 
+ 2051 
+2 
+
+.
+
+.
+
+.
+
+.
+
+(cid:15)
+(cid:16)
+
+,
+
+g(
+
+ x 
+
+(k 
+))
+
+=
+
+(cid:16)
+
+0 
+
+(10 x 1 
+
++
+
+ x 2 
+
+)
+
+2 x 1 
+
+(cid:17)
+
+,
+
+ u F 
+
+=
+
+0 
+ 0998 y p 
+0 
+ 2051 y p 
+
+.
+
+.
+
++
+
+ T I s 
+
+(cid:17)
+
+.
+
+In this work, the zero-input stability is being investigated for 
+nonlinear systems without disturbance and with disturbance by 
+selecting T 
+ 1 sec. Therefore, the input to the digital ltering sys- 
+tem is considered to be zero, that is, u F 
+ 0 . The observer (35) 每
+(36) , for the system (29) 每(31) is nonlinear and it can be imple- 
+mented via a digital hardware. Eventually, this can inevitably cause 
+﹞) and the external perturbation w 
+the overow f ( 
+(k 
+)
+ effects. Hence, 
+the equation (37) with u F 
+ overow nonlinearity and external 
+perturbations becomes 
+
+=
+
+ 0 
+
+.
+
+=
+
+=
+
+ 0 
+
+,
+
+x 
+(k 
+
++
+
+ 1)
+
+=
+
+ f (
+
+ Ax 
+(k 
+)
+
++
+
+ g(
+
+ x 
+
+(k 
+)))
+
++
+
+ B w w 
+
+(k 
+)
+
+,
+
+(38) 
+
+which is the same equation as for the digital system (1) 每(2) . 
+
+5.1.1. Without external interference 
+The stability criterion given by LMI (7) in Theorem 1 under 
+w 
+(k 
+)
+ 0 is applied to the observer of the Moon chaotic system 
+, and the solution is found to be feasible with the matrices P 
+and N as 
+
+=
+
+,
+
+ Q 
+
+P 
+
+=
+
+(cid:16)
+(cid:16)
+
+35 
+ 7189 0 
+ 5870 
+0 
+ 5870 
+1 
+ 8167 
+
+.
+
+.
+.
+
+.
+
+(cid:17)
+
+,
+
+Q 
+
+=
+
+(cid:16)
+
+0 
+1 
+ 5525 
+ 1930 
+
+.
+
+0 
+ 1930 
+2 
+ 9065 
+
+.
+
+.
+
+.
+
+(cid:17)
+
+,
+
+N 
+
+=
+
+65 
+ 2845 
+0 
+
+.
+
+0 
+1 
+ 24931 
+
+.
+
+(cid:17)
+
+.
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+145 
+
+Fig. 1. Convergence of the state trajectories in the ellipse 
+灰x 
+
+T (k 
+
+)
+
+ Sx 
+(k 
+)
+
+≒ 1 . 
+
+The values of the positive scalars are given by 
+
+汍
+
+ 1 
+
+=
+
+ 0 
+
+.
+
+ 6779 
+
+,
+
+汍
+
+ 2 
+
+=
+
+ 3 
+
+.
+
+ 0740 
+
+,
+
+汍
+
+ 3 
+
+=
+
+ 17 
+ 1100 
+
+.
+
+,
+
+汍
+
+ 4 
+
+=
+
+ 83 
+ 8346 
+
+.
+
+.
+
+The conventional approaches like [20每30] fail in this example 
+due to presence of a nonlinearity in the observer; however, the so- 
+lution to the LMI (7) is feasible. Therefore, it can be concluded that 
+the proposed criterion, presented in Theorem 1 , can be successfully 
+used to analyze the asymptotic stability of a nonlinear digital sys- 
+tem, in the absence of external interferences. 
+
+5.1.2. With external interference 
+Now, the stability criterion given by LMI (23) in Theorem 2 is 
+applied to the Moon chaotic system observer (29), (30) , and (31) . 
+The matrix R is chosen to be identity, and the solution is found to 
+be feasible with the matrices 
+0 
+ 2547 
+0 
+ 7944 
+0 
+ 0150 
+0 
+ 4219 
+
+P 
+
+=
+
+(cid:16)
+
+0 
+15 
+ 4875 
+ 2547 
+
+.
+.
+
+.
+
+.
+
+(cid:17)
+
+,
+
+Q 
+
+=
+
+ 10 
+
+4 ℅
+
+(cid:16)
+
+0 
+0 
+ 2160 
+ 0150 
+
+.
+
+.
+
+.
+
+.
+
+(cid:17)
+
+,
+
+ R 
+
+=
+
+(cid:16)
+
+1 0 
+0 1 
+
+(cid:17)
+
+,
+
+S 
+
+=
+
+(cid:16)
+
+7 
+ 9674 0 
+ 7353 
+0 
+ 7353 0 
+ 1005 
+
+.
+.
+
+.
+.
+
+(cid:17)
+
+,
+
+ N 
+
+=
+
+(cid:16)
+
+22 
+ 2580 
+0 
+
+.
+
+0 
+0 
+ 5531 
+
+.
+
+(cid:17)
+
+,
+
+and the scalars 
+
+汍
+
+ 1 
+
+=
+=
+
+ 0 
+
+.
+
+ 2704 
+℅ 10 
+ 1808 
+
+,
+
+汍
+
+ 2 
+
+=
+
+ 4 
+
+.
+
+℅ 10 
+ 2993 
+
+5 ,
+
+汍
+
+ 3 
+
+=
+
+ 22 
+ 5250 
+
+.
+
+,
+
+汍
+
+ 4 
+
+ 5 
+
+.
+
+4 .
+
+As the solution to the LMI (23) is feasible, the lter is stable un- 
+der external perturbations. Our methodology of Theorem 2 is con- 
+venient to examine the uniformly ultimately bounded stability of 
+a nonlinear digital system subject to external interference. In an- 
+other experiment, the lter＊s state x have been plotted for the ob- 
+server of Moon chaotic system with four different initial states, un- 
+der the disturbance which has been assumed to be uniformly dis- 
+ 0 
+(k 
+)
+tributed random vector, w 
+ [0 
+ where w 1 
+, and 
+are Gaussian random variables of mean zero and unity vari- 
+ance, as shown in Fig. 1 by considering the optimization stated 
+in Remark 6 . It is evident that all of the state trajectories are 
+≒ 1 
+converging to the ellipsoidal region specied by 
+灰x 
+)
+ Sx 
+(k 
+)
+around the origin as anticipated from the criterion presented in 
+Theorem 2 . 
+It is worth mentioning that the stability of the nonlinear dig- 
+ital systems under overow, such as the digital state observer 
+given by (35) 每(36) , can be analyzed through the proposed criteria 
+(7) and (23) , the existing methods [20每30] (see also [32每36] ) fail 
+to study stability for the nonlinear digital systems under overow 
+constraint in the absence or presence of external interferences. 
+
+=
+
+.
+
+ 1 w 1 
+
+.
+
+ 1 w 2 ] 
+
+T ,
+
+w 2 
+
+T (k 
+
+5.2. Example 2: Recurrent neural network 
+
+Articial neural networks (ANN), similar to the biological neu- 
+rons, process information in parallel disseminated way [60] . How- 
+ever feed-forward neural networks (FNN) have limitation that 
+these can work only for static systems. It highlights the need of 
+another type of neural networks, called recurrent neural networks 
+(RNNs), which have the ability to handle dynamic systems and, 
+hence, RNNs perform more complicated computations for the com- 
+plex systems [61,62] . A neural network which has one or more 
+feedback loops, for reusing the output values of the network, in- 
+cluding a global feedback loop throughout the network, and local 
+feedback in a single neuron, is a called as RNN [63] . These neural 
+networks have extensive number of applications in adaptive con- 
+trol, optimization, signal processing, and pattern recognition (see 
+[59,64] ). Most of these applications assume that global asymptotic 
+or exponential stability is guaranteed for the recurrent neural net- 
+works, which, in reality, is not always true, as the concealed neural 
+network can be rendered unstable by RNN [59] . In addition, when 
+these networks are implemented via a digital hardware, the per- 
+formance degradation and instability can occur owing to the nite 
+word-length restriction. The general equation for continuous-time 
+recurrent neural network is as follows: 
+
+步 x 
+
+=
+
+ A x 
+
++
+
+ W 0 
+
+f 
+(
+
+ x 
+
+(t ))
+
++
+
+ B I e 
+
+(t )
+
+,
+
+(39) 
+
+where A is the diagonal system matrix, W 0 is the connection 
+weight matrix, 
+f 
+(
+(t ))
+f 
+(t ))
+f 
+(t ))
+f 
+(t ))] 
+﹞ ﹞ ﹞ x n 
+(t )
+(t )
+(t 
+)
+(t 
+)] 
+a nonlinear activation function, x 
+(t )
+p is the 
+is the designated state vector for n neurons, and I e 
+excitation input, which is taken zero because this research focuses 
+on the stability criteria derivation for zero-input stability, that is, 
+(t )
+ 0 . Let us choose 
+ 10 
+0 
+0 
+
+ x 
+
+=
+
+ [ 
+
+(x 1 
+
+(x 2 
+
+﹞ ﹞ ﹞
+
+(x n 
+
+T ﹋
+n is 
+T ﹋
+n 
+
+R
+
+=
+
+ [ x 1 
+
+ x 2 
+
+R
+
+﹋
+
+R
+
+I e 
+
+=
+
+A 
+
+=
+
+(cid:14)
+
+20 
+0 
+0 
+
+0 
+0 
+15 
+)
+)
+)
+
+(cid:15)
+
+,
+
+ W 0 
+
+=
+
+(cid:14)
+
+ 2 
+
+0 
+2 
+0 
+
+.
+
+ 1 
+
+0 
+0 
+0 
+
+.
+
+ 2 
+
+5 
+0 
+
+.
+
+ 3 
+
+.
+
+ 3 
+
+.
+
+ 7 
+
+(cid:15)
+
+,
+
+f 
+(
+
+ x 
+
+(t ))
+
+=
+
+(cid:14)
+
+ tanh 
+tanh 
+tanh 
+
+(x 1 
+(x 2 
+(x 3 
+
+(cid:15)
+
+.
+
+The nonlinearity 
+f 
+(
+(t ))
+(
+stant L f 
+ 1 . Dening g 
+
+ x 
+
+ is globally Lipschitz with Lipschitz con- 
+(t ))
+ as 
+
+=
+
+ x 
+
+g 
+(
+
+ x 
+
+(t ))
+
+=
+
+ W 0 
+
+f 
+(
+
+ x 
+
+(t ))
+
+,
+
+(40) 
+
+the RNN system leads to 
+
+步 x 
+
+=
+
+ A x 
+
++
+
+ g 
+(
+
+ x 
+
+(t ))
+
+.
+
+(41) 
+
+The state-space representation (41) is in continuous-time; how- 
+ever, neural networks are implemented in digital hardware. There- 
+fore, we converted it into discrete-time form using Euler＊s forward 
+method. The resulting discrete-time system becomes 
+
+x 
+(k 
+
++
+
+ 1)
+
+=
+
+(T A 
+
++
+
+ I 
+
+)
+
+ x 
+
+(k 
+)
+
++
+
+ T g 
+(
+
+ x 
+
+(k 
+))
+
+,
+
+(42) 
+
+where T is the sampling time. By dening 
+(T A 
+ A and 
+(
+(k 
+))
+ g(
+(k 
+))
+T g 
+ the discretized RNN system＊s state-space rep- 
+resentation is given as 
+
++
+
+ I 
+
+)
+
+=
+
+ x 
+
+=
+
+ x 
+
+,
+
+x 
+(k 
+
++
+
+ 1)
+
+=
+
+ Ax 
+(k 
+)
+
++
+
+ g(
+
+ x 
+
+(k 
+))
+
+.
+
+(43) 
+
+Neural networks are nonlinear; consequently, the previously devel- 
+oped stability criteria [20每30,32每36] fail for the stability analysis 
+of neural networks under overow condition. The model (43) be- 
+comes same as (1) and (2) by incorporating the overow non- 
+linearity and external perturbations with Lipschitz constant L 
+ (under L f 
+ 1 ). 
+
+=
+
+(cid:4)
+
+ T W 0 
+
+(cid:4)
+
+=
+
+146 
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+Fig. 2. Convergence of RNN state trajectory x 1 . 
+
+Fig. 3. Convergence of RNN state trajectory x 2 . 
+
+By application of Theorem 2 , the solution is found to be feasible 
+with the LMI variables as 
+.
+
+P 
+
+=
+
+(cid:14)
+(cid:14)
+(cid:14)
+(cid:14)
+
+ 22 
+ 8496 
+0 
+0 
+
+0 
+45 
+ 7176 
+0 
+
+0 
+0 
+34 
+ 2933 
+
+.
+
+.
+
+(cid:15)
+
+,
+
+Q 
+
+=
+
+ 0 
+
+.
+
+ 0680 
+0 
+0 
+
+0 
+0 
+ 0494 
+0 
+
+0 
+0 
+0 
+ 0638 
+
+.
+
+.
+
+(cid:15)
+
+,
+
+ R 
+
+=
+
+(cid:14)
+
+ 1 0 0 
+
+0 1 0 
+0 0 1 
+
+(cid:15)
+
+,
+
+S 
+
+=
+
+ 4 
+
+.
+
+ 5754 
+0 
+0 
+
+0 
+38 
+ 8545 
+0 
+
+0 
+0 
+18 
+ 8706 
+
+.
+
+.
+
+(cid:15)
+(cid:15)
+
+,
+
+N 
+
+=
+
+ 23 
+ 1931 
+0 
+0 
+
+.
+
+0 
+77 
+ 8241 
+0 
+
+0 
+0 
+45 
+ 7540 
+
+.
+
+.
+
+,
+
+and 
+
+汍
+
+ 1 
+
+=
+
+ 6 
+
+.
+
+ 4265 
+
+,
+
+汍
+
+ 2 
+
+=
+
+ 0 
+
+.
+
+ 0682 
+
+,
+
+汍
+
+ 3 
+
+=
+
+ 84 
+ 2491 
+
+.
+
+,
+
+汍
+
+ 4 
+
+=
+
+ 0 
+
+.
+
+ 1792 
+
+.
+
+Next the state trajectories for x 1 
+, and x 3 
+are plotted in Figs. 2 , 
+3 , and 4 , respectively. Initial state vector is considered to be x 
+(0)
+2 1 
+ 1 
+[ 
+ 9] 
+T . The disturbance is assumed to be uniformly dis- 
+ 0 
+ 0 
+(k 
+)
+tributed random vector, w 
+ [0 
+ where 
+, and w 3 
+are Gaussian random variables of mean zero and 
+unity variance. All three states are converging near the origin 
+from the initial conditions, and their steady-values remain within 
+bounds. 
+The phase portraits have been plotted for the RNN system 
+(43) as well, with four different initial conditions as seen in Fig. 5 . 
+
+, x 2 
+
+=
+
+.
+
+ 8 
+
+.
+
+=
+
+.
+
+ 1 w 1 
+
+.
+
+ 1 w 2 
+
+.
+
+ 1 w 3 ] 
+
+T ,
+
+w 1 
+, w 2 
+
+Fig. 4. Convergence of RNN state trajectory x 3 . 
+
+Fig. 5. Convergence of the state trajectories in the ellipsoidal region 
+≒ 1 . 
+Sx 
+(k 
+)
+
+灰x 
+
+T (k 
+
+)
+
+It may be noted that all these state trajectories converge inside the 
+≒ 1 
+ellipsoid dened by 
+灰x 
+)
+ Sx 
+(k 
+)
+ as expected from the pro- 
+posed criterion in Theorem 2 . 
+Consequently, in this section we have shown that the proposed 
+methodology can be successfully employed to evaluate the stability 
+of the nonlinear systems, like recurrent neural networks (RNN) and 
+state lters. Stability analysis of such systems cannot be performed 
+by using previously reported criteria [20每30,32每36] under overow 
+constraint caused by digital hardware limitations. 
+
+T (k 
+
+,
+
+6. Conclusions 
+
+This paper established two criteria for assessment of the sta- 
+bility of digital nonlinear systems under the consequence of sat- 
+uration overow nonlinearity (which is the direct result of nite 
+word-length), without and with consideration of the disturbance 
+from environment (which is also inevitable in a digital hardware). 
+The proposed approaches investigated the asymptotic stability and 
+uniformly ultimately bounded stability in the absence and pres- 
+ence of external perturbations, respectively, for the nonlinear dig- 
+ital lter. Appropriate Lyapunov function along with sector condi- 
+tions were employed while considering the fact that most of the 
+nonlinear systems are either globally or locally Lipschitz. The out- 
+comes of both of the criteria were presented in form of LMIs for 
+an ecient stability test. The proposed approaches can handle in- 
+herent nonlinearity in the dynamics of a system as well as the sat- 
+uration nonlinearity due to the digital hardware constraint for the 
+stability analysis in contrast to the conventional methods. The re- 
+sultant schemes were tested for two real-world physical systems, 
+including an observer of a Moon chaotic system and a recurrent 
+neural network. The state trajectories have been plotted and phase 
+portraits are shown to converge to a bounded ellipsoidal region, 
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+147 
+
+ensuring the uniformly ultimately bounded stability under external 
+interferences. The simulation results demonstrated the usefulness 
+of the developed approaches, and the importance of these criteria 
+was further enhanced as the previous research works lack in of- 
+fering the analysis of nonlinear digital systems＊ stability under the 
+overow nonlinearity. 
+
+Acknowledgment 
+
+This work was supported by the Higher Education Commission 
+of Pakistan and the National Research Foundation of Korea Funded 
+by the Ministry of Science, ICT and Future Planning under Grant 
+NRF-2017R1A1A1A05001325 . 
+
+References 
+
+[1] C.K. Ahn, P. Shi, Generalized dissipativity analysis of digital lters with nite- 
+wordlength arithmetic, IEEE Trans. Circuits Syst. II 63 (4) (2016) 386每390, 
+doi: 10.1109/TCSII.2015.2503578 . 
+[2] H. Kar, V. Singh, Robust stability of 2-D discrete systems described by the 
+fornasini-marchesini second model employing quantization/overow nonlin- 
+earities, IEEE Trans. Circuits Syst. II 51 (11) (2004) 598每602, doi: 10.1109/TCSII. 
+2004.836880 . 
+[3] V. Singh, Robust stability of 2-D digital lters employing saturation, IEEE Signal 
+Process. Lett. 12 (2) (2005a) 142每145, doi: 10.1109/LSP.2004.839704 . 
+[4] V. Singh, Elimination of overow oscillations in 2-D digital lters employ- 
+ing saturation arithmetic: an LMI approach, IEEE Signal Process. Lett. 12 (3) 
+(2005b) 246每249, doi: 10.1109/LSP.2004.842285 . 
+[5] H. Kar, V. Singh, Stability analysis of 2-D digital lters with saturation arith- 
+metic: an LMI approach, IEEE Trans. Signal Process. 53 (6) (2005) 2267每2271, 
+doi: 10.1109/TSP.2005.847857 . 
+[6] C.K. Ahn, P. Shi, M.V. Basin, Two-dimensional dissipative control and ltering 
+for Roesser model, IEEE Trans. Autom. Control 60 (7) (2015) 1745每1759, doi: 10. 
+1109/TAC.2015.2398887 . 
+[7] P. Moroney, A. Willsky, P. Houpt, Roundoff noise and scaling in the digital im- 
+plementation of control compensators, IEEE Trans. Acoust. Speech Signal Pro- 
+cess. 31 (6) (1983) 1464每1477, doi: 10.1109/TASSP.1983.1164230 . 
+[8] P. Bauer, E.I. Jury, Nonperiodic modes in two-dimensional (2-D) recursive dig- 
+ital lters under nite wordlength effects, IEEE Trans. Circuits Syst. 36 (7) 
+(1989) 1032每1035, doi: 10.1109/31.31343 . 
+[9] D. Liu, A.N. Michel, Stability analysis of state-space realizations for two- 
+dimensional lters with overow nonlinearities, IEEE Trans. Circuits Syst. I 41 
+(2) (1994) 127每137, doi: 10.1109/81.269049 . 
+[10] M.A. Rotea, D. Williamson, Optimal realizations of nite wordlength digi- 
+tal lters and controllers, IEEE Trans. Circuits Syst. I 42 (2) (1995) 61每72, 
+doi: 10.1109/81.372846 . 
+[11] J. Radecki, J. Konrad, E. Dubois, Design of multidimensional nite-wordlength 
+r and iir lters by simulated annealing, IEEE Trans. Circuits Syst. II 42 (6) 
+(1995) 424每431, doi: 10.1109/82.392318 . 
+[12] C. Xiao, P. Agathoklis, D.J. Hill, Coecient sensitivity and structure optimiza- 
+tion of multidimensional state-space digital lters, IEEE Trans. Circuits Syst. I 
+45 (9) (1998) 993每998, doi: 10.1109/81.721267 . 
+[13] V. Singh, Elimination of overow oscillations in xed-point state-space digital 
+lters using saturation arithmetic: an LMI approach, Digital Signal Process. 16 
+(1) (2006) 45每51, doi: 10.1016/j.dsp.2005.04.003 . 
+[14] H. Kar, V. Singh, Elimination of overow oscillations in digital lters em- 
+ploying saturation arithmetic, Digital Signal Process. 15 (6) (2005) 536每544, 
+doi: 10.1016/j.dsp.20 05.02.0 01 . 
+[15] J. Paduart, J. Schoukens, Y. Rolain, Fast measurement of quantization distor- 
+tions in DSP algorithms, IEEE Trans. Instrum.Meas. 56 (5) (2007) 1917每1923, 
+doi: 10.1109/TIM.2007.903644 . 
+[16] H. Kar, An improved version of modied liumichel＊s criterion for global asymp- 
+totic stability of xed-point state-space digital lters using saturation arith- 
+metic, Digital Signal Process. 20 (4) (2010) 977每981, doi: 10.1016/j.dsp.2009.10. 
+020 . 
+[17] T. Li, W.X. Zheng, New stability criterion for xed-point state-space digital l- 
+ters with generalized overow arithmetic, IEEE Trans. Circuits Syst. II 59 (7) 
+(2012) 4 43每4 47, doi: 10.1109/TCSII.2012.2198983 . 
+[18] T. Shen, Z. Yuan, Stability criterion for a class of xed-point digital lters using 
+twos complement arithmetic, Appl. Math. Comput. 219 (9) (2013) 4 880每4 883, 
+doi: 10.1016/j.amc.2012.10.064 . 
+[19] H.-J. Butterweck , J. RITZFERFELD , M. Werter , Finite wordlength effects in dig- 
+ital lters, AEU. Archiv f邦r Elektronik und bertragungstechnik 43 (2) (1989) 
+76每89 . 
+[20] L. Harnefors, J. Holmberg, S. Signell, Suppression of overow limit cycles in 
+ldi all-pass/lattice lters, IEEE Trans. Circuits Syst. I 47 (4) (20 0 0) 594每598, 
+doi: 10.1109/81.841864 . 
+[21] V. Singh, LMI Approach to stability of direct form digital lters utilizing sin- 
+gle saturation overow nonlinearity, IEEE Trans. Circuits Syst. II 54 (10) (2007) 
+878每881, doi: 10.1109/TCSII.2007.901627 . 
+
+ l ﹢
+
+[22] C.K. Ahn, Criterion for the elimination of overow oscillations in xed-point 
+digital lters with saturation arithmetic and external disturbance, {AEU} - Int. 
+J. Electron.Commun. 65 (9) (2011) 750每752, doi: 10.1016/j.aeue.2010.12.001 . 
+[23] H. Kar, Asymptotic stability of xed-point state-space digital lters with com- 
+binations of quantization and overow nonlinearities, Signal Process. 91 (11) 
+(2011) 2667每2670, doi: 10.1016/j.sigpro.2011.05.010 . 
+[24] P. Kokil, H. Kar, An improved criterion for the global asymptotic stability of 
+xed-point state-space digital lters with saturation arithmetic, Digital Signal 
+Process. 22 (6) (2012) 1063每1067, doi: 10.1016/j.dsp.2012.07.001 . 
+[25] T. Li, Q. Zhao, J. Lam, Z. Feng, Multi-bound-dependent stability criterion for 
+digital lters with overow arithmetics and time delay, IEEE Trans. Circuits 
+Syst. II 61 (1) (2014) 31每35, doi: 10.1109/TCSII.2013.2291055 . 
+[26] N. Agarwal, H. Kar, An improved criterion for the global asymptotic stability 
+of xed-point state-space digital lters with combinations of quantization and 
+overow, Digital Signal Process. 28 (2014) 136每143, doi: 10.1016/j.dsp.2014.02. 
+006 . 
+[27] C.K. Ahn, Some new results on the stability of direct-form digital lters with 
+nite wordlength nonlinearities, Signal Process. 108 (2015) 549每557, doi: 10. 
+1016/j.sigpro.2014.10.013 . 
+[28] C.K. Ahn, P. Shi, Dissipativity analysis for xed-point interfered digital lters, 
+Signal Process. 109 (2015) 148每153, doi: 10.1016/j.sigpro.2014.10.029 . 
+[29] C.K. Ahn, Two new criteria for the realization of interfered digital lters 
+utilizing saturation overow nonlinearity, Signal Process. 95 (2014) 171每176, 
+doi: 10.1016/j.sigpro.2013.08.018 . 
+[30] I. Arif, M. Rehan, M. Tufail, Towards local stability analysis of externally inter- 
+fered digital lters under overow nonlinearity, IEEE Trans. Circuits Syst. II PP 
+(99) (2016) 1, doi: 10.1109/TCSII.2016.2590459 . 
+[31] C.K. Ahn, L. Wu, P. Shi, Stochastic stability analysis for 2-D Roesser sys- 
+tems with multiplicative noise, Automatica 69 (2016) 356每363, doi: 10.1016/j. 
+automatica.2016.03.006 . 
+[32] H. Kar, V. Singh, Stability analysis of 2-D digital lters described by the 
+Fornasini每Marchesini second model using overow nonlinearities, IEEE Trans. 
+Circuits Syst. I 48 (5) (2001) 612每617, doi: 10.1109/81.922464 . 
+[33] N. Agarwal, H. Kar, An improved criterion for the global asymptotic stability 
+of 2-D state-space digital lters with nite wordlength nonlinearities, Signal 
+Process. 105 (2014) 198每206, doi: 10.1016/j.sigpro.2014.05.029 . 
+[34] C.K. Ahn, l 2 
+ elimination of overow oscillations in 2-D digital lters de- 
+scribed by Roesser model with external interference, IEEE Trans. Circuits Syst. 
+II 60 (6) (2013) 361每365, doi: 10.1109/TCSII.2013.2258259 . 
+[35] C.K. Ahn, Overow oscillation elimination of 2-D digital lters in the Roesser 
+model with Wiener process noise, IEEE Signal Process. Lett. 21 (10) (2014) 
+1302每1305, doi: 10.1109/LSP.2014.2333532 . 
+[36] M. Rehan, M. Tufail, M.T. Akhtar, On elimination of overow oscillations in 
+linear time-varying 2-D digital lters represented by a Roesser model, Signal 
+Process. 127 (2016) 247每252, doi: 10.1016/j.sigpro.2016.03.004 . 
+[37] T.C. Lee, Z.P. Jiang, On uniform global asymptotic stability of nonlinear discrete- 
+time systems with applications, IEEE Trans. Autom. Control 51 (10) (2006) 
+1644每1660, doi: 10.1109/TAC.2006.882770 . 
+[38] R. Huang, S.C. Patwardhan, L.T. Biegler, Stability of a class of discrete-time 
+nonlinear recursive observers, J. Process Control 20 (10) (2010) 1150每1160, 
+doi: 10.1016/j.jprocont.2010.06.020 . 
+[39] B. Picasso, D. Desiderio, R. Scattolini, Robust stability analysis of nonlinear 
+discrete-time systems with application to MPC, IEEE Trans. Autom. Control 57 
+(1) (2012) 185每191, doi: 10.1109/TAC.2011.2163363 . 
+[40] L. Liu, Y. Yin, J. Wang, Q. Wu, Stability analysis of discrete-time switched 
+nonlinear systems via TS fuzzy model approach, Neurocomputing 173, Part 3 
+(2016a) 1967每1971, doi: 10.1016/j.neucom.2015.08.007 . 
+[41] Y. Liu, Y. Kao, H.R. Karimi, Z. Gao, Input-to-state stability for discrete-time non- 
+linear switched singular systems, Inf. Sci. 358每359 (2016b) 18每28, doi: 10.1016/ 
+j.ins.2016.04.013 . 
+[42] I. Kouretas, C. Basetas, V. Paliouras, Low-power logarithmic number system ad- 
+dition/subtraction and their impact on digital lters, IEEE Trans. Comput. 62 
+(11) (2013) 2196每2209, doi: 10.1109/TC.2012.111 . 
+[43] J. Chung, L.W. Kim, Bit-width optimization by divide-and-conquer for xed- 
+point digital signal processing systems, IEEE Trans. Comput. 64 (11) (2015) 
+3091每3101, doi: 10.1109/TC.2015.2394469 . 
+[44] I. Bessa, H. Ismail, R. Palhares, L. Cordeiro, J.E.C. Filho, Formal non-fragile stabil- 
+ity verication of digital control systems with uncertainty, IEEE Trans. Comput. 
+PP (99) (2016) 1, doi: 10.1109/TC.2016.2601328 . 
+[45] G. Phanomchoeng, R. Rajamani, Real-time estimation of rollover index for 
+tripped rollovers with a novel unknown input nonlinear observer, IEEE/ASME 
+Trans. Mechatron. 19 (2) (2014) 743每754, doi: 10.1109/TMECH.2013.2254495 . 
+[46] M.N. Uddin, S.W. Nam, Development and implementation of a nonlinear- 
+controller-based im drive incorporating iron loss with parameter uncertain- 
+ties, IEEE Trans. Ind. Electron. 56 (4) (2009) 1263每1272, doi: 10.1109/TIE.2008. 
+2007551 . 
+[47] S. Razavi, B.A. Tolson, A new formulation for feedforward neural networks, 
+IEEE Trans. Neural Netw. 22 (10) (2011) 1588每1598, doi: 10.1109/TNN.2011. 
+2163169 . 
+[48] M.Y. Wei, T.H. Liu, Design and implementation of an online tuning adaptive 
+controller for synchronous reluctance motor drives, IEEE Trans. Ind. Electron. 
+60 (9) (2013) 3644每3657, doi: 10.1109/TIE.2012.2206341 . 
+[49] J.D. Lindlau, C.R. Knospe, Feedback linearization of an active magnetic bearing 
+with voltage control, IEEE Trans. Control Syst. Technol. 10 (1) (2002) 21每31, 
+doi: 10.1109/87.974335 . 
+
+148 
+
+M. Umair Amjad et al. / Signal Processing 140 (2017) 139每148 
+
+[50] W. Liu, I. Park, Y. Wang, J.C. Principe, Extended Kernel recursive least squares 
+algorithm, IEEE Trans. Signal Process. 57 (10) (2009) 3801每3814, doi: 10.1109/ 
+TSP.20 09.20220 07 . 
+[51] C. Ahn, P. Shi, Hankel norm performance of digital lters associated with sat- 
+uration, IEEE Trans. Circuits Syst. II PP(99) (2016) 1, doi: 10.1109/TCSII.2016. 
+2600499 . 
+[52] L. Wu, W.X. Zheng, H. Gao, Dissipativity-based sliding mode control of 
+switched stochastic systems, IEEE Trans. Autom. Control 58 (3) (2013) 785每
+791, doi: 10.1109/TAC.2012.2211456 . 
+[53] J. Liu, S. Vazquez, L. Wu, A. Marquez, H. Gao, L.G. Franquelo, Extended state 
+observer-based sliding-mode control for three-phase power converters, IEEE 
+Trans. Ind. Electron. 64 (1) (2017a) 22每31, doi: 10.1109/TIE.2016.2610400 . 
+[54] J. Liu, C. Wu, Z. Wang, L. Wu, Reliable lter design for sensor networks in the 
+type-2 fuzzy framework, IEEE Trans. Ind. Inf. PP (99) (2017b) 1, doi: 10.1109/TII. 
+2017.2654323 . 
+[55] X. Su, P. Shi, L. Wu, Y.D. Song, Fault detection ltering for nonlinear switched 
+stochastic systems, IEEE Trans. Autom. Control 61 (5) (2016) 1310每1315, doi: 10. 
+1109/TAC.2015.2465091 . 
+[56] X. Su, L. Wu, P. Shi, C.L.P. Chen, Model approximation for fuzzy switched sys- 
+tems with stochastic perturbation, IEEE Trans. Fuzzy Syst. 23 (5) (2015) 1458每
+1473, doi: 10.1109/TFUZZ.2014.2362153 . 
+[57] X. Su, L. Wu, P. Shi, Y.-D. Song, A novel approach to output feedback control of 
+fuzzy stochastic systems, Automatica 50 (12) (2014) 3268每3275, doi: 10.1016/j. 
+automatica.2014.10.053 . 
+
+[58] A. Zemouche, M. Boutayeb, Observer design for lipschitz nonlinear systems: 
+the discrete-time case, IEEE Trans. Circuits Syst. II 53 (8) (2006) 777每781, 
+doi: 10.1109/TCSII.2006.876465 . 
+[59] H. Huang, T. Huang, X. Chen, C. Qian, Exponential stabilization of delayed re- 
+current neural networks: a state estimation based approach, Neural Netw. 48 
+(2013) 153每157, doi: 10.1016/j.neunet.2013.08.006 . 
+[60] J. Wang , G. Wu , Real-time synthesis of linear state observers using a multilayer 
+recurrent neural network, in: Industrial Technology, 1994., Proceedings of the 
+IEEE International Conference on, 1994, pp. 278每282 . 
+[61] Y. Maeda, M. Wakamura, Simultaneous perturbation learning rule for recurrent 
+neural networks and its FPGA implementation, IEEE Trans. Neural Netw. 16 (6) 
+(2005) 1664每1672, doi: 10.1109/TNN.2005.852237 . 
+[62] S. Anbazhagan, N. Kumarappan, Day-ahead deregulated electricity market price 
+forecasting using recurrent neural network, IEEE Syst. J. 7 (4) (2013) 866每872, 
+doi: 10.1109/JSYST.2012.2225733 . 
+[63] S.-W. Lee, H.-H. Song, A new recurrent neural-network architecture for visual 
+pattern recognition, IEEE Trans. Neural Netw. 8 (2) (1997) 331每340, doi: 10. 
+1109/72.557671 . 
+[64] Y. Xia, J. Wang, A general projection neural network for solving monotone 
+variational inequalities and related optimization problems, IEEE Trans. Neural 
+Netw. 15 (2) (2004) 318每328, doi: 10.1109/TNN.2004.824252 . 
+

@@ -1,0 +1,4983 @@
+A multi-innovation state and parameter estimation algorithm for a state space system with d-step state-delay 
+
+a Key Laboratory of Advanced Process Control for Light Industry (Ministry of Education), School of Internet of Things Engineering, Jiangnan University, Wuxi 
+214122, PR China 
+b Nonlinear Analysis and Applied Mathematics (NAAM) Research Group, Department of Mathematics, King Abdulaziz University, Jeddah 21589, Saudi Arabia 
+c Department of Mathematics, Quaid-I-Azam University, Islamabad 440 0 0, Pakistan 
+
+article
+
+info
+
+
+Article history: 
+Received 7 May 2016 
+Revised 21 April 2017 
+Accepted 4 May 2017 
+Available online 5 May 2017 
+
+Keywords: 
+Signal ltering 
+Parameter estimation 
+Multi-innovation theory 
+State space system 
+
+abstract
+
+This paper considers the state and parameter estimation problem of a state-delay system. On the basis 
+of the stochastic gradient algorithm (i.e., the gradient based search estimation algorithm), this work ex- 
+tends the scalar innovation into an innovation vector and presents a multi-innovation gradient parameter 
+estimation algorithm for a state-space system with d-step state-delay by means of the multi-innovation 
+identication theory. For thesystems whose states are unknown, we use the states of the state observer 
+for the parameter estimation and use the estimated parameters for the state estimation. This forms a 
+joint multi-innovation state and parameter estimation algorithm for the state-delay systems with im- 
+measurable states. The simulation results indicate that the proposed algorithms can work well. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Parameter estimation is a central issue of system identication 
+[1,2] , controller design [3每6] and signal ltering [7,8] . Mathemati- 
+cal models are the essential characteristics of a system and system 
+identication uses the statistical methods to build the mathemati- 
+cal models of dynamical systems from measured data [2] . The typ- 
+ical parameter estimation algorithms include the recursive meth- 
+ods and the iterative methods. They have widely applications in 
+nding the roots of equations or solving matrix equations and in 
+implementing the parameter estimation algorithms [9] . Xu et al. 
+studied parameter estimation and controller design for dynamic 
+systems from the step responses based on the Newton iteration 
+[10] and presented a damping iterative parameter identication 
+method for dynamical systems based on the sine signal measure- 
+ment [11] . Chen et al. proposed a hierarchical gradient parameter 
+estimation algorithm for Hammerstein nonlinear systems using the 
+key term separation principle [12] . Xu presented a Newton itera- 
+tion algorithm for the parameter estimation of dynamical systems 
+[13] . 
+
+R
+
+ This work was supported by the Science Research of Colleges Universities in 
+Jiangsu Province (No. 16KJB120 0 07, China), the National Natural Science Foundation 
+of China (61273194) and the 111 Project (B12018). 
+There exist many identication methods for linear systems [14每
+16] and nonlinear systems [17每19] , e.g., the generalized projec- 
+tion algorithm [20] , the auxiliary model based interval-varying re- 
+cursive least squares algorithm [21] and the decomposition based 
+least squares iterative algorithm [22] . In the area of state space sys- 
+tem identication, a modied subspace identication method was 
+proposed for periodically non-uniformly sampled systems by us- 
+ing the lifting technique [23] . A state space least mean square l- 
+tering and an extended state space recursive least squares lter- 
+ing were proposed for state space systems without considering in- 
+put signals [24,25] . A state ltering based recursive least squares 
+parameter estimation algorithm was proposed for linear systems 
+with d-step state-delay [26] . Also, Wang et al.proposed a recursive 
+parameter and state estimation algorithm for an input nonlinear 
+state space system using the hierarchical identication principle 
+[27] . Pan et al.discussed the image noise smoothing using a modi- 
+ed Kalman lter [28] and Wan et al presented a T-wave alternans 
+assessment method based on least squares curve tting technique 
+[29] . 
+In engineering, the states of some systems are immeasurable. 
+Consequently, the state estimation of a system plays a signicant 
+role in control design and system identication. There exist many 
+state and parameter estimation methods. In this literature, Guo and 
+Zhao studied the convergence of an extended state observer for 
+nonlinear systems with uncertainty [30] ; Zhu presented the state 
+estimation and unknown input reconstruction via both reduced- 
+order and high-order sliding mode observers [31] . This paper uses 
+the state observer to generate the estimates of the states for a dy- 
+namic system from the available input-output data. Other meth- 
+ods include the auxiliary model based least squares algorithm for 
+a dual-rate state space system with time-delay using the data l- 
+tering [32] and the state ltering based least squares iterative pa- 
+rameter estimation for observer canonical state space systems us- 
+ing decomposition [33] . 
+The time-delay systems have drawn a great deal of attention of 
+many researchers in the eld of system control and system analy- 
+sis [34每36] . For example, Gao et al. studied an articial bee colony 
+algorithm with space contraction for unknown parameters identi- 
+cation and time-delays of chaotic systems [37] ; Li et al. discussed 
+the local discontinuous Galerkin method for reaction-diffusion dy- 
+namical systems with time-delays [38] . In the previous work, a 
+state ltering based recursive least squares parameter estimation 
+algorithm [26] and a stochastic gradient (SG) parameter estimation 
+algorithm [39] have been proposed for a state space system with 
+d-step state-delay. On the basis of the work in [26,39] , this paper 
+uses the multi-innovation identication theory, extends the SG al- 
+gorithm and derives a joint multi-innovation SG (MISG) parameter 
+estimation and state estimation algorithm, where the parameter 
+estimation uses the MISG algorithm and the state estimation uses 
+the parameter estimates based observer. The methods in this pa- 
+per can simultaneously estimate the parameters and states of the 
+systems and differs from the previous methods which were based 
+on the hierarchical identication principle [40] . 
+This paper is organized as follows. Section 2 describes the 
+canonical state space systems with state-delay. Section 3 de- 
+rives the parameter identication model of the systems. 
+Section 4 presents a combined multi-innovation stochastic gra- 
+dient (MISG) parameter and state estimation algorithm and a 
+state observer based recursive least squares parameter estima- 
+tion algorithm for comparing the computational complexity. 
+Section 5 provides an illustrative example. Finally, we offer some 
+concluding remarks in Section 6 . 
+
+2. The canonical state space model for state-delay systems 
+ X § or ※X :=
+Let us introduce some notations. ※A 
+ A § stands 
+for ※A is dened as X §; the symbol I ( I n ) stands for an identity 
+℅ n ); z represents a unit forward shift 
+matrix of appropriate size ( n 
+ 1)
+(k 
+)
+(k 
+ 1)
+(k 
+)
+(k 
+operator: zx 
+ and z 
+ ; the superscript 
+T denotes the matrix/vector transpose;  老 (k 
+)
+℅ 1 vector whose elements are 
+ denotes the estimate 
+老 at time k ; 1 n represents an n 
+of 
+2 :=
+all unity; the norm of a matrix X is dened as 
+ tr[ XX 
+Consider the following state space system with d-step state- 
+delay, 
+x 
+(k 
+ 1)
+
+
+
+=
+
+ x 
+
++
+
+1 x 
+
+=
+
+ x 
+
+(cid:3)
+
+ X 
+
+(cid:3)
+
+T ]. 
+
++
+
+=
+
+ Ax 
+(k 
+)
+
++
+
+ d )
+ Bx 
+(k 
+
++
+
+ f u 
+
+(k 
+)
+
+,
+
+(1) 
+
+y 
+(k 
+)
+
+=
+
+ cx 
+(k 
+)
+0 
+
++
+
+ v 
+
+(k 
+)
+1 
+
+,
+
+(2) 
+
+A :=
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+0 
+
+﹞ ﹞ ﹞
+
+0 
+. . . 
+
+0 
+. . . 
+0 
+
+0 
+. . . 
+0 
+
+1 
+. . . 
+
+. . . 
+. . . 
+0 
+
+0 
+
+﹞ ﹞ ﹞
+
+1 
+
+a n 
+
+a n 
+1 
+
+a n 
+2 
+
+﹞ ﹞ ﹞
+
+a 1 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+﹋
+
+R
+
+n 
+
+℅n ,
+
+B :=
+
+b 1 
+b 2 
+
+. . . 
+
+b n 
+
+
+ 
+ 
+ 
+ 
+
+﹋
+
+R
+
+n 
+
+℅n ,
+
+ b i 
+
+﹋
+
+R
+
+1 
+
+℅n ,
+
+f :=
+
+
+ 
+ 
+ 
+ 
+
+f 1 
+f 2 
+
+. . . 
+
+f n 
+
+
+ 
+ 
+ 
+ 
+
+﹋
+
+R
+
+n ,
+
+c :=
+ [1 
+
+,
+
+ 0 
+ 0 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 0] 
+
+﹋
+
+R
+
+1 
+
+℅n ,
+
+where x 
+(k 
+)
+n is the state vector, u 
+(k 
+)
+ is the system input, 
+(k 
+)
+ is the system output, v 
+(k 
+)
+y 
+ is a random noise with 
+℅n are the sys- 
+zero mean, A 
+n and c 
+tem parameter matrices/vectors. 
+The system matrices/vector A , B and f are the unknown pa- 
+rameters to be estimated from the input-output data { u ( k ), y ( k ): 
+k 
+ x ( k ) is immeasurable. Assume that ( c , A ) is observ- 
+≒ 0. If we remove Bx 
+ d )
+(k 
+)
+(k 
+)
+(k 
+able and u 
+ 0 and y 
+ 0 for k 
+then Eq. (1) becomes a standard state-space model. In this work, 
+we suppose that the delay d 
+ 0 is a known integer. 
+The data are collected from the dynamical system in (1) 每(2) . In 
+general, one uses an uncorrelated sequence as the input signal for 
+parameter identication. 
+
+﹋
+
+R
+
+﹋
+
+R
+
+﹋
+
+R
+
+﹋
+
+R
+
+﹋
+
+R
+
+n 
+
+℅n ,
+
+ B 
+
+﹋
+
+R
+
+n 
+
+℅n ,
+
+ f 
+
+﹋
+
+R
+
+﹋
+
+R
+
+1 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+﹞ ﹞ ﹞ }
+
+,
+
+=
+
+=
+
+,
+
+>
+
+3. The identication model 
+
+This section derives the identication model of the canonical 
+state space model in (1) 每(2) . From (1) , we have 
+
+x i 
+
+(k 
+
++
+
+ 1)
+
+=
+
+ x i 
+
++1 
+
+(k 
+)
+
++
+
+ b i x 
+
+ d )
+(k 
+
++
+
+ f i u 
+
+(k 
+)
+
+,
+
+ i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n 
+
+ 1 
+ (3) 
+
+,
+
+x n 
+
+(k 
+
++
+
+ 1)
+
+=
+
+ a n x 1 
+ b n x 
+
+(k 
+)
+ d )
+(k 
+
++
+
+ a n 
+
+1 x 2 
+
+(k 
+)
+(k 
+)
+
++
+
+﹞ ﹞ ﹞ +
+
+ a 1 x n 
+
+(k 
+)
+
++
+
++
+
+ f n u 
+
+.
+
+(4) 
+
+Let a :=
+T ﹋
+n . Using the properties of the shift 
+i and (4) by z 
+operator z , multiplying Eqs. (3) by z 
+ and adding 
+all expressions give 
+ n 
+ ax 
+(k 
+)
+
+ [ a n 
+ a n 
+
+,
+
+1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ a 1 ] 
+
+R
+
+n ,
+
+x 1 
+
+(k 
+)
+
+=
+
++
+
+ b 1 x 
+
+ d 
+ 1)
+(k 
+ d 
+ n 
+(k 
+ 1)
+ 1)
+ 2)
+(k 
+(k 
+ 1 
+When d 
+ dene the information vector 
+rameter vector 
+老: 
+ :=
+ d 
+ 1)
+ d 
+ 2)
+T (k 
+T (k 
+n 
+d )
+ 1)
+ 2)
+x 
+T (k 
+(k 
+(k 
+T ﹋
+T ] 
+,
+,
+.
+.
+.
+,
+,
+.
+.
+.
+,
+,
+≡ n , dene the information vector 
+( k ) and the parameter 
+When d 
+vector 
+老: 
+ :=
+
++
++
+﹞ ﹞ ﹞ +
+
+ b 2 x 
+ b n x 
+ f n u 
+
+ d 
+ 2)
+(k 
+ d 
+ n 
+(k 
+)
+ n 
+(k 
+)
+( k ) and the pa- 
+
++
++
+
+﹞ ﹞ ﹞ +
+
+ b n 
+
+1 x 
+
++
+
+ f 1 u 
+
++
+
+ f 2 u 
+
++
+
+.
+
+(5) 
+
+(cid:2)
+
+ n 
+
+,
+
+ (k 
+)
+
+ [ x 
+
+,
+
+ x 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ x 
+
+ n 
+T (k 
+)
+ n 
+T ﹋
+(k 
+)] 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+,
+
+ u 
+
+,
+
+ u 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u 
+
+R
+
+n 
+
+2 +
+
+ n ,
+
+老 :=
+
+ [ b 1 
+ b 2 
+
+ a 
+
++
+
+ b n 
+
+d 
+
+ b n 
+ f 
+
+R
+
+n 
+
+2 +
+
+ n .
+
+ (k 
+)
+
+ [ x 
+
+ n 
+ d 
+ 1)
+ d 
+ 2)
+T (k 
+)
+T (k 
+T (k 
+ d 
+ n 
+ d 
+ n 
+T (k 
+ 1)
+T (k 
+)
+x 
+ 1)
+ 2)
+ n 
+T ﹋
+u 
+(k 
+(k 
+(k 
+)] 
+T ﹋
+T ] 
+
+,
+
+ x 
+
+,
+
+ x 
+
+,
+
+.
+
+.
+
+.
+
+,
+
++
+
+,
+
+ x 
+
+,
+
+,
+
+ u 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u 
+
+R
+2 +2 n .
+n 
+
+2 +2 n ,
+n 
+
+老 :=
+
+ [ a 
+ b 1 
+ b 2 
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ b n 
+
+1 
+
+,
+
+ b n 
+ f 
+
+,
+
+R
+
+From (2) and (5) , we have 
+
+y 
+(k 
+)
+
+=
+
+ x 1 
+
+(k 
+)
+
++
+
+ v 
+
+(k 
+)
+
+=
+
+
+
+T (k 
+)
+
+老 +
+
+ v 
+
+(k 
+)
+
+.
+
+(6) 
+
+Remark 1. Eq. (6) is the identication model of the state space 
+system with d-step state-delay. The information vector 
+( k ) con- 
+ i 
+tains the system input u 
+(t 
+)
+ and the unknown state vector x 
+(k 
+)
+ and 老 contains all the parameters of the system. 
+i 
+
+
+
+Example 1. For a 2-state space system with d-step state-delay, 
+
+(cid:8)
+
+x 1 
+x 2 
+
+(k 
+(k 
+
++
++
+
+ 1)
+ 1)
+
+(cid:9)
+
+=
+
+(cid:8)
+
+0 
+
+1 
+
+a 2 
+
+a 1 
+
+(cid:9)(cid:8)
+
+x 1 
+x 2 
+
+(k 
+)
+(k 
+)
+
+(cid:9)
+
++
+
+(cid:8)
+
+b 1 
+b 2 
+
+(cid:9)
+
+ d )
+x 
+(k 
+
++
+
+(cid:8)
+
+f 1 
+f 2 
+
+(cid:9)
+
+u 
+(k 
+)
+
+,
+
+y 
+(k 
+)
+
+=
+
+ [1 
+ 0] 
+
+,
+
+(cid:8)
+
+x 1 
+x 2 
+
+(k 
+)
+(k 
+)
+
+(cid:9)
+
++
+
+ v 
+
+(k 
+)
+
+.
+
+Expanding this matrix equation gives 
+
+x 1 
+
+(k 
+
++
+
+ 1)
+
+=
+
+ x 2 
+
+(k 
+)
+
++
+
+ b 1 x 
+
+ d )
+(k 
+
++
+
+ f 1 u 
+
+(k 
+)
+
+,
+
+(7) 
+
+L. Xu et al. / Signal Processing 140 (2017) 97每103 
+
+99 
+
+x 2 
+
+(k 
+
++
+
+ 1)
+
+=
+
+ a 2 x 1 
+
+(k 
+)
+
++
+
+ a 1 x 2 
+
+ d )
+(k 
+)
+(k 
+1 and (8) by z 
+2 gives 
+Multiplying Eqs. (7) by z 
+ d )
+(k 
+ 1)
+(k 
+)
+(k 
+(k 
+ 1)
+(k 
+)
+(k 
+)
+ d )
+(k 
+
++
+
+ b 2 x 
+
++
+
+ f 2 u 
+
+(k 
+)
+
+.
+
+(8) 
+
+z 
+
+1 x 1 
+2 x 2 
+
++
++
+
+=
+=
+
+ z 
+
+1 x 2 
+2 a 2 x 1 
+2 b 2 x 
+
++
+
+ z 
+
+1 b 1 x 
+2 a 1 x 2 
+2 f 2 u 
+
++
+
+ z 
+
+1 f 1 u 
+
+(k 
+)
+
+,
+
+z 
+
+ z 
+
++
+
+ z 
+
++
+
+ z 
+
++
+
+ z 
+
+(k 
+)
+
+,
+
+or 
+
+x 1 
+
+(k 
+)
+ 1)
+(k 
+
+=
+=
+
+ x 2 
+ a 2 x 1 
+ f 2 u 
+
+ 1)
+(k 
+ 2)
+(k 
+ 2)
+(k 
+
++
+
+ b 1 x 
+ a 1 x 2 
+
+ d 
+ 1)
+(k 
+ 2)
+(k 
+
++
++
+
+ f 1 u 
+ b 2 x 
+
+ 1)
+(k 
+ d 
+ 2)
+(k 
+
+,
+
+x 2 
+
++
+
++
+
+.
+
+Adding the above two equations gives 
+ 2)
+ 2)
+(k 
+)
+(k 
+(k 
+ d 
+ 2)
+ 1)
+(k 
+(k 
+ 2)
+ d 
+ 1)
+ ax 
+(k 
+(k 
+ 1)
+ 2)
+(k 
+(k 
+
+x 1 
+
+=
+
+ a 2 x 1 
+ b 2 x 
+
++
+
+ a 1 x 2 
+
++
+
+ b 1 x 
+ f 2 u 
+ b 2 x 
+
+ d 
+ 1)
+(k 
+ 2)
+(k 
+ d 
+ 2)
+(k 
+
++
+
++
+
+ f 1 u 
+
++
+
+=
+
++
+
+ b 1 x 
+ f 2 u 
+
++
+
++
+
+ f 1 u 
+
++
+
+.
+
+Its corresponding input-output representation is given by 
+ 2)
+ d 
+ 1)
+ d 
+ 2)
+y 
+(k 
+)
+ ax 
+(k 
+(k 
+(k 
+ 1)
+ 2)
+(k 
+(k 
+(k 
+)
+
+=
+
++
+
+ b 1 x 
+ f 2 u 
+
++
++
+
+ b 2 x 
+ v 
+
++
+
+ f 1 u 
+
++
+
+.
+
+When d 
+(k 
+)
+
+=
+
+ 1 
+
+,
+
+ we have 
+ 2)
+(k 
+ 1)
+(k 
+ 2)
+)
+(k 
+
+x 1 
+
+=
+
+ a 2 x 1 
+ f 1 u 
+ b 1 
+
++
++
+
+ a 1 x 2 
+ f 2 u 
+ b 2 x 
+
+ 2)
+(k 
+ 2)
+(k 
+ 3)
+(k 
+
++
+
+ b 1 x 
+
+ 2)
+(k 
+
++
+
+ b 2 x 
+
+ 3)
+(k 
+
++
+
+=
+
+(a 
+
++
+
+ x 
+
++
+
++
+
+ f 1 u 
+
+ 1)
+(k 
+
++
+
+ f 2 u 
+
+ 2)
+(k 
+
+.
+
+Hence, we have the input-state-output representation: 
+ 2)
+ 3)
+(k 
+)
+(a 
+)
+(k 
+(k 
+y 
+ 1)
+ 2)
+(k 
+(k 
+
+=
+
++
+
+ b 1 
+ f 1 u 
+
+ x 
+
++
+
+ b 2 x 
+ f 2 u 
+
++
+
++
+
++
+
+ v 
+
+(k 
+)
+
+.
+
+4. The parameter and state estimation algorithm 
+
+This section derives a multi-innovation stochastic gradient al- 
+gorithm to estimate the parameter vector 
+老 in (6) and uses the 
+(k 
+ 1)
+observer to estimate the state vector x 
+ of the system. 
+
++
+
+4.1. The SG algorithm 
+
+According to the identication model in (6) , dening and mini- 
+mizing the cost function, 
+ :=
+
+J 1 
+
+(老 )
+
+1 
+[ y 
+(k 
+)
+2 
+and using the gradient search, we may obtain a stochastic gradient 
+algorithm: 
+
+ 
+
+T (k 
+)
+
+老] 
+
+2 ,
+
+ 老 (k 
+)
+
+=
+
+ 1)
+  老 (k 
+
++
+
+ (k 
+)
+r (k 
+)
+
+[ y 
+(k 
+)
+
+ 
+
+T (k 
+)
+
+ 1)] 
+  老 (k 
+
+,
+
+(9) 
+
+r (k 
+)
+
+=
+
+ 1)
+ r (k 
+
++
+
+(cid:3)
+
+ (k 
+)
+
+(cid:3)
+
+2 ,
+
+ r (0)
+
+=
+
+ 1 
+
+.
+
+(10) 
+
+Here, 1/ r ( k ) is the step-size or convergence factor. The choice of 
+r ( k ) guarantees that the parameter estimation error converges to 
+zero. However, diculties arise in that the information vector 
+( k ) 
+ i 
+contains the unknown state vector x 
+(k 
+)
+(i 
+d )
+ the SG algorithm in (9) 每(10) cannot compute the estimate  老 (k 
+)
+of 
+老. The approach here is to replace the unknown state vector 
+ i 
+ i 
+(k 
+)
+( k ) with its  x 
+(k 
+)
+( k ) in (9) 每
+x 
+ in 
+ . The unknown vector 
+(10) with its estimate  
+(k 
+) in (13) or (14) , we can obtain the fol- 
+老: 
+lowing stochastic gradient (SG) algorithm for estimating 
+ 
+(k 
+)
+ 1)] 
+  老 (k 
+r (k 
+)
+
+=
+
+ 1 
+
++
+
+ d,
+
+ 2 
+
++
+
+ d,
+
+.
+
+.
+
+.
+
+,
+
+ n 
+
++
+
+,
+
+ 老 (k 
+)
+
+=
+
+ 1)
+  老 (k 
+
++
+
+[ y 
+(k 
+)
+
+  
+
+T (k 
+)
+
+,
+
+(11) 
+
+r (k 
+)
+
+=
+
+ 1)
+ r (k 
+
++
+
+(cid:3)
+
+  
+(k 
+)
+
+(cid:3)
+
+2 ,
+
+ r (0)
+
+=
+
+ 1 
+
+,
+
+(12) 
+
+ 
+(k 
+)
+
+=
+
+ [  x 
+
+ d 
+ 1)
+T (k 
+ n 
+ d )
+ x 
+T (k 
+ 1 
+d 
+
+,
+
+  x 
+
+ d 
+ 2)
+T (k 
+ 1)
+ 2)
+(k 
+(k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+  x 
+
+ n 
+T (k 
+)
+ n 
+(k 
+)] 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+,
+
+ u 
+
+,
+
+ u 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u 
+
+T ,
+
+(cid:2)
+
+ n 
+
+,
+
+(13) 
+
+ 
+(k 
+)
+
+=
+
+ [  x 
+
+ n 
+ d 
+ 1)
+ d 
+ 2)
+T (k 
+)
+T (k 
+T (k 
+ d 
+ n 
+ d 
+ n 
+T (k 
+ 1)
+T (k 
+)
+ x 
+ 1)
+ 2)
+ n 
+u 
+(k 
+(k 
+(k 
+)] 
+ :=
+ 1)
+T (k 
+)
+  老 (k 
+
+,
+
+  x 
+
+,
+
+  x 
+
+,
+
+.
+
+.
+
+.
+
+,
+
++
+
+,
+
+  x 
+
+,
+
+,
+
+ u 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u 
+
+T ,
+
+ d 
+
+(cid:3)
+
+ n.
+
+(14) 
+
+The quantity e 
+(k 
+)
+novation. 
+
+ y 
+
+(k 
+)
+
+  
+
+﹋
+
+R
+
+ is called the in- 
+
+老 has slow conver- 
+Remark 2. The SG algorithm for estimating 
+gence rates. This motivates us to study the MISG algorithm for im- 
+proving the convergence rates in the following. 
+
+4.2. The MISG algorithm 
+
+In order to improve the accuracy of the SG algorithm, we ex- 
+tend the SG algorithm and derive a multi-innovation stochastic 
+gradient algorithm by expanding the innovation length. 
+Dene an innovation vector: 
+e 
+(k 
+)
+ 1)
+e 
+(k 
+. . . 
+ p 
+(k 
+e 
+where the positive integer p represents the innovation length, 
+and 
+ i 
+ i 
+T (k 
+ i 
+ i 
+ 1)
+e 
+(k 
+)
+(k 
+)
+)
+  老 (k 
+ 1)
+In general, one may think that the estimate  老 (k 
+ i 
+ i 
+ 1)
+ is closer to 
+than  老 (k 
+)
+(i 
+ at time k 
+ . Thus, we take the 
+innovation vector as 
+
+E 老 ( p,
+
+ k 
+
+)
+
+ :=
+
+
+ 
+ 
+ 
+ 
+
++
+
+ 1)
+
+
+ 
+ 
+ 
+ 
+
+﹋
+
+R
+
+p ,
+
+=
+
+ y 
+
+  
+
+.
+
+老
+
+=
+
+ 2 
+ 3 
+ 4 
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ p 
+
+E 老 ( p,
+
+ k 
+
+)
+
+ :=
+
+
+ 
+ 
+ 
+ 
+ 
+
+y 
+(k 
+)
+ 1)
+y 
+(k 
+
+  
+  
+
+ 1)
+T (k 
+)
+  老 (k 
+T (k 
+ 1)
+  老 (k 
+ 1)
+. . . 
+T (k 
+ p 
+Dene the stacked information matrix 
+ ( p,
+put vector Y ( p , k ) as 
+ :=
+ p 
+ [  
+(k 
+)
+  
+(k 
+ 1)] 
+ :=
+ p 
+T ﹋
+)
+(k 
+)
+(k 
+ 1)] 
+Then, the innovation vector E 老 ( p , k ) can be equivalently expressed 
+as 
+
+ p 
+y 
+(k 
+
++
+
+ 1)
+
+  
+
++
+
+ 1)
+
+ 1)
+  老 (k 
+
+
+ 
+ 
+ 
+ 
+ 
+
+﹋
+
+R
+
+p .
+
+ k 
+
+)
+
+ and the stacked out- 
+
+ ( p,
+
+ k 
+
+)
+
+,
+
+ 1)
+  
+(k 
+ 1)
+(k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
++
++
+
+﹋
+
+R
+
+n 
+
+℅ p ,
+
+Y 
+( p,
+
+ k 
+
+ [ y 
+
+,
+
+ y 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ y 
+
+R
+
+p .
+
+E 老 ( p,
+
+ k 
+
+)
+
+=
+
+ Y 
+
+( p,
+
+ k 
+
+)
+
+  T ( p,
+Therefore, replacing y ( k ),  
+(k 
+)
+ and e ( k ) in (11) with Y ( p , k ), 
+ ( p,
+and E 老 ( p , k ), we can obtain the following multi-innovation stochas- 
+tic gradient (MISG) algorithm with the innovation length p : 
+
+ k 
+
+)
+
+ 1)
+  老 (k 
+
+.
+
+ k 
+
+)
+
+ 老 (k 
+)
+
+=
+
+ 1)
+  老 (k 
+
++
+
+ ( p,
+r (k 
+)
+
+ k 
+
+)
+
+E 老 ( p,
+
+ k 
+
+)
+
+,
+
+(15) 
+
+E 老 ( p,
+
+ k 
+
+)
+
+=
+
+ Y 
+
+( p,
+
+ k 
+
+)
+
+  T ( p,
+
+ k 
+
+)
+
+ 1)
+  老 (k 
+
+,
+
+(16) 
+
+100 
+
+L. Xu et al. / Signal Processing 140 (2017) 97每103 
+
+r (k 
+)
+
+=
+
+ 1)
+ r (k 
+
++
+
+(cid:3)
+
+  
+(k 
+)
+
+(cid:3)
+
+2 ,
+
+ r (0)
+
+=
+
+ 1 
+
+,
+
+(17) 
+
+Y 
+( p,
+
+ k 
+
+)
+
+=
+
+ [ y 
+
+(k 
+)
+
+,
+
+ y 
+
+ 1)
+(k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ y 
+
+ p 
+(k 
+
++
+
+ 1)] 
+
+T ,
+
+(18) 
+
+ ( p,
+
+ k 
+
+)
+
+=
+
+ [  
+(k 
+)
+
+,
+
+ 1)
+  
+(k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ p 
+  
+(k 
+
++
+
+ 1)] 
+
+,
+
+(19) 
+
+ 
+(k 
+)
+
+=
+
+ [  x 
+
+ d 
+ 1)
+T (k 
+ n 
+ d )
+ x 
+T (k 
+ 1 
+for d 
+
+,
+
+  x 
+
+ d 
+ 2)
+T (k 
+ 1)
+ 2)
+(k 
+(k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+  x 
+
+ n 
+T (k 
+)
+ n 
+(k 
+)] 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+,
+
+ u 
+
+,
+
+ u 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u 
+
+T ,
+
+(cid:2)
+
+ n 
+
+,
+
+(20) 
+
+ 
+(k 
+)
+
+=
+
+ [  x 
+
+ n 
+ d 
+ 1)
+ d 
+ 2)
+T (k 
+)
+T (k 
+T (k 
+ d 
+ n 
+ d 
+ n 
+T (k 
+ 1)
+T (k 
+)
+ x 
+ 1)
+ 2)
+ n 
+u 
+(k 
+(k 
+(k 
+)] 
+ the MISG algorithm degrades 
+
+,
+
+  x 
+
+,
+
+  x 
+
+,
+
+.
+
+.
+
+.
+
+,
+
++
+
+,
+
+  x 
+
+,
+
+,
+
+ u 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u 
+
+T ,
+
+ for d 
+
+(cid:3)
+
+ n.
+
+(21) 
+
+When the innovation length p 
+to the SG algorithm. 
+
+=
+
+ 1 
+
+,
+
+Remark 3. The innovation is the useful information which can im- 
+prove the estimation accuracy. Thus, the MISG algorithm can pro- 
+vide more accurate parameter estimates by expanding the innova- 
+tion length. 
+
+4.3. The state estimation algorithm 
+
+Using the parameter estimation vector  老 (k 
+)
+ to form the sys- 
+tem matrices 
+ A 
+(k 
+)
+(k 
+)
+ and 
+ f 
+(k 
+)
+ and based on the canonical state 
+space model in (1) 每(2) , we can use the following observer to esti- 
+mate the state vector x ( k ): 
+
+,
+
+  B 
+
+ x 
+(k 
+
++
+
+ 1)
+
+=
+
+ A 
+(k 
+)
+
+  x 
+
+(k 
+)
+
++
+
+  B 
+
+(k 
+)
+
+  x 
+
+ d )
+(k 
+
++
+
+ f 
+(k 
+)
+
+ u 
+
+(k 
+)
+
+,
+
+(22) 
+
+ A 
+(k 
+)
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+0 
+
+1 
+
+0 
+
+﹞ ﹞ ﹞
+
+0 
+. . . 
+
+0 
+. . . 
+0 
+(k 
+)
+
+0 
+. . . 
+0 
+(k 
+)
+
+1 
+. . . 
+
+. . . 
+. . . 
+0 
+
+0 
+
+﹞ ﹞ ﹞
+
+1 
+(k 
+)
+
+ a n 
+
+ a n 
+1 
+
+ a n 
+2 
+
+(k 
+)
+
+﹞ ﹞ ﹞
+
+ a 1 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+,
+
+(23) 
+
+ B 
+(k 
+)
+
+=
+
+ b 1 
+ b 2 
+
+(k 
+)
+(k 
+)
+. . . 
+(k 
+)
+
+ b n 
+
+
+ 
+ 
+ 
+ 
+ 
+
+,
+
+ f 
+(k 
+)
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+
+ f 1 
+ f 2 
+
+(k 
+)
+(k 
+)
+. . . 
+(k 
+)
+
+ f n 
+
+
+ 
+ 
+ 
+ 
+ 
+
+,
+
+(24) 
+
+ 老 (k 
+)
+d 
+
+=
+
+ [ 
+
+ b 1 
+
+(k 
+)
+ 1 
+
+,
+
+ b 2 
+
+(k 
+)
+
+,
+
+. . .
+
+,
+
+  a 
+
+(k 
+)
+
++
+
+ b n 
+d 
+
+(k 
+)
+
+,
+
+. . .
+
+,
+
+ b n 
+
+(k 
+)
+
+,
+
+ f 
+T (k 
+)] 
+
+T ,
+
+(cid:2)
+
+ n 
+
+,
+
+(25) 
+
+ 老 (k 
+)
+
+=
+
+ [  a 
+
+(k 
+)
+
+,
+
+ b 1 
+
+(k 
+)
+
+,
+
+ b 2 
+
+(k 
+)
+
+,
+
+. . .
+
+,
+
+ b n 
+1 
+
+(k 
+)
+
+,
+
+ b n 
+
+(k 
+)
+
+,
+
+ f 
+T (k 
+)] 
+
+T ,
+
+ d 
+
+(cid:3)
+
+ n.
+
+(26) 
+
+The steps of computing the parameter estimate  老 (k 
+)
+ in (15) 每
+(21) and the state estimate  x 
+(k 
+ 1)
+ in (22) 每(26) are listed in the 
+following. 
+
++
+
+1. Let k 
+ i 
+ x 
+(k 
+)
+tion length p . 
+
+=
+
+ 1 
+ 1 n 
+
+,
+
+ set the initial values  老 (0)
+
+=
+=
+
+ 1 n 
+
+2 +2 n 
+
+/ p 0 
+
+,
+
+ r (0)
+ 10 
+6 . Give the innova- 
+
+=
+
+ 1 
+
+,
+
+=
+
+/ p 0 
+
+,
+
+ i 
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ d 
+
++
+
+ n,
+
+ p 0 
+
+Fig. 1. The owchart of computing the parameter estimate  老 (k 
+)
+ and the state esti- 
+(k 
+ 1)
+mate  x 
+
++
+
+ . 
+
+2. Collect the input-output data u ( k ) and y ( k ) and form  
+(k 
+)
+ ( p,
+)
+(20) or (21) , 
+ by (19) and Y ( p , k ) by (18) . 
+3. Compute E 老 ( p , k ) by (17) and r ( k ) by (16) . 
+4. Update the parameter estimation vector  老 (k 
+)
+ by (15) . 
+ from  老 (k 
+5. Read  a i 
+(k 
+)
+(k 
+)
+ and 
+ f 
+(k 
+)
+)
+ according to the denition 
+of  老 (k 
+)
+ A 
+(k 
+)
+ and  B 
+(k 
+)
+6. Form 
+ by (23) and (24) . 
+7. Compute the state estimation vector  x 
+(k 
+ 1)
+ by (22) . 
+8. Increase k by 1 and go to Step 2, continue the recursive calcu- 
+lation. 
+
+ by 
+
+ k 
+
+,
+
+ b i 
+
+ . 
+
++
+
+The owchart of computing the parameter estimation vector 
+ 老 (k 
+)
+ in (15) 每(21) and the state estimate  x 
+(k 
+ 1)
+ in (22) 每(26) are 
+shown in Fig. 1 . 
+
++
+
+Remark 4. Eqs. (15) 每(21) and (22) 每(26) form the joint parameter 
+and state estimation algorithm for interactively computing the pa- 
+rameter estimate  老 (k 
+)
+(k 
+ 1)
+ and the state estimate  x 
+ where the 
+parameter estimation uses the MISG algorithm 每 see (15) to (21) , 
+and the state estimation uses the parameter estimates based ob- 
+server 每 see (22) to (26) . 
+
++
+
+,
+
+4.4. The RLS algorithm for comparison 
+
+The following gives the recursive least squares (RLS) algorithm 
+for comparison. 
+According to the identication model in (6) , dene the least 
+squares cost function, 
+ :=
+
+J 2 
+
+(老 )
+
+t (cid:10)
+j=1 
+
+[ y 
+( j )
+
+ 
+
+T ( j )
+
+老] 
+
+2 ,
+
+and using the least squares principle, we can obtain the recursive 
+relation stochastic gradient algorithm: 
+
+ 老 (k 
+)
+
+=
+
+ 1)
+  老 (k 
+
++
+
+ P 老 (k 
+
+)
+
+ (k 
+)[ y 
+(k 
+)
+
+ 
+
+T (k 
+)
+
+ 1)] 
+  老 (k 
+
+,
+
+(27) 
+
+L. Xu et al. / Signal Processing 140 (2017) 97每103 
+
+101 
+
+P 
+
+1 老 (k 
+
+)
+
+=
+
+ P 
+
+1 老 (k 
+
+ 1)
+
++
+
+
+
+(k 
+)
+
+
+
+T (k 
+)
+
+,
+
+ P 老 (0)
+
+=
+
+ p 0 I n 
+
+2 +
+
+ n 
+
+.
+1  A 
+
+(28) 
+
+Applying the matrix inversion lemma 
+(A 
+1 CA 
+1 to (28) gives 
+CA 
+)
+
++
+
+ BC )
+
+1 =
+
+ A 
+
+1 B 
+
+(I 
+
++
+
+1 B 
+
+P 老 (k 
+)
+
+=
+
+ P 老 (k 
+
+ 1)
+
+ 1)
+ P 老 (k 
+(k 
+)
+1 
+T (k 
+)
+
+
+
+
+
+T (k 
+)
+ 1)
+
+ P 老 (k 
+
+ 1)
+ (k 
+)
+
++
+
+
+
+ P 老 (k 
+
+.
+
+(29) 
+
+Similarly, a diculty arises because the information vector 
+ i 
+contains the unknown state vector x 
+(k 
+)
+(i 
+d )
+ the algorithm in (27) and (29) is impossible to generate  老 (k 
+)
+of 
+老. The approach here is to replace the unknown vector 
+( k ) in 
+(27) and (29) with its estimate  
+(k 
+)
+ in (33) or (34) , and dene the 
+gain vector 
+ :=
+
+( k ) 
+
+=
+
+ 1 
+
++
+
+ d,
+
+ 2 
+
++
+
+ d,
+
+.
+
+.
+
+.
+
+,
+
+ n 
+
++
+
+,
+
+L(k 
+)
+
+ P 老 (k 
+
+)
+
+  
+(k 
+)
+
+=
+
+ P 老 (k 
+
+ 1)
+
+  
+(k 
+)[1 
+
++
+
+  
+T (k 
+)
+
+ P 老 (k 
+
+ 1)
+
+  
+(k 
+)] 
+
+1 ,
+
+we can obtain the following recursive least squares (RLS) algorithm 
+for estimating 
+老: 
+
+ 老 (k 
+)
+
+=
+
+ 1)
+  老 (k 
+
++
+
+ L(k 
+)[ y 
+(k 
+)
+
+  
+
+T (k 
+)
+
+ 1)] 
+  老 (k 
+
+,
+
+(30) 
+
+L(k 
+)
+
+=
+
+ P 老 (k 
+
+ 1)
+
+  
+(k 
+)[1 
+
++
+
+  
+T (k 
+)
+
+ P 老 (k 
+
+ 1)
+
+  
+(k 
+)] 
+
+1 ,
+
+(31) 
+
+P 老 (k 
+)
+
+=
+
+ P 老 (k 
+
+ 1)
+
+ L(k 
+ 1)
+)[ P 老 (k 
+
+  
+(k 
+)] 
+
+T ,
+
+ P 老 (0)
+
+=
+
+ p 0 I n 
+
+2 +
+
+ n 
+
+,
+
+(32) 
+
+ 
+(k 
+)
+
+=
+
+ [  x 
+
+ d 
+ 1)
+T (k 
+ n 
+ d )
+T (k 
+ x 
+ n 
+u 
+(k 
+)] 
+
+,
+
+  x 
+
+ d 
+ 2)
+T (k 
+ 1)
+ 2)
+(k 
+(k 
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+  x 
+
+ n 
+T (k 
+)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+,
+
+ u 
+
+,
+
+ u 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+T ,
+
+ d 
+
+(cid:2)
+
+ n 
+
+,
+
+(33) 
+
+ 
+(k 
+)
+
+=
+
+ [  x 
+
+ n 
+ d 
+ 1)
+ d 
+ 2)
+T (k 
+)
+T (k 
+T (k 
+ d 
+ n 
+ d 
+ n 
+ 1)
+T (k 
+ 1)
+T (k 
+)
+(k 
+ x 
+ n 
+u 
+(k 
+)] 
+
+,
+
+  x 
+
+,
+
+  x 
+
+,
+
+.
+
+.
+
+.
+
+,
+
++
+
+,
+
+  x 
+
+,
+
+ u 
+
+,
+
+ u 
+
+ 2)
+(k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+T ,
+
+ d 
+
+(cid:3)
+
+ n.
+
+(34) 
+
+Remark 5. Eqs. (30) 每(34) and (22) 每(26) form the joint parameter 
+and state estimation algorithm for interactively computing the pa- 
+rameter estimate  老 (k 
+)
+(k 
+ 1)
+ and the state estimate  x 
+ where the 
+parameter estimation uses the RLS algorithm 每 see (30) to (34) , 
+and the state estimation uses the parameter estimates based ob- 
+server 每 see (22) to (26) . 
+
++
+
+,
+
+4.5. The comparison of the computational complexity 
+
+It has been just pointed out by Golub and Van Loan in [41] that 
+the op (oating point operation) counting is a necessarily crude 
+approach to the measuring of program eciency since it ignores 
+subscripting, memory trac, and the countless other overheads as- 
+sociated with program execution, the op counting is just a ※quick 
+and dirty§ accounting method that captures only one of the several 
+dimensions of the eciency issue although multiplication/division 
+and addition/subtraction with different length are different [32] . 
+The op numbers of the MISG and RLS algorithms at each re- 
+cursion are shown in Tables 1 and 2 . Their total ops are, respec- 
+tively, given by 
+N 1 :=
+(4 p 
+N 2 :=
+ 4(n 
+
++
+
+ 2)(n 
+)
+
+2 +
+2 +
+
+ n 
+
+)
+ 6(n 
+
++
+
+ p,
+
+2 +
+
+ n 
+
+2 +
+
+ n 
+
+)
+
+.
+
+In order to compare the computational eciency, we count the 
+difference between the amount of calculation of these two algo- 
+rithms. When n a 
+)
+
+>
+
+ 2 and n b 
+
+>
+
+ 2, n a n b 
+
+>
+
+ n a 
+
++
+
+ n b 
+ N 2 
+
+,
+
+>
+
+ 4(n a 
+
++
+
+ n b 
+
++
+
+n c 
+
++
+
+ n d 
+
+2 +
+ N 1 
+N 2 
+
+ 6(n a 
+2 +
+2 +
+
++
+
+ n b 
+
++
+
+ n c 
+
++
+
+ n d 
+
+)
+
+ . Then we have 
+ [(4 p 
+ 4(n 
+
+>
+
+ 4(n 
+ 4(n 
+as p 
+
+ n 
+
+)
+ 6(n 
+ p)(n 
+
+2 +
+
+2 +
+2 +
+
+ n 
+
+)
+
++
+
+ 2)(n 
+ p 
+)
+
+2 +
+
+ n 
+
+)
+
++
+
+ p] 
+
+=
+
+ n 
+
+ n 
+
+)
+
++
+
+2 +
+
+ n 
+
+>
+
+ 0 
+
+,
+
+<
+
+ n 
+
+2 +
+
+ n.
+
+From here, we can see that the MISG algorithm has less computa- 
+tional load than the RLS algorithm. For instance, when n 
+ 10 
+ 4630 
+we have N 2 
+ 49060 
+ 4 4 430 ops because the RLS 
+algorithm requires computing the covariance matrix P 老 ( k ) of large 
+℅ (n 
+(n 
+)
+)
+size 
+
+=
+
+ p 
+
+=
+
+,
+
+ N 1 
+2 +
+
+=
+
+=
+
+2 +
+
+ n 
+
+ n 
+
+ . 
+
+5. Example 
+
+The system should be stable. Thus, the parameter matrices in 
+Example are selected so that all the variables of the system are 
+bounded. 
+Consider the following state space system with 2-step state- 
+delay: 
+
+x 
+(k 
+
++
+
+ 1)
+
+=
+
+(cid:8)
+
+0 
+0 
+ 01 
+0 
+ 8 0 
+ [1 
+ 0] x 
+(k 
+)
+
+1 
+0 
+ 22 
+
+.
+
+.
+
+(cid:9)
+
+x 
+(k 
+)
+
++
+
+(cid:8)
+
+0 
+ 19 
+
+.
+
+0 
+ 08 
+0 
+ 12 
+
+.
+
+0 
+ 16 
+
+.
+
+.
+
+(cid:9)
+
+ 2)
+x 
+(k 
+
++
+
+(cid:8)
+
+.
+
+.
+
+ 8 
+
+(cid:9)
+
+u 
+(k 
+)
+
+,
+
+y 
+(k 
+)
+
+=
+
+,
+
++
+
+ v 
+
+(k 
+)
+
+.
+
+The parameter vector to be identied is 
+
+老 =
+=
+
+ [ a 2 
+ a 1 
+
+,
+
+,
+
+ b 11 
+ b 12 
+ b 21 
+ b 22 
+
+,
+
+,
+
+,
+
+,
+
+ f 1 
+ f 2 ] 
+
+,
+
+T 
+
+ [ 
+
+0 
+ 01 
+
+.
+
+,
+
+0 
+ 22 
+
+.
+
+,
+
+ 0 
+
+.
+
+ 19 
+
+,
+
+0 
+ 08 
+
+.
+
+,
+
+ 0 
+
+.
+
+ 16 
+
+,
+
+0 
+ 12 
+
+.
+
+,
+
+ 0 
+ 8 
+
+.
+
+,
+
+0 
+ 8] 
+
+.
+
+T .
+
+In simulation, the input { u ( k )} is taken as an uncorrelated persis- 
+tent excitation signal sequence with zero mean and unit variance, 
+(k 
+)
+and 
+ as a white noise sequence with zero mean and variance 
+ 30 
+2 . We apply the state estimation based MISG algorithm 
+in (15) 每(21) to estimate the parameters of this example system. 
+The parameter estimates and their estimation errors are shown in 
+汛 versus k are shown 
+Table 3 and the parameter estimation errors 
+in Fig. 2 with p 
+ 2 and p 
+ respectively. 
+From Table 3 and Fig. 2 , we can draw the following conclusions. 
+ The parameter estimates given by the MISG algorithm converge 
+fast to their true values for large p 每 see Table 3 . 
+≡ 2 has higher accuracy than the 
+ The MISG algorithm with p 
+SG algorithm 每 see Fig. 2 . 
+ The parameter estimation errors given by the MISG algorithm 
+become smaller with the data length k and the innovation 
+length p increasing 每 see Table 3 and Fig. 2 . 
+ The proposed algorithm can estimate effectively the parameters 
+and states of a class of time-delay state space system under the 
+stochastic framework. 
+
+{
+
+ v 
+ 0 
+
+}
+
+考 2 =
+
+.
+
+=
+
+ 1 
+ p 
+
+,
+
+=
+
+=
+
+ 5 
+
+,
+
+6. Conclusions 
+
+Based on the multi-innovation theory, this paper extends the 
+stochastic gradient algorithm and presents a multi-innovation 
+stochastic gradient algorithm for state space systems with d-step 
+state-delay, where the unknown states are estimated using an state 
+observer and the unknown state vector in the parameter esti- 
+mation algorithm are replaced with the corresponding estimated 
+states of the observer. Furthermore, a state observer based recur- 
+sive least squares parameter estimation algorithm is given for com- 
+parison. The theoretical analysis and simulation results indicate 
+
+102 
+
+L. Xu et al. / Signal Processing 140 (2017) 97每103 
+
+Table 1 
+The computational eciency of the MISG algorithm. 
+
+Variables 
+
+Numbers of multiplications Numbers of additions 
+
+ 老 (k 
+)
+E 老 ( p,
+r (k 
+)
+Sum 
+Total ops 
+
+=
+
+ 1)
+  老 (k 
+)
+( p,
+ 1)
+ r (k 
+
++
+
+ ( p,
+)[ E 老 ( p,
+)
+/r (k 
+)] 
+  T ( p,
+ 1)
+)
+  老 (k 
+  
+(k 
+)
+
+ k 
+
+ k 
+
+﹋
+
+R
+
+n 
+
+2 +
+
+ n 
+
+p(n 
+p(n 
+n 
+(2 p 
+
+2 +
+2 +
+2 +
+
+ n 
+
+)
+)
+
++
+
+ p
+
+p(n 
+p(n 
+n 
+(2 p 
+)
+
+2 +
+2 +
+2 +
+
+ n 
+
+)
+)
+
+ k 
+
+=
+
+ Y 
+
+ k 
+
+)
+
+ k 
+
+﹋
+
+R
+
+p 
+
+ n 
+ n 
+
+ n 
+ n 
+
+=
+
++
+
+(cid:3)
+
+(cid:3)
+
+2 ﹋
+
+R
+
++
+
+ 1)(n 
+
+2 +
+
+ n 
+
+)
+ p
+N 1 :=
+(4 p 
+
++
+
++
++
+
+ 1)(n 
+ p
+
+2 +
+
+ n 
+
+)
+
++
+
+ 2)(n 
+
+2 +
+
+ n 
+
+Table 2 
+The computational eciency of the RLS algorithm. 
+
+Variables 
+
+Numbers of multiplications Numbers of additions 
+
+ 1)
+ 老 (k 
+)
+  老 (k 
+ L(k 
+)
+(k 
+)
+  
+ 1)
+(k 
+)
+(k 
+)
+T (k 
+)
+  老 (k 
+e 
+L(k 
+)
+汎 (k 
+)
+ [1 
+  
+T (k 
+)
+汎 (k 
+)] 
+ :=
+ 1)
+汎 (k 
+)
+  
+(k 
+)
+ 1)
+ L(k 
+P 老 (k 
+)
+)
+ 汎T (k 
+)
+Sum 
+Total ops 
+
+=
+=
+=
+
++
+
+ e 
+
+﹋
+
+R
+
+n 
+
+2 +
+
+ n 
+
+n 
+
+2 +
+2 +
+2 +
+2 +
+2 +
+2 +
+
+ n 
+
+n 
+
+2 +
+2 +
+2 +
+2 +
+2 +
+2 +
+2 +
+
+ n 
+
+ y 
+
+﹋
+﹋
+
+R
+
+n 
+2(n 
+(n 
+(n 
+2(n 
+
+ n 
+
+n 
+
+ n 
+
+/
+
++
+
+R
+
+n 
+
+2 +
+
+ n 
+
+ n 
+ n 
+
+)
+
+n 
+(n 
+(n 
+2(n 
+ 6(n 
+
+ n 
+ n 
+
+ P 老 (k 
+ P 老 (k 
+
+﹋
+
+R
+
+n 
+
+2 +
+
+ n 
+
+)
+)
+
+2 
+
+)
+)
+
+2  (n 
+
+2 +
+
+ n 
+
+)
+
+=
+
+﹋
+
+R
+
+n 
+
+2 +
+
+ n 
+
+ n 
+ n 
+
+2 
+2 +
+
+ n 
+ n 
+ n 
+
+2 
+2 +
+
+)
+
+ 4(n 
+N 2 :=
+
+2 +
+
+ n 
+
+)
+ 4(n 
+
+)
+)
+
+ 2(n 
+
+2 +
+
+ n 
+
+)
+
+2 +
+
+ n 
+
+)
+
+2 +
+
+Table 3 
+考 2 =
+The parameter estimates and errors with 
+
+ 0 
+
+.
+
+ 30 
+
+2 . 
+
+Algorithms 
+
+k 
+
+a 2 
+
+a 1 
+
+b 11 
+
+b 12 
+
+b 21 
+
+b 22 
+
+f 1 
+
+f 2 
+
+汛 (%) 
+
+SG 
+(MISG, p 
+
+100 
+200 
+500 
+10 0 0 
+20 0 0 
+30 0 0 
+100 
+200 
+500 
+10 0 0 
+20 0 0 
+30 0 0 
+100 
+200 
+500 
+10 0 0 
+20 0 0 
+30 0 0 
+True values 
+
+0.00912 
+0.0 0 071 
+0.01158 
+0.01300 
+0.01608 
+0.01644 
+0.00359 
+0.01599 
+0.00850 
+0.01018 
+0.00966 
+0.01029 
+0.01604 
+0.00941 
+0.01370 
+0.00956 
+0.00865 
+0.00843 
+0.010 0 0 
+
+0.15036 
+0.15897 
+0.16218 
+0.16742 
+0.17243 
+0.17616 
+0.10678 
+0.12109 
+0.13309 
+0.14260 
+0.15129 
+0.15688 
+0.16063 
+0.17261 
+0.18867 
+0.19552 
+0.20173 
+0.20539 
+0.220 0 0 
+
+0.04307 
+0.03430 
+0.04174 
+0.04407 
+0.04797 
+0.04817 
+0.07097 
+0.06185 
+0.07485 
+0.07880 
+0.08537 
+0.08764 
+0.16648 
+0.16361 
+0.17725 
+0.17681 
+0.18160 
+0.18430 
+0.190 0 0 
+
+0.06630 
+0.06226 
+0.07458 
+0.07779 
+0.08160 
+0.08312 
+0.11681 
+0.11177 
+0.12515 
+0.12629 
+0.12916 
+0.13042 
+0.04942 
+0.05183 
+0.06884 
+0.06720 
+0.07054 
+0.07311 
+0.080 0 0 
+
+0.02505 
+0.03583 
+0.04926 
+0.05693 
+0.06551 
+0.07199 
+0.07671 
+0.09003 
+0.10632 
+0.11409 
+0.12141 
+0.12688 
+0.12274 
+0.13136 
+0.14888 
+0.15297 
+0.15557 
+0.15762 
+0.160 0 0 
+
+0.01004 
+0.01874 
+0.02578 
+0.02935 
+0.03294 
+0.03621 
+0.04656 
+0.05590 
+0.06220 
+0.06384 
+0.06584 
+0.06787 
+0.11018 
+0.11273 
+0.11953 
+0.11685 
+0.11647 
+0.11675 
+0.120 0 0 
+
+0.49833 
+0.51905 
+0.55028 
+0.57120 
+0.58943 
+0.59949 
+0.66219 
+0.68106 
+0.70645 
+0.72115 
+0.73406 
+0.74038 
+0.77804 
+0.78161 
+0.79311 
+0.79300 
+0.79656 
+0.79793 
+0.80 0 0 0 
+
+0.38674 
+0.41671 
+0.45958 
+0.48809 
+0.51204 
+0.52557 
+0.54089 
+0.57759 
+0.62350 
+0.65182 
+0.67410 
+0.68567 
+0.72833 
+0.75681 
+0.77446 
+0.78499 
+0.79077 
+0.79282 
+0.80 0 0 0 
+
+47.52683 
+4 4.5374 4 
+39.90966 
+36.94100 
+34.32511 
+32.86166 
+29.99962 
+26.68912 
+22.16532 
+19.62474 
+17.47593 
+16.37969 
+9.28037 
+6.94835 
+3.86359 
+3.00103 
+2.10426 
+1.61476 
+
+=
+
+ 1 ) 
+
+MISG, p 
+
+=
+
+ 2 
+
+MISG, p 
+
+=
+
+ 5 
+
+考 2 =
+Fig. 2. The parameter estimation errors 
+汛 versus k with 
+
+ 0 
+
+.
+
+ 30 
+
+2 . 
+
+L. Xu et al. / Signal Processing 140 (2017) 97每103 
+
+103 
+
+that the proposed algorithm can generate highly accurate param- 
+eter estimates for large innovation lengths and the computational 
+burden becomes large but this increased computation is still tol- 
+erable and affordable for modern computers. The methods in this 
+paper can be extended to study the state and parameter estimation 
+problems of uncertain chaotic delayed nonlinear state space sys- 
+tems and hybrid switching-impulsive dynamical network systems 
+[42] and applied to other elds [43每45] . 
+
+References 
+
+[1] G.C. Goodwin , K.S. Sin , Adaptive Filtering Prediction and Control, Prentice-Hall, 
+Englewood Cliffs, New Jersey, 1984 . 
+[2] L. Ljung , System Identication: Theory for the User, 2nd ed., Prentice-Hall, En- 
+glewood Cliffs, New Jersey, 1999 . 
+[3] H. Li , W.S. Yan , Y. Shi , Continuous-time model predictive control of under-actu- 
+ated spacecraft with bounded control torques, Automatica 75 (2016) 144每153 . 
+[4] H. Li , Y. Shi , W. Yan , On neighbor information utilization in distributed reced- 
+ing horizon control for consensus-seeking, IEEE Trans. Cybern. 46 (9) (2016) 
+2019每2027 . 
+[5] H. Li , Y. Shi , W. Yan , Distributed receding horizon control of constrained 
+污 -gain stability, Automatica 68 
+nonlinear vehicle formations with guaranteed 
+(2016) 148每154 . 
+[6] X.J. Su , L.G. Wu , P. Shi , Y.D. Song , A novel approach to output feedback control 
+of fuzzy stochastic systems, Automatica 50 (12) (2014) 3268每3275 . 
+[7] X.J. Su , P. Shi , L.G. Wu , Y.D. Song , Fault detection ltering for nonlinear 
+switched stochastic systems, IEEE Trans. Automat. Control 61 (5) (2016) 
+1310每1315 . 
+[8] X.J. Su , P. Shi , L.G. Wu , M.V. Basin , Reliable ltering with strict dissipativity for 
+t-s fuzzy time-delay systems, IEEE Trans. Cybern. 44 (12) (2014) 2470每2483 . 
+[9] D.Q. Wang , W. Zhang , Improved least squares identication algorithm for mul- 
+tivariable Hammerstein systems, J. Franklin Inst. 352 (11) (2015) 5292每5370 . 
+[10] L. Xu , L. Chen , W.L. Xiong , Parameter estimation and controller design for dy- 
+namic systems from the step responses based on the Newton iteration, Non- 
+linear Dyn. 79 (3) (2015) 2155每2163 . 
+[11] L. Xu , The damping iterative parameter identication method for dynamical 
+systems based on the sine signal measurement, Signal Process. 120 (2016) 
+660每667 . 
+[12] H.B. Chen , Y.S. Xiao , Hierarchical gradient parameter estimation algorithm for 
+Hammerstein nonlinear systems using the key term separation principle, Appl. 
+Math. Comput. 247 (2014) 1202每1210 . 
+[13] L. Xu , Application of the Newton iteration algorithm to the parameter estima- 
+tion for dynamical systems, J. Comput. Appl. Math. 288 (2015) 33每43 . 
+[14] Y.J. Wang , F. Ding , Novel data ltering based parameter identication for mul- 
+tiple-input multiple-output systems using the auxiliary model, Automatica 71 
+(2016) 308每313 . 
+[15] Y.J. Wang , F. Ding , The ltering based iterative identication for multivariable 
+systems, IET Control Theory Appl. 10 (8) (2016) 894每902 . 
+[16] Y.J. Wang , F. Ding , The auxiliary model based hierarchical gradient algorithms 
+and convergence analysis using the ltering technique, Signal Process. 128 
+(2016) 212每221 . 
+[17] D.Q. Wang , Hierarchical parameter estimation for a class of MIMO Hammer- 
+stein systems based on the reframed models, Appl. Math. Lett. 57 (2016) 
+13每19 . 
+[18] Y.J. Wang , F. Ding , Recursive least squares algorithm and gradient algorithm for 
+Hammerstein每Wiener systems using the data ltering, Nonlinear Dyn. 84 (2) 
+(2016) 1045每1053 . 
+[19] F. Ding , X.M. Liu , M.M. Liu , The recursive least squares identication algo- 
+rithm for a class of Wiener nonlinear systems, J. Franklin Inst. 353 (7) (2016) 
+1518每1526 . 
+[20] F. Ding , L. Xu , Q.M. Zhu , Performance analysis of the generalised projection 
+identication for time-varying systems, IET Control Theory Appl. 10 (18) (2016) 
+2506每2514 . 
+
+[21] F. Ding , F.F. Wang , L. Xu , T. Hayat , A. Alsaedi , Parameter estimation for pseu- 
+do-linear systems using the auxiliary model and the decomposition technique, 
+IET Control Theory Appl. 11 (3) (2017) 390每400 . 
+[22] F. Ding , F.F. Wang , L. Xu , M.H. Wu , Decomposition based least squares itera- 
+tive identication algorithm for multivariate pseudo-linear ARMA systems us- 
+ing the data ltering, J. Franklin Inst. 354 (3) (2017) 1321每1339 . 
+[23] J. Ding , J.X. Lin , Modied subspace identication for periodically non-uniformly 
+sampled systems by using the lifting technique, Circuits Syst. Signal Process. 
+33 (5) (2014) 1439每1449 . 
+[24] M.B. Malik , M. Salman , State-space least mean square, Digital Signal Process. 
+18 (3) (2008) 334每345 . 
+[25] A. Irshad , M. Salman , S. Bashir , M.B. Malik , Extended state space recursive least 
+squares, Digital Signal Process. 49 (2016) 95每103 . 
+[26] Y. Gu , F. Ding , J.H. Li , State ltering and parameter estimation for linear sys- 
+tems with d-step state-delay, IET Signal Process. 8 (6) (2014) 639每646 . 
+[27] X.H. Wang , F. Ding , Recursive parameter and state estimation for an input non- 
+linear state space system using the hierarchical identication principle, Signal 
+Process. 117 (2015) 208每218 . 
+[28] J. Pan , X.H. Yang , H.F. Cai , B.X. Mu , Image noise smoothing using a modied 
+Kalman lter, Neurocomputing 173 (2016) 1625每1629 . 
+[29] X.K. Wan , Y. Li , C. Xia , M.H. Wu , J. Liang , N. Wang , A T-wave alternans assess- 
+ment method based on least squares curve tting technique, Measurement 86 
+(2016) 93每100 . 
+[30] B.Z. Guo , Z.L. Zhao , On the convergence of an extended state observer for non- 
+linear systems with uncertainty, Syst. Control Lett. 60 (6) (2011) 420每430 . 
+[31] F.L. Zhu , State estimation and unknown input reconstruction via both re- 
+duced-order and high-order sliding mode observers, J. Process Control 22 (1) 
+(2012) 296每302 . 
+[32] F. Ding , X.M. Liu , Y. Gu , An auxiliary model based least squares algorithm 
+for a dual-rate state space system with time-delay using the data ltering, J. 
+Franklin Inst. 353 (2) (2016) 398每408 . 
+[33] F. Ding , X.M. Liu , X.Y. Ma , Kalman state ltering based least squares iterative 
+parameter estimation for observer canonical state space systems using decom- 
+position, J. Comput. Appl. Math. 301 (2016) 135每143 . 
+[34] L. Xu , A proportional differential control method for a time-delay system using 
+the taylor expansion approximation, Appl. Math. Comput. 236 (2014) 391每399 . 
+[35] C. Wang , Y. Shen , Improved delay-dependent robust stability criteria for uncer- 
+tain time delay systems, Appl. Math. Comput. 218 (6) (2011) 2880每2888 . 
+[36] X.Y. Li , S.L. Sun , H-innity ltering for networked linear systems with multiple 
+packet dropouts and random delays, Digital Signal Process. 46 (2015) 59每67 . 
+[37] F. Gao , F.X. Fei , A novel articial bee colony algorithm with space contrac- 
+tion for unknown parameters identication and time-delays of chaotic sys- 
+tems, Appl. Math. Comput. 219 (2) (2012) 552每568 . 
+[38] D.F. Li , C.J. Zhang , H.Y. Qin , LDG method for reaction-diffusion dynamical sys- 
+tems with time delay, Appl. Math. Comput. 217 (22) (2011) 9173每9181 . 
+[39] Y. Gu , R. Ding , Stochastic gradient algorithm for state space system with d-step 
+delay, in: The 2014 26th Chinese Control and Decision Conference, May 31 每
+June 2, Changsha, China, 2014, pp. 1924每1928 . 
+[40] Y. Gu , F. Ding , J.H. Li , States based iterative parameter estimation for a state 
+space model with multi-state delays using decomposition, Signal Process. 106 
+(2015) 294每300 . 
+[41] G.H. Golub , C.F. Van Loan , Matrix Computations, 3rd ed., Johns Hopkins Uni- 
+versity Press, Baltimore, MD, 1996 . 
+[42] Y. Ji , X.M. Liu , Unied synchronization criteria for hybrid switching-impulsive 
+dynamical networks, Circuits Syst. Signal Process. 34 (5) (2015) 1499每1517 . 
+[43] L. Feng , M.H. Wu , Q.X. Li , Array factor forming for image reconstruction of 
+one-dimensional nonuniform aperture synthesis radiometers, IEEE Geosci. Re- 
+mote Sens. Lett. 13 (2) (2016) 237每241 . 
+[44] T.Z. Wang , J. Qi , H. Xu , Fault diagnosis method based on FFT-RPCA-SVM for 
+cascaded-multilevel inverter, ISA Trans. 60 (2016) 156每163 . 
+[45] T.Z. Wang , H. Wu , M.Q. Ni , An adaptive condence limit for periodic 
+non-steady conditions fault detection, Mech. Syst. Signal Process. 72每73 (2016) 
+328每345 . 
+

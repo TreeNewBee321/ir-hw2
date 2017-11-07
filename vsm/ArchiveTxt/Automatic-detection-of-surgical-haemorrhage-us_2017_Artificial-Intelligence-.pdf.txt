@@ -1,0 +1,577 @@
+Automatic detection of surgical haemorrhage using computer vision
+
+Alvaro Garcia-Martinez  , Jose Mar赤a Vicente-Samper, Jos谷 Mar赤a Sabater-Navarro
+
+Systems and Automatics Engineering Department, Miguel Hern芍ndez University, Avinguda de la Universitat d＊Elx, Elche, 03202, Spain
+
+article
+
+info
+
+
+Article history:
+Received 15 December 2016
+Received in revised form 2 May 2017
+Accepted 5 June 2017
+
+Keywords:
+Computer vision
+Laparoscopic surgery
+Massive bleeding
+
+abstract
+
+Background and objectives: On occasions, a surgical intervention can be associated with serious, poten-
+tially life-threatening complications. One of these complications is a haemorrhage during the operation,
+an unsolved issue that could delay the intervention or even cause the patient＊s death. On laparoscopic
+surgery this complication is even more dangerous, due to the limited vision and mobility imposed by the
+minimally invasive techniques.
+Methods: In this paper it is described a computer vision algorithm designed to analyse the images captured
+by a laparoscopic camera, classifying the pixels of each frame in blood pixels and background pixels
+and nally detecting a massive haemorrhage. The pixel classication is carried out by comparing the
+parameter B/R and G/R of the RGB space colour of each pixel with a threshold obtained using the global
+average of the whole frame of these parameters. The detection of and starting haemorrhage is achieved
+by analysing the variation of the previous parameters and the amount of pixel blood classied.
+Results: When classifying in vitro images, the proposed algorithm obtains accuracy over 96%, but during
+the analysis of an in vivo images obtained from real operations, the results worsen slightly due to poor
+illumination, visual interferences or sudden moves of the camera, obtaining accuracy over 88%. The
+detection of haemorrhages directly depends of the correct classication of blood pixels, so the analysis
+achieves an accuracy of 78%.
+Conclusions: The proposed algorithm turns out to be a good starting point for an automatic detection of
+blood and bleeding in the surgical environment which can be applied to enhance the surgeon vision, for
+example showing the last frame previous to a massive haemorrhage where the incision could be seen
+using augmented reality capabilities.
+
+ 2017 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+On Minimally Invasive Surgery (MIS), haemorrhages remain one
+of the major complications present in all types of interventions,
+being particularly dangerous the Major Vascular Injuries (MVI).
+Nevertheless, it seems there is no global consensus to classify these
+complications [1].
+Although there is not an extensive literature on the incidence
+of this problem, some authors have carried out some studies on
+the subject like Opitz et al. [2] whom analysed more than 43,000
+interventions at Swiss hospitals and clinics, concluding that the
+incidence of bleedings on laparoscopic surgeries amounts 1.7%
+whereas the incidence of MVI amounts 0.09%.
+Regarding abdominal surgery, more specically laparoscopic
+surgery, we found a study of Opasanon et al. [3] which collect few
+previous studies providing an estimation of the incidence around
+0.07每1.2%. It is especially interesting the study of Duca et al. [4], in
+which the authors analyse the complications occurred during 9542
+laparoscopic cholecystectomies for a period of 9 years, conclud-
+ing that the incidence of haemorrhages on laparoscopic surgeries
+amounts 2.3% and around 1.9% of the operations needs a conversion
+to open surgery of which 4.8% where a direct result of a bleeding.
+Although these percentages may seem low, it is estimated
+around 10每15% of the population of a developed country will be
+diagnosed of gallstones and will required a surgical intervention.
+This means that in a country like USA where about 750,000 chole-
+cystectomies are performed each year, of which near 90% uses MIS
+techniques, approximately 15,500 persons will suffer a haemor-
+rhage during the surgery and 615 will require a conversion to open
+surgery due to this complication [5].
+The consequences of a bleeding at a laparoscopic surgery can be
+just a simple delay of the intervention, a major recovery time at the
+hospital or even the death of the patient as Anna Mases et al. state
+in their study [6].
+In general, most authors stress the importance of early detec-
+tion of bleeding to alleviate their negative effects, therefore it is
+required a reliable system able to analyse the characteristics of this
+complication and detect it as soon as possible. Due to the prolif-
+eration of researches focused on the analysis of images provided
+by a laparoscopic camera like the described at [7], it was decided
+to design a computer vision algorithm able to detect an internal
+haemorrhage during a surgical intervention.
+Even though it has not been found in the bibliography any
+attempt to develop a computer vision algorithm to detect bleed-
+ing or blood in laparoscopic intervention while writing this article,
+it does exist a large bibliography focus on the visual detection of a
+bleeding through computerized tomography [8,9] and the devel-
+opment of classiers algorithms for the images obtained by an
+wireless capsule endoscopic (WCE) aimed to detect haemorrhages
+in the gastrointestinal tract. Authors based the segmentation and
+classication of the pixels on the features extracted using the HVS
+colour model [10,11], a two-stage saliency map extraction method
+[12] or a simple threshold for the global ratios B/R and G/R in the
+BGR colour model [13].
+The objective of this paper is to describe the design and imple-
+mentation of a computer vision algorithm capable of analyse in real
+time the video provided by a laparoscopic camera and detect both
+the presence of blood pools and the beginning of a major bleeding.
+Once this goal is achieved, the algorithm can be useful for moni-
+toring the surgical eld searching for complications that may not
+have been detected by the surgical team or even integrated into the
+control system of a future autonomous surgical platform.
+
+2. Materials and methods
+
+2.1. Experimental material
+
+The analysis of the images is carried out using the open source
+computer vision and machine learning software library OpenCV
+[14] and tools provided by the framework ROS (Robot Operating
+System) [15], in order to integrate the algorithm into a robotic plat-
+form which works using the same system. OpenCV is a computer
+vision library which provides of basic and advanced functionalities,
+such as draw a line, change the colour space of an image or apply a
+noise lter. ROS is a collection of software frameworks which pro-
+vide with functionalities focused on robot development, and since
+their rst versions, the OpenCV libraries are integrated into this
+middleware in such a way the ROS nodes can use the functionalities
+of this asset with just the inclusion of the proper header le.
+For developing and testing our algorithm we have used two
+different dataset. The rst dataset is composed of 23 videos of
+real laparoscopic surgeries recorded using a camera manned by
+a member of the surgical team and show diverse operations
+including cholecystectomies, pelvic surgeries, total mesorectal
+excisions, radical hysterectomies, pancreatectomy, gastrectomy,
+aortic 
+lymphadenectomy, retroperitoneal dissections, nephro-
+ureterectomies and colectomies. This data set contains 17 videos
+that show bleeding (mean duration of 51 s) and six videos that show
+no bleeding (mean durations of 33 min and 31 s).
+The other dataset is composed of videos of in vitro bleeding
+recorded in our setup using a mobile camera and independent
+sources of light, carried by miniature robots magnetically attached
+to the inner wall of the setup upper lid and externally controlled by
+a robotic arm. For this test we used an articial blood composed of
+water, glycerine and red and black dyes, pumped by a small water
+pump placed out of the setup (Fig. 1). A stepper motor AM1020 from
+Faulhaber provides the tilt turn of the camera and all the mini robots
+are remotely controlled through an Arduino Mega board. Al these
+devices and their communications were proposed and descripted
+previously [16,17].
+
+To record the second dataset ve different congurations were
+used, recording 15 tests for each conguration. Each conguration
+has a different position and view angle for the camera, different
+number and positions of the light sources and a different amount
+of false blood spotted tissue were used (tissues stained with fake
+blood and placed around the receiving reservoir), which represent
+the interior of the patient.
+Some images have been extracted from each dataset showing
+different states of a bleeding. In order to calculate the effectiveness
+of the algorithm, a binary map was created for each extracted image
+as ground truth, classifying pixels in blood and background.
+
+2.2. Methods: blood pixel classication
+
+First of all, Tonmoy Ghosh＊s [13] and Yixuan Yuan＊s [12] algo-
+rithm were checked analysing a few images of in vivo bleedings.
+These algorithms were obtained from the reference papers and they
+were implemented by the authors. In spite of their good results
+classifying blood and non-blood images from a wireless endoscopy
+capsule, these algorithms are not designed to work on images with
+a high red level, so that the results for the in vivo images were not
+satisfactory because the algorithm wrongly classied some tissue
+pixels (i.e., liver pixels) as blood pixels, resulting of a lowering of
+the specicity. Fig. 2 shows an example of this problem. It was also
+observed the red level of the pixels that belongs to blood being
+expelled through an incision have a more intense red colour if the
+illumination is adequate. Due to the results of the test it was con-
+cluded that it is needed an adaptive and dynamic classier able to
+correctly segment the image without detecting background pixels
+as blood pixels, more restrictive when the frame has a high red level
+average and aimed to maintain as low as possible the false positive
+rate.
+After analysing a series of images from real surgeries, it was
+observed a relationship between the individual ratios B/R and G/R
+of each pixel and the global ratios B/R and G/R of the frame respec-
+tively, with an increase of individual ratios proportional to the
+increase of the overall ratios. The individual ratios were calculated
+by dividing the green or blue channel of a pixel between the red
+channel of the same pixel. The overall ratios were calculated as the
+result of dividing the sum of all levels of the green or blue chan-
+nels of all the pixels, between the sum of levels of the red channel
+of all the pixels, all measured in the BGR colour space. The relation
+was quantied using the k-means clustering method and optimized
+through a 4-fold cross-validation applied on the previously men-
+tioned series of images to obtain a threshold Eq. (1) which separates
+the blood and non-blood pixels.
+Thresholdratio =
+ Frameratio +
+ 0＊661 
+ 0＊0084 
+Using these dynamics thresholds, the images were analysed
+again classifying as blood pixel if both individual pixel ratios
+were below the calculated threshold. After the classication, some
+morphological transformations of erode and dilation were imple-
+mented in order to remove little groups of pixels impossible to
+belong to a blood puddle.
+
+(1)
+
+﹞
+
+2.3. Methods: haemorrhage detection
+
+Once the algorithm performs a segmentation of the image
+extracting the possible blood pixels, the obtained parameters were
+used to implement the detection of the haemorrhage through an
+analysis of the values versus time of both the percentage of blood
+pixels as the global ratios B/R and G/R. A great variation of the
+analysed parameters was observed approximately during the fol-
+lowing one second after the beginning of the bleeding, therefore
+it arises that the information needed to detect bleeding can be
+
+A. Garcia-Martinez et al. / Articial Intelligence in Medicine 78 (2017) 55每60 
+
+57
+
+Fig. 1. Experimental setup used for the in vitro tests.
+
+Fig. 2. Image extracted from a real surgical intervention (a), Ground truth (b), image analysed using Tonmoy Ghosh＊s algorithm (c) and Yixuan Yuan＊s algorithm (d).
+
+obtained from the following 20 frames after the onset of bleed-
+ing (the choice of the number of frames to analyse was based on
+the use of videos with a ratio of 24 frames per second), comparing
+the analysed parameters with a series of thresholds.
+It was found that the movement of the camera or the gases emit-
+ted when using a laparoscopic electrocautery sometimes causes
+an excessive variance of the analysed parameter not related to a
+bleeding. In order to solve this problem the algorithm was modify
+to discard the parameters of a frame with high variance compared
+to the previous frame, assuming that there has been a shake of
+the camera rather than the sudden appearance of massive bleed-
+ing. Nevertheless, the blood/non-blood pixel classication is not
+affected by this problem due to the frame-by-frame design of this
+process.
+After a thorough analysis we concluded that black, blue and
+green pixels quite rarely represent blood being expelled through
+an injury. Usually they are light reections, part of the surgical
+tools or belong to the black area surrounding the circular region
+of the image due to de optic＊s shape. Several tests were carried out
+in order to analyse the inuence of these pixels on the algorithm＊s
+
+performance, concluding that if those pixels are not analysed then
+the algorithm will slightly worsened its performance but at the
+same time will slightly improve the time needed for the analysis,
+which depends of the quality of the image and the size of the black
+surrounding area.
+The complete proposed algorithm is described in Fig. 3.
+
+2.4. Methods: performance measurement
+
+Three parameters were calculated to obtain a measure of the
+performance of the analysed algorithms as a binary classica-
+tion test: accuracy, sensitivity and specicity, which are calculated
+according to the following equations:
+
+Accuracy 
+
+=
+
+True Positives 
+
+True Positives 
+ True Negatives 
+
++
+
+ True Negatives
+ False Positives 
+
++
+
++
++
+
+ False Negatives
+
+(2)
+
+Sensitivity 
+
+Specicity 
+
+=
+
+=
+
++
+
+True Positives
+True Positives 
+ False Negatives
+True Negatives
+True Negatives 
+ False Positives
+
++
+
+(3)
+
+(4)
+
+58 
+
+A. Garcia-Martinez et al. / Articial Intelligence in Medicine 78 (2017) 55每60
+
+Fig. 3. Scheme of the proposed bleeding detector algorithm.
+
+The parameters were obtained through a pixel-based compar-
+ison, therefore the True Positives are the blood pixels correctly
+detected as blood, the True Negatives are background pixels cor-
+rectly detected as no blood, the False Positives are background
+pixels wrongly detected as blood and the False Negatives are the
+blood pixels wrongly detected as background. The sensitivity mea-
+sures the amount of blood pixels correctly detected, the specicity
+measures the amount of background pixels correctly detected and
+the accuracy measures the global effectiveness of an algorithm.
+
+3. Experimental tests
+
+3.1. Blood pixel classication results
+
+A rst experiment was designed to evaluate the blood pixel clas-
+sication capability of each algorithm through an analysis of both
+dataset, in vitro and in vivo images. The results are shown in Table 1
+with the average of the comparison parameters. The experiment
+was conducted on 25 in vitro images extracted from 20 different
+videos and 32 in vivo images extracted from 23 different videos,
+so a total of 52 images (some of them did not show blood) were
+analysed with each algorithm.
+Even though the three methods have a good performance when
+applied to the in vitro images, the results are poor with a low speci-
+city when applying Tonmoy Ghosh and Yixuan Yuan methods to
+the in vivo images, because the algorithms wrongly classied some
+tissue pixels (i.e., liver pixels) as blood pixels. The algorithm pro-
+posed in this paper obtains a mediocre sensitivity value, but this
+is due in part to the modication made to Eq. (1) to obtain a more
+restrictive dynamic threshold and thus to keep the number of false
+positives detected low, which allows to obtain a good specicity
+value. In images with a surgical environment completely blood
+stained, it can be seen the benets of the dynamic threshold, detect-
+
+ing the pixels which belong to the blood owing from an incision
+which often have higher levels of red (Fig. 4).
+
+3.2. Haemorrhage detection results
+
+Once validated the classication of the blood pixels, the thresh-
+old of the bleeding detection parameters were calculated through
+an analysis of the in vitro videos measuring the rst 20 frames after
+the rst frame of the bleeding. As mentioned before, 15 tests were
+analysed for each one of the ve different congurations, calcu-
+lating the average of the minimum and maximum variation of the
+analysed parameters (Table 1).
+Finally the videos of the in vivo test suite were analysed, trying
+different values for comparative thresholds (min B/R variation, min
+G/R variation and max blood variation for the last 20 frames) and
+seeking to maximize the specicity, that is, reducing the false posi-
+tives when classifying the videos in ※shows bleeding§ or ※not shows
+bleeding§. The best results were obtained discarding the frames
+with at least half of the pixels different respect the previous frame,
+detecting sudden sake of the camera. Using as detection conditions
+that the sums of B/R and G/R variations during the last 20 frames
+0.08 and the sum of the blood percentage varia-
+must keep below 
+tion during the last 20 frames must keep over 10, the analysis of the
+videos obtained an accuracy of 78.26%, a sensitivity of 76.47% and a
+specicity of 83.33%. For this analysis, a true positive was achieved
+when the algorithm correctly detected a bleeding right after the
+blood start pouring from the injury, a true negative was achieved
+when the algorithm did not detect any bleeding in a ※non-bleeding
+video§, a false negative was achieved when the algorithm did not
+detect any bleeding in a ※bleeding video§ and nally a false positive
+was achieved when: the algorithm detected a bleeding in a ※non-
+bleeding video§, detected a bleeding in a ※bleeding video§ before it
+occurs or after the pouring due to a non-related cause (Table 2).
+
+A. Garcia-Martinez et al. / Articial Intelligence in Medicine 78 (2017) 55每60 
+
+59
+
+Table 1
+Performance comparison for blood pixel classication.
+
+Tonmoy Ghosh 
+
+Yixuan Yuan 
+
+Our method
+
+In vitro
+
+In vivo
+
+Accuracy 
+Sensitivity 
+Specicity 
+Accuracy 
+Sensitivity 
+Specicity 
+
+92.25% 
+96.40% 
+92.09% 
+60.44% 
+91.38% 
+48.57% 
+
+84.45% 
+99.64% 
+83.30% 
+61.10% 
+93.14% 
+50.28% 
+
+95.41%
+87.74%
+96.48%
+88.96%
+72.97%
+93.41%
+
+Fig. 4. Some examples of the results. (a) Original image, (b) ground truth, (c) Tonmoy Ghosh＊s results, (d) Yixuan Yuan＊s results, (e) our algorithm＊s results.
+
+Table 2
+Parameters of the 20 rst frames after the beginning of the haemorrhage.
+
+In vitro conf. A 
+In vitro conf. B 
+In vitro conf. C 
+In vitro conf. D 
+In vitro conf. E 
+Total average 
+
+Min B/R variation 
+0.066 
+0.1571 
+0.1225 
+0.089 
+0.1082 
+0.1086 
+
+Min G/R variation 
+0.0697 
+0.1579 
+0.1088 
+0.0702 
+0.077 
+0.0967 
+
+Max blood variation
+
+11.3254
+15.5642
+13.0489
+11.5687
+10.6634
+12.4341
+
+4. Discussions and conclusions
+
+Nowadays, haemorrhages remain one of the major compli-
+cations present in MIS interventions and the visual limitations
+imposed by the use of a traditional laparoscopic camera hinder
+its detection and treatment, increasing the risk for the patient. In
+this document the rst steps for the design of a bleeding detec-
+tor algorithm are presented, an algorithm able to work using only
+the images directly captured by a laparoscopic camera, obtaining
+acceptable results as a rst approach. The successful of the analysis
+strongly depends of at least three factors that inuence signicantly
+the outcome.
+
+Stability of the camera is one of the most important factors. A
+sudden movement of the camera can result in the loss of infor-
+mation needed to detect bleeding or a false positive due to a
+signicantly increasing of the level of red when entering the frame
+a reddish tissue. An unmanned vision system, for example con-
+trolled by a robot as proposed in [17], will not suffer this issue and
+can become a reliable system for detecting bleeding.
+The use of an electrocautery is very harmful for detecting bleed-
+ing using the proposed method in this paper because the gases
+emitted hide the blood, making hard to detect a haemorrhage only
+with a visual analysis but easy to solve with a correct control of the
+emptying of the gases.
+
+60 
+
+A. Garcia-Martinez et al. / Articial Intelligence in Medicine 78 (2017) 55每60
+
+The illumination is the most important factor, as a direct light
+on a blood stained surface will create some white reections that
+the algorithm is not able to recognize as blood. Using an indepen-
+dence source light as proposed in [17] allow the surgical team to
+positioning it and avoid the reections.
+As a future work the algorithm requires an optimization to
+increase its effectiveness, for example enhancing the classication
+of pixels against light variations. Another possibility is to merge
+this algorithm with a surgical gauze detector algorithm described
+in [18], since both elements are strongly associated.
+
+Acknowledgements
+
+We thank Mr. S. V. Baydo to grant us permission to use their
+videos for this project.
+Authors would like to thank the economic support of Spanish
+National Research Council through DPI2013-47196-C3-2-R project.
+
+References
+
+[1] Kaushik R. Bleeding complications in laparoscopic cholecystectomy:
+incidence, mechanisms, prevention and management. J Minim Access Surg
+2010;6:59每65, http://dx.doi.org/10.4103/0972-9941.68579.
+[2] Opitz I, Gantert W, Giger U, Kocher T, Krhenb邦hl L. Bleeding remains a major
+complication during laparoscopic surgery: analysis of the SALTS database.
+Langenbeck＊s Arch Surg 2005;390:128每33,
+http://dx.doi.org/10.1007/s00423-004-0538-z.
+[3] Akaraviputh T, Opasanon S. Major vascular injury in laparoscopic
+cholecystectomy. Thai J Surg 2011;32:41每4.
+[4] Duca S, Bl O, Al-Hajjar N, Lancu C, Puia IC, Munteanu D, et al. Laparoscopic
+cholecystectomy: incidents and complications. A retrospective analysis of
+9542 consecutive laparoscopic operations. HPB (Oxford) 2003;5:152每8,
+http://dx.doi.org/10.1080/13651820310015293.
+[5] Stinton LM, Shaffer EA. Epidemiology of gallbladder disease: cholelithiasis and
+cancer. Gut Liver 2012;6:172每87, http://dx.doi.org/10.5009/gnl.2012.6.2.172.
+[6] Mases A, Montes A, Ramos R, Trillo L, Puig MM. Injury to the abdominal aorta
+during laparoscopic surgery: an unusual presentation. Anesth Analg
+2000;91:561每2.
+
+[7] Allan M, Ourselin S, Thompson S, Hawkes DJ, Kelly J, Stoyanov D. Toward
+detection and localization of instruments in minimally invasive surgery. IEEE
+Trans Biomed Eng 2013;60:1050每8,
+http://dx.doi.org/10.1109/TBME.2012.2229278.
+[8] Hamilton JD, Kumaravel M, Censullo ML, Cohen AM, Kievlan DS, West OC.
+Multidetector CT evaluation of active extravasation in blunt abdominal and
+pelvic trauma patients. Radiographics 2008;28:1603每16,
+http://dx.doi.org/10.1148/rg.286085522.
+[9] Willmann JK, Roos JE, Platz A, Pfammatter T, Hilker PR, Marincek B, et al.
+Multidetector CT: detection of active hemorrhage in patients with blunt
+abdominal trauma. Am J Roentgenol 2002;179:437每44,
+http://dx.doi.org/10.2214/ajr.179.2.1790437.
+[10] Lau PY, Correia PL. Detection of bleeding patterns in WCE video using
+multiple features. 2007 29th Annu. Int. Conf. IEEE Eng. Med. Biol. Soc., vol.
+2007. 2007. p. 5601每4, http://dx.doi.org/10.1109/IEMBS.2007.4353616.
+[11] Giritharan B, Yuan Xiaohui, Liu Jianguo, Buckles B, Oh JungHwan, Tang Shou
+Jiang. Bleeding detection from capsule endoscopy videos. In: 2008 30th Annu.
+Int. Conf. IEEE Eng. Med. Biol. Soc. 2008. p. 4780每3,
+http://dx.doi.org/10.1109/IEMBS.2008.4650282.
+[12] Yuan Y, Li B, Meng MQ-H. Bleeding frame and region detection in the wireless
+capsule endoscopy video. IEEE J Biomed Heal Informatics 2016;20:624每30,
+http://dx.doi.org/10.1109/JBHI.2015.2399502.
+[13] Ghosh T, Fattah SA, Wahid KA. Automatic bleeding detection in wireless
+capsule endoscopy based on RGB pixel intensity ratio. In: 2014 Int. Conf.
+Electr. Eng. Inf. Commun. Technol. 2014. p. 1每4,
+http://dx.doi.org/10.1109/ICEEICT.2014.6919173.
+[14] OpenCV | OpenCV n.d. http://opencv.org/(accessed May 28, 2016).
+[15] ROS.org | Powering the world＊s robots n.d. http://www.ros.org/(accessed May
+28, 2016).
+[16] Garcia-Martinez A, Lledo LD, Badesa FJ, Garcia N, Sabater-Navarro JM.
+Integration of heterogeneous robotic systems in a surgical scenario. In: 5th
+IEEE RAS/EMBS Int. Conf. Biomed. Robot. 2014. p. 24每7,
+http://dx.doi.org/10.1109/BIOROB.2014.6913746.
+[17] Garcia-Martinez A, Mora R, Juan CG, Compan AF, Garcia N, Sabater-Navarro
+JM. Toward an enhanced modular operating room. In: 2016 6th IEEE Int. Conf.
+Biomed. Robot. 2016. p. 413每7,
+http://dx.doi.org/10.1109/BIOROB.2016.7523662.
+[18] Garcia-Martinez A, Juan CG, Garcia NM, Sabater-Navarro JM. Automatic
+detection of surgical gauzes using Computer Vision. In: 23rd Mediterr. Conf.
+Control Autom. 2015. p. 747每51,
+http://dx.doi.org/10.1109/MED.2015.7158835.
+

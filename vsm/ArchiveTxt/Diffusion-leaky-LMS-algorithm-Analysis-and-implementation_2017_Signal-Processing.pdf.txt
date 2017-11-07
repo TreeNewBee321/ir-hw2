@@ -1,0 +1,4885 @@
+Diffusion leaky LMS algorithm: Analysis and implementation 
+
+Lu Lu, Haiquan Zhao 
+
+
+
+School of Electrical Engineering, Southwest Jiaotong University, Chengdu, China 
+
+article
+
+info
+
+
+
+Article history: 
+Received 14 December 2016 
+Revised 17 April 2017 
+Accepted 12 May 2017 
+Available online 12 May 2017 
+
+Keywords: 
+Distributed adaptation 
+Leaky LMS 
+Variable leakage factor 
+Acoustic echo cancellation (AEC) 
+
+abstract
+
+The diffusion least-mean-square (dLMS) algorithms have attracted much attention owing to its robustness 
+for distributed estimation problems. However, the performance of such algorithms may change when they 
+are implemented for acoustic echo cancellation (AEC) systems. To overcome this problem, a leaky dLMS 
+algorithm is proposed in this work, which is characterized by its numerical stability and small steady- 
+state error for noisy speech signals. Then, we perform some stability and convergence analyses of the 
+proposed algorithm for Gaussian inputs and verify the theory results by simulations. As an added contri- 
+bution in this paper, we further develop a new variable leakage factor (VLF) strategy for the leaky dLMS 
+algorithm to overcome the parameter selection of adaptation. Finally, implementations of the proposed 
+algorithms in the context of system identication and stereophonic AEC (SAEC) network are performed. 
+Simulation results illustrate that the leaky diffusion algorithms achieve improved performance as com- 
+pared with the existing algorithms. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Owing to its simple structure and low computational cost, the 
+least-mean-square (LMS) algorithm and its variant are widely used 
+in adaptive signal processing [1每4] . However, in practice, it is well 
+known that direct implementation of the conventional LMS algo- 
+rithm can be problematic [5,6] . In such a case, the leaky LMS al- 
+gorithm was proposed [6,7] . It can effectively solve the following 
+problems: (a) Numerical problem. The problem is due to the in- 
+adequacy of excitation in the input data. Filter parameters obtain 
+arbitrarily large values and may fail to work. (b) Stagnation behav- 
+ior. This is due to the low input signal. Since the gradient esti- 
+mate is too small to adjust the coecients of the algorithm, the 
+adaptation of the algorithm may stall [6,7] . The leaky-based algo- 
+rithms have been applied in diverse elds [6每16] , including active 
+noise control (ANC) [12,13] , channel estimation [15] , and nonlinear 
+acoustic echo cancellation (NLAEC) [16] . Moreover, some improved 
+versions of the leaky LMS algorithm were proposed by introducing 
+the leaky factor into cost function to improve stability or conver- 
+gence rate [17每20] . 
+Recently, to estimate some parameters of interest from the data 
+collected at nodes distributed over a geographic region, several dis- 
+tributed estimation algorithms were developed, which have also 
+been applied in many areas [21每27] . In the previous studies, the 
+incremental strategy [28每31] and the diffusion strategy [32每37] of 
+cooperation for adaptive networks have been studied extensively. 
+In the incremental strategy, the denition of a cyclic path over 
+the nodes is required, and this technique is sensitive to link fail- 
+ures [35] . The diffusion method, in contrast, is a more widely used 
+strategy for distributed estimation. In this strategy, each node com- 
+municates with a subset of its neighbors, and can achieve robust 
+performance and a stable behavior over networks regardless of the 
+topology. Based on the variable step size scheme, some improve- 
+ments have been reported to either enhance the convergence or 
+to improve the accuracy of estimation [38每41] . In [42每48] , some 
+works on reduced-complexity diffusion-based adaptive estimation 
+algorithms were proposed, which reduce the internode communi- 
+cations and retain the benets of cooperation. Particularly, in [37] , 
+two versions of the diffusion LMS (dLMS) algorithm, the adapt- 
+then-combine (ATC) scheme and the combine-then-adapt (CTA) 
+scheme were proposed, based on the different orders of adaptation 
+and combination steps. Note that the ATC version of dLMS algo- 
+rithm outperforms the CTA version of dLMS algorithm in all cases, 
+and better performance can be achieved if the measurements are 
+shared [37] . Due to its merit, the ATC version of the dLMS algo- 
+rithm (ATC dLMS) has been introduced to the subband adaptive 
+lter [49] , information theoretic learning (ITL) [50,51] to further 
+obtain improved performance. 
+A distributed incremental leaky LMS has been developed in 
+[52] that can be used to estimate the coecients of network. Al- 
+though this algorithm offers a stable performance, it cannot be 
+applied to large networks which may prohibit its practical appli- 
+
+78 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+Table 1 
+Mathematical notations. 
+
+Notations Description 
+﹞ ) 
+E( 
+﹞ ) 
+( 
+﹞ ) 
+diag( 
+﹞ } 
+Tr{ 
+﹞ } 
+﹞ || p 
+|| 
+﹞ | 
+| 
+﹞ } 
+col{ 
+﹞ } 
+vec{ 
+﹞ } 
+{ 
+I 
+1 
+
+Mathematical expectation 
+Transposition 
+Diagonal matrix with entries given by the arguments 
+Trace operator 
+The largest eigenvalue of a matrix 
+Matrix l p norm of its argument 
+Absolute value of a scalar 
+Inverse of a matrix 
+Column vector with scalar entries or vector entries 
+Stack the columns of its matrix argument on top of each other 
+Kronecker product 
+Real value of parameter 
+Identity matrix 
+℅ 1 vector with unit entries 
+N 
+
+T 
+
+竹max { 
+
+|
+
+﹞ |
+
+1 
+
+(cid:2)
+
+o 
+
+cations. More importantly, it needs to establish a Hamiltonian cy- 
+cle over the network, which is an NP-hard problem, and it may 
+not exist in the general case [53] . To overcome these limitations, 
+a leaky dLMS algorithm with two combination strategies-ATC and 
+CTA is proposed, which is motivated by recent work in [37,52] . 
+Compared with the state-of-art algorithms, the leaky dLMS algo- 
+rithm is derived by minimizing the instantaneous leaky objective 
+function rather than the mean square error (MSE) cost function, 
+and it has a superiority performance via the ATC strategy. In ad- 
+dition, we provide the stochastic behavior and stability analyses of 
+the leaky dLMS algorithm for Gaussian inputs. 
+Many variable leakage factor (VLF) algorithms have been pro- 
+posed in the literature [54每56] , where the main objective is to im- 
+prove the convergence speed of the algorithm. In [54] , Subudhi et 
+al . attempted to investigate whether VLF scheme can be adopted 
+to develop an ecient strategy for power system frequency esti- 
+mation. We observe an improved performance of this effort, and 
+investigate employing such VLF scheme to the leaky dLMS algo- 
+rithm for distributed estimation. 
+In summary, our main contributions are listed as follows: (1) to 
+develop a novel leaky dLMS algorithm that is suited for AEC ap- 
+plications, (2) to analyze the performance of the leaky dLMS algo- 
+rithm in terms of the network mean square deviation (MSD) and 
+stability behavior, (3) to develop a variable leaky dLMS algorithm 
+in which the leakage factor is self-adjusting. The variable leaky 
+dLMS algorithm remains the convergence rate of the leaky dLMS 
+algorithm and overcomes the parameter selection problem in prac- 
+tice, and (4) we compare the simulation results of the proposed 
+methods with the existing algorithms in the context of stereo- 
+phonic AEC (SAEC) systems. 
+The rest of the paper is organized as follows. In Section 2 , 
+we derive the proposed leaky dLMS algorithm. In Section 3 , the 
+convergence analysis of the proposed algorithm is performed. In 
+Section 4 , we propose the VLF-based leaky dLMS algorithm and an- 
+alyze the computational complexity. We show the computer simu- 
+lation results in Section 5 and conclude the paper in Section 6 . 
+The notations used in this paper are listed in Table 1 . We use 
+normal letters to denote scalars, use boldface lowercase letters to 
+denote vectors, and use boldface uppercase letters to denote the 
+matrix. 
+
+2. Proposed algorithm 
+
+Consider a network of N sensor nodes distributed over a 
+geographic area. At each time instant i , each sensor node k 
+ N}
+ has access to the realization of some zero-mean ran- 
+dom process { d k 
+}, where d k 
+( i ) is the desired signal, and 
+℅ M regression vector. Sup- 
+] 
+pose these measurements at every node follow a standard model 
+
+﹋
+
+{
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+( i ), u k , i 
+1 
+M+1 
+
+u k,i 
+
+=
+
+ [ u k,i 
+ u k,i 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u k,i 
+
+T is a 1 
+
+given by: 
+
+d k 
+
+(i 
+)
+
+=
+
+ u 
+
+T 
+k,i 
+
+w 
+
+o +
+
+ v k 
+
+(i 
+)
+
+(1) 
+
+where w 
+o is the unknown parameter vector, and v k 
+( i ) is the mea- 
+surement noise with variance 
+. Here, we assume that v k 
+( i ) 
+are spatially independent and independent identically dis- 
+tributed (i.i.d.), and v k 
+( i ) is independent of u k , i 
+. 
+Dene the error signal at node k as 
+ u 
+ 1 . 
+where w k,i 
+is the estimate of w 
+o at node k and time i 
+The update equation of ATC dLMS can be expressed as [37] 
+ u 
+米u 
+
+考 2 v 
+
+,k 
+
+and u k , i 
+
+e k,i 
+
+=
+
+ d k 
+
+(i 
+)
+
+T 
+w k,i 
+1 
+k,i 
+
+(2) 
+
+1 
+
+
+ 
+ 
+ 
+ 
+
+
+
+ k,i 
+
+=
+=
+
+ w k,i 
+
+1 
+
++
+
+T 
+k,i 
+
+(cid:6)
+
+d k 
+
+(i 
+)
+
+T 
+w k,i 
+1 
+k,i 
+
+(cid:7)
+
+w k,i 
+
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k 
+
+
+
+ l ,i 
+
+(3) 
+
+米 is the step size (learning rate), 
+where 
+is the local estimates 
+at node k and time i , and 
+is the set of nodes with which node 
+k shares information (including k itself). The weighting coecients 
+} are the real, non-negative, satisfying the condition a l ,k 
+ 0 if 
+. The notation A is the matrix with individual entries { a l, k 
+} 
+Inspired by the derivation of the dLMS algorithm [37] , a novel 
+algorithm for distributed parameter estimation, named leaky dLMS 
+algorithm is proposed. Many well-known diffusion algorithms were 
+derived by using gradient decent, including the dLMS algorithm 
+[37] and the diffusion minimum error entropy algorithm [50] . Here 
+we derive the leaky dLMS algorithm also by using gradient descent. 
+For each node k , we seek an estimate of w 
+o by minimizing the fol- 
+lowing cost function: 
+
+
+
+k , i 
+
+N
+
+ k 
+
+{ a l, k 
+
+=
+
+l 
+
+/
+
+﹋
+
+N
+
+ k 
+
+J 
+
+loc 
+k 
+
+(w )
+
+=
+
+(cid:8)
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k E 
+
+|
+|
+
+ e l ,i 
+
+|
+
+2 +
+
+污 w 
+
+T w 
+
+=
+
+l﹋
+
+N
+
+ k 
+
+a l ,k E 
+
+ d l 
+
+(i 
+)
+
+ u 
+
+T 
+l ,i 
+
+w|
+
+2 +
+
+污 w 
+
+T w 
+
+(4) 
+
+where 
+ 0 is the leaky factor, and w is the estimate of w 
+Using the steepest-descent method, we have 
+T w}
+污 w 
+ w 
+
+污 >
+
+o . 
+
+
+
+ w J 
+
+loc 
+k 
+
+(w )
+
+=
+
+(cid:8)
+
+l﹋N
+
+ k 
+
+a l ,k 
+
+ {
+
+ E 
+
+|
+
+ e l ,i 
+
+|
+
+2 +
+
+.
+
+(5) 
+
+Therefore, the updating of proposed algorithm for estimating w 
+node k is given by 
+T w}
+污 w 
+ w 
+
+o at 
+
+w k,i 
+
+=
+
+ w k,i 
+
+1 
+
+ 米
+
+(cid:8)
+
+l﹋N
+
+ k 
+
+a l ,k 
+
+ {
+
+ E 
+
+|
+
+ e l ,i 
+
+|
+
+2 +
+
+(cid:9)(cid:9)(cid:9)(cid:9)
+
+w k,i 
+1 
+
+.
+
+(6) 
+
+Under the linear combination assumption [35,37] , the linear com- 
+bination w k , i 
+at node k can be dened as 
+
+w k,i 
+1 
+
+=
+
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k 
+
+
+
+ l ,i 
+
+1 
+
+.
+
+(7) 
+
+Introducing (7) to (6) , we can obtain an iterative formula for 
+the intermediate estimate 
+ E 
+
+
+
+ l ,i 
+
+=
+
+
+
+ l ,i 
+
+1 
+
+ 米
+
+|
+
+ e l ,i 
+
+|
+
+2 +
+
+污 w 
+ w 
+污 w 
+ w 
+米u 
+
+T w 
+
+(cid:9)(cid:9)(cid:9)(cid:9)
+(cid:9)(cid:9)(cid:9)(cid:9)
+
+w k,i 
+1 
+
+＞ 
+=
+
+ l ,i 
+
+1 
+
+ 米
+
+ E 
+
+|
+
+ e l ,i 
+
+|
+
+2 +
+
+T w 
+
+w l ,i 
+1 
+
+(1 
+
+ 污 米)
+
+
+
+ l ,i 
+
+1 
+
++
+
+T 
+e l ,i 
+l ,i 
+
+.
+
+(8) 
+
+An important point needs to be highlighted. The equation in 
+(8) is not realizable, due to the fact that linear combination esti- 
+mation w k,i 
+ which requires to gradient calculation, is not avail- 
+able for node l [50] . Let＊s consider an approximation method as 
+in [50] , in which the difference between w k,i 
+should 
+
+1 
+
+,
+
+1 
+
+and w l ,i 
+1 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+79 
+
+not be too large, owing to the fact that w k,i 
+ 1 . 
+linear-combination estimate of w 
+o at instant i 
+Thus, we obtain the leaky dLMS algorithm by transforming the 
+steepest-descent type iteration of (6) into a two-step iteration 
+
+1 
+
+and w l ,i 
+1 
+
+are both 
+
+
+ 
+ 
+ 
+ 
+
+
+
+ k,i 
+
+=
+=
+
+ w k,i 
+
+ 米  E 
+1 
+
+|
+
+2 +
+ e k,i 
+
+|
+
+污 w 
+ w 
+
+T w 
+
+(cid:9)(cid:9)(cid:9)
+
+w k,i 
+1 
+
+(ada pt at ion 
+)
+
+w k,i 
+
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k 
+
+
+
+ l ,i 
+
+(combinat ion 
+)
+
+.
+
+(9) 
+
+In adaptation step of (9) , the local estimate 
+is replaced 
+by linear combination w k,i 
+. Such substitution is reasonable, be- 
+cause the linear combination contains more data information from 
+neighbor nodes than 
+[37] . Then, we extend the leaky dLMS 
+algorithm to its ATC and CTA forms. 
+ATC leaky dLMS algorithm (without measurements ex- 
+change) : 
+(1 
+
+
+
+ k,i 
+
+1 
+
+1 
+
+
+
+ k,i 
+
+1 
+
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+
+
+ k,i 
+
+=
+=
+
+ 米污 )
+
+ w k,i 
+
+1 
+
++
+
+米u 
+
+T 
+k,i 
+
+(cid:6)
+
+d k 
+
+(i 
+)
+
+ u 
+
+T 
+w k,i 
+1 
+k,i 
+
+(cid:7)
+
+w k,i 
+
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k 
+
+
+
+ l ,i 
+
+.
+
+(10) 
+
+CTA leaky dLMS algorithm (without measurements ex- 
+change) : 
+
+
+
+ k,i 
+
+1 
+
+=
+
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k w l ,i 
+1 
+
+w k,i 
+
+=
+
+(1 
+
+ 米污 )
+
+
+
+ k,i 
+
+1 
+
++
+
+米u 
+
+T 
+k,i 
+
+(cid:6)
+
+d k 
+
+(i 
+)
+
+ u 
+
+T 
+k,i 
+
+
+
+ k,i 
+
+1 
+
+(cid:7)
+
+.
+
+(11) 
+
+From [37] , we observed that the ATC-based diffusion algorithms 
+outperform the CTA-based versions in all cases. For this reason, we 
+will focus on analyzing the ATC leaky dLMS algorithm in next sec- 
+tion. 
+
+3. Stochastic analysis of the leaky dLMS algorithm 
+
+3.1. Mean performance 
+
+In this section, we will conduct the stochastic behavior analysis 
+of the leaky dLMS algorithm, and formulate its stability condition. 
+To carry out the analysis, we shall assume that: 
+
+Assumption 1. The input signals { u k , i 
+} are the zero-mean Gaus- 
+sian signals, and are spatially and temporally independent; 
+
+Assumption 2. The noise signal v k 
+( i ) at each node k is assumed 
+to be a Gaussian noise with zero-mean, and is independent of any 
+other signals. 
+
+Note that the above assumptions are often used by the practi- 
+tioner of adaptive signal processing. Although there are not truly in 
+practical applications, these assumptions can simplify the analysis 
+of adaptive lter. Before that, some results in classical references 
+indicate that theory analyses agree with the simulation results by 
+using such assumptions [37,57] . 
+Then, we proceed to the stochastic behavior analysis of leaky 
+dLMS algorithm. The weight error vector and intermediate weight 
+error vector at agent k and time i are respectively dened as fol- 
+lows: 
+
+ w k,i 
+
+=
+
+ w 
+
+o  w k,i 
+
+(12) 
+
+ 
+
+ k,i 
+
+=
+
+ w 
+
+o  
+
+ k,i 
+
+.
+
+(13) 
+
+Introduce the global quantities of the network weight vector w i 
+, 
+weight error vector  w i 
+and intermediate network weight error vec- 
+tor  
+ i.e., 
+
+ i 
+
+,
+
+w i 
+
+=
+
+ col 
+
+{
+
+ w 1 
+
+,i 
+
+,
+
+ w 2 
+
+,i 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ w N,i 
+
+}
+
+(14) 
+
+ w i 
+
+=
+
+ col {
+
+  w 1 
+
+,i 
+
+,
+
+  w 2 
+
+,i 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+  w N,i 
+
+}
+
+(15) 
+
+ 
+
+ i 
+
+=
+
+ col 
+
+{
+
+  
+
+ 1 
+
+,i 
+
+,
+
+  
+
+ 2 
+
+,i 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+  
+
+ N,i 
+
+}
+
+.
+
+(16) 
+
+The error vector is dened as 
+
+e i 
+
+=
+
+ col 
+
+{
+
+ e 1 
+
+,i 
+
+,
+
+ e 2 
+
+,i 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ e N,i 
+
+}
+
+(17) 
+
+the noise vector is dened as 
+
+v i 
+
+=
+
+ col 
+
+{
+
+ v 1 
+
+(i 
+)
+
+,
+
+ v 2 
+
+(i 
+)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ v N 
+
+(i 
+)
+
+}
+
+(18) 
+
+the desired vector is dened as 
+
+d i 
+
+=
+
+ col 
+
+{
+
+ d 1 
+
+(i 
+)
+
+,
+
+ d 2 
+
+(i 
+)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ d N 
+
+(i 
+)
+
+}
+
+(19) 
+
+and introduce the diagonal matrix for step sizes at all nodes 
+
+M 
+
+=
+
+ diag 
+
+{
+
+米,
+
+米,
+
+.
+
+.
+
+.
+
+,
+
+米}
+
+.
+ w 
+
+(20) 
+
+Considering e i 
+written as 
+ Q  w i 
+ 
+ Q 
+
+=
+
+ d i 
+
+T 
+u i 
+i 
+ Q V i u i 
+ Qw i 
+1 
+ QV i u i 
+ w i 
+1 
+
+,
+
+ the adaptation step in (10) can be 
+
+ i 
+
+=
+=
+
+ w i 
+1 
+
+1 u i u 
+T 
+i 
+
++
+
+(cid:10)
+
+I MN 
+
+(cid:6)
+
+ +
+
+ u i u 
+
+T 
+i 
+
+(cid:7)(cid:11)
+
++
+
+ QW
+
+o 
+
+(21) 
+
+where 
+
+W
+
+o 
+
+=
+
+ col 
+
+{
+
+ w 
+
+o ,
+
+ w 
+
+o ,
+
+.
+
+.
+
+.
+
+,
+
+ w 
+
+o }
+
+(22) 
+
+u i 
+
+=
+
+ col 
+
+{
+
+ u 1 
+
+,i 
+
+,
+
+ u 2 
+
+,i 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u N,i 
+
+}
+
+(23) 
+
+Q 
+
+=
+
+ M 
+
+(cid:2) I M 
+
+(24) 
+
+ =
+
+s 
+(cid:2) I M 
+
+,
+
+s 
+
+=
+
+ diag 
+
+{
+
+污 ,
+
+污 ,
+
+.
+
+.
+
+.
+
+,
+
+污 }
+
+(25) 
+
+and 
+
+V i 
+
+=
+
+ V s 
+
+(cid:2) I M 
+
+,
+
+ V s 
+
+=
+
+ diag 
+
+{
+
+ v i 
+
+}
+
+.
+
+(26) 
+
+Combining with the combination step in (10) , the update formula- 
+tion of the weight deviation vector of the proposed algorithm can 
+be expressed as: 
+ Q 
+( +
+
+ w i 
+
+=
+
+ P 
+
+T 
+
+(cid:10)
+
+I MN 
+
+ u i u 
+
+T 
+i 
+
+)
+
+(cid:11)
+
+ w i 
+1 
+
+ P 
+
+T QV i u i 
+
++
+
+ P 
+
+T QW
+
+o 
+
+(27) 
+
+where 
+
+P 
+
+=
+
+ A 
+
+(cid:2) I M 
+
+.
+
+(28) 
+
+Taking expectations of both sides of (27) , we get 
+ Q 
+( +
+P 
+
+E 
+
+{
+
+  w i 
+
+}
+
+=
+
+ P 
+
+T [ I MN 
+
+ u i u 
+
+T 
+i 
+
+)]E 
+T QW
+
+{
+
+  w i 
+
+1 
+
+}
+
+T Q E 
+
+{
+
+ V i u i 
+
+}
+
++
+
+ P 
+
+o .
+
+(29) 
+
+Under Assumption 1 , (29) can be approximated as 
+ Q 
+( +
+T QW
+
+E 
+
+{
+
+  w i 
+
+}
+
+=
+
+ P 
+
+T 
+
+(cid:10)
+
+I MN 
+
+ u i u 
+
+T 
+i 
+
+)
+
+(cid:11)
+
+E 
+
+{
+
+  w i 
+
+1 
+
+}
+
++
+
+ P 
+
+o .
+
+(30) 
+
+Therefore, the weight deviation vector E 
+ converges if 
+ Q 
+( +
+u 
+)] 
+ where 
+竹max stands for the 
+largest eigenvalue of a matrix in absolute form. According to (30) , 
+the general form is asymptotically unbiased for any initial condi- 
+T . Hence, the problem reduces to 
+tion and any choice of matrix P 
+ Q 
+( +
+)
+determine the stability condition for the matrix I MN 
+ Q 
+( +
+u 
+We notice that the matrix I MN 
+u 
+)
+ is a block-diagonal 
+matrix, so it can be easily veried that it is stable if its block- 
+diagonal entries I M 
+u 
+)
+ are stable. Consequently, the 
+
+{
+
+  w i 
+
+}
+
+竹max 
+
+{
+
+ P 
+
+T [ I MN 
+
+ u i 
+
+T 
+i 
+
+}
+
+<
+
+ 1 
+
+,
+
+ u i 
+
+T 
+i 
+
+ . 
+
+ u i 
+
+T 
+i 
+
+ 米(污 +
+
+ u k,i 
+
+T 
+k,i 
+
+80 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+vector in leaky dLMS algorithm converges only if 
+
+0 
+
+<
+
+米 <
+
+2 
+
+污 +
+
+竹max 
+
+{
+
+ u k,i u 
+
+T 
+k,i 
+
+}
+
+(31) 
+
+Therefore in the steady state, i.e., n 
+ Q 
+( +
+)
+ Q 
+( +
+)
+ Q 
+( +
+
+↙
+
+﹢
+
+ , we have 
+ P 
+T QW
+
+W
+
+o  E 
+
+{
+
+ w ﹢
+
+}
+
+=
+=
+
+ P 
+
+T [ I MN 
+T [ I MN 
+T [ I MN 
+
+ ] 
+
+(cid:10)
+
+W
+
+o  E 
+
+{
+
+ w ﹢
+
+}
+
+(cid:11)
+
+o 
+
+(cid:6)
+
+P 
+ P 
+
+ ] 
+
+ P 
+T Q
+)
+ w ﹢
+
+(cid:7)
+
+W
+
+o 
+
+ ] E 
+
+{
+
+}
+
+(32) 
+
+where 
+diag 
+
+ is 
+
+the matrix of 
+the 
+eigenvalues, 
+ . Then, (32) can be reduced to 
+ Q 
+( +
+)
+ Q 
+( +
+
+ =
+
+{
+
+竹1 
+
+,
+
+竹2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+竹MN 
+
+}
+
+E 
+
+{
+
+ w ﹢
+
+}
+
+=
+℅
+
+(cid:12)
+(cid:12)
+
+P 
+
+T [ I MN 
+
+ ] 
+
+ I MN 
+T Q  I MN 
+
+(cid:13)1 
+
+P 
+
+T [ I MN 
+
+)
+
+ ] 
+
+ P 
+
+(cid:13)
+
+W
+
+o .
+
+(33) 
+
+For 
+ 0 ), the mean convergence condition for the ATC 
+leaky LMS algorithm is the same as that for the LMS based solu- 
+tion. In other words, the mean convergence condition is indepen- 
+dent of the leaky factor 
+污 . Yet, the bias depends on 
+污 , and a small 
+污 is small. Therefore, a small 
+污 should be 
+bias is achieved when 
+adopted for the simulations. The above analysis is a suitable mea- 
+sure for describing the algorithm convergence and often used to 
+evaluate the algorithm performance. However, the convergence in 
+mean does not guarantee convergence of MSE. Therefore, we need 
+to perform the necessary and sucient condition of leaky dLMS 
+algorithm in mean square sense. 
+
+ =
+
+ 0 ( 
+
+污 =
+
+3.2. Mean-square performance 
+
+This section is devoted to analyzing mean-square performance 
+of the leaky dLMS algorithm for a white Gaussian input. We also 
+follow the assumption 1 and 2 that are suitable for this analysis. 
+First, the network mean-square deviation (NMSD) is dened as the 
+average of MSD value over the network, i.e., 
+
+缶 (i 
+)
+
+=
+
+1 
+N 
+
+N (cid:8)
+=1 
+k 
+
+缶
+
+k 
+
+(i 
+)
+
+(34) 
+
+where 
+is the MSD at node k . Multiplying (27) by its transpose 
+and then taking the expectation, we obtain 
+
+缶
+
+k 
+
+E 
+
+{
+
+  w i  w 
+
+T 
+i 
+
+}
+
+=
+
+P 
+T [(
+
+ I MN 
+
+ Q  Q u i u 
+
+T 
+i 
+
+)E 
+T QW
+ Q  Q u i u 
+ Q  Q u i u 
+
+{
+
+  w i 
+
+1  w 
+T 
+1 
+i 
+o W
+
+}
+
+(I MN 
+
+ Q  Q u i u 
+
+T 
+i 
+
+)] P 
+
++
++
++
+
+ P 
+
+T QV i u i u 
+T 
+i 
+
+V 
+
+T 
+i 
+
+Q 
+
+T P 
+
++
+
+ P 
+
+o T  T Q 
+T P 
+
+ P 
+
+T QW
+
+o E 
+
+{
+
+  w 
+
+T 
+1 
+(I MN 
+i 
+
+T 
+i 
+
+)
+
+}
+
+ P 
+
+ P 
+
+T E 
+
+{
+
+(I MN 
+
+T 
+i 
+
+)
+
+  w i 
+
+1 
+
+}
+
+W
+
+o T  T Q 
+T P 
+
+.
+
+(35) 
+
+Note that (35) is obtained by eliminating the following terms: 
+
+E 
+
+(cid:14)
+(cid:12)
+(cid:12)
+(cid:12)
+
+P 
+
+T QV i u i 
+
+W
+
+o T  T Q 
+T P 
+
+(cid:15)
+
+ =
+
+ 0 
+
+(36) 
+
+E 
+
+T QW
+P 
+
+o u i V i Q 
+T P 
+
+(cid:13)
+
+=
+
+ 0 
+
+(37) 
+
+E 
+
+(I MN 
+
+ Q  Q u i u 
+
+T 
+i 
+
+)
+
+  w i 
+
+1 u 
+T 
+i 
+
+V 
+
+T 
+i 
+
+Q 
+
+T P 
+
+(cid:13)
+(cid:13)
+
+=
+
+ 0 
+
+(38) 
+
+E 
+
+P 
+
+T QV i u i  w 
+T 
+1 
+(I MN 
+i 
+
+ Q  Q u i u 
+
+T 
+i 
+
+)
+
+=
+
+ 0 
+
+.
+
+(39) 
+
+These terms are zero because of Assumption 1 and 2 . Taking the 
+trace of both sides of (35) , we nd the relation given by 
+
+tr 
+
+(cid:6)
+
+E 
+
+{
+
+  w i  w 
+
+T 
+i 
+
+}
+
+(cid:7)
+
+=
+
+P 
+
+T [(I MN 
+
+ Q  Q 
+
+考 2 
+u 
+
+)
+
+ tr 
+
+(cid:6)
+
+E 
+
+{
+
+  w i 
+
+1  w 
+T 
+1 
+(I MN 
+i 
+o W
+
+}
+
+(cid:7)
+
+ Q  Q 
+
+考 2 
+u 
+
+)] P 
+
++
++
++
+
+ P 
+
+T Q 
+
+{
+
+考 2 
+u 
+
+(MN考 2 v 
+)
+T QW
+
+}
+
+ Q 
+
+T P 
+
++
+
+ P 
+
+T QW
+ Q  Q 
+
+o T  T Q 
+T P 
+
+ P 
+
+o tr 
+
+(cid:6)
+
+E 
+(
+ Q  Q 
+
+{
+
+  w 
+
+T 
+1 
+i 
+
+ I MN 
+
+考 2 
+u 
+
+)
+
+}
+
+(cid:7)
+
+P 
+
+ P 
+
+T tr 
+
+(cid:6)
+
+E 
+
+{
+
+(I MN 
+
+考 2 
+u 
+
+)
+
+  w i 
+
+1 
+
+}
+
+(cid:7)
+
+W
+
+o T  T Q 
+T P 
+
+(40) 
+
+where 
+is the variance of the input signal, and 
+of the noise signal. 
+From (34) , we have 
+(i 
+)
+(i 
+)
+
+考 2 
+u 
+
+考 2 v 
+
+is the variance 
+
+缶
+
+k 
+
+=
+
+ tr 
+
+(cid:6)
+
+ W k 
+
+(cid:7)
+
+(41) 
+
+where  W k 
+(i 
+)
+
+ is the k th diagonal block-element of E 
+
+{
+
+  w i 
+
+ w 
+
+T 
+i 
+
+}
+
+ . 
+
+3.3. Stability of the algorithm 
+
+The matrix P has real, non-negative entries. For this reason, the 
+ Q 
+( +
+stability of (27) is only related to  w i 
+u 
+ Qw 
+o . In other words, to guarantee the stability in mean 
+sense, we have 
+
+=
+
+ [ I MN 
+
+ u i 
+
+T 
+)]  w i 
+1 
+i 
+
+
+
+QV i 
+u i 
+
++
+
+ w k .i 
+
+=
+
+ [1 
+
+ 米(污 +
+
+ u k,i u 
+
+T 
+)]  w k,i 
+1 
+k,i 
+
+ 米v k 
+
+(i 
+)
+
+ u k,i 
+
++
+
+米污 w 
+
+o .
+
+(42) 
+
+We dene the state vector as [45] : 
+
+i 
+1 
+
+=
+
+(cid:16)
+
+a,i 
+1 
+1 
+b,i 
+
+
+
+(cid:17)
+
+(43) 
+
+where 
+ tr 
+ w 
+] 
+ and 
+the state equation can be expressed as: 
+
+
+
+1 
+a,i 
+
+=
+
+{
+
+ E[  w i 
+1 
+
+T 
+1 
+i 
+
+}
+
+,
+
+
+
+1 
+b,i 
+
+=
+
+ E[  w i 
+1 
+
+] . Using (43) , 
+
+i 
+
+=
+
+(cid:2)
+
+i 
+1 
+
++
+
+
+
+(44) 
+
+where 
+
+(cid:2)
+
+=
+
+(cid:16)
+
+(cid:8)
+
+ a 
+
+(cid:8)
+(cid:8)
+
+ b 
+
+0 
+
+ d 
+
+(cid:17)
+
+(45) 
+
+and 
+
+(cid:8)
+
+ a 
+
+=
+
+ 1 
+
+ 2 
+米(考 2 
+
+k,u 
+
++
+
+污 )
+
++
+
+ 1 
+米2 [(M 
+
++
+
+灰
+
+k,u 
+
+)
+
+考 4 
+k,u 
+
++
+
+ 2 
+
+考 2 
+k,u 
+
+污 +
+
+污 2 ] 
+
+(46) 
+
+(cid:8)
+
+ b 
+
+=
+
+2 
+
+米污
+
+(cid:10)
+
+1 
+
+ 米(考 2 
+
+k,u 
+
++
+
+污 )
+
+(cid:11)
+
+w 
+
+o 
+
+(47) 
+
+(cid:8)
+
+ d 
+
+=
+
+ 1 
+
+ 米(考 2 
+
+k,u 
+
++
+
+污 )
+
+(48) 
+
+where 
+
+考 2 
+k,u 
+
+=
+
+ E 
+
+(cid:12)
+
+u 
+
+2 
+k,u 
+
+(cid:13)
+
+(49) 
+
+灰
+
+k,u 
+
+=
+
+E 
+
+{
+
+ u 
+
+4 
+k,u 
+考 4 
+k,u 
+
+}
+
+(50) 
+
+考 2 
+k,
+
+ v 
+
+=
+
+ E 
+
+(cid:12)
+
+v 
+
+2 
+k 
+
+(i 
+)
+
+(cid:13)
+
+(51) 
+
+and 
+
+ =
+
+(cid:18)
+
+ 米2 
+
+(cid:6)
+
+M考 2 
+
+k,u 
+
+(cid:7)
+
+考 2 
+k,
+
+ v 
+
++
+
+污 2 ||
+
+ w 
+
+o ||
+
+2 
+2 
+
+米污 w 
+
+o 
+
+(cid:19)
+
+.
+
+(52) 
+
+For stability, a practical bound can be obtained from (44) . 
+Note that 
+ is a triangular matrix, it has M eigenvalues equal to 
+1 
+)
+ and one eigenvalue equal to the rst entry in the 
+
+(cid:2)
+
+ 米(污 +
+
+考 2 
+k,u 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+81 
+
+Table 2 
+Computational complexity for node k per iteration. 
+
+Algorithms 
+
+Multiplications 
+
+Additions 
+ 1)
+(M 
+ 1)
+(M 
+ 1)
+(M 
+ 1)
+(M 
+ 1)
+(M 
+ 1)
+(M 
+
+Memory words 
+
+ATC dLMS 
+ATC RZA dLMS 
+VSS dLMS 
+SV dLMS 
+ATC leaky dLMS 
+ATC variable leaky dLMS 
+
+2 M 
+5 M 
+2 M 
+2 M 
+2 M 
+3 M 
+
++
++
++
++
++
++
+
+ MN k 
+ MN k 
+ MN k 
+ MN k 
+ MN k 
+ 2 MN k 
+
++
++
++
++
++
++
+
+ 2 
+ 2 
+ 4 
+ 5 
+ 3 
+ 5 
+
+2 M 
+4 M 
+2 M 
+2 M 
+2 M 
+2 M 
+
++
++
++
++
++
++
+
+ N k 
+ N k 
+ N k 
+ N k 
+ N k 
+ N k 
+
+ 1 
+ 1 
+
+(N k 
+(N k 
+(N k 
+(N k 
+(N k 
+(2 N k 
+
++
++
++
++
++
++
+
+ 2)
+ 3)
+ 2)
+ 2)
+ 3)
+ 2)
+
+ M 
+ 5 
+ M 
+ 6 
+ M 
+ 7 
+ M 
+ 7 
+ M 
+ 7 
+ M 
+ 7 
+
++
++
++
++
++
++
+
++
+
+ 1 
+
+matrix. Obviously, the leaky dLMS algorithm can converge in the 
+mean square if 
+ 2 
+
+(cid:9)(cid:9)1 
+
+米(污 +
+
+考 2 
+k,u 
+
+)
+
++
+
+ 1 
+米2 [(M 
+
++
+
+灰
+
+k,u 
+
+)
+
+考 4 
+k,u 
+
++
+
+ 2 
+
+考 2 
+k,u 
+
+污 +
+
+污 2 ] 
+
+(cid:9)(cid:9) <
+
+ 1 
+
+.
+
+(53) 
+
+Therefore, we can see that the leaky dLMS algorithm converges 
+if, and only if 
+
+0 
+
+<
+
+米 <
+
+2(污 +
+灰
+)
+
+考 2 
+k,u 
+
+)
+
+ 1 
+(M 
+
++
+
+k,u 
+
+考 4 
+k,u 
+
++
+
+ 2 
+
+考 2 
+k,u 
+
+污 +
+
+污 2 
+
+.
+
+(54) 
+
+Eq. (54) provides a mean-square stability condition on the 
+learning rate 
+米 that ensures the convergence of the leaky dLMS 
+algorithm. If we set the leakage coecient 
+ then we obtain 
+a bound on 
+米 to guarantee convergence of the dLMS algorithm. 
+Moreover, (54) shows the negative correlation between bound of 
+the step size and the lter length. 
+
+污 =
+
+ 0 
+
+,
+
+4. Variable leaky dLMS algorithm 
+
+The bottleneck of the leaky dLMS algorithm is it requires a suit- 
+able leaky factor selection. In practice, such parameter setting is 
+hard to implement, and therefore these xed-leaky factor algo- 
+rithms may not work very reliably. On the other hand, it is rea- 
+sonable for each node to be calculated by an independent leaky 
+factor. If the same leaky factors are used, every weight vector of 
+the leaky dLMS ＊leaky＊ out when the input at one node is turned 
+off (other nodes have persistent excitations) 
+1 . Since different nodes 
+share the different input signals, we need to assign an individual- 
+variable-leaky-factor for each node. 
+Inspired by the method in [54,55] , the leaky factor is adapted 
+based on the stochastic gradient rule. Replacing 
+污 by variable reg- 
+ularization parameters 
+for k 
+ we have 
+
+污
+
+k , i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ N 
+
+,
+
+污
+
++1 
+k,i 
+
+=
+
+污
+
+k,i 
+
+ 牟
+
+2 
+
+ e 
+
+2 
+k,i 
+1 
+k,i 
+
+ 污
+(cid:17)T 
+
+污
+
+(55) 
+
+牟 is a positive parameter. The derivative term of (55) can be 
+where 
+computed according to the chain rule: 
+
+ e 
+
+2 
+k,i 
+1 
+k,i 
+
+污
+
+=
+
+(cid:16)
+
+ e 
+
+2 
+k,i 
+
+
+
+ w k,i 
+
+ w k,i 
+
+1 
+k,i 
+
+.
+
+(56) 
+
+From (2) we have 
+
+ e 
+
+2 
+k,i 
+ w k,i 
+
+=
+
+2 e k,i u k,i 
+
+(57) 
+
+1 When the input is turned off, the weight vector of the basic dLMS algorithm 
+stalls. For this reason, the leaky algorithm reduces the effects of non-persistent ex- 
+citation as compared with the dLMS algorithm. 
+
+and the second derivative in (56) can be obtained from (9) as fol- 
+lows: 
+
+
+
+污
+
+ w k,i 
+
+1 
+k,i 
+
+=
+
+
+
+(cid:20) (cid:21)
+(cid:20) (cid:21)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k 
+
+
+
+ l ,i 
+
+(cid:22)
+
+
+
+污
+
+1 
+k,i 
+
+=
+=
+
+
+
+l﹋
+
+N
+
+ k 
+
+a l ,k 
+
+(cid:10)
+
+(1 
+
+ 米污
+
+1 
+l ,i 
+
+)
+
+ w l ,i 
+
+1 
+
++
+
+米e l ,i u l ,i 
+
+(cid:11)(cid:22)
+
+
+
+污
+
+1 
+k,i 
+
+米
+
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k w l ,i 
+1 
+
+.
+
+(58) 
+
+Thus, using (58) and (57) in (56) , and substituting (56) into 
+(55) , one can obtain 
+
+污
+
++1 
+k,i 
+
+=
+
+污
+
+ 米牟 e k,i u k,i 
+k,i 
+
+(cid:8)
+
+l﹋
+
+N
+
+ k 
+
+a l ,k w l ,k 
+
+.
+
+(59) 
+
+Note that the adaptation (59) is derived based on the ATC leaky 
+dLMS algorithm. Similarly, the variable leaky factor version of CTA 
+leaky dLMS algorithm can be easily derived according to above- 
+mentioned derivation. To avoid confusion, (59) is called the ATC 
+variable leaky dLMS algorithm, and its CTA version is called CTA 
+variable leaky dLMS algorithm. 
+Table 2 summarizes the computational complexity and mem- 
+ory requirement of the ATC leaky dLMS, ATC variable leaky dLMS, 
+ATC reweighted zero-attracting (RZA) dLMS [58] , variable step-size 
+diffusion LMS (VSS dLMS) [38] , sparse variable step size dLMS 
+(SV dLMS) [40] and the ATC dLMS algorithms, where N k 
+denotes 
+the number of components of the neighborhood set 
+. As we 
+can see, the ATC dLMS algorithm has the lowest computational 
+ 2)
+complexity than other algorithms, and it demands 
+words. The variable step size version, VSS dLMS and SV dLMS 
+algorithms, require more multiplications, additions and memory 
+than the dLMS algorithm. The increase in computational cost of 
+the VSS dLMS and SV dLMS algorithms compared with the dLMS 
+algorithm is tolerable and can be compensated by the improved 
+performance. The ATC RZA dLMS algorithm, slightly increases the 
+computational complexity as compared with the ATC dLMS algo- 
+rithm, it requires additional M 
+ 1 multiplications for computing 
+zero attracting. Owing to using VLF scheme, the proposed ATC vari- 
+able leaky dLMS algorithm has the highest computational com- 
+plexity and memory requirement among these algorithms. It needs 
+ 1)
+(M 
+3 M 
+ 5 multiplications, 2 M 
+ 1 additions, and 
+ 2)
+ 7 words for VLF scheme, still with an affordable 
+computation burden. 
+The CTA-based algorithms have the same processing and com- 
+munication complexity as the ATC-based algorithms, so we do not 
+repeat them here. 
+
+N
++
+
+ k 
+
+(N k 
+
+ M 
+
++
+
+ 5 
+
++
+
++
++
+
+ 2 MN k 
+(2 N k 
+
++
++
+
++
+
+ N k 
+
++
+
+ M 
+
+5. Simulation results 
+
+In this section, we conduct a series of simulations to evaluate 
+the performance of the proposed algorithms, including simulations 
+on a system identication example and simulations on a SAEC net- 
+work example. We compare the estimation results of the proposed 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+leaky dLMS(Simulation)
+leaky dLMS(Theory)
+
+82 
+
+)
+
+B
+
+d
+
+(
+
+D
+
+S
+
+M
+
+N
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+35
+
+40
+
+45
+
+50
+
+SNR=10dB
+
+SNR=20dB
+
+SNR=30dB
+
+55
+
+0
+
+200
+
+400
+
+600
+
+Iteration number
+
+800
+
+1000
+
+Fig. 3. Network topology. 
+
+Fig. 1. A comparison of the theoretical NMSD in (40) with simulation results ( 
+0 
+ 02 
+ 0 0 01 ). 
+
+污 =
+
+ 0 
+
+,
+
+.
+
+.
+
+米 =
+
+Fig. 2. NMSD of the proposed algorithm versus different step sizes. 
+
+Fig. 4. Frequency response and impulse response of acoustic paths used in com- 
+puter simulations. 
+
+米 must locate in 
+about 0.4. To guarantee all the nodes work well, 
+the range of 
+ 0.4 to ensure the stability. 
+
+米 <
+
+algorithm with those of the dLMS algorithm, the VSS dLMS algo- 
+rithm, the SV dLMS algorithm and the RZA dLMS algorithm. The 
+performance of the algorithms is measured in terms of the NMSD, 
+NMSD 
+[ 
+缶 (i 
+)] . 
+
+=
+
+ 10 log 10 
+
+/
+
+ 1 
+
+=
+
+ n k 
+
+Example 1: System identication with Gaussian input 
+In this subsection, we provide simulation verication for the 
+analyses. The proposed algorithm for noise reduction network is 
+composed of 4 nodes, and each node connects to its nearest 3 
+neighbor nodes. The unknown network vector has 5 entries. The 
+Gaussian signal with zero mean and unit variance is employed as 
+the input signal, a l ,k 
+is used for { a l, k 
+} [58,59] , where n k 
+is 
+the degree of node k . 
+Fig. 1 illustrates the NMSD curve of theoretical and simulation 
+results for different signal-to-noise ratio (SNR) environments. In 
+the leaky dLMS algorithm, the adaptation step size is 
+ 02 
+and the leaky factor is 
+ 0 0 01 . As can be seen, the theoreti- 
+cal NMSDs agree with the simulation results in all cases. To fur- 
+ther demonstrate the upper bound of the step size, Fig. 2 plots the 
+steady-state NMSD of the leaky dLMS with different step sizes. It is 
+found that the steady-state NMSD of the proposed algorithms in- 
+crease as the step sizes increase. Besides, by using (54) , we can ob- 
+tain the theoretical upper bounds of step sizes for different nodes. 
+The calculating data indicates that the upper bound of step size is 
+
+米 =
+
+污 =
+
+ 0 
+
+ 0 
+
+,
+
+.
+
+.
+
+.
+
+/
+
+/
+
+ 1 
+
+ 1 
+
+=
+
+=
+
+=
+
+ 7 z 
+
+ n k 
+
+Example 2: System identication with colored input 
+In second example, a l ,k 
+was used for { a l, k 
+} (uniform rule, 
+[58] ). The network is composed of 20 nodes, as shown in Fig. 3 . 
+The colored input signal u k , i 
+was generated by passing a zero- 
+mean, white Gaussian noise (WGN) through a rst-order system 
+ 0 
+1 )
+T 
+(z )
+(1 
+ . The unknown vector of interest was mod- 
+eled by a FIR lter of order M 
+ 128 
+2 , whose frequency response 
+and impulse response were shown in Fig. 4 . The variance of WGN 
+and SNR over each node is illustrated in Fig. 5 . All NMSD curves 
+were obtained by ensemble averaging over 25 independent trials. 
+First, we investigate the performance of the algorithm using 
+different 
+污 values, as shown in Fig. 6 . It can be easily observed 
+that the CTA/ATC leaky dLMS algorithm is not very sensitive to 
+this choice, but it turns out that the best option for ATC leaky 
+dLMS algorithm is 
+ 01 . Correspondingly, the proper selection 
+for CTA leaky dLMS algorithm is 
+ 001 . Fig. 7 displays a com- 
+parison of NMSD from the proposed algorithms and existing algo- 
+rithms. One can see that the leaky dLMS algorithm outperforms 
+the conventional dLMS algorithms in terms of steady-state NMSD. 
+After the about iteration 10 0 0, all the algorithms reach steady 
+
+污 =
+
+污 =
+
+ 0 
+
+ 0 
+
+.
+
+.
+
+2 We also perform simulations for the proposed algorithms with M 
+http://arxiv.org/abs/1602.04329 . 
+
+=
+
+,
+
+ 5 
+
+ see 
+
+s
+e
+c
+n
+a
+
+i
+r
+
+a
+v
+
+t
+
+u
+p
+n
+
+i
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+(a)
+
+2
+
+4
+
+6
+
+8
+
+)
+
+B
+
+d
+
+(
+
+R
+N
+
+S
+
+6
+
+4
+
+2
+
+0
+
+(b)
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+Node index
+
+10
+
+12
+
+Node index
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+83 
+
+14
+
+16
+
+18
+
+20
+
+14
+
+16
+
+18
+
+20
+
+Fig. 5. Input variances and the SNR used in simulations. 
+
+Fig. 6. NMSD of the proposed algorithms versus different 
+污 ( 
+
+米 =
+
+.
+
+ 0 
+
+ 005 ). 
+
+Fig. 7. NMSD of the proposed algorithms and the existing algorithms at SNR 
+5 dB. 
+
+=
+
+
+
+ 0 
+
+Fig. 8. NMSD of the proposed algorithms and there variable leaky versions at SNR 
+ 5 dB. 
+0 
+
+=
+
+Table 3 
+Computation time. 
+
+Algorithms 
+
+Computation time(s) 
+
+ATC dLMS 
+ATC RZA dLMS 
+VSS dLMS 
+SV dLMS 
+CTA leaky dLMS 
+ATC leaky dLMS 
+ATC variable leaky dLMS 
+
+1.29 
+5.53 
+1.34 
+2.87 
+8.32 
+3.94 
+5.69 
+
+汐=
+
+污 =
+
+state. Besides, we found that the performance of two variable step- 
+size diffusion algorithms is limited by the choice of their param- 
+汐 and 
+污 . To obtain performance improvement and stabil- 
+eters 
+ity, we select 
+ 0.95 and 
+ 0.0 0 0 05 for the algorithms. In ad- 
+dition, it is obviously shown from these curves that the ATC leaky 
+20 dB), whereas the 
+dLMS algorithm achieves low misadjustment ( 
+other ATC-based algorithms nally settle at a NMSD value of about 
+14 dB to 
+19 dB. All the ATC-based algorithms achieve improved 
+performance as compared with the CTA-based algorithms, with the 
+similar initial convergence rate. 
+Next, we show the performance of variable leaky dLMS algo- 
+rithms with the same simulation condition as Fig. 7 . In Fig. 8 it 
+can be seen that the performance of the variable leaky dLMS algo- 
+rithms and the leaky dLMS algorithms are similar. 
+To evaluate the computational burden, we measured the aver- 
+age run execution time of the algorithm on a 2.1-GHz AMD proces- 
+sor with 8GB of RAM, running Matlab R2013a on Windows 7. The 
+computation time of the algorithms is outlined in Table. 3 . We see 
+that the ATC-dLMS algorithm is the fastest one among these dis- 
+tributed algorithms, and the variable leaky dLMS algorithm slightly 
+increases the execution time. The CTA algorithms achieve slower 
+than the ATC algorithms, still with an affordable comput ation time. 
+
+=
+
+=
+
+Example 3: SAEC network 
+In a SAEC network simulation, we used four impulse responses 
+of length M 
+ 128 with sparseness, as shown in Fig. 9 . The length 
+of the adaptive lter was 2 M 
+ 256 . Note that the derivation of the 
+proposed algorithm in SAEC network is different from Section 2 , 
+and therefore we show the derivation in Appendix A . The input 
+signals were obtained by nite impulse response (FIR) ltering a 
+common speech signal in the far-end location, and processing with 
+positive and negative half-wave rectiers (with b 
+ 5 ) [60] . The 
+output of the system is contaminated with 0dB SNR of WGN. To 
+quantify the network performance of the algorithm, the network 
+
+=
+
+.
+
+ 0 
+
+84 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+Fig. 9. Impulse responses used in SAEC network at node k . (a) w k , 11 with sparsity 0.8853; (b) w k , 12 with sparsity 0.8453; (c) w k , 21 with sparsity 0.8327; (d) w k , 22 with sparsity 
+ N . The sparseness level of the responses is calculated according to 汎s 
+
+0.8651, k 
+
+ ||
+
+ 1 
+ 2 
+
+=
+
+=
+
+1 
+
+. 
+
+,
+
+,
+
+,
+
+﹟
+
+M
+
+M 
+M 
+
+﹟
+
+o ||
+o ||
+
+ w 
+ 1 
+ w 
+
+||
+
+M 
+
+ 2 
+
+(cid:23)
+
+(cid:24)
+
+gorithm is more sensitive to high background noise than the other 
+algorithms, and it achieves higher steady state error. The VSS dLMS 
+and SV dLMS algorithms, have small misadjustment for SAEC net- 
+work, but suffer from slow convergence speed. The learning rate 
+of the ATC dLMS algorithm is slower than the ATC RZA dLMS al- 
+gorithm, and it achieves lower misalignment than the zero attrac- 
+tion strategy. The proposed algorithms achieve the same conver- 
+gence rate in this case. Particularly, the ATC-based algorithms have 
+smaller lower misalignment compared with the CTA leaky dLMS 
+algorithm. Among these algorithms, the ATC leaky dLMS algorithm 
+holds the best performance for SAEC network. 
+The proposed algorithms enhance the performance of the ex- 
+isting algorithms for SAEC systems. In practical areas, the sparse 
+echo path is almost universal. The proposed algorithms are not 
+to exploit the sparseness of impulse responses, but still achieve 
+signicantly faster adaptation than the conventional dLMS algo- 
+rithms. Particularly, they even outperform the RZA dLMS algorithm 
+which is based on the l 1 
+-norm. There are several sparsication 
+methods available for AEC systems, such as l 0 
+-norm based algo- 
+rithms [61,62] , proportionate-based algorithms [10,63,64] . In future 
+study, we will attempt to investigate whether these methods can 
+be adopted to develop an ecient diffusion algorithm for SAEC 
+network, and we will consider the logarithmic cost function to im- 
+prove the performance in impulsive noise environments [65,66] . 
+
+Fig. 10. NMSD of the algorithms for SAEC network. 
+
+normalized misalignment was employed: 
+
+network normalizd misalignment 
+
+(cid:25)
+
+(cid:20) (cid:10)
+
+E 
+
+N (cid:8)
+=1 
+k 
+
+1 
+N 
+
+ h k 
+
+(cid:10)
+
+(cid:10)
+
+ w k,i 
+
+(cid:10)
+
+ h k 
+
+ 2 
+
+(cid:22)(cid:26)
+
+=
+
+ 20 log 
+
+ 2 
+
+.
+
+(60) 
+
+6. Conclusion 
+
+The network normalized misalignment of the proposed algo- 
+rithms was compared with that of the ATC dLMS, VSS dLMS, SV 
+dLMS and ATC RZA dLMS algorithms. The performance of the dif- 
+fusion algorithms when the speech signal of the SAEC network is 
+presented in Fig. 10 (one trial). Observe that the ATC RZA dLMS al- 
+
+In this paper, the leaky dLMS algorithm with ATC and CTA 
+strategies has been proposed. The proposed algorithm updates the 
+local estimation based on leaky method, which not only maintains 
+the stability for distributed estimation, but also accelerates conver- 
+gence rate for echo cancellation. Moreover, we have derived and 
+veried the stochastic behavior and stability of the proposed leaky 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+85 
+
+dLMS algorithm. We further proposed the variable leaky dLMS al- 
+gorithm, which exhibits close performance and does not need the 
+leaky factor selection with the moderate computational complex- 
+ity compared with the leaky dLMS algorithm. Simulation results in 
+the context of system identication and SAEC network have shown 
+that the proposed algorithms are superior to the competing algo- 
+rithms. 
+
+Acknowledgments 
+
+The authors want to express their deep thanks to the anony- 
+mous reviewers for many valuable comments which greatly helped 
+to improve the quality of this work. 
+The work partially supported by the National Science Foun- 
+dation of P.R. China (Grant: 61571374 , 61271340 , 61433011 ). The 
+rst author would also like to acknowledge the China Scholarship 
+Council (CSC) for providing him with nancial support to study 
+abroad (No. 2016070 0 0 050 ). 
+
+Appendix A. Algorithms for SAEC network 
+
+Fig. 11 depicts the widely linear model for SAEC, where two in- 
+put (or loudspeaker) signals at k th node and time i are denoted by 
+, and two output (or microphone) signals denoted 
+( i ). In the near-end, the microphone signals are 
+
+u k , 1, i 
+and u k , 2, i 
+by d k , 1 
+( i ) and d k , 2 
+
+obtained as 
+(i 
+)
+
+d k,
+
+ 1 
+
+=
+
+ y k,
+
+ 1 
+
+(i 
+)
+
++
+
+ v k,
+
+ 1 
+
+(i 
+)
+
+(61) 
+
+d k,
+
+ 2 
+
+(i 
+)
+
+=
+
+ y k,
+
+ 2 
+
+(i 
+)
+
++
+
+ v k,
+
+ 2 
+
+(i 
+)
+
+(62) 
+
+where y k , 1 
+( i ) and y k , 2 
+and v k , 1 
+( i ) and v k , 2 
+
+( i ) denote the stereo echo signals at agent k , 
+( i ) are background noise signals at agent k . The 
+echo signals can be expressed as 
+(i 
+)
+
+y k,
+
+ 1 
+
+=
+
+ w 
+
+T 
+u k,
+k,
+ 11 
+
+ 1 
+
+,i 
+
++
+
+ w 
+
+T 
+u k,
+k,
+ 21 
+
+ 2 
+
+,i 
+
+(63) 
+
+y k,
+
+ 2 
+
+(i 
+)
+
+=
+
+ w 
+
+T 
+u k,
+T 
+u k,
+k,
+k,
+ 12 
+ 22 
+where w k , 11 
+, w k , 12 
+, w k , 21 
+, w k , 22 
+
+ 1 
+
+,i 
+
++
+
+ w 
+
+ 2 
+
+,i 
+
+(64) 
+
+are M -dimensional vectors 
+of the loudspeaker-to-microphone (true) acoustic impulse re- 
+sponses, and u k,
+] 
+] 
+T are loudspeaker signal vectors. 
+Using the widely linear (WL) model [67,68] , the two-input/two- 
+output system with real random variables are converted to a 
+single-input/single-output system with complex random variables. 
+Here, we form the complex output signal as 
+(i 
+)
+(i 
+)
+(i 
+)
+(i 
+)
+(i 
+)
+
+ 1 
+
+,i 
+ u k,
+
+=
+
+ [ u k,
+,i 
+
+ 1 
+
+ u k,
+,i 
+
+,
+
+ 1 
+
+,i 
+
+1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ u k,
+
+ 1 
+
+,i 
+
+M+1 
+T and u k,
+
+ 2 
+
+,i 
+
+=
+
+[ u k,
+
+ 2 
+
+ u k,
+,i 
+
+,
+
+ 2 
+
+,i 
+
+1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 2 
+
+M+1 
+
+d k 
+
+=
+
+ d k,
+
+ 1 
+
++
+
+ jd k,
+
+ 2 
+
+=
+
+ y k 
+
++
+
+ v k 
+
+(65) 
+
+Fig. 11. Widely linear model for SAEC network at node k . 
+
+where j 
+(i 
+)
+Also, let us dene the complex input vector 
+
+=
+
+﹟
+
+ 1 
+
+,
+
+ y k 
+
+(i 
+)
+
+=
+
+ y k,
+
+ 1 
+
+(i 
+)
+
++
+
+ jy k,
+
+ 2 
+
+(i 
+)
+
+,
+
+ and v k 
+
+(i 
+)
+
+=
+
+ v k,
+
+ 1 
+
+(i 
+)
+
++
+
+jv k,
+
+ 2 
+
+ . 
+
+u k,i 
+
+=
+
+ u k,
+
+ 1 
+
+,i 
+
++
+
+ ju k,
+
+ 2 
+
+,i 
+
+.
+
+(66) 
+
+Consequently, the complex echo signal can be obtained as 
+
+y k 
+
+(i 
+)
+
+=
+
+ w 
+
+H 
+u k,i 
+k,t 
+
++
+
+ w 
+
+
+
+H u 
+k,t 
+k,i 
+
+
+
+(67) 
+
+where the superscripts H and 
+and conjugate, respectively, and 
+
+
+
+denote the transpose-conjugate 
+
+w k,t 
+
+=
+
+ w k,t 1 
+
++
+
+ jw k,t 2 
+
+(68) 
+
+w 
+
+(cid:3)
+
+k,t 
+
+=
+
+ w 
+
+(cid:3)
+
+k,t 1 
+
++
+
+ j w 
+
+(cid:3)
+
+k,t 2 
+
+(69) 
+
+with 
+
+w k,t 1 
+
+=
+
+w k,
+ 11 
+
++
+
+ w k,
+
+ 22 
+
+2 
+
+,
+
+ w k,t 2 
+
+=
+
+ w k,
+w k,
+ 21 
+ 12 
+
+2 
+
+,
+
+(70) 
+
+w 
+
+(cid:3)
+
+k,t 1 
+
+=
+
+ w k,
+w k,
+ 11 
+ 22 
+
+2 
+
+,
+
+ w 
+
+(cid:3)
+
+k,t 2 
+
+=
+
+ w k,
+ 21 
+
++
+
+ w k,
+
+ 12 
+
+2 
+
+.
+
+(71) 
+
+Then, the complex output signal can be rewritten as 
+
+d k 
+
+(i 
+)
+
+=
+
+ h 
+
+H 
+u k,i 
+k 
+
++
+
+ v k 
+
+(i 
+)
+
+(72) 
+
+where h k 
+
+=
+
+ [ w 
+
+T 
+k,t 
+
+,
+
+ w 
+
+(cid:3)
+
+T ] 
+k,t 
+
+T is the complex acoustic impulse response 
+
+of length 2 M , and u k,i 
+] 
+Since the two loudspeaker (input) signals are linearly related 
+which results in a non-unique solution problem, it is necessary to 
+preprocess the input signals to weaken their coherence. A simple 
+but ecient nonlinear method is to use positive and negative half- 
+wave rectiers at each channel [67,68] 
+
+=
+
+ [ u 
+
+T 
+k,i 
+
+,
+
+ u 
+
+T . 
+H 
+k,i 
+
+u 
+
+(cid:11)
+
+k,
+
+ 1 
+
+,i 
+
+=
+
+ u k,
+
+ 1 
+
+,i 
+
++
+
+ b 
+
+u k,
+
+ 1 
+
+,i 
+
++
+
+ |
+
+ u k,
+
+ 1 
+
+,i 
+
+|
+
+2 
+
+(73) 
+
+u 
+
+(cid:11)
+
+k,
+
+ 2 
+
+,i 
+
+=
+
+ u k,
+
+ 2 
+
+,i 
+
++
+
+ b 
+
+u k,
+
+ 2 
+
+,i 
+
+ |
+
+ u k,
+
+ 2 
+
+,i 
+
+|
+
+2 
+
+(74) 
+
+where b is a parameter used to control the amount of nonlinearity. 
+To implement the ATC leaky dLMS algorithm for SAEC, one 
+should compute the follows at each iteration 
+
+ATC leaky dLMS algorithm : 
+
+
+ 
+ 
+ 
+ 
+
+
+
+ k,i 
+
+=
+=
+
+(1 
+
+ 米污 )
+
+ w k,i 
+
+1 
+
++
+
+米
+
+(cid:8)
+
+l﹋N
+
+ k 
+
+c l ,k u 
+T 
+l ,i 
+
+e 
+
+
+
+l ,i 
+
+(i 
+)
+
+w k,i 
+
+(cid:8)
+
+l﹋N
+
+ k 
+
+a l ,k 
+
+
+
+ l ,i 
+
+(75) 
+
+where { c l, k 
+
+} denote the weighting coecients, which are the real, 
+non-negative, and meet the condition c l ,k 
+ 0 if l 
+. The diffu- 
+sion adaptation formulas of the CTA leaky dLMS algorithm for SAEC 
+system can be easily obtained by reversing the step order of (75) . 
+
+=
+
+/
+
+﹋
+
+N
+
+ k 
+
+References 
+
+[1] J. Chen , C. Richard , J.C.M. Bermudez , P. Honeine , Nonnegative least- 
+-mean-square algorithm, IEEE Trans. Signal Process. 59 (11) (2011) 5225每5235 . 
+[2] L. Lu , H. Zhao , K. Li , B. Chen , A novel normalized sign algorithm for system 
+identication under impulsive noise interference, Circuits Syst. Signal Process. 
+35 (9) (2016) 3244每3265 . 
+[3] B. Huang , Y. Xiao , Y. Ma , G. Wei , J. Sun , A simplied variable step-size LMS 
+algorithm for fourier analysis and its statistical properties, Signal Process. 117 
+(2015) 69每81 . 
+[4] S. Zhang , J. Zhang , Robust bounding ellipsoidal adaptive constrained least- 
+-squares algorithm and its performance analysis, Digit. Signal Process. 51 
+(2016) 124每132 . 
+[5] H.-Y. Lin , C.-C. Hu , Y.-F. Chen , J.-H. Wen , An adaptive robust LMS employing 
+fuzzy step size and partial update, IEEE Signal Process. Lett. 12 (8) (2005) 
+545每548 . 
+[6] K. Mayyas , T. Aboulnasr , Leaky LMS algorithm: MSE analysis for gaussian data, 
+IEEE Trans. Signal Process. 45 (4) (1997) 927每934 . 
+
+86 
+
+L. Lu, H. Zhao / Signal Processing 140 (2017) 77每86 
+
+[7] S.C. Douglas , Performance comparison of two implementations of the leaky 
+LMS adaptive lter, IEEE Trans. Signal Process. 45 (8) (1997) 2125每2129 . 
+[8] A.H. Sayed , T.Y. Al-Naffouri , Mean-square analysis of normalized leaky adaptive 
+lters, IEEE ICASSP 6 (2001) pp.3873每3876 . 
+[9] B.D. Rigling , Subspace leaky LMS, IEEE Signal Process. Lett. 11 (2) (2004) 
+136每139 . 
+[10] G.B. Chandra, A. Mitra, A fast adaptive echo canceler with leaky proportion- 
+ate NLMS algorithm, Information and Communication Technology in Electrical 
+Sciences (ICTES 2007) (2007) pp. 611每615. 
+[11] O.J. Tobias , R. Seara , Leaky-FXLMS algorithm: stochastic analysis for Gaussian 
+data and secondary path modeling error, IEEE Trans. Speech Audio Process. 13 
+(6) (2005) 1217每1230 . 
+[12] J. Cheer , S.J. Elliott , Active noise control of a diesel generator in a luxury yacht, 
+Appl. Acoust. 105 (2016) 209每214 . 
+[13] A .M. Al Omour , A . Zidouri , N. Iqbal , A. Zerguine , Filtered-x least mean fourth 
+(FXLMF) and leaky FXLMF adaptive algorithms, EURASIP J. Adv. Signal Process. 
+2016 (1) (2016) 1每20 . 
+[14] E. Horita , K. Sumiya , H. Urakami , S. Mitsuishi , A leaky RLS algorithm: its 
+optimality and implementation, IEEE Trans. Signal Process. 52 (10) (2004) 
+2924每2936 . 
+[15] D.B. Bhoyar, C. Dethe, M. Mushrif, A.P. Narkhede, Leaky least mean square 
+(LLMS) algorithm for channel estimation in BPSK-QPSK-PSK MIMO-OFDM sys- 
+tem, International Multi-Conference on Automation, Computing, Communica- 
+tion, Control and Compressed Sensing.(2013) 623每629. 
+[16] J.M. Gil-Cacho , M. Signoretto , T. van Waterschoot , M. Moonen , S.H. Jensen , 
+Nonlinear acoustic echo cancellation based on a sliding-window leaky ker- 
+nel ane projection algorithm, IEEE Trans. Audio Speech Lang. Process. 21 (9) 
+(2013) 1867每1878 . 
+[17] O.U.R. Khattak , A. Zerguine , Leaky least mean fourth adaptive algorithm, IET 
+Signal Process. 7 (2) (2013) 134每145 . 
+[18] B. Huang, L. Wen, Y. Xiao, J. Sun, Y. Shen, A complete parallel narrow band 
+active noise control system based on residual error separation using variable 
+leaky LMS, Asia-Pacic Signal and Information Processing Association Annual 
+Summit and Conference (APSIPA) (2015) 981每985. 
+[19] S.R. Arya , B. Singh , Performance of DSTATCOM using leaky LMS control algo- 
+rithm, IEEE Trans. Circuits Syst. II 1 (2) (2013) 104每113 . 
+[20] M.S. Salman , Sparse leaky-LMS algorithm for system identication and its 
+convergence analysis, Int. J. Adapt. Control Signal Process. 28 (10) (2014) 
+1065每1072 . 
+[21] R. Abdolee , B. Champagne , A.H. Sayed , Estimation of space-time varying pa- 
+rameters using a diffusion LMS algorithm, IEEE Trans. Signal Process. 62 (2) 
+(2014) 403每418 . 
+[22] R. Abdolee, S. Saur, B. Champagne, A.H. Sayed, Diffusion LMS localization and 
+tracking algorithm for wireless cellular networks, IEEE International Confer- 
+ence on Acoustics, Speech Signal Processing (2013a) pp. 4598每4602. 
+[23] R. Abdolee, B. Champagne, A.H. Sayed, Diffusion LMS strategies for parame- 
+ter estimation over fading wireless channels, IEEE International Conference on 
+Communications (ICC) (2013b) pp. 1926每1930. 
+[24] R. Abdolee, B. Champagne, A.H. Sayed, Diffusion LMS for source and process 
+estimation in sensor networks, IEEE Statistical Signal Processing Workshop 
+(SSP)(2012) pp. 165每168. 
+[25] R. Abdolee, B. Champagne, Diffusion LMS algorithms for sensor networks 
+over non-ideal inter-sensor wireless channels, International Conference on Dis- 
+tributed Computing in Sensor Systems and Workshops (DCOSS) (2011) pp. 1每6. 
+[26] S.-Y. Tu , A.H. Sayed , Distributed decision-making over adaptive networks, IEEE 
+Trans. Signal Process. 62 (5) (2014) 1054每1069 . 
+[27] A.H. Sayed , S.-Y. Tu , J. Chen , X. Zhao , Z.J. Towc , Diffusion strategies for adapta- 
+tion and learning over networks: an examination of distributed strategies and 
+network behavior, IEEE Signal Process. Mag. 30 (3) (2013) 155每171 . 
+[28] L. Li , J.A. Chambers , C.G. Lopes , A.H. Sayed , Distributed estimation over an 
+adaptive incremental network based on the ane projection algorithm, IEEE 
+Trans. Signal Process. 58 (1) (2010) 151每164 . 
+[29] M.O.B. Saeed , A.U. Sheikh , A new LMS strategy for sparse estimation in adap- 
+tive networks, in: 23rd International Symposium on Personal Indoor and Mo- 
+bile Radio Communications (PIMRC), IEEE, 2012, pp. 1722每1733 . 
+[30] Y. Liu , W.K.S. Tang , Enhanced incremental LMS with norm constraints for dis- 
+tributed in-network estimation, Signal Process. 94 (2014) 373每385 . 
+[31] M.S.E. Abadi , A.-R. Danaee , Low computational complexity family of ane pro- 
+jection algorithms over adaptive distributed incremental networks, Int. J. Elec- 
+tron. Commun. 68 (2) (2014) 97每110 . 
+[32] R. Abdolee , V. Vakilian , B. Champagne , Tracking performance and optimal 
+step-sizes of diffusion LMS algorithms in nonstationary signal environment, 
+IEEE Trans. Control Network Syst. (2016) . 
+[33] J. Chen , A.H. Sayed , Diffusion adaptation strategies for distributed optimiza- 
+tion and learning over networks, IEEE Trans. Signal Process. 60 (8) (2012) 
+4289每4305 . 
+[34] R. Abdolee , B. Champagne , A.H. Sayed , Diffusion adaptation over multi-agent 
+networks with wireless link impairments, IEEE Trans. Mobile Comput. 15 (6) 
+(2016) 1362每1376 . 
+[35] R. Abdolee , B. Champagne , Diffusion LMS strategies in sensor networks with 
+noisy input data, IEEE/ACM Trans. Netw. 24 (1) (2016) 3每14 . 
+[36] Y. Liu , C. Li , Z. Zhang , Diffusion sparse least-mean squares over networks, IEEE 
+Trans. Signal Process. 60 (8) (2012) 4 480每4 485 . 
+[37] F.S. Cattivelli , A.H. Sayed , Diffusion LMS strategies for distributed estimation, 
+IEEE Trans. Signal Process. 58 (3) (2010) 1035每1048 . 
+[38] M.O.B. Saeed , A. Zerguine , S.A. Zummo , A variable step-size strategy for dis- 
+
+tributed estimation over adaptive networks, EURASIP J. Adv. Signal Process. 
+2013 (1) (2013a) 135 . 
+[39] M.O.B. Saeed , A. Zerguine , S.A. Zummo , A noise-constrained algorithm for esti- 
+mation over distributed networks, Int. J. Adapt. Control Signal Process. 27 (10) 
+(2013b) 827每845 . 
+[40] M.O.B. Saeed , A. Zerguine , M.S. Sohail , S. Rehman , W. Ejaz , A. Anpalagan , Vari- 
+able step-size strategy for distributed parameter estimation of compressible 
+systems in WSNs, in: Computer Aided Modelling and Design of Communica- 
+tion Links and Networks (CAMAD), 2016 IEEE 21st International Workshop on, 
+IEEE, 2016, pp. 1每5 . 
+[41] D.-C. Ahn , J.-W. Lee , S.-J. Shin , W.-J. Song , A new robust variable weighting 
+coecients diffusion LMS algorithm, Signal Process. 131 (2017) 300每306 . 
+[42] R. Arablouei , S. Werner , Y.-F. Huang , K. Do ganay , Distributed least 
+mean-square estimation with partial diffusion, IEEE Trans. Signal Process. 62 
+(2) (2014a) 472每484 . 
+[43] R. Arablouei , K. Do ganay , S. Werner , Y.-F. Huang , Adaptive distributed estima- 
+tion based on recursive least-squares and partial diffusion, IEEE Trans. Signal 
+Process. 62 (14) (2014b) 3510每3522 . 
+[44] R. Arablouei , S. Werner , K. Do ganay , Partial-diffusion recursive least-squares 
+estimation over adaptive networks, in: 5th International Workshop on Compu- 
+tational Advances in Multi-Sensor Adaptive Processing (CAMSAP), IEEE, 2013, 
+pp. 89每92 . 
+[45] .L. Rrtveit , J.H. Husy , A.H. Sayed , Diffusion LMS with communication con- 
+straints, in: Conference Record of the Forty Fourth Asilomar Conference on Sig- 
+nals, Systems and Computers (ASILOMAR), IEEE, 2010, pp. 1645每1649 . 
+[46] S. Chouvardas , K. Slavakis , S. Theodoridis , Trading off complexity with commu- 
+nication costs in distributed adaptive learning via Krylov subspaces for dimen- 
+sionality reduction, IEEE J. Selected Topics Signal Process. 7 (2) (2013) 257每273 . 
+[47] M.O. Sayin , S.S. Kozat , Compressive diffusion strategies over distributed net- 
+works for reduced communication load, IEEE Trans. Signal Process. 62 (20) 
+(2014) 5308每5323 . 
+[48] R. Arablouei , S. Werner , K. Do ganay , Y.-F. Huang , Analysis of a reduced-com- 
+munication diffusion LMS algorithm, Signal Process. 117 (2015) 355每361 . 
+[49] J. Ni , Diffusion sign subband adaptive ltering algorithm for distributed esti- 
+mation, IEEE Signal Process. Lett. 22 (11) (2015) 2029每2033 . 
+[50] C. Li , P. Shen , Y. Liu , Z. Zhang , Diffusion information theoretic learning for dis- 
+tributed estimation over network, IEEE Trans. Signal Process. 61 (16) (2013) 
+4011每4024 . 
+[51] W. Ma , B. Chen , J. Duan , H. Zhao , Diffusion maximum correntropy criterion al- 
+gorithms for robust distributed estimation, Digit. Signal Process. 58 (7) (2016) 
+10每19 . 
+[52] M. Sowjanya, A. Sahoo, S. Kumar, Distributed incremental leaky LMS, Interna- 
+tional Conference on Communications and Signal Processing (ICCSP) (2015) pp. 
+1753每1757. 
+[53] C.G. Lopes , A.H. Sayed , Randomized incremental protocols over adaptive net- 
+works, 2010 IEEE International Conference on Acoustics, Speech and Signal 
+Processing (2010) pp.3514每3517 . 
+[54] B. Subudhi , P. Ray , S. Ghosh , Variable leaky least mean-square algorithm-based 
+power system frequency estimation, IET Sci. Meas. Technol. 6 (4) (2012) 
+288每297 . 
+[55] O.J. Tobias , R. Seara , On the LMS algorithm with constant and variable leakage 
+factor in a nonlinear environment, IEEE Trans. Signal Process. 54 (9) (2006) 
+3448每3458 . 
+[56] S. Jo , J. Choi , Y.H. Lee , Modied leaky LMS algorithm for channel estimation in 
+DS-CDMA system, IEEE Commun. Lett. 6 (5) (2002) 202每204 . 
+[57] A. Sayed , Fundamentals of adaptive ltering, Wiley, New York, 2003 . 
+[58] P.D. Lorenzo , A.H. Sayed , Sparse distributed learning based on diffusion adap- 
+tation, IEEE Trans. Signal Process. 61 (6) (2013) 1419每1433 . 
+[59] V.D. Blondel , J.M. Hendrickx , A. Olshevsky , J.N. Tsitsiklis , Convergence in mul- 
+tiagent coordination, consensus, and ocking, in Proc. Joint 44th IEEE Conf. 
+Decision Control Eur. Control Conf.(CDC-ECC) (2005) pp.2996每3000. . 
+[60] H. Zhao , Y. Yu , S. Gao , X. Zeng , Z. He , Memory proportionate APA with individ- 
+ual activation factors for acoustic echo cancellation, IEEE Trans. Audio, Speech, 
+Lang. Process. 22 (6) (2014) 1047每1055 . 
+[61] Y. Gu , J. Jin , S. Mei , l 0 Norm constraint LMS algorithm for sparse system iden- 
+tication, IEEE Signal Process. Lett. 16 (9) (2009) 774每777 . 
+[62] M.V. Lima , T.N. Ferreira , W.A. Martins , P.S. Diniz , Sparsity-aware data-selective 
+adaptive lters, IEEE Trans. Signal Process. 62 (17) (2014) 4557每4572 . 
+[63] L. Lu , H. Zhao , C. Chen , A normalized subband adaptive lter under minimum 
+error entropy criterion, Signal Image Video Process. 10 (6) (2016) 1097每1103 . 
+[64] R.L. Das , M. Chakraborty , On convergence of proportionate-type normalized 
+least mean square algorithms, IEEE Trans. Circuits Syst. II 62 (5) (2015) 
+4 91每4 95 . 
+[65] L. Lu , H. Zhao , B. Chen , Improved-variable-forgetting-factor recursive algorithm 
+based on the logarithmic cost for volterra system identication, IEEE Trans. 
+Circuits Syst. II 63 (6) (2016) 588每592 . 
+[66] L. Lu , H. Zhao , Adaptive volterra lter with continuous l p -norm using a log- 
+arithmic cost for nonlinear active noise control, J. Sound Vibrat. 364 (2016) 
+14每29 . 
+[67] C. Stanciu , J. Benesty , C. Paleologu , T. Gnsler , S. Ciochin a , A widely linear 
+model for stereophonic acoustic echo cancellation, Signal Process. 93 (2013) 
+511每516 . 
+[68] C. Paleologu , J. Benesty , S. Ciochin a , Widely linear general Kalman lter for 
+stereophonic acoustic echo cancellation, Signal Process. 94 (2014) 570每575 . 
+

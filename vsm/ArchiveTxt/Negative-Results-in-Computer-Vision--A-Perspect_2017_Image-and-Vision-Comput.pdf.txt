@@ -1,0 +1,1204 @@
+Negative Results in Computer Vision: A Perspective
+
+Ali Borji
+
+
+abstract
+
+A negative result is when the outcome of
+an experiment or a model is not what is expected or
+when a hypothesis does not hold. Despite being often
+overlooked in the scientic community, negative results
+are results and they carry value. While this topic has
+been extensively discussed in other elds such as social
+sciences and biosciences, less attention has been paid
+to it in the computer vision community. The unique
+characteristics of computer vision, particularly its ex-
+perimental aspect, call for a special treatment of this
+matter. In this manuscript, I will address what makes
+negative results important, how they should be dissemi-
+nated and incentivized, and what lessons can be learned
+from cognitive vision research in this regard. Further, I
+will discuss matters such as experimental design, statis-
+tical hypothesis testing, explanatory versus predictive
+modeling, performance evaluation, model comparison,
+reproducibility of ndings, the conuence of computer
+vision and human vision, as well as computer vision
+research culture.
+
+1 Introduction
+
+What is a negative result? One may characterize a neg-
+ative result as §when a hypothesis does not hold§ or
+§when the outcome of an experiment or a model is not
+what is expected§. Such a denition, however, could
+be one out of many possible denitions. One may ar-
+gue that an unexpected result is actually a good use-
+ful positive result to share. Another possible denition
+is that a negative result is when the performance is
+
+A. Borji (corresponding author)
+Center for Research in Computer Vision, University of Central
+Florida, Orlando, FL., USA
+E-mail: aborji@crcv.ucf.edu
+
+not better given metrics such as accuracy. Regardless of
+how negative results are dened, such challenging and
+sometimes inconclusive ndings are often discouraged
+and buried in the drawers and computers. Therefore,
+the publication record reects only a tiny slice of the
+conducted research. In some sense they fabricate the
+§dark matter§ of science. Such ndings, however, still
+hold value. At the very least they can save resources
+by preventing researchers from repeating the same ex-
+periments. Perhaps the main reason for an overwhelm-
+ingly high number of negative results not put forward
+for dissemination is the lack of incentives. Interestingly,
+some researchers have even argued that most published
+ndings are false [1]. Some also claim that hiding neg-
+ative results is unethical. Nevertheless, negative results
+have been and continue to be constructive in the ad-
+vancement of the science (e.g., Michelson-Morley ex-
+periment [2]).
+
+To answer whether negative results are important
+in computer vision, should be published, or even if it
+makes sense to talk about them, rst we need to investi-
+gate how computer vision research is conducted relative
+to scientic practices and methodologies conducted in
+other elds such as social or biological sciences. Com-
+puter vision research consists of a mixture of theoretical
+and experimental research. A small fraction of publica-
+tions introduce principled theories for vision tasks (e.g.,
+optical ow [3]). A large number of publications report
+models and algorithms (e.g., for solving the ob ject de-
+tection problem) that are more powerful than contend-
+ing models. Thus, compared to other elds, computer
+vision is relatively less hypothesis-driven and more prac-
+tical. Some negative results oer invaluable insights re-
+garding strength and shortcomings of existing models
+and theories, while others provide smart baselines. The
+emphasis has traditionally been placed on improving
+
+2
+
+existing models in terms of performance over bench-
+mark datasets. While some papers conduct statistical
+tests, it is not the common practice. As in some other
+elds, there is a high tendency among computer vision
+researchers to submit positive results as such results are
+often considered to be more novel by the reviewers.
+Computer vision has its own unique characteristics
+making it distinct from other elds, thereby demanding
+a specic treatment of negative results. Firstly, vision
+is an extremely hard problem which has baed many
+smart people throughout the history. The complexity of
+the problem makes it dicult to run controlled exper-
+iments and come up with a universal theory of vision.
+Secondly, often a lot of variables are involved in build-
+ing vision algorithms and in analyzing large amounts
+of data. Further, fair comparison of several competing
+models using multiple evaluation scores exacerbates the
+problem. To address these, it would be very helpful to
+borrow from other elds (e.g., natural sciences) where
+experimental design and statistical testing are integral
+parts of the scientic research.
+The common practice in experimental hypothesis-
+driven elds (e.g., cognitive science) include carefully
+formulating a hypothesis, identifying and controlling
+confounding factors, designing the right stimulus set,
+collecting high quality data, and performing appropri-
+ate statistical tests. These are complicated to perform
+in computer vision research as often many factors are
+involved. In particular, statistical analysis becomes very
+challenging in presence of many parameters and mod-
+els. This makes it complicated to decide which statisti-
+cal test is needed or when statistical analysis is critical
+to conduct. Principled and systematic gauging of the
+progress (rather than relying on trials and error and
+luck) helps judge what truly works and what does not
+and, hence steer the research in the right direction. For
+instance, we might have not given up on neural net-
+works easily if we did more careful rigorous analyses in
+the past.
+Notice that dealing with negative results is a very
+controversial topic and still unsettled in many elds. So,
+do not expect this writing to touch on all of the aspects.
+Rather, here, I try to shed light on some less explored
+matters and put computer vision in a broader perspec-
+tive with respect to science in general, and its related
+elds such as Neuroscience and Cognitive Science, in
+particular. Indeed, further discussion is needed in the
+vision community to converge to a consensus regarding
+treatment of negative results.
+In what follows, rst I elaborate on science versus
+engineering and where computer vision ts. I will con-
+tinue with a comparison of computer and human vision
+research and how they relate to each other in terms of
+
+goals, research methodologies and practices. This is fol-
+lowed by discussions of negative results and statistical
+analysis in the context of computer vision. Section 6
+considers the dissemination of negative results. Finally,
+a wrap up is presented in the epilogue.
+
+2 Computer Vision: Engineering or Science?
+
+Let＊s start with the question of whether computer vi-
+sion is a scientic or an engineering discipline, or both.
+Science is concerned with understanding fundamental
+laws of nature, whereas engineering involves the ap-
+plication of science to create technology, products and
+services useful for society. Science asks questions about
+nature while engineers design solutions to problems.
+
+As a scientic discipline, computer vision is con-
+cerned with gaining high-level understanding from dig-
+ital images, video sequences, views from multiple cam-
+eras, or multi-dimensional data. It seeks to automate
+tasks that the human visual system can do and involves
+the development of a theoretical and algorithmic basis
+to achieve automatic visual understanding. Further, it
+deals with constructing a physical model of the scene
+(i.e., how the scene is created), how light interacts with
+the scene, as well as low-, intermediate-, and high-level
+descriptions of the scene content [4]. In other words, the
+ultimate goal of computer vision is image understand-
+ing, the ability not only to recover image structure but
+also to know what it represents. As a technological and
+engineering discipline, computer vision seeks to apply
+its theories and models for the construction of computer
+vision systems and applications.
+
+Science and engineering are complementary and are
+beautifully and happily married in computer vision. We
+have a very solid in-depth scientic understanding of
+phenomena such as image formation, depth perception,
+stereoscopic vision, color perception and optical ow.
+Some engineering applications, among many, include
+biometrics (robust face and ngerprint recognition), op-
+tical character recognition, gesture recognition, motion
+capture, game playing, structure from motion, image
+stitching, machine inspection, retail, 3D model build-
+ing, medical imaging, automotive safety, autonomous
+cars, assistive systems, and surveillance (in trac and
+security). In this respect, computer vision is both theo-
+retical (e.g., optical ow formulation) and experimental
+(e.g., model replication, parameters tuning, hacks, and
+tricks).
+
+3 Computer Vision and Biological Vision
+
+Vision is a broad interdisciplinary area. Both computer
+and human vision systems share the same ob jective
+which is converting light into useful signals from which
+accurate models of the physical world can be constructed.
+This information helps an agent (e.g., be it a robot or
+a human) live, act, and survive in its environment.
+For a long time, human vision research has been con-
+centrated on understanding the principles and mecha-
+nisms by which biological visual systems (with higher
+emphasis on primate vision) operate. This is in essence
+a reverse engineering (or inverse graphics) task. Like-
+wise, computer vision research seeks a theory and engi-
+neering implementation. Despite sharing the same goal,
+they own unique characteristics. Early human visual
+sensory mechanisms, including the retina and the Lat-
+eral Geniculate Nucleus (LGN), are much more elabo-
+rate than current digital cameras (CCD sensors). Neu-
+ral networks in higher visual areas (e.g., visual ventral
+stream) accommodate a sophisticated hierarchical pro-
+cessing through cascades of ltering (modeled as con-
+volution), pooling, lateral inhibition, and normaliza-
+tion mechanisms. The result is a selective and invari-
+ant representation of the ob jects and scenes. This is
+somewhat akin to what Convolutional Neural Networks
+(CNNs) [5] do. Almost half of the human brain (consid-
+ered to the the most complex known physical systems
+and thus a ma jor scientic challenge) is devoted directly
+or indirectly to vision. The entire brain needs about 20
+watts to operate (enough to run a dim light bulb). A
+processor as smart as the brain requires at least 10 to
+20 megawatts of electricity to operate [6]. As to pro-
+cessing speed, the brain is still faster than the fastest
+supercomputers [7]. A remarkable capability of human
+vision is attention (a.k.a active vision) which allows se-
+lecting the most relevant and informative part of the
+massive incoming visual stimulus (at a rate of 10 8 -109
+bits/sec) [8]. Both human and computer vision systems
+have their own biases. Human vision is extremely sen-
+sitive to faces and optical illusions. Similarly, computer
+vision systems get easily fooled by adversarial exam-
+ples [9]. One thing that we know, almost for sure, is
+that vision should be solved by frameworks that start
+with extracting simple features and build increasingly
+more complex ones. This is mainly because the world
+we live in is compositional.
+There has indeed been a cross-pollination in the two
+elds (e.g., [10每21]). On the one hand, experimental
+paradigms and psychophysics tools in cognitive vision
+have been exploited to study the behavior of computer
+vision algorithms or to interpret how they work. For ex-
+ample, Parikh and Zitnick [22] employed the image jum-
+
+3
+
+bling paradigm, introduced in [23], to inspect whether
+some computer vision algorithms capture local or global
+scene information. Deng et al. [24] used the bubbling
+paradigm, proposed by Gosselin and Schyns [ 25], to
+model ne grained ob ject recognition. The rapid (or
+ultra rapid) serial visual presentation [26, 27], has been
+utilized to investigate the quality of images generated
+by Generative Adversarial Networks [28]. Vondrick et
+al. [29] and Fong et al., [30] leveraged human recogni-
+tion biases to improve machine classiers. On the other
+hand, computational tools have been exploited heavily
+to understand how human vision works. For example,
+deep convolutional networks have recently been used
+to study the representational space in the visual ven-
+tral stream (e.g., [31]). Moreover, a plethora of com-
+puter vision, image processing, and machine learning
+tools have been utilized in biological vision research for
+the purposes such as stimulus design, discovering cues
+humans might rely on in solving a task, and modeling
+single neurons and neural populations.
+
+In terms of performance, while computer vision has
+made large strides, it is still nowhere near human vi-
+sion. In general, it seems that computer vision is better
+than human vision in some restricted tasks where vari-
+ability is relatively low (e.g., optical character recog-
+nition, ngerprint recognition, frontal face recognition,
+etc). However, it lags far behind in cases where variabil-
+ity is high (e.g., view invariant ob ject recognition [ 32]).
+Current state of the art computer vision techniques re-
+volve around deep learning models [33], in particular
+CNNs [5]. These models have outperformed traditional
+techniques on a wide variety of vision problems. It is
+even claimed that CNNs outperform humans on classic
+hard problems such as scene recognition [34]. Never-
+theless, while nature has evolved a very ecient robust
+biological solution to the problem of vision, computer
+vision is still looking for a general computational the-
+ory, let alone ecient physical implementations (e.g.,
+on Silicon).
+
+While both research communities have accumulated
+a great wealth of knowledge, they are struggling with
+some common long-standing challenging problems. Per-
+haps the biggest of all is the invariance problem which
+is believed to be the holy grail of vision. Humans are
+remarkably good at recognizing ob jects under drastic
+variations (e.g., illumination, rotation, blur, and occlu-
+sion) but the mechanisms behind this capacity in bio-
+logical vision are still unknown. There has been a great
+deal of research in computer vision to come up with
+invariant representations. Although the current state
+of art algorithms (i.e., CNNs) provide partial invari-
+ance to some transformations (e.g., translation, rota-
+tion, and scale), a principled theory is yet to be devel-
+
+4
+
+oped (See for instance [35]). This is where cross talks in
+both elds can be extremely useful. Another challenge,
+related to the rst one, is the role of feedback and top-
+down modulation in visual processing. The resurgence
+of deep neural networks has raised the hope that maybe
+a universal solution to deal with all vision problems is
+within our reach. This is even more conceivable when
+we notice that a) CNNs are rooted in the seminal nd-
+ings of Hubel and Wiesel [36], and b) biological vision
+systems might be following similar mechanisms as in
+CNNs (e.g., [21, 31, 37, 38]).
+
+As for the research practice, dierent methodologies
+have been adopted in the two elds, driven by dier-
+ent (sometimes short term) goals and constraints (e.g.,
+building a technology versus proving a hypothesis). Re-
+search in computer vision is traditionally benchmark-
+driven where algorithms that perform better than oth-
+ers are favored. The emphasis is on improving accu-
+racy. Meanwhile, human vision research is primarily
+hypothesis-driven. Hypotheses, null and alternative, are
+carefully formulated, confounding factors are controlled,
+an appropriate stimulus set is created, behavioral or
+physiological data is carefully collected, and appropri-
+ate statistical tests are conducted. The outcome is valid
+until proven otherwise. It is the collection of evidences,
+for or against a hypothesis, that drives the science.
+Here, I would like to bring an example from my own
+work in eye movement research. A study by Greene and
+Wolfe [39] reported a failure in predicting an observer＊s
+task from his xations (essentially a negative result) ef-
+fectively negating the anecdotal nding of Yarbus [ 40].
+In a reinvestigation [32], we repeated the experiment
+by considering a larger set of parameters over a bigger
+dataset. To their contrary, we concluded that Yarbus＊
+hypothesis still holds. Several follow-up studies also sup-
+ported our nding thus reinforcing the original hypoth-
+esis.
+
+There is a discrepancy of opinions on the relation-
+ship between computer and biological vision. Some re-
+searchers argue that the human visual system provides
+the most compelling reference model. We can learn much
+from it as an existence proof and as a great source
+of inspiration. Therefore, there should be a symbio-
+sis between the two communities as they address the
+same problem. Some others, to the contrary, argue that
+since the two systems function under very dierent con-
+straints, the articial vision solution does not necessar-
+ily need to mimic the biological solution (in reference
+to the ying). Nonetheless, it seems, to me, that the
+time is ripe for both communities to learn from each
+other to address challenging problems in vision. A great
+wealth of biological data (behavioral and neurophysio-
+logical) and computational models (e.g., dierent CNN
+
+architectures) are available that should be linked for
+understanding the visual system and building better
+algorithms.
+
+4 Negative Results in Computer Vision
+
+§Those who cannot remember the past are condemned
+to repeat it.§
+- George Santayana
+Let me rst dene some buzzwords before turning
+the discussion to computer vision.
+Publication bias: coined by Theodore Sterling in
+1959 [41], points to the situation where §publication
+of research results depends not just on the quality of
+the research but also on the hypothesis tested, and the
+signicance and direction of eects detected§ [ 42]. It
+is sometimes referred to as the §le drawer eect,§ or
+§le drawer problem§ [43]. As the name suggests, re-
+sults not supporting the original hypotheses (i.e., nega-
+tive results or Null hypotheses) often end up buried in
+researchers＊ le drawers. It is also called the §Positive-
+results bias§ where positive (or successful) results are
+more likely to be submitted, or accepted than negative
+or inconclusive results. Therefore, what is published is
+not the true representative of all results. Perhaps the
+main reason behind the tendency towards publishing
+positive results is the intense competition among sci-
+entists. The unwritten §publish or perish§ rule drives
+academics to publish interesting high quality papers in
+large volumes to get more citations and to secure funds
+to do their research.
+Conrmation bias (a.k.a conrmatory bias or my-
+side bias): is a type of cognitive bias in which one tends
+to favor, accept, interpret, or recall ndings that align
+with his preexisting beliefs or hypotheses [ 44].
+Negative results either go completely unpublished
+or are somehow turned into positive results through
+adjustments (e.g., selective reporting, post-hoc reinter-
+pretation, methods alteration, dierent data analyses,
+increasing the number of observations). A generic term
+coined to describe these post-hoc choices is HARKing
+(§Hypothesizing After the Results are Known§). I will
+elaborate on this further in the next section.
+There are arguments for and against publishing neg-
+ative results. Let＊s look at some supporting arguments
+rst. Such results should be part of the scientic record
+for the sake of completeness. Without them, literature
+surveys and meta-analyses would be biased. They can
+save a lot of eorts by preventing researchers to con-
+duct redundant investigations. Further, they motivate
+critical evaluation, analytical thinking and discussions,
+thus contributing to the intellectual sophistication of
+the community. Some counter arguments include the
+
+followings. Negative results should be less favored due
+to the scarcity of space. This seems to be no longer an is-
+sue in the age of digital publication. Some people argue
+that negative results can lead to a phenomenon known
+as the §cluttered oce phenomenon§ where in an oce
+full of academic papers, it is hard to tell the good ones
+from the poor ones [45]. This resonates with computer
+vision research where the eld is already replete with an
+overwhelmingly high volume of publications per year,
+making separating the wheat from the cha daunting.
+
+Notice that negative result is dierent than no re-
+sult. No result is a situation where nothing is complete
+or a work has been done incompletely or incorrectly
+thus leading to inconclusive or unreliable ndings. Ex-
+amples include a) not having enough participants to
+do a meaningful analysis, b) not having a control con-
+dition for an intervention, c) faulty measurements, or
+d) inconclusive or wrong statistical analysis. Neverthe-
+less, negative results carry value, although modest. In
+theory, information from an experiment is not abso-
+lutely zero, if done correctly. Even when an experiment
+gives the exact same result as before (i.e., replication),
+a higher condence towards that nding is gained. In
+some sense, this resembles probability density estima-
+tion but over dierent explanations for a phenomenon.
+Not every negative result is interesting though. As an
+example, consider training a CNN to do a certain task.
+Often a lot of trickery is involved to properly train a
+CNN. Now, should one write a paper on the basis that
+choosing a certain parameter (e.g., training the network
+for 10 epochs instead of 100) does not lead to a conver-
+gence? At the end of the day, what matters is how much
+a study adds to what is already known, regardless of the
+sign of the outcome.
+
+Negative results, with a slightly more liberal de-
+nition, highlight limitations, failures, or aws of com-
+puter vision models, datasets, or scores. For instance,
+adversarial images demonstrate situations where CNNs
+can be easily fooled [9] while humans have no trou-
+ble recognizing them. In image captioning literature, it
+has been shown that a nearest neighbor classier that
+simply chooses the caption of the most similar image to
+the test image, outperforms state of the art methods (in
+2015 [46]). In saliency modeling [8], naive baselines such
+as the average xation map or a central Gaussian blob
+outperform several xation prediction models [ 47]. In
+ob ject detection, some works have identied the cases
+where histogram of oriented gradients [48] fails on cer-
+tain detection problems [49]. Smart baselines (e.g., a
+classier that picks the label of the most frequent class)
+dene the lower bounds while human performance gives
+an upper-bound on performance and helps identify the
+weak links in models. Some of this type of papers tend
+
+5
+
+to have titles that start with §In defense of ﹞ ﹞ ﹞ §. An ex-
+ample is the famous paper by Richard Hartley entitled
+§In defense of the eight-point algorithm§ [50] where he
+shows that applying a very simple normalization be-
+fore computing the fundamental matrix from a set of
+eight or more points results in a robust method that
+is comparable with the best iterative algorithms. SLIC
+superpixels [51] is another example where authors show
+how standard k-means with spatially uniform seeds can
+work very well. Thus, baseline methods are complemen-
+tary to negative results and help gauge the progress and
+move the eld forward. In addition to these, visualiza-
+tion techniques have also proven to be very eective in
+understanding, interpreting, and evaluating computer
+vision models (e.g., [52, 53]).
+
+A related problem here is the issue of replicability
+or reproducibility. Replicability of ndings is believed
+to be at the heart of empirical sciences [ 54]. As in other
+elds, computer vision researchers tend not to replicate
+other people＊s works for two ma jor reasons. Either it is
+possible to replicate someone else＊s work or it is not. In
+the former case, a reviewer may nd your results boring
+or predictable. In the latter case, you may be accused
+of not following the right procedure to reproduce the
+ndings. Thus, in both cases there is a risk factor in-
+volved. To mitigate the risks, the community needs to
+advocate for well-documented solid results to ease the
+reproducibility process.
+
+Conrming reproducibility requires a substantial amount
+of work even the source code is available due to lack of
+algorithm details, implementation matters, unavailable
+data, gratuitously long running time, etc. Proper incen-
+tives are therefore needed to encourage reproducibility.
+One incentive is that ones research needs to be repro-
+ducible to have high impact. Some questions that need
+to be thought of in this regard are as follows. Should we
+have explicit seals of reproducibility? Should it be part
+of the publication process? Should reviewers check the
+code? Should acceptance be conditional on the release
+of data and code?
+
+Overall, due to the nature of the computer vision re-
+search, in particular its engineering aspect, the problem
+of the negative results and replicability is less pressing
+compared to biological research. Reporting wrong re-
+sults can be detrimental in natural sciences (e.g., clini-
+cal and medical research) because it has important im-
+plications (lives are on the line). According to a vision
+psychologist, Elissa Amino, §if it (a computer vision
+algorithm) works, and is working better than everyone
+else＊s, it will eventually be made available for everyone
+to use. If there was a replication issue, it wouldn＊t get
+very far. So, I think in computer vision the discussion
+
+6
+
+is more useful for theoretical advancement, rather than
+for replication issues.§
+
+5 Statistical hypothesis testing
+
+at the given level (e.g., 5% or 1%) of signicance (i.e.,
+leading to a conclusion). If the p-value is not less than
+the required signicance level, then the test has no re-
+sult (not conclusive or negative results). In this case the
+evidence is insucient to support a conclusion.
+
+Data dredging, data shing, data snooping, p-hacking,
+§Extraordinary claims demand extraordinary evidence.§ [ 55]
+and HARKing are tricks and ways to tweak data, con-
+- Carl Sagan
+sciously or unconsciously, such that statistically signi-
+How can we tell for sure a result is negative? It
+cant results can be obtained. When talking about this,
+makes sense to announce a result negative only when
+people often quote Ronald Coase＊s famous saying §If
+careful rigorous statistical tests have been conducted. In
+you torture the data long enough, it will confess§. One
+what follows, I highlight some concerns regarding sta-
+ma jor aw is analyzing the data without rst devising a
+tistical analysis and testing in the context of computer
+specic hypothesis as to the underlying causality. There
+vision.
+is a clear distinction between exploratory versus conr-
+Scientic research is usually done in two frontiers:
+matory analyses. While searching for patterns in data is
+experimental and theoretical [56]. In the theoretical fron-
+legitimate, applying a statistical hypothesis tests on the
+tier, the pursuit is for a comprehensive theory or prin-
+same data is wrong. A simple way to avoid this problem
+ciples (often expressed in mathematical forms) to ex-
+is to form a hypothesis before carrying out signicance
+plain visual phenomena (e.g., image formation). In the
+tests. Notice that the p-value is valid only if you stick
+experimental frontier, researchers utilize two types of
+approaches: exploratory analysis (pattern mining) and
+to exactly what you had planned to do in advance 1 .
+Another way is to conduct randomized out-of-sample
+hypothesis testing. In the rst approach, they focus on
+running experiments to gather data in searching for hy-
+tests. Here, a data set is randomly partitioned into two
+subsets. One subset is used for formulating a hypoth-
+potheses. In the second approach, rst a well-dened
+hypothesis is explicitly formulated and then controlled
+esis and the other is used for testing the hypothesis.
+Fortunately, this is routinely done in computer vision
+experiments are performed to test its validity. Com-
+puter vision researchers use both frontiers although ma-
+research (train, validation, and test sets). An impor-
+tant complication in statistical testing is multiple com-
+jority of the eort is on building tools and engineering
+solutions.
+parisons. If you try large numbers of hypotheses, the
+chance that one of them may be positive increases. One
+Statistical testing is an integral part of scientic re-
+search in many elds (especially experimental ones).
+solution to overcome this is to simply divide the signif-
+icance criterion (§alpha§) by the number of all signi-
+Unfortunately, awakening to standard analysis of ex-
+perimental results has been slow in computer vision
+cance tests conducted during the study. This is known
+as the Bonferroni correction [60]. Notice that this is a
+and most of analyses are often carried out ad-hoc and
+heuristically. The input data to computer vision algo-
+very conservative test. An alpha of 0.05, divided in this
+way by 100 to account for 100 comparisons, yields a
+rithms and estimates produced by them are often noisy.
+Thus, there is an inherent uncertainty associated with
+very stringent per-hypothesis alpha of 0.0005. Multiple
+comparison challenge has been studied in considerable
+results produced by these algorithms. These uncertain-
+ties are expressed in terms of statistical distributions,
+detail and much progress have been achieved on this
+topic since the 90＊s (See for example [1, 61每63]).
+and distributions＊ means and covariances. Reporting
+uncertainty is often neglected in computer vision or is
+done in a wrong way [57]. Further, many researchers
+misunderstand condence intervals and standard error
+bars [58, 59].
+Hypothesis tests are used in determining whether
+the outcome of a study would lead to a rejection of
+the null hypothesis for a pre-specied level of signi-
+cance. The null hypothesis represents what is believed
+by default, before seeing any evidence. Statistical signif-
+icance, p-value, is a probability value indicating whether
+the outcome of an experiment can happen accidentally
+or not. The smaller the p-value, the larger the signif-
+icance. If the p-value is less than the required signi-
+cance level, then we say the null hypothesis is rejected
+
+One ma jor challenge when designing experiments is
+dealing with confounding factors (a.k.a confounders or
+confounding variables). Not controlling the confounding
+factors can lead to misleading and useless results. Let
+me clarify this with an example. Assume you aim to
+investigate the hypothesis that exercise (independent
+variable) causes weight loss (dependent variable). Let＊s
+say you collect data from 2n sub jects (n in the control
+group; who did not exercised) and conclude that indeed
+
+1 §To call in the statistician after the experiment is done may
+be no more than asking him to perform a post-mortem exami-
+nation: he may be able to say what the experiment died of.§ 每
+Ronald Fisher
+
+exercise leads to weight loss. Is this a reliable nding?
+Maybe not, due to several concerns:
+
+每 Some sub jects (under treatment) might have been
+using drugs so the weight loss could be attributed
+to that,
+每 Control group might have included mostly female or
+old sub jects (i.e., unbalanced groups), so gender or
+age might be confounding factors,
+每 Sub jects in the treatment group might have eaten
+less than sub jects in the control group during the
+course of the experiment,
+每 Some sub jects might have been athletes,
+每 Some sub jects might have spent less time exercising
+than others,
+每 Some sub jects might have eaten immediately after
+the exercise while others did not,
+每 Etcetera.
+
+In this regard, it is extremely important to under-
+stand the dierence between correlation and causation.
+For example, shoe size correlates with reading level in
+children but it is not the true reason of better read-
+ing ability (the true reason might be age or educa-
+tion). Another example is the myth in ancient Ger-
+many where people believed that storks deliver babies
+(See here [64, 65] for a discussion of this). Notice that
+these were only few concerns regarding statistical test-
+ing. There are, of course, several other factors to be
+carefully thought about when running experiments and
+statistical testing.
+Let me bring two examples related to computer vi-
+sion. In the rst example, let＊s say you have designed a
+system that tells whether a scene is captured in China
+or in the United States 2 . Let＊s assume you test your
+model on a dataset that accidentally has people visible
+in images taken in China while none of the images taken
+in US contain people. Can we say for sure this model is
+able to do the task? Not denitively. The reason is that
+the model might have discovered that the existence of
+a person determines the location where it was taken.
+The model may fail when presented with images with
+no people in them. In this example, randomly sampling
+the data and scaling up the size of the dataset might
+mitigate the problem and reduces the bias. In the sec-
+ond example, assume you have a model that predicts
+whether the resolution of an aerial image is low, inter-
+mediate or high. Accidentally, your low-, intermediate-,
+and high resolution terrain images come from areas cov-
+ered with snow, rock, and vegetation, respectively. Now
+your model might have learned to classify dierent re-
+gions instead of resolution. All in all, since most of the
+
+2 Or telling whether an image is natural or generated by a
+generative model.
+
+computer vision models are data- driven, it is crucial to
+understand what aspects of the data they are captur-
+ing. This will help explain what models actually learn.
+
+7
+
+It is becoming increasingly popular to resort to in-
+expensive crowdsourcing platforms (e.g., Amazon Me-
+chanical Turk [66]) to collect annotated data for train-
+ing supervised data-hungry models [67]. This has pros
+and cons. The pros are a) such large scale datasets pro-
+vide more statistical power and are rich for statistical
+hypothesis testing, and b) the learned models have high
+expressive power (since the stimulus set is a good rep-
+resentative of the real world). There are several cons
+associated with it as well. Firstly, there is less control
+over the stimuli. It is often very cumbersome (some-
+times impossible) to inspect all images to see if they
+are appropriate. Secondly, there is less control over the
+data collection setup. It is hard to tell whether sub jects
+are qualied, follow the procedure or are actively en-
+gaged in the task. Some strategies have been devised to
+ensure a certain degree of data quality including a) se-
+cretly injecting some images for which annotations are
+already known (a.k.a catch trials), b) designing grading
+tasks (e.g., asking workers to grade each other＊s work),
+and c) collecting multiple annotations for every image
+to reduce noise. Third, due to these uncertainties and
+noise in the data it sometimes becomes very challenging
+to conduct meaningful statistical tests. For instance, it
+is hard to verify the claim that CNNs (e.g., ResNet [ 34])
+outperform humans on the ImageNet recognition task.
+To harness such problems, cognitive vision researchers
+have traditionally been conducting laboratory experi-
+ments where they had (almost) full control over the
+stimuli and sub jects. But that is about to change due
+to the big data revolution. So, as time goes by, hopefully
+better ways will emerge to deal with these problems.
+
+Note that not all agree that statistical testing is
+needed in computer vision. According to one of the re-
+viewers of a prior version of this piece: §... clearly many
+of the papers do not require such a test. Indeed, most
+computer vision papers presenting an empirical study
+are reporting a pre-dened metric on a pre-dened data;
+hence, I see no value in a statistical test. Since statis-
+tical test is designed to handle unknowns about the
+metric and data you choose.§. What I believe is that
+sometimes it might be acceptable, to some degree, to
+tweak parameters, crunch numbers, etcetera in order
+to build an engineering product, but when it comes to
+making precise scientic statements, conducting careful
+statistical tests becomes inevitable.
+
+8
+
+6 Dissemination of negative results
+
+Dissemination of positive results is often straightfor-
+ward. How about when results do not support a desired
+hypothesis or are inconclusive? Here, I discuss the is-
+sues surrounding communicating negative results. Some
+journals such as PLOS ONE, Journal of Negative Re-
+sults in Biomedicine, and Journal of Articles in Support
+of the Null Hypothesis explicitly welcome negative, null,
+or inconclusive results. As of now, there is no system-
+atic way of disseminating negative results in computer
+vision. Not only that, but also commentary and opinion
+papers like this one are often not welcome as journals
+prefer technical papers.
+
+Computer vision has a unique model of publication.
+While there are several prestigious journals (e.g., IEEE
+PAMI, IJCV, CVIU, IVC) to publish the results, top-
+tier conferences are where the real action happens (e.g.,
+CVPR, ICCV, ECCV). A large number of papers are
+submitted to these conferences and get reviewed in a
+short period of time (around 3 months with the net
+reviewing period varying from 1 to 2 months). These
+conferences are very competitive (acceptance rate rang-
+ing from 20% to 30%) thus leaving place only for novel,
+interesting and often positive results. Although, once
+in a while interesting negative results appear in these
+conferences, researchers usually do not risk conducting
+such studies. Some conferences (ICLR and NIPS; pub-
+lishing some vision papers) have recently adopted an
+open review system where the communications between
+the reviewers and the authors are made available to the
+public. While this does not directly address publishing
+negative results, it is an eective way to disclose the
+hidden chunk of knowledge to the scientic community.
+Unfortunately, vision conferences have not yet adopted
+this platform. The reason might be protecting ideas and
+ongoing eorts.
+
+ArXiv and blogs (e.g., [68]) are two rising venues
+for publication. Both, however, suer from a lack of
+peer review. One advantage of ArXiv is rapid distribu-
+tion of ndings. One drawback is that sometimes pa-
+pers are early half-baked progress reports often pub-
+lished to claim an idea. Blogs allow personal opinions
+and discussions in an informal setting (i.e., conversa-
+tions). Although very interesting, such a venue includes
+folk, sporadic, and noisy thoughts. Nevertheless, occa-
+sionally people exploit these venues for communication
+or settling a matter. For example, I came across an
+ArXiv paper [69] debating the results of a previously
+peer-reviewed published paper [70] which introduced a
+new biologically-inspired method for mitigating the ad-
+versarial perturbations in CNNs.
+
+An important concern in publishing negative results
+is giving a fair chance to the original authors (especially
+in cases where published results are questioned) to re-
+spond to the counter arguments. Journals seem to be
+a better option for such discussions and open debates.
+Some elds have already devised eective strategies for
+dealing with this concern. For example, the Journal of
+Behavioral and Brain Sciences (BBS) invites other sci-
+entists to comment on an accepted paper. The paper
+and the corresponding comments then get published to-
+gether in the same issue of the journal. Journal of Vision
+and Journal of Vision Research publish commentary
+and re-analysis papers (sometimes discussing the neg-
+ative results) as the §letters to the editor§ (See [ 71] as
+an example). In all of these journals, all materials have
+to go through the peer review process. These practices
+enrich the scholarly work.
+One point to stress here is that negative results
+should go through a thorough review process. Consider-
+ing the intense race for publication, it only make sense
+to accept negative results that address problems which
+are important, challenging, and of high interest to the
+community. What we certainly do not need is a replete
+of negative results (or early progress reports) ending
+up in arXiv occupying the limited bandwidth of re-
+searchers.
+How about publishing inconclusive results? I believe
+that such results are indeed publishable and treating
+them separately is hard. This is because obtaining a
+purely negative result in a data-driven discipline is puz-
+zling since it needs to probe the entire parameter space
+and inspect lots of design choices.
+One of the most eective habits in computer vision
+is sharing code and data which has contributed tremen-
+dously to the progresses of the eld and has been right-
+fully incentivized by high number of references to such
+works (similar to benchmark papers). Not only has this
+habit proven to be extremely useful to deal with repli-
+cability issues and speeding up contributions, it also
+serves as a good model for incentivizing negative re-
+sults.
+In addition to ArXiv and blogs, some other possibili-
+ties for publishing negative results are through special-
+ized journals, conferences and workshops to the topic
+(e.g., http://negative.vision/) where papers can be pre-
+sented and discussed in detail.
+
+7 Epilogue
+
+Here I summarize the main take-away lessons from this
+work.
+
+每 Firstly, solid, mature, trustworthy, important, in-
+teresting, well-documented, and peer-reviewed neg-
+ative results that come from rigorous investigations
+should certainly be welcome. Such results (conclu-
+sive or inconclusive) can save a lot of eorts by pre-
+venting redundant eorts, add to the intellectual
+richness of the community, promote scholarly cul-
+ture, and give tremendous insights regarding limits
+of models, datasets, and evaluation scores. One chief
+concern here is that hastily-derived and half-baked
+negative results can be dangerous and misleading.
+Notice that it is usually easier to obtain a negative
+result than a positive result (e.g., making a model
+work). What is very important, even more than sign,
+is the validity of the outcome. Overall, negativity
+towards negative results is counterproductive and
+such results should be published provided that they
+follow appropriate and sound scientic methodolo-
+gies.
+每 Second, negative results should be properly and ef-
+fectively disseminated, incentivized, shared, encour-
+aged and discussed. Absence of negative results from
+the literature can cause serious problems (e.g., bi-
+asing researchers in certain directions). A mindset
+needs to be nurtured and encouraged to recognize
+and embrace such eorts (e.g., through dedicated
+journals and conferences to the topic). Emphasizing
+the statement by Torralba and Efros [72] that §too
+much value (is given) to winning a particular chal-
+lenge§, negative results as well as smart baselines
+can be as important as algorithm development or
+dataset collection and should be given a fair chance
+to be presented in conferences and journals. To this
+end, we may need to change the mindset on a larger
+scale (e.g., funding agencies). Also, negative results
+should be disseminated in such a way that the orig-
+inal authors can get a chance to respond (in case of
+replication failure). If possible, it would be more ef-
+fective to make the comments and discussions avail-
+able to community.
+每 Third, statistical testing has been undermined in
+computer vision and should be taken into account
+in the future. Several factors need to be carefully
+taken into account in conducting statistical testing
+including selection of the appropriate tests, control-
+ling for confounding factors, compensating for mul-
+tiple comparisons, etc. Statistical testing should be
+also exploited in model comparisons. This is even
+more important when models start to saturate on
+a dataset raising the question of whether a 1% im-
+provement in accuracy is meaningful. Overall, sta-
+tistical analysis becomes increasingly more impor-
+tant as computer vision methods hit the market
+
+9
+
+and become prevalent in daily life. Statistical anal-
+ysis is also critical to support hypotheses and ad-
+vance vision sciences. In this regard, students and
+computer vision researchers should be encouraged
+to strengthen their knowledge of statistics.
+每 Fourth, multi-disciplinary aspect of computer vision
+should be emphasized. Negative results and statis-
+tical testing are where the eld can clearly learn
+a lot from from other elds, biological sciences in
+particular. To implement this, events that promote
+such emphasis should be encouraged (e.g., inter-
+disciplinary tutorials and workshops in conferences,
+publication of interdisciplinary papers, invited talks,
+etc). In this respect, a synergy between computer
+and human vision can pay o well in the future.
+According to Rama Chellappa [73] §it is counter-
+productive if one or more groups of researchers to
+claim that their view of the elephant is the best
+one. Putting all our eort together, hopefully we
+can come up with a general solution to the grand
+problem of vision.§ This is particularly important in
+the age of deep learning where biologically-inspired
+neural networks have demonstrated a great promise.
+每 Fifth, perhaps less related to the main focus of this
+writing, is a concern on research attitude. Computer
+vision is enjoying a great phase of expansion and
+success. It might be even one of the fastest grow-
+ing areas in computer science, thanks to industry
+backup. This has brought along a certain culture
+which is described well by Geman and Geman in
+§Science in the age of Seles§ [74]. These authors
+argue that researchers spend much of their time an-
+nouncing ideas rather than formulating them. This
+partly has to be blamed on distractions caused by
+high information ow, web, social media, etc. Con-
+tributing to these, is the fact that researchers are re-
+warded for publishing more frequently than higher
+quality papers which has encouraged researchers to
+look for §minimum publishable units.§ This has led
+to a point that an overwhelmingly high number of
+publications appear each year making it practically
+impossible to track the progress even for senior sci-
+entists, let alone the newcomers. This concern has
+been raised by Alan Yuille [75]: §The conference cy-
+cle while adding dynamism often leads to a focus on
+short-term research, an emphasis on ＊sound-bytes＊,
+and often small progress, improvements in perfor-
+mance on benchmarked datasets 每 rather than long-
+term quality research. This disrupts the balance be-
+tween short-term research 每 picking the low-hanging
+fruit 每 and long-term research which builds the tools
+to pick the rest. We suggest reestablishing journal
+publications with rigorous peer review as the ＊gold
+
+10
+
+standard＊ for referencing, for awarding prizes, for
+faculty appointments, and promotions.§ We should
+certainly benet from relatively less emphasis on
+quantity of publications and relatively greater em-
+phasis on quality of research. We need to openly
+and frankly discuss this in the community to nd
+appropriate remedies.
+
+References
+
+1. J. P. Ioannidis, Why most published research ndings are
+false, PLos med 2 (8) (2005) e124.
+2. R. S. Shankland, Michelson-morley experiment, American
+Journal of Physics 32 (1) (1964) 16每35.
+3. B. K. Horn, B. G. Schunck, Determining optical ow, Arti-
+cial intelligence 17 (1-3) (1981) 185每203.
+4. R. Szeliski, Computer vision: algorithms and applications,
+Springer Science & Business Media, 2010.
+5. Y. LeCun, L. Bottou, Y. Bengio, P. Haner, Gradient-based
+learning applied to document recognition, Proceedings of the
+IEEE 86 (11) (1998) 2278每2324.
+6. http://discovermagazine.com/2009/oct/06-brain-like-chip-
+may-solve-computers-big-problem-energy/.
+7. https://www.caseyresearch.com/articles/brain-vs-
+computer.
+8. A. Borji, L. Itti, State-of-the-art in visual attention mod-
+eling, IEEE transactions on pattern analysis and machine
+intelligence 35 (1) (2013) 185每207.
+9. A. Nguyen, J. Yosinski, J. Clune, Deep neural networks are
+easily fooled: High condence predictions for unrecognizable
+images, in: Proceedings of the IEEE Conference on Computer
+Vision and Pattern Recognition, 2015, pp. 427每436.
+10. N. Kruger, P. Janssen, S. Kalkan, M. Lappe, A. Leonardis,
+J. Piater, A. J. Rodriguez-Sanchez, L. Wiskott, Deep hier-
+archies in the primate visual cortex: What can we learn for
+computer vision?, IEEE transactions on pattern analysis and
+machine intelligence 35 (8) (2013) 1847每1871.
+11. W. J. Scheirer, S. E. Anthony, K. Nakayama, D. D. Cox,
+Perceptual annotation: Measuring human vision to improve
+computer vision, IEEE transactions on pattern analysis and
+machine intelligence 36 (8) (2014) 1679每1686.
+12. N. Pinto, D. D. Cox, J. J. DiCarlo, Why is real-world visual
+ob ject recognition hard?, PLoS Comput Biol 4 (1) (2008)
+e27.
+13. J. J. DiCarlo, D. D. Cox, Untangling invariant ob ject recog-
+nition, Trends in cognitive sciences 11 (8) (2007) 333每341.
+14. N. K. Medathati, H. Neumann, G. S. Masson, P. Kornprobst,
+Bio-inspired computer vision: Towards a synergistic approach
+of articial and biological vision, Computer Vision and Image
+Understanding 150 (2016) 1每30.
+15. C. Tan, S. Lallee, G. Orchard, Benchmarking neuromorphic
+vision: lessons learnt from computer vision, Frontiers in neu-
+roscience 9 (2015) 374.
+16. K. Fukushima, S. Miyake, Neocognitron: A self-organizing
+neural network model for a mechanism of visual pattern
+recognition, in: Competition and cooperation in neural nets,
+Springer, 1982, pp. 267每285.
+17. A. Borji, L. Itti, Human vs. computer in scene and ob ject
+recognition, in: Proceedings of the IEEE Conference on Com-
+puter Vision and Pattern Recognition, 2014, pp. 113每120.
+18. R. VanRullen, Perception science in the age of deep neural
+networks, Frontiers in psychology 8.
+
+19. N. Kriegeskorte, Deep neural networks: a new framework for
+modeling biological vision and brain information processing,
+Annual Review of Vision Science 1 (2015) 417每446.
+20. D. D. Cox, T. Dean, Neural networks and neuroscience-
+inspired computer vision, Current Biology 24 (18) (2014)
+R921每R929.
+21. T. Serre, L. Wolf, S. Bileschi, M. Riesenhuber, T. Poggio, Ro-
+bust ob ject recognition with cortex-like mechanisms, IEEE
+transactions on pattern analysis and machine intelligence
+29 (3).
+22. D. Parikh, C. L. Zitnick, Finding the weakest link in per-
+son detectors, in: Computer Vision and Pattern Recognition
+(CVPR), 2011 IEEE Conference on, IEEE, 2011, pp. 1425每
+1432.
+23. J. Vogel, A. Schwaninger, C. Wallraven, H. H. B“ultho, Cat-
+egorization of natural scenes: local vs. global information, in:
+Proceedings of the 3rd symposium on Applied perception in
+graphics and visualization, ACM, 2006, pp. 33每40.
+24. J. Deng, J. Krause, L. Fei-Fei, Fine-grained crowdsourcing for
+ne-grained recognition, in: Proceedings of the IEEE confer-
+ence on computer vision and pattern recognition, 2013, pp.
+580每587.
+25. F. Gosselin, P. G. Schyns, Bubbles: a technique to reveal
+the use of information in recognition tasks, Vision research
+41 (17) (2001) 2261每2271.
+26. M. C. Potter, Meaning in visual search, Science 187 (4180)
+(1975) 965每966.
+27. S. Thorpe, D. Fize, C. Marlot, Speed of processing in the
+human visual system, nature 381 (6582) (1996) 520.
+28. E. L. Denton, S. Chintala, R. Fergus, et al., Deep genera-
+tive image models using a laplacian pyramid of adversarial
+networks, in: Advances in neural information processing sys-
+tems, 2015, pp. 1486每1494.
+29. C. Vondrick, H. Pirsiavash, A. Oliva, A. Torralba, Learning
+visual biases from human imagination, in: Advances in neural
+information processing systems, 2015, pp. 289每297.
+30. R. Fong, W. Scheirer, D. Cox, Using human brain activity to
+guide machine learning, arXiv preprint arXiv:1703.05463.
+31. D. L. Yamins, H. Hong, C. F. Cadieu, E. A. Solomon, D. Seib-
+ert, J. J. DiCarlo, Performance-optimized hierarchical mod-
+els predict neural responses in higher visual cortex, Proceed-
+ings of the National Academy of Sciences 111 (23) (2014)
+8619每8624.
+32. A. Borji, L. Itti, Defending yarbus: Eye movements reveal
+observers＊ task, Journal of vision 14 (3) (2014) 29每29.
+33. Y. LeCun, Y. Bengio, G. Hinton, Deep learning, Nature
+521 (7553) (2015) 436每444.
+34. K. He, X. Zhang, S. Ren, J. Sun, Delving deep into rectiers:
+Surpassing human-level performance on imagenet classica-
+tion, in: Proceedings of the IEEE international conference on
+computer vision, 2015, pp. 1026每1034.
+35. M. Jaderberg, K. Simonyan, A. Zisserman, et al., Spatial
+transformer networks, in: Advances in Neural Information
+Processing Systems, 2015, pp. 2017每2025.
+36. D. H. Hubel, T. N. Wiesel, Receptive elds, binocular inter-
+action and functional architecture in the cat＊s visual cortex,
+The Journal of physiology 160 (1) (1962) 106每154.
+37. M. Riesenhuber, T. Poggio, Hierarchical models of ob ject
+recognition in cortex, Nature neuroscience 2 (11) (1999)
+1019每1025.
+38. F. Anselmi, T. Poggio, Representation learning in sensory
+cortex: a theory, Tech. rep., Center for Brains, Minds and
+Machines (CBMM) (2014).
+39. M. R. Greene, T. Liu, J. M. Wolfe, Reconsidering yarbus: A
+failure to predict observers task from eye movement patterns,
+Vision research 62 (2012) 1每8.
+
+11
+
+63. Y. Benjamini, Y. Hochberg, Controlling the false discovery
+rate: a practical and powerful approach to multiple testing,
+Journal of the royal statistical society. Series B (Methodolog-
+ical) (1995) 289每300.
+64. R. Matthews, Storks deliver babies (p= 0.008), Teaching
+Statistics 22 (2) (2000) 36每38.
+65. https://priceonomics.com/do-storks-deliver-babies/.
+66. http://www.mturk.com.
+67. A. Kovashka, O. Russakovsky, L. Fei-Fei, K. Grauman,
+et al., Crowdsourcing in computer vision, Foundations and
+Trends R(cid:127) in Computer Graphics and Vision 10 (3) (2016)
+177每243.
+68. www.computervisionblog.com.
+69. W. Brendel, M. Bethge, Comment on§ biologically inspired
+protection of deep networks from adversarial attacks§, arXiv
+preprint arXiv:1704.01547.
+70. A. Nayebi, S. Ganguli, Biologically inspired protection of
+deep networks from adversarial attacks, arXiv preprint
+arXiv:1703.09202.
+71. A. Borji, D. N. Sihite, L. Itti, Ob jects do not predict xations
+better than early saliency: A re-analysis of einh“auser et al.＊s
+data, Journal of vision 13 (10) (2013) 18每18.
+72. A. Torralba, A. A. Efros, Unbiased look at dataset bias, in:
+Computer Vision and Pattern Recognition (CVPR), 2011
+IEEE Conference on, IEEE, 2011, pp. 1521每1528.
+73. R. Chellappa, Mathematical statistics and computer vision,
+Image and Vision Computing 30 (8) (2012) 467每468.
+74. D. Geman, S. Geman, Opinion: Science in the age of seles,
+Proceedings of the National Academy of Sciences 113 (34)
+(2016) 9384每9387.
+75. A. L. Yuille, Computer vision needs a core and foundations,
+Image and Vision Computing 30 (8) (2012) 469每471.
+
+40. A. L. Yarbus, Eye movements during perception of complex
+ob jects, Springer, 1967.
+41. T. D. Sterling, Publication decisions and their possible ef-
+fects on inferences drawn from tests of signicanceor vice
+versa, Journal of the American statistical association 54 (285)
+(1959) 30每34.
+42. H. Lian, Y. Ruan, R. Liang, X. Liu, Z. Fan, Short-term eect
+of ambient temperature and the risk of stroke: a systematic
+review and meta-analysis, International journal of environ-
+mental research and public health 12 (8) (2015) 9068每9088.
+43. R. Rosenthal, The le drawer problem and tolerance for null
+results., Psychological bulletin 86 (3) (1979) 638.
+44. S. Plous, The psychology of judgment and decision making.,
+Mcgraw-Hill Book Company, 1993.
+45. L. D. Nelson, J. P. Simmons, U. Simonsohn, Let＊s publish
+fewer papers, Psychological Inquiry 23 (3) (2012) 291每293.
+46. J. Devlin, S. Gupta, R. Girshick, M. Mitchell, C. L. Zitnick,
+Exploring nearest neighbor approaches for image captioning,
+arXiv preprint arXiv:1505.04467.
+47. B. W. Tatler, The central xation bias in scene viewing:
+Selecting an optimal viewing position independently of mo-
+tor biases and image feature distributions, Journal of vision
+7 (14) (2007) 4每4.
+48. N. Dalal, B. Triggs, Histograms of oriented gradients for hu-
+man detection, in: Computer Vision and Pattern Recogni-
+tion, 2005. CVPR 2005. IEEE Computer Society Conference
+on, Vol. 1, IEEE, 2005, pp. 886每893.
+49. C. Vondrick, A. Khosla, T. Malisiewicz, A. Torralba, Hoggles:
+Visualizing ob ject detection features, in: Proceedings of the
+IEEE International Conference on Computer Vision, 2013,
+pp. 1每8.
+50. R. I. Hartley, In defense of the eight-point algorithm, IEEE
+Transactions on pattern analysis and machine intelligence
+19 (6) (1997) 580每593.
+51. R. Achanta, A. Sha ji, K. Smith, A. Lucchi, P. Fua,
+S. S“usstrunk, Slic superpixels compared to state-of-the-art
+superpixel methods, IEEE transactions on pattern analysis
+and machine intelligence 34 (11) (2012) 2274每2282.
+52. M. D. Zeiler, R. Fergus, Visualizing and understanding con-
+volutional networks, in: European conference on computer
+vision, Springer, 2014, pp. 818每833.
+53. J. Yosinski, J. Clune, A. Nguyen, T. Fuchs, H. Lipson, Under-
+standing neural networks through deep visualization, arXiv
+preprint arXiv:1506.06579.
+54. J. B. Asendorpf, M. Conner, F. De Fruyt, J. De Houwer,
+J. J. Denissen, K. Fiedler, S. Fiedler, D. C. Funder, R. Kliegl,
+B. A. Nosek, et al., Recommendations for increasing replica-
+bility in psychology, European Journal of Personality 27 (2)
+(2013) 108每119.
+55. https://rationalwiki.org/wiki/extraordinary claims require extraordinary evidence.
+56. R. M. Haralick, Computer vision theory: The lack thereof,
+Computer Vision, Graphics, and Image Processing 36 (2-3)
+(1986) 372每386.
+57. http://www.nowozin.net/sebastian/blog/how-to-report-
+uncertainty.html.
+58. S. Belia, F. Fidler, J. Williams, G. Cumming, Researchers
+misunderstand condence intervals and standard error bars.,
+Psychological methods 10 (4) (2005) 389.
+59. http://scienceblogs.com/cognitivedaily/2008/07/31/most-
+researchers-dont-understa-1/.
+60. C. W. Dunnett, A multiple comparison procedure for com-
+paring several treatments with a control, Journal of the
+American Statistical Association 50 (272) (1955) 1096每1121.
+61. D. Cox, B. Efron, Statistical thinking for 21st century scien-
+tists, Science Advances 3 (6) (2017) e1700768.
+62. B. Efron, T. Hastie, Computer age statistical
+(2016).
+
+inference
+

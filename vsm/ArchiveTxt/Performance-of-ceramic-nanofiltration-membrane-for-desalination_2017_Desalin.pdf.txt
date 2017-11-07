@@ -1,0 +1,948 @@
+Performance of ceramic nanoltration membrane for desalination of dye solutions containing NaCl and Na2SO4
+
+Pengli Chen, Xiao Ma, Zhaoxiang Zhong, Feng Zhang, Weihong Xing , Yiqun Fan
+
+State Key Laboratory of Materials-Oriented Chemical Engineering, National Engineering Research Center for Special Separation Membrane, Nanjing Tech University, Nanjing 210009, China
+
+H I G H L I G H T S
+
+ Ceramic nanoltration membrane was used for desalination of dye solutions containing NaCl and Na2SO4.
+ Dye EBT solutions with mixture of salts showed higher ux than that with single salt.
+ Self-aggregation and salting-out due to decrease of zeta potential of dye were responsible for the high rejection of EBT.
+ Ceramic nanoltration membrane showed better separation performance compared with DK and DL membranes.
+
+article
+
+info
+
+
+
+Article history:
+Received 12 July 2016
+Received in revised form 8 October 2016
+Accepted 7 November 2016
+Available online 13 November 2016
+
+Keyword:
+Ceramic membrane
+Nanoltration
+Dye-salt mixture
+Eriochrome black T
+Dye aggregation
+Desalination
+
+
+abstract
+Removing mixture salts from dye solutions using membrane technology still need to be improved for high dye
+rejection and low salt rejection. In this work, ceramic membrane with pore size of 1.5 nm presented a satisfactory
+desalination of dye solutions containing NaCl and Na2SO4 compared with two commercial organic nanoltration
+membrane elements (DK and DL). Effect of salt content, salt type, molar ratio of NaCl and Na2SO4, dye concentra-
+tion and pH on performance of ceramic membrane for desalination of Eriochrome black T (EBT) were investigat-
+ed. The results showed that dye rejection decreased by increasing salt content, dye concentration and solution
+pH. Compared with dye-NaCl solutions, a relative high ux and low rejection of dye were observed when treating
+dye-Na2SO4 solutions. For the mixture salt-dye solutions, the ux, which was higher than that for the single salt-
+dye solutions, rst increased then decreased with decreasing CNaCl/CNa2SO4 due to the change of structure of cake
+layer. Supper-molecule aggregates of EBT formed by hydrogen-bond is mainly responsible for the high rejection
+of EBT (N 99%) at acid conditions. The rejection of NaCl and Na2SO4 was below 20% and 40%, respectively. These
+promising results demonstrates that the new ceramic membrane has a potential application in dye purication.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+Most dyes are produced by chemical synthesis which also produces
+byproduct salts (typical NaCl and Na2SO4) as impurities [1] due to salt-
+generation reactions, solution neutralization by acid/base or salt addi-
+tion for promoting a chemical reaction [2,3]. To obtain the dye as a
+solid, it is common to add electrolyte (usually NaCl) to the dye solution
+in order to precipitate the dye, known as the salting-out process. How-
+ever, the purity of the dye product is low and could contain salt as high
+as 30% [1,4]. This results in a product of much lower colour intensity rel-
+ative to pure dye and varying dyeing characteristics [5].
+Nanoltration (NF) based process are widely used for dye desalting
+and purication as alternative separation techniques to the convention-
+al salting-out processes [6]. Most of the commercially available NF
+membranes are made of polymeric materials and have high retention
+of multivalent anions (e.g. sulfate) and organic molecules with molecu-
+lar weights above 300 g/mol, and low retentions to most monovalent
+anions (e.g. chloride) [3,7], which are suitable for purication and con-
+centration of dye products containing monovalent salts. For example,
+commercial DK (Osmonics) NF membrane was used for desalination
+and purication of reactive black 5 and 96.0% rejection of dye and
+21.1% retention for salt (NaCl) were observed [8], but with high rejec-
+tion of Na2SO4 (N 98%) [9].
+With the development of ceramic membrane, more ceramic NF
+membranes are commercially available [10]. Several researches were
+focused on dye wastewater treatment and separation of dye and salt
+using ceramic NF and ultraltration (UF) membranes [11,12]. Ceramic
+membranes are made of a mixture of diverse mineral oxide (Al2O3,
+ZrO2, TiO2 and SiO2), and compared with polymeric membranes, they
+are characterized with the high thermal, chemical and mechanical resis-
+tance, outstanding separation characteristics and higher lifespan [13,
+14]. More important, ceramic NF and UF membranes showed low rejec-
+tion of NaCl and Na2SO4 [15每17], showing great promises for
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+103
+
+molecular weight were used in this study as shown in Table 1. 竹max of
+dye was obtained with dye concentration in the range of Beer's law.
+NaCl of analytical grade was provided by Xilong Chemical Co., Ltd.
+(PRC). Na2SO4 of analytical grade was supplied by Sinopharm Chemical
+Reagent Co., Ltd. (PRC). All the chemicals were used without further
+purication.
+The feed solutions were prepared before each experiment by dis-
+solving the corresponding solutes in pure water (conductivity under
+5 米S﹞cm 1) until the desired concentration were reached. Sodium hy-
+droxide (NaOH) and hydrochloric acid (HCl) were used to adjust the
+pH of dye solutions.
+
+2.2. Membranes
+
+In this study, one multi-channel tubular ceramic membrane (length
+of 0.5 m, external diameter of 30 mm and 19 channels of 4.0 mm inner
+diameter) with pore size of 1.5 nm provided by Jiangsu Jiuwu High-tech
+Co. Ltd. (PRC) was used. The material of active layer and support of the
+membrane were TiO2 and 汐-Al2O3 respectively. The effective ltration
+area of membranes was 0.1 m2. Two commercial organic spiral-
+wound membrane elements (DK1812 and DL1812, membrane area of
+0.38 m2) were also used.
+Water permeability of each membrane was measured at 25 ～C using
+pure water at a cross-ow velocity of 3 m/s before each experiment. The
+initial ux (Jw) of membranes were measured at different operating
+pressures (忖P of 0.10, 0.15, 0.20, 0.25, 0.30 MPa for ceramic membrane,
+忖P of 0.40, 0.6, 0.8, 1.0, 1.2 MPa for DK and DL membranes). The pure
+water permeability was determined by Darcy's law [12] as follows:
+Jw  Lp  忖P  忖P= 米  Rm
+
+1
+
+
+
+
+
+where 米 is the water viscosity. The slope of the straight line Jw against 忖P
+gives the pure water permeability coefcient (Lp). The Lp of the ve
+membranes were used to calculate the intrinsic membrane resistance
+(Rm) according to Eq. (1). The permeability coefcient of the mem-
+branes were 63, 5.1, and 6.9 L﹞m 2﹞h 1﹞bar 1 for ceramic membrane
+used in this study, DK and DL membranes, respectively.
+
+desalination of dye. Majewska-Nowak et al. [18,19] studied the perfor-
+mance of three single-channel ceramic membranes (MWCO of 1 kDa,
+15 kDa, and 50 kDa) for nine anionic organic dyes with molecular
+weights ranging from 327 to 1060 Da with or without salts. The results
+indicated that all the membranes provides 95每 99% retention of high-
+molecular-weight organic dyes (N 700 Da) without salt, while the mem-
+branes with MWCO of 15 kDa and 150 kDa showed a high rejection of
+Direct Black DB (N 95%) with the presence of 10 g﹞L 1 NaCl. Da et al.
+[11] prepared a tubular ceramic NF membrane with molecular weight
+cut-off of 800 Da for separation of uorescent brightener and NaCl and
+the uorescent brightener recovery of 99% was obtained while the
+NaCl removal was N 98% at a temperature of 60 ～C.
+Membrane performance was signicantly affected by the dye-salt-
+membrane interaction in the membrane application for separation of
+dye and salt [12]. Several phenomenon including charge screening
+[20], change of aggregation state of dye [21,22], salting-out [23,24]
+and interaction between dye molecules and membrane [12] were re-
+ported in dye-salt-membrane system which inuence the ux of mem-
+brane and rejection of solutes.
+In this study, a tubular ceramic NF membrane was compared with
+two commercial spiral-wound organic NF membrane elements (DK
+and DL) for rejection of salts and six dyes with different molecular
+weight and charge. The effect of different solution environment (salt
+type, salt content, dye concentration, and pH) on the dye state and per-
+formance of ceramic membrane were discussed. The dye-salt-mem-
+brane interactions were discussed and their effect on membrane
+performance was investigated.
+
+2. Materials and methods
+
+2.1. Chemical and feed solutions
+
+Four anion dyes Eriochrome black T (Shenyang Le Heng Technology
+Co., Ltd. (PRC)), Reactive brilliant blue KN-R (Shanghai Eighth Dyestuff
+Chemical Plant), Reactive black 5 (Zhejiang Runtu Co., Ltd. (PRC)) and
+Evercion red H-E7B (Everlight Chemical) and two cationic dyes Methy-
+lene blue (Aladdin) and Basic Green 4 (Aladdin) with different
+
+Table 1
+Molecular structures and molecular weights of the organic dyes used in this study.
+
+Dye
+
+Methylene blue
+
+Eriochrome black T
+
+Molecular structure
+
+Charge
+
+Positive
+
+MW (g/mol)
+
+319.85
+
+Negative
+
+461.38
+
+Reactive Brilliant Blue KN-R
+
+Negative
+
+626.54
+
+Basic Green 4
+
+Reactive black 5
+
+Positive
+
+927.03
+
+Negative
+
+991.82
+
+Evercion red H-E7B
+
+Negative
+
+1774.19
+
+竹max
+
+665
+
+533
+
+594
+
+617
+
+596
+
+544
+
+104
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+7
+
+P1
+
+8
+
+1
+
+9
+
+10
+
+T
+4
+
+2
+
+5
+
+3
+
+6
+
+19
+
+P2
+
+18
+
+17
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+Feed stream
+Retentate stream
+Permeate stream
+
+1: Feed tank
+
+2: Heater
+
+3: Cooling water
+
+4: Thermometer
+
+5, 7, 9, 10, 13-17, 19: Valve
+
+11, 12: Membrane module
+
+8, 18: Pressure gauge
+
+Fig. 1. Scheme of the NF pilot plant with spiral-wound membrane.
+
+2.3. Filtration setup and experimental procedure
+
+All experiments with ceramic and polymeric NF membranes were
+conducted with cross-ow membrane ltration system. The ltration
+set-up of tubular ceramic membrane was described in our previous
+work [25], and the experiment set-up for spiral-wound membrane
+(DK and DL) were as shown in Fig. 1.
+
+All experiments were performed at constant temperature of 25 ～C
+with recirculation mode. Both permeate and concentrate streams
+were recycled back to the feed tank except the sampled solution during
+the experiments. The cross-ow velocity of 3 m﹞s 1 and transmem-
+brane pressure (TMP) of 0.3 MPa were xed for experiments of ceramic
+membrane, and for experiments of DK and DL membranes, the TMP of
+0.30 MPa and ow rate of 6.5 L﹞min 1 were used. The duration of all
+the experiments was 60 min.
+After each ltration experiment, a cleaning procedure for ceramic
+membrane was performed in order to recover the performance of the
+membrane. Firstly, the membrane was rinsed with pure water for
+
+Fig. 2. Evolution of membrane ux (a) and rejection (b) for different pure dyes and salts.
+Conditions: Cdye = 500 mg﹞L 1, C(NaCl or Na2SO4) = 1.0 g﹞L 1, temperature = 25 ～C,
+TMP = 0.3 MPa, CFV = 3 m﹞s1 for ceramic membrane and 6.5 L﹞min1 for DK and DL
+membranes.
+
+Fig. 3. Performance of ceramic membrane for dye-salt solutions. Conditions: C(dye) =
+500 mg﹞L 1, C(NaCl) = 2.5 g﹞L 1 (0.0425 mol﹞L 1), C(Na2SO4) = 6 g﹞L 1
+(0.0425 mol﹞L1), Temperature = 25 ～C, TMP = 0.3 MPa and CFV = 3 m﹞s1.
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+105
+
+10 min with a crossow velocity of 3 m﹞s 1, temperature of 25 ～C and
+atmospheric pressure in order to remove the reversible foulants. Sec-
+ondly, pure water ux measurements were performed in order to
+check the fouled membrane permeability. Subsequently, a chemical
+cleaning was performed. The rst step was a basic cleaning with a
+NaOH solution (pH = 10每11) for 10 min at room temperature with a
+CFV of 3 m﹞s 1 and TMP of 0.5 bar. It was followed by a rinse with
+pure water until pH 7 was achieved. The membrane was subsequently
+rinsed by hydrogen peroxide (H2O2) solution (0.5 (v/v) %) at room tem-
+perature for 20每60 min based on the degree of fouling and nally it was
+rinsed again with pure water until pH 7 was obtained. After the above
+cleaning procedure, the membrane permeability was reevaluated to de-
+termine the initial permeability recovery. For DK and DL membranes,
+after each experiment, the membranes were rinsed with pure water
+for 30 min at a ow rate of 6.5 L﹞min1, temperature of 25 ～C, and atmo-
+spheric pressure to remove the foulants, then the pure water ux was
+tested. If the membrane permeability was not recovered, a basic
+cleaning solution with pH of 10每 11 was used to rinse the membrane
+for 20 min and then the membranes were rinsed with pure water
+until pH of 7. The membrane permeability was then reevaluated.
+
+2.4. Analytical methods
+
+The permeate ux was calculated by Eq. (2) as follow:
+
+where Jp is the permeate ux (L﹞m 2﹞h 1), V is the volume of permeate
+(L), A is the effective area of the membrane (m2), and t is the permeate
+collection time (h).
+The rejection of dye, NaCl and Na2SO4, R, is dened by Eq. (3):
+R %
+  1C p =C f
+  100
+
+3
+
+ 
+
+where Cp is the concentration of the permeate and Cf is the concentra-
+tion of the retentate.
+Orion AquaMate 7000 VIS Spectrophotometer (Thermo Scientic)
+was used for the measurement of the dye concentration of permeate
+and retentate at the maximum absorbance wavelength. Before testing
+the dye samples, the samples were diluted and checked the 竹max. The
+concentration of NaCl and Na2SO4 was measured with ion chromatogra-
+phy (ICS-2000, Dionex, USA). pH of feed solution was measured using
+automatic potentiometric titrator (ZDJ-4A, Rex Electric Chemical,
+China).
+
+2.5. Ionic strength
+
+The ionic strength (I) of the aqueous phase empirically estimates the
+level of interactions between ions [26] and is calculated as in Eq. (4):
+
+I  1
+2
+
+X
+
+i1
+
+C i Z 2
+
+i
+
+4
+
+J p  V = A  t
+
+
+
+
+
+2
+
+where Zi is the valence of ion i, and Ci is the concentration of ion i.
+
+Fig. 4. Evolution of ux (a) and rejection of dye and salt (b), (b) particle size distribution of feed solution, (c) evolution of ltration ux over time with different particles size [28每31].
+Conditions: TMP = 0.30 MPa, CFV = 3 m﹞s1, temperature = 25 ～C, and CEBT = 500 mg﹞L1 with ceramic membrane.
+
+106
+
+3. Results and discussion
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+3.1. Membrane performance for different pure dyes and salts
+
+The membranes (DK, DL and ceramic NF membrane) were evaluated
+using different pure dye and salt solutions. As shown in Fig. 2, six dyes
+with different molecular weights (from 300 to 1800 Da) and charge
+were used in this study. It is evident from Fig. 2 (a) that the ceramic
+membrane showed a high ux compared with organic NF membranes
+(DK and DL). The properties of polymeric nanoltration membranes
+
+lie between those of non-porous RO membranes (where transport is
+governed by a solution-diffusion mechanism) and porous ultraltration
+(UF) membranes (where separation is usually assumed to be due to size
+exclusion and,
+in some cases, charge effects) [27]. For ceramic
+nanoltration membranes, size exclusion and charge effects were the
+main separation mechanism and there was not the process of solu-
+tion-diffusion compared with polymeric nanoltration membranes. So
+the ux of ceramic nanoltration membranes was higher than polymer-
+ic nanoltration membranes. Compared with the ceramic membrane,
+DK and DL membranes are more negatively charged. When treating
+
+Fig. 5. (a) interaction of EBT molecule in aqueous, (b) diagram of EBT-salt interaction and ltration mechanism, (c) feed solution state with presence of salt after standing for 48 h.
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+107
+
+-20
+
+-30
+
+-40
+
+-50
+0.00
+
+ EBT-NaCl mixtures
+ EBT-Na2SO4 mixtures
+ EBT-NaCl-Na2SO4 mixutes
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+Concentration of salt (mol/L)
+
+DK and DL membranes. The ux of DK and DL membranes decreased
+by 63.6% and 63.7% for dye MB respectively, and 17.5% and 28.1% for
+GB4, respectively. For ceramic membrane, the ux decline was 16.6%
+and 19.7% for dye MB and GB4, respectively.
+Considering the rejection of dyes and salts, Fig. 2 (b) shows that DK
+and DL membrane had a high rejection for all dyes studied (100% for
+anion dyes, N 97% for cation dyes), while the ceramic membrane reject
+N 96.8% anion dyes studied but b 20% of cation dyes (MB and GB4). For
+rejection of salts, DK and DL membranes showed a N 60% rejection of
+NaCl and N 98% rejection of Na2SO4, compared to 7% and 39% of the ce-
+ramic membrane. The results show that the commercial NF DK and DL
+membranes were suitable for removing NaCl form anion dye solutions
+due to the severe membrane fouling when desalination of cation dyes
+and high rejection of Na2SO4. On the other hand, the ceramic membrane
+showed a promising application in removing both NaCl and Na2SO4 in a
+single membrane separation step for dye solutions and a high ux com-
+pared with DK and DL membranes.
+
+)
+
+V
+
+m
+
+(
+
+l
+
+a
+
+i
+
+t
+
+n
+
+e
+
+t
+
+o
+
+p
+
+a
+
+t
+
+e
+
+Z
+
+Fig. 6. Evolution of dye particles zeta potential with different concentration of salt and a
+xed EBT concentration of 50 mg﹞L 1. In the EBT-NaCl-Na2SO4 mixture, the CNaCl/
+
+CNa2SO4 = 1.
+
+anion dyes (EBT, RB-KNR, RB5, and RHE7B), Fig. 2 (a) showed that ux
+of DK and DL membranes were close to the pure water ux, indicating a
+better antifouling property due to the electrostatic repulsion. But when
+treating cation dyes (MB and GB4), membrane fouling was severe for
+
+3.2. Performance of ceramic membrane for dye-salt solutions.
+
+Fig. 3 presents the membrane performance of ceramic NF membrane
+for dye/salt mixtures. At all cases, the ux and dye rejection were lower
+than that of the pure dye solutions (Fig. 2), and rejection of NaCl and
+Na2SO4 were kept below 5% and 10%, respectively. With presence of
+the salt in dye solutions, the shield of membrane charge and the more
+dispersion of dye [12] would make dye molecule aggregate on
+
+Fig. 7. Evolution of ux (a), particle size distribution of feed solution with different ion environment (b), and rejection of dye and salt over CNaCl/CNa2SO4 (c). Conditions: TMP = 0.30 MPa,
+CFV = 3 m﹞s1, temperature = 25 ～C, CEBT = 500 mg﹞L1 and salt content of 0.085 mol﹞L1 with ceramic membrane.
+
+108
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+membrane surface easier and enter membrane pores and block the
+membrane pores, resulting in the decline of ux and dye rejection. Com-
+pared with the ux of pure dye solutions (Fig. 2(a)), the ux of dye-salt
+mixtures decreased by 13%, 5%, 2% and 7% for EBT, RB-KNR, RB5, and
+RHE7B, respectively (Fig. 3 (a)). Fig. 3 (b) shows that the rejection of
+EBT remained above 99% with presence of salt although a slight decline
+was observed (from 99.9% to 99.3%). On the other hand, the presence of
+salts has a signicant effect on rejection of RB-KNR, RB5 and RHE7B
+where the rejection decreased from 97.1% to 68.7% for RB-KNR, 96.8%
+to 57.6% for RB5, and 99.5% to 76.4% for RHE7B (Figs. 2(b) and 3(b)).
+This phenomenon was also observed by E. Alventosa-deLara, et al. [12]
+who studied membrane performance of ultraltration ceramic mem-
+brane for treatment of model dye wastewater containing dye RB5 and
+salt NaCl. Due to the high rejection of EBT and low rejection of NaCl
+and Na2SO4 of ceramic membrane, the dye EBT was further studied in
+the following sections.
+
+3.3. Effect of salt concentration and types on performance of ceramic
+membrane
+
+To study the effect of salt content on performance of ceramic mem-
+brane, inorganic salt NaCl and Na2SO4 were used in this experiment. The
+inuence of NaCl, Na2SO4 and the mixture of NaCl and Na2SO4 (molar
+ratio of 1) on permeate ux and rejection of dye and salt were investi-
+gated respectively with a xed EBT concentration of 500 mg﹞L 1 as
+shown in Fig. 4. It was evident from Fig. 4 (a) and (d) that the presence
+of salts in the dye solution signicantly aggravated the membrane per-
+formance that both permeate ux and dye rejection decreased with in-
+creasing salt content. For the same dye-salt solution, the ux, dye and
+salt rejection all decreased with increasing salt content. Comparing dif-
+ferent dye-salt solutions indicates that the dye solutions with mixture
+salt of NaCl and Na2SO4 have the highest ux, followed by dye solutions
+with Na2SO4 and dye solutions with NaCl.
+The dye rejection decreased with increasing ionic strength as shown
+in Fig. 4 (d). This is because the higher ionic strength would shield the
+free charge of membrane, resulting in more dye molecules passing
+through the membrane thus decreasing the dye rejection [32]. Also,
+the salt ions would couple with the charged dye molecules, dispersing
+them more uniformly [21]. Thus, the dye particles may pass through
+the membrane easily, decreasing its dye rejection. Apart from that, the
+salt rejection decreased with increasing salt content due to the in-
+creased concentration gradient across the membrane. The rejection of
+NaCl and Na2SO4 was below 20% and 40%, respectively.
+As shown in Fig. 4 (a), ux decreased with increasing ionic strength
+for the same dye-salt mixtures system. For different dye-salt mixtures,
+the ionic strength sequence was INaCl b I(mixture of NaCl and
+Na2SO4) b INa2SO4 with the same total salt molar concentration and the
+ux increased rst then decreased with increasing ionic strength.
+Alventosa-delara et al. [12] reported that the charge screening of mem-
+brane and more dispersion of dye molecules in presence of salt resulted
+in higher adsorption of dye particles into the membrane pore walls duo
+to the greater passage of dye particles through membrane, leading to
+the decrease in the effective pore size and therefore reduced ux.
+Wang et al. [21] noted that any concentration polarization and mem-
+brane fouling would be reduced due to the increase of dye dispersion
+in the presence of salt and an increase of ux with increasing feed salt
+was observed when treating mixtures of congo red and NaCl. Apparent-
+ly, the ux change caused by ionic strength when comparing different
+dye-salt mixtures was not consistent with results reported by
+Alventosa-delara et al. [12] and Wang et al. [21]. Besides, considering
+the low molecule weight of EBT in relation to the MWCO of the mem-
+brane and the high rejection of dye (N 99%), aggregation of dye and salt-
+ing-out phenomenon may be responsible for the change of ux and high
+rejection of dye.
+The phenomena that the ionic organic dye molecules tend to aggre-
+gate in aqueous solution has been long known [33,34]. This behavior are
+
+generally interpreted as being due to the formation of dimers and
+higher order aggregates [35], being attributed to van der Waals forces,
+ion-dipole and dipole-dipole interactions, and dispersion forces arising
+from delocalized 羽 electrons [36]. The main factors inuencing the
+strength of the dye molecular aggregation was the dye concentration
+and structure, temperature, solvent and electrolyte concentration [37,
+38]. The aggregation of ionic dyes in aqueous solution can be enhanced
+by decreasing temperature, increasing dye concentration, or adding in-
+organic salts or certain substrates to the dye solution [39,40], which re-
+sults in a more serious fouling and therefore the ux was decreased.
+Besides, the dye would even dissolve out from the solution when salt
+concentration is high, which is called salting-out phenomenon and it
+is signicantly affected by salt type, salt concentration and dye concen-
+tration [23,24]. And enhancement of dye aggregation and salting-out
+phenomenon due to presence of high concentration of inorganic salt
+was attributed to decrease of dye particles zeta potential as shown in
+Fig. 6. As shown in Fig. 6, with increasing concentration of salt, the
+zeta potential of dye particles decreased. And the decreased zeta poten-
+tial of dye particles would make dye particles easier to approach and ag-
+gregate. This is also the main reason for the salting-out phenomenon.
+As shown in Fig. 5 (a), the EBT molecules form supper-molecular ag-
+gregates in aqueous due to the hydrogen-bond between molecules and
+this phenomenon is enhanced when pH b 6.3 [41]. For different salt ion,
+Voet [42] reported that the inuence of cation and anions on aggrega-
+tions was attributed to the effect of salt on hydrophobic interactions,
+and put forward lyotropic numbers for different ions (T values for cat-
+ions and N values for anions). Relatively large T values and small N
+values correspond to a large hydrophobic effect and favour dye
+
+Fig. 8. Evolution of ux (a), resistance contribution on ux decline (b), and rejection of dye
+and salt over concentration of dye EBT. Conditions: TMP = 0.30 MPa, CFV = 3 m﹞s 1,
+temperature = 25 ～C, CNaCl = 0.0425 mol﹞L1, CNa2SO4 = 0.0425 mol﹞L1with ceramic
+membrane.
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+109
+
+aggregation. The results showed that SO4
+2 (N = 2) is more effective on
+dye aggregation than Cl (N = 10).
+The pH of feed solutions in these experiments was in the range of 4每
+5. As shown in Fig. 5 (b), the EBT molecules in aqueous solution with pH
+of 4每5 aggregated severely to form dye particles. This was the reason to
+why the membrane showed a high rejection of EBT (shown in Fig. 5
+(d)). When salt was present in EBT solutions, due to the salting-out ef-
+fect, the solubility of dye particles decreased to form bigger particles and
+may even precipitate out from the solutions as shown in Fig. 5 (c), main-
+taining the high rejection of dye. With increasing NaCl content, more
+dye particles were precipitated on the bottom of sampling tube after
+standing for 48 h. But the dye molecules and small dye particles in aque-
+ous could pass through the membrane easily, and due to the enhance-
+ment of charge screening of membrane with increasing ionic strength,
+the dye rejection was decreased slightly.
+As shown in Fig. 4 (b), the different ionic environment in dye solu-
+tions resulted in the different dye particles size distribution. This phe-
+nomenon may be responsible for the change of ux of different salt-
+dye solutions because the dye particles size distribution affects the
+structure of cake layer directly which was related to the ux. As present-
+ed in Fig. 4 (c), many studies [28,30,31] have reported that ux in-
+creased with increase in particle size for monodispersed suspensions
+due to the higher porosity of cake layer formed by the larger particles.
+The deposit layer on the membrane surface consisting of spheres of
+varying size will normally have a smaller porosity than one consisting
+of spheres of a single size [29]. Fig. 4 (b) shows the dye particles size dis-
+tribution of three dye-salt solutions with the same total molar concen-
+tration of salt. It was clear that the dye solution with 0.085 mol﹞L 1
+
+Fig. 9. Evolution of ux (a) and rejection of dye and salt (b) over pH of feed solution.
+Conditions: TMP = 0.30 MPa, CFV = 3 m﹞s 1, temperature = 25 ～C, CEBT =
+500 mg﹞L 1, CNaCl = 0.0425 mol﹞L 1, and CNa2SO4 = 0.0425 mol﹞L 1 with ceramic
+membrane.
+
+NaCl (with the lowest ionic strength) showed a multimodal distribution
+of dye particles. With increasing ionic strength (INaCl b Imix b INa2SO4),
+dye particles size distribution tend to show a bimodal distribution rath-
+er than a multimodal distribution. As shown in Fig. 4 (a), the multimod-
+al distribution of dye particles (dye solution with 0.085 mol﹞L 1 NaCl)
+resulted in the lowest ux. Compared with the dye particles size distri-
+bution of dye solution with presence of 0.085 mol﹞L 1 mixture salt, the
+0.085 mol﹞L 1 Na2SO4 (with the highest ionic strength) caused the dye
+particles to be smaller, forming more compact cake layer and resulting
+in a relative low ux.
+
+3.4. Effect of CNaCl/CNa2SO4 on performance of ceramic membrane
+
+Effect of the molar concentration rate of NaCl and Na2SO4 (CNaCl/
+CNa2SO4) on permeate ux and rejection of dye and salt with total
+molar concentration of 0.085 mol﹞L 1 of salt was investigated as
+shown in Fig. 7. From Fig. 7 (a), it was clearly shown that the ratio of
+CNaCl and CNa2SO4 had a signicant effect on ux. When CNaCl/CNa2SO4
+was above 1, ux increased with increasing concentration of Na2SO4,
+but when CNaCl/CNa2SO4 was below 1, increasing concentration of
+Na2SO4 aggravated the ux. This phenomenon may be attributed to
+the change of the size distribution of dye particles with different ionic
+environment as shown Fig. 7 (b), which directly affected the structure
+of the cake layer. In dye solution with mixture of NaCl and Na2SO4,
+dye particles size distribution changed from a multimodal distribution
+to a bimodal distribution with decreasing CNaCl/CNa2SO4 when CNaCl/
+CNa2SO4 was above 1, resulting in the ux improvement. When CNaCl/
+CNa2SO4 was below 1, the apparent bimodal distribution of dye particles
+was observed and with decreasing CNaCl/CNa2SO4, the dye particles be-
+came smaller, and the amount of small dye particles increased which
+decrease the ux. These results were consist with the results of Chang
+et al. [29] and Fred et al. [43] (More particles with different size and
+smaller particles size in suspension result in lower ux). Considering
+the membrane separation performance, the dye rejection had a slight
+decrease with decreasing CNaCl/CNa2SO4 (increasing ionic strength) due
+to the charge screening effect and more dispersion of the dye molecules
+[21,32]. The rejection of NaCl and Na2SO4 were below 20%, and the re-
+jection of Na2SO4 was higher than that of NaCl due to steric effect.
+
+3.5. Effect of dye concentration on performance of ceramic membrane
+
+The effect of dye concentration on membrane performance was also
+investigated as shown in Fig. 8. It was clear from Fig. 8 (a), as expected,
+that the ux decreased when the dye concentration was increased. Flux
+decline is known to be caused by the concentration polarization phe-
+nomenon and by the deposition of particles within the membrane
+pores or onto its external surface, forming a cake layer which increases
+the ltration resistance [12]. The fouling layer is an additional resistive
+layer to the permeate of dyes [4] and the enhanced dye aggregation
+with increasing dye concentration [35,37] increased the dye rejection
+(Fig. 8 (b)).
+Fig. 8 (b) illustrates the rejection of dye and salts with different dye
+concentration. It was clear from the Fig. 8 (b) that dye rejection had no
+obvious change (all above 99.3%) with a slight increasing trend. The in-
+crease of dye concentration would increase the possibility of aggrega-
+tion of dye, and the aggravation of membrane fouling acted as an
+additional layer prevents the dye from passing through membrane.
+These may be the reason for the high rejection of dye and the increasing
+trend. Fig. 8 (b) also shows that salt rejection decreased with increasing
+dye concentration. This was because when charged solute (dye) was
+present, the accumulation of dye molecules near membrane surface
+would result in the charge screening of membrane, thus decreasing
+the rejection of salt. It was previously reported that the NaCl retention
+decreased greatly when charged solute (glutamic acid) was added, but
+neutral solute (glucose) did not affect the NaCl retention [44].
+
+110
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+3.6. Effect of solution pH on performance of ceramic membrane
+
+References
+
+In this study, the effect of pH of feed solution on membrane perfor-
+mance was investigated. It is shown from Fig. 9 that the pH of the feed
+solution has a signicant inuence on the membrane performance.
+The ux increased (Fig. 9 (a)) and dye rejection decreased (Fig. 9 (b))
+noticeably with increasing pH of feed solutions. The point where the
+pH was 6 was a transitional region where ux and dye rejection
+changed evidently. The change of surface charge of membrane and
+dye state at different pH of feed solution may be responsible for the evo-
+lution of ux and rejection.
+For ceramic membrane used in these experiments, made of TiO2 and
+Al2O3, the isoelectric point (IEP, where membrane surface dose not
+present electrical charge) of membrane is around 6 [45]. The membrane
+surface is positively charged when pH b IEP and negatively charged
+when pH N IEP [12]. The dye, EBT, used in this study is shown to have
+functional group with negative charge as shown in Table 1. When pH
+is below 6, electrostatic attraction between dye molecules and mem-
+brane surface results in the accumulation of dye on the membrane sur-
+face, aggravating the membrane fouling and decreasing ux and dye
+rejection. When pH is above 6, electrostatic repulsion between dye mol-
+ecules and membrane surface decreases the concentration of dye on
+membrane surface, alleviating membrane fouling and increasing dye re-
+jection. However, the dye rejection decreased when pH was above 6
+(Fig. 9 (b)), indicating that the electrostatic interaction mechanism is
+not the sole reason to the change of dye rejection.
+The dye rejection was above 99% when pH was below 6, and a sharp
+decline (to 85%) was observed when pH increased from 6 to 10. The de-
+gree of aggregation of dye molecules at different pH may be responsible
+for this. In the work of Xie et al. [41], the aggregation of EBT was aggra-
+vated when pH was below 6.3. When pH was above 6.3, the dye mole-
+cules aggregation was weakened, resulting in smaller dye particles size.
+Therefore, the dye rejection was decreased due to the passage of smaller
+dye particles through membrane. The enhancement of dye dispersion
+when pH was above 6.3 alleviated the concentration polarization and
+membrane fouling, leading to the increase in the ux at high pH.
+
+4. Conclusions
+
+A ceramic nanoltration (NF) membrane with MWCO of 900 Da and
+two commercial NF DK and DL membranes were used in this study for
+desalination of dye solutions and ceramic NF membrane showed be
+suitable for desalination of dye solutions containing NaCl and Na2SO4 si-
+multaneously due to the satisfactory dye rejection and low rejection of
+both NaCl and Na2SO4. The effect of salt content and type, CNaCl/
+CNa2SO4, dye concentration, and pH of solution on performance of ce-
+ramic NF for desalination of dye EBT was studied. The aggregation of
+dye EBT in aqueous was affected by solution environment (ionic type
+and concentration, dye concentration and pH) and dye solution showed
+different particle size distribution. The results revealed that rejection of
+dye EBT was dominated by the steric effect due to the aggregation of dye
+molecule. Flux and dye rejection was decreased with increasing salt
+content, dye concentration and ux increased and dye rejection de-
+creased with increasing pH of solution. The dye solution with mixture
+of NaCl and Na2SO4 showed a higher ux than single salt. Dye rejection
+was all above 99% when pH was below 6 and rejection of NaCl and
+Na2SO4 were below 20% and 40%, respectively.
+
+Acknowledgements
+
+Financial supports from the National Natural Science Foundation of
+China (No. 21125629, 21306079, and 21276124), the Natural science
+fund for colleges and universities in Jiangsu Province (13KJB530005)
+and the Jiangsu Province Scientic Supporting Project
+(No.
+BE2015695), the Foundation from State Key Laboratory of Materials-
+Oriented Chemical Engineering (ZK201313).
+
+[1] S.C. Yu, C.J. Gao, H.X. Su, M.H. Liu, Nanoltration used for desalination and concen-
+tration in dye production, Desalination 140 (2001) 97每100.
+[2] J. Luo, Y. Wan, Effect of highly concentrated salt on retention of organic solutes by
+nanoltration polymeric membranes, J. Membr. Sci. 372 (2011) 145每153.
+[3] Y. He, G.-M. Li, H. Wang, Z.-W. Jiang, J.-F. Zhao, H.-X. Su, Q.-Y. Huang, Experimental
+study on the rejection of salt and dye with cellulose acetate nanoltration mem-
+brane, J. Taiwan Inst. Chem. Eng. 40 (2009) 289每295.
+[4] Y. He, G. Li, H. Wang, J. Zhao, H. Su, Q. Huang, Effect of operating conditions on sep-
+aration performance of reactive dye solution with membrane process, J. Membr. Sci.
+321 (2008) 183每189.
+[5] A.R. Barnes, The use of sodium thiocyanate for the salting-out of water-soluble dyes,
+J. Soc. Dye. Colour. 112 (1996) 49每52.
+[6] P. Marchetti, M.F.J. Solomon, G. Szekely, A.G. Livingston, Molecular separation with
+organic solvent nanoltration: a critical review, Chem. Rev. 114 (2014)
+10735每10806.
+[7] L.Y. Ng, A.W. Mohammad, C.Y. Ng, A review on nanoltration membrane fabrication
+and modication using polyelectrolytes: effective ways to develop membrane selec-
+tive barriers and rejection capability, Adv. Colloid Interf. Sci. 197 (2013) 85每107.
+[8] T.H. Kim, C. Park, S. Kim, Water recycling from desalination and purication process
+of reactive dye manufacturing industry by combined membrane ltration, J. Clean.
+Prod. 13 (2005) 779每786.
+[9] A.W. Mohammad, R.K. Basha, C.P. Leo, Nanoltration of glucose solution containing
+salts: effects of membrane characteristics, organic component and salts on reten-
+tion, J. Food Eng. 97 (2010) 510每518.
+[10] S.R. Hosseinabadi, K. Wyns, A. Buekenhoudt, B. Van der Bruggen, D. Ormerod, Per-
+formance of Grignard functionalized ceramic nanoltration membranes, Sep. Purif.
+Technol. 147 (2015) 320每328.
+[11] X.W. Da, J.J. Wen, Y.W. Lu, M.H. Qiu, Y.Q. Fan, An aqueous sol-gel process for the fab-
+rication of high-ux YSZ nanoltration membranes as applied to the nanoltration
+of dye wastewater, Sep. Purif. Technol. 152 (2015) 37每45.
+[12] E. Alventosa-deLara, S. Barredo-Damas, E. Zuriaga-Agusti, M.I. Alcaina-Miranda, M.I.
+Iborra-Clar, Ultraltration ceramic membrane performance during the treatment of
+model solutions containing dye and salt, Sep. Purif. Technol. 129 (2014) 96每105.
+[13] K.M. Majewska-Nowak, Application of ceramic membranes for the separation of dye
+particles, Desalination 254 (2010) 185每191.
+[14] E. Zuriaga-Agust赤, E. Alventosa-deLara, S. Barredo-Damas, M.I. Alcaina-Miranda, M.I.
+Iborra-Clar, J.A. Mendoza-Roca, Performance of ceramic ultraltration membranes
+and fouling behavior of a dye-polysaccharide binary system, Water Res. 54 (2014)
+199每210.
+[15] R. Weber, H. Chmiel, V. Mavrov, Characteristics and application of new ceramic
+nanoltration membranes, Desalination 157 (2003) 113每125.
+[16] T. Van Gestel, C. Vandecasteele, A. Buekenhoudt, C. Dotremont, J. Luyten, R. Leysen,
+B. Van der Bruggen, G. Maes, Salt retention in nanoltration with multilayer ceramic
+TiO2 membranes, J. Membr. Sci. 209 (2002) 379每389.
+[17] Z. Wang, Y.M. Wei, Z.L. Xu, Y. Cao, Z.Q. Dong, X.L. Shi, Preparation, characterization
+and solvent resistance of gamma-Al2O3/alpha-Al2O3 inorganic hollow ber
+nanoltration membrane, J. Membr. Sci. 503 (2016) 69每80.
+[18] K. Majewska-Nowak, J. Kawiecka-Skowron, Applicability of ceramic membranes to
+the removal of organic dyes from aqueous solutions, Ochrona Srodowiska 31
+(2009) 55每60.
+[19] K. Majewska-Nowak, J. Kawiecka-Skowron, Ceramic membrane behaviour in anion-
+ic dye removal by ultraltration, Desalin. Water Treat. 34 (2011) 367每373.
+[20] J. Lin, W. Ye, H. Zeng, H. Yang, J. Shen, S. Darvishmanesh, P. Luis, A. Sotto, B. Van der
+Bruggen, Fractionation of direct dyes and salts in aqueous solution using loose
+nanoltration membranes, J. Membr. Sci. 477 (2015) 183每193.
+[21] L. Wang, N. Wang, G. Zhang, S. Ji, Covalent crosslinked assembly of tubular ceramic-
+based multilayer nanoltration membranes for dye desalination, AICHE J. 59 (2013)
+3834每3842.
+[22] X. Wei, S. Wang, Y. Shi, H. Xiang, J. Chen, Application of positively charged composite
+hollow-ber nanoltration membranes for dye purication, Ind. Eng. Chem. Res. 53
+(2014) 14036每14045.
+[23] J. Cho, J.K. Cho, J. Lee, D. Lee, C. Park, S. Kim, Optimization of salting-out crystalliza-
+tion for an efcient in situ separation of synthetic anthraquinone- and azo-type re-
+active dyes, Sep. Purif. Technol. 68 (2009) 138每144.
+[24] S.I. Cheong, B. Kim, H. Lee, J.W. Rhim, Physical adsorption of water-soluble polymers
+on hydrophobic polymeric membrane surfaces via salting-out effect, Macromol. Res.
+21 (2013) 629每635.
+[25] P. Chen, Z. Zhong, F. Liu, W. Xing, Cleaning ceramic membranes used in treating
+desizing wastewater with a complex-surfactant SDBS-assisted method, Desalination
+365 (2015) 25每35.
+[26] K. Solon, X. Flores-Alsina, C.K. Mbamba, E.I.P. Volcke, S. Tait, D. Batstone, K.V.
+Gernaey, U. Jeppsson, Effects of ionic strength and ion pairing on (plant-wide)
+modelling of anaerobic digestion, Water Res. 70 (2015) 235每245.
+[27 ] W .R . Bowen ,
+J .S . We l foo t , Mode l l ing the per formance o f memb rane
+nano ltrat ion - cr it ica l assessment and model deve lopment , Chem . Eng . Sc i .
+57 (2002) 1121每1137.
+[28] H. Zhang, J. Gao, T. Jiang, D. Gao, S. Zhang, H. Li, F. Yang, A novel approach to evaluate
+the permeability of cake layer during cross-ow ltration in the occulants added
+membrane bioreactors, Bioresour. Technol. 102 (2011) 11121每11131.
+[29] J. Chang, L. Tsai, S. Vigneswaran, Experimental investigation of the effect of particle
+size distribution of suspended particles on microltration, Water Sci. Technol. 34
+(1996) 133每140.
+[30] E. Tarleton, R.J. Wakeman, Understanding ux decline in crossow microltration.
+Part 1-effects of particle and pore size, Chem. Eng. Res. Des. 71 (1993) 399每410.
+
+P. Chen et al. / Desalination 404 (2017) 102每111
+
+111
+
+[31] J. Wang, S. Pan, D. Luo, Characterization of cake layer structure on the microltration
+membrane permeability by iron pre-coagulation, J. Environ. Sci. 25 (2013) 308每315.
+[32] P. Narong, A.E. James, Sodium chloride rejection by a UF ceramic membrane in rela-
+tion to its surface electrical properties, Sep. Purif. Technol. 49 (2006) 122每129.
+[33] P. Hillson, R. McKay, Aggregation of dye molecules in aqueous solution a polaro-
+graphic study, Trans. Faraday Soc. 61 (1965) 374每382.
+[34] C. Ouyang, S. Chen, B. Che, G. Xue, Aggregation of azo dye Orange I induced by poly-
+ethylene glycol in aqueous solution, Colloids Surf. A Physicochem. Eng. Asp. 301
+(2007) 346每351.
+[35] A.R. Monahan, N.J. Germano, D.F. Blossey, Aggregation of arylazonaphthols. II. Steric
+effects on dimer structure in water, J. Phys. Chem. 75 (1971) 1227每1233.
+[36] G. Alberghina, R. Bianchini, M. Fichera, S. Fisichella, Dimerization of Cibacron Blue
+F3GA and other dyes: inuence of salts and temperature, Dyes Pigments 46
+(2000) 129每137.
+[37] H. Yao, T. Isohashi, K. Kimura, Electrolyte-induced mesoscopic aggregation of
+thiacarbocyanine dye in aqueous solution: Counterion size specicity, J. Phys.
+Chem. B 111 (2007) 7176每7183.
+
+[38] Y. Zhang, J. Xiang, Y. Tang, G. Xu, W. Yan, Aggregation behaviour of two
+thiacarbocyanine dyes in aqueous solution, Dyes Pigments 76 (2008) 88每93.
+[39] I. Struganova, Dynamics of formation of 1,1 ∩-diethyl-2,2 ∩-cyanine iodide J-aggre-
+gates in solution, J. Phys. Chem. A 104 (2000) 9670每9674.
+[40] M.M. Wang, G.L. Silva, B.A. Armitage, DNA-templated formation of a helical cyanine
+dye J-aggregate, J. Am. Chem. Soc. 122 (2000) 9977每9986.
+[41] Y.-h. XIE, S. ZHANG, S.-w. LI, Resonance light scattering of EBT and its mechanism, J.
+Henan Normal Univ. (Nat. Sci.) 38 (2010) 130每133.
+[42] A. Voet, Quantative Lyotropy, Chem. Rev. 20 (1937) 169每179.
+[43] L.F. Fu, B.A. Dempsey, Modeling the effect of particle size and charge on the structure
+of the lter cake in ultraltration, J. Membr. Sci. 149 (1998) 221每240.
+[44] J. Luo, Y. Wan, Desalination of efuents with highly concentrated salt by
+nanoltration: from laboratory to pilot-plant, Desalination 315 (2013) 91每99.
+[45] M. Kosmulski, A literature survey of the differences between the reported isoelectric
+points and their discussion, Colloids Surf. A Physicochem. Eng. Asp. 222 (2003)
+113每118.
+

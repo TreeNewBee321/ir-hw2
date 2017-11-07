@@ -1,0 +1,4366 @@
+Consistent sensor, relay, and link selection in wireless sensor networks 
+
+R
+
+Roc赤o Arroyo-Valles 
+a , 1 , Andrea Simonetto 
+
+b , 2 , 
+
+
+
+, Geert Leus 
+
+c 
+
+a Departamento de Teor赤a de la Seal y Comunicaciones, Universidad Carlos III de Madrid, Avda. de la Universidad 30, Legan谷s 28911, Madrid, Spain 
+b Applied Mathematics Department, Universit谷 catholique de Louvain, Louvain-la-Neuve, Belgium 
+c Faculty of Electrical Engineering, Mathematics and Computer Science, Delft University of Technology, Delft 2628 CD, The Netherlands 
+
+article
+
+info
+
+
+Article history: 
+Received 11 November 2016 
+Revised 27 April 2017 
+Accepted 28 April 2017 
+Available online 4 May 2017 
+
+Keywords: 
+Sensor selection 
+Link and relay selection 
+Convex relaxations 
+Sparsity 
+Resources optimization 
+Wireless sensor networks 
+
+abstract
+
+In wireless sensor networks, where energy is scarce, it is inecient to have all nodes active because they 
+consume a non-negligible amount of battery. In this paper we consider the problem of jointly selecting 
+sensors, relays and links in a wireless sensor network where the active sensors need to communicate 
+their measurements to one or multiple access points. Information messages are routed stochastically in 
+order to capture the inherent reliability of the broadcast links via multiple hops, where the nodes may 
+be acting as sensors or as relays. We aim at nding optimal sparse solutions where both, the consis- 
+tency between the selected subset of sensors, relays and links, and the graph connectivity in the selected 
+subnetwork are guaranteed. Furthermore, active nodes should ensure a network performance in a pa- 
+rameter estimation scenario. Two problems are studied: sensor and link selection; and sensor, relay and 
+link selection. To solve such problems, we present tractable optimization formulations and propose two 
+algorithms that satisfy the previous network requirements. We also explore an extension scenario: only 
+link selection. Simulation results show the performance of the algorithms and illustrate how they provide 
+a sparse solution, which not only saves energy but also guarantees the network requirements. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Nowadays, wireless sensor networks are developed to pro- 
+vide fast, cheap, reliable, and scalable hardware solutions for a 
+large number of industrial applications, ranging from surveillance 
+[1,2] and tracking [3,4] to exploration [5,6] , monitoring [7,8] , and 
+other sensing tasks [9] . From the software perspective, an increas- 
+ing effort is spent on designing algorithms that can provide high 
+reliability with limited computation, communication, and energy 
+requirements for the sensor nodes. 
+In this paper, we consider a network of battery-powered sen- 
+sors that take measurements related to some important environ- 
+mental parameter and that need to communicate their measure- 
+ments to one or multiple access points (APs), or sinks, which are 
+responsible for processing the gathered information. Communica- 
+tion with the APs is achieved through multihop routes dened via 
+a connectivity graph which considers the sensors＊ communication 
+range. 
+Resources (mainly energy) in this network are scarce so it is 
+inecient to have all sensors active. Some sensors may not be in- 
+formative enough and hardly contribute to achieve a minimum de- 
+sired network performance; nonetheless, if active, they would con- 
+sume a non-negligible amount of resources. Moreover, communica- 
+tion efforts are among the most energy demanding tasks in wire- 
+less sensor networks [10] and they should be minimized by prop- 
+erly selecting not only the suitable sensors but also the proper ac- 
+tive links. Knowledge of the network topology should be exploited 
+in order to make a better selection of the links that are in charge of 
+conveying the information because information may be degraded 
+over long distances and transmissions should be avoided to reduce 
+energy expenditure. 
+With the reduction of energy expenditure in mind, in this paper 
+we consider a distributed estimation scenario in wireless sensor 
+networks, where each sensor takes local measurements of a phe- 
+nomenon of interest at a particular rate and communicates them 
+in a multihop way to one or multiple APs. In this scenario, we 
+study the problem of judiciously and consistently selecting the op- 
+timal minimum set of sensors and links that ought to be active in 
+the network, so that a prescribed network performance (e.g., the 
+mean squared error of the estimation of the parameter of inter- 
+est) as well as graph connectivity among the selected active sen- 
+sors are guaranteed. Only the measurements taken by the active 
+sensors must be reported back to the APs via the active sensors 
+and active links. This is the reason for requiring graph connectivity 
+among the selected active sensors. Moreover, the optimal sensing 
+rates supported by the active sensors are calculated. We analyze 
+the problem from a stochastic point of view, where information 
+messages are routed stochastically thereby capturing the inherent 
+reliability of the broadcast wireless links. 
+
+1.1. State of the art 
+
+The concept of sensor selection has been extensively studied in 
+the context of parameter and state estimation. The resulting min- 
+imum cardinality combinatorial problem has been tackled by us- 
+ing different tools, from convex relaxations, e.g., [11每13] , to sub- 
+modularity [14每16] and frame theory [17,18] . These tools have their 
+pros and cons. More along the lines of this paper, in [19] not only 
+is the best subset of sensors selected that communicate with the 
+fusion center but also the collaboration scheme that allows each 
+sensor to combine its raw measurements with those coming from 
+other sensors according to certain weights. 
+Stochastic routing in multihop networks has been introduced 
+in the literature in order to cope with the random nature of wire- 
+less links [ 20 , 21 ]. Transmissions are based on a reliability matrix, 
+where each element of the matrix reects the probability of satis- 
+factorily transmitting and receiving a message between two given 
+sensors. In [22] , the authors dene the concept of connectivity 
+within a context of mobile robotic networks in terms of commu- 
+nication rates, and based on this denition, the authors propose a 
+distributed algorithm to nd the optimal operating points of wire- 
+less networks when the link metric is the link reliability. The work 
+of [23] considers the problem of optimizing the routing and sen- 
+sor selection given a total budget constraint. Yet, the approach pre- 
+sented in [23] is heuristic and divides the estimation and routing 
+problems, by tackling them in two separated phases, which could 
+cause additional suboptimality of the solution. 
+Often times, a distinction is made between sensor and relay 
+nodes. Relay nodes help the source nodes (sensing nodes) in for- 
+warding the messages to the APs: they receive a message from the 
+source nodes, process it and forward it towards the intended APs. 
+Relaying is especially benecial when there is no line-of-sight path 
+between the source and the destination. This distinction between 
+sensor types may be motivated, for instance, by economical rea- 
+sons (relay devices may be cheaper than sensors given that their 
+functionality is more limited), or by design prerequisites (sensors 
+need to achieve a certain performance while relays do not be- 
+cause they are only limited to forwarding the information). Previ- 
+ous state-of-the-art works are only based on proposing relay selec- 
+tion schemes (e.g., [24,25] , and references therein): given a source 
+sensor and a sink, they try to choose the best relays among a col- 
+lection of available ones based on different criteria. Other works 
+are aimed at optimally placing wireless relay nodes and sinks [26] . 
+
+1.2. Our contributions 
+
+All the aforementioned state-of-the-art works either face the 
+sensor selection problem or the stochastic routing, but what has 
+never been addressed in the literature before is the challenge of 
+jointly selecting the optimal minimum set of active sensors (and 
+their corresponding sensing rates) which satises a prescribed es- 
+timation performance metric and consistently nding the optimal 
+
+multihop routes so that the selected subgraph is connected. Hence, 
+in this paper we do not focus on devising new methods to solve 
+selection problems or on comparing them, instead we are mainly 
+interested in formulating a stochastic framework for consistent 
+sensor and link selection. Even the closest prior work [19] , which 
+is a ※dual§ problem w.r.t. ours, differs from this paper in several 
+ways: in [19] all sensors can directly communicate with the fusion 
+center (i.e., it is not a multihop scenario so the graph connectivity 
+is not a problem), communication links are established based on 
+inter-sensor collaboration before transmitting a processed message 
+to the fusion center, and the optimal transmission rates of trans- 
+mitting sensors are not determined. 
+The problem at hand becomes even more challenging when 
+there is a distinction between sensor and relay nodes. In a sce- 
+nario where there are the two types of nodes, we want to con- 
+sistently determine which of the nodes, placed at well-determined 
+positions, should play the role of sensors (and hence their sensing 
+rate should be determined) and which ones the role of relays while 
+guaranteeing both a prescribed network performance and connec- 
+tivity in the selected subgraph. To nd an optimal solution, a joint 
+source and relay selection should be performed, which implicitly 
+implies to activate suitable links. ( Fig. 1 ) 
+The main contributions of this paper can be summarized as fol- 
+lows: 
+
+1. From a stochastic point of view and in a multihop scenario, 
+we formulate a tractable optimization problem to select consis- 
+tently the optimal subsets of sensors (with their sensing rates) 
+and links that guarantee both, a required network performance 
+and graph connectivity in the selected subnetwork. To solve 
+this problem, we propose a sparsity-aware algorithm based on 
+a convex relaxation ( Sections 2 每4 ). 
+2. The previous framework is also well-suited for the joint selec- 
+tion of sensors, relays and links (which is not the case for other 
+approaches in the literature, e.g., [23] ). Under a slight modica- 
+tion of the previous optimization problem and applying a con- 
+vex relaxation technique, we propose another sparsity-aware 
+consistent sensor-relay-and-link selection algorithm. This algo- 
+rithm assigns the optimal sensing rates to the active sensors 
+and ensures network connectivity as well as a prescribed net- 
+work performance ( Sections 5 and 6 ). 
+3. Finally, we also extend the work to a special case where only 
+link selection is considered ( Section 7 ). 
+Contributions (1)每(3) rely on a reformulation of the problems 
+as 
+convex optimization problems. This allows for ecient and 
+well performing algorithms. Different approaches, e.g. [27] , would 
+yield more complex problem formulations, which rely on dedicated 
+non-convex solvers. This is avoided here. In addition, based on the 
+fact that a 
+relaxation is leveraged, distributed algorithms can be 
+envisioned (see Remark 1 ). 
+Numerical simulation results support our claims and illustrate 
+a satisfactory performance of the proposed algorithms. As a last 
+note, we highlight that the presented algorithms are exposed in a 
+static framework, i.e., given a certain network, we provide a selec- 
+tion strategy. Yet, they could be implemented in a dynamical way, 
+by repeating their execution, so to balance the energy level of the 
+active and non-active sensors and relays (see Remark 3 ). 
+Notation: Notation is where possible standard: we indicate with 
+boldfaced small letters, such as x , real vectors, whereas capital 
+boldfaced letters, e.g. A , represent real matrices. Vector p -norms 
+are indicated with 
+ p , while p -norms for matrices are intended 
+element-wise , e.g., 
+is the sum of the absolute values of the el- 
+ements of the matrix A . Pseudo-norms, such as the 0-norm, follow 
+the same notation. 
+
+﹞  3)
+ 3)
+
+ 3)
+ 3)
+
+ A 
+
+ 1 
+
+34 
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+Fig. 1. General structure of the paper with the three problem formulations and relations among them. 
+
+2. Problem formulation 
+
+High-level problem description: In this paper, we are facing the 
+problem of consistently selecting the smallest subset of sensors 
+and links out of all available ones such that a certain performance 
+measure and network connectivity (which ensures a path from the 
+active sensors to the APs) is guaranteed. The motivation behind se- 
+lecting a low number of sensors (and subsequently, an appropriate 
+reduced amount of links) comes from the need of minimizing the 
+economical and communication costs in wireless sensor networks. 
+Clearly, this saving should not jeopardize the performance or the 
+network connectivity. Communication between the active sensors 
+and the APs as well as a network performance must be guaran- 
+teed. 
+We consider a static wireless sensor network composed of J 
+sensor nodes and K access points (APs) or sinks. At this point, we 
+do not consider any relays yet. We denote with 
+ K }
+1 
+ J}
+ the set of sensors and access points, where i 
+ are the indexes corresponding to the sensor nodes and 
+ K }
+i 
+ are the indexes corresponding to the 
+APs. The network topology is determined by the physical loca- 
+tions of the sensors and APs, collected in the stacked vector x 
+[ x 
+] 
+ where the vector x i 
+indicates the posi- 
+tion of sensor or AP i . 
+
+V
+
+=
+
+{
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+ J,
+
+ J 
+
++
+=
+
+,
+
+.
+,
+
+.
+.
+
+.
+.
+
+,
+.
+
+ J 
+
++
+
+﹋
+
+V
+
+ s 
+
+{
+
+ 1 
+
+,
+
+﹋
+
+V
+
+ AP 
+
+=
+
+{
+
+ J 
+
++
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ J 
+
++
+
+=
+
+T 
+1 
+
+,
+
+. . .
+
+,
+
+ x 
+
+T 
+J 
+
+,
+
+ x 
+
+T 
+J+1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ x 
+
+T 
+
+J+
+
+ K 
+
+T ,
+
+2.1. Communication network 
+
+Sensors need to communicate their measurement to the APs 
+in a multi-hop fashion (due to energy/power constraints). An im- 
+portant feature of this paper is that we can only use active sen- 
+sors to transmit messages. We model the communication qual- 
+ity among sensors and APs using a link reliability metric, denoted 
+)
+≒ J ) or an AP (otherwise) receives successfully a mes- 
+ which represents the probability that sen- 
+sor p (if p 
+sage sent from sensor i . We model this probability as a smooth 
+non-increasing function with compact support, and in particular, 
+≡ d 
+(0)
+(d )
+R 
+ 1 and R 
+ 0 for all d 
+ for a predened cut-off dis- 
+tance 
+d . 
+The link reliability metric induces a specic undirected com- 
+munication graph on the wireless sensor network: whenever R ip 
+is nonzero, there is a possible link between sensor i and sensor or 
+AP p . We describe this communication graph in terms of the edge 
+(i,
+ p)
+set 
+ given by 
+(V ,
+ and we de- 
+note the graph as 
+
+as R i p 
+
+:=
+
+ R 
+
+( 3)
+
+ x i 
+
+ x p 
+
+ 3)
+
+,
+
+=
+
+=
+
+,
+
+E ,
+
+E
+
+=
+G
+
+{
+
+,
+
+ i 
+ . 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V |
+
+ i 
+
+=
+
+ p,
+
+ R i p 
+
+>
+
+ 0 
+
+}
+
+,
+
+=
+
+E )
+
+2.2. Sensing 
+
+Sensors take measurements of a parameter 
+cording to the linear measurement model, 
+
+牟 ﹋
+
+ R 
+
+m , m 
+
+ 8) J , ac- 
+
+y i 
+
+=
+
+ a 
+
+T 
+i 
+
+牟 +
+
+ n i 
+ i 
+
+,
+
+﹋
+
+V
+
+ s 
+
+,
+
+(1) 
+
+where the vectors a i 
+m represent the regressors, while n i 
+is a 
+Gaussian noise term with mean 0 and covariance 
+. Sensor i ac- 
+quires measurements y i 
+with a rate r i 
+(we assume that the max- 
+imum relative rate r i 
+is known and xed, while the relative rate r i 
+ [0, 1] is a design parameter). If r i 
+ the node will not take any 
+measurements and will not be active. 
+As we mentioned, the collected measurements need to be com- 
+municated back to the APs in a multi-hop fashion. The APs are in 
+charge of combining the measurements y i 
+, coming from different 
+sensors at different rates, to estimate the value of the parameter 
+牟 . The quality of the estimate can be evaluated a priori based on 
+which sensors are measuring (more specically their regressors a i 
+and noise variances 
+) and their rates. Examples of such qual- 
+ity metrics are rate versions of the mean square error (MSE), the 
+worst case error variance, or the volume of the condence ellip- 
+soid [11] . For instance, if we select the MSE-rate as quality metric 
+and assume that the noise experienced at different sensors is un- 
+correlated, then we would have 
+ :=
+ tr 
+
+﹋
+
+ R 
+
+考 2 
+i 
+
+r i 
+
+﹋
+
+=
+
+ 0 
+
+,
+
+考 2 
+i 
+
+f (r 
+)
+
+ 2)  3)
+
+i 
+
+﹋V
+
+ s 
+
+r i r i a i a 
+T 
+i 
+
+/考 2 
+
+i 
+
+ 4)1 
+
+,
+
+(2) 
+
+where we have collected the relative rates in r 
+T . Re- 
+mark that if a sensor is not active, its relative rate is zero. The 
+higher the value of f ( r ), the higher the MSE-rate of the estimate, 
+and vice versa. Other types of function f ( r ) can be found in [11,13] , 
+both for uncorrelated and correlated noise. In order to keep the 
+presentation as general as possible, we will not specify which qual- 
+ity metric we select: we will simply write the metric as the func- 
+tion f ( r ). 
+
+=
+
+ [ r 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ r J ] 
+
+2.3. Connectivity modeling 
+
+Before formalizing the problem mathematically, we need to in- 
+troduce how we will model the communication links and the in- 
+duced connectivity. In this paper, we use a stochastic point of view 
+and we use the stochastic routing framework of [22] . 
+In our multihop wireless network, messages will be routed 
+stochastically, i.e., sensor nodes select a neighbor, either a sensor 
+or an AP, to forward the message according to a certain probability. 
+A set of variables T ip 
+ [0, 1] will denote the probability that node 
+i selects node p , either a sensor or an AP, as a destination of the 
+
+﹋
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+35 
+
+transmitted messages. In this sense, the variables T ip 
+can be seen 
+as the probability that node i selects the link that joins sensors i 
+℅ (J 
+ K )
+and p . The matrix T , of size J 
+ gathers all these probabil- 
+ity values. Further, the matrix T needs to satisfy a certain number 
+of constraints. First, if either one of the sensors i or p is not ac- 
+tive, then T ip 
+must be zero: this models the fact that if a sensor 
+is not active then it cannot send or receive messages. This can be 
+formulated as 
+
++
+
+,
+
+T i p 
+
+=
+
+ 0 iff r i r p 
+
+=
+
+ 0 
+ i 
+
+,
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V ,
+
+(3) 
+
+since T ip 
+will be nonzero if and only if both r i 
+and r p are nonzero, 
+meaning that the sensors are active (we can x r p 
+ 1 for APs, 
+without loss of generality). Second, since we are dealing with link 
+probability values, the sum of all link probabilities of an active sen- 
+sor should be at most 1: 
+≒ 1 
+
+=
+
+ 3)
+
+p﹋V
+
+T i p 
+
+,
+
+ i 
+
+﹋
+
+V
+
+ s 
+
+.
+
+(4) 
+
+We notice that we can use i 
+ s in condition (4) , since non-active 
+sensors have T i p 
+ 0 due to condition (3) , and therefore (4) is au- 
+tomatically satised. 
+To complete the formulation, we want to ensure the delivery of 
+messages to the APs, which is achieved by guaranteeing network 
+connectivity among the active sensors and APs. To that aim, let R 0 
+be the transmission rate of the sensors. Then the effective trans- 
+mission rate in the active link between nodes i and p is R 0 
+(re- 
+call that R ip 
+, x p ) is the link reliability between sensors or 
+APs). We consider normalized rates by making R 0 
+ and we fur- 
+ther assume that all sensors have the same transmission rate R 0 
+, 
+which is an easy-to-lift constraint. 
+Each sensor stores messages in a queue between the genera- 
+tion or arrival from other sensors and their transmission. An active 
+sensor i , apart from generating messages locally at rate r i 
+ also 
+receives messages from other sensors p with an active link T pi 
+. 
+Thus, the aggregate rate at which messages arrive at sensor node i 
+is 
+
+﹋
+
+V
+
+=
+
+R ip 
+
+:=
+
+ R ( x i 
+
+=
+
+ 1 
+
+,
+
+r i 
+
+,
+
+R pi 
+
+r 
+
+in 
+i 
+
+=
+
+ r i r i 
+
++
+
+ 3)
+
+p﹋V
+
+ s 
+
+T pi R pi 
+
+.
+
+(5) 
+
+In a similar way, the rate at which sensor i sends messages to other 
+nodes p , which may be sensors or APs, is given by 
+
+r 
+
+out 
+i 
+
+=
+
+ 3)
+
+p﹋V
+
+T i p R i p 
+
+.
+
+(6) 
+
+If we consider that the average rate at which messages leave the 
+sensor＊s queue is higher than the rate at which messages arrive at 
+≡ r 
+a sensor, i.e., r 
+ i.e., 
+
+out 
+i 
+
+in 
+i 
+
+,
+
+r i r i 
+
++
+
+ 3)
+
+p﹋V
+
+ s 
+
+T pi R pi 
+
+≒
+
+ 3) 
+
+p﹋V
+
+T i p R i p 
+
+,
+
+ i 
+
+﹋
+
+V
+
+ s 
+
+,
+
+(7) 
+
+then the queue empties often with probability one and there is an 
+almost sure guarantee that the messages are delivered to the AP 
+[22] (a formal statement of this fact will be given in the following). 
+Problem statement: Given the measurement model for the dif- 
+ferent sensors and a prescribed performance measure value 
+0, we want to nd the relative rates r 
+ [0, 1] 
+J , which select the 
+minimum subset of sensors, and the probabilistic routing matrix 
+T 
+ [0 
+ 1] 
+ which selects the minimum subset of links, so that 
+≒ 污 is satised and the messages are 
+the performance measure f ( r ) 
+delivered to the APs. This can be stated as 
+
+污 >
+
+﹋
+
+﹋
+
+,
+
+℅(J 
+J 
+
++
+
+ K )
+
+ ,
+
+minimize 
+
+r 
+
+,
+
+ T 
+
+汐1 
+
+ 3)
+
+ r 
+
+ 3)
+
+ 0 
+
++
+
+汐2 
+
+ 3)
+
+ T 
+
+ 3)
+
+ 0 
+
+(8a) 
+
+subject to 
+
+r i 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ i 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(8b) 
+
+(3)
+
+,
+
+(4)
+
+,
+
+(7)
+
+(8c) 
+
+f (r 
+)
+
+≒ 污 ,
+
+(8d) 
+
+where the non-negative scalars 
+and 
+determine the impor- 
+tance of the sensors and the links. If 
+ then the problem 
+becomes link selection with stochastic routing, while for 
+the problem is sensor selection. We denote as ( r 
+, T 
+) any optimal 
+couple determined by the solution of problem (8). 
+We can readily notice that (8) is a nonconvex program, which 
+makes nding any optimal couple ( r 
+, T 
+) computationally expen- 
+sive in practice. In this paper, we are interested in nding an ap- 
+proximate solution of (8) by a suitable convex relaxation. 
+
+汐
+
+1 
+
+汐
+
+2 
+汐1 
+
+=
+
+ 0 
+
+,
+
+汐2 
+
+=
+
+ 0 
+
+,
+
+
+
+
+
+
+
+
+
+3. Convex relaxation 
+
+We relax the nonconvex program (8) by substituting the 
+- 
+pseudo norm, with the 
+norm, and by substituting the nonconvex 
+constraint (3) with the convex surrogate 
+≒ min 
+These operations transform the original problem (8) into 
+
+ 2)
+
+ 0 
+
+ 2)
+
+ 1 
+
+T i p 
+
+{
+
+ r i 
+ r p 
+
+,
+
+}
+
+,
+
+ i 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V .
+
+(9) 
+
+minimize 
+
+r 
+
+,
+
+ T 
+
+汐1 
+
+ 3)
+
+ r 
+
+ 3)
+
+ 1 
+
++
+
+汐2 
+
+ 3)
+
+ T 
+
+ 3)
+
+ 1 
+
+(10a) 
+
+subject to 
+
+r i 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ i 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(10b) 
+
+(9)
+
+,
+
+(4)
+
+,
+
+(7)
+
+(10c) 
+
+f (r 
+)
+
+≒ 污 .
+
+(10d) 
+
+With the assumption that the now continuous function f : R 
+R is convex in r (as it happens with all the aforementioned qual- 
+ity measurement examples [11] ), then the program (10) is convex. 
+In addition, for the mentioned examples of f ( r ), (10) is a semidef- 
+inite program, which makes its solution ecient to compute poly- 
+(
+)
+nomially with off-the-shelf software. We indicate with 
+ any 
+possible solution of (10). 
+(
+It is important to note that the couple 
+ is only an approx- 
+imation of the sought solution ( r 
+, T 
+). However, we will see in 
+the simulation section that 
+(
+)
+ is usually a sparsely enough ap- 
+proximate solution. An additional feature of the approximate cou- 
+ple 
+(
+)
+ is that it is feasible w.r.t. the constraint set of the origi- 
+nal problem (8), and therefore it does not have to be mapped into 
+a different set (as it usually happens in relaxed sensor selection 
+problems). The reason for this is that we are working with rates 
+and not Boolean variables. 
+A strategy to increase the sparsity of the approximate couple 
+)
+ which has been proposed in [28] , is to use a reweighted 
+minimization mechanism. In this paper, we also use this strategy, 
+which goes as follows. Consider the relaxed problem (10), with the 
+different cost function 
+ where w 
+and W 
+ are a weighting vector and matrix, respectively. 
+The weights can be determined so to push small components of r 
+and T to zero, and boost big ones to one. In particular, initialize 
+而 ≡ 0 solve the problem 
+w 
+ 1 and W 
+ then for each 
+
+J ↙
+
+  r 
+  T 
+
+,
+
+  r 
+  T 
+
+,
+
+)
+
+
+
+
+
+  r 
+  T 
+
+,
+
+  r 
+  T 
+
+,
+
+(
+
+  r 
+  T 
+
+,
+
+,
+
+ 2)
+
+ 1 
+
+汐1 
+
+ 3)
+
+ w 
+
+ 2) r 
+
+ 3)
+
+ 1 
+
++
+
+汐2 
+
+ 3)
+
+ W 
+
+ 2) T 
+
+ 3)
+
+ 1 
+
+,
+
+﹋
+
+ R 
+
+J 
+
+﹋
+
+ R 
+
+℅(J 
+J 
+
++
+
+ K )
+
+0 
+i 
+
+=
+
+0 
+i p 
+
+=
+
+ 1 
+
+,
+
+minimize 
+
+r 
+
+,
+
+ T 
+
+汐1 
+
+ 3)
+
+ w 
+
+而
+
+ 2) r 
+
+ 3)
+
+ 1 
+
++
+
+汐2 
+
+ 3)
+
+ W 
+
+而
+
+ 2) T 
+
+ 3)
+
+ 1 
+
+(11a) 
+
+subject to 
+
+r i 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ i 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(11b) 
+
+36 
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+(9)
+
+,
+
+(4)
+
+,
+
+(7)
+
+(11c) 
+
+f (r 
+)
+
+≒ 污 ,
+
+(11d) 
+而 ≡ 1 are w 
+ and whose weights for 
+)
+ with 
+ a small posi- 
+
+whose solution is 
+(
+)
+
+  r 
+
+而 ,
+
+  T 
+
+而 )
+
+,
+
+而
+i 
+
+=
+
+w 
+tive constant. 
+This iterative (reweighted) procedure delivers sparser solutions, 
+as we will show in the simulation results. We have summarized 
+the resulting sparse sensor and link selection (SSLS) iterative algo- 
+rithm in Algorithm 1 . 
+
+而 1 
+i 
+
+/
+
+( +
+
+  r 
+
+而 1 
+i 
+
+ and W 
+
+而
+i p 
+
+=
+
+ W 
+
+而 1 
+i p 
+
+/
+
+( +
+
+  T 
+
+而 1 
+i p 
+
+,
+
+Algorithm 1 Sparse sensor and link selection. 
+Require: Number of iterations N , reweighting tolerance 
+≡ 0 , link importance 
+≡ 0 . 
+sor importance 
+1: Set the weighting vector and matrix as w 
+ 1 and W 
+all i 
+ 1 do 
+ 0 to N 
+Solve the convex program(11) with off-the-shelf interior 
+point methods (e.g., SDPT3[29] or SeDuMi[30]). Let the so- 
+(
+而 )
+lution be 
+而 +1 and W 
+4: Compute the new weights w 
+
+ >
+
+ 0 , sen- 
+
+汐1 
+
+汐2 
+0 
+i 
+
+=
+
+0 
+i p 
+
+=
+
+ 1 for 
+
+﹋
+V
+而 =
+
+ s and p 
+
+﹋
+
+V
+
+2: for 
+3: 
+
+  r 
+
+而 ,
+
+  T 
+
+ . 
+
+而 +1 as 
+而
+i p 
+而
+i p 
+
+w 
+
+而 +1 
+i 
+
+=
+
+w 
+
+而
+i 
+
+ +
+
+  r 
+
+而
+i 
+
+,
+
+ W 
+
+而 +1 
+i p 
+
+=
+
+W 
+
+ +
+
+  T 
+
+5: end for 
+(
+6: Output the solution couple 
+
+  r 
+
+N ,
+
+  T 
+
+N )
+
+Connectivity guarantees of Algorithm 1 : We notice that due 
+to (7) , the solution coming from Algorithm 1 guarantees that the 
+measurements acquired at the sensors are delivered at the APs, i.e., 
+each of the active sensors has a path back to at least one AP. To 
+formally prove this statement, consider (7) : 
+
+r i r i 
+
++
+
+ 3)
+
+p﹋V
+
+ s 
+
+T pi R pi 
+
+≒
+
+ 3)
+
+p﹋V
+
+T i p R i p 
+
+,
+
+ i 
+
+﹋
+
+V
+
+ s 
+
+,
+
+this constraint has to be true for each active sensor (the one for 
+≒ 0 for the not active ones (due to 
+which r i 
+ 0), and it reads 0 
+constraint (9) , i.e., in this case also T pi 
+are 0). Since it has 
+to be true for all active sensors, each of them has to send out more 
+rate than what it receives (and the difference is given by its mea- 
+surement rate), that is 
+
+>
+
+and T ip 
+
+ 3)
+
+p﹋V
+
+ s 
+
+T pi R pi 
+
+<
+
+ 3)
+
+p﹋V
+
+T i p R i p 
+
+,
+
+ i 
+
+﹋
+
+{
+
+ j 
+
+﹋
+
+V
+
+ s 
+
+|
+
+ r j 
+
+>
+
+ 0 
+
+}
+
+.
+
+Therefore, rst: no active sensor can be a sink (it has to send out 
+more than it receives). Second: there cannot be loops of active sen- 
+sors not connected to a sink. In fact, if there were, since the rate 
+augments along the loop, constraint (7) would not be satised for 
+at least a pair of active sensors connected together. Thus, the only 
+possibility is that eventually each sensor has a path to a sink. This 
+is also what we observe in simulations. 
+
+ 2)
+
+Remark 1. (Distributed algorithms) Although the algorithms in this 
+paper are centralized, one could devise distributed algorithms in 
+a standard fashion. For instance, Problems (10) and (19) with the 
+choice for f ( r ) of (2) t the general structure presented in [29] . In 
+particular one needs to consider the local decision variables x i 
+as 
+)
+the vector 
+ . In this case, with the use of consensus- 
+based dual decomposition each sensor could decide their on/off
+strategy and to whom to communicate. Nonetheless, rst, the re- 
+weighting procedure is not trivial to implement in this case, and 
+second, the sensors could spend a considerable amount of battery 
+power to decide their on/off strategy. We believe that developing 
+
+(r i 
+
+,
+
+{
+
+ T i p 
+
+}
+
+ p﹋V
+
+ s 
+
+distributed and yet ecient (i.e., power-aware) algorithms for sen- 
+sor selection is still an open research area, which is left for future 
+investigations. 
+
+Remark 2. (Stochasticity of the reliability matrix R ip 
+) Although here 
+we assume to know each element R ip 
+in a deterministic sense, one 
+could also think of estimating R ip 
+online. If then one possesses a 
+pdf for R ip 
+, one could replace the deterministic constraint (7) with 
+a stochastic variant of it. Another approach in the estimation 
+would be the one of [30] . Finally, a third approach would consider 
+a time-varying online algorithm to track R ij 
+as it (possibly) varies 
+in time, which is in line with the research proposed in [31] . 
+
+Remark 3. (Energy eciency) Energy eciency can also be consid- 
+ered in the proposed approach. For instance, one could re-run the 
+selection algorithm to take into account that the battery charge of 
+the devices has changed, so to keep a balance in the usage of the 
+whole sensor network. A way to include battery charge into the 
+optimization problem is, e.g., to initialize the weights w 
+＊s not to 1 
+but to the inverse of the battery level: 1 if fully charged, 
+ if out 
+of charge. 
+
+0 
+i 
+
+﹢
+
+4. Numerical results for sensors and links 
+
+In this section, we assess the performance of the proposed SSLS 
+algorithm in terms of the amount of resources that are used, i.e., 
+the number of both, active sensors and links. We also verify the 
+consistency and the subgraph connectivity. 
+We consider an estimation scenario where sensors are ran- 
+domly deployed according to a uniform distribution in a square 
+area of side 5 units. The regression matrix, A 
+
+=
+
+ 5)
+
+a 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ a J 
+
+ 6) 2)
+
+ A 
+
+﹋
+
+R
+
+J x m ,
+
+ is drawn from a zero-mean Gaussian distribution with vari- 
+ance 1. The variance of the noise is the same at all sensors, 
+1 
+SNR 
+ where SNR is set to 0 dB. We use the cost f ( r ) of (2) and 
+污 in (11d) to 0.5. The link reliability metric that 
+set the parameter 
+we use in the simulations is given by: 
+
+考
+
+i 
+
+=
+
+/
+
+﹟
+
+,
+
+R i p 
+
+=
+
+
+ 
+ 
+
+1 
+if 0 
+(2 
+if d 
+0 
+otherwise 
+≒ 汕 ≒ 6) and d the com- 
+汕 the power attenuation factor (2 
+with 
+munication radius. We have considered 
+ 2 and d 
+ 74 [32] . 
+The number of iterations in the reweighted 
+minimization is 
+empirically set to 30 to trade-off sparsity of the solution and com- 
+putational time. Due to the application of the reweighted 
+min- 
+imization mechanism, only the sensors and links with relatively 
+high acquisition rate and link probability are active. We round off
+to 0 the link probabilities and sensor rates lower than a suciently 
+﹞ 10 
+4 . Further, we consider 
+汛 , which is set to 
+small constant 
+ 1 . Notice that rounding off the probabilities to 0 could 
+incur in a loss of connectivity. This is however not likely in prac- 
+tice, due to the reweighting procedure that makes sure that the 
+non-zero probabilities have values well above the selected thresh- 
+汛 . The experimental results support this claim, since we have 
+old 
+not witnessed any loss in connectivity. 
+Fig. 2 is an example of a 100-node sensor network with a single 
+AP. The parameter to estimate has dimension m 
+ 2 and the max- 
+imum rate is r 
+ 7 . Active sensors are colored in green while the 
+AP is in black. The results show the sparsity of the solution since 
+only a few sensors (4%) and links (0.072%) are active. It can be also 
+seen that the selected subgraph is connected and there is always 
+a path between the active sensors and the AP. The solution also 
+satises the other constraints of the optimization problem. Fig. 3 
+shows the relative rates of the active sensors. 
+Next, our purpose is to show average performance results. 
+Hence, we run 250 Monte Carlo simulations for each network con- 
+guration. The number of deployed sensors, J , varies from 30 to 
+
+ 1 
+2 
+1 
+2 
+
+(
+
+ 3)
+
+ x i 
+
+x p 
+x p 
+
+ 3)
+ 3)
+
+d 
+
+)
+)
+
+汕
+2 
+
+≒ 3)
+≒ 3)
+
+ x i 
+ x i 
+
+ x p 
+ x p 
+
+ 3)
+ 3)
+
+<
+
+ d 
+
+  3)
+
+ x i 
+
+d 
+
+汕
+2 
+
+<
+
+ 2d 
+
+(12) 
+
+汕 =
+
+=
+
+ 1 
+
+.
+
+ 2)
+
+ 1 
+
+ 2)
+
+ 1 
+
+汛 =
+
+ 2 
+
+汐1 
+
+=
+
+汐2 
+
+=
+
+=
+
+=
+
+ 0 
+
+.
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+37 
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+0
+
+0.5
+
+1
+
+ 58
+1.5
+
+ 45
+2
+
+2.5
+
+3
+
+3.5
+ 29
+ 66
+ 34
+
+4
+
+4.5
+
+5
+
+  1
+
+  2
+ 67
+ 35
+
+ 42
+  3
+ 43
+
+ 69
+  4
+ 32
+ 71
+
+  5
+ 80
+
+ 55
+  6
+
+  7
+ 21
+ 22
+ 88
+ 62
+ 94
+
+ 44
+  8
+
+  9
+
+ 10
+
+ 11
+
+ 12
+
+ 13
+
+ 14
+ 90
+ 72
+
+ 18
+ 15
+
+ 39
+ 84
+100
+ 86
+ 16
+ 78
+
+ 17
+
+ 19
+ 99
+
+ 20
+ 73
+
+ 36
+ 23
+
+ 24
+
+ 25
+
+ 26
+ 65
+
+ 27
+
+ 28
+ 47
+
+ 30
+
+ 31
+
+ 33
+ 68
+
+ 51
+ 37
+
+ 38
+ 98
+
+ 40
+ 56
+
+ 41
+
+ 46
+ 75
+ 74
+ 53
+
+ 48
+ 76
+
+ 87
+ 59
+ 49
+
+ 50
+
+ 52
+
+ 54
+
+ 57
+
+ 60
+
+ 61
+
+ 63
+
+ 64
+
+ 70
+
+ 81
+ 77
+
+ 79
+
+ 89
+ 82
+
+ 83
+
+ 85
+
+ 91
+
+ 92
+
+ 93
+
+ 95
+
+ 96
+
+ 97
+
+101
+
+y
+
+-
+
+a
+
+x
+
+i
+
+s
+
+x-axis
+
+Fig. 2. Active links and sensors in a one-AP network for J 
+
+=
+
+ 100 nodes. 
+
+25
+
+32
+
+51
+
+79
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+r
+
+i
+
+Sensor index i
+
+Fig. 3. Relative rates of the active sensors. 
+
+100 and there is one AP. Two values of r are considered, 0.4 and 
+0.7. Simulations are run considering that r is identical for all nodes 
+in the sensor network. Also, we consider two values for the dimen- 
+sion of the parameter to estimate, m 
+ 2 and m 
+ 4 . Two metrics 
+are considered to assess the performance of the networks. They try 
+to measure the amount of resources that are used in the network. 
+Since we are dealing with acquisition rates, let us rst dene 
+the total relative acquisition rate of the whole network as the sum 
+of the acquisition rates of the sensors in the network, i.e., 
+ r 
+. 
+In order to make the performance measurement independent of 
+the number of sensors in the network, we dene the percentage 
+of the total relative acquisition rate of the whole network, P trr , as 
+
+=
+
+=
+
+ 10)
+
+i 
+
+﹋V
+
+ s 
+
+N 
+i 
+
+P trr 
+
+=
+
+ 10)
+
+i 
+
+﹋V
+
+ s 
+
+ r 
+
+N 
+i 
+
+J 
+
+﹞ 100 
+
+.
+
+(13) 
+
+Recall that the relative acquisition rate  r 
+ [0 
+ 1] . Note that only 
+the active sensors contribute to the sum since their acquisition rate 
+is different from 0, so this measure gives us information about the 
+percentage of active sensors. 
+
+N 
+i 
+
+﹋
+
+,
+
+Fig. 4. Average performance and its standard deviation for m 
+ 2 and for different 
+amount of sensors and r . (For interpretation of the references to color in this gure, 
+the reader is referred to the web version of this article.) 
+
+=
+
+Fig. 5. Average performance and its standard deviation for m 
+ 4 and for different 
+amount of sensors and r . (For interpretation of the references to color in this gure, 
+the reader is referred to the web version of this article.) 
+
+=
+
+≒ 1 for i 
+Considering that 
+ T 
+ we next dene the per- 
+centage of the aggregate network link probability, P alp 
+, as 
+﹞ 100 
+
+ 10)
+
+p﹋V
+
+N 
+i p 
+
+﹋
+
+V
+
+ s 
+
+,
+
+P alp 
+
+=
+
+ 10)
+
+i 
+
+﹋V
+
+ s 
+
+ 10)
+
+p﹋V
+
+ T 
+
+N 
+i p 
+
+J 
+
+.
+
+(14) 
+
+Note that only active sensors and APs contribute to the sum, 
+since the remaining link probabilities are 0. In this case, the metric 
+is related to the percentage of active links in the network. In both 
+cases, the lower the metrics are, the fewer resources (in terms of 
+active sensors and links) are used. 
+Figs. 4 and 5 show the average performance and the standard 
+deviation for m 
+ 2 and m 
+ respectively, for different amounts 
+of deployed sensors and the two values of r . Even for the worst 
+case scenario, i.e., for r 
+ 4 and a 30-node network, the P trr 
+values are 8% and 5.5% for m 
+ 2 and 22% and 17% for 
+m 
+ respectively (which represents a small percentage of used 
+resources). 
+In order to verify if those metric values correspond to the ac- 
+tivation of a low number of sensors with high relative rate values 
+or correspond to a high number of active sensors with low rela- 
+tive rate values, Figs. 6 and 7 illustrate the average percentage of 
+
+=
+
+=
+
+ 4 
+
+,
+
+=
+
+ 0 
+
+.
+
+and P alp 
+
+=
+
+=
+
+ 4 
+
+,
+
+38 
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+later increases slightly starting from networks of 80 nodes. Even 
+though networks with 80每100 nodes have between 6% to 8% of ac- 
+tive nodes (i.e., 7 sensors), those networks have a slightly higher 
+amount of active resources than in networks of 30 nodes (10%, ap- 
+proximately 3 nodes). However, in general, the total number of ac- 
+tive sensors stay low in comparison to the total number of sensors, 
+which corroborates the sparsity of the solution. 
+
+4.2. Case r 
+
+=
+
+.
+
+ 0 
+
+ 4 (dark and light blue bars) 
+
+=
+
+.
+
+=
+
+ 2 
+
+ 0 
+
+=
+
+Let us analyze the behavior of the metrics for r 
+ 4 and m 
+(analogous conclusions are raised for networks with m 
+ 4 ). In 
+Fig. 4 , P trr values decrease from 7.5% at networks of 30 nodes 
+to 2.7% at networks of 70 nodes, and from that point increases 
+slightly up to a value of 3.2% at networks of 100 nodes. If we now 
+have a look at Fig. 6 , the percentage of active sensors goes from 
+11.8% at 30-node networks (i.e., 3.5 sensors) to 8% at 50-node net- 
+works (i.e., 4 sensors) and later increases until reaching a value of 
+22% at 90-node networks (i.e., 20 nodes). While the number of ac- 
+tive nodes is similar in networks with a low amount of sensors 
+(30每50 nodes), it increases slightly for denser networks (60每100 
+nodes). In this latter case, sensors are closer to each other so that 
+the reliability values among sensors are similar and more sensors 
+may be activated. First, although not reported here, we have ob- 
+served that increasing the number of reweighting iterations does 
+help in the latter case in reducing the amount of active sensors, at 
+the cost of increasing the computational time requirements. Sec- 
+ond, we will see how this is not an issue when relays are consid- 
+ered. 
+In case of the percentage of active links, the values are below 
+0.7% for m 
+ 2 and 2% for m 
+ 4 for all the network sizes. Hence, 
+the networks are sparse in the amount of active links. 
+From the gures, it can be appreciated that, for a given num- 
+ber of nodes, the percentage of used resources is lower in case of 
+estimating a parameter of 2 dimensions than one of 4 dimensions 
+(compare the metric values as well as the percentage of active sen- 
+sors and links). Furthermore, the percentage of used resources (ac- 
+tive sensors and links) is lower in case of considering r 
+Subgraph connectivity and consistency have been also checked 
+for every run. All the activated sensors have a path to the AP. Fur- 
+thermore, connectivity of the network in the sense of (7) is guar- 
+anteed. 
+
+ 0 
+ 7 . 
+
+=
+
+=
+
+=
+
+.
+
+5. Sensor and relay selection 
+
+When dealing with wireless sensor networks which are de- 
+ployed in large areas, it is often useful to employ relays to facil- 
+itate the transmission of measurements back to the APs. In this 
+spirit, we also consider the possible presence of relays. In partic- 
+ular, from here on, all the nodes deployed in the sensor network 
+may act as sensors or as relays. Note that sensors can also act as 
+a relay while sensing, as discussed in the previous section. Our 
+goal is to consistently determine which of the nodes, which are 
+placed at well-dened positions, should play the role of sensors 
+and which ones the role of relays while guaranteeing both a pre- 
+scribed network performance and connectivity in the selected sub- 
+graph. Notice that relays have less energy requirements that sen- 
+sors, and therefore the distinction between sensors and relays is 
+benecial to further reduce the overall energy consumption. No- 
+tice also that, as expressed in the introduction, the proposed solu- 
+tion may be reiterated in time, to assign different roles at different 
+times. 
+In order to model the possibility for a node to be acting as 
+a sensor or as a relay, we introduce a new Boolean variable 
+ and we dene that a node i 
+ a sensor or relay, is on 
+ 1 and it is off, otherwise ( 
+ 1 for APs). From the nodes 
+
+﹋
+=
+
+糸 ﹋
+
+ 0 
+ 1 
+
+=
+
+J+
+
+V
+
+if 
+
+{
+
+}
+
+ K ,
+
+糸
+
+,
+
+ s 
+
+,
+
+糸 p 
+
+i 
+
+=
+
+Fig. 6. Average percentage of active sensors and links and its standard deviation 
+for m 
+ 2 and for different amount of sensors and r . (For interpretation of the ref- 
+erences to color in this gure, the reader is referred to the web version of this 
+article.) 
+
+Fig. 7. Average percentage of active sensors and links and its standard deviation for 
+m 
+ 4 and for different amount of sensors and r . 
+
+=
+
+=
+
+=
+
+active sensors and links. For networks of 30 nodes and r 
+ the 
+average percentage of active sensors and links is 12% (i.e., 3.6 sen- 
+sors) and 0.55% for m 
+ 2 and 30% (i.e., 9 sensors) and 1.7% for 
+m 
+ respectively. Thus, this result corroborates that the amount 
+of used resources is conservative, i.e., there is a low percentage of 
+active sensors with high relative rates because the P trr values are 
+the highest in Figs. 4 and 5 . 
+
+ 0 
+ 4 
+
+ 4 
+
+,
+
+.
+
+,
+
+=
+
+4.1. Case r 
+
+=
+
+.
+
+ 0 
+
+ 7 (yellow and red bars) 
+
+From Figs. 4 and 5 it can be seen that the values of the two 
+metrics decrease with the increase of the number of sensors (re- 
+gardless of m ), reaching lower values than those of the network of 
+30 nodes. 
+Let us examine the scenario with m 
+ 2 (analogous conclusions 
+hold for networks with m 
+ 4 ). If we also analyze the trend in 
+the percentage of active sensors ( Fig. 6 ), it rst decreases and 
+
+=
+
+=
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+39 
+
+that are on, we will know they are sensors when their r i 
+positive, while the others are acting as relays. 
+We also reformulate the constraints accordingly. Con- 
+straint (3) gets reformulated as 
+≒ min 
+
+is strictly 
+
+T i p 
+
+{
+
+糸i 
+
+,
+
+糸 p 
+
+}
+
+,
+
+ i 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V ,
+
+(15) 
+
+as the relays can exchange information. Notice that the constraint 
+has a simplied form w.r.t. (3) , since the variable 
+糸 is Boolean. In 
+addition, we need a constraint that makes sure that a sensor has a 
+positive relative rate only when its node is activated, that is 
+
+r i 
+
+≒ 糸i 
+
+,
+
+ i 
+
+﹋
+
+V
+
+ s 
+
+.
+
+(16) 
+
+Finally, constraint (7) can be carried over as it is, 
+
+r i r i 
+
++
+
+ 3)
+
+p﹋V
+
+ s 
+
+T pi R pi 
+
+≒
+
+ 3)
+
+p﹋V
+
+T i p R i p 
+
+,
+
+ i 
+
+﹋
+
+V
+
+ s 
+
+,
+
+(17) 
+
+With this in place, the problem we want to solve is how to con- 
+sistently select minimum rates, relays, and links so to guarantee a 
+certain network performance and connectivity. We can formulate 
+this as 
+
+minimize 
+
+r 
+
+,
+
+ T 
+
+,糸
+
+汐1 
+
+ 3)
+
+ r 
+
+ 3)
+
+ 0 
+
++
+
+汐2 
+
+ 3)
+
+ T 
+
+ 3)
+
+ 0 
+
++
+
+汐3 
+
+ 3)
+
+糸  3)
+
+ 0 
+
+(18a) 
+
+subject to 
+
+r i 
+糸i 
+
+﹋
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+﹋
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+{
+
+ 0 
+ 1 
+
+,
+
+}
+
+,
+
+ i 
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(18b) 
+
+(4)
+
+,
+
+(15)
+
+,
+
+(16)
+
+,
+
+(17)
+
+,
+
+(18c) 
+
+f (r 
+)
+
+≒ 污 .
+
+(18d) 
+
+Any possible solution of this problem is indicated as the triplet 
+( r 
+, T 
+, 
+). This problem is a nonconvex mixed-integer program- 
+ming problem and therefore nding any triplet ( r 
+, T 
+, 
+) would 
+be in general too computationally expensive. As done for the case 
+where the relays are not present, we relax the problem to a con- 
+vex one. In particular, we substitute the 
+pseudo-norm with the 
+convex surrogate 
+norm, and we let the Boolean vector 
+糸 become 
+real and live in the set [0 
+ 1] 
+ K . With this, we arrive to the convex 
+problem 
+
+
+
+
+
+糸
+
+
+
+
+
+糸
+
+ 2)
+
+ 0 
+
+ 2)
+
+ 1 
+
+,
+
+J+
+
+minimize 
+
+r 
+
+,
+
+ T 
+
+,糸
+
+汐1 
+
+ 3)
+
+ r 
+
+ 3)
+
+ 1 
+
++
+
+汐2 
+
+ 3)
+
+ T 
+
+ 3)
+
+ 1 
+
++
+
+汐3 
+
+ 3)
+
+糸  3)
+
+ 1 
+
+(19a) 
+
+subject to 
+
+r i 
+糸i 
+
+﹋
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+﹋
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ i 
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(19b) 
+
+(4)
+
+,
+
+(15)
+
+,
+
+(16)
+
+,
+
+(17)
+
+,
+
+(19c) 
+
+f (r 
+)
+
+≒ 污 ,
+
+(19d) 
+
+whose solution is indicated with 
+ . Once again, the approx- 
+(
+imate triplet 
+ is going to be different in general from the 
+sought one ( r 
+, T 
+, 
+). An important difference with problem (8) 
+糸: 
+and its relaxed version is the presence of the Boolean vector 
+this makes the triplet 
+(
+ in general unfeasible w.r.t. the con- 
+straints of the nonconvex problem (18) (the reason is that  
+does 
+not have to be either 0 or 1). In this paper, we consider to project 
+ 
+to 1 any time  
+ 0 . In this way, the new triplet becomes feasi- 
+ble w.r.t. constraints of the nonconvex problem (18). 
+
+(
+
+  r 
+  T 
+  
+
+,
+
+,
+
+糸 )
+
+  r 
+  T 
+  
+
+,
+
+,
+
+糸 )
+
+
+
+
+
+糸
+
+  r 
+  T 
+  
+
+,
+
+,
+
+糸 )
+
+糸
+
+i 
+
+糸
+
+i 
+
+糸
+
+i 
+
+>
+
+Algorithm 2 Sparse sensor, relay, and link selection. 
+Require: Number of iterations N , reweighting tolerance 
+ 0 , sen- 
+≡ 0 , link importance 
+≡ 0 , relay impor- 
+sor importance 
+≡ 0 . 
+tance 
+1: Set the weighting vectors and matrix as w 
+W 
+ 1 for all i 
+ 1 do 
+ 0 to N 
+Solve the convex program 
+
+ >
+
+汐1 
+
+汐2 
+
+汐3 
+
+0 
+i 
+
+=
+
+ 1 , v 
+
+0 
+i 
+
+=
+
+ 1 , and 
+
+0 
+i p 
+2: for 
+3: 
+
+=
+而 =
+
+﹋
+
+V
+
+ s and p 
+
+﹋
+
+V
+
+minimize 
+
+r 
+
+,
+
+ T 
+
+,糸
+
+汐1 
+
+ 3)
+
+ w 
+
+而
+
+ 2) r 
+
+ 3)
+
+ 1 
+
++
+﹋
+﹋
+
+汐2 
+
+ 3)
+
+ W 
+
+而
+
+ 2) T 
+
+ 3)
+
+ 1 
+
++
+
+汐3 
+
+ 3)
+
+ v 
+
+而
+
+ 2) 糸  3)
+
+ 1 
+
+subject to r i 
+
+﹋
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+ [0 
+ 1] 
+
+,
+
+,
+
+糸i 
+
+ [0 
+ 1] 
+(15)
+(16)
+≒ 污 ,
+
+,
+
+,
+
+ i 
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(4)
+f (r 
+)
+
+,
+
+,
+
+,
+
+(17)
+
+,
+
+with off-the-shelf interior point methods (e.g., SDPT3[29] or 
+SeDuMi[30]). Let the solution be 
+(
+糸 而 )
+而 +1 and W 
+4: Compute the new weights w 
+W 
+
+  r 
+
+而 ,
+
+  T 
+
+而 ,
+
+  
+
+ . 
+
+而 +1 , v 
+而
+而 +1 
+i p 
+i p 
+而
+i p 
+
+而 +1 as 
+而 +1 
+i 
+
+w 
+
+而 +1 
+i 
+
+=
+
+w 
+
+而
+i 
+
+ +
+
+  r 
+
+而
+i 
+
+,
+
+ W 
+
+=
+
+ +
+
+  T 
+
+,
+
+ v 
+
+=
+
+v 
+
+而
+i 
+
+ +
+
+  
+
+糸 而
+
+i 
+
+5: end for 
+6: Project  
+
+糸 N 
+i 
+
+to 1, if  
+
+糸 N 
+i 
+
+>
+
+ 0 . 
+
+7: Output the solution triplet 
+(
+
+  r 
+
+N ,
+
+  T 
+
+N ,
+
+  
+
+糸 N )
+
+In Algorithm 2 , we summarize the procedure for consistent 
+sparse sensor, relay, and link selection (SSRLS), where we have 
+used once again the sparse-enhancement procedure of reweight- 
+ing. 
+Connectivity guarantees of Algorithm 2 : We formalize now the 
+claim that from each active sensor there exists a path (formed 
+by relays and other active sensors) that goes to an AP. The ar- 
+gument that we use to prove this claim is the same as the 
+one that we have used to prove the connectivity guarantees of 
+Algorithm 1 (where no relay were considered). Consider (17) : this 
+constraint has to be true for each active sensor and active relay 
+≒ 0 for the 
+(the one for which r i 
+ 0 and 
+ 0), and it reads 0 
+not active ones (due to constraints (15) and (16) ). Since it has to 
+be true for all active sensors and relays, the sensors have to send 
+out more rate than what they receive (and the difference is given 
+), while the relays can send out exactly what they receive. 
+Therefore, rst: no active sensor or relay can be a sink. Second: 
+there cannot be loops containing active sensors not connected to 
+a sink, since the rate augments along the loop and (17) would not 
+be satised for at least one pair of connected active elements (ei- 
+ther sensor每sensor, sensor每relay, or relay每relay). Third: there can- 
+not be loops containing only active relays. The reason for the last 
+claim is that, although (17) would be satised along the loop for 
+for all pairs of active relays ( i, p ) on the loop, the so- 
+lution T i p 
+ 0 is the optimal one, given the selected cost function. 
+Which induces all the relays in the loop to become inactive. Thus, 
+the only possibility is that eventually each sensor has a path to a 
+sink, and no relays are used without purpose. 
+
+=
+
+糸
+
+i 
+
+>
+
+by r i 
+r i 
+
+any T i p 
+
+=
+
+ T pi 
+
+=
+
+ 2)
+
+6. Numerical results with relays 
+
+Similarly to the sensor and link selection scenario, in this sec- 
+tion we assess the performance of the new SSRLS algorithm in 
+terms of the amount of resources that are used. We also verify the 
+consistency and the subgraph connectivity. 
+
+40 
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+Fig. 9. Average performance and its standard deviation for m 
+amount of sensors and r . 
+
+=
+
+ 2 and for different 
+
+Fig. 8. Selected sensors, relays and links in a two-AP 50-sensor network where m 
+4 . (For interpretation of the references to color in this gure, the reader is referred 
+to the web version of this article.) 
+
+=
+
+=
+
+=
+
+=
+
+=
+
+ 4 
+
+=
+
+.
+
+ 0 
+
+汐2 
+
+汐3 
+
+汐1 
+
+Once again, we consider an estimation scenario, where the pa- 
+3 as those used in the sensor and link se- 
+rameters are the same 
+lection case ( Section 4 ). We consider 
+ 1 . Fig. 8 is an 
+example of a 50-node sensor network with two APs with m 
+and r 
+ 4 . The active sensors are colored in green, the active re- 
+lays in blue and the APs are colored in black. Looking at the g- 
+ure, it is evident that the obtained solution is sparse. From the 50 
+nodes (excluding the APs), 5 are selected as sensors and 3 as re- 
+lays. The amount of active links (i.e., those that have a probability 
+value higher than 0) is 8%. Observe the connectivity of the selected 
+subgraph, where there is a path from each active sensor to the APs 
+via the relays, where messages are routed stochastically according 
+to the link probability. The solution also satises the other con- 
+straints of the optimization problem. 
+Next, and following a parallel analysis to the one made in the 
+sensor and link selection scenario, we show average performance 
+results. The number of sensors varies from 30 to 100, r is 0.4 or 
+0.7 and m is either 2 or 4. 250 Monte Carlo simulations are run 
+for each network conguration. The metrics to assess the network 
+performance are the ones exposed in Section 4 . To check the spar- 
+sity in the number of relays, we also evaluate the percentage of 
+active relays in the network. 
+Figs. 9 and 10 show the average performance and the standard 
+deviation, for m 
+ 2 and m 
+ respectively, for different num- 
+bers of deployed sensor nodes and the two values of the maxi- 
+mum acquisition rate. From these gures it can be seen that the 
+values decrease when the number of sensor nodes in- 
+creases, going from a value of 6.3% ( m 
+ r 
+ 4 ) or 19% ( m 
+r 
+ 4 ) for networks of 30 nodes to values lower than 2% ( m 
+r 
+ 4 ) or 5% ( m 
+ r 
+ 4 ) for networks of 100 nodes. To verify 
+if those metric values correspond to the activation of a few sen- 
+sors with high relative rate value, Figs. 11 and 12 illustrate the av- 
+erage percentage of active sensors and links. For r 
+ the av- 
+erage percentage of sensors goes from approximately 8% (i.e., 2.4 
+
+P trr and P alp 
+
+ 4 
+ 2 
+
+ 0 
+ 0 
+
+=
+=
+
+=
+=
+
+ 0 
+ 4 
+
+,
+
+ 4 
+
+,
+
+ 2 
+
+,
+
+ 4 
+
+=
+
+.
+
+ 0 
+
+=
+
+.
+
+ 0 
+
+=
+
+.
+
+,
+
+=
+
+.
+.
+
+=
+
+=
+
+=
+
+,
+,
+
+Fig. 10. Average performance and its standard for m 
+of sensors and r . 
+
+=
+
+ 4 and for different amount 
+
+3 In particular, the number of iterations in the reweighted 
+﹞ 10 
+to 30 while 
+
+4 . 
+
+汛 =
+
+ 2 
+
+ 2)
+
+ 1 minimization is set 
+
+Fig. 11. Average percentage of active sensors and links and its standard deviation 
+for m 
+ 2 and for different amount of sensors and r . 
+
+=
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+41 
+
+Fig. 12. Average percentage of active sensors and links and its standard deviation 
+for m 
+ 4 and for different amount of sensors and r . 
+
+=
+
+Fig. 13. Average percentage of active relays and its standard deviation for different 
+amount of sensors, r and m . 
+
+=
+
+=
+
+.
+
+,
+
+=
+
+=
+
+=
+
+=
+
+ 0 
+ 4 
+
+sensors for m 
+ 2 ) or 22% (i.e., 6.5 sensors for m 
+ 4 ) in 30-node 
+networks to around 2% (i.e., 2 sensors for m 
+ 2 ) or 5% (i.e., 5 sen- 
+sors for m 
+ 4 ) in 100-node networks, respectively. Fig. 13 also il- 
+lustrates the percentage of active relays for sensor networks of dif- 
+ferent sizes, r and m . For m 
+ 4 and r 
+ 2 relays (or 5.5% of 
+the nodes) are active in 30-sensor networks, while 1 relay (0.9%) 
+is active in 100-sensor networks. 
+The conclusions from these gures are two-fold: First, indepen- 
+dently of the total number of available nodes, the algorithm ro- 
+bustly selects a similar number of sensors, relays and links to sat- 
+isfy the constraint on the measurement errors. This strongly sug- 
+gests that the optimality of the sensing, given the constraints, is 
+achieved. Second, the active sensors are those with high relative 
+rates. And even more, we obtain sparse solutions not only in the 
+amount of active sensors but also in the amount of active links and 
+relays. 
+As observed for the sensor and link selection scenario, the de- 
+mand of resources (percentage of active sensors, links and relays) 
+is less when considering higher maximum rates (see Figs. 11 每13 ). 
+Also, for a given number of nodes, the amount of used resources 
+grows whenever the dimension of the parameter to estimate in- 
+
+Fig. 14. Selected sensors, relays and links in a one-AP 100-sensor network where 
+m 
+ 4 and r 
+
+ 0 
+ 7 . 
+
+=
+
+=
+
+.
+
+creases. Besides, the variability in the results of the sensor, relay 
+and link selection problem is lower than in the sensor and link se- 
+lection problem. This can be observed by taking into account the 
+standard deviation in the gures. All in all, it appears that when 
+one considers also the presence of relays, one obtains better per- 
+formance in terms of reduced active resources than in the case of 
+no relays. A more in depth characterization is left as future re- 
+search. 
+Therefore, the SSRLS algorithm provides a consistent solution 
+to the sensor and relay selection problem by always nding a con- 
+nected path among the active sensors, relays and APs no matter 
+the size of the network and the dimension m of the parameter to 
+estimate, and which satises the network performance constraint 
+for the active sensors. 
+However, the following question may arise: are the active sen- 
+sors obtained after solving the SSRLS algorithm the same as those 
+that would be active in a problem which aims at selecting the min- 
+imum number of sensors and their corresponding acquisition rates 
+to satisfy a certain MSE-rate, i.e., solve the relaxed version of the 
+≒ 污 , where 
+following problem: minimize r 
+subject to f ( r ) 
+汛 (have an acquisition rate different from 
+sensors that satisfy r i 
+0) are selected? 
+Clearly, the answer is no. As an example, compare the active 
+sensors in Figs. 14 and 15 , for a one-AP 100-sensor network where 
+m 
+ 4 and r 
+ 7 . The solution provided by the SSRLS algorithm 
+not only takes into account the sensors with the highest acquisi- 
+tion rates (to satisfy the MSE-rate constraint), but also selects in 
+a robust, coherent and consistent way relays and probability links 
+such that the active sensors are connected to the APs (it consid- 
+ers the sensor deployment, too). On the contrary, the solution pro- 
+vided by the sensor selection problem does not consider the spa- 
+tial distribution of sensors, and the only issue that matters is the 
+selection of the sensors with the best acquisition rates. Obviously, 
+this does not mean that both solutions do not activate some com- 
+mon sensors. In the previous example, sensors with indexes 26, 49, 
+74 and 93 are selected in both solutions. 
+
+=
+
+=
+
+ 0 
+
+ 3)
+
+ 3)
+
+ r 
+
+>
+
+ 0 
+
+.
+
+42 
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+Fig. 15. Selected sensors in a one-AP 100-sensor network where m 
+
+=
+
+ 4 and r 
+
+=
+
+ 0 
+ 7 . 
+
+.
+
+7. Link selection 
+
+This last scenario is a particular case of the general one where 
+we assume that all sensors are active, acquire measurements with 
+relative rate at least r i 0 
+, and communicate with the APs in a multi- 
+hop fashion. The problem that remains is to determine the proba- 
+bilistic routing matrix T , that selects the minimum subset of links 
+so that a certain constraint is satised. In particular, we want to 
+ensure network integrity, dened according to [22] as the ability 
+of the network to support the desired communication rates in a 
+certain network topology. 
+As in the general scenario, the network needs to satisfy the ow 
+inequality constraint given by (7) in order to guarantee that mes- 
+sages are delivered to the APs. Furthermore, it is also required that 
+sensors communicate their measurements with the APs at a nom- 
+inal rate of r i 0 
+messages per time unit. This means that the rel- 
+ative acquisition rate should satisfy the following inequality: r i 
+. Thus, we aim at nding the appropriate relative rates r 
+ [0, 
+J and the sparse probabilistic routing matrix T . 
+1] 
+The network＊s objective function to be optimized is the so- 
+cial utility value of the optimization variables, U i 
+) for the rel- 
+ative rate r i 
+) for the links T ip 
+, which is dened as 
+U (r i 
+)
+)
+ . Following [22] , we measure the 
+utility value associated to the rate as U (r i 
+)
+)
+ log 
+ which penal- 
+izes small rates r i 
+, and the utility value of the links as V i p 
+)
+T 
+. 
+Then, the optimization problem that we have to solve is given 
+by 
+
+≡
+
+r i 0 
+
+﹋
+
+( r i 
+
+, and V ip 
+( T ip 
+ J+
+=1 
+p=1 
+V i p 
+(T i p 
+i 
+
+ 10)
+
+ J 
+
+=1 
+i 
+
++
+
+ 10)
+
+ J 
+
+ 10)
+
+ K 
+
+=
+
+(r i 
+
+,
+
+(T i p 
+
+=
+
+2 
+i p 
+
+4 
+
+maximize 
+
+r 
+
+,
+
+ T 
+
+ 3)
+
+i 
+
+﹋V
+
+ s 
+
+U (r i 
+)
+
++
+
+ 3)
+
+i 
+
+﹋V
+
+ s 
+
+ 3)
+
+p﹋V
+
+V i p 
+(T i p 
+
+)
+
+ 汐 3)
+
+ T 
+
+ 3)
+
+ 0 
+
+(20a) 
+
+subject to 
+
+r i 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ i 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(20b) 
+
+4 Note that these utilities can be also incorporated in the objection functions of 
+the previous optimization problems. However, and for the sake of simplicity, we 
+only consider them in this scenario. 
+
+Fig. 16. Selected links in a one-AP 50-node network or 
+ and using partial 
+reweighted l 1 . Sensors are colored in red, the AP in black and different colors in 
+the links represent the different probability ranges. (For interpretation of the refer- 
+ences to color in this gure legend, the reader is referred to the web version of this 
+article.) 
+
+汐 =
+
+ 1 
+
+,
+
+(4)
+
+,
+
+(7)
+
+(20c) 
+
+≡ r i 0 
+r i 
+
+,
+
+ i ﹋ V
+
+ s 
+
+,
+
+(20d) 
+
+The problem in (20) is not convex due to the 
+-norm in the 
+objective function. Thus, we relax the non-convex term of (20) 
+by substituting the 
+-pseudo norm, with the 
+norm. Then, the 
+previous optimization problem is transformed into the following 
+one: 
+
+ 2)
+
+ 0 
+
+ 2)
+
+ 0 
+
+ 2)
+
+ 1 
+
+maximize 
+
+r 
+
+,
+
+ T 
+
+ 3)
+
+i 
+
+﹋V
+
+ s 
+
+U (r i 
+)
+
++
+
+ 3)
+
+i 
+
+﹋V
+
+ s 
+
+ 3)
+
+p﹋V
+
+V i p 
+(T i p 
+
+)
+
+ 汐 3)
+
+ T 
+
+ 3)
+
+ 1 
+
+(21a) 
+
+subject to 
+
+r i 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ T i p 
+
+﹋
+
+ [0 
+ 1] 
+
+,
+
+,
+
+ i 
+
+﹋
+
+V
+
+ p 
+ s 
+
+,
+
+﹋
+
+V
+
+(21b) 
+
+(4)
+
+,
+
+(7)
+
+(21c) 
+
+≡ r i 0 
+r i 
+
+,
+
+ i ﹋ V
+
+ s 
+
+,
+
+(21d) 
+
+The objective function is strictly concave and the constraints 
+are linear inequalities, so the problem can be solved eciently by 
+using convex optimization tools. Note that the optimal utility de- 
+pends on the spatial conguration of the sensors, and consequently 
+the optimal link probabilities and rate variables do too, which are 
+denoted as r 
+ and T 
+. 
+The amount of selected links depends on parameter 
+汐 , which 
+controls the sparsity level (the higher it is, the fewer links are se- 
+lected). In order to increase sparsity and avoid the tuning of pa- 
+汐 , we apply the iterative reweighted 
+rameter 
+minimization al- 
+gorithm only to the third term of the objective function (we call 
+this partial reweighted 
+minimization), which diminishes the in- 
+uence of that parameter and helps in the link selection process. 
+We round off to 0 the link probabilities lower than a suciently 
+汛 . 
+small constant 
+In the remaining of this section, we show the performance of 
+the link selection scheme. Fig. 16 is an example of a 50-node sen- 
+sor network with one AP. Sensors are colored in red and the AP 
+in black. The nominal rate is r i 0 
+ which is identical for all 
+the sensor nodes; another weighting parameter is 
+汛 and the 
+rest of the parameters are identical to those dened in Section 4 . 
+
+
+
+x 
+
+,i 
+
+,
+
+
+
+x 
+,i p 
+
+ 2)
+
+ 1 
+
+ 2)
+
+ 1 
+
+=
+
+ 0 
+ 2 
+
+.
+
+,
+
+汐 =
+
+ 1 . 
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+43 
+
+matter the size of the network and the dimension of the param- 
+eter to estimate. This ensures the compliance of the network per- 
+formance constraint by the selected sensors. 
+Future work will consider the study of these algorithms from a 
+decentralized point of view, eliminating the need of having an AP 
+that collects all the measurements. The application of these algo- 
+rithms to other scenarios is also a matter of further studies. 
+
+References 
+
+[1] P. Biswas , S. Phoha , Self-organizing sensor networks for integrated target 
+surveillance, IEEE Trans. Comput. 55 (8) (2006) 1033每1047 . 
+[2] T. Rty , Survey on contemporary remote surveillance systems for public safety, 
+IEEE Trans. Syst. Man Cybern. C: Appl. Rev. 40 (5) (2010) 493每515 . 
+[3] O. Songhwai , L. Schenato , P. Chen , S. Sastry , Tracking and coordination of mul- 
+tiple agents using sensor networks: system design, algorithms and experi- 
+ments, Proc. IEEE 95 (1) (2007) 234每254 . 
+[4] J. Liu , M. Chu , J. Reich , Multitarget tracking in distributed sensor networks, 
+IEEE Signal Process. Mag. 24 (3) (2007) 36每46 . 
+[5] T. Sun , L.-J. Chen , C.-C. Han , M. Gerla , Reliable sensor networks for planet ex- 
+ploration, in: Proceedings of the IEEE Networking, Sensing and Control Confer- 
+ence, Tucson, USA, 2005, pp. 816每821 . 
+[6] N. Leonard , D.A. Paley , F. Lekien , R. Sepulchre , D. Fratantoni , R. Davis , Collective 
+motion, sensor networks, and ocean sampling, Proc. IEEE 1 (1) (2007) 48每74 . 
+[7] P. Corke , T. Wark , R. Jurdak , W. Hu , P. Valencia , D. Moore , Environmental wire- 
+less sensor networks, Proc. IEEE 98 (11) (2010) 1903每1917 . 
+[8] G. Sun , G. Qiao , B. Xu , Corrosion monitoring sensor networks with energy har- 
+vesting, IEEE Sens. J. 11 (6) (2011) 1476每1477 . 
+[9] T. Arampatzis , J. Lygeros , S. Manesis , A survey of applications of wireless sen- 
+sors and wireless sensor networks, in: Proceedings of the Mediterranean Con- 
+ference on Control and Automation, Limassol, Cypros, 2005, pp. 719每724 . 
+[10] V. Raghunathan , C. Schurgers , S. Park , M.B. Srivastava , Energy-aware wireless 
+microsensor networks, IEEE Signal Process. Mag. 19 (2) (2002) 40每50 . 
+[11] S. Joshi , S. Boyd , Sensor selection via convex optimization, IEEE Trans. Signal 
+Process. 57 (2) (2009) 451每462 . 
+[12] S. Chepuri , G. Leus , Sparsity-promoting sensor selection for non-linear mea- 
+surement models, IEEE Trans. Signal Process. 63 (3) (2015) 684每698 . 
+[13] H. Jamali-Rad , A. Simonetto , X. Ma , G. Leus , Distributed sparsity-aware sensor 
+selection, IEEE Trans. Signal Process. 63 (22) (2015) 5951每5964 . 
+[14] M. Shamaiah , S. Banerjee , H. Vikalo , Greedy sensor selection: Leveraging sub- 
+modularity, in: Proceedings of the 49th IEEE Conference on Decision and Con- 
+trol (CDC＊10), 2010, pp. 2572每2577 . 
+[15] W. Liao , Q. Ji , W. Wallace , Approximate nonmyopic sensor selection via sub- 
+modularity and partitioning, IEEE Trans. Syst. Man Cybern. A 39 (4) (2009) 
+782每794 . 
+[16] M. Naeem , S. Xue , D. Lee , Cross-entropy optimization for sensor selection prob- 
+lems, in: Proceedings of 9th International Symposium on Communications and 
+Information Technology (ISCIT＊09), 2009, pp. 396每401 . 
+[17] J. Ranieri , A. Chebira , M. Vetterli , Near-optimal sensor placement for linear in- 
+verse problems, IEEE Trans. Signal Process. 62 (5) (2014) 1135每1146 . 
+[18] S. Zhao , B.M. Chen , T.H. Lee , Optimal placement of bearing-only sensors for 
+target localization, in: Proceedings of American Control Conference (ACC＊12), 
+2012, pp. 5108每5113 . 
+[19] S. Liu , S. Kar , M. Fardad , P. Varshney , Sparsity-aware sensor collaboration 
+for linear coherent estimation, IEEE Trans. Signal Process. 63 (10) (2015) 
+2582每2596 . 
+[20] F. Sivrikaya , T. Geithner , C. Truong , M. Khan , S. Albayrak , Stochastic routing in 
+wireless sensor networks, in: Proceedings of IEEE International Conference on 
+Communications Workshops, 2009 (ICC Workshops 2009), 2009, pp. 1每5 . 
+[21] A. Ribeiro , N. Sidiropoulos , G. Giannakis , Optimal distributed stochastic routing 
+algorithms for wireless multihop networks, IEEE Trans. Wirel. Commun. 7 (11) 
+(2008) 4261每4272 . 
+[22] M. Zavlanos , A. Ribeiro , G. Pappas , Network integrity in mobile robotic net- 
+works, IEEE Trans. Autom. Control 58 (1) (2013) 3每18 . 
+[23] S. Shah , B. Beferull-Lozano , Joint sensor selection and multihop routing for dis- 
+tributed estimation in ad-hoc wireless sensor networks, IEEE Trans. Signal Pro- 
+cess. 61 (24) (2013) 6355每6370 . 
+[24] A . Ibrahim , A . Sadek , W. Su , K. Liu , Cooperative communications with relay-s- 
+election: when to cooperate and whom to cooperate with? IEEE Trans. Wirel. 
+Commun. 7 (7) (2008) 2814每2827 . 
+[25] C. Lo , S. Vishwanath , R. Heath , Relay subset selection in wireless networks us- 
+ing partial decode-and-forward transmission, IEEE Trans. Veh. Technol. 58 (2) 
+(2009) 692每704 . 
+[26] A . Bhattacharya , A . Rao , K. Naveen , P. Nishanth , S. Anand , A. Kumar , QoS con- 
+strained optimal sink and relay placement in planned wireless sensor net- 
+works, in: Proceedings of 2014 International Conference on Signal Processing 
+and Communications (SPCOM), 2014, pp. 1每5 . 
+[27] R. Dai , M. Mesbahi , Optimal topology design for dynamic networks, in: Pro- 
+ceedings of the IEEE Conference on Decision and Control, Orlando, Fla, USA, 
+2011 . 
+[28] E.J. Candes , M.B. Wakin , S. Boyd , Enhancing sparsity by reweighted 
+ 1 mini- 
+mization, J. Fourier Anal. Appl. 14 (5) (2008) 877每905 . Special Issue on Spar- 
+sity 
+
+ 2)
+
+Fig. 17. Average percentage of total active links and its standard deviation for dif- 
+ferent number of sensor nodes, and when link probabilities are graded in different 
+ranges. 
+
+The color and the thickness of the links are related to the rout- 
+ing probability values, which are graded into different ranges. Blue 
+links have a probability value between 
+汛 and 0.25 and their line is 
+the nest. The red ones have a probability between 0.25 and 0.5, 
+the black links between 0.5 and 0.75 and the green ones between 
+0.75 and 1, having the thickest line. 
+Note that only 51 links are active (i.e., it is a sparse solution). 
+Every sensor is connected via multiple hops (links that connect the 
+sensors) to the AP, where the links with higher probabilities are 
+always established between the AP and some of its neighboring 
+nodes. This is logical given that a message that has been routed 
+through multiple sensors should have a higher probability of arriv- 
+ing successfully to the AP. In general, the sensors which are placed 
+far from the AP tend to establish links with low probability values. 
+Fig. 17 illustrates the average percentage of active links (the to- 
+tal percentage and the percentage by probability ranges) for sensor 
+networks composed of a number of sensors whose amount varies 
+between 30 and 100 and r i 0 
+ 2 . 250 Monte Carlo simulations are 
+run for each network conguration. First, the gure shows the low 
+amount of active links, so that the matrix T is sparse. For 30-node 
+networks, the average percentage of active links is slightly higher 
+than 5 %. The percentage values decrease whenever the number of 
+nodes in the network increases. Regarding the different probability 
+ranges, the highest percentage of active links corresponds to values 
+between 
+汛 and 0.25, and it is followed by links with prob- 
+abilities T ij 
+between 0.75 and 1. As in the earlier example, most 
+of those links are established between the AP and its neighbors, 
+which ensures that messages arrive to the AP. 
+
+of T ij 
+
+=
+
+.
+
+ 0 
+
+8. Conclusions 
+
+In this paper we have proposed two optimization methods for 
+selecting optimally and consistently the minimum set of sensors 
+(and their corresponding sensing rates) and links (and their link 
+probability values); or sensors, relays and links, in wireless sen- 
+sor networks. The chosen scenario has been parameter estimation, 
+where the selected sensors have to guarantee a prescribed network 
+performance based on the MSE-rate. Numerical results showed the 
+sparsity of the solution, which translates into a smart use of the 
+network resources. The proposed algorithms have provided a con- 
+sistent solution to the selection problem by always nding a con- 
+nected path among the selected set of sensors, relays and APs no 
+
+44 
+
+R. Arroyo-Valles et al. / Signal Processing 140 (2017) 32每44 
+
+[29] A. Simonetto , H. Jamali-Rad , Primal recovery from consensus-based dual de- 
+composition for distributed convex optimization, J. Optim. Theory Appl. 168 
+(2016) 172每197 . 
+[30] S.-J. Kim , E. Dall＊Anese , G.B. Giannakis , Cooperative spectrum sensing for cog- 
+nitive radios using kriged Kalman ltering, IEEE J. Sel. Top. Signal Process. 5 
+(1) (2011) 24每36 . 
+
+[31] A . Simonetto , A . Mokhtari , A . Koppel , G. Leus , A. Ribeiro , A class of prediction每
+correction methods for time-varying convex optimization, IEEE Trans. Signal 
+Process. 64 (17) (2016) 4576每4591 . 
+[32] R. Arroyo-Valles , A. Marques , J. Cid-Sueiro , Energy-aware geographic forward- 
+ing of prioritized messages in wireless sensor networks, in: Proceedings of 
+IEEE International Conference on Mobile Adhoc and Sensor Systems, 2007 
+(MASS＊07), 2007, pp. 1每9 . 
+

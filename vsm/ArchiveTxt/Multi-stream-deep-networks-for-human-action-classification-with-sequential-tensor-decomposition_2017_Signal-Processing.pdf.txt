@@ -1,0 +1,1619 @@
+Multi-stream deep networks for human action classication with sequential tensor decomposition 
+
+Huiwen Guo 
+
+a , b , c , Xinyu Wu 
+a , b , c , 
+
+
+
+, Wei Feng 
+
+a , b 
+
+a Guangdong Provincial Key Lab of Robotics and Intelligent Systems, Chinese Academy of Sciences, Shenzhen Institutes of Advanced Technology, PR China 
+b Key Laboratory of Human-Machine-Intelligence Synergic Systems, Chinese Academy of Sciences, Shenzhen Institutes of Advanced Technology, PR China 
+c Shenzhen College of Advanced Technology, University of Chinese Academy of Sciences, PR China 
+
+article
+
+info 
+
+Article history: 
+Received 28 February 2017 
+Revised 18 May 2017 
+Accepted 22 May 2017 
+Available online 23 May 2017 
+
+Keywords: 
+Action classication 
+Global motion 
+Tensor decomposition 
+Gated Recurrent Unit 
+Recurrent Neural network 
+
+abstract
+
+Effective spatial-tem poral representation of motion information is crucial to human action classication. 
+In spite of the attempt of most existing methods capturing spatial-temporal structure and learning mo- 
+tion representations with deep neural networks, such representations are failing to model action at their 
+full temporal extent. To address this problem, this paper proposes a global motion representation by us- 
+ing sequential low-rank tensor decomposition. Specically, we model an action sequence as a third-order 
+tensor with spatiotemporal structure. Then, by using low-rank tensor decomposition, partial motion of 
+objects in global context were preserved which will be feeding into deep architecture to automatically 
+learning global-term motion features. To simultaneously exploit static spatial features, short-term motion 
+and global-term motion in the video, we describe a multi-stream framework with recurrent convolu- 
+tional architectures which is end-to-end trainable. Gated Recurrent Unit (GRU) is used as our recurrent 
+unit which have fewer parameters than Long Short-Term Memory (LSTM). Extensive experiments were 
+conducted on two challenging dataset: HMDB51 and UCF101. Experimental results show that our method 
+achieves state-of-the-art performance on the HMDB51 dataset, and is comparable to the state-of-the-art 
+methods on the UCF101 dataset. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Video human action classication plays an important role in 
+many applications, such as security surveillance, human-computer 
+interaction [1] and annotation [2] . Human action classication 
+means predict or classify the action in the video [3,4] . General 
+speaking, a human action can be seen as spatial-temporal objects, 
+and such a view nds support both in psychology [5] and in com- 
+puter vision approaches [6] . Naturally, motion information is highly 
+discriminative to recognize actions from a video. Thus, almost suc- 
+cessful methods for action classication, indeed, eciently learning 
+the spatial-temporal representation of motion information. 
+Consistently with this fact, some traditional approaches [7每
+9] made their effort s on representing an action with motion-based 
+video descriptors. Some approaches extract holistic motion repre- 
+sentations to fully exploit the long-term motion information, such 
+as Liu et al. [10] exploit local geometry for human action recog- 
+nition by using Hessian regularized analysis [11,12] . Others nding 
+holistic representation in video, such as Improved Dense Trajectory 
+(IDT) [9] . However, Dollar et al. [13] claim that these are too rigid 
+to capture possible variations of actions. To solve this problem, on 
+the one hand, tensor analysis [14每16] , with a global perspective, 
+recently introduced to solve this problem and resulted in some 
+successes. On the other hand, Some popular local features, such as 
+Histogram of Gradients in 3D cuboid (HoG3D) [17] , were extracted 
+from optical ow elds, gradient eld and pixel eld. However, 
+most of these methods typically could not deal with long-term ac- 
+tion, e.g., people slow walking. 
+The recent rise of convolutional neural networks (CNNs) con- 
+vincingly demonstrates the power of learning visual representa- 
+tions [18] . It has been proven empirically that the features auto- 
+matically learnt from CNNs are much better than the handcrafted 
+features. Equipped with large-scale training datasets, CNNs have 
+quickly take over the majority of visual recognition tasks such as 
+object and scene [19,20] . The attempt of extend CNNs architectures 
+to video action classication often learn motion representations 
+from short video intervals which ranging from 1 to 16 frames [ 21每
+23 ]. Despite the ability to obtain short-term motion features with 
+good performance, these deep architectures were still ignore the 
+long-term motion features of action. 
+More recently, Recurrent Neural Networks (RNNs) was intro- 
+duced to model long-term dependencies of action. By combining 
+convolutional layers and long-range temporal recursion, an archi- 
+tecture called CNN-RNN are built with deep over spatial as well 
+as time dimension. RNNs encodes history information in memory 
+units regulated with non-linear gates to discover temporal depen- 
+dencies. Nevertheless, even with some complementary strategies 
+such as reversing the video in RNNs [24] and feeding the video 
+twice [25,26] has proved that only the temporal dependencies is 
+not ecient enough to model global motion information in video 
+action. 
+Realizing the above limitations, in this paper, we propose a 
+sequential low-rank tensor decomposition approach to effectively 
+characterize global motion in video, consequently facilitating hu- 
+man action classication. Firstly, we represent an action sequence 
+as a third-order tensor with spatiotemporal structure. Then, low- 
+rank tensor decomposition approach is introduced to obtain the 
+sparse component which has removed irrelevant background in- 
+formation and preserved global motion information with a global 
+view. To exploit all cues uniformity, a multi-stream framework of 
+deep neural networks is proposed for human action classication. 
+Fig. 1 shows the structure of our method. Our framework is com- 
+posed of spatial stream, short-term temporal stream and global- 
+term motion stream, which are designed to capture spatial fea- 
+ture, short-term motion feature and global-term motion feature, 
+respectively. The short-term stream is computed on stacked op- 
+tical ows over a short temporal windows and thus can capture 
+short-term motion. The global-term stream is fed with the slices 
+of sparse component and automatically learning global-term fea- 
+tures. In addition, to model the long-term dependencies, we em- 
+ploy a RNN model in our framework. With the empirically study, 
+we choose a recurrent unit called the Gated Recurrent Unit (GRU) 
+on all features extracted by their streams. Compared with the pop- 
+ular Long Short Term Memory (LSTM), GRU has fewer parameters 
+and scarcely decline of performance. The contributions of our work 
+are summarized as follows: 
+ We introduce a low-rank tensor decomposition approach to ef- 
+fectively extracting global motion information in long term ac- 
+tion. We demonstrate the importance of the global-term mo- 
+tion information for high performance of human action classi- 
+cation. 
+ We propose a multi-stream framework that integrates spatial, 
+short-term motion and global-term motion clues in videos. To 
+complete exploit these information, Recurrent Neural Networks 
+with GRU unit which model the temporal dependencies is ap- 
+plied in our framework. We demonstrate that the multi-stream 
+
+networks are able digest complementary information to receive 
+signicantly improved performance. 
+
+The effectiveness of the proposed method is evaluated on two 
+challenging datasets: UCF101 and HMDB51. The experimental re- 
+sults show that our method achieves the state-of the-art perfor- 
+mance on the HMDB51 datasets, and out performances most meth- 
+ods on the UCF101 dataset. 
+The rest of this paper is organized as below: in Section 2 , we in- 
+troduce the related work of the proposed method. In Section 3 , we 
+describe our method in details. Then the experimental results are 
+shown in Section 4 , and nally the conclusion is given in Section 5 . 
+
+2. Related work 
+
+In the past decade, many researchers have been focusing on hu- 
+man action classication, and comprehensive surveys of this prob- 
+lem can be found in several review papers [27,28] . As aforemen- 
+tioned, the existing approaches of human action classication were 
+committed to designing or learning the most effective feature de- 
+scription. 
+Typical pipelines resemble earlier methods for object recogni- 
+tion, the use of handcraft local motion features and, in particu- 
+lar, Space-Time Interest Points (STIP) [29] has been found impor- 
+tant for action classication. With a global motion view, many ap- 
+proaches were trying to describe global dynamics with all frame 
+information. Fan et al. [30] extract high-level pose features from 
+video to code the pose energy change. Liu et al. [31] using p - 
+Laplacian regularized sparse coding to preserve the local motion 
+geometry. 
+As a kind of dimension reduction algorithm, tensor decomposi- 
+tion [15,32] is widely applied to action classication with holis- 
+tic representation of video data [33每35] . By stacked the frames 
+as a 3D tensor, Krausz et al. [36] propose an nonnegative tensor 
+factorization approach to represent the global motion as combi- 
+nation of partial motion (vector basis). Zhang et al. [37] design a 
+tensor descriptor using Histograms of Oriented Gradients. To deal 
+with the unequal length problem in video, Su et al. [38] propose a 
+spatial-temporal iterative tensor decomposition technique. Similar 
+with [38,39] using sparse canonical temporal alignment approach 
+to solve it, and deep tensor decomposition technique is then ap- 
+plied to nd a effective representation in tensor subspace [40,41] . 
+Low-rank or sparse decomposition of tensor is one of the meth- 
+ods to extracting more discriminable global motion features. Sev- 
+eral algorithms have been proposed to cope with low-rank and 
+sparse decomposition problem in computer vision [42每44] . For ex- 
+ample, Candes et al. [45] designed robust PCA(RPCA) method to 
+
+200 
+
+H. Guo et al. / Signal Processing 140 (2017) 198每206 
+
+decompose an observation matrix into low-rank and sparse com- 
+ponents. Goldfarb et al. [46] developed some high-order RPCA 
+method for robust tensor recovery. Despite the successful applica- 
+tion in action classication, the handcraft features based on ten- 
+sor decomposition can not express the variability of the video on 
+the one hand, on the other hand, only the single clue is not effec- 
+tive enough to action recognition. Followed by a deep architecture, 
+our tensor decomposition based characteristics were automatically 
+learned which describe the global motion of video action. 
+Motivated by the promising results of deep networks on image 
+analysis tasks [47每49] , several works have exploited deep architec- 
+tures for action classication. Ji et al. [50] extended the traditional 
+CNN to 3D-CNN, which gets input from multiple channels and per- 
+forms 3D convolution. It achieved lower performance compared 
+with the hand-crafted representation [9] . To fed more temporal in- 
+formation into the convolutional networks, Ng et al. [51] explored 
+temporal pooling and concluded that max pooling in the tempo- 
+ral domain is preferable. Empirically, Trans et al. [23] show that 
+℅3 
+℅3 homogeneous lters performs better than 
+a network with 3 
+varying the temporal depth on lters. A generic descriptor named 
+C3D, is proposed by averaging the outputs of the rst fully con- 
+nected layer of the C3D network. Varol et al. [19] explore 3D con- 
+volutions over longer temporal durations at the input layer. Im- 
+provements are observed by extending the temporal depth [27] . 
+Recently, a class of multi-stream deep neural network architecture 
+were proposed according to the fact that the motion of an object 
+and its location is handled separately through the Dosaral Stream 
+[52] . Simonyan et al. [21] proposed a two-stream deep convolu- 
+tional networks where input of one stream is static images and the 
+other one is stacked optical ow. The structure of two-stream in 
+[53] were C3D and 3D-CNN. Feichtenhofer et al. [54] and Karpathy 
+et al. [22] shows that a fusion at an intermediate layer improves 
+the performance. Extensions of the two stream network include 
+the work of Wu et al. [55] where a third stream using audio signal 
+is added to the network and Shi et al. [26] where Deep Trajectory 
+Descriptor (sDTD) as the third network. In addition, multi-modal 
+representation of information is widely applied [56,57] . From a va- 
+riety of perspectives, these algorithms generally extract a variety of 
+features [58] . 
+To exploit the temporal dependencies information, some studies 
+resort to the use of recurrent structures. Baccouche et al. [59] and 
+Donahue et al. [60] tackle the problem of action classication 
+through a cascade of convolutional networks and a class of Recur- 
+rent Neural Networks (RNN) [61] known as Long-Short Term Mem- 
+ory (LSTM) [62] networks. In [63] and [64] , an widely empirical 
+exploration of various recurrent network architectures were down, 
+and prove that The Gated Recurrent Unit (GRU) [65] outperformed 
+the LSTM on all tasks with the exception of language modeling. 
+Benet from above previous works, we design a multi-stream 
+deep networks to simultaneously model spatial, short-term motion 
+and global-term motion clues. GRU networks are then adopted to 
+explore long-term temporal dependencies. 
+
+3. Methodology 
+
+In this section, we rst describe the low-rank tensor decompo- 
+sition for global motion extraction and analyze the effectiveness of 
+the approach for obtaining global motion information, then intro- 
+duce the proposed multi-stream architecture, followed by imple- 
+mentation details. 
+
+3.1. Low-rank tensor decomposition for global motion learning 
+
+For uniformly description, scalars, vectors, matrices and tensors 
+are denoted by lowercase letters, lowercase boldface letters, upper- 
+case boldface and calligraphic letters, respectively. Only real-valued 
+
+data are considered in this paper. A tensor can be considered as 
+a multidimensional or N-way array. An Nth-order is denoted as: 
+℅I N . Tensor can also be expressed in the form of ma- 
+trix, which is called tensor matricization. By unfolding a tensor 
+along a mode, a tensors unfolding matrix corresponding to this 
+mode is obtained. This operation is also known as mode- n matri- 
+cization. For a Nth-order tensor 
+ its unfolding matrices are de- 
+can be dened as f old (A
+noted by 
+ ... , 
+ . Accordingly, its inverse operator fold 
+ :=
+)
+ . There are two types of higher- 
+order tensor decompositions, the PARAFAC decomposition and the 
+Tucker decomposition. The Tucker decomposition naturally gener- 
+alizes the orthonormal subspaces corresponding to the left/right 
+singular matrix computed by the matrix SVD. The n-mode tensor 
+℅I N can be decomposed as: 
+,
+.
+.
+.
+,
+℅R i are n orthogonal matrix. U i 
+where U i 
+spans the R i 
+dimen- 
+sional subspace of the original R 
+I i space, with its orthonormal 
+columns as the basis. U i 
+accounts for the implicit factor of the i th- 
+Z is the core tensor associating each 
+mode dimension of tensor 
+of the n subspace. 
+model tensor 
+Consider a real n 
+ the best rank- 
+)
+ approximation is to nd a tensor 
+with pre-specied rank k 
+(
+)
+ that minimizes the least-square 
+cost function: 
+min (cid:2)
+
+A
+
+﹋
+
+ R 
+
+℅I 2 
+℅...
+I 1 
+
+A
+
+,
+
+A
+
+(1)
+
+ ,
+
+A
+
+(2)
+
+ ,
+
+A
+
+(N )
+
+ (k 
+)
+
+,
+
+ k 
+
+A
+
+A
+
+﹋
+
+ R 
+
+℅I 2 
+℅...
+I 1 
+
+A
+
+=
+
+Z
+
+℅1 U 1 
+℅2 U 2 
+
+℅n U n 
+
+(1) 
+
+﹋
+
+ R 
+
+I i 
+
+A
+
+ . 
+
+A
+
+﹋
+
+ R 
+
+℅I 2 
+℅...
+I 1 
+
+℅I n ,
+
+(R 1 
+
+,
+
+ R 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ R N 
+
+(cid:2)
+
+ A
+﹋
+
+ R 
+
+℅I 2 
+℅...
+℅I n 
+I 1 
+
+(cid:2)
+
+ A
+
+=
+
+ R k 
+
+,
+
+ A
+
+(cid:4)A
+
+ (cid:2)
+(cid:4)
+
+ A
+
+2 
+F 
+
+s.t .
+ rank i 
+(
+rank conditions imply that 
+The n 
+ should have the Tucker 
+decomposition as Eq. (1) : 
+ U n . Problem 
+arises that how to design a method that could automatically nd 
+rank condition of the given tensor A . To simplify the 
+the optical n 
+problem, consider a ideal model that corruption is produced by ad- 
+ : 
+ditive irregular patterns 
+
+(cid:2)
+
+ A
+
+)
+
+=
+
+ R i 
+
+
+
+ i 
+
+(2) 
+
+(cid:2)
+(cid:3)
+
+ A
+
+(cid:2)
+
+ A
+=
+
+(cid:2)
+
+ Z
+
+℅1 
+
+ U 1 
+
+℅2 
+
+(cid:3)
+
+ U 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+℅n 
+
+(cid:3)
+
+A
+
+=
+
+X
+
++
+
+S
+
+(3) 
+S are n 
+mode tensors with identical size in each 
+where 
+ and 
+mode. The underlining assumption of Eq. (3) is that the tensor 
+data 
+ is generated by a highly structured tensor 
+ and then cor- 
+S . One straightforward as- 
+rupted by an additive irregular patterns 
+rank of 
+sumption may be that the n 
+ should be small and the 
+S is bounded. To impose these constraints on the Eq. 
+corruption 
+S is 
+(3) , suggesting that the corruption of the irregular patterns 
+bounded. The constraint could be the case in certain situations. 
+However, the irregular patterns in real world visual data is un- 
+known and unbounded in general. A reasonable observation is that 
+S usually occupy only a small portion of the 
+the irregular patterns 
+S . However, l 0 
+data. Therefore, l 0 
+norm penalization is imposed on 
+norm is highly nonconvex optimization. Given the fact that 
+is the tightest convex approximation of 
+ one can relax 
+by 
+ . Then, form the Eq. (3) as follows: 
+
+A
+
+,
+
+X
+
+A
+
+X
+
+,
+
+X
+
+(cid:4)S (cid:4)
+(cid:4)S
+(cid:4)
+
+ 1 
+
+(cid:4)S
+
+ 0 
+
+(cid:4)
+
+,
+
+ 0 
+
+(cid:4)S
+
+ 1 
+
+(cid:4)
+
+1 
+min 
+2 
+
+X ,
+
+S
+
+N (cid:4)
+=1 
+i 
+
+(cid:4)A
+
+ i 
+
+ X
+
+ i 
+
+ S
+
+ i 
+
+(cid:4)
+
+2 
+F 
+
++
+
+竹1 
+
+(cid:4)X
+
+ i 
+
+(cid:4)
+
+  +
+
+竹2 
+
+(cid:4)S (cid:4)
+
+ 1 
+
+(4) 
+
+  and 
+where 
+ 1 denote the nuclear and l 1 
+norm of each 
+mode- i unfolding matrices of 
+ and 
+ respectively. The constant 
+and 
+balance between the low-dimensional structure and 
+sparse irregularity. When the optimal 
+Z can be computed by [66] : 
+ is achieved, similar to the 
+Tucker decomposition, the core tensor 
+
+(cid:4)X
+
+ i 
+
+(cid:4)
+
+(cid:4)S
+
+ i 
+
+(cid:4)
+
+X
+
+S ,
+
+竹
+
+1 
+
+竹
+
+2 
+
+X
+
+Z
+
+=
+
+X
+
+℅1 U 
+T 
+1 
+
+℅2 U 
+T 
+2 
+
+.
+
+.
+
+.
+
+℅n U 
+T 
+n 
+
+(5) 
+
+where U i 
+is the left singular matrix of 
+. Accordingly, we 
+can get the rank- 
+)
+ decomposition of 
+℅n U n . We call the correspondent decomposition in Eq. 
+(1) to be the optimal rank- 
+)
+ decomposition of ten- 
+sor 
+ under the sense of l 1 
+norm. 
+
+X
+
+ i 
+
+(R 1 
+
+,
+
+ R 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ R N 
+
+X
+
+=
+
+Z
+
+℅1 U 1 
+℅2 
+
+U 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+(R 1 
+
+,
+
+ R 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ R N 
+
+A
+
+H. Guo et al. / Signal Processing 140 (2017) 198每206 
+
+201 
+
+Fig. 2. Example result of tensor decomposition on basketball action. The upper column are the low-rank and the sparse component of original frame, the below column are 
+the original image and optical ow magnitude image. Red ellipses mark their biggest difference between optical ow and tensor decomposition. 
+
+.
+
+.
+
+.
+
+,
+
+ i 
+
+w 
+
+S
+
+S
+
+S
+
+﹋
+
+﹋
+
+﹋
+
+﹋
+
+X
+
+X
+
+ 1 
+
+ R 
+
+ R 
+
+ R 
+
+ R 
+
+=
+
+,
+ t ,
+
+A
+
+S ,
+
+℅h ,
+
+℅h 
+w 
+
+℅h 
+w 
+
+℅h 
+w 
+
+Then, we will describe how to learn the global motion informa- 
+tion from the output of low-rank tensor decomposition. For an ac- 
+℅t was created by stacking all frames into 
+tion sequence, 
+a three dimension tensor, where w and h are the width and height 
+of the frame and t is the length of the video . By using a tensor de- 
+composition method (such as the Rank Sparsity Tensor Decompo- 
+℅t and 
+℅t were obtained. Ac- 
+sition (RSTD) [67] ), 
+cording to the characteristics of the tensor decomposition, 
+ and 
+were represent the static redundant irrelevant information and the 
+motion information in global context in video, respectively. Then, 
+we feed each time slice of 
+ i.e., 
+ where i 
+ into 
+CNNs which belongs to the rst half of the global-motion stream. 
+We empirically analyze the effectiveness of the extracting of the 
+global motion information. One tensor decomposition example of 
+basketball action is shown in Fig. 2 . Firstly, it can be seen that 
+irrelevant background information is eliminated, which has been 
+proved that will affect the modeling of human action in the uncon- 
+strained video [68] . Secondly, and the most importantly, each mov- 
+ing partial of human body were preserved in video. Although both 
+optical ow and tensor decomposition record the motion of the 
+spatial space, they represent motion information in different man- 
+ners. The optical ow record the instantaneous motion between 
+two consecutive frames, while the tensor decomposition record all 
+local motion parts throughout all frames. For example, the opti- 
+cal ow image and the tensor decomposition image are shown in 
+Fig. 2 . In current frame the player＊s legs are not moving, while the 
+legs are moved in the previous frames. Thus, there are no informa- 
+tion reserved in the position of the leg in the optical ow image. 
+Our tensor decomposition image did not treat the leg information 
+as the background information and preserved the leg information 
+by taking all local time motion into account, which are benet to 
+the holistic action classication. 
+
+tain both spatial and temporal subsystems. In our model, we fur- 
+ther consider the temporal subsystem as two modules: short-term 
+temporal subsystem and global-term temporal subsystem. As a re- 
+sult, our multi-stream framework includes spatial stream, short- 
+term stream and global-term stream. Then, we introduce GRU net- 
+works to model the temporal dependencies. 
+The spatial stream is designed to capture static appearance fea- 
+℅ 224). The tem- 
+tures, by training on single frame images (224 
+poral stream takes dense optical ow elds as inputs and aims to 
+describe the short-term motion. Like the two-stream networks in 
+[21] , whose temporal stream input is volumes of stacking optical 
+℅ 224 
+℅ 2 F , where F is the number of stacking 
+ow elds (224 
+ows and is set to 10), our temporal stream input is also stacked 
+optical ow. An optical ow eld is computed from two consecu- 
+tive frames. As mentioned in the previous subsection, the global- 
+term stream mainly focuses on the global motion. The input of the 
+global-term stream is stacked frames of sparse component slices of 
+℅ 224 
+℅ 5). 
+tensor decomposition with the length of 5(224 
+As all clues (spatial, short-term motion, global-term motion) 
+have been captured, we further employ GRU [65] to model tempo- 
+ral dependencies. GRU is a popular RNN model that incorporates 
+memory cells with several gates to learn long-term dependencies 
+without suffering from vanishing and exploding gradients as the 
+traditional RNNs [69] . It is able to exploit temporal information of 
+a data sequence with arbitrary length through recursively mapping 
+the input sequence to output labels with hidden GRU units [55] . 
+Fig. 3 illustrates the typical structure of a hidden GRU unit. Denote 
+x t as the feature representation from the output of the CNNs. Gen- 
+)
+erally, an GRU maps an input sequence 
+ to output 
+labels 
+)
+ through computing activations of the units 
+in the network recursively from t 
+ 1 to t 
+ T . At time t , the acti- 
+vation vectors of hidden state h t is computed as: 
+
+(y 1 
+
+(x 1 
+
+ y 2 
+
+ x 2 
+
+ y T 
+
+ x T 
+
+=
+
+=
+
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+3.2. Multi-stream architecture 
+
+In this subsection, we will describe our multi-stream architec- 
+ture for action classication. The core of our framework is shown 
+in Fig. 1 . Basically, a good action classication system should con- 
+
+z t 
+r t 
+
+(cid:2)
+
+ h t 
+
+h t 
+
+=
+=
+=
+=
+
+,
+
+考 (W z 
+考 (W r 
+ t anh 
+(W 
+(1 
+)
+
+﹞ [ h t1 
+ x t ])
+﹞ [ h t1 
+ x t ])
+﹞ [ r t 
+ h t1 
+ x t ])
+ h t1 
+
+ z t 
+
+ (cid:2)
+
+ z t 
+
++
+
+,
+
+,
+
+ h t 
+
+(6) 
+
+202 
+
+H. Guo et al. / Signal Processing 140 (2017) 198每206 
+
+Table 1 
+Exploration of the performance of different models on the 
+UCF101 and HMDB51 datasets. 
+
+Model 
+
+UCF101 HMDB51 
+
+Fig. 3. The structure of a GRU unit. 
+
+where W z , W r and W are the weight matrices connecting two dif- 
+﹞ ] is an element-wise 
+ferent units. 
+考 is the sigmoid function, and [ 
+product operator. 
+As a neural network, the GRU model can be easily deepened by 
+stacking the hidden states from a layer as inputs of the next layer. 
+Two layers of GRU model is adopted in our framework. Finally, to 
+get the nal prediction, we apply late fusion to the three streams. 
+
+3.3. Implementation details 
+
+In this work, like the [55] , we adopt two Convolutional Net- 
+works architectures, the VGG19 architecture [47] for the spatial 
+stream and the CNN-M [21] model for capturing the short-term 
+motion and the global-term motion. The CNN-M contain ve con- 
+volutional layers followed by three fully connected layers. As the 
+frame length of each unit video slip is 20, the output of spatial, 
+short-term and global-term stream for each unit video slip are 
+℅ 4096 (time length 
+℅ feature dimension), 11 
+℅ 4096 (each 
+20 
+℅ 4096 (each stacked 
+stacked optical ow need 10 frames), 16 
+sparse component need 5 frames), respectively. Our implementa- 
+tion is based on the Keras with tensorow backend. The training 
+process is divided into three steps, the training of convolutional 
+networks(ConvNet) in each stream, the training of each complete 
+stream(contain GRU model) and the jointly training of all streams. 
+The spatial stream are rst pre-trained using the ImageNet 
+[70] training set and ne-tuned using the training video data. The 
+℅ 224. 
+input video frames is uniformly xed to the size of 224 
+To ne-tune process, we gradually decrease the learning rate from 
+2 to 10 
+3 after 1K iterations, to 10 
+4 after 10K iterations and to 
+10 
+5 after 20K iterations. The dropout is applied to the fully con- 
+10 
+nected layers with a ratio of 0.5 to avoid over-tting. To training 
+the short-term stream, the optical ow is computed by using the 
+GPU implementation of [71] and stack the optical ow in each 10- 
+frame window to obtain a 20-channel optical ow image as the 
+input. We train the short-term stream from scratch by adopting 
+0.6 dropout ratio and setting the learning rate gradually decreas- 
+ing with the increase of training iteration. Initially, it set as 10 
+4 after 50K, 10 0K, 20 0K iter- 
+which is reduced to 10 
+ 10 
+ 10 
+ations, respectively. The training process of global-term stream is 
+similar to the short-term one, with the input of 5-channel tensor 
+decomposition frames. By consider the sparse component slices as 
+static images, we also tried to use the spatial stream to train it, but 
+observed worse results than motion stream. Note that we augment 
+our data by using crops and mirroring. 
+Two-layer GRU model [55] is adopt for temporal dependencies 
+modeling. Each GRU has 1024 hidden units in the rst layer and 
+512 hidden units in the second layer. Recent work performing joint 
+training of the GRU with a convolutional networks improves the 
+results on the UCF-101 benchmark with 0.6% . Thus, we jointly 
+training each complete stream. We setting a mini-batch size of 100 
+to train the network weights, where the learning rate is set as 10 
+with 200K iterations. 
+
+2 ,
+
+3 ,
+
+1 ,
+
+3 
+
+=
+=
+=
+
++
+
++
+
+ 25) 
+ 50) 
+ max ) 
+
+Global-term Stream(TD,L 
+Global-term Stream(TD,L 
+Global-term Stream(TD,L 
+Spatial ConvNet 
+Short-term ConvNet 
+Global-term ConvNet 
+Spatial ConvNet 
+ LSTM 
+Short-term ConvNet 
+ LSTM 
+Global-term ConvNet 
+ LSTM 
+Spatial ConvNet 
+ GRU 
+Short-term ConvNet 
+ GRU 
+Global-term ConvNet 
+ GRU 
+Spatial 
+ Short-term Stream 
+Spatial 
+ Global-term Stream 
+Short-term 
+ Global-term Stream 
+Multi-Stream 
+
++
++
+
++
++
+
++
++
+
++
+
+78.9% 
+78.6% 
+80.4% 
+81.1% 
+77.5% 
+80.4% 
+83.9% 
+81.1% 
+81.6% 
+84.5% 
+82.7% 
+81.9% 
+90.1% 
+91.5% 
+91.9% 
+93.3% 
+
+51.4% 
+49.3% 
+47.6% 
+52.1% 
+50.3% 
+51.4% 
+53.9% 
+51.6% 
+51.9% 
+54.5% 
+52.8% 
+52.1% 
+62.3% 
+64.7% 
+64.9% 
+67.8% 
+
+The proposed multi-stream framework fusing spatial, short- 
+term motion and global-motion clues. Each stream is trained sepa- 
+rately. Finally, by using Softmax layer at the end of all streams, we 
+jointly training our whole deep networks. Despite the complexity 
+and the time consumption of the jointly training process, it im- 
+prove nearly 1.0% accuracy in application. 
+
+4. Experiment 
+
+In this section, we will rst introduce the detail of datasets. 
+Then, experiments are designed to study the effectiveness of each 
+individual stream. Finally, we report the experimental results com- 
+pare with the state-of-the-art methods. 
+
+4.1. Datasets 
+
+UCF-101 [72] is a widely adopted dataset for human action clas- 
+sication, which containing 13,320 video clips annotated into 101 
+action classes. All the video clips have a xed frame rate of 25 fps 
+℅ 240. This dataset is challenging 
+with a spatial resolution of 320 
+because most videos were captured under uncontrolled environ- 
+ments with camera motion, cluttered backgrounds and large intra- 
+class variations. We train our networks with unit video clip of 20 
+frames. To produce a single label prediction for an entire video clip 
+(longer than 20 frames), we average the label probabilities-the out- 
+puts of the network＊s softmax layer-across all frames and choose 
+the most probable label. At test time, we extract 20 frame clips 
+with a stride of 10 frames from each video and average across all 
+clips from a single video. 
+The HMDB51 dataset [73] is a large collection of realistic videos 
+from various sources, including movies and web videos. It is com- 
+posed of 6,766 video clips from 51 action categories, with each cat- 
+egory containing at least 100 clips. We follow the original evalua- 
+tion scheme. And the single label prediction is conduct similar to 
+UCF-101 setting. 
+
+4.2. Exploration experiments 
+
+We report the performance with different setting on two 
+datasets. Firstly, the tensor decomposition algorithm is sensitive to 
+the moving of camera. Shortening the length of the constructed 
+tensor with time dimension may relax the inuence while reduces 
+the ability of capturing the global motion information. We set the 
+length L as 25, 50 and max length to evaluate the inuence for 
+tensor decomposition, the results are shown in Table 1 . Compar- 
+ing the top three cells of results, it match the intuitive expecta- 
+tions that the best result appear in the case of L 
+ 25 on HMDB51 
+
+=
+
+H. Guo et al. / Signal Processing 140 (2017) 198每206 
+
+203 
+
+Fig. 4. Performance confusion matrix for our method on the UCF101 dataset. 
+
+=
+
+and L 
+ maxl engt h on UCF101. This is largely due to the fact that 
+HMDB51 contain more unconstrained camera moving video. 
+Next, we evaluate the performance of each individual stream 
+on both datasets. The short-term ConvNet gets the worst perfor- 
+mance because no pre-trained model is available. Although global- 
+term ConvNet also without pre-trained, it can capture more tem- 
+poral information than the short-term ConvNet. We can also nd 
+that all streams outperform corresponding ConvNet architecture. 
+The short-term stream is 3.6% better than short-term ConvNet. The 
+lowest improvement is obtained in global-term stream. The rea- 
+son may be that global-term clue contain long-term temporal de- 
+pendencies inherently. All the remarkable improvements indicate 
+that CNN-RNN is a better structure than the pure CNN. The per- 
+formance of the spatial, short-term and global-term with LSTM are 
+also provided. The results proved that GRU is better than LSTM, 
+even with less parameters. 
+We evaluate the combinations of multiple networks to study 
+whether fusion can compensate the limitations of a single stream 
+in describing complex video data. The simple average fusion is 
+adopted. Results are summarized in the bottom three groups of 
+Table 1 . We rst assess the gain from integrating the spatial and 
+the short-term motion information. On UCF101, signicant im- 
+provements (about 5.6% for spatial stream and 7.4% for short-term 
+stream) are observed over the best single stream results. The gain 
+on HMDB51 is consistent and as signicant as that on UCF101. The 
+most gain obtained by the combination with the short-term stream 
+and the global-term stream both on UCF101 and HMDB51, indicat- 
+ing that the motion information is more critical for human action 
+analysis. 
+Finally, we training the whole multi-stream networks jointly 
+and the accuracy achieves 93.3% and 67.8% on UCF101 and 
+HMDB51. Thus, we can conclude that the spatial, short-term and 
+global-term streams are complementary to each other. And the re- 
+
+Table 2 
+Comparison with state-of-the-art results. 
+
+Method 
+
+UCF101 Method 
+
+HMDB51 
+
+Donahue et al. [60] 
+Trans et al. [75] 
+Husain et al. [53] 
+Simonyan et al. [21] 
+Ng et al. [51] 
+Wu et al. [55] 
+Lev. et al. [74] 
+Ours 
+
+82.9% 
+86.7% 
+86.7% 
+88.0% 
+88.6% 
+92.6% 
+94.0% 
+93.3% 
+
+Husain et al. [53] 
+Wang et al. [9] 
+Wang et al. [76] 
+Simonyan et al. [21] 
+Shi et al. [26] 
+Lev. et al. [74] 
+
+Ours 
+
+53.9% 
+57.2% 
+59.4% 
+59.4% 
+65.2% 
+67.7% 
+
+67.8% 
+
+sult proves that their complementary properties can be utilized to 
+improve the overall recognition performance. 
+The confusion matrixes for our multi-stream approach on 
+UCF101 and HMDB51 datasets are as shown in Figs. 4 and 5 . On 
+the UCF101 dataset, our method performs perfectly on many cat- 
+egories such as Pizza Tossing. However, the confusion matrix on 
+the HMDB51 dataset shows that some categories are easily mis- 
+classied, despite our method still performs well on most cate- 
+gories. 
+
+4.3. Comparison with state of the arts 
+
+We compare our approach with the state of the arts on both 
+datasets. Results are listed in Table 2 . Our proposed multi-stream 
+approach achieves the competitive performance on both datasets, 
+some examples are as shown in Fig. 6 . On UCF-101, many works 
+with competitive results are based on the hand-engineered dense 
+trajectory features, while our approach fully relies on the deep net- 
+works. Compared with the original result of the two-stream ap- 
+proach [21] , our approach captures a more comprehensive set of 
+useful clues with a more effective long-term dependencies strat- 
+
+204 
+
+H. Guo et al. / Signal Processing 140 (2017) 198每206 
+
+Fig. 5. Performance confusion matrix for our method on the HMDB51 dataset. 
+
+Fig. 6. Human action classication results on UCF101(upper row) and HMDB51(below row). Blue indicates ground truth label and the bars below show model classication 
+results sorted in decreasing condence. Green and red distinguish correct and incorrect results, respectively. (For interpretation of the references to color in this gure legend, 
+the reader is referred to the web version of this article.) 
+
+egy. Note that a gain of even just 1% on the widely adopted UCF- 
+101 dataset is generally considered as a signicant progress. In ad- 
+dition, the recent works in [51,60] also adopted the LSTM to model 
+the temporal clues for video classication and reported promising 
+performance, but did not explore the global-term stream and em- 
+ploy GRU model. Zha et al. [74] using Fisher Vectors achieve the 
+best results. 
+On the HMDB51 dataset, all the recent approaches were devel- 
+oped based on multiple features, either the hand-engineered de- 
+
+scriptors or the ConvNet-based representations. Our approach pro- 
+duces better results than all of them. 
+
+5. Conclusion 
+
+This paper has proposed an effective descriptor for global-term 
+motion of actions. We construct the action video as an three-order 
+tensor, low-rank tensor decomposition is then applied to obtain 
+the sparse component which preserved partial motion of target 
+
+H. Guo et al. / Signal Processing 140 (2017) 198每206 
+
+205 
+
+at full temporal extent. A multi-stream framework is then em- 
+ployed to identify actions from a video sequence. Followed by uni- 
+formly considering spatial, short-term motion and global-term mo- 
+tion clues, GRU were introduced to model the long-term tempo- 
+ral dependencies for all clues. Our method achieves state-of-the-art 
+performance on the HMDB51 dataset and outperforms most of ex- 
+isting methods on the UCF101 dataset. In the future, one promising 
+direction is to pre-train the short-term motion and the global-term 
+motion stream using large video datasets, which may improve the 
+results signicantly. 
+
+Acknowledgment 
+
+The work described in this paper is supported by National Nat- 
+ural Science Foundation of China ( 61473277 ). 
+
+References 
+
+[1] Y. Guo , L. Li , W. Liu , J. Cheng , D. Tao , Multiview cauchy estimator feature em- 
+bedding for depth and inertial sensor-based human action recognition, IEEE 
+Trans. Syst. Man Cybern. PP (99) (2016) 1每11 . 
+[2] W. Liu , D. Tao , Multiview Hessian regularization for image annotation, IEEE 
+Trans. Image Process. 22 (7) (2013) 2676每2687 . 
+[3] L. Chen , P. Huang , J. Cai , Z. Meng , Z. Liu , A non-cooperative target grasping 
+position prediction model for tethered space robot, Aerosp. Sci. Technol. 58 
+(2016) 571每581 . 
+[4] J. Cai , P. Huang , B. Zhang , D. Wang , A TSR visual servoing system based 
+on a novel dynamic template matching method, Sensors 15 (12) (2015) 
+32152每32167 . 
+[5] A. Meltzoff, WolfgangPrinz , The Imitative Mind, Cambridge University Press, 
+2002 . 
+[6] W. Bian , D. Tao , Y. Rui , Cross-domain human action recognition., IEEE Trans. 
+Syst. Man Cybern. 42 (2) (2012) 298每307 . 
+[7] Z. Zhang , D. Tao , Slow feature analysis for human action recognition, IEEE 
+Trans. Pattern Anal. Mach. Intell. 34 (3) (2012) 436每450 . 
+[8] J. Miao , X. Xu , S. Qiu , C. Qing , D. Tao , Temporal variance analysis for action 
+recognition, IEEE Trans. Image Process. 24 (12) (2015) 5904每5915 . 
+[9] H. Wang , C. Schmid , Action recognition with improved trajectories, in: IEEE 
+International Conference on Computer Vision(ICCV), 2013, pp. 3551每3558 . 
+[10] W. Liu , H. Liu , D. Tao , Y. Wang , K. Lu , Multiview Hessian regularized logistic 
+regression for action recognition, Signal Process. 110 (2014) 101每107 . 
+[11] D. Tao , L. Jin , W. Liu , X. Li , Hessian regularized support vector machines for 
+mobile image annotation on the cloud, IEEE Trans. Multimedia 15 (4) (2013) 
+833每844 . 
+[12] C. Hong , J. Yu , J. You , X. Chen , Hypergraph regularized autoencoder for 3D hu- 
+man pose recovery, Signal Process. 124 (2015) 132每140 . 
+[13] P. Dollar , V. Rabaud , G. Cottrell , S. Belongie , Behavior recognition via 
+sparse spatio-temporal features, in: IEEE International Workshop on Visual 
+Surveillance and Performance Evaluation of Tracking and Surveillance, 2005, 
+pp. 65每72 . 
+[14] Y. Luo , D. Tao , Y. Wen , R. Kotagiri , C. Xu , Tensor canonical correlation analy- 
+sis for multi-view dimension reduction, IEEE Trans. Knowl. Data Eng. 27 (11) 
+(2015) 3111每3124 . 
+[15] D. Tao , X. Li , X. Wu , W. Hu , S.J. Maybank , Supervised tensor learning, Knowl. 
+Inf. Syst. 13 (1) (2007a) 1每42 . 
+[16] D. Tao , X. Li , X. Wu , S.J. Maybank , General tensor discriminant analysis and 
+gabor features for gait recognition., IEEE Trans. Pattern Anal. Mach. Intell. 29 
+(10) (2007b) 1700每1715 . 
+[17] N. Dalal , B. Triggs , Histograms of oriented gradients for human detection, in: 
+IEEE Computer Society Conference on Computer Vision and Pattern Recogni- 
+tion(CVPR), 2005, pp. 886每893 . 
+[18] A. Krizhevsky , I. Sutskever , G.E. Hinton , Imagenet classication with deep con- 
+volutional neural networks, in: International Conference on Neural Information 
+Processing Systems, 2012, pp. 1097每1105 . 
+[19] G. Varol , I. Laptev , C. Schmid , Long-term temporal convolutions for action 
+recognition, Eprint Arxiv (2016) . 
+[20] S.Z. Su , Z.H. Liu , S.P. Xu , S.Z. Li , R. Ji , Sparse auto-encoder based feature learn- 
+ing for human body detection in depth image, Signal Process. 112 (C) (2015) 
+43每52 . 
+[21] D. Annane , J.C. Chevrolet , S. Chevret , J.C. Rapha?l , Two-stream convolutional 
+networks for action recognition in videos, Adv. Neural Inf. Process. Syst. 1 (4) 
+(2014) 568每576 . 
+[22] A. Karpathy , G. Toderici , S. Shetty , T. Leung , R. Sukthankar , L. Fei-Fei , Large-s- 
+cale video classication with convolutional neural networks, in: IEEE Confer- 
+ence on Computer Vision and Pattern Recognition(CVPR), 2014, pp. 1725每1732 . 
+[23] T. Du , L. Bourdev , R. Fergus , L. Torresani , M. Paluri , Learning spatiotemporal 
+features with 3D convolutional networks, in: IEEE Conference on Computer Vi- 
+sion(ICCV), 2015, pp. 4 489每4 497 . 
+[24] I. Sutskever , O. Vinyals , Q.V. Le , Sequence to sequence learning with neural 
+networks, Adv. Neural Inf. Process. Syst. 4 (2014) 3104每3112 . 
+[25] W. Zaremba , I. Sutskever , Learning to execute, Eprint Arxiv (2014) . 
+
+[26] Y. Shi , Y. Tian , Y. Wang , T. Huang , Sequential deep trajectory descriptor for ac- 
+tion recognition with three-stream CNN, IEEE Trans. Multimedia PP (99) (2017) 
+1每11 . 
+[27] S. Herath , M. Harandi , F. Porikli , Going deeper into action recognition: a survey, 
+Image Vis. Comput. 60 (2017) 4每21 . 
+[28] R. Poppe , A survey on vision-based human action recognition, Image Vis. Com- 
+put. 28 (6) (2010) 976每990 . 
+[29] I. Laptev , On space-time interest points, Int. J. Comput. Vis. 64 (2) (2005) 
+107每123 . 
+[30] J. Fan , Z. Zha , X. Tian , Action recognition with novel high-level pose features, 
+in: IEEE International Conference on Multimedia and Expo Workshops, 2016, 
+pp. 1每6 . 
+[31] W. Liu , Z. Wang , D. Tao , J. Yu , Hessian Regularized Sparse Coding for Human 
+Action Recognition, Springer International Publishing, 2015 . 
+[32] X. Yang , W. Liu , D. Tao , J. Cheng , Canonical correlation analysis networks for 
+two-view image recognition, Inf. Sci. 385 (2017) 338每352 . 
+[33] D. Tao , X. Li , X. Wu , S.J. Maybank , General tensor discriminant analysis and 
+gabor features for gait recognition, IEEE Trans. Pattern Anal. Mach. Intell. 29 
+(10) (2007) 1700 . 
+[34] P. Huang , Y. Xu , Svm-based learning control of space robots in capturing oper- 
+ation, Int. J. Neural Syst. 17 (6) (2007) 467每477 . 
+[35] S. Cai , S. Wu , G. Bao , Cylinder position servo control based on fuzzy PID, J. 
+Appl. Math. 2013 (2013) 1每10 . 
+[36] B. Krausz , C. Bauckhage , Action recognition in videos using nonnegative tensor 
+factorization, in: International Conference on Pattern Recognition(ICPR), 2010, 
+pp. 1763每1766 . 
+[37] J. Zhang , Y. Han , J. Jiang , Tucker decomposition-based tensor learning for hu- 
+man action recognition, Multimedia Syst. 22 (3) (2016) 343每353 . 
+[38] Y. Su , H. Wang , P. Jing , C. Xu , A spatial-temporal iterative tensor decomposition 
+technique for action and gesture recognition, Multimedia Tools Appl. (2015) 
+1每18 . 
+[39] C. Jia , M. Shao , Y. Fu , Sparse canonical temporal alignment with deep tensor 
+decomposition for action recognition, IEEE Trans. Image Process. PP (99) (2016) 
+1 . 
+[40] C. Jia , Y. Fu , Low-rank tensor subspace learning for RGB-D action recognition, 
+IEEE Trans. Image Process. 25 (10) (2016) 4641每4652 . 
+[41] D. Tao , X. Li , X. Wu , S.J. Maybank , Geometric mean for subspace selection, IEEE 
+Trans. Pattern Anal. Mach. Intell. 31 (2) (2008) 260每274 . 
+[42] J. Yu , Y. Rui , D. Tao , Click prediction for web image reranking using multimodal 
+sparse coding, IEEE Trans. Image Process. 23 (5) (2014) 2019每2032 . 
+[43] W. Liu , Z.J. Zha , Y. Wang , K. Lu , D. Tao , p -Laplacian regularized sparse cod- 
+ing for human activity recognition, IEEE Trans. Ind. Electron. 63 (8) (2016) 
+5120每5129 . 
+[44] L. Chen , B. Zhang , P. Huang , Z. Liu , Z. Meng , Autonomous rendezvous and dock- 
+ing with nonfull eld of view for tethered space robot, Int. J. Aerosp. Eng. 2017 
+(2017) 1每11 . 
+[45] Cand , E.J. S , X. Li , Y. Ma , J. Wright , Robust principal component analysis, J. ACM 
+58 (3) (2009) 11每20 . 
+[46] D. Goldfarb , Z. Qin , Robust low-rank tensor recovery: models and algorithms, 
+SIAM J. Matrix Anal. Appl. 35 (1) (2013) 225每253 . 
+[47] K. Simonyan , A. Zisserman , Very deep convolutional networks for large-s- 
+cale image recognition, International Conference on Learning Representations 
+(ICLR) (2015) 1每13 . 
+[48] C. Szegedy , W. Liu , Y. Jia , P. Sermanet , Going deeper with convolutions, in: IEEE 
+Conference on Computer Vision and Pattern Recognition(CVPR), 2015, pp. 1每9 . 
+[49] J. Yu , B. Zhang , Z. Kuang , D. Lin , J. Fan , Iprivacy: image privacy protection 
+by identifying sensitive objects via deep multi-task learning, IEEE Trans. Inf. 
+Forensics Secur. PP (99) (2017) 1 . 
+[50] S. Ji , W. Xu , M. Yang , K. Yu , 3D convolutional neural networks for human action 
+recognition, IEEE Trans. Pattern Anal. Mach. Intell. 35 (1) (2013) 221每231 . 
+[51] Y.H. Ng , M. Hausknecht , S. Vijayanarasimhan , O. Vinyals , R. Monga , G. Toderici , 
+Beyond short snippets: deep networks for video classication, in: IEEE Confer- 
+ence on Computer Vision and Pattern Recognition(CVPR), 2015, pp. 4694每4702 . 
+[52] M.A . Goodale , A .D. Milner , Separate visual pathways for perception and action, 
+Trends Neurosci. 15 (1) (1992) 20 . 
+[53] F. Husain , B. Dellen , C. Torras , Action recognition based on ecient deep fea- 
+ture learning in the spatio-temporal domain, IEEE Rob. Autom. Lett. 1 (2) 
+(2016) 984每991 . 
+[54] C. Feichtenhofer , A . Pinz , A . Zisserman , Convolutional two-stream network fu- 
+sion for video action recognition, in: IEEE Conference on Computer Vision and 
+Pattern Recognition(CVPR), 2016, pp. 1933每1941 . 
+[55] Z. Wu , Y.G. Jiang , X. Wang , H. Ye , X. Xue , Multi-stream multi-class fusion of 
+deep networks for video classication, ACM on Multimedia Conference (2016) 
+791每800 . 
+[56] C. Hong , J. Yu , J. Wan , D. Tao , M. Wang , Multimodal deep autoencoder for hu- 
+man pose recovery, IEEE Trans. Image Process. 24 (12) (2015) 5659 . 
+[57] J. Yu , X. Yang , F. Gao , D. Tao , Deep multimodal distance metric learning using 
+click constraints for image ranking., IEEE Trans. Cybern. PP (99) (2016) 1每11 . 
+[58] C. Hong , J. Yu , D. Tao , M. Wang , Image-based three-dimensional human pose 
+recovery by multiview locality-sensitive sparse retrieval, IEEE Trans. Ind. Elec- 
+tron. 62 (6) (2015) 3742每3751 . 
+[59] M. Baccouche , F. Mamalet , C. Wolf , C. Garcia , A. Baskurt , Sequential deep learn- 
+ing for human action recognition, in: International Conference on Human Be- 
+havior Unterstanding, 2011, pp. 29每39 . 
+[60] J. Donahue , L.A. Hendricks , M. Rohrbach , S. Venugopalan , S. Guadarrama , 
+K. Saenko , T. Darrell , Long-term recurrent convolutional networks for visual 
+
+206 
+
+H. Guo et al. / Signal Processing 140 (2017) 198每206 
+
+recognition and description, IEEE Trans. Pattern Anal. Mach. Intell. PP (99) 
+(2016) 2625每2634 . 
+[61] A.J. Robinson , F. Failside , Static and dynamic error propagation networks with 
+application to speech coding., in: Neural Information Processing Systems(NIPS), 
+1987, pp. 632每641 . 
+[62] S. Hochreiter , J. Schmidhuber , Long short-term memory, Neural Comput. 9 (8) 
+(1997) 1735每1780 . 
+[63] R. Jozefowicz , W. Zaremba , I. Sutskever , An empirical exploration of recur- 
+rent network architectures, in: International Conference on Machine Learn- 
+ing(ICML), 2015, pp. 2342每2350 . 
+[64] K. Greff, R.K. Srivastava , J. Koutnik , B.R. Steunebrink , J. Schmidhuber , LSTM: 
+a search space odyssey, IEEE Transactions on Neural Networks and Learning 
+Systems PP (99) (2016) 1每18 . 
+[65] K. Cho , B.V. Merrienboer , C. Gulcehre , D. Bahdanau , F. Bougares , H. Schwenk , 
+Y. Bengio , Learning phrase representations using RNN encoder-decoder for sta- 
+tistical machine translation, Eprint Arxiv (2014) . 
+[66] L.D. Lathauwer , B.D. Moor , J. Vandewalle , On the best rank-1 and rank-(r1, 
+r2,...,rn) approximation of higher-order tensor, SIAM J. Matrix Anal. Appl. 21 
+(4) (20 0 0) 1324每1342 . 
+[67] Y. Li , J. Yan , Y. Zhou , J. Yang , Optimum subspace learning and error correc- 
+tion for tensors, in: European Conference on Computer Vision(ECCV), 2010, 
+pp. 790每803 . 
+[68] I.R. Years , Human action recognition based on fusion features extraction of 
+adaptive background subtraction and optical ow model, Math. Probl. Eng. 
+2015 (4) (2015) . 
+
+[69] Y. Bengio , P. Simard , P. Frasconi , Learning long-term dependencies with gradi- 
+ent descent is dicult, IEEE Trans. Neural Netw. 5 (2) (1994) 157每166 . 
+[70] J. Deng , W. Dong , R. Socher , L. Li , K. Li , F. Li , Imagenet: a large-scale hierar- 
+chical image database, in: IEEE Conference on Computer Vision and Pattern 
+Recognition(CVPR), 2009, pp. 248每255 . 
+[71] T. Brox , A. Bruhn , N. Papenberg , J. Weickert , High accuracy optical ow esti- 
+mation based on a theory for warping, in: European Conference on Computer 
+Vision(ECCV), 2004, pp. 25每36 . 
+[72] K. Soomro , A.R. Zamir , M. Shah , UCF101: a dataset of 101 human actions 
+classes from videos in the wild, Eprint Arxiv (2012) . 
+[73] H. Kuehne , H. Jhuang , R. Stiefelhagen , T. Serre , HMDB51: a large video database 
+for human motion recognition, in: High Performance Computing in Science 
+and Engineering, 2012, pp. 571每582 . 
+[74] G. Lev , G. Sadeh , B. Klein , L. Wolf , RNN sher vectors for action recognition and 
+image annotation, in: European Conference on Computer Vision(ECCV), 2016, 
+pp. 833每850 . 
+[75] D. Tran , L. Bourdev , R. Fergus , L. Torresani , M. Paluri , Learning spatiotempo- 
+ral features with 3D convolutional networks, IEEE International Conference on 
+Computer Vision (ICCV) (2015) 4 489每4 497 . 
+[76] L. Wang , Y. Xiong , Z. Wang , Y. Qiao , D. Lin , X. Tang , L. Val Gool , Temporal seg- 
+ment networks: towards good practices for deep action recognition, in: Euro- 
+pean Conference on Computer Vision(ECCV), 2016 . 
+

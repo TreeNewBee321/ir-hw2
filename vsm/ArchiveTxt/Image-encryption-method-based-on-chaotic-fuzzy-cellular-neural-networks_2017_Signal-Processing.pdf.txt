@@ -1,0 +1,2712 @@
+Image encryption method based on chaotic fuzzy cellular neural networks 
+
+K. Ratnavelu 
+a , M. Kalpana 
+a , P. Balasubramaniam 
+b , K. Wong 
+
+c , 
+
+
+
+, P. Raveendran 
+
+d 
+
+a Institute of Mathematical Sciences, Faculty of Science, University of Malaya, Malaysia 
+b Department of Mathematics, Gandhigram Rural Institute - Deemed University, India 
+c School of Information Technology, Monash University Malaysia, Malaysia 
+d Faculty of Engineering, University of Malaya, Malaysia 
+
+article
+
+info
+
+
+Article history: 
+Received 28 December 2016 
+Revised 29 April 2017 
+Accepted 2 May 2017 
+Available online 11 May 2017 
+
+Keywords: 
+Chaos 
+Encryption 
+Leakage delay 
+Fuzzy cellular neural network 
+
+
+abstract 
+
+In this work, an image encryption method is proposed based on fuzzy cellular neural network (FCNN). 
+First, the shortcomings of FCNN in encrypting image are identied, and the FCNN model is then modied 
+to address these shortcomings. Specically, a theoretical framework is developed to identify the values of 
+the parameters of FCNN to generate chaotic signals, which are in turn utilized to encrypt the image. The 
+encryption method is designed where an encrypted pixel is generated based on the corresponding plain- 
+text pixel together with the neighbouring encrypted pixels. The proposed method has a key sensitivity in 
+10 to achieve adequate security robustness. Further evaluations on standard test images 
+the order of 10 
+veried and conrmed that the proposed encryption method is robust against plaintext-only (i.e., brutal 
+force) and chosen-plaintext attacks. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+1. Introduction 
+Image encryption is a process that transforms an image into an 
+unintelligible form to mask its perceptual semantic [1,2] . With the 
+advent of affordable capturing devices, ubiquitous network connec- 
+tion and free social networking service, images are generated and 
+shared online at a staggering rate of 300 million pictures per day 
+on Facebook itself [3] . Free cloud storage services further encour- 
+age users to store personal images online for easy of access. How- 
+ever, even ordinary users start to concern about their privacies as 
+well as safeties nowadays. Therefore, encryption emerges as an im- 
+portant layer of protection for both privacy and safety in the age 
+of cloud computing. 
+Although the conventional encryption methods such as IDEA, 
+AES, RSA and DES can be deployed directly to encrypt image (e.g., 
+treating image as a sequence of values), these methods are insu- 
+cient for encryption as detailed in Ref. [4] . 
+Chaos appears as an attractive alternative for encryption be- 
+cause of its complex dynamic behaviors, which shows apparently 
+random occurrences within a determined nonlinear system or pro- 
+cess. Also, chaos has the characteristics of categories of noise- 
+sensitive initial long-term unpredictability, ergodicity, and the di- 
+vergence index, which are the desired properties in the application 
+of encryption. Therefore, many digital image encryption methods 
+have been proposed based on chaotic systems [5每10] . For exam- 
+ple, Zhou et al., have invented a novel image encryption algorithm 
+based on chaos and line map [5] , while Assad and Farajallah pro- 
+posed a new chaos-based image encryption system [8] . The prob- 
+lem of cracking a hierarchical chaotic image encryption algorithm 
+based on permutation has been derived by Li, [10] . 
+In addition, neural networks possess attractive properties such 
+as high nonlinearity, parameter sensitivity and learning ability, 
+hence they are widely utilized as an alternative choice for infor- 
+mation protection, such as data encryption, data authentication 
+and intrusion detection [11] . As a results, various chaotic neural 
+based encryption algorithms are proposed [12每15] . For example, 
+Wen et al. investigated into the problem of global exponential lag 
+synchronization of a class of switched neural networks with time- 
+varying delays via the neural activation controller and its applica- 
+tions in image encryption [12] . Chua and Yang [16,17] then pro- 
+posed a new model-traditional cellular neural networks (CNNs). 
+Subsequently, CNNs have attracted much attention because of their 
+established background in theory and practical applications, in- 
+cluding image processing. 
+Based on traditional CNN, Yang et al. proposed the fuzzy cel- 
+lular neural networks (FCNNs) [18,19] , which integrates fuzzy logic 
+into the structure of traditional CNN and maintains local connect- 
+edness among cells. FCNNs is a generalization of CNNs with high 
+level information processing capability, such as image understand- 
+ing of fuzzy systems. Therefore, it is of great importance to analyze 
+the dynamical behaviors of FCNNs both in theory and applications. 
+Recently, Abdurahman et al. [20] investigated into the theoretical 
+results of nite-time synchronization for FCNNs with time-varying 
+delays. However, to the best of our knowledge, there is no results 
+reported for FCNNs in the eld of encryption. 
+To ll the research gap, in this paper we reformulate the 
+FCNN system for encryption purpose by making it more secure 
+against chosen-plaintext attack. Specically, to generate an en- 
+crypted pixel, both the pixel being processed and those that are 
+already encrypted are considered. This paper makes the following 
+contributions: (a) The key space is large enough to make brute- 
+force attacks infeasible; (b) a quantitative analysis with compara- 
+tive result is provided, and (c) Experimental results are shown to 
+prove the effectiveness of our method. 
+The rest of this paper is organized as follows. In 
+Section 2 presents the background study of chaotic FCNN. 
+Section 3 reformulates the chaotic FCNN for image encryption 
+purpose. Experiments results are presented in Section 4 . Analysis 
+including key sensitivity and statistics are discussed in Section 5 . 
+Finally, Section 6 concludes this paper. 
+
+2. Background study 
+
+Similar to neural networks, CNNs are a parallel computing 
+paradigm with the difference that communication is allowed only 
+between neighboring units [16,17] . Its application include image 
+processing, associative memories, classication of patterns, analyz- 
+ing 3D surfaces, quadratic optimization, solving partial differen- 
+tial equations, reducing non-visual problems to geometric maps, 
+modeling biological vision and other sensory-motor organs, and so 
+forth. 
+There are various uncertainties in every stage of image pro- 
+cessing, for example, loss of information when 3D objects are 
+projected into 2D plane, additive and non-additive noise in the 
+transmission processes, lack of quantitative measurement of im- 
+age quality, imprecision in computations, etc. Fuzzy set theory 
+provides the mathematical tools to capture these uncertainties. 
+Therefore, it is reasonable to integrate fuzzy set theory into the 
+CNN paradigm to give birth to a new image-processing paradigm 
+termed FCNN, which takes uncertainties into consideration. Each 
+cell in an FCNN contains fuzzy operating abilities, yet the entire 
+network is governed by the cellular computing laws as proposed 
+by Yang et al. [18,19] . FCNN has been proven to be a very useful 
+paradigm for image processing and pattern recognition. 
+Consider the following chaotic FCNN: 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+步 x i 
+
+(t )
+
+=
+
+d i x i 
+
+(t 
+
+考 )
+
++
+
+(cid:6)
+(cid:8)
+
+ n 
+
+j=1 
+a i j f j 
+(x j 
+ t ﹢
+
+(t ))
+ s 
+(t 
+)
+ s 
+(t 
+)
+ 0] 
+
++
+
+(cid:6)
+
+ n 
+
+j=1 
+b i j f j 
+(x j 
+
+ 而 (t )))
+(t 
+
++
++
+=
+
+ B i 
+
++
+
+(cid:7)
+
+ n 
+
+j=1 
+汐i j 
+j=1 
+汕i j 
+ t ﹢
+
+k j 
+
+ f j 
+
+(x j 
+
+(s 
+))
+
+ ds 
+
+(cid:9)
+
+ n 
+
+(cid:8)
+
+k j 
+
+ f j 
+
+(x j 
+
+(s 
+))
+
+ ds,
+
+x i 
+
+(s 
+)
+
+耳i 
+
+(s 
+)
+
+,
+
+ s 
+
+﹋
+
+(﹢
+
+,
+
+,
+
+ i 
+
+﹋
+
+{
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n 
+
+}
+
+,
+
+(1) 
+
+ C ((﹢
+where 
+ 0] 
+ is the initial condition of FCNNs sys- 
+tem (1) ; 
+and 
+汕
+are the elements of fuzzy feedback MIN and 
+MAX templates, respectively; a ij 
+are the elements of feed- 
+back template; 
+ and 
+ denote the fuzzy AND and fuzzy OR op- 
+erations, respectively; x i 
+denotes the state vector in FCNNs system 
+(1) of the i th neuron; B i 
+denotes the external input of the i th neu- 
+ron; 
+ 0 is a constant which denotes the leakage delay; a ij 
+and 
+denote the connection weights of the feedback template; d i 
+is a 
+diagonal matrix, which represents the rate at which the i th neuron 
+
+耳
+
+i 
+
+(﹞)
+汐
+
+﹋
+
+,
+
+,
+
+R
+
+)
+
+ij 
+
+ij 
+
+and b ij 
+
+(cid:7)
+
+(cid:9)
+
+考 >
+
+b ij 
+
+resets its potential to the resting state in isolation when discon- 
+nected from the networks and external inputs; f j 
+represents the 
+≡ 0 is the feedback kernel, which 
+neuron activation function; k j 
+( s ) 
+satises 
+
+(cid:10)
+
+ ﹢
+
+0 
+
+k j 
+
+(s 
+)
+
+ ds 
+
+=
+
+ 1 
+ j 
+
+,
+
+﹋
+
+{
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n 
+
+}
+
+.
+
+(2) 
+
+FCNN (1) generates chaotic signals, which can be applied to 
+the pixels of an image to generate unintelligible encrypted image. 
+However, in its unmodied form, FCNN falls short in two aspects: 
+(i) key-sensitivity, where any slight change in the parameters (i.e., 
+secret keys) of FCNN, there is no signicant change in any of the 
+RGB channels of the encrypted color image, and; (ii) plaintext sen- 
+sitivity, where any slight change in color plain image will lead to 
+slight (i.e., insignicant) change in the corresponding color pixel in 
+the encrypted image. As a result, in its present form, FCNN based 
+encryption is vulnerable to chosen-plaintext attack. In this work, 
+we begin by showing how FCNN can be used in encrypting an 
+image and further changes are needed to be made in the FCNN 
+expressed in (1) to address the aforementioned issues, i.e., with- 
+standing well-accepted cryptographical attacks. 
+
+3. System formulation 
+
+In this formulation, the variable t in the chaotic signal 步 x i 
+(t )
+℅ N repre- 
+takes the values in the range of [1, MN ], where M 
+sents the dimension of the image. Further, to ease the presen- 
+tation, the image I ( x, y ) is linearized to a vector IMG ( K ), where 
+℅ N for the image of dimension M 
+℅ N . To cater 
+K 
+for color image, IMG i 
+( K ) refers to the i th color channel of the 
+K th pixel, where i 
+ { R, G, B } in which R, G and B represent the 
+red, green, and blue color channels, respectively. The goal is to 
+use each generated FCNN chaotic signal expressed in (1) together 
+with each pixel of the original image to generate the output en- 
+crypted pixel. Hence, the length of the variables t and K is the 
+(t )
+same. To add another layer of security, the chaotic signal 步 x i 
+ can 
+begin at any point in the originally generated chaotic signal, i.e., 
+≡ 0. The new chaotic signal that can be 
+t 
+ MN] for t 0 
+used for image encryption, which is denoted by y i 
+( K ) and can be 
+computed as 
+
+=
+
+ 1 
+ 2 
+ 3 
+
+,
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ M 
+
+﹋
+
+﹋
+
+ [ t 0 
+
++
+
+ 1 
+ t 0 
+
+,
+
++
+
+y i 
+
+(K )
+
+=
+
+ mod 
+
+(cid:11)
+
+IMG i 
+(K )
+
++
+
+ c 步 x i 
+
+(K )
+(﹞,
+where c 
+ 10 
+ and mod 
+ 256)
+ [0 
+ 255] refers to the remain- 
+der of the division by 255. Now to generate the encrypted image, 
+(K )
+each new chaotic signal 步 y i 
+ is multiplied with each original pixel 
+IMG ( K ). This can be achieved by 
+
+,
+
+ 256 
+
+(cid:12)
+
+.
+
+(3) 
+
+=
+
+11 ,
+
+﹋
+
+,
+
+E (IMG 
+(K ))
+
+=
+
+ IMG 
+(K )
+
+℅ y i 
+
+(K )
+
+,
+
+(4) 
+
+where E ( IMG ( K )) is the encrypted pixel of IMG ( K ). 
+However, when any parameter in (1) , i.e., a ij 
+, 
+, and 
+, 
+is slightly changed, then it only affects the channel where its pa- 
+rameter was changed. Hence, the encryption method has low key- 
+sensitivity. To overcome the abovementioned drawback, we intro- 
+duce further substantial changes in (4) in a way that withstands 
+the well-accepted cryptographical attacks. 
+First, we introduce the key E key 
+that depends on all three color 
+channels as follows: 
+
+, b ij 
+, d ij 
+
+汐
+
+ij 
+
+汕
+
+ij 
+
+E key 
+
+=
+
+ mod 
+
+(cid:11)
+
+(y R 
+
+(K )
+
+℅ y G 
+
+(K )
+
+℅ y B 
+
+(K ))
+
+,
+
+ 256 
+
+(cid:12)
+
+.
+
+(5) 
+
+Second, E key 
+
+is used to encrypt the image IMG ( K ) as follows: 
+℅ IMG 
+℅ 10 
+
+IMG 
+
+e 
+i 
+
+(K )
+
+=
+
+ mod 
+
+(cid:11)
+
+(y i 
+
+(K )
+
++
+
+(E key 
+
+e 
+i 
+
+ 1)
+(K 
+
+11 ))
+
+,
+
+ 256 
+
+(cid:12)
+
+.
+
+(6) 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+89 
+
+Fig. 1. Flow of processes in the proposed image encryption method. 
+
+Finally, we convert the encrypted vector form of IMG 
+(K )
+ to 
+(x,
+)
+the matrix form, namely IMG 
+ for x 
+ and y 
+1 
+ N . 
+ 1)
+Here, the expression IMG 
+(K 
+ is introduced so that the en- 
+ 1 is incorporated to encrypt the next 
+crypted pixel at position K 
+pixel at position K . This is to cater for chosen-plaintext attack so 
+that the proposed encryption method cannot be traced to identify 
+the corresponding output value when given an input values. 
+Two assumptions are made: 
+
+e 
+i 
+
+e 
+i 
+
+ y 
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+ M,
+
+=
+
+,
+
+ 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+﹞) are continuously 
+A1. The neuron activation functions f j 
+( 
+bounded and satisfying 
+≒ l 
+
+l 
+
+
+
+j 
+
+≒ f j 
+
+(u 
+)
+u 
+
+ f j 
+
+(v 
+)
+
+ v 
+
++
+
+j 
+
+,
+
+(7) 
+
+for any u,
+are some real value constants, and; 
+而 ( t ) is a time varying delay, and it 
+A2. The transmission delay 
+≒ 而 ( t ) 
+≒ 而 , where 
+satises 0 
+ 0 is a constant value. 
+
+ v 
+
+﹋
+
+R
+
+,
+
+ u 
+
+=
+
+ v 
+ j 
+
+,
+
+﹋
+
+{
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n 
+
+}
+
+,
+
+ where l 
+
+
+
+j 
+
+and l 
+
++
+
+j 
+
+而 >
+
+The ow of processes is illustrated in Fig. 1 . 
+
+4. Experimental results 
+
+The proposed encryption method is implemented in Matlab 
+R2015b running on Windows 7, operating on a personal computer 
+with Intel(R) Core(TM) i7-3630QM CPU @2.40 GHz and 12GB of 
+RAM. For experiment purpose, the reformulated chaotic FCNN sys- 
+tem as expressed in (3) is considered with the parameters as fol- 
+lows: I i 
+而 (t )
+ 07 
+ sin 
+(t )
+ and 
+ 5 . Let- 
+ 1 
+ting f j 
+ which satises 
+1 
+the assumption ( A 1 
+), we get l 
+ and l 
+ Specically, 
+3 
+3 
+ 21 
+4 
+ 21 
+1 
+ 39 
+4 
+0 
+6 
+1 
+5 
+1 
+ 01 
+2 
+4 
+
+=
+
+ 0 
+ 1 
+ j 
+
+.
+
+,
+
+﹋
+
+{
+
+ 1 
+ 2 
+ 3 
+ 1 
+ x j 
+
+,
+
+,
+
+}
+ |
+
+,
+
+=
+
+ 0 
+ j 
+
+.
+
+|
+
+|
+
+考 =
+
+ 0 
+
+.
+
+(x j 
+
+)
+
+=
+
+(cid:13)| x j 
+1 
+2 
+
++
+
+|
+
+|
+
+(cid:14)
+
+,
+
+﹋
+
+{
+
+ 1 
+ 2 
+ 3 
+ 1 
+
+,
+
+,
+
+}
+
+,
+
+
+
+j 
+
+=
+
+,
+
++
+
+j 
+
+=
+
+.
+
+A 
+
+=
+
+(cid:15)
+
+ 2 
+
+.
+
+3 
+ 25 
+3 
+
+.
+.
+.
+
+.
+.
+.
+
+.
+.
+
+ 2 
+ 2 
+
+ 1 
+ 4 
+
+ 9 
+
+(cid:16)
+
+,
+
+(8) 
+
+B 
+
+=
+
+(cid:15)
+
+ 4 
+
+.
+
+3 
+ 32 
+3 
+ 01 
+
+.
+
+ 9 
+ 2 
+ 5 
+
+.
+.
+.
+
+ 5 
+
+.
+.
+
+.
+.
+
+ 2 
+
+ 2 
+
+(cid:16)
+
+,
+
+(9) 
+
+D 
+
+=
+
+(cid:15)
+(cid:15)
+
+ 2 
+ 9 
+
+.
+
+0 
+1 
+ 001 
+0 
+1 
+ 31 
+1 
+ 31 
+1 
+ 31 
+
+0 
+0 
+1 
+ 001 
+
+0 
+0 
+
+.
+
+.
+
+(cid:16)
+
+,
+
+(10) 
+
+汐 =
+
+ 1 
+
+/
+/
+/
+
+ 31 
+1 
+ 31 
+1 
+ 31 
+
+/
+/
+/
+
+1 
+1 
+ 31 
+ 31 
+1 
+ 31 
+
+/
+/
+/
+
+(cid:16)
+
+,
+
+(11) 
+
+and 
+
+汕 =
+
+(cid:15)
+
+ 1 
+
+/
+/
+/
+
+ 31 
+1 
+ 31 
+1 
+ 31 
+with the initial values of the system expressed in Eq. (3) set to 
+1 
+ 0 
+ 2] 
+耳 (s 
+)
+T and s 
+ 0] . All experiments are per- 
+formed using the LMI toolbox in Matlab using the aforementioned 
+parameter values. On average, the proposed method takes about 
+℅ 512, which in- 
+27.56 s to encrypt a color image of dimension 512 
+cludes the time needed to generate the chaotic signal. Similarly, on 
+average, it takes approximately 27.24 s to decrypt an encrypted im- 
+age of the same size. The average encryption and decryption time 
+needed for each image in the Uncompressed Color Image Database 
+(UCID) dataset [21] are 13.57 and 13.50 s, respectively, where each 
+℅ 384. Note that, unless specify oth- 
+image is of dimension 512 
+erwise, the result reported under the UCID dataset is the average 
+result for 1338 images. In the following subsections, perceptual se- 
+mantic masking, information entropy, key space size, key sensitiv- 
+ity test, and statistical attacks are presented, which are all crucial 
+in any image encryption system. 
+
+1 
+1 
+ 31 
+ 31 
+1 
+ 31 
+
+/
+/
+/
+
+1 
+ 31 
+1 
+ 31 
+1 
+ 31 
+
+/
+/
+/
+
+(cid:16)
+
+,
+
+(12) 
+
+=
+
+ [ 
+
+.
+
+ 5 
+
+.
+
+ 5 
+
+﹋
+
+(﹢
+
+,
+
+4.1. Masking perceptual semantic 
+
+To examine the proposed reformulated FCNN system (3) for 
+successful encryption and decryption, six standard test color im- 
+ages from the USC-SIPI image database [22] , namely Baboon, F-16, 
+℅ 512 
+℅ 3, 
+House, Lake, Lenna and Tiffany, each of dimension 512 
+are considered. The test images are shown in Fig. 2 . The trajectory 
+of the reformulated FCNN for Lenna is shown in Fig. 3 , which will 
+be utilized to encrypt the test image - Lenna. For completion of 
+discussion, we also conducted the experiments by using the UCID 
+℅ 512. 
+dataset [21] , which consists of 1338 images each of dimension 384 
+Fig. 4 illustrate the encrypted images. It is observed that the 
+proposed FCNN based encryption system successfully masked the 
+perceptual semantic of the original image, because the encrypted 
+images appear to be noise. 
+Next, for each encrypted test image, the entropy of each color 
+channel (i.e., utilized as an image) is considered. Specically, in- 
+formation entropy gives an indication of randomness and it is de- 
+ned to express the degree of uncertainties in a system. Let m be 
+the information source, and information entropy H computed is as 
+follows [6] : 
+
+H 
+
+=
+
+N1 (cid:17)
+=0 
+i 
+
+p(m i 
+)
+
+℅ log 2 
+
+1 
+p(m i 
+)
+
+(13) 
+
+where N represents the total number of gray levels, and p ( m i 
+) 
+is the probability of occurrence of the symbol m i 
+. The maximum 
+value of H is 8, where all gray levels are equally probable, i.e., uni- 
+form distribution. The entropy of the encrypted images obtained 
+
+90 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+)
+
+t
+
+(
+
+1
+
+x
+
+)
+
+t
+
+(
+
+2
+
+x
+
+)
+
+t
+
+(
+
+3
+
+x
+
+300
+200
+100
+0
+
+300
+200
+100
+0
+
+300
+200
+100
+0
+
+0
+
+0
+
+0
+
+Fig. 2. Original test images. 
+
+50
+
+100
+
+50
+
+100
+
+50
+
+100
+
+150
+
+time t
+
+150
+
+time t
+
+150
+
+time t
+
+200
+
+250
+
+300
+
+200
+
+250
+
+300
+
+200
+
+250
+
+300
+
+Fig. 3. State trajectories of the reformulated FCNN system (3) with state x ( t ) for the test image Lenna. 
+
+by the proposed method and Hsiao et al.＊s method [6] are shown 
+in Table 1 . Since only the results of two test images, namely Ba- 
+boon and Lenna, are reported in Bigdeli et al.＊s work [13] , their re- 
+sults are omitted from Table 1 . Nonetheless, they achieved the en- 
+tropy of (7.9967, 7.9941, 7.9985) for the RGB channels respectively 
+for Baboon, and similarly (7.9981, 7.9962, 7.9974) for Lenna. It is 
+evidently shown that the entropy value of our proposed method 
+is comparable to those of the conventional methods considered. 
+In addition, the entropy values are high, i.e., near 8 which is the 
+bit-depth of each channel, hence the distributions are close to uni- 
+form. It is also noteworthy that both Hsiao et al.＊s method [6] and 
+the proposed method are able to increase the entropy of the origi- 
+
+>
+
+nal test image, which is supported by the result attained by Tiffany 
+- red channel. Specically, the entropy value was increased from 
+4.33 to as high as 
+ 7.99 in both methods, which is an increment 
+of about 80%. When considering the UCID dataset [21] , the average 
+entropy values achieved are (7.9977, 7.9977, 7.9977) for the RGB 
+channels, respectively, which are near to the maximum value of 
+8 as expected. Therefore, the proposed method is able to produce 
+encrypted image with high entropy, which is desired in any image 
+encryption algorithm. 
+The corresponding decrypted images are shown in Fig. 5 . The 
+mean square error (MSE) between the original and decrypted im- 
+ages (using the correct keys) are recorded in Table 2 for each of the 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+91 
+
+Fig. 4. Encrypted images. 
+
+Table 1 
+Entropy of each color channel for test images encrypted with the proposed method and 
+Hsiao et. al＊s method [6] . 
+
+Original 
+
+Red 
+
+Green 
+
+Blue 
+
+Encrypted 
+
+Red 
+
+Green 
+
+Blue 
+
+Baboon 
+
+7.7067 
+
+7.4744 
+
+7.7522 
+
+F-16 
+
+6.7178 
+
+6.7990 
+
+6.2138 
+
+House 
+
+7.4156 
+
+7.2298 
+
+7.43538 
+
+Lake 
+
+7.3124 
+
+7.6429 
+
+7.2136 
+
+Lenna 
+
+7.2531 
+
+7.5940 
+
+6.9684 
+
+Tiffany 
+
+4.3372 
+
+6.6643 
+
+6.4288 
+
+Ref. [6] 
+Fig. 3 (a) 
+Ref. [6] 
+Fig. 3 (b) 
+Ref. [6] 
+Fig. 3 (c) 
+Ref. [6] 
+Fig. 3 (d) 
+Ref. [6] 
+Fig. 3 (e) 
+Ref. [6] 
+Fig. 3 (f) 
+
+7.9994 
+7.9982 
+7.9994 
+7.9980 
+每
+7.9983 
+7.9993 
+7.9978 
+7.9994 
+7.9978 
+7.9993 
+7.9977 
+
+7.9993 
+7.9984 
+7.9992 
+7.9980 
+每
+7.9979 
+7.9994 
+7.9976 
+7.9993 
+7.9976 
+7.9993 
+7.9979 
+
+7.9993 
+7.9980 
+7.9994 
+7.9978 
+每
+7.9980 
+7.9994 
+7.9978 
+7.9993 
+7.9979 
+7.9992 
+7.9978 
+
+Table 2 
+Mean square errors between the original and decrypted color images us- 
+ing the correct key, and PSNR (dB) and SSIM between the original and 
+decrypted gray scale image. 
+
+Image 
+
+Red 
+
+Green 
+
+Blue 
+
+PSNR 
+
+SSIM 
+
+Baboon 
+F-16 
+House 
+Lake 
+Lenna 
+Tiffany 
+UCID 
+
+19.1612 
+0.0658 
+6.1413 
+0.0254 
+11.1867 
+31.6536 
+234.4820 
+
+9.5941 
+63.0157 
+133.7544 
+1.7810 
+1.2047 
+92.5257 
+236.1181 
+
+15.2595 
+0.0093 
+65.4908 
+85.3357 
+1.2010 
+30.5116 
+310.0235 
+
+91.6819 
+80.0398 
+71.2826 
+68.8005 
+106.2036 
+73.1828 
+85.4939 
+
+0.9978 
+0.9999 
+0.9982 
+0.9935 
+0.9979 
+0.9998 
+0.9699 
+
+by using Matlab＊s function - rgb2gray . As expected, the PSNR and 
+SSIM values are high, which agree with Fig. 5 and the MSE values. 
+Similar results are obtained for the UCID dataset [21] , and we omit 
+the discussion here. 
+
+4.2. Secret key space 
+
+The brute-force attack commences by considering an one-digit 
+secret key, and then proceed to two-digit secret key, and so on 
+until the maximum length is reached. In order to resist against 
+the brute-force attack, the secret key space should be convincingly 
+large [4] . In this work, the secret key of the proposed algorithm is 
+℅ 3 parameters that can be expressed as 
+a combination of three 3 
+
+color channels. Note that the MSE is greater than zero because the 
+proposed encryption system involves the manipulation of large in- 
+tegers, which are needed to make the proposed encryption system 
+robust against various attacks. Nonetheless, the decrypted images 
+appear to be perceptually identical to their original counterparts 
+as shown in Fig. 5 . For completion of discussion, the correspond- 
+ing PSNR and SSIM values for all test images are also recorded in 
+the last two columns of Table 2 . Here, the PSNR and SSIM values 
+are computed by the using grayscale images, which are generated 
+
+[ a i j 
+
+,
+
+ b i j 
+
+,
+
+ d i j ] 
+
+,
+
+(14) 
+
+耳
+
+i 
+
+10 )
+
+30 =
+
+℅ 1 vector) for i, j 
+with initial value vector 
+(i.e., 3 
+ {1, 2, 
+3}. If the precision in question is 10 
+ then the key space is 
+(10 
+ 10 
+ which corresponds to a key length greater 
+than 900 bits. This large secret key space of the proposed encryp- 
+tion method is sucient to ensure that brute-force attack is in- 
+feasible. Note that the key space can be further increased accord- 
+ingly by increasing the precision. A comparison of secret key space 
+
+10 ,
+
+300 >
+
+900 ,
+
+ 2 
+
+﹋
+
+92 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+Fig. 5. Decrypted images using the correct key. 
+
+4.4. Statistical attack 
+
+Table 3 
+Comparison of secret key space. 
+
+Encrypted algorithm 
+
+Secret key space 
+
+Proposed method 
+Hsiao & Lee [6] 
+Liu & Wang [23] 
+Bigdeli et al. [13] 
+Liu & Wang [24] 
+
+ 2 
+
+10 
+10 
+℅ 10 
+1.0368 
+2 
+℅ 10 
+3.4 
+
+300 >
+900 
+196 ＞ 2 
+651 
+114 ＞ 2 
+379 
+94 ＞ 2 
+314 
+
+224 
+
+Table 4 
+Different parameter settings for evaluation on key 
+sensitivity. 
+
+Case 
+
+Parameter Original Mismatched 
+
+1 
+2 
+3 
+4 
+
+a 11 
+b 23 
+d 31 
+耳 2 
+
+.
+
+2.25 
+5 
+ 01 
+0.50 
+0.00 
+
+.
+
+2.250 0 0 0 0 0 01 
+5 
+ 010 0 0 0 0 0 01 
+0.0 0 0 0 0 0 0 0 01 
+0 
+ 4999999999 
+
+.
+
+for the proposed and other conventional encryption methods are 
+summarized in Table 3 . It is apparent that the proposed encryp- 
+tion method has the largest key space. 
+
+4.3. Key sensitivity test 
+
+To illustrate the key sensitivity of the proposed encryption 
+method, the image encrypted by using the parameter settings in 
+12) is decrypted using the same parameters, but with a slight 
+(8 
+10 as summarized in Table 4 . In other 
+mismatch in the order of 10 
+words, the exactly same key is used for decryption, except for the 
+changes summarized in Table 4 . Using Lenna as the representa- 
+tive test image, the corresponding decrypted images are shown in 
+Fig. 6 . Results suggest that a slight change in any of parameters 
+10 leads to a completely different image (i.e., 
+in the order of 10 
+noise), which do not infer any information about the original im- 
+age. Therefore, the proposed encryption method is veried to be 
+sensitive to the key in use. 
+
+To verify the robustness of the proposed encryption method, a 
+statistical analysis is performed for the plaintext and the encrypted 
+images in the following two aspects. 
+
+4.4.1. Histogram analysis 
+A histogram reects the distribution of the pixel values for a 
+given image. Any effective image encryption method should mask 
+the perceptual meaning of the plaintext image and atten its his- 
+togram (i.e., become near uniform distribution). The histogram be- 
+fore and after encryption are shown in Figs. 7 and 8 for the test 
+images Lenna and Baboon, respectively. It is apparent that the his- 
+tograms of the encrypted image are fairly uniform and hence sig- 
+nicantly different from that of the original images. The outcome 
+for other images are similar and we omit the results here. All in 
+all, the histogram does not provide any useful clue for an attacker 
+to launch any statistical attacks on the proposed image encryption 
+procedure. Therefore, the proposed encryption method successfully 
+randomized the pixels. 
+
+4.4.2. Correlation analysis 
+In the plain image, the correlation coecients are high in gen- 
+eral, because the adjacent pixels in all three directions, i.e., the hor- 
+izontal, vertical, and diagonal directions, often have the same or a 
+similar pixel values. However, in the encrypted image, the corre- 
+lation coecients should be low (e.g., close to zero), i.e., uncor- 
+related. To illustrate the pixel correlations before and after encryp- 
+tion, 20 0 0 pixels are randomly selected as the x value. Correspond- 
+ingly, one of the 8 neighbors of each selected pixel is chosen to 
+be its y value. As the representative examples, the graph of these 
+points P ( x, y ) are plotted in Figs. 9 and 10 for the test images Lenna 
+and Baboon, respectively. As expected, the highly correlated pixels 
+(i.e., before encryption) show little to no correlation after encryp- 
+tion. 
+For further analysis, the correlation coecients of the plain im- 
+age and the encrypted image are computed as follows: 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+93 
+
+Fig. 6. Images decrypted from Fig. 4 (e) by using the wrong keys summarized in Table 4 . 
+
+6000
+
+5000
+
+4000
+
+3000
+
+2000
+
+1000
+
+0
+
+0
+
+1600
+
+1400
+
+1200
+
+1000
+
+800
+
+600
+
+400
+
+200
+
+0
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+(a) Histogram of (a)
+
+(b) Histogram of (b)
+
+Fig. 7. Histogram of the original and encrypted Lenna image. 
+N (cid:17)
+(x i 
+i 
+=1 
+
+D 
+(x 
+)
+
+1 
+N 
+
+=
+
+ E (x 
+))
+
+2 ,
+
+ D 
+
+(y 
+)
+
+=
+
+N (cid:17)
+(y i 
+=1 
+i 
+
+1 
+N 
+
+ E (y 
+))
+
+2 ,
+
+(16) 
+
+1. For each of the RGB channels in a color image, randomly select 
+20 0 0 pairs of two adjacent pixels in the horizontal, vertical, or 
+diagonal direction. Altogether there are 60 0 0 points. 
+2. The correlation coecient, denoted by r xy , is calculated by us- 
+ing the following formulae [25] 
+
+=
+
+r xy 
+
+(cid:18)
+
+|
+
+ cov 
+(x,
+D 
+(x 
+)
+
+(cid:18)
+
+|
+
+)
+
+ y 
+
+D 
+(y 
+)
+
+,
+
+(15) 
+
+cov 
+(x,
+
+)
+
+ y 
+
+=
+
+N (cid:17)
+(x i 
+=1 
+i 
+
+1 
+N 
+
+ E (x 
+ E (y 
+))(y i 
+))
+
+,
+
+(17) 
+
+94 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+0
+
+1000
+
+2000
+
+3000
+
+4000
+
+5000
+
+6000
+
+(a) Histogram of (a)
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+(b) Histogram of (b)
+
+Fig. 8. Histogram of the original and encrypted Baboon image. 
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+(a) Pixel correlation of (a)
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+(b) Pixel correlation of (b)
+
+Fig. 9. Graph of pixel correlation before and after encryption - Lenna. 
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+(a) Pixel correlation of (a)
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+(b) Pixel correlation of (b)
+
+Fig. 10. Graph of pixel correlation before and after encryption - Baboon. 
+
+E (x 
+)
+
+=
+
+1 
+N 
+
+N (cid:17)
+x i 
+=1 
+i 
+
+,
+
+ E (y 
+)
+
+=
+
+1 
+N 
+
+N (cid:17)
+y i 
+=1 
+i 
+
+,
+
+(18) 
+
+where x i 
+and y i 
+denote pixel values of two different pixels in 
+the image itself or between two different images. Here, cov ( x, 
+y ) indicates the covariance, D ( x ) and D ( y ) are the variance, and 
+E ( x ) and E ( y ) are the means. 
+
+The results are recorded in Table 5 , which suggest that the pro- 
+posed encryption method can effectively randomize the pixel val- 
+
+ues because the correlation coecients is small in magnitude for 
+all color channels. The encrypted pixel values show little to no cor- 
+relation, which also agree with the graphs in Figs. 9 and 10 for the 
+case of Lenna and Baboon, respectively. The rest of the images (in- 
+cluding those from the UCID dataset [21] ) behave similarly and we 
+omit the results here. 
+The proposed method is also compared with the conventional 
+encryption methods in terms of correlation coecients, and the 
+results are recorded in Table 6 . Results suggest that, for all encryp- 
+tion methods considered, the neighboring pixels in the encrypted 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+95 
+
+Table 5 
+Correlation coecients of the red, green, and blue 
+channels of the original and encrypted color im- 
+℅10 
+2 ). 
+ages ( 
+
+Red 
+
+Green 
+
+Blue 
+
+Plaintext image 
+Baboon 
+88.2132 
+F-16 
+94.3991 
+House 
+91.6448 
+Lake 
+96.3884 
+Lenna 
+97.0725 
+Tiffany 
+94.7014 
+Average 
+93.7366 
+UCID 
+93.7197 
+Encrypted image 
+1.8201 
+Baboon 
+0.3055 
+F-16 
+House 
+3.3869 
+0.7876 
+Lake 
+0.8916 
+Lenna 
+Tiffany 
+1.2566 
+0.7267 
+Average 
+0.0407 
+UCID 
+
+81.5407 
+94.7277 
+90.0456 
+97.2590 
+95.1062 
+91.9219 
+91.7669 
+94.0391 
+
+1.0509 
+0.8849 
+0.7109 
+2.4822 
+3.4630 
+1.9780 
+0.5151 
+0.0239 
+
+90.2738 
+93.9894 
+94.1567 
+96.5515 
+90.0020 
+93.6470 
+93.1034 
+93.8108 
+0.030352 
+2.5270 
+2.2173 
+2 .5978 
+0.9267 
+1.9783 
+0.3361 
+0.0345 
+
+Table 6 
+Comparison of correlation coecients of the red, green, and blue 
+℅10 
+2 ). 
+channels among the proposed and conventional methods ( 
+
+Method 
+
+Proposed method ( Table 5 ) 
+Hsiao & Lee [6] 
+Wang et al. [7] 
+Hussain et al. [26] 
+
+Red 
+0.7267 
+1.6231 
+1.0889 
+2.0889 
+
+Green 
+0.5151 
+1.3235 
+1.8110 
+2.8110 
+
+Blue 
+
+0.3361 
+0.6104 
+3.0774 
+0.5104 
+
+image are of low correlation. It is also observed that the perfor- 
+mance of the proposed method is comparable to those of the con- 
+ventional methods considered. 
+
+4.5. Chosen-plaintext attack 
+
+One of the signicant sensitivity analysis is plaintext sensitiv- 
+ity, which is also known as chosen-plaintext attack. Plaintext sen- 
+sitive means that any tiny disturbance of the plain-image will lead 
+to dramatic changes in the encrypted image. Therefore, in order 
+to measure the difference between the resulting encrypted im- 
+ages, there are two criteria, namely, number of pixels change rate 
+(NPCR), which is dened as: 
+
+(cid:6)
+
+(cid:6)
+
+=
+
+ M 
+
+=1 
+i 
+
+ N 
+
+j=1 
+D R,G,B 
+
+(i,
+
+ j )
+
+℅ 100% 
+
+,
+
+NPCR R,G,B 
+
+℅ N 
+M 
+and unied average changing intensity (UACI), which is expressed 
+as: 
+
+(19) 
+
+UACI R,G,B 
+
+=
+
+subject to 
+
+D R,G,B 
+
+(i,
+
+ j )
+
+=
+
+|
+
+M (cid:17)
+N (cid:17)
+=1 
+j=1 
+i 
+
+ C R,G,B 
+
+ C 
+(cid:9)
+(i,
+ j )
+(i,
+℅ M 
+℅ N 
+255 
+
+R,G,B 
+
+|
+
+ j )
+
+(cid:19)
+
+ if C R,G,B 
+
+0 
+(i,
+ j )
+1 
+ otherwise 
+
+,
+,
+
+.
+
+=
+
+(cid:9)
+
+ C 
+
+R,G,B 
+
+;
+
+ j )
+
+(i,
+
+℅ 100% 
+
+,
+
+(20) 
+
+(cid:9)
+
+(i,
+ j )
+
+Here, C R, G, B ( i, j ) and C 
+R,G,B 
+
+ denote the two different encrypted 
+images in which their plaintext images P R, G, B ( i, j ) and P 
+(i,
+ j )
+differ only by one pixel. Note that higher NPCR value implies bet- 
+ter performance. On the contrary, lower value of UACI implies bet- 
+ter performance. The NPCR and UACI results for the test images 
+are recorded in Table 7 . These results suggest that the proposed 
+encryption FCNNs-based method is robust against chosen-plaintext 
+
+R,G,B 
+
+(cid:9)
+
+Table 7 
+NPCR and UACI for two encrypted images 
+where their corresponding plaintext images 
+differ only by one pixel. The encrypted images 
+are generated by using the same secret key. 
+
+NPCR 
+
+Component 
+
+Red 
+
+Green 
+
+Blue 
+
+Baboon 
+F-16 
+House 
+Lake 
+Lenna 
+Tiffany 
+Average 
+UCID 
+
+Baboon 
+F-16 
+House 
+Lake 
+Lenna 
+Tiffany 
+Average 
+UCID 
+
+0.9991 
+0.9999 
+0.9993 
+1.0 0 0 0 
+0.9991 
+0.9999 
+0.9995 
+0.9961 
+UACI 
+0.3344 
+0.3327 
+0.3333 
+0.3341 
+0.3335 
+0.3339 
+0.3336 
+0.3346 
+
+0.9990 
+0.9998 
+0.9993 
+1.0 0 0 0 
+0.9992 
+1.0 0 0 0 
+0.9995 
+0.9961 
+
+0.3337 
+0.3328 
+0.3334 
+0.3337 
+0.3334 
+0.3333 
+0.3334 
+0.3346 
+
+0.9990 
+0.9999 
+0.9993 
+1.0 0 0 0 
+0.9991 
+1.0 0 0 0 
+0.9995 
+0.9961 
+
+0.3330 
+0.3329 
+0.3336 
+0.3332 
+0.3330 
+0.3333 
+0.3332 
+0.3346 
+
+Table 8 
+Average value for NPCR and UACI. 
+
+Image 
+
+NPCR (mean) 
+
+Color Channel 
+
+Red 
+
+Green 
+
+Blue 
+
+Plaintext 
+
+Encrypted 
+
+Proposed method 
+Hsiao & Lee [6] 
+Liu & Wang [23] 
+
+0.9995 
+0.9995 
+0.9961 
+0.9961 
+0.9961 
+0.9962 
+UACI (mean) 
+Proposed method 
+0.3339 
+0.3333 
+Hsiao & Lee [6] 
+0.3345 
+0.3349 
+Liu & Wang [23] 
+0.3355 
+0.3341 
+
+0.9995 
+0.9961 
+0.9958 
+
+0.3330 
+0.3344 
+0.3335 
+
+attack. For example, the average NPCR is 99.95% even when the in- 
+put images differ only by 1 pixel. 
+For completion of discussion, the NPCR and UACI scores at- 
+tained by the proposed encryption method are also compared with 
+those of the conventional methods. It is observed that all consid- 
+ered methods exhibit high NPCR and low UACI, suggesting their 
+high plaintext sensitivity property. Nonetheless, it is observed that 
+the proposed method outperforms the conventional encryption 
+methods considered in both NPCR and UACI ( Table 8 ). 
+
+5. Conclusions 
+
+In this work, we reformulated the FCNN to encrypt color im- 
+age. Specically, we use each generated FCNNs chaotic signal ex- 
+pressed in (1) together with each pixel of the original image to 
+generate the output encrypted pixel, which makes the proposed 
+encryption system robust against various cryptanalysis, including 
+plaintext-only and chosen-plaintext attacks. To add another layer 
+of security, the chaotic signal can begin at any point in the orig- 
+inally generated chaotic signal. The key sensitivity was veried to 
+10 . In addition, plaintext sensitivity tests and 
+be in the order of 10 
+statistical analysis against the conventional methods demonstrated 
+the effectiveness of our proposed method. 
+As future work, fast computation method for the proposed 
+FCNN will be designed to meet the requirements of real-time ap- 
+plications. In addition, the proposed FCNN will be further rened 
+for applications in other domains, including audio and video where 
+the samples are highly correlated. 
+
+96 
+
+K. Ratnavelu et al. / Signal Processing 140 (2017) 87每96 
+
+Acknowledgment 
+
+This work was supported by the Fundamental Research Grant 
+Scheme (FRGS) MoHE Grant ( FP051-2016 ) and the University of 
+Malaya HIR under Project UM.C/625/1/HIR/MOHE/ENG/42. 
+
+References 
+
+[1] T. Stutz , A. Uhl , A survey of h.264 AVC/SVC encryption., IEEE Trans. Circuits 
+Syst. Video Techn. 22 (3) (2012) 325每339 . 
+[2] A. Massoudi, F. Lefebvre, C. De Vleeschouwer, B. Macq, J.-J. Quisquater, 
+Overview on selective encryption of image and video: challenges and perspec- 
+tives, EURASIP J. Inf. Secur. 2008 (2008) 5:1每5:18, doi: 10.1155/2008/179290 . 
+[3] K. Ho, 41 up-to-date facebook facts and stats, 2015, ( http://blog.wishpond.com/ 
+post/115675435109/40- up- to- date- facebook- facts- and- stats ). 
+[4] R. Enayatifar , H.J. Sadaei , A.H. Abdullah , M. Lee , I.F. Isnin , A novel chaotic based 
+image encryption using a hybrid model of deoxyribonucleic acid and cellular 
+automata, Opt. Lasers Eng. 71 (2015) 33每41 . 
+[5] G. Zhou , D. Zhang , Y. Liu , Y. Yuan , Q. Liu , A novel image encryption algorithm 
+based on chaos and line map, Neurocomputing 169 (2015) 150每157 . 
+[6] H.-I. Hsiao , J. Lee , Color image encryption using chaotic nonlinear adaptive l- 
+ter, Signal Process. 117 (2015) 281每309 . 
+[7] X. Wang , L. Teng , X. Qin , A novel colour image encryption algorithm based on 
+chaos, Signal Process. 92 (4) (2012) 1101每1108 . 
+[8] S. El Assad , M. Farajallah , A new chaos-based image encryption system, Signal 
+Process. 41 (2016) 144每157 . 
+[9] J. Zhao , S. Wang , Y. Chang , X. Li , A novel image encryption scheme based 
+on an improper fractional-order chaotic system, Nonlinear Dyn. 80 (4) (2015) 
+1721每1729 . 
+[10] C. Li , Cracking a hierarchical chaotic image encryption algorithm based on per- 
+mutation, Signal Process. 118 (2016) 203每210 . 
+[11] S. Lian , A block cipher based on chaotic neural networks, Neurocomputing 72 
+(4) (2009) 1296每1301 . 
+[12] S. Wen , Z. Zeng , T. Huang , Q. Meng , W. Yao , Lag synchronization of switched 
+neural networks via neural activation function and applications in image en- 
+cryption, IEEE Trans. Neural Netw. Learn. Syst. 26 (7) (2015) 1493每1502 . 
+
+[13] N. Bigdeli , Y. Farid , K. Afshar , A novel image encryption/decryption scheme 
+based on chaotic neural networks, Eng. Appl. Artif. Intell. 25 (4) (2012) 
+753每765 . 
+[14] T.A. Fadil , S.N. Yaakob , B. Ahmad , A hybrid chaos and neural network cipher 
+encryption algorithm for compressed video signal transmission over wireless 
+channel, in: Electronic Design (ICED), 2nd International Conference on, IEEE, 
+2014, pp. 64每68 . 
+[15] S. Chatzidakis , P. Forsberg , L.H. Tsoukalas , Chaotic neural networks for intelli- 
+gent signal encryption, in: Information, Intelligence, Systems and Applications, 
+IISA, The 5th International Conference on, IEEE, 2014, pp. 100每105 . 
+[16] L.O. Chua , L. Yang , Cellular neural networks: theory, IEEE Transa. Circuits Syst. 
+35 (10) (1988a) 1257每1272 . 
+[17] L.O. Chua , L. Yang , Cellular neural networks: applications, IEEE Trans. Circuits 
+Syst. 35 (10) (1988b) 1273每1290 . 
+[18] T. Yang , L.-B. Yang , C.W. Wu , L.O. Chua , Fuzzy cellular neural networks: ap- 
+plications, in: Cellular Neural Networks and their Applications, 1996. CN- 
+NA-96. Proceedings., 1996 Fourth IEEE International Workshop on, IEEE, 1996, 
+pp. 225每230 . 
+[19] T. Yang , L.-B. Yang , C.W. Wu , L.O. Chua , Fuzzy cellular neural networks: theory, 
+in: Cellular Neural Networks and their Applications. CNNA-96. Proceedings., 
+Fourth IEEE International Workshop on, IEEE, 1996, pp. 181每186 . 
+[20] A. Abdurahman , H. Jiang , Z. Teng , Finite-time synchronization for fuzzy cellular 
+neural networks with time-varying delays, Fuzzy Sets Syst. 297 (2016) 96每111 . 
+[21] G. Schaefer , M. Stich , UCID - an uncompressed colour image database, in: In 
+Storage and Retrieval Methods and Applications for Multimedia 2004, Proceed- 
+ings of SPIE, 5307, 2004, pp. 472每480 . 
+[22] The usc-sipi image database, ( http://sipi.usc.edu/database/database.php ). 
+[23] H. Liu , X. Wang , Color image encryption using spatial bit-level permutation 
+and high-dimension chaotic system, Opt. Commun. 284 (16) (2011) 3895每3903 . 
+[24] H. Liu , X. Wang , Triple-image encryption scheme based on one-time key 
+stream generated by chaos and plain images, J. Syst. Softw. 86 (3) (2013) 
+826每834 . 
+[25] R. Rhouma , S. Meherzi , S. Belghith , OCML-based colour image encryption, 
+Chaos, Solitons & Fractals 40 (1) (2009) 309每318 . 
+[26] I. Hussain , T. Shah , M.A. Gondal , An ecient image encryption algorithm based 
+on s 8 s-box transformation and nca map, Opt. Commun. 285 (24) (2012) 
+4 887每4 890 . 
+

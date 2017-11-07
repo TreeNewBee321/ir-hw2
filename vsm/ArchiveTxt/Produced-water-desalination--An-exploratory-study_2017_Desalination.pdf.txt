@@ -1,0 +1,2110 @@
+Produced water desalination: An exploratory study
+
+Anand Venkatesan, Phillip C. Wankat*
+
+School of Chemical Engineering, Purdue University, 480 Stadium Mall Drive, West Lafayette, IN47907-2100, USA
+
+H I G H L I G H T S
+
+ A novel hybrid adsorption/ion exchange (IEX)/reverse osmosis (RO) process is proposed for produced water desalination.
+ Water in liquid phase at high pressure and temperature is utilized to regenerate the adsorber. This has multiple advantages for strongly adsorbed
+ IEX regeneration with RO retentate eliminates added chemicals.
+components including better desorption with less regeneration uid, lower energy requirements because there is no phase change, and lower costs.
+ Optimized process to minimize costs at three different brine disposal costs.
+ Hybrid process water recovery up to 86% is feasible and economical for the produced water considered in this work.
+ This work is based on computer modeling for process synthesis, design, and optimization. Experimental studies are needed to verify the assumptions
+made in this analysis.
+article
+
+info
+
+Article history:
+Received 26 June 2016
+Received in revised form 7 October 2016
+Accepted 7 November 2016
+Available online 24 November 2016
+
+Keywords:
+Reverse osmosis
+Membrane fouling
+Adsorption
+Ion exchange
+Produced water
+
+abstract
+
+Produced water is the largest volume byproduct stream in oil and gas production, and has an adverse
+environmental impact due to its complex composition and high disposal costs. Membrane fouling due
+to hydrocarbons limits purication of produced water by reverse osmosis (RO). A novel hybrid adsorp-
+tion/ion exchange (IEX)/RO process is developed in which the adsorber removes dissolved hydrocarbons,
+IEX removes scale causing precursors, and RO desalinates the water. A part of the hydrocarbon free liquid
+from the adsorber is pressurized to 6.2 bar, heated to 160  C and used to regenerate the adsorber, which
+resulted in an improvement in water recovery (to 86%), and translated into a predicted 22.8% decrease in
+costs amounting to US$ 27 million annual savings. The new high water recovery processes delineated in
+this work provide an array of novel options for removing hydrocarbons and desalination under different
+conditions. Experimental studies are needed to verify the assumptions made in this analysis.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+The term ※Produced Water§ is used to describe the water from
+oil and gas (O&G) extraction processes. Water is frequently injected
+into wells to increase oil recovery. Steam is injected to decrease the
+viscosity of oil resulting in improved owability. Liquid water con-
+taining surfactants is used to help release oil adhering to the rock
+matrix, and high pressure water containing additives and partic-
+ulates is used in fracking to increase the rock porosity. The O&G
+(＞7 bbl of water per bbl of oil). It is the largest volume byproduct
+industry in USA produces about 18 billion bbls of produced water
+stream associated with O&G production (75 billion bbls of produced
+water) worldwide annually. Note: 1 bbl = 42 US gal) [1,2].
+Management of produced water presents environmental chal-
+lenges and costs ($0.30/bbl每$105.00/bbl depending on the disposal
+method [3]). The major hydrocarbon groups present in produced
+water include alkanes, aromatics, polynuclear aromatics, hydro-
+carbon compounds containing oxygen, nitrogen and sulfur and
+unknown hydrocarbons (oil & grease). Produced water also contains
+high amounts of dissolved salts with predominant cations such as
+Na + , K + , Ca2 + and Mg2 + ; anions such as Cl  and SO2
+4 , and silica
+(SiO2 ) [4].
+A clarication step is used to remove particulates and induced gas
+otation (IGF) is used to remove free oil. The most common method
+to remove emulsied oil is by pH adjustment and coagulation. A key
+disadvantage of this method is the problem of additives affecting
+the downstream operations. When large volumes of produced water
+ treated, chemical addition may increase the cost signicantly [5].
+Other methods such as electro-coagulation and hydrocyclones are
+also used. Electrocoagulation involves the use of extremely high volt-
+ages, and can become expensive as scale of operation increases.
+Hydrocyclones are ecient for some emulsions but are capital inten-
+sive and expensive to run and maintain [1,2,6].
+Membrane processes have emerged as an alternative. The key
+advantages of membrane based processes are low operating cost,
+the absence of chemical addition and subsequent generation of oily
+sludge. However, mineral scale deposition and fouling on the mem-
+brane surface (membrane fouling) is a critical issue which limits
+the water recovery. The hydrocarbons present in produced water
+adsorb on the membrane surface and form a foulant layer that causes
+permeate ux decline. In addition, aromatic hydrocarbons are poten-
+tially damaging to the polysulfone support layer of the membrane.
+Antiscalants have been used to avoid scaling on the membrane and
+increase the water recovery to a certain extent. However antis-
+calant addition promotes biofouling because antiscalants have been
+designed to be biodegradable to make concentrate disposal environ-
+mentally friendly [7每9].
+Hodgkiess et al. [9] studied the impact of hydrocarbons on RO
+membranes. Their studies involved crude oil/water, diesel/water
+mixtures and hexane/water emulsied/single phase mixtures. They
+found that exposure to diesel/water emulsied mixtures was
+extremely damaging to the membranes. After just 30 min of expo-
+sure to dilute diesel water mixtures of 1/50 or 1/100 ratios, they
+observed greater than 50% reduction in permeate ux and greater
+than 100% increase in salt passage. Hexane also caused serious dete-
+rioration of the performance of RO membranes when in contact in
+pure or emulsied form. However, no changes in ux or salt pas-
+sage were observed in single phase oil/hexane/water solutions. From
+the experimental studies of Hodgkiess et al. [9], and for the hydro-
+carbons studied, it can be inferred that hydrocarbons retained in
+aqueous solution do not have damaging impact on performance of
+RO membranes while hydrocarbons in pure or emulsied form or
+concentrated hydrocarbon mixtures have a deleterious impact on the
+membranes. Due to this incompatibility between the raw produced
+water and the RO membrane, pretreatment is essential to eliminate
+the problematic hydrocarbons, hardness, metals, oil and grease.
+RO desalination processes with an adsorption pretreatment and
+an ion exchange (IEX) water softening treatment after the IGF
+unit are proposed in this paper. Adsorption processes are capable
+of removing iron, manganese, total organic carbon, hydrocarbons,
+heavy metals (>80% removal eciency) and oil from produced water
+thereby alleviating the problem of fouling [3]. Activated carbon has
+been used extensively for municipal water treatment as a process for
+removal of organics from drinking water. Based on tonnage used and
+market value, activated carbon is one of the most widely used porous
+adsorbents. Organoclay materials such as bentonite can also be used,
+however they do not have the same adsorption capability as acti-
+vated carbon [10]. Although activated carbon is the market standard
+for water treatment, synthetic polymeric adsorbents such as DOWEX
+OPTIPORE L/V 493 offer advantages in specic cases. Synthetic poly-
+meric adsorbents can be used for recovery of organics from water for
+identication and quantication purposes [11]. IEX treatment will
+remove the scale causing precursors in water such as Ca2 + and Mg2 + ,
+thereby alleviating the problem of mineral scaling on the surface of
+RO membranes. The concentrate from the RO unit will be used to
+
+Table 1
+Aromatic compounds in produced water.
+
+regenerate the IEX column which would then eliminate the need for
+external regeneration chemicals. If the water to be treated does not
+have any scale causing precursors, then an IEX pretreatment might
+not be required. The water from the IGF and the adsorbers, would
+directly be sent to the RO.
+Modeling of IEX and RO, and development of RO/IEX hybrid sys-
+tems for desalination of concentrated brackish waters at municipal
+plant scale and desalination of the Colorado River water at the YUMA
+plant scale were done by Venkatesan and Wankat [12每15]. As the
+modeling of IEX and RO cascades has been done extensively, the
+main focus of this paper will be the modeling of the adsorption unit
+and its integration with the RO/IEX system. The hydrocarbons con-
+sidered in this paper were aromatic compounds and, classied as
+mono- and polycyclic depending on number of equivalent benzene
+rings. These compounds are described in Table 1. Toluene was used
+to represent BTEX as it is close to the average molecular weight for
+this class of compounds. Naphthalene (for NPD class of compounds)
+and anthracene (for Polycyclic Aromatic Hydrocarbons, PAH) were
+selected because data was available.
+After describing the process, the modeling of the adsorber and
+adsorber results are presented followed by an evaluation of different
+heating methodologies. As the modeling of RO/IEX has been covered
+extensively previously [12每15], the focus of the current modeling
+efforts are on the adsorber and the different heating methodolo-
+gies employed. Finally, the different operations are integrated into
+one process and the overall results are presented. The evaluations of
+RO/IEX models are presented along with the overall results.
+
+2. Process description
+
+In this section, a brief description about the proposed process is
+given. The composition of a particular raw produced water (Texas,
+USA) is listed in Table 2. After pretreatment to remove suspended
+solids, the incoming water (≡80  C) is sent to an IGF unit. In IGF, the
+water is de-oiled and almost all of the oil droplets and, the straight
+and branched chain hydrocarbons are removed at this stage (>98%
+removal eciency). The injection of gas bubbles into the water phase
+increases the buoyant force on the oil droplets. The oil droplets are
+removed when they rise to the water surface. The water composition
+after clarication and IGF is also shown in Table 2. This pretreat-
+ment does not remove the emulsied and dissolved hydrocarbons,
+especially lighter aromatics as their solubility is higher than that of
+straight/branched chain hydrocarbons.
+Dow FILMTEC SW30XLE-400i RO membranes were used in this
+study. These are typically used for two-pass seawater designs and
+high TDS brackish water applications. These membranes have a
+higher maximum operating pressure (83 bar) than FT-SW30HR (＞70
+bar) and FT-BW30HR (＞40 bar) membranes. As the membranes,
+SW30XLE, SW30HR, and BW30HR are spiral-wound elements made
+of polyamide thin-lm composites, they are all susceptible to the
+problem of membrane fouling due to hydrocarbons [11]. Therefore,
+before sending the water from IGF to RO for desalination, a check
+for hydrocarbon solubility and mineral salt precipitation is done
+by PHREEQC [16]. This check determines the maximum possible
+recovery at which the RO can be operated without mineral scale for-
+mation or hydrocarbon fouling on the membrane surface. Presence of
+emulsied hydrocarbons quickly fouls the membrane and prevents
+
+Class
+
+BTEX
+NPD
+PAH
+
+Denition
+
+Monocyclic aromatics
+2每3 ring aromatics
+3每6 ring aromatics
+
+Examples
+
+Representative compound
+
+Benzene, toluene, ethylbenzene, xylene
+Naphthalene, phenanthrene, dibenzothiophene
+Anthracene, pyrene, chrysene
+
+Toluene
+Naphthalene
+Anthracene
+
+330
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+Table 2
+Composition of raw produced water [18].
+
+Analyte
+
+Water quality
+(raw)
+
+Water quality
+(after clarication
+and IGF pretreatment)
+
+Total dissolved solids (TDS) (ppm)
+Calcium (ppm)
+Magnesium (ppm)
+Sodium (ppm)
+Potassium (ppm)
+Strontium (mg/L)
+Sulfate (ppm)
+Chloride (ppm)
+Bicarbonate (ppm)
+Carbonate (ppm)
+Silica (ppm)
+BTEX (l g/L)
+NPD (l g/L)
+PAH (l g/L)
+Total oil & grease (ppm)
+Free oil (ppm)
+pH
+T ( C)
+
+5500每7500
+80
+10
+2300
+39
+1.0
+133
+3400
+696
+2.0
+160
+1500
+720
+85
+53
+17
+7.5
+80
+
+5500每7500
+80
+10
+2300
+39
+1.0
+133
+3400
+696
+2.0
+90
+1500
+720
+85
+38
+1.0
+7.5
+80
+
+operation of RO. As a pretreatment, the de-oiled water is cooled (＞45
+ C) and then sent to an adsorber packed with granular activated car-
+bon (TOG 20 ℅ 50). Alternatively, the de-oiled water from IGF can be
+sent to the adsorber without cooling. However, the discharge from
+the adsorber must then be cooled before sending to RO since oper-
+ating at temperatures greater than 45  C will void the membrane
+manufacturer＊s warranty [11].
+The single adsorber column shown in Fig. 1 represents a num-
+ber of columns in parallel. The adsorbers are in parallel to handle the
+large owrate and allow for operation in a cyclic fashion involving a
+
+Fig. 2. Schematic of a horizontal column with regeneration countercurrent to feed.
+
+feed step, a regeneration step and a cooling step. In all the gures,
+only the important heat exchangers are shown. Each adsorber con-
+sists of a horizontal column with vertical ow through a relatively
+shallow packed bed of granular activated carbon (Fig. 2). Horizontal
+columns are commonly used for solvent recovery from gases using
+activated carbon as adsorbent [17]. During the feed step, hydro-
+carbons (BTEX, NPD and PAH) are adsorbed on the highly porous
+activated carbon and the discharge from the adsorber is stripped
+of hydrocarbons. The discharge from the adsorber is split into four
+streams as shown in Fig. 1. An alternative that will be discussed later
+is to have adsorbers in series in addition to parallel.
+
+2.1. Stream 1 (regenerant)
+This stream is heated to 160  C and its pressure elevated to 6.2
+bar before it is sent to the adsorber as regenerant. Temperature is ele-
+vated in order to desorb the hydrocarbons from the activated carbon
+
+Fig. 1. Proposed process scheme with single column adsorber and IEX pretreatment for RO.
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+331
+
+(adsorbent) while pressure is increased to prevent boiling. Heating
+and pressurization is done either by direct injection of steam from
+a pressurized boiler or by heat exchangers (HEX) and pumps. Dur-
+ing the regeneration step the hot, high pressure water shifts the
+isotherms such that the hydrocarbons present on the bed are des-
+orbed. Depending on their solubilities at 160  C, a supersaturated
+solution may be formed during regeneration when the hydrocar-
+bons (BTEX, NPD and PAH) are released from the adsorbent and
+enter the water. A supersaturated solution may result in formation
+of droplets of hydrocarbons which would interfere with xed bed
+operation. Thus, regeneration is done counterow to the feed in
+an expanded bed at an upward velocity such that the hydrocarbon
+droplets formed are carried out of the column through overow (as
+they follow a streamline), while the much larger adsorbent parti-
+cles remain in the column with negligible carryover. If experimental
+data show that droplets are not formed, then a packed bed can
+be used with upward ow during feed and downward ow during
+regeneration and cooling.
+When the hot, high pressure regenerant is pumped in the column
+counter ow to the feed, the liquid exiting the column remains at the
+feed concentration and temperature until temperature breakthrough
+occurs. This euent is depressurized and recycled to the adsorber
+column as feed for the next cycle.
+
+2.2. Stream 2 (cooling)
+
+Before the next feed cycle begins, the column is depressurized
+as the feed is at low pressure. However, since the column is at
+160  C and 6.2 bar at the end of regeneration, a reduction in pressure
+will cause ashing of water inside the column, unless the column
+is cooled before the pressure is reduced. The amount of regenerant
+and Stream 2 is such that the maximum temperature in the column,
+after it is depressurized (to 1 bar), does not exceed the boiling point
+of water at 1 bar, i.e., 99.6  C. When Stream 2 is pumped into the col-
+umn, the euent is the spent regenerant. To partially offset pumping
+costs, a pressure exchanger is used to depressurize the entire eu-
+ent from regeneration and cooling steps, and, the energy recovered
+is used to partially pressurize the regenerant stream.
+
+2.3. Stream 3 (feed to RO/IEX system)
+This stream is cooled to 45  C and sent to a system of RO cascades
+with IEX water softening pretreatment as shown in Fig. 1. The IEX
+exchanges the scale causing precursors such as Ca2 + , Mg2 + , Ba2 +
+and Sr2 + with Na + thereby alleviating the problem of mineral scal-
+ing on the membrane. This system is very similar to the previous
+work [12,13]. Alternatively, Stream 3 can be sent to a system of RO
+cascades with intermediate IEX water softening as shown in Fig. 1.
+For the regeneration of IEX column, the concentrate from the RO cas-
+cade is used. The product water from different cascades is mixed in
+order to achieve a water stream of desired purity.
+
+2.4. Stream 4 (optional bypass)
+This stream is cooled to 45  C and mixed with the product water
+coming from the RO cascades. Depending on the purity of product
+water desired, the amount of bypass stream is adjusted.
+The different alternatives evaluated are as follows:
+
+ Adsorber column conguration, i.e., single or two columns in
+ Heating methodology, i.e., direct steam injection or indirect
+series.
+ RO/IEX system conguration,
+heating with heat exchangers.
+pretreatment.
+
+intermediate IEX or IEX
+
+i.e.,
+
+3. Adsorber modeling & results
+
+3.1. Single column
+
+The adsorber is operated as a packed column in the feed step
+and as an expanded bed in desorption step. The simplied governing
+mass and energy balance equations, shown in Eqs. (1a) and (1b), are
+solved using Aspen Chromatography 2006. In order to describe the
+adsorption equilibrium of a single solute, the Langmuir isotherm is
+used.
+ z2 + qs (1  4)(1  4p )  q
+ t
+
++ K (1  4)4p
+
+ cp
+ t
+
+= 0 (1a)
+
+ Eb 4
+
+ c
+ z
+
+4
+
+ c
+ t
+
++ u0
+
+ 2 c
+
+Cp,f 4
+
+ T
+ t
+
++ u0 Cp,f
+
+ Cp,f 4Dthermal
+axial
+
+ T
++qs Cp,s (1  4)(1  4p )  Ts
+ z
+ t
+
+ 2 T
+ z2
+
++ Cp,f (1  4)4p
+
+ T 
+
+ t
+
+= 0
+
+(1b)
+
+where 4 is bed void fraction, c is concentration of solute in bulk liquid,
+u0 is the supercial velocity, Eb is axial dispersion coecient, 4p is
+the particle porosity and qs is the adsorbent density. q and cp are
+the volume average solid loading and uid concentration inside the
+adsorbent respectively.
+The Chung and Wen correlation [19] is used to estimate the
+axial dispersion in packed beds and the correlation by Kikuchi et
+al. [20] is used for expanded beds. The mass transfer between phases
+is accounted for by lm diffusion. The correlation by Wilson and
+Geankoplis [21] is used to estimate lm mass transfer coecients in
+packed beds (Eq. (1c)) and the correlation by Rowe [22] (Eq. (1d)) is
+used for expanded beds.
+
+(cid:2)
+
+(cid:3)2/3(cid:2)
+
+(cid:3)1/3
+
+(qs  q)l g
+
+q2
+
+kf =
+
+2D0
+dp
+
++ 0.31
+
+l
+qD0
+
+2n
+
+4 + 2n2 (14)1/3
+n
+
+(1(14)1/3 )2 42 tanh(n/4)
+4(1(14)1/3 )
+
+ tanh(n/4)
+
+Sh =
+
+where
+
+(1c)
+
+(0.001 < Re < 10, 000)
+
+(1d)
+
+(cid:4)
+
+(cid:5)
+
+1
+(1  4)1/3
+
+ 1
+
+(1e)
+
+(1f)
+
+n = 0.35Re1/2 Sc1/3
+
+Dp = 4pD0
+t
+
+A linear driving force with a lumped resistance is used to describe
+mass transfer. As linear lumped resistance is used, the effective mass
+transfer resistance is given by a sum of resistances model. For lm
+and pore diffusion.
+
+km ap =
+
+1
+kf ap
+
++
+
+1
+
+(kap )pore
+
+=
+
+1
+kf ap
+
++
+
+d2
+60DmpK (1  4)qp
+
+p
+
+where kf is lm diffusion coecient and K is the linear equilibrium
+constant. For non-linear systems
+
+(cid:5)1
+
+(cid:6)
+
+(cid:7)1
+
+(2a)
+
+K =
+
+avg
+
+(2b)
+
+For Dq driving force,
+becomes,
+60Dmp (1  4)qp
+d2
+
+km ap =
+
+p
+
+if lm diffusion is neglected, Eq. (2a)
+
+(2c)
+
+(cid:4)
+
+(cid:2)
+
+(cid:3)
+
+ q
+ c
+
+332
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+Table 3
+Parameters used for adsorption simulation.
+
+Parameter
+
+Number of nodes
+P.D.E discretization method
+Integration method
+Fixed step size
+Viscosity of water (20  C)
+Density of water (20  C)
+Particle diameter
+Density of activated carbon
+Activated carbon saturation capacity (qm )
+Activated carbon heat capacity (Cp,s )
+Mass transfer coecient @ 30  C (km ap )Benzene
+Heat of adsorption (DHads )
+Mass transfer coecient @ 30  C (km ap )Toluene
+Mass transfer coecient @ 30  C (km ap )Naphthalene
+Mass transfer coecient @ 30  C (km ap )Anthracene
+Isotherm parameter (K﹢,Benzene )
+Isotherm parameter (K﹢,Toluene )
+Isotherm parameter (K﹢,Naphthalene )
+Isotherm parameter (K﹢,Anthracene )
+Arrhenius parameter (ABenzene )
+Arrhenius parameter (AToluene )
+Arrhenius parameter (ANaphthalene )
+Arrhenius parameter (AAnthracene )
+
+Value
+
+200
+UDS1
+Gear 5th order
+0.001
+0.001 kg/ms [25]
+1019 kg/m3 [25]
+620 lm [26]
+850 kg/m3 [26]
+215.71 mg/g [24]
+850 J/kg-K [27]
+10.2 KCal/mol [26]
+8.1 min 1 [24]
+6.8 min 1 [27]
+5.64 min 1 [28]
+4.73 min 1 [29]
+7.5 ℅ 10 5 L/mg [24]
+6.2 ℅ 10 5 L/mg [27]
+3.8 ℅ 10 5 L/mg [28]
+7.6 ℅ 10 6 L/mg [29]
+2237.1 K [24]
+2441.5 K [27]
+2747.1 K [28]
+3671.4 K [29]
+
+As the adsorber is operated under non-isothermal conditions, the
+effect of variation in temperature has been considered, but the tor-
+tuosity factor has been assumed constant. Molecular diffusivity was
+correlated by the equation of King et al. [23].
+To benchmark the proposed model, simplistic cases of single
+and binary component adsorption on activated carbon were ana-
+lyzed [15]. For the single component benchmarking, the adsorption
+of benzene from aqueous solution onto activated carbon was used.
+The physical properties and references for the activated carbon
+parameters used for simulation are listed in Table 3. The heats of
+adsorption of all compounds on activated carbon are assumed to
+be equal and the maximum saturation capacities of all compounds
+on activated carbon are assumed to be equal. A mixture of benzene
+and toluene using the multicomponent Langmuir isotherm was the
+model system for the case of binary multicomponent adsorption [24].
+
+
+
+q
+i = qm
+
+Ki ci
+
+n(cid:8)
+
+1 +
+
+j=1
+
+Kj cj
+
+(3a)
+
+where q
+i is the equilibrium adsorbed concentration, ci is the equilib-
+rium liquid phase concentration, qm is the saturation capacity and Ki
+is the isotherm parameter. The variation of the isotherm parameter
+is given by Eq. (3b) where Ai is the Arrhenius parameter.
+
+Ki = K﹢,i eAi /T
+
+(3b)
+
+Since isotherm data for liquids at high temperatures and pres-
+sures are not available, Eq. (3b) was used to extrapolate to 160  C.
+As the scale of the process is huge, 250 million gallons (US) per
+day (Mgpd), multiple adsorption columns in parallel are required
+
+Table 4
+Fixed bed and expanded bed parameters.
+
+Parameter
+
+Fixed bed value
+
+Expanded bed value
+
+Average linear velocity
+Depth of adsorption bed
+Void fraction
+Input stream temperature
+Input stream pressure
+Input stream duration
+Constant dispersion coecient
+
+0.0027 m/s
+1 m
+0.4 [30]
+30  C
+1 bar
+100 min
+5.5 cm2 /min [19]
+
+0.00475 m/s
+1.43 m
+0.58
+110  C
+3 bar
+3 min
+23.28 cm2 /min [31]
+
+Fig. 3. Breakthrough curves of BTEX, NPD and PAH at cyclic steady state, feed
+temperature: 80  C.
+
+during the feed step. All the feed columns are operated with the
+same linear velocity as listed in Table 4. At the start we have one col-
+umn feeding. Once breakthrough occurs, a new column starts feeding
+and the saturated column starts regenerating. Since the regeneration
+time is less than feed time, with two columns the regenerated col-
+umn would sit idle until the feeding column is saturated. The number
+of columns should be large enough that at any given time we do not
+have idle columns. The feasible number of columns such that no col-
+umn is idle is found from Eq. (4). For example, at cyclic steady state,
+we might have 14 columns feeding and two columns regenerating
+simultaneously. When one column becomes saturated, it immedi-
+ately starts regenerating and a regenerated column starts feeding.
+
+(cid:9)
+
+Feasible Column =
+
+Feed Time
+Regeneration Time + Cool Time
+
+(cid:10)
+
+(4)
+
+3.2. Results for single adsorption columns in parallel
+
+Although the adsorber was retrotted to the RO/IEX network, for
+presentation purposes the adsorber design and results are decoupled
+from those of RO/IEX.
+The produced water from IGF has a TDS of 7500 ppm. The pri-
+mary hydrocarbons present are; BTEX (1500 l g/L), NPD (720 l g/L)
+and PAH (85 l g/L). Using a solubility check [15], it was determined
+that the produced water from IGF unit requires pretreatment before
+being sent to the RO. Hence, the produced water from IGF is sent to
+the adsorber packed with activated carbon. The breakthrough curves
+at the end of the feed step at cyclic steady state are shown in Fig. 3.
+Note, the ordinate in Fig. 3 is in logarithmic scale. The x-coordinate
+represents time at cyclic steady state. As BTEX compounds are less
+adsorbed than PAH, BTEX breakthrough occurs earlier than PAH
+breakthrough. The NPD compounds are intermediate between BTEX
+and PAH, and hence their breakthrough occurs before PAH but after
+BTEX. Operating times are listed in Table 5. The BTEX, NPD, and PAH
+removal eciencies were close to 99.95%.
+
+Table 5
+Adsorption column (ADS) specications.
+
+Parameter
+
+Feed temperature
+Number of feed columns
+Number of regenerating columns
+Column length (m)
+Column shell thickness (mm)
+Column diameter (m)
+Bed depth (m)
+Expanded depth (m)
+Feed time (min)
+Regeneration time (min)
+Cool time (min)
+
+Single column
+45  C
+80  C
+14
+16
+2
+2
+16.6
+15.1
+10
+10
+3.5
+3.5
+1
+1
+1.43
+1.43
+220
+175
+13
+9.5
+2.5
+2.5
+
+Multiple columns
+45  C
+80  C
+28
+32
+4
+4
+16.6
+15.1
+7
+7
+2
+2
+0.3
+0.3
+0.429
+0.429
+90
+70
+7.5
+5.5
+1.5
+1.5
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+333
+
+Fig. 4. Feed enters at the top of the bed (Axial distance z=0) and exits
+at the bottom (Axial distance z=150) while the regenerant and cool-
+ing uid enter at z=150 and exit at z=0. At the end of regeneration
+and cooling, the column is not completely regenerated and a heel of
+concentrated BTEX and NPD is left at the top of the bed. This helps
+minimize the use of regenerant and cooling water. The heel shown
+in Fig. 4 might be expected to cause BTEX and NPD to exit during the
+feed step. However, after the low temperature feed enters the col-
+umn, the equilibrium shifts and both BTEX and NPD are adsorbed on
+the activated carbon.
+
+3.3. Two columns in series
+
+Use of multiple columns in series has several advantages which
+necessitates its evaluation as an alternative to adsorption in single
+column. With two columns in series, the biggest advantages are
+reduction in total adsorbent compared to a single column and pro-
+ducing a more concentrated waste [17]. The reduction in total adsor-
+bent and the amount of waste leads to potential economic benets,
+especially when the waste disposal costs are high. The potential
+drawbacks are as follows [17]:
+
+ Increase in total number of columns and a potential increase in
+ May be more dicult in operation and control as switching
+capital cost.
+times are faster due to shorter duration of operation in each
+cycle.
+
+With downward ow during feed, two columns feeding in series
+were operated such that the top column is near saturation while
+making sure that breakthrough of hydrocarbons has not happened
+in the bottom column. The bed depths were adjusted so that these
+conditions were met and the waste was concentrated.
+At low bed depths (<0.3 m), the top column is saturated but
+breakthrough of hydrocarbons occurs in the bottom column because
+the length of the mass transfer zone is greater than bed depth and
+breakthrough time is less than feed time. At higher bed depths (>0.3
+m), the breakthrough of hydrocarbons does not occur from the bot-
+tom bed, but the top bed is not saturated. A bed depth of 0.3 m is
+found to be optimum since breakthrough of hydrocarbons does not
+occur from the bottom bed and the top bed is near saturation [15].
+The operation at two consecutive cycles for two columns feed-
+ing in series is shown in Fig. 5. The rst cycle ends when Bed 1 is
+almost saturated; breakthrough hasn＊t happened in Bed 2 and Bed 3
+is regenerated (Fig. 5 (a)). In the next cycle, feed is sent to Bed 2 and
+the euent from Bed 2 goes to Bed 3. Bed 1 is regenerated by the
+time Bed 2 is almost saturated and breakthrough has not happened
+in Bed 3 (Fig. 5 (b)). The adsorption column specications are listed
+in Table 5.
+
+Fig. 4. Solid loading of BTEX, NPD and PAH at the end of regeneration/cooling step at
+cyclic steady state, feed temperature = cooling temperature: 80  C.
+
+(cid:11)
+
+APAH
+
+T
+
+(cid:12)
+
+(cid:13)(cid:14)
+
+The exit concentration of PAH slightly increases and then
+decreases (small hump as noticed in Fig. 3). The maximum concen-
+tration of this hump is much less than the feed concentration of PAH.
+Because the concentrations of BTEX and NPD are much higher than
+the concentration of PAH (the ratio of BTEX and NPD concentration
+to PAH concentration is O(102 )) and the isotherms are competi-
+tive, some of the PAH is desorbed by BTEX and NPD. But as the
+KPAH = K﹢,PAH ℅ exp
+Langmuir isotherm parameter
+of PAH
+(0.036 L/mg) is higher than that of BTEX (0.013 L/mg) and NPD (0.022
+L/mg), the desorption of PAH by BTEX and NPD is minimal.
+If the produced water at 80  C from the IGF is cooled and then
+sent to the adsorber, the adsorption behavior changes. The break-
+through of BTEX, NPD and PAH occurs later since at lower temper-
+atures, adsorption is higher. However, there is a decrease in mass
+transfer coecient at lower temperatures which slightly alters the
+breakthrough curves.
+The regenerant to the adsorber is at 160  C and 6 bar. When
+the regenerant is pumped in the column counterow to the feed,
+the euent is at feed concentration until the thermal wave breaks
+through. This euent is depressurized and recycled back to the col-
+umn as feed for the next cycle [13]. The column is not completely
+regenerated, and a heel of BTEX and NPD is left. A cooling step
+(Stream 2) is included to prevent ashing of water in the column
+when the column is depressurized. When Stream 2 is pumped coun-
+terow to the feed, the temperature in the column drops. In order to
+minimize the use of Stream 2, a temperature heel is left such that the
+perature of water at 1 bar (99.6  C). The temperature prole and the
+maximum temperature in the column is less than the boiling tem-
+concentration of different hydrocarbons (in the bed) at the end of
+regeneration and cooling step at cyclic steady state is illustrated in
+
+(a) Cycle 1
+
+(b) Cycle 2
+
+Fig. 5. Cyclic operation for two beds feeding in series.
+
+334
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+3.4. Results for two columns in series
+
+The breakthrough curves at the end of the feed step at cyclic
+steady state for a bed depth of 0.3 m are shown in Fig. 6. Note, the
+ordinate in Fig. 6 is in logarithmic scale.The abscissa is the time at
+cyclic steady state. BTEX breakthrough occurs before NPD and PAH.
+The column concentration and temperature prole at the end of
+regeneration and cooling step at cyclic steady state are illustrated
+in Fig. 7. Similar to Fig. 4, a temperature heel is left in Fig. 7, such
+that the maximum temperature in the column is less than the boil-
+ing temperature of water at 1 bar (99.6  C) in order to minimize the
+use of coolant.
+The euent prole from the regenerated adsorber column is
+shown in Fig. 8. The rst part of the euent is at the feed concen-
+tration and after cooling is recycled back to the adsorber for the next
+feed cycle. The remaining euent is cooled and then sent to a phase
+separator where the hydrocarbons are separated from water. The
+water is then sent for re-injection. Alternatively, it can be sent back
+to the IGF, with a small purge stream taken off to prevent buildup of
+impurities. Note: this waste stream is not mixed with the brine com-
+ing from the RO cascade since the disposal strategies are different for
+these streams.
+
+4. Evaluation of heating methodologies
+
+In order to elevate the temperature of the discharge water from
+the adsorber (after the feed step), two methods can be employed.
+Both methods; direct injection of steam from high pressure boilers
+and indirect heating by heat exchangers were evaluated.
+
+4.1. Direct injection of steam
+In the current process, high pressure steam (7 bar, 165  C) from
+the boiler was used to elevate the temperature of a fraction of dis-
+charge from the adsorber. Prior to heating by steam injection, the
+discharge stream from the adsorber was pressurized to 6 bar. Steam
+at higher pressure is used in order to prevent any backow. The nal
+temperature desired is Tnal = 160  C. The amount of steam required
+was calculated as
+
+步mSteam [k+cpw (TSteam Tnal )] = 步mWater ,in cpw (Tnal Tin ) 步QFeed,Cool (5a)
+
+cpw is the specic heat capacity of liquid water (kJ/kg K), k is the
+latent heat of vaporization (kJ/kg) while 步mWater ,in represents the mass
+owrate of water leaving the adsorber that is used for regeneration
+and 步mSteam (kg/hr) is the required mass owrate of steam. 步QFeed,Cool
+is the heat released when the water from IGF is cooled before send-
+ing it to the adsorber. This heat is used to reheat the discharge from
+the adsorber (feed step) before pumping it back as regenerant. If
+
+Fig. 7. Solid loading of BTEX, NPD and PAH for the bottom column at the end of regen-
+eration/cooling step at cyclic steady state. Two columns in series, feed temperature =
+cooling temperature: 80  C.
+
+the produced water from IGF is not cooled, then 步QFeed,Cool = 0. If x
+fraction of discharge from the adsorber is used for regeneration,
+
+步mWater ,in = QFeed,ADS ℅ qwater ℅ x
+
+(5b)
+
+where QFeed,ADS is the feed owrate to the adsorber. The steam com-
+pletely condenses and the total owrate of water going as regenerant
+is
+
+步mSteam + 步mWater ,in = QReg ℅ qwater
+
+(5c)
+
+If QCool is the volumetric owrate of the cooling water pumped
+in the adsorber for a duration of tCool and if tReg is the duration of
+the regeneration step, then the amount of water leaving the adsorber
+and going to the RO/IEX system is
+
+QFeed,RO/IEX =
+
+QFeed,ADS tfeed  QReg tReg  QCool tCool
+tFeed
+
+(5d)
+
+A drawback of heating by direct injection of steam is that make
+up water must be added to the boiler because water is continuously
+consumed. For medium pressure boilers (50 ≒ P ≒300 psi) the feed
+to boiler must have TDS ≒3500 ppm with maximum alkalinity of 700
+ppm and with maximum hardness 15 ppm [32]. Hence, a part of
+the product water from the RO mixed with the discharge from IEX
+(from the feed step) was used as feed to the boiler. A mass balance
+
+Fig. 6. Breakthrough curves of BTEX, NPD and PAH for the bottom column at cyclic
+steady state. Two columns in series, feed temperature: 80  C.
+
+Fig. 8. Euent prole of BTEX, NPD and PAH from the top column during regenera-
+tion/cooling step at cyclic steady state. Two columns in series
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+335
+
+is written around the boiler (Eq. (5e)), and as total hardness is the
+limiting factor, a total hardness balance is also written (Eq. (5f)).
+
+Qboiler =
+
+步mSteam
+qWater
+
+= hROQFeed,RO xRO,boil + QFeed,IEX xIEX ,boil
+
+(5e)
+
+Qboiler (TH)boiler = hROQFeed,RO (TH)p,RO xRO,boil + QFeed,IEX (TH)Disch,IEX xIEX ,boil
+
+(5f)
+
+4.2. Indirect heating by heat exchangers (HEX)
+
+Shell and tube heat exchangers are commonly used in the oil
+and gas industries as they are suited for higher-pressure applica-
+tions [33]. Shell and tube heat exchanger design is standardized by
+the Tubular Exchanger Manufacturers Association (TEMA) [34]. Pro-
+cess schematics are shown in Figs. 9 and 10, for when the feed is
+cooled and not cooled respectively.
+The amount of heat released in cooling the feed to the adsorber
+and the area of the HEX needed are computed as
+
+步QFeed,Cool = QFeed,ADS qwater cpw (TIGF  TFeed ) = UAFT DTLM,Countercurrent
+
+(6a)
+
+where TIGF is the temperature of discharge from the IGF unit and TFeed
+is the temperature of the feed to the adsorber. With the help of utility
+water and HEX, the heat released in cooling the feed is used to partly
+heat the discharge from the adsorber (Fig. 10). Multipass HEX with
+counter-current ow is used in order to achieve heat transfer. The
+rate of heat transfer is then given by
+
+步QHEX = UAFT DTLM,Countercurrent = QReg qwater cpw (TReg ,out  TReg ,in )
+= 步mSteam [k + cpw (TSteam,in  TSteam,out )]
+
+(6b)
+
+U is the overall heat transfer coecient, FT (=0.85) is the cor-
+rection factor for multipass exchangers [34], and DTLM,Countercurrent is
+the log-mean temperature difference. Design details are presented
+elsewhere [15].
+
+4.3. Results
+
+The effects of different methods of heating and different feed tem-
+peratures on HEX area, utility and steam requirements, and, the net
+ow to RO/IEX system are tabulated in Table 6. When direct injection
+of steam is used, the HEX area and steam requirements are lower,
+and, the ow to RO/IEX system is higher, as compared to the case
+when indirect heating is employed. This is because, direct injection of
+steam results in a lower fraction of discharge from adsorber (Stream
+1) used for regeneration, which corresponds to lesser amount of
+steam required. When direct injection of steam is used, no HEX is
+needed for the regenerant stream (Stream 1). Hence, the HEX area
+is also lower. Additionally, a lower fraction of discharge (Stream 1)
+implies that a higher fraction of discharge from the adsorber goes to
+the RO/IEX system (Stream 3).
+
+5. Economic analysis
+
+The cost analysis for the IEX and RO units is a feasibility study
+that follows the methodology as described by Venkatesan and
+Wankat [12每14]. This type of cost analysis is expected to give
+answers within ㊣25% of actual cost [34], although for comparison
+of similar processes the results are somewhat more accurate since
+systematic errors will tend to be similar in both designs.
+The additional unit operations addressed in this paper are adsor-
+bers and heat exchangers. Carbon steel is used for the construction
+of adsorber columns and its capital cost (ccADS ) is calculated in the
+same way as the capital cost of the IEX column [15]. As the adsor-
+ber column is operated at an elevated temperature and pressure,
+its thickness is designed to handle the operating conditions. The
+minimum thickness (e) is calculated as [35]
+
+e =
+
+eAtm =
+
+PiDi
+2f  Pi
+0.101 ℅ Di
+2f  0.101
+
+(7)
+
+(8)
+
+where Pi is the internal pressure (N/mm2 ), Di is the internal diameter
+(m), and f is the design stress (N/mm2 ) of the material of construc-
+tion under the operating conditions. Typically the thickness of the
+column is set to e + 2. The extra 2 mm is added to account for corro-
+sion. For most applications under atmospheric conditions, a nominal
+
+Fig. 9. Process with cold feed (45  C) to adsorber and heating with HEX.
+
+336
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+Fig. 10. Process with hot feed (80  C) to adsorber and heating with HEX.
+
+thickness based on the design stress and the internal diameter is
+used [35]. The cost of granular activated carbon (ccactcarbon ) for water
+treatment is US$ 85/ft3 [36]. The column thickness is computed from
+Eq. (7) and found to be 10 mm. As illustrated in Fig. 11, the total cost
+of adsorption (ccADS + ccactcarbon ) decreases with increase in number
+of columns (ignoring the cost of end ttings). The costs have been
+updated to December 2012.
+Shell and tube multipass heat exchangers with U-tubes are used
+in the proposed process. Most published purchase-cost data are cor-
+related in terms of heat exchange surface area (usually based on
+the outside surface area of the tubes) for a base case design, with
+correction factors only for pressure and materials for the shell and
+tubes [34]. In some cases, corrections for tube length are given. How-
+ever, for the purpose of this work, tube length corrections have not
+been taken into account. The base cost for a shell and tube exchanger
+is given by [34]
+
+CB = exp{11.147  0.9186[ln(A)] + 0.0979[ln(A)]2 }
+
+(9a)
+
+where A is the surface area in square feet. The purchase cost is
+determined by [34]
+
+ccHEX = FP FM CB
+
+(9b)
+
+where FM is a material factor for various combinations of tube and
+shell materials and is given as a function of surface area A in square
+feet
+
+For carbon steel shell and tubes, a = 0 and b = 0. The pressure
+factor, FP , is based on the shell side pressure, P, in psig and is given
+by [34]
+
+FP = 0.9803 + 0.018
+
++ 0.0017
+
+(cid:2)
+
+(cid:3)
+
+P
+100
+
+(cid:3)2
+
+(cid:2)
+
+P
+100
+
+(100 < P < 2000)
+
+(9d)
+
+The entire process is designed to handle a total feed of 250 Mgpd.
+A capital recovery factor (CRF) of 15% was used in order to con-
+vert total capital cost into an annual operating cost. To account for
+the brine from the IEX, a high brine disposal cost (BDC) of US$
+6.29/m3 [37], a low cost of US$ 0.29/m3 [38] and an average of high
+and low costs were used. To account for the waste from the ADS, a
+high waste disposal cost (WDC) of US$ 25.29/m3 [39,40], a low cost
+of US$ 5.16/m3 [39,40] and an average of high and low costs were
+used. The brine from IEX and the waste from the adsorber columns
+are not mixed. The total disposal cost is calculated as
+
+TDC = BDC ℅ QBrine,IEX + WDC ℅ QWaste,ADS
+
+(10a)
+
+where QBrine,IEX and QWaste,ADS represent the volume of brine from IEX
+and waste from adsorber sent to their respective disposal units. In
+order to facilitate economic analysis, an average of the brine disposal
+and waste disposal cost per unit volume (DC) is considered.
+
+DC =
+
+BDC ℅ QBrine,IEX + WDC℅ QWaste,ADS
+QBrine,IEX + QWaste,ADS
+
+(10b)
+
+(cid:3)b
+
+(cid:2)
+
+A
+100
+
+FM = a +
+
+In order to nd the disposal cost where change in the optimal
+process takes place, a quick estimate is done. The tipping points are
+dened as the points where the optimum shifts from two adsorbers
+
+(9c)
+
+Table 6
+Utility requirements, heat exchanger area and feed owrates.
+
+Heating method
+
+Steam
+Injection
+
+HEX
+
+Adsorber feed temperature
+45  C
+80  C
+45  C
+80  C
+
+Columns in series
+
+QFeed,ADS (Mgpd)
+
+Steam (Mlbs/d)
+
+HEX area (m2 )
+
+QFeed,RO/IEX (Mgpd)
+
+Utility water (Mgpd)
+
+1
+2
+1
+2
+1
+2
+1
+2
+
+250
+250
+250
+250
+250
+250
+250
+250
+
+47.4
+31.9
+31.9
+16.4
+58.0
+37.8
+37.8
+17.6
+
+28130
+28384
+28384
+28638
+34283
+34092
+34092
+33902
+
+222
+224
+224
+226
+218
+220
+220
+222
+
+460.3
+414.8
+414.8
+369.3
+465.5
+409.5
+409.5
+352.5
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+337
+
+The overall recovery and the cost of product water are summarized
+in Tables 7 and 8 for three brine and waste disposal costs and for the
+same product water concentration (＞400 ppm).
+The economic impact of the different alternatives evaluated in
+this work (listed in Section 2) are sequentially analyzed below.
+
+6.1. Adsorber feed temperature
+Feed temperatures of 45  C and 80  C were systematically evalu-
+ated (Figs. 10 and 11). At 45  C, adsorption is stronger which makes
+the solute wave move slower and hence increases the amount of feed
+water processed. At low feed temperatures, the regenerant stream
+feed temperatures (80  C), adsorption is weaker which makes the
+has to be heated through a greater temperature difference. At high
+solute wave move faster and thereby reduces the amount of feed pro-
+cessed. At high feed temperatures the regenerant stream has to be
+heated through a smaller temperature difference. The cost analyses
+in Tables 7 and 8 consistently show a lower cost for the 80  C feed
+temperature, but all of the differences are less than 10% and most
+are less than 5% of the 80  C cost. Thus, although the higher temper-
+ature feed is probably more economical, the analysis is not accurate
+enough to prove this.
+
+6.2. Adsorber column conguration
+
+A single adsorber column was compared with two adsorber
+columns feeding in series. A single adsorber column uses higher
+quantities of adsorbent but fewer columns. Two adsorber columns
+feeding in series reduces the amount of adsorbent but increases the
+number of columns. As the adsorbent is activated carbon, the cost of
+the adsorbent is less than the cost of the columns (Section 5). The
+predominant capital cost is the column.
+Operation with two adsorber columns feeding in series (Fig. 12)
+generates a waste stream which is more concentrated and of less
+volume [15]. Hence at high disposal costs, it is benecial to have a
+two columns in series conguration, since a reduction in the volume
+of waste pays for the excess capital cost. However, at low disposal
+costs, it is not benecial to have a two columns in series congu-
+ration, since a reduction in the volume of waste is not sucient to
+pay for the increased capital. In this scenario, it is better to use a sin-
+gle column conguration. The results in Tables 7 and 8 agree with
+the qualitative analysis, but the differences in costs are quite small
+(often 1% to 2%), which is less than the error in the cost comparison.
+If a more expensive adsorbent is used two columns in series could be
+less expensive than a single column at low disposal costs.
+
+6.3. Heating methodology
+
+Heating by direct injection of steam (Figs. 1 and 12) and by heat
+exchangers (HEX, Figs. 10 and 11) were evaluated in this work. Equal
+amount of waste is generated from the adsorber column when either
+direct injection of steam or HEX is used to heat the regenerant stream
+(Stream 1). When direct injection of steam is used, the net amount
+of water going to the RO/IEX system is higher (Stream 3), which
+results in an increased capital cost (of RO/IEX), and an increase in
+the amount of product water from RO. However, part of the product
+
+Fig. 11. Feasible number of columns to prevent idle time.
+
+in series to a single adsorber, and, from IEX pretreatment to inter-
+mediate IEX. For a rough estimate, it was assumed that the adsorber
+and the RO/IEX system can be decoupled and are independent. At the
+tipping point for adsorber, the money saved by reduction in amount
+of waste from the adsorber by using columns in series equals the
+increase in capital cost. Similarly, at the tipping point for RO/IEX con-
+guration, the money saved by reduction in amount of brine equals
+the increased capital and operating cost (excluding brine disposal).
+The disposal costs at the tipping points act as decision variables. If
+the tipping point lies in between the high and the low disposal costs
+
+(WDCLow < WDCTipping < WDCHigh and BDCLow < BDCTipping <
+
+BDCHigh ) then the optimal processes for the high and low disposal
+costs are different. However, if the tipping point lies either below the
+low disposal cost or above the high disposal cost, then the optimal
+process is the same for the entire range of disposal costs considered.
+
+WDCTipping = CRF ℅ Savings in ADS Column Cost
+Reduction in Waste (gal)
+
+(10c)
+
+(cid:2)
+
+BDCTipping =
+
+And similarly
+CRF ℅ Savings in RO/IEX Capital Cost
+Reduction in Brine (gal)
+Savings in RO/IEX Operating Cost (excluding Brine Disposal)
+Reduction in Brine (gal)
+
+(cid:2)
+
++
+
+(cid:3)
+
+(cid:3)
+
+(10d)
+
+The overall recovery of the entire process (hOverall ) based on fresh
+feed is computed as shown in the equation below, where QRO/IEX and
+hRO/IEX are the feed and the effective recovery of the RO/IEX process
+(including bypass), QBoiler is the amount of pure product water sent
+to boiler as make up water, and, QADS is the feed sent to the adsorber.
+
+hOverall =
+
+QRO/IEX hRO/IEX  QBoiler
+QADS
+
+6. Integrated process results
+
+(10e)
+
+The overall process results are presented in this section. Detailed
+results of the RO/IEX system have been presented elsewhere [15].
+
+Table 7
+Cost summary: Single adsorber column.
+
+Conguration
+
+ADS-PRO-IEX-SRO
+
+Heat input source
+Feed temperature ( C)
+Overall recovery (%)
+Cost($/1000 gal)
+
+Direct heat
+
+Indirect heat
+
+83.54
+High DC
+Avg. DC
+Low DC
+
+45
+84.88
+4.20
+4.08
+3.16
+
+80
+84.12
+4.03
+3.98
+3.15
+
+45
+85.64
+4.08
+3.93
+3.10
+
+80
+82.64
+3.94
+3.86
+3.08
+
+ADS-IEX-RO
+
+Direct heat
+
+45
+84.08
+5.15
+4.13
+3.65
+
+80
+83.34
+4.89
+4.02
+3.61
+
+Indirect heat
+
+45
+84.14
+4.91
+3.99
+3.61
+
+80
+
+4.85
+3.88
+3.56
+
+338
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+Table 8
+Cost summary: Two adsorber columns in series.
+
+Conguration
+
+ADS-PRO-IEX-SRO
+
+Heat input source
+Feed temperature ( C)
+Overall recovery (%)
+Cost ($/1000 gal)
+
+Direct heat
+
+Indirect heat
+
+85.08
+High DC
+Avg. DC
+Low DC
+
+45
+85.82
+4.16
+4.05
+3.24
+
+80
+85.14
+3.98
+3.74
+3.18
+
+45
+86.56
+4.13
+3.64
+3.12
+
+80
+84.88
+3.91
+3.54
+3.10
+
+ADS-IEX-RO
+
+Direct heat
+
+45
+85.65
+5.07
+4.35
+4.11
+
+80
+85.02
+4.87
+4.07
+4.02
+
+Indirect heat
+
+45
+86.42
+4.89
+3.95
+3.90
+
+80
+
+4.85
+3.81
+3.72
+
+water is recycled to the boiler as make up water, in order to compen-
+sate for the loss of steam due to condensation and mixing with the
+regenerant stream.
+When HEX is used to heat the regenerant stream, there is no con-
+densation and loss of steam due to mixing. Hence, the net amount of
+water going to the RO/IEX system is lower which results in a slightly
+smaller capital cost (of RO/IEX), and a slight reduction in the amount
+of product water from RO. As there is no loss of steam, make up water
+is not required. However, there is an additional capital cost of HEX.
+The increase in capital of RO/IEX (when direct injection of steam is
+used) is two orders of magnitude greater than the increase in capital
+due to HEX [15]. Thus, use of HEX appears to be better than heating
+by direct injection of steam in all cases, but the differences (all less
+than 7%) are less than the error in the economic analyses.
+
+6.4. RO/IEX system conguration
+
+IEX pretreatment (IEX-RO, Fig. 1) and Intermediate IEX (PRO-IEX-
+SRO, Fig. 12) were the two system congurations evaluated.
+In the IEX-RO conguration, the entire discharge from the adsor-
+ber (Stream 3 in Fig. 1) goes to the IEX columns (since there is no
+bypass), thereby greatly increasing the capital cost of IEX. As there
+is no reduction of amount of water in the IEX, the discharge from
+the IEX going to the RO is high, thereby resulting in an increase in
+the capital of RO. In PRO-IEX-SRO, the discharge from the adsorber
+after bypass (Stream 3 in Fig. 12) goes to the PRO thereby result-
+ing in a large PRO conguration. Only a reduced amount of water
+(brine from PRO) goes to the IEX, thereby resulting in smaller and
+fewer IEX columns and reduced amount of IEX resin. The capital and
+operating cost of RO in IEX-RO conguration is greater than that in
+
+PRO-IEX-SRO system. The capital cost of IEX is greater in the IEX-RO
+conguration while the operating cost of IEX is fairly negligible in
+both alternatives.
+As the overall recovery of PRO-IEX-SRO is greater than that of
+IEX-RO, the amount of brine disposed is smaller in the former. Thus,
+when the disposal costs are high, it is benecial to operate at higher
+recovery (PRO-IEX-SRO). With bypass, the capital of PRO-IEX-SRO is
+less than that of IEX-RO; thus, the former is better even when dis-
+posal costs are low. Thus, in either case, it is benecial to employ the
+PRO-IEX-SRO conguration. The cost results shown in Tables 7 and 8
+agree with this prediction, and in many of the cases the cost differ-
+ence is greater than 20%, which is probably greater than the error in
+comparing similar processes.
+From Eqs. (10c) and (10d), WDCTipping and BDCTipping were found
+to be US$ 5.89/m3 and US$ 3.24/m3 (not possible) respectively.
+From the obtained values, it is clear that WDCTipping is close to
+WDCLow and there is no tipping point for the RO/IEX system; thus,
+the PRO-IEX-SRO conguration is always the best. The optimal RO
+congurations are delineated in Table 9, and the IEX column speci-
+cations are summarized in Table 10.
+Summary of cost analysis:
+
+ For all disposal costs, an adsorber feed temperature of 80  C
+appears to be the optimal feed condition although this result is
+ For all disposal costs, heating of the regenerant stream by HEX
+within the expected error in the cost analysis.
+appears to be more economical than direct steam injection
+although this result is within the expected error in the cost
+analysis.
+
+Fig. 12. Proposed process scheme with two adsorbers in series and intermediate IEX.
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+339
+
+Table 9
+System conguration and RO specications with bypass.
+
+Conguration
+
+Effective feed (Mgpd)
+
+RO stages
+
+Operating pressure (MPa)
+
+Pressure vessels
+
+Modules
+
+RO/IEX recovery (%)
+
+Product conc. (ppm)
+
+Intermediate
+IEX
+
+IEX
+Pretreatment
+
+215
+217
+219
+221
+223
+218
+220
+222
+224
+226
+
+2,1
+2,1
+2,1
+2,1
+2,1
+2
+2
+2
+2
+2
+
+(5.6,6.0), 7.6
+(5.6,6.0), 7.6
+(5.6,6.0), 7.6
+(5.6,6.0), 7.6
+(5.8,6.2), 7.8
+6.0, 7.6
+6.0, 7.8
+6.4, 7.8
+6.4, 7.8
+6.4, 8.0
+
+(4200, 1700), 750
+(4200, 1700), 800
+(4200, 1700), 850
+(4250, 1700), 850
+(4250, 1800), 850
+4250, 2645
+4250, 2700
+4300, 2700
+4340, 2750
+4400, 2800
+
+(3,4), 3
+(3,4), 3
+(3,4), 4
+(4,4), 4
+(4,4), 4
+3,4
+4,4
+4,4
+4,4
+4,4
+
+96.5
+96.5
+96.5
+96.5
+96.5
+96.0
+96.0
+96.0
+96.0
+96.1
+
+399
+399
+401
+402
+403
+398
+399
+401
+402
+403
+
+ For high and average disposal costs, a process with two adsor-
+bers in series appears to be the optimal solution while for
+low disposal costs the single adsorber process appears optimal.
+These effects are smaller than the probable error.
+ The PRO-IEX-SRO conguration is the optimal RO/IEX congu-
+ration for all disposal costs. This result is denitive.
+
+7. Discussion
+
+Liquid water at high pressure and temperature was used to
+regenerate the adsorption column. This method was chosen over tra-
+ditional methods such as solvent extraction or steam regeneration
+due to inherent drawbacks in the traditional methods. At large scales
+of operation, solvent extraction requires large amounts of solvent
+and an additional solvent recovery step which adds to the cost of
+the overall process. In many applications the downstream solvent
+recovery step (often distillation or a chemical stripping step) is more
+expensive than the actual extraction step. This method is only used
+when one wants to recover a valuable adsorbate [41].
+Steam can be directly used for regeneration. The operation
+involves the following steps in sequential order; adsorption, drain,
+steam regeneration and purge (condense gas), cool, and rell. The
+drain step is to remove the liquid from the interparticle spaces and
+the intraparticle pores as this would reduce the amount of steam
+needed for regeneration. However, the drain step cannot completely
+drain the liquid in the intraparticle pores and is very dicult to
+model. Any liquid remaining in the pores after drainage will have
+to be evaporated by steam which will require more energy [17,41].
+When the exiting vapor is condensed, a hydrocarbon and a contam-
+inated water layer that needs to be reprocessed are obtained. Steam
+regeneration is typically practiced at 1.0 atm with a 100  C steam
+temperature to avoid the decrease in latent heat at higher temper-
+atures and pressures. If needed, higher temperatures and pressures
+can be employed for desorption of heavy components. The energy
+requirements for steam regeneration can be estimated and then be
+compared to regeneration with pressurized hot water [15].
+
+Table 10
+Intermediate IEX column specications.
+
+Parameter
+
+Intermediate IEX
+
+Feed owrate (Mgpd)
+Number of feed columns
+Number of regenerating columns
+Column length (m)
+Column shell thickness (mm)
+Column diameter (m)
+Bed depth (m)
+Expanded depth (m)
+Feed time (min)
+Regeneration time (min)
+Wash time (min)
+
+15.1
+8
+2
+6.5
+7
+3.5
+1.0
+1.43
+65
+4.5
+1.5
+
+15.2
+8
+2
+6.5
+7
+3.5
+1.0
+1.43
+65
+4.5
+1.5
+
+15.3
+8
+2
+6.5
+7
+3.5
+1.0
+1.43
+65
+4.5
+1.5
+
+15.5
+8
+2
+6.5
+7
+3.5
+1.0
+1.43
+65
+4.5
+1.5
+
+15.6
+8
+2
+6.5
+7
+3.5
+1.0
+1.43
+65
+4.5
+1.5
+
+When pressurized hot water is used, there is no change of
+phase. As latent heat is considerably larger than sensible heat,
+EnergyRequirementWater < EnergyRequirementSteam . In light of
+these disadvantages, liquid water at high pressure and temperature
+was chosen as regenerant.
+For this exploratory research, the lack of experimental data
+required several assumptions to obtain results. The assumptions are
+analyzed and possible areas of improvement are outlined in this
+section.
+One of the key assumptions is that during the feed and cool-
+ing cycles the hydrocarbons are in solution. The hydrocarbons could
+also be present as drops in certain cases. Better solubility data,
+particularly at high temperatures are needed. If oil occurs in drops,
+an extra source term must be included in the model mass balance
+equations.
+The multicomponent Langmuir isotherm was used to describe
+the equilibrium adsorption behavior. Although this isotherm is
+commonly used for modeling, few multicomponent systems actu-
+ally follow this isotherm and there are additional inherent draw-
+backs [42]. The ideal adsorbed solution theory (IAST) is a better
+equilibrium isotherm for multicomponent mixtures [43,44]. How-
+ever, IAST requires extensive computing resulting in long simulation
+times [45].
+Because data are not available, several key assumptions were
+made in the regeneration step. Either one assumes that at 160  C the
+oil is soluble in water or the following assumptions are required:
+
+ During regeneration oil is not trapped within the pores of acti-
+vated carbon and oil droplets do not adhere to the surface of
+activated carbon.
+ The time of droplet coalescence is much longer than the resi-
+dence time in the column.
+
+Even if not all of the oil dissolves, increased solubility makes
+the other assumptions more likely. Experimental verication of the
+adsorber regeneration step is required. In order to translate this pro-
+cess into an operating plant, several lab-scale and pilot plant studies
+must be conducted to obtain the following:
+
+ High temperature solubility data.
+ Either multicomponent equilibrium data or column adsorption
+runs at high temperature and pressure.
+ If supersaturation occurs, data on formation/dissolution of
+droplets/emulsions during regeneration.
+ Data on rate of carbon attrition and poisoning of the carbon
+(both must be very low).
+ Very good chemical analysis of the waste stream from the
+adsorber, so that an appropriate treating system can be identi-
+ed.
+
+340
+
+A. Venkatesan, P. Wankat / Desalination 404 (2017) 328每340
+
+The possible outcomes for variations in raw produced water
+concentration (relative composition) and temperature are listed as
+follows:
+
+1. Feed concentration: Depending on the relative amounts of
+hydrocarbons in the raw produced water the position of ADS
+in the process conguration varies. For the situation when
+hydrocarbons are present in negligible quantities such that the
+produced water can be directly sent to RO, the ADS either is
+not required, or can be used as an intermediate step between
+RO cascades, for e.g., PRO-ADS-IEX-SRO.
+2. Feed temperature: The ADS can be operated at the same tem-
+perature as the discharge from the IGF unit. At higher temper-
+atures (>80  C) it must be ensured that the breakthrough time
+from the ADS is long enough to process sucient amounts of
+feed water in order to make the process self sustaining. The
+IEX too can be operated at higher temperatures such that the
+temperature of operation is less than the melting temperature
+of the polymeric sorbent. However care must be taken that
+the feed to the RO is never above 45  C as it can potentially
+irreversibly damage the RO membrane.
+
+Acknowledgements
+
+This project was partially funded by NSFCBET-0754906. The
+authors also acknowledge the support provided by the School of
+Chemical Engineering at Purdue University.
+
+References
+
+[1] J.D. Arthur, B.G. Langhus, C. Patel, Technical Summary of Oil and Gas Produced
+Water Treatment Technologies, Tech. rep., ALL Consulting, LLC. March 2005.
+[2] D.B. Burnett, Advanced Membrane Filtration Technology for Cost Effective
+Recovery of Fresh Water From Oil and Gas Produced Brine, Tech. rep., Harold
+Vance Department of Petroleum Engineering, Texas A&M University. 2006.
+[3] J.E. Drewes, An Integrated Framework for Treatment and Management of
+Produced Water, Tech. rep., Colorado School of Mines, RPSEA Project 07122-12.
+2009.
+[4] X.
+Li,
+Experimental Analysis of
+Produced Water Desalination by
+Humidication-Dehumidication Process, New Mexico Institute of Mining
+and Technology. 2009. (Master＊s thesis).
+[5] P. Kajitvichyanukul, Y.T. Hung, L.K. Wang, Membrane technologies for oil water
+separation, in: L.K. Wang, J.P. Chen, Y.T. Hung, N.K. Shammas (Eds.), Handbook
+of Environmental Engineering: Membrane and Desalination Technologies, vol.
+13, Humana Press, New York, 2011, pp. 639每668.
+[6] N.P. Tirmizi, B. Raghuraman, J. Wiencek, Demulsication of water/oil/solid
+emulsions by hollow-ber membranes, AIChE J. 42 (5) (1996) 1263每1276.
+[7] A. Rahardianto, W.Y. Shih, R.W. Lee, Y. Cohen, Diagnostic characterization of
+gypsum scale formation and control in RO membrane desalination of brackish
+water, J. Membr. Sci. 279 (1每2) (2006) 655每668.
+[8] A. Rahardianto, B.C. McCool, Y. Cohen, Reverse osmosis desalting of inland
+brackish water of high gypsum scaling propensity: kinetics and mitigation of
+membrane mineral scaling, Environ. Sci. Technol. 42 (12) (2008) 4292每4297.
+[9] T. Hodgkiess, W.T. Hanbury, G.B. Law, T.Y. Al-Ghasham, Effect of hydrocarbon
+contaminants on the performance of RO membranes, Desalination 138 (1每3)
+(2001) 283每289.
+[10] J.C. Crittenden, R.R. Trussell, D.W. Hand, K.J. Howe, G. Tchobanoglous, Water
+Treatment: Principles and Design, John Wiley & Sons, Inc., USA, 2005.
+[11] Dow Water and Process Solutions, 2010, Available at. http://www.dow.com/
+liquidseps.
+[12] A. Venkatesan, Ion Exchange Pretreatment for Reverse Osmosis Desalination of
+Brackish Water, Purdue University. 2010. (Master＊s thesis).
+[13] A. Venkatesan, P.C. Wankat, Simulation of ion exchange water softening pre-
+treatment for reverse osmosis desalination of brackish water, Desalination 271
+(1每3) (2011) 122每131.
+[14] A. Venkatesan, P.C. Wankat, Desalination of Colorado River water: a hybrid
+approach, Desalination 286 (2012) 176每186.
+
+[15] A. Venkatesan, Low Cost Synergistic Desalination Processes, Purdue University.
+2013. (Ph.D. thesis).
+[16] A Computer Program for Inverse Geochemical Calculations, 2010, Available at.
+http://wwwbrr.cr.usgs.gov/projects/phreeqc.
+[17] P.C. Wankat, Large Scale Adsorption and Chromatography, vol. I and vol. II. CRC
+Press, Inc., Boca Raton, Florida, USA, 1986.
+[18] R. Franks, C. Bartels, A. Anit, L.N.S.P. Nagghappan, RO Membrane Performance
+When Reclaiming Produced Water From the Oil Extraction Process, Tech. rep,
+IDA World Congress-Atlantis, The Palm-Dubai, UAE, IDAWC/DB-09-194. 2009.
+[19] S.F. Chung, C.Y. Wen, Longitudinal dispersion of liquid owing through xed
+and uidized beds, AIChE J. 14 (6) (1968) 857每866.
+[20] K.I. Kikuchi, H. Kono, S. Kakutani, T. Sugawara, H. Ohashi, Axial dispersion of
+liquid in liquid uidized beds in the low Reynolds number region, J. Chem. Eng.
+Jpn 17 (4) (1984) 362每367.
+[21] E.J. Wilson, C.J. Geankoplis, Liquid mass transfer at very low Reynolds numbers
+in packed beds, Ind. Eng. Chem. Fundam. 5 (1) (1966) 9每14.
+[22] P.N. Rowe, Particle to liquid mass transfer in uidized beds, Chem. Eng. Sci. 30
+(1) (1975) 7每9.
+[23] C.J. King, L. Hseuh, K.W. Mao, Liquid phase diffusion of non-electrolytes at high
+dilution, J. Chem. Eng. Data 10 (4) (1965) 348每352.
+[24] Mudjijati, H. Hindarso, S. Ismadji, F. Wicaksana, N. Indraswati, Adsorption of
+benzene and toluene from aqueous solution onto granular activated carbon, J.
+Chem. Eng. Data 46 (4) (2001) 788每791.
+[25] United States Geological Survey, Global Water Distribution, 2009, Available at.
+http://www.ga.water.usgs.gov.edu.
+[26] N. Wobowo, L. Setyadhi, D. Wibowo, J. Setiawan, S. Ismadji, Adsorption of ben-
+zene and toluene from aqueous solutions onto activated carbon and its acid
+and heat treated forms: inuence of surface chemistry on adsorption, J. Hazard.
+Mater. 146 (1每2) (2007) 237每242.
+[27] D. Chatzopoulos, A. Varma, R.L.
+Irvine, Activated carbon adsorption and
+desorption of toluene in the aqueous phase, AIChE J. 39 (12) (1993) 2027每2041.
+[28] M. Yuan, S. Tong, S. Zhao, C.Q. Jia, Adsorption of polycyclic aromatic hydrocar-
+bons from water using petroleum coke derived porous carbon, J. Hazard. Mater.
+181 (1每3) (2010) 1115每1120.
+[29] R.W. Walters, R.G. Luthy, Equilibrium adsorption of polycyclic aromatic hydro-
+carbons from water onto activated carbon, Environ. Sci. Technol. 18 (6) (1984)
+395每403.
+[30] J.M. Coulson, J.F. Richardson, Chemical Engineering, Particle Technology and
+Separation Processes, 4th edition ed., vol. 2. Pergamon Press, Great Britain,
+1991.
+[31] J.H. Koh, N.H.L. Wang, P.C. Wankat,
+Ion exchange of phenylalanine in
+uidized/expanded beds, Ind. Eng. Chem. Res. 34 (8) (1995) 2700每2711.
+[32] ABMA, Steam boilers and ABMA recommended feed water chemistry limits,
+2011, Available at (accessed: 08/08/2011). http://www.abma.com.
+[33] D.Q. Kern, Process Heat Transfer, 5th edition ed., Tata McGraw-Hill Publishing
+Company Ltd., New Delhi, 1997.
+[34] W.D. Seider, J.D. Seader, D.R. Lewin, S. Widalgo, Product and Process Design
+Principles, 3rd edition ed., Wiley, New Jersey, 2009.
+[35] R.K. Sinnott, J.M. Coulson, J.F. Richardson, Chemical Engineering Design, 4th
+edition ed., vol. 6. Elsevier Butterworth-Heinemann, Oxford, U. K., 2005.
+[36] H. Marsh, F.R. Reinoso, Activated Carbon, 1st edition ed., Elsevier Ltd, Oxford,
+U. K., 2006.
+[37] J.D. Pless, M.L.F. Philips, J.A. Voigt, D. Moore, M. Axness, J.L. Krumhansl, T.M.
+Nenoff, Desalination of brackish waters using ion-exchange media, Ind. Eng.
+Chem. Res. 45 (13) (2006) 4752每4756.
+[38] D. Burnett, Desalinating Brine From Oil and Gas Operations in Texas, Southwest
+Hydrol. (2005) 24每25.
+[39] R.A. Welch, D.F. Rychel, Produced Water from Oil and Gas Operations in the
+Onshore Lower 48 States, Tech. rep., National Energy Technology Laboratory.
+December 2004.
+[40] K. Guerra, K. Dahm, S. Dundorf, Oil and Gas Produced Water Management and
+Benecial Use in the Western United States, Tech. Rep. 157, U. S. Department
+of the Interior Bureau of Reclamation. September 2011.
+[41] C.R. Fox, D.C. Kennedy, Conceptual design of adsorption systems, in: F.L. Slejko
+(Ed.), Adsorption Technology: A Step-by-step Approach to Process Evaluation
+and Application, Marcel Dekker, Inc., New York, 1986, pp. 91每165.
+[42] C. Tien, Recent advances in calculation of multicomponent adsorption in xed
+beds, in: M.J. McGuire, I.H. Suffet (Eds.), Treatment of Water by Granular
+Activated Carbon, American Chemical Society, Washington, DC, 1983, pp.
+167每199.
+[43] A.L. Myers, J.M. Prausnitz, Thermodynamics of mixed gas adsorption, AIChE J.
+11 (1) (1965) 121每127.
+[44] C.J. Radke, J.M. Prausnitz, Thermodynamics of multi-solute adsorption from
+dilute liquid solutions, AIChE J. 18 (4) (1972) 761每768.
+[45] ASPEN, Chromatography Reference Guide, ASPEN Technology Inc. 2006.
+

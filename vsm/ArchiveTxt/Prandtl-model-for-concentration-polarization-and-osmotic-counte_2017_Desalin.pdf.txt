@@ -1,0 +1,3763 @@
+Prandtl model for concentration polarization and osmotic counter-effects in a 2-D membrane channel
+
+B. Bernales, P. Haldenwang, P. Guichardon* , N. Ibaseta
+
+Aix Marseille Univ, CNRS, Centrale Marseille, M2P2 (UMR 7340), 38 rue Fr谷d谷ric Joliot-Curie, Marseille Cedex 20 13451, France
+
+H I G H L I G H T S
+
+ A 2D-numerical model based on the solute conservation equation and the steady Navier-Stokes equations has been developed.
+ The local permeate ux and the solute concentration polarization are predicted with an excellent accuracy.
+ Our model predicts a faster decline in permeation due to a rapid development of the polarization boundary layer.
+ A good agreement was obtained between our numerical results and varied reverse osmosis experimental results.
+
+article
+
+info
+
+Article history:
+Received 14 June 2016
+Received in revised form 14 September 2016
+Accepted 24 September 2016
+Available online 30 November 2016
+
+Keywords:
+Numerical modeling
+Concentration polarization
+Osmotic pressure
+Starling-Darcy law
+Prandtl approximation
+
+abstract
+
+An accurate 2-D numerical model that accounts for concentration polarization and osmotic effects is
+developed for the cross-ow ltration in a membrane channel. Focused on the coupling between laminar
+hydrodynamics and mass transfer, the numerical approach solves the solute conservation equation together
+with the steady Navier-Stokes equations under the Prandtl approximation, which offers a simplied frame-
+work to enforce the non-linear coupling between ltration and concentration polarization at the membrane
+surface. The present approach is rst validated thanks to the comparison with classical exact analytical
+solutions for hydrodynamics and/or mass transfer, as well as with approximated analytical solutions that
+attempted at coupling the various phenomena. The effects of the main parameters in cross-ow reverse
+osmosis (RO) or nanoltration (NF) (feed concentration, axial ow rate, operating pressure and membrane
+permeability) on streamlines, velocity prole, longitudinal pressure drop, local permeate ux and solute
+concentration prole are predicted with the present numerical model, and discussed. With the use of data
+reported from NF and RO experiments, the Prandtl approximation model is shown to accurately correlate
+both average permeate ux and local solute concentration over a wide range of operating conditions.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+In cross-ow ltration, species remain in the axial (or feed) ow,
+while permeate (or puried transverse ow) leaves the duct by
+leaking transversally through the membrane. The accumulation of
+rejected species at the membrane inner wall results in a concentration
+polarization (i.e. a large solute enhancement) which - combined with
+osmosis - can induce a substantial reduction in permeation. On the
+one hand, the basic theoretical description of the cross-ow ltra-
+tion refers to the seminal contribution by Berman [7] that treats of
+the channel ow driven by a uniform leakage at the wall. Other con-
+tributions on the case of the ※pure solvent§ ow proposed several
+analytical solutions that accounts for the pressure dependence on
+permeate ux (see Regirer [41], Haldenwang [19], Tilton et al. [56],
+Bernales and Haldenwang [9]). On the other hand, an exact analytical
+solution for the solute transfer in Berman ow has been derived in
+Haldenwang et al. [21] and accounts for concentration polarization
+and the subsequent hindrance to permeation in the limit of certain
+RO/NF congurations.
+Permeate ux actually results from the coupling of those trans-
+port phenomena (hydrodynamics and mass transfer) upstream and
+square root of ratio between Hagen-Poiseuille pres-
+sure drop and trans-membrane pressure
+osmotic factor, C √ iRT (J)
+shear rate in TBS model (1/s)
+channel length reduced by dead-end length Lde , k √
+
+L/Lde
+
+Nosm
+
+P
+p
+
+Posm
+W
+
+Cin
+
+D0
+i
+
+I0
+L
+
+Lde
+
+l 0
+q0
+
+x
+z
+C
+
+Cm
+CW
+
+dynamic viscosity (kg/m/s)
+uid density (kg/m3 )
+dimensional transverse coordinate (m)
+dimensional axial coordinate (m)
+solute concentration (mol/m3 )
+average transverse solute concentration (mol/m3 )
+CW = CW Cin
+solute concentration at the membrane wall (mol/m3 )
+~
+transforms variables or certain unknowns into their
+dimensional form
+B(x; Rin ) Berman function that gives the dimensionless trans-
+verse velocity, i.e. the solution to Eq. (32) combined
+with boundary conditions (33)
+feed solute concentration (mol/m3 )
+solute diffusivity through the solvent (m2 /s)
+number of dissociated entities (ionic or neutral) per
+solute molecule
+membrane resistance (kg/m2 /s)
+membrane length (m)
+dead-end length, or location where axial owrate is
+exhausted, Lde = Win d/Uin
+osmotic number, Nosm √ Posm
+driving pressure (kg/m/s2 )
+dimensionless pressure (p = P/Pin )
+osmotic (counter-)pressure on the membrane wall,
+CW
+(overall) operating pressure (kg/m/s2 )
+osmotic (counter-)pressure due to feed concentra-
+tion, Posm
+Actual P谷clet number of permeation, Pe0 √ U0 d/D0
+pure solvent transverse P谷clet number
+perfect gas constant (J/mol/K)
+transverse Reynolds number
+pure solvent transverse Reynolds number
+solution temperature (K)
+dimensionless transverse velocity (u = U/Uin )
+actual permeate ux (m/s) U0 √ U( x = d)
+pure solvent permeation velocity (m/s)
+transverse velocity (m/s)
+axial velocity (m/s)
+dimensionless axial velocity (= W/Win )
+axial mean velocity at Z (m/s)
+axial mean velocity at entrance (m/s)
+dimensional transverse coordinate in TSB model (m)
+dimensionless transverse coordinate (x = x/d)
+dimensional axial coordinate in TSB model (m)
+dimensionless axial coordinate (z = z/Lde )
+
+Pe0
+Pein
+R
+R0
+
+V
+W
+w
+Wm
+
+Posm
+
+W = C
+
+√ CCin
+
+Pin
+Posm
+in
+
+Rin
+
+T
+u
+U0
+
+Uin
+
+in /Pin
+
+X
+x
+Z
+z
+
+Win
+
+in
+
+through the membrane. The present contribution can essentially be
+seen as an improvement in the numerical eciency for studying
+the laminar ows involved in ltration. It is however known that
+the applicability domain of such an approach can be extended by
+introducing the concept of turbulent viscosity and turbulent diffusiv-
+ity (as we shall do in the present Subsection 3.3).
+
+This issue has also been recently identied as a challenge for
+nanoltration and reverse osmosis processes [58] and [33]. The lit-
+erature is now rich with studies on RO/NF modeling. In the present
+approach, we hence pay a special attention to develop an ecient
+predictive model that allows us to accurately describe the full cou-
+pling between ow, concentration polarization and hindrance to
+permeation. As discussed below, eciency and accuracy come from
+the fact that the solver is fast and has no limitations in terms of
+numerical degrees of freedom.
+Whereas the conservation laws for diluted solutions of salt and
+water are well-admitted, solvent and solute transport through a
+membrane remains a quite controversial issue. A large number of
+investigators have proposed numerous local models derived from
+different mechanisms. They are based either on the principles
+of irreversible thermodynamics models (Kedem-Katchalsky model,
+Spiegler-Kedem model) or on various homogeneous membrane mod-
+els (Porous model, solution-diffusion model). The oldest of these
+models are analyzed in the contribution by Soltanieh [48]. More
+recent models describing the different local transport phenomena
+within the membranes with an increasing complexity can be found in
+Wijmans and Baker [61], Gauwbergen and Baeyens [17], Weissbrodt
+et al. [60], Moresi et al. [38], Kahdim et al.[24], Mehdizadeh et al.
+[36], Mane et al.[35], Malaeb and Ayoub [33]. Below, we shall nev-
+ertheless use a minimal model, since it is essential to investigate the
+associated limitations.
+An evident improvement in modeling consists in coupling a local
+membrane model with the upstream composition of the solution.
+Several investigations [6,12,22,23,39,40] have predicted permeate
+ux by using the combined solution-diffusion/lm model also known
+as the Kimura-Sourirajan model. The integrated or differential lm
+theory equations (convection due to the pressure difference and back
+diffusion owing to the concentration gradient) have also been used
+by Urama [57] and Ahmad [2] while they applied the Spiegler-Kedem
+models in the membrane. It is worth noting that all these studies are
+based only on mass transfer considerations forgetting the inuence
+of hydrodynamics. Such an approach that involves only averaged
+data all along the membrane is attractive in view of its simplicity
+and surely convenient for the description of a complex multistage
+membrane process in transient condition. However, just using aver-
+aged conditions assimilated to feed parameters along the membrane
+length becomes seemingly unrealistic when an industrial membrane
+module where a spatial variation of pressure and solute concentration
+appears in the long cross-ow membrane channel is involved.
+We hence turn towards 1-D models that consider the local longi-
+tudinal variations along membrane duct. The simplest approach we
+can mention conceives the feed channel as a black box which can
+be represented by a series of perfect mixing cells with exchange. No
+information is needed on hydrodynamics and mechanisms of trans-
+port. This is the purpose of Roth et al. [42] who used the residence
+time distribution (RTD) method by analyzing in some spiral-wound
+membranes the response to a stimulus injection of tracer. The main
+drawback of this very simplied method is to ignore the local solute
+concentration in boundary layer which has a great inuence on
+permeate ux via the phenomenon of concentration polarization.
+In other 1-D studies, the material balance is solved numerically
+without taking the velocity eld into account, the hydrodynamic
+effects being limited to pressure drop along the membrane, which is
+generally described by the Hagen-Poiseuille or the Ergun equations
+[11,45-47]. Material balances have also been considered numerically
+with the assumption of a negligible pressure drop by Malek et al.
+[34] who introduced a simple model based on a lumped transport
+parameter approach combined with the solution-diffusion model. A
+modied solution-diffusion model [43] was developed to take the
+sorption pattern into account.
+Several approaches investigated the cell model based on sin-
+gle material balances and consisted in dividing the membrane into
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+343
+
+several parts that were considered as a well-mixed reactors. Voros
+et al. [59] neglected pressure drop in comparison with the trans-
+membrane applied pressure, while others works treated of the inu-
+ence of pressure drop [5,13,16]. MATHCAD8 package was also used
+to solve the mass transport equations across the membrane and the
+boundary layer [3]. Let us also mention that an analytical model
+treating the membrane as a heterogeneous system [52] was obtained
+with the assumption of constant driving pressure.
+To conclude on the large amount of 1-D models, we stress on
+the fact that these approaches at least postulate one of the following
+strong simplications:
+
+每 simplied pressure drop derived from the particular case of
+ow in an impermeable duct,
+每 permeate ux and concentration polarization are estimated
+from mass transfer coecients derived from dimensionless
+correlations on Sherwood number;
+每 hydrodynamics is not investigated, only solute mass trans-
+fer is considered neglecting the inuence of the cross-ow on
+solution composition.
+
+It is however accepted that permeate ux has a great inuence
+on cross-ow, particularly on pressure drop in the situation of highly
+permeable membrane [20,37]. Concerning the use of mass trans-
+fer coecients, the diculty lies in the proper choice of the most
+suitable correlation among the large number of correlations found
+in literature which are often eclectic. As concentration polariza-
+tion results from the establishment of a solute boundary layer, it is
+essential to couple hydrodynamics and mass transport.
+We now devote what follows to more accurate models that
+deal with the 2-D variations of pressure, ow velocities and solute
+concentration in the feed channel.
+We rst consider the analytical approaches, which are approxi-
+mate solutions for the time being, even though some exact solutions
+have been derived in certain limit cases. The rst concern of the
+approximate analytical approaches considers the various manners
+of incorporating a satisfactory velocity eld into the mass transfer
+equation. Then, the lm theory is often invoked to describe the cou-
+pling between permeate ux and concentration polarization. In this
+way, an analytical expression of the permeate ux can be established.
+This has rstly been done for the case of a solid suspension [50].
+Song and Elimelech used the excess concentration subtracted by
+feed concentration to balance the convection and diffusion of solute
+within the polarization concentration layer. The validation analy-
+sis of such an approach can be found in Kim and Hoek [26]. Later,
+this model was extended and applied to salt solutions specic to
+RO membranes [53]. The specic case of a long-narrow channel
+in which concentration polarization could develop all along the
+channel was also investigated [49]. To take account of the variable
+cross-ow velocity, a total salt balance model was proposed for
+different considered kinds of shear ow [51]. Let us mention that
+Sundaramoorthy [55] also proposed an analytical model that pro-
+vides us with explicit expressions for spatial variations of pressure,
+uid velocity and solute concentration on the feed channel side of a
+spiral wound RO/NF membrane module.
+If the permeation is supposed to remain more or less uniform all
+along the channel, the ow eld can be described by the Berman
+exact solution [7]. This expression is then used for solving the mass
+transport equation in the diffusion layer [1]. Kim [25] solved the
+convection-diffusion equation with a Berman ow approximated as
+a linear shear ow in the close proximity of the membrane sur-
+face. In Annex, we briey recall the exact analytical solution to the
+mass transfer in a solution carried by a Berman ow, as obtained
+by Haldenwang et al. [21]. Note that the latter solution precisely
+describes the concentration polarization in the HP-LR limit (HP-LR
+for high pressure-low recovery).
+
+In addition to these analytical contributions, numerous numer-
+ical studies have to be mentioned. Bhattacharyya [10] developed a
+numerical approach that solves the diffusion-convection equation
+to compute the concentration proles throughout a reverse osmo-
+sis membrane. Ma and Song [32] solved the convection-diffusion
+equation coupled with Navier-Stokes equations in the feed channel.
+This work is based on rigorous mass and momentum balances in both
+the radial and axial membrane dimensions. We now reach an impor-
+tant aspect in the present modeling: it concerns the calculation of
+the hydrodynamics and mass transfer coupling with high accuracy
+thanks to computational uids dynamics (CFD) softwares. Wiley and
+Fletcher developed a CFD model of concentration polarization and
+uid ow in membrane process (see Wiley and Fletcher [62]). Later,
+they extended the model to the specic ltration processes [4,15].
+A great advantage of the CFD methods lies in their ability to treat
+of complex system geometries. Certain CFD software are indeed
+convenient to simulate momentum and mass transport in mem-
+brane ltration system with spacer-lled channels [54] in order to
+modify the cross-ow. The fully coupled governing equations for
+uid dynamics and mass transfer were investigated [31], and more
+recently in Salcedo-Diaz et al. [44], where the CFD software Comsol
+Multiphysics has been used. A 3-D numerical solution of the coupled
+uid dynamics and solute transfer equation [30] was obtained with
+the use of Ansys CFX solver.
+It is worthy of note that the numerical approach in cross-ow l-
+tration is faced with an unusual boundary condition that nonlinearly
+relates permeation ux and concentration at the membrane surface.
+The general CFD softwares treat this diculty in an iterative way that
+is founded on standard methods for solving large non-linear systems;
+in practice, this limits the number of nodes to get a fast convergence.
+For instance, in Salcedo-Diaz et al. [44] the number of nodes is about
+3.104 . The aim of the present numerical approach is to develop a
+tailor-made modeling, which does not have such a limitation (our
+standard runs will be able to involve 2.107 nodes and will take one
+ten of seconds on a standard Intel I5 processor).
+Actually, an elegant manner to save computational efforts is to
+consider the laminar Navier-Stokes equations in the limit of the
+Prandtl approximation. This approach - fully justied in most chan-
+nel laminar ltration systems - involves a ※time marching like§ solver
+along the channel, which makes easier the treatment of the non-
+linear boundary condition. The Prandtl approximation applies on all
+conservation laws for a chemical solution owing in a cross-ow
+ltration channel. Therefore, the present approach aims at account-
+ing for concentration polarization and osmotic counter-pressure,
+expecting to predict permeate ux and concentration prole, at any
+point all along the channel, with a computational cost low enough to
+develop an exhaustive parametric study. Furthermore, we focus our
+interest on cross-ow ltration at steady state. The uid is incom-
+pressible and the channel is supposed to be narrow. As a result, this
+paper takes place within a continuous effort towards predictive l-
+tration models, the eciency of which increases in terms of precision
+and in capacities of analysis.
+It is organized as follows: In Section 2, we present the gov-
+erning equations and the main hypotheses. We briey recall why
+the Prandtl approximation of the conservation laws is justied.
+The numerical method that solves the Prandtl differential system
+is described. In Section 3, we rst compare our numerical results
+with the Berman exact solution and the associated exact solution for
+mass transfer [21]. Second, other approximated models (Elimelech＊s
+model and total salt balance model) are also compared with the
+present numerical predictions for the case of a pure solvent and of
+a single solute solution. Finally, we present the comparison between
+our model predictions and several experimental data from reverse
+osmosis experiments of the literature. In Appendix, we briey recall
+the spirit of the different analytical results that we need for conduct-
+ing the validation step [21,50,51].
+
+344
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+(cid:3)
+
+(cid:2)
+(cid:2)
+(cid:3)
+
+2. Numerical solution of Prandtl system for ltration
+
+2.1. Main hypotheses and conservation laws at steady state
+
+The present 2-D numerical development is focused on modeling
+the concentration polarization and the osmotic (counter-)pressure
+that occur in the steady cross-ow ltration with one solute diluted
+solution. The experiments on reverse osmosis show that the rejec-
+tion of solute is nearly total in most situations. To simplify the
+approach - and reduce the number of independent parameters - we
+suppose that the solute rejection is total.
+The Prandtl approximation corresponds to a simplication that
+produces an important gain in numerical eciency. The price-to-
+pay is the following: when we shall decide to cancel the streamwise
+diffusive terms, we shall renounce to study the details of any recir-
+culating phenomena, as what happens between two spacers.
+Two semi-permeable parallel walls compose the 2-D channel as
+2d. This denes the computational domain as {d < x < d} ℅ {0 <
+schematically shown in Fig. 1. The channel is of length L and spacing
+z < L}. The uid is supposed to be Newtonian, incompressible and
+its physical properties, such as dynamical viscosity l 0 and density
+q0 , are supposed uniform. Inlet conditions (at z = 0) are the given
+axial mean velocity Win , the xed feed concentration Cin and the xed
+inlet pressure Pin . To simplify our development again, the effect of
+partial fouling or cake formation on permeate ux is supposed to be
+inexistent or negligible in comparison with the hindrance due to the
+osmotic (counter-)pressure. In other words, I0 , the membrane resis-
+tance is considered as constant and uniform all along the channel.
+This allows us to dene Uin , the permeation velocity in pure solvent
+cross-ow, as
+
+Uin =
+
+Pin
+
+I0
+
+(1)
+
+Accordingly with the Darcy law for porous media and the Van＊t
+Hoff law for osmotic pressure, and considering a total rejection
+called Darcy-Starling law which relates UW ( z), the local permeation
+of the membrane, the Spiegler-Kedem model leads us to the so-
+velocity at the wall, to pressure PW and osmotic pressure Posm
+W as:
+UW ( z) √ PW ( z)  Posm
+W ( z)
+PW ( z)  iRT CW ( z)
+I0
+I0
+
+(2)
+
+=
+
+where i is the number of dissolved ions per molecule of salt, T,
+the temperature of the solution and R, the ideal gas constant. We
+( x, z) with the velocity vector {U, W}. The classical set of conservation
+consider a two-dimensional newtonian ow in Cartesian coordinates
+laws reads:
+
+ U
+ x
+
++ W
+ z
+
+= 0
+
+(3)
+
+q0
+
+(cid:3)
+
+ 2U
+
+ 2W
+
+q0
+
+(cid:2)
+
+=  1
+
+U  U
+ x
+
++ l0
+q0
+
++ l0
+q0
+
++ W  U
+ z
+
+ x2 +  2U
+ z2
+ x2 +  2W
+ z2
+
+ P
+ x
+=  1
+U W
+ x
++ W W
+ z
+ P
+ z
+U  C
++ W  C
+ 2 C
+ x2 +  2 C
+ x
+ z
+ z2
+where C is the eld of solute concentration, the molecular diffusivity
+of which is D0 . This set of partial differential equations has to be
+(i.e. x = ㊣d,  z)
+solved with the following boundary conditions: at the porous walls
+
+= D0
+
+(4)
+
+(5)
+
+(6)
+
+(7)
+
+W = 0
+ C
+U C  D0
+ x
+= 0
+P  iRT C
+U =
+(9)
+I0
+and with appropriate inlet/outlet conditions at z = 0 and z = L. Note
+the nonlinearity present in Eq. (8).
+
+(8)
+
+2.2. Non-dimensioning
+
+At this point, we have several order of magnitude already dened:
+d, Uin , Win , Pin , Cin determine the order of magnitude for the varia-
+tions of x, U, W, P and C . To set an order of magnitude for the axial
+coordinate, we add Lde , the so-called dead-end length (or exhaustion
+length for clear water) [19],
+
+Lde =
+
+Win d
+
+Uin
+
+=
+
+I0Win d
+
+Pin
+
+(10)
+
+Let us now dene the following dimensionless unknowns and vari-
+ables, used throughout the article:
+
+W
+
+Win
+
+,
+
+u =
+
+x =
+
+U
+
+Uin
+
+x
+
+d
+
+, w =
+
+,
+
+z =
+
+z
+
+Lde
+
+p =
+
+C
+
+Cin
+
+,
+
+C =
+
+P
+
+Pin
+
+,
+
+(11)
+
+This process leads us to introduce the six dimensionless numbers
+that characterize the problem:
+
+Rin = q0Uin d
+l0
+
+, k =
+
+L
+
+Lde
+
+b = l0
+
+I0 d
+
+,
+
+Pein =
+
+Pin d
+D0 I0
+
+, a =
+
+and Nosm =
+
+,
+
+(12)
+
+(cid:2)
+
+(cid:3) 1
+
+2
+
+l0 I0W 2
+
+in
+
+in d
+
+P2
+iRT Cin
+
+Pin
+
+Fig. 1. Sketch of cross-ow membrane ltration and concentration polarization.
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+345
+
+Rin is the ※pure solvent§ transverse Reynolds number, k is the dimen-
+sionless length of the channel reduced by Lde , the exhaustion length
+(or dead-end length). In practice, experimentalists choose k < 1.
+a is the square root of the ratio of Hagen-Poiseuille pressure drop
+throughout the exhaustion length to trans-membrane pressure and
+b is the dimensionless permeability of the membrane, the typical
+values of which are much less than unity (for a more detailed discus-
+sion on those numbers, refer to Haldenwang [19]). Pein is the ※pure
+solvent§ transverse P谷clet number. Nosm , the ratio of the osmotic
+pressure in absence of polarization to the operating pressure Pin , will
+be denoted the osmotic number. Note that Nosm must be less than 1
+in pressure-driven ltration.
+We are now able to rewrite the whole system, in the domain
+]  1, 1[℅]0, k[, as the following non-dimensional form:
+
+In the left-hand-side of Eqs. (20)每(21), we have gathered the
+terms of these equations that are mathematically identical to that of
+heat equation. This Prandtl system for cross-ow ltration calls for
+the following comments.
+
+Remark 1. If the above inlet data at z = 0 are symmetrical, the lam-
+inar solution of the system will develop symmetrically with respect
+to x = 0. Therefore, assuming symmetrical boundary conditions at
+putational domain reducing to {0 ≒ x ≒ 1} ℅ {0 ≒ z ≒ k} with the
+x = 0 allows us to gain half of the computational effort, the com-
+following boundary conditions on the axis (x = 0):
+
+u(0, z) = 0,
+
+ w
+ x
+
+(0, z) = 0,
+
+ C
+ x
+
+(0, z) = 0
+
+(22)
+
+(13)
+
+This assumption will hold in all what follows.
+
+Remark 2. Eq. (19) expresses the fact that pressure only depends on
+z, the stream-wise position. Eqs. (20) and (21) are clearly of parabolic
+type, the pressure being - in each section - the Lagrange multiplier
+that allows us to satisfy the following constraint
+
+wdx = u(1, z) =  [p(z)  Nosm CW (z)]
+
+(23)
+
+(cid:8) 1
+
+0
+
+d
+dz
+
+which is obtained owing to transverse integration of Eq. (18). The
+forthcoming numerical method exploits this mathematical property.
+Furthermore, the parabolic nature of this system only requires
+boundary conditions at inlet. Hence, the term ※appropriate bound-
+ary conditions§ previously mentioned after Eq. (17) becomes now
+dened and simply reduce to entrance conditions at z = 0: only,
+suitable entrance x-proles on w and C are required.
+
+Remark 3. Conservation laws are non-linear by nature. Here, their
+non-linearity is increased by the boundary condition: Pein uC 
+ C/ x = 0 at x = 1, which non-linearly combines permeation
+velocity and solute concentration. This coupling is tremendously
+important since it governs polarization and permeation. Therefore,
+this nonlinearity needs to be numerically enforced iteratively, as
+described below.
+
+2.4. A new numerical approach
+
+Technically, the solution method for solving the steady conser-
+vation laws: equations from Eq. (18) to Eq. (21), coupled with the
+boundary conditions (22) and (17) is performed by using nite dif-
+ference methods (FDM) of order two. The computational domain
+is discretized using a regular mesh in both transverse and axial
+direction. A regular mesh is not optimal transversally, but a large
+discretization is permitted, since the numerical cost is low. As a mat-
+ter of fact, the conservation laws being conceived in the context of
+Prandtl approximation, the system is parabolic, the axial coordinate
+playing the role of the time. Hence, for a given transverse section z,
+we solve the coupling - which is non-linear - by an iterative process.
+One iteration is as follows: we rst solve the concentration eld, then
+the axial velocity eld together with pressure, and nally the trans-
+verse velocity eld. The solver iterates until a certain convergence
+criterion is satised in what concerns the simultaneous satisfaction
+of all boundary conditions or couplings, in particular, when the con-
+sistency between local permeation velocity UW , local pressure p and
+local wall concentration CW is achieved. At this convergence stage,
+we are in condition to proceed with the computation of the various
+elds in the next transverse section until the whole length of the
+channel is reached.
+
+0 =  u
+ x
+
++  w
+ z
+
+(cid:4)
+(cid:4)
+
+(cid:5)
+(cid:5)
+
+u  u
+ x
+
+= b
+
+Rin
+
+(cid:6)
+
++ w  u
+ z
+
+  p
+ x
+
+  p
+ z
+
+(cid:3)(cid:7)
+
+ 2 u
+ z2
+
+(cid:3)(cid:7)
+
+ 2 u
+ x2 + b
+a2
+
+(cid:2)
+
+(cid:2)
+
+
+
+
+
+(cid:6)
+
+= a2
+
+Rin
+
+u  w
+ x
+
++ w  w
+ z
+
+ 2w
+ x2 + b
+a2
+
+ 2w
+ z2
+
+(cid:5)
+
+(cid:6)
+
+0 =Pe in
+
+u  C
++ w  C
+ x
+ z
+with the boundary conditions at the wall (x = ㊣1):
+
+ 2 C
+ z2
+
+ x2
+
+  2 C
+
+ b
+
+a2
+
+w(㊣1, z) = 0,
+
+u(㊣1, z) = p  Nosm CW ,
+
+Pein uC =  C
+ x
+
+(14)
+
+(15)
+
+(16)
+
+(17)
+
+with the appropriate inlet/outlet conditions at z = 0 and z = k.
+
+2.3. Prandtl system for cross-ow ltration
+
+in /W 2
+
+Note that the ratio b/a2 reduces to U2
+in , which is by nature of
+RO/NF cross-ow ltrations a very small quantity (as small as 10 6 ).
+Incompressibility condition (13)
+conrms
+that
+the non-
+dimensional quantities u and w have the same order of magnitude
+for their different variations of the RHS of Eqs. (14) and (15). There-
+fore, transverse variation of pressure is b/a2 times as small as its
+axial variation. It can easily be deduced that pressure is constant
+within a channel section (i.e. p(x, z) √ p(z)).
+The same rationale applies when comparing transverse diffu-
+sion with axial diffusion. It is clear that both magnitudes are in
+U2
+in ratio. This incites us to cancel the axial diffusion terms in the
+differential equations.
+Consequently, the following set of equations are validated for a
+large class of ltration processes. This is the so-called Prandtl approx-
+imation of the conservation laws. Note that the mathematical nature
+of these equations has changed, since we switch from a set of ellip-
+tic equations to a set of parabolic equations, in which the variable ※z§
+plays the same role as the time in the heat equation.
+
+in /W 2
+
+ u
+ x
+
++  w
+ z
+
+= 0
+
+= 0
+
+ p
+ x
+Rinw  w
+ z
+Peinw  C
+ z
+
+ 1
+
+a2
+
+dp
+dz
+
+  2w
+ x2 = Rin u  w
+ x
+  2 C
+ x2 = Pein u  C
+ x
+
+(18)
+
+(19)
+
+(20)
+
+(21)
+
+346
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+j
+
+j
+
+j
+
+(cid:10)
+
+(cid:9)
+
+(cid:10)
+
+(cid:9)
+
+u(n)
+j
+
+, w(n)
+j
+
+As the system of equations [from Eq. (18) to Eq. (21)] is of
+parabolic type, we now resort to the terminology generally used for
+the discretization of heat equation with nite differencing. Let us
+dene w(n)
+[resp. C (n)
+], the value of unknown w [resp. C] at point
+{x = jDx, z = nDz} for 0 ≒ j ≒ J and 0 ≒ n ≒ N, whereDx = 1/J
+and Dz = k/N are the mesh sizes in both directions. We suppose
+that all transverse proles (velocity eld
+, scalar concen-
+tration eld C (n)
+and local pressure p(n) ) are known up to the section
+z = nDz. The purpose of the numerical scheme is to compute the all
+unknown elds
+and p(n +1) in the next section
+z = (n + 1)Dz.
+In channel section z = (n+ 1)Dz, the permeation velocity u(n+1)
+is
+a key-stone for the numerical method. Since the permeation velocity
+is involved in the non-linear boundary condition, it assessment will
+be obtained as the convergence of an iterative process where U(k) ,
+k = 0, 1, 2,﹞ ﹞ ﹞ , represents a series of local permeation estimates. At
+convergence of the iterative process, we shall set u(n+1)
+= lim U (k) .
+The nal numerical system to be solved incorporates a discretiza-
+tion of the differential operators. More precisely, for the transverse
+coordinate, the following centered nite difference operators of
+order two are chosen:
+
+, w(n+1)
+j
+
+, C (n+1)
+j
+
+u(n+1)
+j
+
+J
+
+J
+
+J
+
+We now proceed with the computation of the axial velocity eld
+w(n +1) . In the same manner as that used for the concentration eld,
+Eq. (20) is developed by its respective discretization. It is worthy not-
+ing that the no-slip condition w(n+1)
+= 0 (i.e. at node j = J) reduce
+the unknown eld w(n +1) to J unknowns. However the whole system
+has always J + 1 unknowns due to additional unknown p(n +1) . There-
+fore, a complementary constraint is required. The latter unknown
+depends on boundary condition u = p  Nosm C that holds at the
+membrane (x = 1) and after integration of the incompressibility con-
+straint (18) we obtain another relationship to relate all unknowns
+to p(n +1) ) and complement the tri-diagonal system.
+From the prole w(n +1) , the incompressibility constraint allows
+us to compute the transverse velocity prole u(n +1) and the permeate
+velocity U(K) At this stage, all elds C (n+1)
+are known. The new permeation velocity can be computed thanks to
+net trans-membrane pressure, as
+
+and p(n +1)
+
+, w(n+1)
+j
+
+(w(n+1)
+j
+
+, u(n+1)
+J
+
+j
+
+Uk+1 = p(n+1)  Nosm C (n+1)
+J
+
+(28)
+
+We then check the convergence of the procedure by comparing
+the new ltration with that of the previous step in the loop. More
+precisely, we perform the following test:
+(cid:11)(cid:11)(cid:11)(cid:11)(cid:11) U (k)  U (k+1)
+
+(cid:11)(cid:11)(cid:11)(cid:11)(cid:11) ≒ Econv
+
+(29)
+
+U (k)
+
+C (n+1)
+j
+
+, u(n+1)
+J
+
+, w(n+1)
+j
+
+where Econv is a certain criterion of convergence.
+If convergence is not reached, a new iteration is performed for
+the same section z = (n + 1)Dz with the new guess of permeation
+Uk = Uk + y(Uk  Uk +1 ), where y is a relaxation factor used to speed
+up the convergence, until an acceptable permeation velocity UK sat-
+ises the convergence criterion. After each iterative loop, all elds
+and p(n +1) are stored. If convergence is attained,
+the computation of the next axial section is prepared by setting all
+the memories affected to section (n  1) with the corresponding val-
+ues just obtained for section (n) and elds of section (n) with the
+values of section (n + 1). Now we are in condition to restart the pre-
+vious iterative process for the next section z = (n + 1)Dz, following
+the same calculation sequence until z = k = NDz (i.e. n = N). All
+calculation steps are schematically described in Fig. 2.
+A classical study of dependency on mesh size has been per-
+formed [8] in both axial and transverse directions; this numerical
+check conrms the order two expected from the nite difference
+approximations, that we have used.
+
+3. Validation and results
+
+Even though we have derived a numerical approach rather light,
+we need to validate the numerical technique, as well as the spirit of
+the Prandtl approximation. The best manner is to resort to exact ana-
+lytical solutions, even when their eciency with respect to ltration
+is limited. Once this step is completed, we can tackle the numerical
+predictions of well-documented experiments.
+
+3.1. Validation with exact analytical solutions
+
+First of all, the numerical model is validated by comparison with
+the Berman ow. This validation implies the simulation of a uniform
+permeation of pure solvent, namely a pure water ow nearly iso-
+baric. Accordingly with the validity domain of the Berman solution,
+
+＞ w(n+1)
+j+1
+
+ w(n+1)
+j1
+
+2Dx
+
+(cid:11)(cid:11)(cid:11)(cid:11)(cid:11)(n+1)
+
+j
+
+ 2w
+ x2
+
+＞ w(n+1)
+j+1
+
+ 2w(n+1)
+j
+
++ w(n+1)
+j1
+
+(Dx)2
+
+,
+
+(cid:11)(cid:11)(cid:11)(cid:11)(n+1)
+j
+
+ w
+ x
+
+(cid:11)(cid:11)(cid:11)(cid:11)(n+1)
+j
+
+ w
+ z
+
+(24)
+
+(25)
+
+As for the axial differential operators, a backward nite difference
+scheme of order 2 is used:
+
+＞ 3w(n+1)
+j
+
+j + w(n1)
+j
+
+ 4w(n)
+2Dz
+
+(26)
+
+To perform the axial extrapolations, we selected the Adams-
+Bashforth second order scheme:
+
+w(n+1)
+j
+
+＞ 2w(n)
+
+j
+
+ w(n1)
+j
+
+(27)
+
+(cid:10)
+
+(cid:9)
+
+C (0)
+
+w(0)
+j
+
+j = C (0)
+j
+
+0,﹞﹞﹞,j,﹞﹞﹞,J , w(0)
+0,﹞﹞﹞,j,﹞﹞﹞,J
+
+The entire procedure starts with the setting of the entrance data.
+Operating pressure is p(0) = 1. The velocity elds u(0)
+is either of Berman type, or of Poiseuille type. The entry concen-
+tration eld C (0)
+0,﹞﹞﹞,j,﹞﹞﹞,J is supposed transversally uniform and set to
+j = 1. Because we use the extrapolation scheme (27) to determine
+the guessed next elds, for the rst (unknown) transverse section
+(n = 1) we would also need all the elds in n = 1, which can be
+, w(1)
+those of the section (n = 0). Hence, we set
+j =
+and C (1)
+.
+Now we are ready to enter into the main axial loop. The procedure
+described below is the same for all transverse section z = (n + 1)Dz
+from n = 0 to N  1. For a general node n + 1 the above extrapolation
+for 0 ≒
+provides us with the initial guesses
+j ≒ J.
+At iteration k = 0, we use this guess for the transverse veloc-
+ity by setting Uk=0 = (n+1)
+. From the discretized form of Eq. (21),
+and boundary nodes (symmetry condition at j = 0, and the Robin
+boundary condition at j = J), we then obtain a tri-diagonal system to
+inverse for computing the solute concentration prole C (n+1)
+.
+
+u(1)
+j = u(0)
+j
+
+, C (n+1)
+j
+
+w(n+1)
+j
+
+, (n+1)
+j
+
+(cid:9)
+
+(cid:10)
+
+j
+
+j
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+347
+
+Fig. 2. Calculation sequence of the numerical model.
+
+this is achieved when parameter a becomes as small as possible,
+since the pressure drop is proportional to a2 . In Table 1, the numer-
+ical data obtained with three studied cases where a rapidly declines
+are gathered. Ep is the maximum of the relative error between the
+numerical result (average permeate ux) and the solution of refer-
+ence (here the Berman ow). It is clear that the departure diminishes
+as the square of a2 , indicating that the error only comes from the
+pressure drop, which induces a non-uniform ltration in the numer-
+ical simulation. We retrieve the fact that pressure becomes uniform
+as a2 diminishes, as well as permeation (according to Darcy＊s law).
+
+For the sake of illustration, Fig. 3 shows the axial and transverse
+velocity proles. Both numerical and analytical solutions (Berman
+ow) are plotted for three axial sections, with no visible departures.
+
+Table 1
+Error with respect to the simple case of uniform permeation (Berman exact solution).
+
+Test case
+
+1
+2
+3
+
+a
+
+10 2
+10 3
+10 4
+
+Rin
+
+0.1
+0.1
+0.1
+
+Number of meshes in the axial direction (N)
+
+104
+104
+104
+
+Ep
+10 4
+10 6
+10 8
+
+348
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+x
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+w(z=0.0; numerics)
+w(z=0.0; Berman)
+w(z=0.5; numerics)
+w(z=0.5; Berman)
+w(z=1.0; numerics)
+w(z=1.0; Berman)
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+x
+
+0.
+5
+
+1
+
+w
+
+(a) Axial velocity
+
+1.5
+
+0
+
+0
+
+0.2
+
+0.4
+
+u (numerics)
+u (Berman solution)
+
+0.6
+
+0.8
+
+1
+
+u
+
+(b) Transverse velocity
+
+Fig. 3. Axial and transverse velocity proles obtained by numerical simulation compared to analytical solutions for a uniform permeation case (a = 0.01, Rin = 0.1, clean water):
+correspond to symmetric channel (in Fig. 3a, note that both curves for z = 1 and vertical axis superimpose).
+
+We observe that the axial velocity component is close to a parabola
+(but slightly atter at the maximum). As expected, the analytical
+solution well-predicts the velocity proles for low values of a . Let
+us consider now increasing values of a , for a constant value of Rin ,
+namely Rin = 0.05. This value corresponds to a typical situation
+in RO/NF ltration; for example if we consider a system ltration
+with a membrane resistance of I0 = 2.0 ℅ 1011 Pa  s/m operat-
+ing at 100 bar. Varying pressure drop levels were tested: the rst
+case concerns a negligible pressure drop (i.e. a = 0.01), the sec-
+ond one considers an important pressure drop (a = 0.5) and nally
+in the third case we test a predominant viscous pressure drop with
+respect to trans-membrane pressure (a = 0.75). Table 2 summa-
+rizes the dimensionless parameters of three tested cases in ※clean
+water§ ltration. The inuence of parameters a and Rin is reected
+in all panels of Figs. 4, 5, and6. Panels a and b illustrate reduced
+axial and transverse velocity proles respectively for three differ-
+ent positions of z coordinate and panels c and d plot streamlines,
+reduced pressure p and reduced ow rate q along the channel until
+a reduced axial distance from entrance z equals to 1. It should be
+noticed that the reduced permeate velocity is implicitly included
+since it is equal to the reduced pressure p according to Darcy＊s law
+(Eq. (1)). As expected, the axial velocities (panel a) and axial owrates
+(panel d) decrease along the membrane because of the permeate
+ux passing through the membrane. However, when the local trans-
+verse Reynolds number R0 is used instead of the inlet transverse
+Reynolds number Rin , the Berman solution gives the right velocity
+proles (panels a and b), even if it has been obtained for constant
+ltration rates. Fig. 4 shows the case for a negligible inuence of pres-
+sure drop (a = 0.01). The reduced pressure p is quietly constant in
+that case (Fig. 4d), leading to a constant local permeate ux, which
+does not depend on the axial position (Fig. 4b). Hence, the axial ow
+
+Table 2
+Operating conditions of various test cases in ※clean water§ ltration.
+
+Test case
+
+Pin (bar)
+
+Win (m/s)
+
+4
+5
+6
+
+100
+100
+100
+
+0.23
+11.2
+16.7
+
+a
+
+0.01
+0.5
+0.75
+
+Rin
+
+0.05
+0.05
+0.05
+
+﹟
+
+﹟
+
+q decreases linearly as seen in Fig. 4d. There is consequently a very
+good agreement with the Berman＊s theory in this case, as expected.
+For the second case, an important pressure drop was tested
+(a = 0.5). The reduced pressure p decrease all along the channel
+(Fig. 5d), leading to a decreasing local permeate ux (Fig. 5b). Then,
+the axial owrate decreases more slowly than expected (Fig. 5d),
+and the exhaustion length, z = 1, is reached without completely
+exhausting the axial ow (Fig. 5c,d). As seen in Fig. 5d, the reduced
+owrate q decreases faster than the reduced pressure p; hence, if
+the channel would be longer, the axial ow exhaustion (AFE) would
+occur rather than a cross-ow reversal (CFR). This is consistent with a
+previous work [19] predicting this behavior for these values of a and
+Rin (Rin ＞ 0, a < 1/
+3).
+If the relative pressure drop is further increased (a = 0.75), the
+reduced pressure p will decrease faster than the owrate q, as seen
+in Fig. 6d. At z = 0.8, the reduced pressure becomes negative (that
+is, the pressure in the retentate side becomes lower than the pres-
+sure in the permeate side), leading to a cross-ow reversal (CFR):
+water ows from the permeate to the retentate, as expected for
+Rin ＞ 0, a > 1/
+3 [19]. Hence, the reduced axial owrate q increases
+again for z > 0.8. Fig. 6 conrms us this behavior when streamlines
+at z = 0.8 change direction passing through a process of suction to
+injection.
+To investigate the inuence of transverse Reynolds number Rin ,
+other values of Rin (0.2, 0.5) that might correspond to ultraltration
+(UF) or microltration (MF) systems have been evaluated; in both
+cases the same behavior was found for the same values of parameter a .
+Finally, let us consider the validation of the solute transfer cou-
+pled with the uid motion. The solute concentration prole will fol-
+low the exact analytical solution obtained by Haldenwang et al. [21],
+if the following conditions are fullled: a) a vanishes (negligible
+pressure drop to get the Berman ow); b) the exact solute bound-
+ary layer and Berman ow are initiated at the duct entrance; c) the
+recovery is low (i.e. the comparison is carried out for small k).
+In Fig. 7, the concentration proles numerically computed, as
+well as those corresponding to our analytic studies have been plot-
+ted for four cases of increasing operating pressures (i.e. Pein ). As
+expected, increasing operating pressures (i.e. increasing Pein ) leads
+to higher permeate uxes and then to a more important concentra-
+tion polarization. The discrepancy between the numerical and the
+approximated analytical solution is hardly discernable in Fig. 7.
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+349
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+x
+
+x
+
+w(z=0.1; numerics)
+w(z=0.1; Berman)
+w(z=0.5; numerics)
+w(z=0.5; Berman)
+w(z=0.8; numerics)
+w(z=0.8; Berman)
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+x
+
+u(z=0.1; numerics)
+u(z=0.1; Berman)
+u(z=0.5; numerics)
+u(z=0.5; Berman)
+u(z=0.8; numerics)
+u(z=0.8; Berman)
+
+0.5
+
+1
+
+w
+
+(a) Axial velocity
+
+1.5
+
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+u
+
+(b) Transverse velocity
+
+p
+q
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+q
+
+,
+
+m
+
+u
+=
+p
+
+0
+
+0
+
+0.2
+
+0.4
+
+z
+
+0.6
+
+0.8
+
+1
+
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+z
+
+(c) Streamlines
+
+(d) Pressure and mean axial velocity
+
+Fig. 4. Results obtained by numerical simulation for a pure solvent case with a = 0.01 and Rin = 0.05.
+
+3.2. Comparisons with approximated approaches of the literature
+
+Figs. 8 and 9 show the solute concentration at the wall and the
+axial variation of the permeate ux, respectively. These gures con-
+duct the comparisons between the results by Song and Elimelech
+[50], TSB-plug[49] and TSB-shear [51] models described in Appendix
+d = 0.35 mm with a membrane resistance I0 = 1 ℅11 Pa  s/m
+(Subsection 5.3), with our numerical model for a RO module of height
+supplying a solution of an initial concentration Cin = 5g/l and a
+cross-ow rate Win = 0.1 m/s operating at different pressures Pin
+ranging from 6 to 10 bar. This conditions correspond to the following
+values of the characteristic dimensionless numbers: 0.0535 ≒ a ≒
+0.0891, 0.370 ≒ Nosm ≒ 0.616, 2.10 ℅ 10 3 ≒ Rein ≒ 3.5 ℅ 10 3 ,
+Sc = 621 and k > 1.
+We remark that our numerical model predicts a strong devel-
+opment of concentration polarization layer and a more rapid decay
+of the permeate ux in the length very close to the entrance. This
+prediction can be explained because with permeable walls, the trans-
+verse advection strongly modies the layer construction, which is
+no longer created by diffusion only. Our careful iterative process
+allowed us to take account of this non-usual balance. Let us com-
+pare our model with the TSB models. TSB models uncouple the axial
+
+and transverse solute transfer, and its solute concentration prole
+(Eq. (50)) is then atter than ours (Eq. (39)). Since the total salt con-
+centration is conserved, the predicted wall solute concentration is
+weaker than ours, and the local permeate ux is higher. If the mem-
+brane is long enough, higher uxes in the TSB models lead nally
+to higher solute concentrations, and their predicted local perme-
+ate ux decreases then faster than ours for Z > 1 m. Recently, Liu
+et al. [27] developed a TSB model considering a parabolic velocity
+prole. Their results show an intermediate behavior between the
+TSB-plug and the TSB-shear models with a concentration polariza-
+tion more intense than predicted by the rst, but more attenuated
+than predicted by the second. Hence, the comparison with the TSB-
+parabolic model has not been tested, since the results of this model
+would be found between those of the TSB-plug and the TSB-shear
+model. When comparing our numerical model with the analytical
+solution by Song-Elimelech, it can be seen that the Song-Elimelech
+model predicts much higher local permeate uxes, and lower wall
+solute concentrations. This is owed to the fact that Song-Elimelech
+analytical solution considers a concentration polarization layer much
+smaller than the channel height, which is not the case.
+Figs. 10 and 11present the average permeate ux determined
+by the TSB-shear model, the analytical solution and our numerical
+
+350
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+w(z=0.1; numerics)
+w(z=0.1; Berman)
+w(z=0.5; numerics)
+w(z=0.5; Berman)
+w(z=0.8; numerics)
+w(z=0.8; Berman)
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+x
+
+u(z=0.1; numerics)
+u(z=0.1; Berman)
+u(z=0.5; numerics)
+u(z=0.5; Berman)
+u(z=0.8; numerics)
+u(z=0.8; Berman)
+
+0.5
+
+w
+
+1
+
+1.5
+
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+u
+
+(a) Axial velocity
+
+(b) Transverse velocity
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+x
+
+x
+
+1
+
+0.8
+
+q
+
+,
+
+m
+
+u
+=
+p
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+0.2
+
+0.4
+
+p
+q
+
+0.6
+
+0.8
+
+1
+
+(d) Pressure and mean axial velocity
+
+z
+
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+z
+
+(c) Streamlines
+
+Fig. 5. Results obtained by numerical simulation for a pure solvent case with a = 0.5 and Rin = 0.05.
+
+model for the same ltration module of half-height d = 0.35 mm,
+I0 = 1 ℅ 1011 Pa  s/m and for different operating conditions (oper-
+ating pressures from 1 to 20 bar and inlet concentrations from 1.5 to
+7 g/l). This conditions correspond to the following values of the char-
+acteristic dimensionless numbers: 0.0267 ≒ a ≒ 0.535, Rein ≒
+7 ℅ 10 3 , Sc = 621 and 5.54 ℅ 10 2 ≒ Nosm ≒ 9.24 ℅ 10 1 .
+Comparison of the numerical and analytical solution shows good
+agreement for low permeate uxes and short membranes (Fig. 10). It
+should be kept in mind that the analytical model has been obtained
+for high pressure (i.e. low values of alpha) and low recovery (i.e.
+low values of lambda) conditions. When the inlet pressure Pin is
+increased, the value of alpha decreases; however, lambda increases
+the hypothesis of k (cid:7) 1 is not valid for high permeate uxes, which
+at the same time, from 0.0286 for 1 bar to 0.571 for 20 bar. Hence,
+explains the gap between the analytical and the numerical solutions.
+The analytical solution overestimates the permeate ux because
+it considers a constant transversal concentration prole (Eq. (39)),
+whereas the numerical solution considers the more realistic develop-
+ment of the concentration polarization from an homogeneous inlet
+concentration at z = 0.
+For long membranes (0.171 ≒ k ≒ 3.43, Fig. 11), the numerical
+solution deviates from the analytical solution (even for low permeate
+
+uxes), since the low recovery hypothesis is not valid. Considering
+that recovery is low implies an underestimation of the solute con-
+centration, an underestimation of the osmotic pressure and nally
+an overestimation of the local permeate ux. Furthermore, as TMP
+increases, the discrepancy between the analytical solution and both
+numerical models is enhanced. This is of course due to the analytical
+solution, the hypotheses of which are no longer fullled, as pressure
+increases. More precisely, in Fig. 11, the channel length is large and
+the hypothesis of low recovery becomes invalid, all the more so that
+TMP produces a large permeation.
+Comparison of our numerical solution with the TSB-plug model
+shows a quite good agreement for long membranes (Fig. 11). For
+short membranes (Fig. 10), the TSB model predicted higher values
+than our numerical model; this trend was expected due to a major
+inuence, in our numerical model, of the concentration polarization
+development at the beginning of the process.
+
+3.3. Comparisons with experimental data
+
+At this point, we have demonstrated that the Prandtl approxi-
+mation offers an accurate alternative with respect to the full con-
+servation laws. We now need to validate the overall approach in
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+351
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+x
+
+x
+
+w(z=0.1; numerics)
+w(z=0.1; Berman)
+w(z=0.5; numerics)
+w(z=0.5; Berman)
+w(z=0.8; numerics)
+w(z=0.8; Berman)
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+x
+
+u(z=0.1; numerics)
+u(z=0.1; Berman)
+u(z=0.5; numerics)
+u(z=0.5; Berman)
+u(z=0.8; numerics)
+u(z=0.8; Berman)
+
+0.5
+
+1
+
+w
+
+(a) Axial velocity
+
+1.5
+
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+u
+
+(b) Transverse velocity
+
+p
+q
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+q
+
+,
+
+m
+
+u
+=
+p
+
+0
+
+0
+
+0.2
+
+0.4
+
+z
+
+0.6
+
+0.8
+
+1
+
+-0.2
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+z
+
+(c) Streamlines
+
+(d) Pressure and mean axial velocity
+
+Fig. 6. Results obtained by numerical simulation for a pure solvent case with a = 0.75 and Rin = 0.05.
+
+terms of basic choice with respect to the mathematical model. This
+must be established by comparison with experiments. For the sake of
+conducting this comparison, we choose different experimental con-
+tributions that propose careful measurements in both NF and RO
+measurements.
+We rst compare our averaged permeate uxes as a func-
+tion of the operating pressure with the experimental results
+obtained by Geraldes et al. [18] in a NF module composed by a
+1.4 ℅ 10 11m  s 1  Pa
+CDNF501 commercial membrane with an hydraulic permeability of
+1 , working at operating pressures that range
+between 10 and 40 bar and for three feed axial rates. Even though
+the NF module had a length of 20 cm, the reported data only included
+average values obtained in the rst 6 cm. Table 3 allows the quan-
+titative comparison between the data from the experiment and the
+predictions of the numerical simulation for three aqueous solutions
+of Na2 SO4 , sucrose and polyethylene glycol 1000 (PEG1000). For
+characterizing the physical properties of the chemical solution, we
+recall that the numerical prediction only uses the standard constants
+taken from the literature.
+
+For both solutions with Na2 SO4 and sucrose, the comparison
+between numerical and experimental results shows an excellent
+agreement (a maximal relative error about 15 percent).
+As for the PEG1000 solutions, our modeling overpredicts the per-
+meation, in particular when the operating pressure is higher than 20
+bar. When the feeding ow is increased (i.e. when the concentration
+polarization is lesser), the discrepancy diminishes. As a matter of fact,
+the Schmidt number of PEG1000 is very large and the polarization
+at high pressure attains important values, in such a way that the
+osmotic law increasing linearly with PEG1000 concentration can no
+longer be appropriate. To conclude this stage of model validation,
+the numerical predictions can be considered as reliable for both
+solutions of Na2 SO4 and sucrose. For solutes of larger Schmidt num-
+bers (as PEG1000), the polarization at high trans-membrane pressure
+leads to very rich concentrations, for which the physical ※constants§
+have to be modied.
+We next turn towards a reverse osmosis experiment conducted
+with salt. More precisely, we now compare two predictions (the TSB-
+shear model and the present numerical model) with the experiments
+
+352
+
+B. Bernales et al.
+
+/ Desalination 404 (2017) 341每359
+
+x
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+C (numerics, Pe=2)
+C (analytics, Pe=2)
+C (numerics, Pe=5)
+C (analytics, Pe=5)
+C (numerics, Pe=20)
+C (analytics, Pe=20)
+C (numerics, Pe=200)
+C (analytics, Pe=200)
+
+2
+
+4
+
+C
+
+6
+
+8
+
+10
+
+Fig. 7. Comparisons of concentration proles obtained by both numerical and by ana-
+lytical approaches for a uniform permeation case in a symmetric channel for various
+values of inlet P谷clet number (a = 0.001, Nosm = 0.1, z = 0.05).
+
+of Zhou et al. [63]. This experiment presents a particular diculty for
+our laminar simulation, since the ow is turbulent due to the effects
+of spacers. Actually, an aqueous solution of NaCl feeds a set of four
+spiral wound RO modules of a polyamide composite membrane (TFC
+2540SW, Koch Membrane Systems). The pilot had a total length L of
+4 m with a distance between membranes 2d of 0.6 mm, and a mem-
+brane resistance I0 = 8.41 ℅ 1010 Pa  s/m. Experiments were carried
+out with a mean inlet axial velocity Win = 0.075 m/s and for three
+different feed initial concentrations Cin : 500, 1000 and 3000 mg/l.
+To overcome the diculty due to the presence of turbulent mix-
+ing, it was proposed in Zhou et al. [63] to adopt the concept of an
+effective solute diffusivity, which is suggested at the value of D0 =
+1.81 ℅ 10 8m2 /s, i.e. about ten times the molecular diffusion coef-
+cient of sodium chloride. We hence have used the same turbulent
+diffusivity in our numerical Prandtl approach. Numerical simulations
+
+are depicted by solid lines, while TSB model results and experi-
+mental data are plotted as dash-dotted lines and symbols, respec-
+tively. For all cases both models agreed very well with experimental
+uxes until a pressure of 10 bar but deviated gently as pressure still
+increases. The maximum difference was about 15% for a feed con-
+centration of 500 mg/l at a pressure of 15 bar. Actually, although
+the simulations have considered a membrane which was 4 m long,
+the experiments were carried out in 4 modules 1.016 m long con-
+nected in series [63]. There is no permeate ux along the connection
+pipes between the modules, thus reducing concentration polariza-
+tion. This could explain the discrepancy between simulations and
+experiments, especially for the highest trans-membrane pressures.
+See Fig. 12.
+We now conduct the last comparison of our numerical predic-
+tions with experimental results. Measurements of the concentration
+polarization prole are concerned. The experiment has been carried
+out in Fern芍ndez-Sempere et al. [14] and consisted in measuring the
+concentration polarization layer of a solution of Na2 SO4 within a RO
+module by digital holographic interferometry. The module was com-
+posed of a thin lm membrane (TFM-50, from Hydro Water S.L.) and
+sized 10 cm ℅ 3 mm℅ 10 mm (L℅W℅H). In all three cases the operat-
+ing pressure Pin was 7.2 bar and the feed initial concentration Cin was
+8.5kg/m3 , for three different inlet mean velocities Win of 0.2, 0.7 and
+1.7 cm/s. Unlike all the previous experimental results which consid-
+ered two parallel permeable walls, these experiments were carried in
+a channel with a permeable wall and an impermeable one. Hence, the
+limit conditions for the axial velocity (Eq. (22)) have been modied:
+
+w(0, z) = 0
+
+(30)
+
+Fig. 13 shows the concentration polarization proles obtained by our
+numerical model and TSB model (solid and dotted lines, respectively)
+compared with the experimental ones (symbols). Measurements were
+performed at the distance from the inlet Z = 5 cm. A good agreement
+is found between our numerical predictions and the experimental
+data. We observe that the modeling slightly overestimates the con-
+centration gradient (and hence the permeate ux). The same trend
+in discrepancy also appears in Salcedo-Diaz et al. [44]. Here, we
+can propose two possible explanations. First, our model considers
+
+Fig. 8. Comparisons of solute wall concentration along the channel between Song-Elimelech, TSB-plug and TSB-shear model with our numerical approach for different operating
+pressures ranging between 6 and 10bar.
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+353
+
+Fig. 9. Comparisons of permeate ux along the channel between Song-Elimelech, TSB-plug and TSB-shear model with our numerical approach for different operating pressures
+ranging between 6 and 10bar.
+
+a total rejection by the membrane, although experiments showed a
+97 % rejection for Na2 SO4 , only. Second, the experimental channel
+has a width-to-height ratio of 3.3, and the consideration of a two-
+dimensional geometry might be a slightly inaccurate approximation.
+Lastly, the TSB model meets diculties in tting with the experimen-
+tal concentration proles. This can partly be attributed to the fact that
+the latter predictions have been obtained in the case of a symmetric
+channel.
+To nish this important stage of mathematical model validation
+with respect to experiments, let us make the following remarks.
+The Prandtl simulations, in a general manner, have shown an excel-
+lent accordance with the analytical and numerical previous results,
+
+and a good agreement with the experimental results. This point is
+valid for both ※clean water§ ltration and coupling between hydro-
+dynamics and mass transfer. Furthermore, the possible discrepancies
+we have observed when comparing with experiments are likely to
+be corrected by using concentration-dependent physical constants.
+Such an improvement does not affect the present overall numerical
+approach, and will be the object of future contributions. Another
+remarkable point is that in all cases the ow always match locally
+with a pattern that can be identied with the analytical solution
+(i.e. Berman [7]). In other words, the ow pattern adapts to perme-
+ation, while mass transfer rules the whole system (of course, the ow
+plays an important role in mass transfer. . . ).
+
+Fig. 10. Channel length L = 1 m.
+
+354
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+Fig. 11. Channel length L =6 m.
+
+4. Conclusions and nal discussion
+
+An ecient two dimensional numerical model has been devel-
+oped; it solves the solute conservation equation coupled with the
+steady Navier-Stokes equations under the Prandtl approximation.
+
+Table 3
+Average permeate ux of experiments carried out by Geraldes et al. [18] compared
+with the same quantity obtained by numerical simulations.
+
+Solute
+
+Na2 SO4
+Na2 SO4
+Na2 SO4
+Na2 SO4
+Na2 SO4
+Na2 SO4
+Na2 SO4
+Na2 SO4
+Na2 SO4
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+Sucrose
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+PEG1000
+
+Pin
+
+105 Pa
+
+20
+30
+40
+20
+30
+40
+20
+30
+40
+10
+20
+30
+40
+10
+20
+30
+40
+10
+20
+30
+40
+10
+20
+30
+40
+10
+20
+30
+40
+10
+20
+30
+40
+
+Win
+
+m/s
+
+0.067
+0.067
+0.067
+0.133
+0.133
+0.133
+0.267
+0.267
+0.267
+0.067
+0.067
+0.067
+0.067
+0.133
+0.133
+0.133
+0.133
+0.267
+0.267
+0.267
+0.267
+0.067
+0.067
+0.067
+0.067
+0.133
+0.133
+0.133
+0.133
+0.267
+0.267
+0.267
+0.267
+
+Cin
+
+kg/m3
+
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+
+Sc
+
+908
+908
+908
+908
+908
+908
+908
+908
+908
+1940
+1940
+1940
+1940
+1940
+1940
+1940
+1940
+1940
+1940
+1940
+1940
+3240
+3240
+3240
+3240
+3240
+3240
+3240
+3240
+3240
+3240
+3240
+3240
+
+Jexp
+
+m/s
+1.65 ℅ 10 5
+2.43 ℅ 10 5
+3.11 ℅ 10 5
+1.8 ℅ 10 5
+2.69 ℅ 10 5
+3.48 ℅ 10 5
+1.96 ℅ 10 5
+2.98 ℅ 10 5
+3.98 ℅ 10 5
+1.1 ℅ 10 5
+1.98 ℅ 10 5
+2.70 ℅ 10 5
+3.26 ℅ 10 5
+1.13 ℅ 10 5
+2.07 ℅ 10 5
+2.95 ℅ 10 5
+3.69 ℅ 10 5
+1.16 ℅ 10 5
+2.24 ℅ 10 5
+3.26 ℅ 10 5
+4.18 ℅ 10 5
+1.13 ℅ 10 5
+1.74 ℅ 10 5
+2.07 ℅ 10 5
+2.31 ℅ 10 5
+1.20 ℅ 10 5
+1.96 ℅ 10 5
+2.40 ℅ 10 5
+2.72 ℅ 10 5
+1.27 ℅ 10 5
+2.18 ℅ 10 5
+2.87 ℅ 10 5
+3.33 ℅ 10 5
+
+Jnum
+
+m/s
+1.41 ℅ 10 5
+2.06 ℅ 10 5
+2.61 ℅ 10 5
+1.56 ℅ 10 5
+2.34 ℅ 10 5
+3.00 ℅ 10 5
+1.70 ℅ 10 5
+2.59 ℅ 10 5
+3.39 ℅ 10 5
+1.14 ℅ 10 5
+2.12 ℅ 10 5
+2.92 ℅ 10 5
+3.62 ℅ 10 5
+1.19 ℅ 10 5
+2.29 ℅ 10 5
+3.29 ℅ 10 5
+4.07 ℅ 10 5
+1.23 ℅ 10 5
+2.42 ℅ 10 5
+3.49 ℅ 10 5
+4.47 ℅ 10 5
+1.23 ℅ 10 5
+2.26 ℅ 10 5
+3.22 ℅ 10 5
+4.60 ℅ 10 5
+1.27 ℅ 10 5
+2.42 ℅ 10 5
+3.48 ℅ 10 5
+4.77 ℅ 10 5
+1.30 ℅ 10 5
+2.54 ℅ 10 5
+3.70 ℅ 10 5
+4.95 ℅ 10 5
+
+This approach of cross-ow membrane ltration takes the pressure-
+dependent leakage into account, as well as the effect of concen-
+tration polarization on osmotic (counter-)effects in RO/NF ltration.
+More precisely, the effective trans-membrane pressure depends
+on osmotic effects due to concentration polarization at the mem-
+brane. Under specic operating conditions, this numerical model
+can predict the local permeate ux and the solute concentration
+polarization with an excellent accuracy, as shown during the vali-
+dation steps, where several exact analytical approaches were used
+to validate the numerical model. Both local results of ow and
+concentration elds were considered in this validation.
+In comparison with other numerical approaches, our model pre-
+dicts a rapid development of the polarization boundary layer and
+hence a faster decline in permeation in the vicinity of entrance.
+This prediction that differs from other numerical models might be
+explained by the ability of the present model to accurately enforce
+the non-linear boundary condition at the very entrance.
+
+1.5
+
+1.0
+
+0.5
+
+)
+
+s
+
+/
+
+m
+
+5
+
+-
+
+0
+1
+
+(
+
+x
+u
+
+l
+f
+
+e
+
+t
+
+a
+e
+
+m
+
+r
+
+e
+p
+
+e
+g
+a
+
+r
+
+e
+v
+
+A
+
+0.0
+0.0
+
+Zhou experimental results Cin=500 mg/l
+TSB model Cin=500 mg/l
+Numerical model Cin=500 mg/l
+Zhou experimental results Cin=1000 mg/l
+TSB model Cin=1000 mg/l
+Numerical model Cin=1000mg/l
+Zhou experimental results Cin=3000 mg/l
+TSB model Cin=3000 mg/l
+Numerical model Cin=3000 mg/l
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+Trans-membrane Pressure (MPa)
+
+Fig. 12. Comparisons of the average permeate ux according to Zhou experiments
+[63] and permeate ux obtained numerically for different operating pressures and
+NaCl initial concentrations.
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+355
+
+12.5
+
+11.5
+
+)
+
+l
+
+/
+
+g
+
+(
+
+C
+
+10.5
+
+9.5
+
+8.5
+0
+
+12.5
+
+11.5
+
+)
+
+l
+
+/
+
+g
+
+(
+
+C
+
+10.5
+
+9.5
+
+8.5
+0
+
+2
+
+3
+
+1
+
+X (mm)
+
+(a)
+
+2
+
+3
+
+1
+
+X (mm)
+
+(b)
+
+12.5
+
+11.5
+
+)
+
+l
+
+/
+
+g
+
+(
+
+C
+
+10.5
+
+9.5
+
+8.5
+0
+
+2
+
+3
+
+1
+
+X (mm)
+
+(c)
+
+Fig. 13. Comparisons of concentration proles between TSB (dotted lines) and present numerical model (solid lines) with experiments [14] (triangles) for a solution of Na2 SO4
+operating at Pin = 7.2 bar and a feed initial concentration Cin = 8.5 g/l, (a) Win = 0.2 cm/s, (b) Win = 0.7 cm/s and (c) Win = 1.7 cm/s.
+
+In the last section, we have compared our numerical predictions
+with several RO/NF experimental results. A good accordance was
+generally obtained. This validates the overall modeling approach,
+from the choice of the model to the numerical solution method. It
+is furthermore worthy of note that the present numerical tool can
+be easily adapted to more sophisticate situations in terms of viscous
+and transport properties. In the same vein, the numerical model can
+be extended to other geometries, as tubular membranes, or to non-
+linear laws on osmotic pressure, as realized in Lopes et al. [28]. In the
+same manner, a model of membrane selectivity with partial solute
+rejection can be considered as developed in Lopes et al. [29]. The
+present numerical approach has easily been adapted to a situation of
+fouling, a work which has been left to future publication.
+Lastly, the ltration of multi-species systems (as in the case of
+sea water desalination) can easily be envisaged from the present
+work. For each species, a conservation law can be duplicated from the
+present solute conservation law. Furthermore, an osmotic number
+must be introduced for every species.
+
+5. Appendix: a brief description of the models used for validation
+
+5.1. The Berman ow
+
+The Berman ow is a basis solution for the uid motion in a leaky
+channel, when the permeation is uniform and xed all along the
+porous walls [7]. Under this hypothesis, Berman derived the ow
+solution {u(x, z), w(x; z)} to the steady Navier-Stokes equations com-
+plemented with the lateral boundary conditions u(x = ㊣1, z) =
+UW /Uin = ㊣1, as
+u(x, z) =B(x ; Rin )
+where B(x; in) is the solution of the ordinary differential equation
+(ODE):
+
+; w(x, z) = (1  z)B
+
+(31)
+
+(cid:8)
+
+(x; in)
+
+(cid:8)(cid:8)  B
+
+Rin (BB
+
+(cid:8)2 )  B
+
+(cid:8)(cid:8)(cid:8)
+
+= K (Rin )
+
+in 0 < x < 1
+
+with the boundary conditions:
+
+B(0) = 0,
+
+B(1) = 1,
+
+(cid:8)
+
+B
+
+(1) = 0,
+
+(cid:8)(cid:8)
+
+B
+
+(0) = 0
+
+(32)
+
+(33)
+
+The purpose of this addendum is to present the various main
+properties of the analytical or semi-analytical results that we have
+used in the validation step of our numerical approach. We shall par-
+ticularly stress on the underlying assumptions making feasible the
+analytical approach.
+
+and Rin is the transverse Reynolds number of permeation. For the
+standard congurations of ltration, a rich literature has shown that
+the solution to ODE (Eq. (32)) is unique, stable and attractive in
+the sense that, if the inlet conditions are different from the Berman
+x-proles, Berman solution is recovered shortly after the entrance.
+
+356
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+Moreover, in the range (i.e. Rin ≒ 4), the following Taylor expan-
+sion of the Berman function rapidly converges (see for instance
+Haldenwang [19]) in the standard situations of ltration:
+
+B(x; Rin ) =
+
+n=﹢(cid:12)
+
+n=0
+
+1
+n!
+
+fn (x)Rn
+
+in
+
+(34)
+
+where the rst two coecients are:
+
+f0 =
+
+3x
+2
+
+(cid:2)
+
+1  x2
+3
+
+(cid:3)
+
+;
+
+f1 =
+
+x
+280
+
+(cid:13)
+
+x6 + 3x2  2
+
+(cid:14)
+
+(35)
+
+The Berman ow for ltration only makes sense when the pressure
+drop remains weak enough all along the channel, in order to justify
+that the permeation is uniform. This condition corresponds to the
+so-called assumption of ※high pressure§ (HP).
+
+5.2. Exact analytical solution for mass transfer in Berman ow
+
+In a previous study, Haldenwang et al. [21] obtained an exact ana-
+lytical solution for the solute conservation law, when the carrying
+ow is of Berman type. Let us now consider the solute mass conser-
+vation law (Eq. (21)), in which we consider the velocity components
+{u, w} as xed and given by expression (31) where the transverse
+Reynolds number is unknown, since the permeation will depend on
+the hindrance due to concentration polarization. Let us denote this
+unknown permeation with U0 as the transverse velocity at the wall,
+leading us to dene Re0 [resp. Pe0 ], the (unknown) Reynolds [resp.
+P谷clet] number of permeation, as Re0 = q0U0 d/l 0 [resp. Pe0 =
+U0 d/D0 ]. An exact solution to this problem has been established in
+Haldenwang et al. [21] and reads:
+C (x, z)
+
+C (x, z) =
+
+Cin
+
+=
+
+1
+(1  z)
+
+exp
+
+(cid:15)
+
+Pe0
+
+(cid:8) x
+
+0
+
+B( x; R0 )d x
+
+(cid:16)
+
+(36)
+
+with
+
+(cid:8) x
+
+0
+
+B( x; R0 )d x =
+
+n=﹢(cid:12)
+
+n=0
+
+1
+n!
+
+Fn (x)Rn
+
+0
+
+(37)
+
+where the rst two Fn (x) take the form:
+
+F0 (x) =
+
+3x2
+4
+
+ x4
+8
+
+;
+
+F1 (x) =
+
+1
+280
+
+(cid:2)
+
+ x8
+8
+
++
+
+3x4
+4
+
+ x2
+
+(cid:3)
+
+(38)
+
+Developing this solution (36) at the lowest order with respect to
+R0 is sucient in most RO/NF situations and leads to the simple
+expression for the solute concentration eld.
+C (x, z)
+
+C (x, z) =
+
+Cin
+
+=
+
+1
+(1  z)
+
+exp
+
+(cid:17)
+
+Pe0
+
+(cid:2)
+
+3x2
+4
+
+ x4
+8
+
+(cid:3)(cid:18)
+
+(39)
+
+This relationship gives a mathematical form to the phenomenon of
+concentration polarization, and allows us to obtain the concentration
+at the membrane wall as:
+CW
+
+CW (z) =
+
+Cin
+
+＞ 1
+
+1  z
+
+exp
+
+(cid:15)
+
+5
+8
+
+Pe0
+
+(cid:16)
+
+(40)
+
+Now, let us consider the osmotic pressure provoked by CW (z). To
+maintain a uniform leakage, the osmotic pressure must be con-
+stant all along the channel. Therefore, we must assume that (1 
+z) ＞ 1. In other words, the channel length is limited enough to
+keep the concentration polarization uniform all along the wall. This
+condition corresponds to the so-called ※low recovery§ condition (LR).
+
+Therefore, under the ※HP-LR§ assumption, concentration polarization
+and permeation satisfy
+
+ln[CW ] ＞ 5
+8
+
+Pe0
+
+(41)
+
+Then, expressing U0 accordingly with Darcy and Van＊t Hoff laws, we
+get the ※three P谷clet number§ relationship:
+
+ln
+
+(cid:4)
+
+Pein  Pe0
+
+Peosm
+in
+
+(cid:7)
+
+=
+
+5
+8
+
+Pe0
+
+(42)
+
+where Pein is the pure solvent transverse P谷clet number and Peosm
+a dimensionless form of inlet concentration, dened as:
+
+in
+
+is
+
+Pein =
+
+Pin d
+I0D0
+
+;
+
+Peosm
+in =
+
+iRT Cin d
+I0D0
+
+(43)
+
+Permeate ux U0 can be calculated from the last implicit Eq. (42)
+in Pe0 by using an iterative method. This analytical approach is a
+useful tool to estimate the permeation velocity U0 in presence of
+polarization and osmotic effects. Finally, let us note that, in the limit
+of the high operating pressures Pein (cid:10) 1, expression (42) reduces
+to Pe0 ＞ 1.6ln
+. The latter expression simply demon-
+strates the classically observed saturation of the permeation when
+increasing operating pressure.
+
+(cid:19)
+
+Pein /Peosm
+
+in
+
+(cid:20)
+
+5.3. Song-Elimelech model
+
+Song and Elimelech [50] proposed to consider Eq. (21) under
+various simplied forms, accordingly with the concerned zone. The
+rst step in the assumption process consists in neglecting the sec-
+ond term in the RHS of Eq. (21) (the mass axial transport) when
+considering the domain in the very vicinity of the membrane. After
+integration, this yields the dimensional form
+
+U0 ( C  Cin ) = D0
+
+d C
+dX
+
+(44)
+
+where Cin is the feed solute concentration or bulk concentration. This
+model assume that the concentration polarization layer is smaller
+than the spacing of the membrane channel and considers at steady
+state a mass balance relationship in the axial direction through the
+channel:
+
+(cid:8) ﹢
+
+0
+
+cX ( C  Cin )dX = Cin
+
+(cid:2)(cid:8) Z
+
+0
+
+U0 (Z
+
+(cid:8)
+
+)dZ
+
+(cid:8)
+
+(cid:3)
+
+(45)
+
+where c is the shear rate, Z the axial distance from the entrance and
+X the transverse coordinate.
+In this model the wall concentration could be determine by
+solving Eqs. (44) and (45) simultaneously
+
+CW = Cin
+
+(cid:2)
+
+1 +
+
+1
+
+D2 c
+
+U2
+
+0
+
+(cid:8) Z
+
+0
+
+U0 (Z
+
+(cid:8)
+
+)dZ
+
+(cid:8)
+
+(cid:3)
+
+(46)
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+357
+
+Fig. 14. Different proles of a laminar ow in the membrane channel.
+
+If a constant shear rate c is assumed (Fig. 14) an analytical
+expression of the permeate velocity can be obtained as follows:
+
+(cid:4)(cid:5)
+
+
+
+
+U0 (Z ) =
+
+U0 (0)
+(1 + AZ/L)1/3
+
+(cid:4)(cid:5)
+
+
+
+(cid:6) 1
+
+2
+
+(cid:7) 1
+
+3
+
+1
+1 +AZ /L
+
+(cid:6) 1
+
+(cid:7) 1
+
+3
+
++ 4
+
+
+
+
+1
+1 + AZ/L
+
++ 4
+
+2  2
+
++ 2
+
+(47)
+
+where U0 (0) is the permeate velocity at inlet, A is a dimensionless
+parameter of operation and L is the membrane channel length.
+P  Posm
+P  CCin
+I0
+I0
+
+U0 (0) =
+
+(48)
+
+=
+
+in
+
+A =
+
+6U0 (0)2 Posm
+I0D2
+
+in L
+
+0 c
+
+(49)
+
+5.4. Total salt balance model with plug ow
+
+This model takes into account that concentration polarization
+layer could be developed to the whole height of the membrane
+channel. Solute concentration at any transverse coordinate can be
+determine by integrating Eq. (44)
+C = Cin + ( Cm  Cin )
+Pe0
+exp( UX
+1  exp(Pe0 )
+)
+(50)
+D0
+where Cm is the average solute concentration and Pe0 is the trans-
+verse P谷clet number:
+
+U0 d
+Pe0 =
+(51)
+D0
+We can consequently determine the wall concentration CW by eval-
+uating Eq. (50) inX = 0:
+CW = Cin + ( Cm  Cin )
+
+(52)
+
+Pe0
+1  exp(Pe0 )
+
+Considering that the total solute ux downstream along the channel
+is constant even though both solute wall concentration and permeate
+ux changed carried us to the following mass balance relationship:
+CmWm = CinWin
+
+(53)
+
+where Win and Wm are the axial mean velocity at the entrance and
+the axial mean velocity at any Z position respectively. Working with
+an average axial velocity is equivalent to assume that the uid has
+a constant axial velocity across the channel height (plug ow prole
+in Fig. 14). From mass conservation principle for the solvent we can
+establish the following relationship
+
+dWm
+=  U0
+(54)
+dZ
+d
+The variation of Cm along the membrane channel can be determine
+by taking derivate of Eq. (53) with respect to Z and using Eq. (54) we
+obtained:
+d Cm
+dZ
+
+U0
+Wm d
+
+Cm
+
+(55)
+
+=
+
+A numerical method can solve Eqs. (55), (54), (2) and (52). Discretiz-
+ing the membrane channel length L into n equal segments (DZ =
+L/n), the nite difference forms of these equations are:
+Cmi
+
+Cmi+1 =
+
+U0iDZ
+
+(56)
+
+1 +
+
+(cid:5)
+
+(cid:6)
+
+Wmi d
+
+Wmi+1 = Wmi  DZ
+
+U0i
+
+d
+
+P  C
+CWi
+I0
+
+U0i+1 =
+CWi+1 = Cin + ( Cmi+1  Cin )
+
+(57)
+
+(58)
+
+(59)
+
+f U0i d
+D0 (1  exp(U0i d/D0 )
+
+The iterative process begins when the feed solute concentration
+Cin , the axial mean velocity at entrance Win and the driving pressure P
+are given. The mean solute concentration Cm , the axial mean velocity
+Wm , the permeate velocity U0 and the solute wall concentration CW ,
+can be then obtained progressively throughout the entire membrane
+channel using the nite difference equations above.
+
+5.5. Total salt balance model with shear ow
+
+In this model a shear ow rate c for axial velocity was considered,
+as shown shear ow prole in Fig. 14 therefore the mass balance
+relationship (Eq. (53)) along the cross-ow direction reads:
+cX CdX = Win Cin d
+
+(cid:8) d
+
+(60)
+
+0
+
+358
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+Replacing the expression (50) for C in Eq. (60) above leads to:
+cX ( Cm  Cin )
+
+Win Cin d =
+
+(cid:8) d
+
+(cid:5)
+
+(cid:6)
+
+exp
+
+dX
+
+Pe0
+1  exp(Pe0 )
+
+ UX
+D0
+
+cXCin dX
+
+0
+
++
+
+(cid:8) d
+
+0
+
+(cid:5)
+
+Performing the integration of Eq. (61) results in:
+ exp(Pe0 )
+( Cm  Cin )
+1  exp(Pe0 )
+
+Win Cin d = cd2
+
+1
+Pe0
+
+(cid:6)
+
++
+
+1
+
+2 cd2 Cin
+
+(cid:5)
+
+0 =
+
+Taking derivative of both sides of Eq. (62) conducted to
+ exp(Pe0 )
+( Cm  Cin )
+dc
+1
+1  exp(Pe0 )
+dZ
+Pe0
+ exp(Pe0 )
+d Cm
+1  exp(Pe0 )
+dZ
+
+1
+Pe0
+
+Cin +
+
+dc
+dZ
+
++ c
+
+(cid:5)
+
+(cid:6)
+
+1
+2
+
+(cid:6)
+
+(61)
+
+(62)
+
+(63)
+
+(68)
+
+(69)
+
+(70)
+
+(71)
+
+References
+
+[1] S.P. Agashichev, Modeling the inuence of temperature on gel-enhanced
+concentration polarization in reverse osmosis, Desalination 236 (2009)
+252每258.
+[2] B.S., A.L. Ahmad, Mathematical modeling of multiple solutes system for reverse
+osmosis process in pal oil mill euent (POME) treatment, Chem. Eng. Sci. 132
+(2007) 183每193.
+[3] N.M. Albastaki, A. Abbas, Predicting the performance of RO membranes, Desali-
+nation 88 (2010) 181每187.
+[4] A. Alexiadis, D.E. Wiley, A. Vishnoi, R.H.K. Lee, D.F. Fletcher, J. Bao, CFD mod-
+elling of reverse osmosis membrane ow and validation with experimental
+results, Desalination 217 (2007) 242每250.
+[5] M.A. Ali, A. Ajbar, E. Ali, K. Alhumaizi, Modeling the transient behavior of
+an experimental reverse osmosis tubular membrane, Desalination 245 (2009)
+194每204.
+[6] V. Alvarez, S. Alvarez, F.A. Riera, R. Alvarez, Permeate ux prediction in apple
+juice concentration by reverse osmosis, J. Membr. Sci. 127 (1997) 25每34.
+[7] A.S. Berman, Laminar ow in channels with porous walls, J. Appl. Phys. 24
+(1953) 1232每1235.
+[8] B. Bernales, Mod谷lisation de l＊hydrodynamique et des transferts dans les
+proc谷d谷s de ltration membranaire, Ph.D. thesis. Ecole Doctorale M谷canique
+et Physique des Fluides, Aix-Marseille Universit谷, 2013.
+[9] B. Bernales, P. Haldenwang, Laminar ow analysis in a pipe with locally pres-
+sure-dependent leakage through the wall, Eur. J. Mech. B. Fluids 43 (2014)
+100每109.
+[10] D. Bhattacharyya, S.L. Back, R.I. Kermode, M.C. Roco, Prediction of concentra-
+tion polarization and ux behavior in reverse osmosis by numerical analysis, J.
+Membr. Sci. 48 (1990) 231每262.
+[11] A. Chatterjee, A. Ahluwalia, S. Senthilmurugan, S.K. Gupta, Modeling of a radial
+ow hollow ber module and estimation of model parameters using numerical
+techniques, J. Membr. Sci. 236 (2004) 1每16.
+[12] J. Choi, J. Kim, Modeling of full-scale reverse osmosis desalination system:
+inuence of operational parameters, J. Ind. Eng. Chem. 21 (2015) 261每268.
+[13] M.L. Costa, J.M. Dickson, Modelling of modules and systems in reverse osmosis.
+Part I. Theoretical system design model development, Desalination 80 (1991)
+251每274.
+[14] J. Fern芍ndez-Sempere, F. Ruiz-Bevi芍, P. Garc赤a-Algado, R. Salcedo-D赤az, Experi-
+mental study of concentration polarization in a crossow reverse osmosis sys-
+tem using Digital Holographic Interferometry, Desalination 257 (2010) 36每45.
+[15] D.F. Fletcher, D.E. Wiley, A computational uids dynamics study of buoyancy
+effects in reverse osmosis, J. Membr. Sci. 245 (2004) 175每181.
+[16] T. Fujioka, S.J. Khan, J.A. McDonald, A. Roux, Y. Poussade, J.E. Drewes, L.D.
+Nghiem, Modelling the rejection of N-nitrosamines by a spiral-wound reverse
+osmosis system: mathematical model development and validation, J. Membr.
+Sci. 454 (2014) 212每219.
+[17] D.V. Gauwbergen, J. Baeyens, Modelling revrese osmosis by irreversible ther-
+modynamics, Sep. Purif. Technol. 13 (1998) 117每128.
+[18] V. Geraldes, V. Semiao, M. de Pinho, The effect on mass transfer of momen-
+tum and concentration boundary layers at the entrance region of a slit with a
+nanoltration membrane wall, Chem. Eng. Sci. 57 (2002) 735每748.
+[19] P. Haldenwang, Laminar ow in a two-dimensional plane channel with local
+pressure-dependent crossow, J. Fluid Mech. 593 (2007) 463每473.
+[20] P. Haldenwang, P. Guichardon, Pressure runaway in a permeable channel with
+pressure-dependent leakage, Eur. J. Mech. B. Fluids 30 (2011) 177每183.
+[21] P. Haldenwang, P. Guichardon, G. Chiavassa, N. Ibaseta, Exact solute polar-
+ization prole combined with osmotic effects in Berman ow for membrane
+cross-ow ltration, Int. J. Heat Mass Transfer 53 (2010) 3898每3904.
+[22] L.-Y. Hung, S.J. Lue, J. You, Mass-transfer modeling of reverse-osmosis perfor-
+mance on 0.5每2% salty water, Desalination 265 (2011) 67每73.
+[23] K. Jamal, M.A. Khan, M. Kamil, Mathematical modeling of reverse osmosis
+systems, Desalination 160 (2004) 29每42.
+[24] A.S. Kahdim, S. Ismail, A.A. Jassim, Modeling of reverse osmosis systems,
+Desalination 158 (2003) 323每329.
+[25] A.S. Kim, Permeat ux inection due to concentration polarization in cross-
+ow membrane ltration: a novel analytic approach, Eur. Phys. J. E 24 (2007)
+331每341.
+[26] S. Kim, E.M.V. Hoek, Modeling concentration polarization in reverse osmosis
+processes, Desalination 186 (2005) 111每128.
+[27] C. Liu, A. Morse, K. Rainwater, L. Song, Modeling of concentration polarization
+in a reverse osmosis channel with parabolic crossow, Water Environ. Res. 86
+(2014) 56每62.
+[28] G. Lopes, B.B. Chavez, N. Ibaseta, P. Guichardon, P. Haldenwang, Prediction of
+permeate ux and rejection rate in RO and NF membrane processes: numeri-
+cal modelling of hydrodynamics and mass transfer coupling, Procedia Eng. 44
+(2012) 1934每1936.
+[29] G. Lopes, N. Ibaseta, P. Guichardon, P. Haldenwang, Predicting permeate uxes
+and rejection rates in reverse osmosis and tight-nanoltration processes,
+Chem. Eng. Technol. 38 (2015) 585每594.
+[30] E. Lyster, J. Au, R. Rallo, F. Giralt, Y. Cohen, Coupled 3-D hydrodynamics and
+mass transfer analysis of mineral scaling-induced ux decline in a laboratory
+plate-and-frame reverse osmosis membrane module, J. Membr. Sci. 339 (2009)
+39每48.
+[31] E. Lyster, Y. Cohen, Numerical study of concentration polarization in a rect-
+angular reverse osmosis membrane channel: permeate ux variation and
+hydrodynamic end effects, J. Membr. Sci. 303 (2007) 140每153.
+
+From Fig. 14 we induced that the shear rate c for an average axial
+velocity Wm was:
+
+c =
+
+2
+d
+
+Wm
+
+The derivative of c with respect to Z gave:
+
+dc
+dZ
+
+=
+
+2
+d
+
+dWm
+dZ
+
+=  2
+d2 U0
+
+(64)
+
+(65)
+
+Substituting Eqs. (64) and (65) into Eq. (63) reached the following
+relationship:
+d Cm
+dZ
+
+Cm +
+
+U0
+Wm d
+
+U0
+Wm d
+
+A1 Cin
+
+(66)
+
+(cid:6)
+
+(cid:5)
+
+(cid:6)
+
+(cid:5)
+
+=
+
+where A1 is a new function of the transverse P谷clet number:
+Pe0 (1  exp(Pe0 ))
+2(1  exp(Pe0 )  exp(Pe0 )Pe0 )
+
+ 1
+
+A1 =
+
+(67)
+
+In this model, the numerical method solves Eqs. (2), (52) and (54)
+coupled with Eq. (66) instead of Eq. (55) using the following forward
+nite difference forms:
+
+(cid:5)
+
+(cid:6)
+
+(cid:5)
+
+(cid:6)
+
+Cmi+1 =
+
+1 +
+
+U0iDZ
+
+Wmi d
+
+Cmi +
+
+U0iDZ
+
+Wmi d
+
+A1 Cin
+
+Wmi+1 = Wmi  DZ
+
+U0i
+
+d
+
+P  C
+CWi
+I0
+
+U0i+1 =
+CWi+1 = Cin + ( Cmi+1  Cin )
+
+Pe0i
+1  exp(Pe0i )
+
+Let us nally remark that the models described above assume a con-
+stant driving pressure P through the membrane channel. The vari-
+ation in operating pressure is obtained by solving the uid motion.
+In the latter case, to analytically study this more complex situation
+is, to say the least, a hard task. Analytical developments for PDE are
+never easy, especially when hydrodynamics is strongly coupled with
+mass transfer equation. This is why a numerical approach seems to
+be more suitable to analyze this situation.
+
+B. Bernales et al. / Desalination 404 (2017) 341每359
+
+359
+
+[32] S. Ma, L. Song, S.L. Ong, W.J. Ng, A 2-D streamline upwind Petrov/Galerkin nite
+element model for concentration polarization in spiral wound reverse osmosis
+modules, J. Membr. Sci. 244 (2004) 129每139.
+[33] L. Malaeb, G.M. Ayoub, Reverse osmosis technology for water treatment: state
+of the art review, Desalination 267 (2011) 1每8.
+[34] A. Malek, M.N.A. Hawlader, J.C. Ho, A lumped transport parameter approach in
+predicting B10 RO permeator performance, Desalination 99 (1994) 19每38.
+[35] P.P. Mane, H.H.P.K. Park, J.C. Brown, J. Kim, Modeling boron rejection in
+pilot-and full-scale reverse osmosis desalination processes, J. Membr. Sci. 338
+(2009) 119每127.
+[36] H. Mehdizadeh, K. Molaiee-Nejad, Y.C. Chong, Modeling of mass transport of
+aqueous solutions of multi-solute organics through reverse osmosis mem-
+branes in case of solute-membrane anity Part1. Model development and
+simulation, J. Membr. Sci. 267 (2005) 27每40.
+[37] R. Mellis, W.N. Gill, G. Belfort, Fluid dynamics in a tubular membrane: theory
+and experiment, Chem. Eng. Commun. 122 (1993) 103每125.
+[38] M. Moresi, B. Ceccantoni, S.L. Presti, Modelling of ammonium fumarate recov-
+ery from model solutions by nanoltration and reverse osmosis, J. Membr. Sci.
+209 (2002) 405每420.
+[39] C. Prabhavathy, S. De, Treatment of fatliquoring euent from a tannery using
+membrane separation process: experimental and modeling, J. Hazard. Mater.
+176 (2011) 434每443.
+[40] T.Y. Qiu, P.A. Davies, Concentration polarization model of spiral-wound mem-
+brane modules with application to batch-mode RO desalination of brackish
+water, Desalination 368 (2015) 36每47.
+[41] S.A. Regirer, On the approximate theory of the ow of a viscous incompressible
+liquid in a tube with permeable walls, Sov. Phys. Tech. Phys. 5 (1960) 602每605.
+[42] E. Roth, B. Fabre, A. Accary, G. Thomas, Modelling of stimulus response exper-
+iments in the feed channel of spiral-wound reverse osmosis membranes,
+Desalination 127 (2000) 69每77.
+[43] C. Sagne, C. Fargues, B. broyart, M. Lameloise, M. Decloux, Modeling per-
+meation of volatile organic molecules through reverse osmosis spiral-wound
+membranes, J. Membr. Sci. 330 (2009) 40每50.
+[44] R. Salcedo-Diaz, P. Garcia-Algado, M. Garcia-Rodriguez, J. Fernandez-Sempere,
+F. Ruiz-Bevia, Visualization and modeling of the polarization layer in crossow
+reverse osmosis in a slit-type channel, J. Membr. Sci. 456 (2014) 21每30.
+[45] M. Sekino, Precise analytical model of hollow ber reverse osmosis modules, J.
+Membr. Sci. 85 (1993) 241每252.
+[46] M. Sekino, Study of an analytical model for hollow ber reverse osmosis
+module systems, Desalination 100 (1995) 85每97.
+[47] S. Senthilmurugan, A. Ahluwalia, S.K. Gupta, Modeling of a spiral-wound
+module and estimation of model parameters using numerical techniques,
+Desalination 173 (2005) 269每286.
+
+[48] M. Soltanieh, W.N. Gill, Review of reverse osmosis membranes and transport
+models, Chem. Eng. Commun. 12 (1981) 279每363.
+[49] L. Song, Concentration polarization in a narrow reverse osmosis membrane
+channel, AIChE 56 (2010) 143每149.
+[50] L. Song, M. Elimelech, Theory of concentration polarization in cross-ow ltra-
+tion, J. Chem. Soc., Faraday Trans. 91 (1995) 3389每3398.
+[51] L. Song, C. Liu, A total salt balance model for concentration polarization in cross-
+ow reverse osmosis channel with shear ow, J. Membr. Sci. 401-402 (2012)
+313每322.
+[52] L. Song, K.G. Tay, Performance of a long crossow reverse osmosis membrane
+channel, J. Membr. Sci. 281 (2006) 163每169.
+[53] L. Song, S. Yu, Concentration polarization in cross-ow reverse osmosis, Fluid
+Mech. Transp. Phenom. 45 (1999) 921每928.
+[54] A. Subramani, S. Kim, E.M.V. Hoek, Pressure, ow and concentration proles in
+open and spacer-lled membrane channels, J. Membr. Sci. 277 (2006) 7每17.
+[55] S. Sundaramoorthy, G. Srinivasan, D.V.R. Murthy, An analytical model for spiral
+wound reverse osmosis membrane modules: part I - model development and
+parameter estimation, Desalination 280 (2011) 403每411.
+[56] N. Tilton, D. Martinand, E. Serre, R.M. Lueptow, Incorporating Darcy＊s law for
+pure solvent ow through porous tubes: asymptotic solution and numerical
+simulations, AIChE 58 (2012) 230每244.
+[57] R.I. Urama, B.J. Marinas, Mechanistic interpretation of solute permeation
+through a fully aromatic polyamide reverse osmosis membrane, J. Membr. Sci.
+123 (1997) 267每280.
+[58] B. Van der Bruggen, M. Manttari, N. Nystrom, Drawbacks of applying nanol-
+tration and how to avoid them: a review, Sep. Purif. Technol. 63 (2008)
+251每263.
+[59] N.G. Voros, Z.B. Maroulis, D. Marinos-Kouris, Salt and water permeability in
+reverse osmosis membranes, Desalination 104 (1996) 141每154.
+[60] J. Weissbrodt, M. Manthey, B. Digens, G. Laufenberg, B. Kunz, Separation of
+aqueous organic multi-compount solutions by reverse osmosis - development
+of a mass transfer model, Desalination 133 (2001) 65每74.
+[61] J.G. Wijmans, R.W. Baker, The solution-diffusion model: a review, J. Membr. Sci.
+107 (1995) 1每21.
+[62] D.E. Wiley, D.F. Fletcher, Techniques for computational uid dynamics mod-
+elling of ow in membrane channels, J. Membr. Sci. 211 (2003) 127每137.
+[63] W. Zhou, L. Song, T.K. Guan, A numerical study on concentration polarization
+and system performance of spiral wound RO membrane modules, J. Membr.
+Sci. 271 (2006) 38每46.
+

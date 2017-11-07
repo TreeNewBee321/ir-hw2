@@ -1,0 +1,1118 @@
+Experimental investigation of the effect of electrospinning parameters on properties of superhydrophobic PDMS/PMMA membrane and its application in membrane distillation
+
+Long-Fei Ren, Fan Xia, Jiahui Shao , Xiaofan Zhang, Jun Li
+
+School of Environmental Science and Engineering, Shanghai Jiao Tong University, 800 Dongchuan Road, Shanghai, 200240 Shanghai, PR China
+
+H I G H L I G H T S
+
+ Superhydrophobic PDMS/PMMA membrane was electrospun successfully with a contact angle of 163～.
+ Correlations between electrospinning parameters and membrane properties were rstly established.
+ Membrane surface roughness and beads structure were well-related with membrane hydrophobicity.
+ The membrane was suitable for MD process (b 24 h) with membrane ux of 39.61 L/m2 h and salt rejection of 99.96%.
+
+article
+
+info
+
+Article history:
+Received 18 August 2016
+Received in revised form 24 October 2016
+Accepted 12 November 2016
+Available online 16 November 2016
+
+Keywords:
+Electrospun membrane
+PDMS
+Superhydrophobic material
+Water contact angle
+Membrane distillation
+
+abstract
+
+Considerable efforts have been devoted to nding economic and simple preparation methods for polydimethyl-
+siloxane (PDMS) superhydrophobic membrane in past decades. This study provides a simple method to
+electrospin PDMS membrane using poly (methyl methacrylate) (PMMA) as carrier polymer. Effects of PMMA
+concentration, PDMS/PMMA mass ratio and main parameters of electrospinning process (voltage and injection
+rate) were investigated to obtain superhydrophobic membrane with high water contact angle (WCA). A highest
+WCA of 163～ could be obtained on the membrane surface fabricated by electrospinning solution containing
+PDMS: PMMA: tetrahydrofuran (THF): N,N-dimethylformamide (DMF) (mass ratio 1: 1: 8.88: 9.48) under ap-
+plied voltage of 11 kV and injection rate of 0.1 mm/min. The superhydrophobic PDMS/PMMA membrane was fur-
+ther applied in membrane distillation process for desalination, and a high permeation ux of 39.61 L/m2 h and an
+excellent salt rejection of 99.96% were achieved during long-term MD process (24 h).
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Rising demands of superhydrophobic membrane applied for con-
+tamination prevention, water repellency, self-cleaning, anti-icing and
+anti-corrosion [1] drive the relevant research on the fabrication of
+superhydrophobic membrane, whose surface exhibits a water contact
+angle (WCA) greater than 150～ [2]. A variety of techniques, such as
+electrospinning, sol-gel method, plasma treatment, lithography and
+phase separation are currently adopted to produce superhydrophobic
+membrane [3,4]. All these techniques are closely related to low surface
+energy materials, either fabricating superhydrophobic membrane
+from such materials [5] or modifying membrane into superhydrophobic
+membrane by such materials [6].
+Compared to other mentioned techniques, electrospinning is an eco-
+nomic consistent ber spinning process which produces bers with di-
+ameters in the range of nanometer, submicrometer and micrometer.
+When a high electric force beyond critical voltage acting on polymeric
+solution surface, the surface tension is overcome to realize the slim
+charged liquid jet continuously [7]. The liquid jet rstly extends into
+jet length, then further stretches into conical spiral motion and whip-
+ping motion. Finally, slim bers produced by elongated jet are gathered
+on the rotation disc to form at membrane gradually with the evapora-
+tion of solvent. Numerous polymeric materials have been electrospun
+into continuous, uniform bers [8,9]. Polydimethylsiloxane (PDMS), a
+kind of elastomeric material and superhydrophobic polymer [4], has
+been widely applied in the fabrication of superhydrophobic materials
+mainly by one-step laser etching method [10] and plasma treatment
+[11]. The properties of low surface energy, low surface density and
+strong water repellence make PDMS an effective material in organics
+extraction [12], catalysts supports [13] and contamination prevention
+[14].
+Though
+PDMS material
+itself
+is
+suitable
+for making
+superhydrophobic membrane, it is quite difcult to be electrospun
+due to insufcient chain entanglements during electrospinning as a
+small molecular polymer [15,16]. In order to obtain electrospun PDMS
+membrane, poly (methyl methacrylate) (PMMA) was added into the
+electrospinning solution as carrier polymer [15,16]. It is believed that
+these two blending polymers change the intrinsic characterization of
+the insufcient chain entanglements existing in single PDMS polymer.
+Macromolecule PMMA could be easily electrospun into continuous -
+bers, while fragmentary PDMS bers are distributed around PMMA -
+bers irregularly. The covalent bonds are produced between PDMS and
+PMMA bers and then electrospun PDMS/PMMA membrane is pro-
+duced. Though PDMS/PMMA membrane was successfully electrospun,
+this PDMS/PMMA membrane was used for protein microarrays as sub-
+strates [15,16] and the effects of system parameters (e.g. polymer con-
+centration, viscosity) and process parameters (e.g. voltage, injection
+rate) on membrane morphology and hydrophobicity were not studied.
+The morphology and hydrophobicity of the electrospun membrane
+have signicant effects on its further applications [17]. Thus, it is neces-
+sary to investigate the effects of various parameters on the morphology
+and hydrophobicity
+of
+PDMS/PMMA membrane made
+by
+electrospinning.
+Membrane distillation (MD) is a thermally-driven separation pro-
+cess, which is driven by the vapor pressure difference existing between
+the porous hydrophobic membrane surfaces [18]. Due to its low operat-
+ing temperatures, less energy consumption, as well as 100% theoretical
+rejection of non-volatile solute, MD is considered to be a next-genera-
+tion water desalination technique [19,20]. An ideal membrane for MD
+should exhibit a superhydrophobic surface to avoid pore wetting and
+a well-designed pore structure to enhance water ux [21]. Therefore,
+the PDMS/PMMA membrane with high porosity, tunable pore size and
+considerable wetting resistance could be a great candidate for its appli-
+cation in MD. To the best of our knowledge, there is no report on
+electrospun PDMS/PMMA membrane used in MD process in the open
+literature.
+In this study, PDMS/PMMA superhydrophobic membranes were
+electrospun using electrospinning solution of different amounts of
+PDMS and PMMA under different electrospinning process parameters.
+The electrospun PDMS/PMMA membranes were characterized by goni-
+ometer, scanning electron microscope (SEM), 3D automatic optical prol-
+er, X-ray photoelectron spectroscopy (XPS) and tensile testing machine.
+The objective of this study was to investigate the effect of electrospinning
+system parameters (PMMA concentration, PDMS/PMMA mass ratio) and
+process parameters (voltage, injection rate) on morphology and hydro-
+phobicity of the electrospun PDMS/PMMA membrane. The lab-made
+electrospun PDMS/PMMA membrane was further applied for the desali-
+nation in membrane distillation process. To the best of our knowledge,
+this is the rst attempt to investigate the effects of electrospinning param-
+eters on properties of electrospun PDMS/PMMA membrane and apply it
+in membrane distillation for desalination.
+
+2. Materials and methods
+
+2.1. Preparation of electrospinning solution
+
+Weighted PMMA (9 .9 ℅ 105 Da , Sigma Aldrich) was rstly dis-
+so lved in a m ixed so lvent of tetrahydrofuran (THF) and N ,N-
+dimethylformamide (DMF) by stirring 2 h (200 rpm, 50 ～C). Then,
+weighted PDMS (Sylgard 184 , Dow Corning) together with curing
+
+Table 1
+Scheme of different PMMA concentrations and other parameters to electrospin membrane.
+
+agent (10:1) was added by st irr ing 30 m in (200 rpm , 25 ～C) . A
+LVDV-S rotary viscometer (Brookeld, USA) with S62 stirrer under
+a speed of 50 rpm was used to measure the viscosities of prepared
+electrospinning solutions at 25 ～C. All the involved chemicals were
+from Sinopharm Chemical Reagent Co. Ltd. (Shanghai, China), other-
+w ise be ing noted . They are of ana lyt ical grade and were direct ly
+applied in experiments without further purication.
+
+2.2. Electrospinning of membrane
+
+An integrated electrospinning machine (SS 20H, Ucalery, China) was
+used to fabricate the electrospinning solutions into micro-brous mem-
+branes under certain temperature (25 ㊣ 3 ～C) and humidity (35 ㊣ 5%).
+The electrospinning solution was loaded into a 10 mL plastic syringe
+connecting 18# steel needle (0.86 mm inner diameter). Positive voltage
+was regulated as needed accompanied with a negative voltage of
+1.00 kV. Different solution injection rates were tried and the
+electrospinning time was adjusted for consuming equal solution. The
+tip to collector distance (TCD) was maintained at 16 cm and the collec-
+tor (50 rpm) was covered by tinfoil to receive the elongated bers,
+which would further form membrane. After electrospinning process,
+the membranes were placed under 70 ～C for 120 min to volatilize resid-
+ual solvent and form cross-linking.
+
+2.3. Characterization of membrane
+
+2.3.1. Contact angle
+The hydrophobicity of membrane surface was evaluated by WCA
+using Dropmeter A-200 contact angle system (MAIST Vision Inspection
+& Measurement Co., China) with corresponding Dropmeter software.
+Liquid droplet (9 米L) was dropped on at least ve different points of
+each membrane for average and the algorithm of Young-Laplace was se-
+lected to analyze the contact angles above 90～.
+
+2.3.2. Morphology
+The morphologies of electrospun membranes were characterized by
+a scanning electron microscope (SEM, JSM - 6700F, JEOL, Japan). All
+samples (1 ℅ 1 cm) were observed by SEM directly without coating
+gold layer as the electrical conductivity of membranes could satisfy
+the observational requirements. Averaged ber diameters were calcu-
+lated by corresponding SEM images. Pore sizes were measured using a
+3H-2000PB membrane pore size analyzer (Beishide, China) by bubble-
+pressure method.
+
+2.3.3. XPS analysis
+X-ray photoelectron spectroscopy (XPS) spectra of membranes were
+recorded by a Kratos Axis UltraDLD spectrometer (Shimadzu-Kratos,
+Japan) with a monochromatic Al K汐 radiation of 1486.6 eV. The analyz-
+er was set to hybrid magnication mode under a take-off angle of 90～,
+while analysis area was about 700 ℅ 300 米m under slot mode. Limited
+pressure of analysis chamber was set to b 5 ℅ 10 9 Torr. A binding ener-
+gy (BE, 0每1200 eV) was used for wide spectrum scan, and correspond-
+ing X-ray source power was 75 W with a range of 75每 150 W for
+different elements in narrow spectrum scan. In addition, scanning
+steps and pass energies of 1 eV, 160 eV and 0.1 eV, 40 eV were employed
+
+No.
+
+Polymer p.
+
+Solvent p.
+
+Environmental p.
+
+Electrospinning p.
+
+PMMA (g)
+
+PDMS (g)
+
+PMMA c. (%)
+
+THF (mL) DMF (mL)
+
+Temp (～C) Humidity (%)
+
+Voltagea (kV)
+
+TCDb (cm)
+
+Injection rate (mm/min)
+
+Time (min)
+
+M1-1
+M1-2
+M1-3
+
+1
+2
+3
+
+2
+2
+2
+
+5.4
+10.9
+16.3
+
+10
+10
+10
+
+10
+10
+10
+
+25 ㊣ 3
+25 ㊣ 3
+25 ㊣ 3
+
+35 ㊣ 5
+35 ㊣ 5
+35 ㊣ 5
+
+12
+13
+13
+
+16
+16
+16
+
+0.2
+0.2
+0.2
+
+250
+250
+250
+
+a The employed positive voltage was the minimum value to electrospin membrane steadily, while the negative voltage was set to 1.00 kV.
+b The distance from the needle tip to collector.
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+157
+
+in wide spectrum scan and narrow spectrum scan, respectively. The BE
+shifting of each element was calibrated by C1 s peak on 284.8 eV of sam-
+ple surface. All samples were processed by the build-in Kratos charge
+neutralizer system to avoid the inuence of charge effect.
+
+2.3.4. Roughness
+Surface prole and roughness of electrospun membranes were given
+by a 3D automatic optical proler (ZeGage, ZygoLamda, USA) with a
+50 ℅ camera lens. Three 2 ℅ 2 cm samples taken from different locations
+of each membrane were employed to average the roughness of mem-
+brane surface, mainly by two amplitude metrics: roughness average
+(Sa) and root mean square roughness (Sq). Sa is the averaged roughness
+of the sample area (167 ℅ 167 米m), and Sq is the mean square root of
+surface roughness for characterizing the surface roughness deviation.
+The scan scope of 50.0 米m was set to the center position mode while
+the signal thresh was set to 0.2%.
+
+2.3.5. Thickness
+Thickness of each membrane was measured using a membrane
+thickness gauge (Ch-12.7-JSM-6700F, Liuling, China). Five measure-
+ments at different position of each membrane were performed to obtain
+a mean value for better representation of thickness.
+
+2.3.6. Tensile strength
+Membrane mechanical properties of tensile strength (kPa), limiting
+stress (N) and elongation at break (%) were obtained with an electronic
+universal testing machine (6020, Zwick/Roell, Germany). Membranes
+were cut into a rectangle shape (70 ℅ 10 mm) and tested under 0.7 N
+pre-load and 10 mm/min crosshead speed.
+
+2.4. Direct contact membrane distillation (DCMD) test
+
+A direct contact membrane distillation (DCMD) apparatus is set up
+to evaluate the membrane performance for desalination. The
+electrospun membrane with an effective area of 9.6 cm2 was xed in
+the circle cell module supported by a water-permeable PET layer. This
+placed membrane divided the cell module into feed solution side
+(down) and permeate solution side (up). The feed solution (1.5 L) was
+3.5 wt% NaCl solution prepared in puried water with a conductivity
+(Cf) of 66.5 mS/cm, while the permeate solution was 1.5 L of puried
+water with a conductivity (Cp) of 1.2每 1.8 米S/cm. Flow rates of 1.0 and
+0.5 L/min were used for feed side and permeate side via two gear
+pumps during all MD experiments. The temperature of feed solution
+was maintained at 70 ～C by heating bath and the permeate solution
+
+Fig. 1. Water contact angle (WCA) and viscosity of the electrospun membranes with
+PMMA concentrations of 5.4%, 10.9% and 16.3%.
+
+Fig. 2. XPS spectrum of M1-2 surface.
+
+was maintained at 25 ～C by a condenser. Weight of permeate tank
+was measured every 10 min by an electronic balance (YP10001,
+Guansen, China) to calculate membrane ux and conductivity of perme-
+ate solution was also recorded every 10 min by a conductivity meter
+(HI87314, HANNA, Italy) to calculate salt rejection. The liquid entry
+pressure (LEP) of membrane was determined following the method
+provided by another study [19]. Three frequently-used commercial
+membranes for DCMD were also employed in this MD process to com-
+pare their performances under same setup and conditions. They are
+PTFE membranes
+from Membrane Solutions MSPTFE022ETBX
+(MPTFE-1) and MSPTFE045ETBX (MPTFE-2), and PVDF membrane
+from Millipore (HVHP4700 (MPVDF)).
+
+3. Results and discussions
+
+3.1. Effect of system parameters on membrane properties
+
+3.1.1. Effect of PMMA concentration
+Table 1 provides detailed PMMA concentrations (M1-1: 5.4%, M1-2:
+10.9% and M1-3: 16.3%) and other electrospinning parameters. A
+
+Table 2
+Scheme of different PDMS/PMMA mass ratios and properties of obtained membranes.
+
+No.
+
+Polymer p.
+
+PDMS
+(g)
+
+PMMA
+(g)
+
+mPDMS/
+mPMMA
+
+Electrospinning
+p.
+
+Voltagea (kV)
+
+Membrane p.
+
+Fiber diameter
+(米m)
+
+Pore size
+(米m)
+
+M2-1 0
+M2-2 1
+M2-3 2
+M2-4 3
+M2-5 4
+
+2
+2
+2
+2
+2
+
+0/2
+1/2
+1/1
+3/2
+2/1
+
+12
+10
+10
+12
+13
+
+1.58 ㊣ 0.30
+1.94 ㊣ 0.54
+2.24 ㊣ 0.47
+2.69 ㊣ 0.82
+
+9.15
+7.70
+11.90
+13.43
+
+a The employed positive voltage was the minimum value to electrospin membrane
+steadily, while the negative voltage was set to 1.00 kV. Other solvent, environmental and
+electrospinning parameters (not listed in Table 2) were the same as those listed in Table 1.
+
+158
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+Fig. 3. (a) Surface SEM image and (b) pore size of membranes: (1) M2-2, (2) M2-3, (3) M2-4 and (4) M2-5.
+
+mixture containing equal volumes of DMF and THF was employed as
+solvent system [22]. The solubility parameter (汛) of THF is about 9.5,
+which is close to that of PMMA (9.1每9.5) and PDMS (7.3每7.6), making
+THF a good solvent for both PMMA and PDMS. Though the 汛 value of
+co-solvent DMF (12.1) is not compatible with PMMA and PDMS, adding
+DMF could avoid excess solvent volatilization during electrospinning
+process.
+Morphologies and thicknesses of three membranes with different
+PMMA concentrations are shown in Table S1. It is observed that mem-
+brane M1-1 (39.2 ㊣ 3.2 米m) was quite thin compared to other two
+membranes, M1-3 (185.2 ㊣ 9.9 米m) was too dense surrounding by
+quantities of ocs, and only M1-2 (71.2 ㊣ 5.3 米m) possessed stable
+membrane structure accompanied with a few ocs. Therefore, the
+electrospinning solution with PMMA concentration of 10.9% is ap-
+proved to be best choice for PDMS/PMMA membrane fabrication from
+the aspect of the membrane morphology. Fig. 1 shows the viscosities
+of electrospinning solution and the contact angles of electrospun mem-
+branes. With PMMA concentration increasing from 5.4% to 16.3%, the
+viscosity of electrospinning solution increased from 26.8 ㊣ 1.2 cP
+(M1-1) to 1502.0 ㊣ 55.7 cP (M1-3) dramatically. Similar trend was
+not seen in WCA on electrospun membrane surface. The WCA of mem-
+brane increased from 135.3 ㊣ 4.9～ for M1-1 with PMMA concentration
+of 5.4% to 153.6 ㊣ 2.7～ for M1-2 with PMMA concentration of 10.9%, and
+then declined to 146.9 ㊣ 3.9～ (M1-3) when PMMA concentration in-
+creased to 16.3%. Low PMMA dosage in M1-1 led to the low viscosity
+of electrospinning solution, which made fabricated M1-1 quite thin
+with large pore size (15.95 米m). Therefore, M1-1 was easier to be wet-
+ted and had a signicant lower WCA in comparison with M1-1 and
+M1-2. Based on results of contact angle, the electrospinning solution
+with PMMA concentration of 10.9% could be considered as best condi-
+tion for fabricating superhydrophobic membrane.
+Fig. 2 shows XPS spectrum of M1-2 surface. It is observed that only
+elements carbon (C), oxygen (O) and silicon (Si) were detected when
+hydrogen (H) is not included as an immeasurable element in XPS anal-
+ysis. The relative elemental composition was determined based on the
+intensity of the O (1 s, 2 s), Si (2 s, 2p) and C (1 s) peaks centered around
+532.5 (1 s), 102.5 (2 p), and 284.8 eV, respectively. C was the most
+abundant element with an atom concentration of 54.0%, while the
+atom concentrations of O and Si were 25.9% and 20.1%, respectively. Ac-
+cording to previous studies, the peaks of Si (2 s) and Si (2 p) belong to
+PDMS, and the peaks of O (1 s, 2 s), C (1 s) belong to both PDMS and
+PMMA [16,23,24]. Such elemental compositions provided clear evi-
+dence that the surface of M1-2 contained predominantly PMMA and
+PDMS and no chemical reaction happened between PDMS and PMMA
+during electrospinning. The intensity of C (1 s) peak was about
+29,000 cps in 284.8 eV. This peak is generally related to the C
+
+160
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+Fig. 5. (a) Surface SEM image, (b) pore size and (c) roughness of membranes: 05.
+
+Table 3
+Scheme of different voltages and properties of obtained membranes.
+
+No.
+
+Polymer p.
+Electrospinning p. Membrane p.
+mPDMS/mPMMA Voltagea (kV)
+Fiber diameter (米m) Pore size (米m)
+
+M3-1 1/1
+M3-2 1/1
+M3-3 1/1
+M3-4 1/1
+
+10
+11
+13
+15
+
+1.94 ㊣ 0.54
+1.88 ㊣ 0.38
+1.75 ㊣ 0.79
+1.68 ㊣ 0.54
+
+7.70
+11.34
+11.50
+11.73
+
+a The negative voltage was set to 1.00 kV. Other solvent, environmental and
+electrospinning parameters (not listed in Table 3) were the same as those listed in Table 1.
+
+Fig. 4(a) shows that the viscosity of electrospinning solution in-
+creased from 167.0 ㊣ 1.7 cP for M2-1 to 266.2 ㊣ 2.2 cP for M2-5 as
+PDMS/PMMA mass ratio increases from 0/1 to 2/1. The observation
+that PDMS/PMMA ber diameter would increase with the increase
+of solution viscosity is also in agreement with Yang et al. [16]. In ad-
+dition , Fig . 4(a) shows the WCA of the membranes with d if ferent
+PDMS/PMMA rat ios .
+It is observed that WCA increased from
+144.1 ㊣ 5.9～ for M2-2 to 153.6 ㊣ 2.7～ for M2-3 with the increase of
+PDMS/PMMA mass rat io . However , further increase of PDMS/
+PMMA mass rat io d id not lead to h igher WCA . WCA for M2-4
+dropped to 145.4 ㊣ 4.4～ and further decreased to 140.6 ㊣ 10.9～ for
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+161
+
+high roughness would inhibit the migration of cells from surface
+into inner part by minimizing valid contact area [30].
+It is concluded that the increase of PDMS/PMMA mass ratio lead
+to increased solution viscosity, which further caused the increase of
+ber diameter and less beads formed. The formation of beads was
+found to be benecial to obtain higher contact angle due to higher
+roughness and smaller pore size . The correlation between contact
+angle and roughness (Sq) was established with a correlation coef-
+cient of about 0.790 (Fig. 4(b)). The optimum electrospinning solu-
+tion for superhydrophobic membrane fabrication was a mixture of
+PDMS/PMMA/THF/DMF (1/1/8 .88/9 .48 ca lculated by mass) , and
+this electrospinning solution was chosen in further experiments to
+investigate the effect of electrospinning process parameters.
+
+3.2. Effect of process parameters on membrane properties
+
+3.2.1. Effect of voltage
+Fig. 5(a) shows the SEM images of PDMS/PMMA electrospun mem-
+branes obtained with different positive voltages of 10 kV (M3-1), 11 kV
+(M3-2), 13 kV (M3-3) and 15 kV (M3-4). The mean ber diameter of
+these membranes decreased from 1.94 米m (M3-1) to 1.68 米m (M3-4,
+listed in Table 3) as the applied voltage increased from 10 kV to 15 kV.
+It is believed that when applied positive voltage increases, enhanced
+electrostatic force would act on electrospinning solution jet at needle
+tip to promote the solvent volatilization for the ber formation with de-
+creased diameter [7,31,32]. It is also observed that the number and size
+of beads reduced slightly with the increase of voltage. Higher voltage
+could promote whipping instability and inhibit axisymmetric instabil-
+ities, and then ber with smaller bead would form under higher draw-
+ing stress at solution jet [27]. The membrane pore size was found to
+increase from 7.70 米m to 11.73 米m continuously with increasing applied
+voltage from 10 kV to 15 kV as shown in Fig. 5(b) and listed in Table 3.
+Therefore, it could be concluded that the increase of voltage could lead
+to the decrease of ber diameter, bead formation and the increase of
+pore size.
+In addition, Fig. 5(c) shows the surface roughness of these mem-
+branes. No obvious differences were observed for the roughness param-
+eters of the membranes M3-1, M3-3 and M3-4 except M3-2 made with
+voltage of 11 kV. Its Sq was 7.5 米m, while the corresponding values for
+other membranes were about 6.4每6.7 米m. M3-2 also possessed the
+highest Sa value of 6.1 米m in contrast with low Sa values (5.1每5.3 米m)
+of other membranes, which indicated its surface containing more ups
+and downs than other membranes. Multilevel roughness in hierarchical
+structure of membrane is considered to be essential to approach ex-
+treme superhydrophobicity. When a 9 米L water droplet was placed on
+M3-2, an almost spherical droplet was observed and WCA of 160.5 ㊣
+6.1～ was measured as shown in Fig. 6(a). WCAs of other membranes
+were all below 157～: 156.5 ㊣ 1.8～ (M3-1), 154.7 ㊣ 2.9～ (M3-3) and
+150.0 ㊣ 9.8～ (M3-4), indicating M3-2 is the most superhydrophobic
+membrane. A positive correlation between contact angle and roughness
+(Sq) was established with a correlation coefcient of about 0.794 (Fig.
+6(b)). Based on WCA measurements, 11 kV seemed to be most suitable
+choice as positive voltage for electrospun under these parameters.
+
+Fig. 6. (a) Corresponding variations between WCA and voltage of four membranes, (b)
+correlation between contact angle and roughness (Sq).
+
+M2-5. The presence of beads was found to be benecial to fabricate
+the membrane with h igh WCA in th is study though usua l ly be ing
+regarded as ※by-products§ in other e lec trospinning process [28] .
+The highest WCA and roughness were observed on M2-3 , and the
+lowest WCA and roughness were observed on M2-5, which indicated
+that WCA of membrane probably is well related with its roughness.
+This is in agreement with Wenzel model, which believes that mem-
+brane with rougher surface is usually correlated well with more hy-
+drophob ic surface w ith h igher WCA [29] . The morphology o f
+membrane with high roughness seemed to be benecial to receive
+high WCA by minimiz ing the valid contact area between water
+drop and membrane as it had been conrmed that membrane with
+
+Table 4
+Scheme of different injection rates and properties of obtained membranes.
+
+No.
+
+Polymer p.
+
+Electrospinning p.
+
+mPDMS/mPMMA
+
+Voltagea (kV)
+
+Injection rate (mm/min)
+
+Time (min)
+
+M4-1
+M4-2
+M4-3
+M4-4
+
+1/1
+1/1
+1/1
+1/1
+
+11
+11
+11
+11
+
+0.05
+0.1
+0.2
+0.5
+
+1000
+500
+250
+100
+
+Membrane p.
+Diameter (米m)
+
+1.28 ㊣ 0.36
+1.75 ㊣ 0.56
+1.88 ㊣ 0.38
+2.89 ㊣ 0.38
+
+WCA (～)
+
+157.7 ㊣ 4.3
+163.1 ㊣ 3.5
+160.5 ㊣ 6.1
+155.5 ㊣ 2.1
+
+Thickness (米m)
+
+Pore size (米m)
+
+29.6 ㊣ 4.4
+65.4 ㊣ 3.4
+79.2 ㊣ 6.7
+125.0 ㊣ 10.6
+
+6.25
+8.03
+11.34
+12.14
+
+a The negative voltage was set to 1.00 kV. Other solvent, environmental and electrospinning parameters (not listed in Table 4) were the same as those listed in Table 1.
+
+162
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+Fig. 7. (a) Pore size and (b) roughness of membranes: (1) M4-1, (2) M4-2, (3) M4-3 and (4) M4-4.
+
+3.2.2. Effect of injection rate
+Morphology of electrospun membrane is usually related to the injec-
+tion rate to a great extent [33]. Selected injection rates of 0.05 mm/min
+(M4-1), 0.1 mm/min (M4-2), 0.2 mm/min (M4-3), 0.5 mm/min (M4-4)
+were employed for membrane optimization with other optimum condi-
+tions unchanged. Fig. S2 shows the morphologies of membranes made
+
+under different injection rates. The mean diameter of bers was ob-
+served to increase from 1.28 米m for M4-1 to 2.89 米m for M4-4 with in-
+jection rate increasing from 0.05 mm/min to 0.5 mm/min (Table 4). The
+ber diameter of M4-4 was much larger than diameters of other mem-
+branes and presented analogous silver ragwort leave structures, and
+numbers of hierarchical nano/micro-structure grooves were also
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+163
+
+found on bers. In addition, the thickness of membrane as shown in
+Table 4 increased from 29.6 ㊣ 4.4 米m for M4-1 to 125.0 ㊣ 10.6 米m for
+M4-4 when the injection rate increased from 0.05 to 0.5 mm/min
+with other parameters unchanged. The increase of injection rate also
+led to the increase of pore size from 6.25 米m for M4-1 to 12.14 米m for
+M4-4 (Fig. 7(a)). With the increase of
+injection rate, more
+electrospinning solution could be injected to needle tip within the
+same time. The superuous solution jet is difcult to stretch sufciently
+under the same electrostatic force and the solvent is difcult to evapo-
+rate sufciently in the short electrospinning time. Therefore, higher in-
+jection rate would lead to the electrospun membrane with larger ber
+diameter and thicker membrane eventually.
+Fig. 7(b) shows the surface pictures by prolometer of these four
+membranes. A signicantly higher roughness (Sq = 8.9 米m, Sa =
+7.3 米m) was detected on the M4-2 surface than those of other mem-
+branes. The WCA (listed in Table 4) of the M4-2 was found to be
+163.1 ㊣ 3.5～, whereas that for other membranes was 157.6 ㊣ 4.3～
+(M4-1), 160.5 ㊣ 6.1～ (M4-3) and 155.5 ㊣ 2.1～ (M4-4) respectively,
+which indicates roughness is well-related with hydrophobicity. It is fur-
+ther observed that M4-2 owned the most and largest beads, while the
+formed beads on other membranes were relatively fewer and smaller.
+These results revealed that bead-rich membrane was likely to generate
+rougher surface and larger WCA than the bead-less membrane.
+In summary, the optimum electrospinning parameters were chosen
+as follows to provide the membrane most hydrophobic property: TCD of
+16 cm, voltage of 11 kV,
+injection rate of 0.1 mm/min with
+electrospinning environmental parameters of temperature 25 ～C
+and humidity 35%. The electrospun membrane under this condition
+(M4-2) was also used in the further mechanical test and membrane
+distillation.
+
+3.3. Mechanical property
+
+The stress-elongation curve together with surface morphology of
+M4-2 is presented in Fig. 8. This curve indicated that M4-2 belonged
+to homogeneous-plastic material. The entire elongation stage of M4-2
+were divided into elastic phase, yield stage, extensional phase and neck-
+ing stage according to the phases of normal plastic material. Table 5 pro-
+vides the corresponding mechanical properties of limiting stress, tensile
+strength and elongation at break of M4-2. In the end of elastic phase
+(just before the peak of the curve), the force increased rapidly to a lim-
+iting force of 1.19 N assuming the force area is unchanged. The stress for
+M4-2 increased to 1833.89 kPa at the end of yield phase (just after the
+peak of the curve). Most of M4-2 bers began to break at elongation
+of 25%, causing the huge decrease of stress as presented in Fig. 8. This
+huge decrease indicated the beginning of extensional phase. Then, the
+stress for M4-2 decreased dramatically to about 700 kPa in extensional
+phase and valley of stress-elongation curve indicated the end of exten-
+sional phase and the beginning of necking phase. All bers of M4-2 were
+broken at elongation of 58.72% at the end of necking phase. These prop-
+erties indicated that M4-2 was deformed easily and this was also the
+reason for using a water-permeable PET layer as supporting layer in
+the following MD process.
+
+3.3.1. Short-term membrane distillation performance
+Fig. 9 shows the direct contact membrane distillation apparatus (a)
+and corresponding membrane distillation performances for M4-2 and
+three commercial membranes during 360 min (b). Relevant parameters
+for MD process were: 1.0 L/min and 0.5 L/min for the velocities of feed
+solution and permeate solution, 70 ～C and 25 ～C for the temperatures
+of feed solution and permeate solution, respectively, which were the
+optimum conditions for M4-2 as shown in Fig. S3. The detailed mem-
+brane properties and MD performances are shown in Table 6. The aver-
+aged permeation ux of M4-2 was about 42.52 L/m2 h during 360 min
+MD process with relatively obvious uctuations (35.00每49.38 L/m2 h),
+which was higher than that of commercial PTFE membrane (MPTFE-1,
+
+Fig. 8. Mechanical property of M4-2 and corresponding morphology of M4-2 surface.
+
+40.93 L/m2 h) and PVDF membrane (MPVDF, 37.19 L/m2 h) with rela-
+tively smaller uctuations. The main reason for this high ux might be
+its large pore size (8.03 米m), which made the vapor could permeate the
+membrane more easily with lower mass transfer resistance. The conduc-
+tivity of superhydrophobic M4-2's permeate solution was 3.9 米S/cm with
+a conductivity variation of permeate solution (忖Cp) of 2.3 米S/cm after
+360 min test resulting in a salt rejection above 99.99%. The 忖Cps of
+MPTFE-1 and MPVDF (6.7 and 4.7 米S/cm) were all higher than that of
+M4-2. Although the permeation ux of M4-2 was lower than that of an-
+other commercial PTFE membrane (MPTFE-2, 49.01 L/m2 h), the 忖Cp
+(10.0 米S/cm) of MPTFE-2 was signicantly higher than that of M4-2.
+These results demonstrated that membrane with superhydrophobicity
+(WCA N 150～) was more likely to obtain superior salt rejections than
+membrane with hydrophobicity (90 b WCA b 150～).
+The LEP value of M4-2 (13 kPa) was signicantly higher in compar-
+ison with the pressure of membrane chamber during experiment
+(0 kPa). This membrane LEP value was lower than the LEP values of
+commercial MD membranes (81每137 kPa) compared. However, a high
+salt rejection was still obtained during MD process which might mainly
+due to the superhydrophobicity of PDMS/PMMA membrane. Though
+pore size of M4-2 was relatively larger than the usually employed mem-
+brane pore size (b 0.5 米m) for MD process, the obtained permeation ux
+and salt rejection efciency were considerably impressive due to the
+strong water repellency and large porosity. Therefore, M4-2 is suitable
+for MD process, especially under free-pressure or low-pressure. These
+results expand the membrane selectable range for MD process remark-
+ably, which ensures that superhydrophobic membrane with large pore
+size could be employed in MD process.
+
+3.3.2. Long-term membrane distillation performance
+A long-term MD process for M4-2 was conducted to investigate its ac-
+tual MD evaluation as a stand-alone desalination process. The data of ux
+variation and conductivity variation was logged every 2 h for 32 h as
+shown in Fig. 9(c). The permeation ux was about 42.37 L/m2 h during
+the rst 12 h with a relatively stable 忖Cp (5.4 米S/cm). Although the
+permeation ux of M4-2 reected a decreasing tendency from 12 h
+(41.62 L/m2 h) to 24 h (33.10 L/m2 h), this trend was relatively smooth,
+only about 20.8%. This ux decline indicated the pore wetting of mem-
+brane and the corresponding temperature polarization [34], therefore,
+the normal permeate path of vapor was blocked resulting in a lower
+ux than initial. The decreasing tendency became sharper and sharper
+after 24 h of operation. As a multiple ber layers matrix could contain
+gaps or pores in each layer, M4-2 could be gradually invaded by small
+salt water drops when feed solution owed through its membrane sur-
+face [35]. Therefore, pore blockage became more and more serious due
+
+164
+
+Table 5
+Mechanical property of M4-2.
+
+No.
+
+Limiting stress (N)
+
+Tensile strength (kPa)
+
+Elongation at break (%)
+
+M4-2
+
+1.19
+
+1833.89
+
+58.72
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+to gradual pore wetting and salt invasion. The severe pore wetting and
+pore blockage reduced the driving force between feed and permeate
+sides for vapor mass transfer [34,35], which consequently brought more
+serious ux decline from 33.10 L/m2 h (24 h) to 7.25 L/m2 h (32h) as it
+can be seen in Fig. 9(c). The conductivity increased signicantly from
+12 h (6.9 米S/cm) to 32 h (90.2 米S/cm) especially after 30 h (42.8 米S/cm)
+
+Fig. 9. (a) Schematic of membrane distillation process, (b) permeation uxes and permeation conductivities for M4-2 and three commercial MD membranes during short-term MD
+process (360 min), (c) permeation ux and permeation conductivity for M4-2 during long-term MD process (32 h).
+
+Table 6
+Properties and performances of membranes used in the MD process.
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+165
+
+No.
+
+Properties
+Pore size (米m)
+
+Support material
+
+Thickness (米m)
+190a
+M4-2
+8.03
+13
+163.1 ㊣ 3.5
+MPTFE-1
+0.22
+202
+92
+134.5 ㊣ 2.8
+MPTFE-2
+0.45
+188
+81
+142.1 ㊣ 0.6
+MPVDF
+0.45
+104
+137
+124.2 ㊣ 2.0
+a The thickness of functional membrane was about 65.4 ㊣ 3.4 米m, the support PET layer was about 124.6 ㊣ 1.8 米m.
+
+PET
+PET
+PET
+每
+
+LEP (kPa)
+
+WCA (～)
+
+Performances
+
+Flux (L/m2 h)
+
+42.52
+40.93
+49.01
+37.19
+
+忖C (米S/cm)
+
+Salt rejection (%)
+
+2.3
+6.7
+10.0
+4.7
+
+99.99
+99.98
+99.98
+99.99
+
+leading to an inferior salt rejection about 99.87%, and this also could be
+regarded as an indication for salt invasion. The yellow crystallizing on
+membrane after MD process and corresponding membrane WCA
+(121.2 ㊣ 3.4～) as shown in Fig. S4(a) and (b) conrmed the above hy-
+pothesis of pore wetting and salt invasion. Results demonstrate this
+PDMS/PMMA electrospun membrane has potential to be employed in
+long-term (b 24 h) membrane distillation application as qualied MD
+the membranes with considerable averaged ux of 39.61 L/m2 h and
+salt rejection of 99.96%.
+
+4. Conclusions
+
+The results presented in this study are the rst to correlate the
+electrospinning parameters with the properties of PDMS/PMMA
+electrospun membranes. Signicant correlations were found between
+polymer concentration, voltage, injection rate and ber diameter. Sig-
+nicant effect was also observed for bead formation on membrane
+roughness. The mass ratio 1/1/8.88/9.48 of PDMS/PMMA/THF/DMF
+was the best candidate for electrospinning solution system. A highest
+WCA of 163～ could be obtained at 11 kV voltage and 0.1 mm/min injec-
+tion rate under temperature of 25 ～C and humidity of 35%. This high hy-
+drophobicity was related to the surface roughness and beads structure.
+Obtained tensile testing results suggested that the PDMS/PMMA
+electrospun membrane was homogeneous-plastic material with a ten-
+sile strength of 1833.89 kPa. Considerable averaged membrane ux
+(39.61 L/m2 h) and excellent salt rejection efciency (99.96%) during
+24 h MD process revealed that this novel PDMS/PMMA electrospun
+membrane could be a suitable candidate for desalination using mem-
+brane distillation process especially under free-pressure or low-
+pressure.
+
+Abbreviation
+
+PDMS
+PMMA
+DMF
+THF
+PTFE
+PVDF
+PET
+WCA
+MD
+DCMD
+TCD
+SEM
+XPS
+Sa
+Sq
+Cf
+Cp
+忖Cp
+
+polydimethylsiloxane
+poly (methyl methacrylate)
+N,N-dimethylformamide
+tetrahydrofuran
+polytetrauoroethylene
+polyvinylidene uoride
+poly (ethylene terephthalate)
+water contact angle
+membrane distillation
+direct contact membrane distillation
+tip to collector distance
+scanning electron microscope
+X-ray photoelectron spectroscopy
+roughness average
+root mean square roughness
+conductivity of feed solution (mS/cm)
+conductivity of permeate solution (米S/cm)
+conductivity variation of permeate solution during
+experiment
+
+Acknowledgements
+
+The authors gratefully acknowledge the support from the National
+Natural Science Foundation of China (No. 21577089) and Sinopec
+Zhenhai rening and chemical company.
+
+Appendix A. Supplementary data
+
+Supplementary data to this article can be found online at http://dx.
+doi.org/10.1016/j.desal.2016.11.023.
+
+References
+
+[1] X. Li, B. Ding,
+J. Lin,
+J. Yu, G. Sun, Enhanced mechanical properties of
+superhydrophobic microbrous polystyrene mats via polyamide 6 nanobers, J.
+Phys. Chem. C 113 (2009) 20452每20457.
+[2] L. Zhai, F.. Cebeci, R.E. Cohen, M.F. Rubner, Stable superhydrophobic coatings from
+polyelectrolyte multilayers, Nano Lett. 4 (2004) 1349每1353.
+[3] B. Qian, Z. Shen, Fabrication of superhydrophobic surfaces by dislocation-selective
+chemical etching on aluminum, copper, and zinc substrates, Langmuir 21 (2005)
+9007每9009.
+[4] M. Ma, R.M. Hill, Superhydrophobic surfaces, Curr. Opin. Colloid Interface Sci. 11
+(2006) 193每202.
+[5] K. Tsujii, T. Yamamoto, T. Onda, S. Shibuichi, Super oil-repellent surfaces, Angew.
+Chem. Int. Ed. Engl. 36 (1997) 1011每1012.
+[6] B. Ding, T. Ogawa, J. Kim, K. Fujimoto, S. Shiratori, Fabrication of a super-hydropho-
+bic nanobrous zinc oxide lm surface by electrospinning, Thin Solid Films 516
+(2008) 2495每2501.
+[7] W. Cui, X. Li, S. Zhou,
+J. Weng,
+Investigation on process parameters of
+electrospinning system through orthogonal experimental design, J. Appl. Polym.
+Sci. 103 (2007) 3105每3112.
+[8] A. Frenot, I.S. Chronakis, Polymer nanobers assembled by electrospinning, Curr.
+Opin. Colloid Interface Sci. 8 (2003) 64每75.
+[9] S. Agarwal, A. Greiner, J.H. Wendorff, Functional materials by electrospinning of
+polymers, Prog. Polym. Sci. 38 (2013) 963每991.
+[10] M. Jin, X. Feng, J. Xi, J. Zhai, K. Cho, L. Feng, L. Jiang, Super-hydrophobic PDMS surface
+with ultra-low adhesive force, Macromol. Rapid Commun. 26 (2005) 1805每1809.
+[11] B. Cortese, S. D'Amone, M. Manca, I. Viola, R. Cingolani, G. Gigli, Superhydrophobicity
+due to the hierarchical scale roughness of PDMS surfaces, Langmuir 24 (2008)
+2712每2718.
+[12] M. Xiao, J. Zhou, Y. Zhang, X. Hu, S. Li, Pertraction performance of phenol through
+PDMS/PVDF composite membrane in the membrane aromatic recovery system
+(MARS), J. Membr. Sci. 428 (2013) 172每180.
+[13] M. Nour, K. Berean, A. Chrimes, A.S. Zoolfakar, K. Latham, C. McSweeney, M.R. Field,
+S. Sriram, K. Kalantar-zadeh, J.Z. Ou, Silver nanoparticle/PDMS nanocomposite cata-
+lytic membranes for H2S gas removal, J. Membr. Sci. 470 (2014) 346每355.
+[14] B.-H. Jo, L.M. Van Lerberghe, K.M. Motsegood, D.J. Beebe, Three-dimensional micro-
+channel
+fabrication
+in
+polydimethylsiloxane
+(PDMS)
+elastomer,
+J.
+Microelectromech. Syst. 9 (2000) 76每81.
+[15] Y. Liu, D. Yang, T. Yu, X. Jiang, Incorporation of electrospun nanobrous PVDF mem-
+branes into a microuidic chip assembled by PDMS and scotch tape for immunoas-
+says, Electrophoresis 30 (2009) 3269每3275.
+[16] D. Yang, X. Liu, Y. Jin, Y. Zhu, D. Zeng, X. Jiang, H. Ma, Electrospinning of poly
+(dimethylsiloxane)/poly (methyl methacrylate) nanobrous membrane: fabrica-
+tion and application in protein microarrays, Biomacromolecules 10 (2009)
+3335每3340.
+[17] K. Matabola, R. Moutloali, The inuence of electrospinning parameters on the mor-
+phology and diameter of poly (vinyledene uoride) nanobers-effect of sodium
+chloride, J. Mater. Sci. 48 (2013) 5475每5482.
+[18] A. Alkhudhiri, N. Darwish, N. Hilal, Membrane distillation: a comprehensive review,
+Desalination 287 (2012) 2每18.
+[19] B.S. Lalia, E. Guillen-Burrieza, H.A. Arafat, R. Hashaikeh, Fabrication and characteriza-
+tion of polyvinylideneuoride-co-hexauoropropylene (PVDF-HFP) electrospun
+membranes for direct contact membrane distillation, J. Membr. Sci. 428 (2013)
+104每115.
+
+166
+
+L.-F. Ren et al. / Desalination 404 (2017) 155每166
+
+[20] L.D. Tijing, J.-S. Choi, S. Lee, S.-H. Kim, H.K. Shon, Recent progress of membrane dis-
+tillation using electrospun nanobrous membrane, J. Membr. Sci. 453 (2014)
+435每462.
+[21] Z.-Q. Dong, X.-h. Ma, Z.-L. Xu, W.-T. You, F.-b. Li, Superhydrophobic PVDF每PTFE
+electrospun nanobrous membranes for desalination by vacuum membrane distil-
+lation, Desalination 347 (2014) 175每183.
+[22] S. Rosa, J. Crespo, A. Mel谷ndez, J. Santiago-Avil谷s, I. Ramos, E. Campo, CNT dispersion
+and precursor synthesis for electrospinning of polymer-CNT composites, SPIE
+NanoScience + Engineering, International Society for Optics and Photonics, 2011
+(81070L-81070L-81076).
+[23] S. Aerts, A. Vanhulsel, A. Buekenhoudt, H. Weyten, S. Kuypers, H. Chen, M. Bryjak, L.
+Gevers, I. Vankelecom, P. Jacobs, Plasma-treated PDMS-membranes in solvent resis-
+tant nanoltration: characterization and study of transport mechanism, J. Membr.
+Sci. 275 (2006) 212每219.
+[24] S.B. Amor, G. Baud, M. Jacquet, G. Nanse, P. Fioux, M. Nardin, XPS characterisation of
+plasma-treated and alumina-coated PMMA, Appl. Surf. Sci. 153 (2000) 172每183.
+[25] P.-G. De Gennes, F. Brochard-Wyart, D. Qu谷r谷, Capillarity and Wetting Phenomena:
+Drops, Bubbles, Pearls, Waves, Springer Science & Business Media, 2013.
+[26] N. Nuraje, W.S. Khan, Y. Lei, M. Ceylan, R. Asmatulu, Superhydrophobic electrospun
+nanobers, J. Mater. Chem. A 1 (2013) 1929每1946.
+[27] K. Lee, H. Kim, H. Bang, Y. Jung, S. Lee, The change of bead morphology formed on
+electrospun polystyrene bers, Polymer 44 (2003) 4029每4034.
+[28] H. Fong, I. Chun, D. Reneker, Beaded nanobers formed during electrospinning,
+Polymer 40 (1999) 4585每4592.
+
+[29] A. Razmjou, E. Arin, G. Dong, J. Mansouri, V. Chen, Superhydrophobic modication
+of TiO 2 nanocomposite PVDF membranes for applications in membrane distillation,
+J. Membr. Sci. 415 (2012) 850每863.
+[30] M. Ghiasi, E. Naghashzargar, D. Semnani, Silk broin nano-coated textured silk yarn
+by electrospinning method for tendon and ligament scaffold application, Nano Hy-
+brids, Trans Tech Publ 2014, pp. 35每51.
+[31] C.J. Buchko, L.C. Chen, Y. Shen, D.C. Martin, Processing and microstructural charac-
+terization of porous biocompatible protein polymer thin lms, Polymer 40 (1999)
+7397每7407.
+[32] X. Mo, C. Xu, M. Kotaki, S. Ramakrishna, Electrospun P (LLA-CL) nanober: a biomi-
+metic extracellular matrix for smooth muscle cell and endothelial cell proliferation,
+Biomaterials 25 (2004) 1883每1890.
+[33] W. Zuo, M. Zhu, W. Yang, H. Yu, Y. Chen, Y. Zhang, Experimental study on relation-
+ship between jet instability and formation of beaded bers during electrospinning,
+Polym. Eng. Sci. 45 (2005) 704每709.
+[34] M.M.A. Shirazi, A. Kargari, M. Tabatabaei, Evaluation of commercial PTFE mem-
+branes in desalination by direct contact membrane distillation, Chem. Eng. Process.
+Process Intensif. 76 (2014) 16每25.
+[35] Y. Liao, R. Wang, M. Tian, C. Qiu, A.G. Fane, Fabrication of polyvinylidene uoride
+(PVDF) nanober membranes by electro-spinning for direct contact membrane dis-
+tillation, J. Membr. Sci. 425每426 (2013) 30每39.
+

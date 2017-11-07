@@ -1,0 +1,966 @@
+A power free electrodialysis (PFED) for desalination
+
+Fabao Luo a,b, Yaoming Wang a, Chenxiao Jiang a, Bin Wu a, Hongyan Feng a, Tongwen Xu a,
+
+a Collaborative Innovation Center of Chemistry for Energy Materials, School of Chemistry and Material Science, University of Science and Technology of China, Hefei 230026, PR China
+b Department of Chemistry and Chemical Engineering, Hefei Normal University, Hefei 230061, PR China
+
+H I G H L I G H T S
+
+ A power free electrodialysis (PFED) for
+water desalination was explored.
+ The PFED can achieve a synergistic en-
+hancement effect on water desalination.
+ The PFED realize zero discharge of high
+salt wastewater.
+ The conductivity of fresh water can be
+as low as 72 米S cm 1.
+
+article
+
+info
+
+Article history:
+Received 12 August 2016
+Received in revised form 8 October 2016
+Accepted 7 November 2016
+Available online 16 November 2016
+
+Keywords:
+Power free
+Reverse electrodialysis
+Electrodialysis
+Desalination
+Process integration
+
+
+abstract
+
+A power free electrodialysis (PFED) is proposed for water desalination by integrating with a reverse electrodial-
+ysis (RED) as an energy donor. The effects of ow rates, salt concentration ratio between high salt concentration
+compartment (HC) and low salt concentration compartment (LC) on energy generation are investigated. The
+combination of ED and RED for fresh water production is attempted and the desalination performances in both
+continuous and batch-wise modes are investigated. The results show that the integration is feasible and the con-
+ductivity of the product water can be as low as 72 米S/cm, which is indubitably qualied for drinking. To test the
+robustness of this hybrid technology, the batch-wise mode is chosen to generate power from simulated seawater
+and wastewater. It is found that the PFED can be successfully carried with no signicant desalination difference
+compared to NaCl solution. PFED is thus conrmed to be technically feasible, and economically attractive for
+water desalination without the consumption of external energy.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+The requirement for fresh water is going up substantially due to the
+increase of human being and industrial growth in many parts of the
+world [1,2]. Desalination technologies can greatly alleviate water short-
+age problems [3每6]. Currently, either thermal (phase-change) processes
+or membrane processes are used for water desalination with a negative
+impact on the environment due to their intensive energy consumption
+and concentrated brine disposal [7]. As one of the desalination technol-
+ogies, Electrodialysis (ED) can produce both freshwater and table salt
+from salty water with the aids of ion exchange membranes and direct
+
+
+139
+
+Nomenclature
+
+A
+ac
+ad
+AEM
+b
+Cc
+Cd
+Cm
+CEM
+dc
+dd
+
+EOCV
+
+Ex
+
+ED
+F
+HC
+I
+LC
+N
+N`
+P
+
+Pgross
+Pmax
+Pnet
+Ppump
+
+PFED
+Q
+Qc
+Qd
+R
+Ra
+
+RBL
+
+Rc
+
+Rel
+Rload
+Rohmic
+Rstack
+R忖 C
+
+RED
+T
+V
+z
+
+汐
+
+汛
+
+汍sp
+
+百c
+
+百d
+
+忖 pc
+忖 pd.
+
+effective area of a single membrane (m2)
+activity of the concentrated salt solution (mol/L)
+activity of the diluted salt solution (mol/L)
+anion exchange membrane
+compartment width (cm)
+the concentration of HC (mol/L)
+the concentration of LC (mol/L)
+the mix average concentration (mol/L)
+cation exchange membrane
+the thickness of HC (cm)
+the thickness of LC (cm)
+theoretical open stack circuit potential (V)
+the maximum released energy of mixing the two salt
+solutions(W)
+electrodialysis
+Faraday constant (96,485 C/mol)
+high salt concentration compartment
+current (A)
+low salt concentration compartment
+number of cell pairs for RED
+number of repeating units for ED
+output power (W)
+maximum gross power density (W/m2)
+maximum output power (W)
+net power density (W/m2)
+power density consumed for pumping (W/m2)
+power free electro dialysis
+volumetric ow rate (mL/min)
+volumetric ow rate of HC (L/s)
+volumetric ow rate of LC (L/s)
+gas constant (8.314 J/mol/K)
+the resistance of anion exchange membrane (次/cm 2)
+boundary layer resistance (次)
+the resistance of cation exchange membrane (次/cm 2)
+the resistance of electrodes (次)
+load resistance (次)
+Ohmic resistance (次)
+stack resistance (次)
+concentration difference resistance (次)
+reverse electrodialysis
+absolute temperature (K)
+line ow velocity (cm/min)
+electrochemical valence
+average membrane permselectivity of an anion and a
+cation exchange membrane pair
+spacer thickness (cm)
+spacer porosity
+the specic conductivity of the concentrated solution
+(mS/cm)
+the specic conductivity of the diluted solution (mS/
+cm)
+the pressure drops along HC (KPa)
+the pressure drops along LC (KPa)
+
+current [8]. Due to the utilization of electricity, the energy consumption
+accounts for almost half of total process cost, such as energy cost, capital
+investment, and operational and maintenance cost, etc. [5,7,9]. Besides,
+in some isolated locations, remote areas, or islands, an electricity supply
+is not reliable and the water scarcity becomes even more severe [10].
+Therefore, some renewable energy such as solar, wind and geothermal
+energy were used to drive the desalination processes. Due to the expen-
+sive equipment and complicated technologies, the production cost of
+
+the fresh water by these renewable energy is often much higher than
+that by the conventional energy. However, considering the shortage of
+fossil fuel energy, renewable energy is receiving much more attention
+for water desalination [3,7,11,12].
+Reverse electrodialysis (RED) is an emerging renewable energy
+technology to generate electrical power from two salinity gradient solu-
+tions [13每15]. It uses ion-exchange membrane for ion transport based
+on the concentration difference as driving force. The ionic diffusive
+ux generates an electrochemical potential recorded as a voltage across
+electrodes. Electrodes receive the ions and convert into an electrical cur-
+rent with an oxidation or reduction reaction. The generated electrical
+current can be collected by an external load. Thus, RED process can har-
+vest clean energy from the ambient environment in an economically
+competitive manner. The pioneering work in the eld of RED was prov-
+en by Pattle [16], who used an apparatus called hydroelectric pile to
+generate electric power. In order to improve the power density, the
+ion exchange membrane formation and membrane stack structure de-
+signs were the hotspots of RED researches [17每20]. Recently, a mem-
+brane stack was designed with two parts of RED and ED for energy
+self-sufcient desalination. This self-desalination process is appropriate
+for changing the brine water into fresh water on small islands [21].
+However, there are limited reports on the in-situ combination of RED
+and ED for water desalination, except for some integration process sup-
+plying the high salt water for RED [22每24]. These few reported self-de-
+salination with ED and RED in the same stack usually has a poor
+desalination performance and a synergistic intensication of two pro-
+cesses is not achieved.
+Herein, a power free electrodialysis (PFED) is designed by an in-situ
+combination of ED and RED unit. RED is used as the energy donor and
+ED is used as the energy acceptor. As a consequence, this hybrid process
+can abandon the use of cumbersome batteries or external power sup-
+plies as well as the disposal of concentrated brines. A full-scale RED
+module is very similar to that of conventional ED, which is consisted
+of high salt concentration compartment (HC), low salt concentration
+compartment (LC), ion-exchange membranes and electrode rinse solu-
+tions. This process intensication of ED and RED can achieve a synergis-
+tic enhancement effect on water desalination. On one hand, the
+concentrated brine output from ED can be fed into HC of RED, thus fur-
+ther enhancing the power output; on the other hand, LC of RED in the
+integrated system can be supplied even from the life wastewater, so
+freshwater can be obtained in an economically competitive manner.
+
+2. Theory and experiment
+
+2.1. Theory
+
+The theoretical value of the potential over an ion exchange mem-
+brane for an aqueous monovalent ion solution (e.g. NaCl) can be calcu-
+lated using the Nernst equation in Eq. (1) [25每27]:
+
+1
+
+EOCV  N
+
+2汐RT
+zF
+
+ln
+
+ 
+
+ac
+ad
+
+where EOCV is the theoretical open stack circuit potential (V), 汐 is the av-
+erage membrane permselectivity of an anion and a cation exchange
+membrane pair, N is the number of cell pairs, R is the gas constant
+(8.314 J/mol/K), T is the absolute temperature (K), z is the electrochem-
+ical valence, F is the Faraday constant (96,485 C/mol), ac is the activity of
+the concentrated salt solution (mol/L) and ad is the activity of the dilut-
+ed salt solution (mol/L). The power produced is related to the electro-
+chemical potential drop across the membrane, EOCV, and an external
+load resistance resulting in Eq. (2) [25,28]:
+
+P  I2 Rload 
+
+EOCV
+2
+Rstack  Rload
+
+
+
+2 Rload
+
+2
+
+140
+
+F. Luo et al. / Desalination 404 (2017) 138每146
+
+In this equation, P is the output power (W); I is the current (A); Rload
+and Rstack are the resistances of the load and stack resistance (次),
+respectively.
+The maximum power output of the system is obtained when Rload
+equals to the resistance of the stack (Rstack) [25]. Thus, the maximum
+output power can be simplied into Eq. (3),
+
+Pmax  EOCV
+2
+4Rstack
+
+3
+
+Consequently, the power density (power output per unit membrane
+area, Pgross) can be calculated from Pmax [25], as shown in Eq. (4).
+
+P gross  Pmax
+
+2AN
+
+ EOCV
+2
+8ANRstack
+
+4
+
+where Pgross is the maximum gross power density (W/m2), Pmax is max-
+imum output power (W), A is effective area of a single membrane (m2).
+The presence of spacers will signicantly decrease the power output
+due to the loss of the membrane area from non-conductive spacer
+blockage.
+The total resistance of an RED stack includes those of electrodes,
+electrolytes, diffusion boundary layers at the membrane surface, and
+membranes. Simplied models neglect the resistance of diffusion
+boundary layers or combine its contribution with membrane resistance
+and express the overall resistance(次) as Eq. (5) [15,19,26],
+
+
+
+
+
+Rstack  N
+
+A
+
+Ra  Rc  dc
+
+ dd
+百 d
+
+百 c
+
+ Rel
+
+5
+
+where A is the effective membrane area (cm2); Ra is the resistance (次/
+cm 2) of anion exchange membrane (AEM); Rc is the resistance (次/
+cm 2) of cation exchange membrane (CEM); Rel is the resistance (次)
+of electrodes; dc is the thickness (cm) of HC; dd is the thickness of LC;
+百c is the specic conductivity (mS/cm) of the concentrated solution;
+and 百d is the specic conductivity (mS/cm) of the diluted solution.
+Then, due to the concentration change of the different ow paths of a
+cell after ion migration, the resistances of all the different positions are
+multipliable with the exception of the electrodes [29]. The electrode re-
+sistance may be considered negligible if the stack cells are scaled larger
+than 20 but with only two electrodes [19]. Considering the effect of the
+salinity gradient and the diffusion boundary layer resistance, the entire
+RED stack resistance can be expressed as Eq. (6) [30,31],
+
+Rstack  N
+
+A
+
+
+
+Rohmic  R忖C  RBL
+
+
+
+6
+
+where Rohmic is the membrane resistance ascribed to the ionic transport
+through the membranes, which is equal to the one cell resistance
+discussed above. R忖C is the resistance ascribed to the reduced
+electromotive forces as a consequence of the change in the concentra-
+tion of the bulk solution. It considers the change of the solution concen-
+tration from the inlet to the outlet of the solution compartment with the
+spatial difference of membrane potential. RBL is the boundary layer re-
+sistance due to concentration polarization which induced by diffusive
+boundary layer near the membranes at lower ow rates. Both R忖C and
+RBL are belonged the signicant non-ohmic resistance.
+The net power density (Pnet, in W/m2) that is generated by a RED
+stack can be calculated as the difference between the gross power den-
+sity and the power density consumed for pumping (Ppump, in W/m2) of
+both feed waters, which can be calculated from the pressure drop over
+the inlet and outlet and the ow rate per cell areas. Thus, the net
+power density can be expression as Eq. (7) [22],
+忖pcQ c  忖pdQ d
+NA
+
+Pnet  P grossPpump  EOCV
+2
+8ANRstack
+
+7
+
+
+
+where 忖 pc and 忖 pd. are the pressure drops along HC and LC, respective-
+ly. Qc and Qd are the volumetric ow rates of HC and LC, respectively.
+The maximum released energy (Ex) of mixing the two salt solutions
+is given by Eq. (8) [32],
+
+
+
+
+
+Ex  2RT Q c C c ln
+
+C c
+Cm
+
+ Q d C d ln
+
+C d
+Cm
+
+8
+
+where Cc and Cd are the concentration of HC and LC, respectively. The
+mix average concentration Cm is given by Eq. (9),
+Cm  Q cC c  Q d C d
+Q c  Q d
+
+9
+
+2.2. Experiment section
+
+2.2.1. Experiment operation
+The experiments were performed in three steps. At rst, the RED
+process was optimized to obtain the optimum experimental conditions
+for power generation. Furthermore, a power free electrodialysis (PFED)
+was attempted to test the feasibility of this integrated process for water
+desalination by using NaCl solution as the feed solution. Finally, the in-
+tegrated process was investigated with simulated sea water and waste-
+water to test the robustness of this integration in a complicated water
+system.
+
+2.2.2. Experiment setup
+A lab-scale RED setup was designed and installed in our lab. A sche-
+matic diagram of the RED principle was illustrated in Fig. 1a. The RED
+setup was composed of (1) a cathode and an anode, which was made
+of titanium coated with ruthenium and iridium; (2) different cell pairs
+(N = 10 for separated and 20 for integrated operation) of specially pre-
+pared cation and anion exchange membranes which were alternatively
+arranged; and (3) spacers with thickness of 0.75 mm to separate the
+anion and cation exchange membranes. The RED membranes were spe-
+cially prepared with a thickness of approximately 50 米m while the ED
+membranes were kindly provided from Hefei ChemJoy Polymers Co.,
+Ltd., China. The main properties of RED membranes were the same as
+those for ED process except for the membrane thickness and listed in
+Table 1. The cell pairs were ten and twenty for RED optimization process
+and PFED process, respectively. The effective area of each membrane
+was 189 cm2. In the RED optimization, three ow streams, i.e. electrode
+compartment, high salt concentration compartment (HC), low salt con-
+centration compartment (LC) were established. A 500 mL electrode
+rinse solution was circulated with a peristaltic pump (BT600L, Lead
+uid, China) at a ow rate of 75 mL/min. The same ow rate was main-
+tained in HC and LC with two peristaltic pumps (BT600L, Lead uid,
+China). The ow stream was ※feed-and-bleed§ pass through the HC
+and LC with different velocity (0每700 mL/min).
+The ED stack in the PFED process was equipped with the same kinds
+of electrodes and spacers as the RED stack but with different repeating
+unit (N∩ = 1, 2, and 4) of ordinary ion exchange membranes (CJ-MA-2
+and CJ-MC-2). A schematic diagram of the PFED process is illustrated
+in Fig. 1b. Three kinds of repeating unit (N∩ = 1, 2, and 4) were com-
+pared in ED stack. The pair number of RED stack is twenty in PFED
+stack. In the PFED process, ve ow streams were established. They
+were ED electrode compartment, low salt concentration compartment
+(LC) in ED stack, high salt concentration compartment (HC) in ED
+stack, RED electrode compartment, low salt concentration compart-
+ment (LC) in RED stack. It should be noted that the ow stream of HC
+in ED stack was directly fed into HC in RED to obtain process intensica-
+tion. The ED and RED electrode compartments were respectively circu-
+lated with a peristaltic pump at a ow rate of 75 mL/min.
+
+F. Luo et al. / Desalination 404 (2017) 138每146
+
+141
+
+(a) 
+
+(b) 
+
+Fig. 1. A schematic diagram of the principle of (a) reverse electrodialysis, RED and (b) power free electrodialysis, PFED.
+
+2.2.3. Feed solution
+To optimize the experiment conditions in RED process, the low salt
+concentration compartment (LC) was fed with solutions containing
+
+Table 1
+The main characteristics of the membranes used in the experiments.
+
+Properties
+
+CJ-MC-2
+
+CJ-MA-2
+
+Thickness, mm
+Ion exchange capacity, mmol/g
+Water uptake, %
+Resistance, 次/cm2
+Transfer number, %
+Break stress, MPa
+
+0.200
+1.50
+35
+1.5
+98
+N 3.5
+
+0.145
+1.25
+32
+1.2
+99
+N 3.5
+
+1 g/L (or 3 g/L) NaCl; the high salt concentration compartment (HC)
+was fed with different concentrations (10 g/L, 30 g/L, 70 g/L, and
+150 g/L) of NaCl aqueous solution. The electrode rinse solution in RED
+stack was consisted of 0.05 M K3[Fe(CN)6], 0.05 M K4[Fe(CN)6]﹞3H2O
+and 0.25 M NaCl aqueous solution, which was circulated in the electrode
+compartment at a ow rate of 75 mL/min.
+In the PFED process, different amounts of sodium chloride were dis-
+solved in deionized water to obtain different levels of conductivities
+(2000 米S/cm, 5000 米S/cm and 9000 米S/cm) as the feed of ED stack, re-
+spectively. The electrode rinse solution in ED stack is consisted of
+0.05 M K3[Fe(CN)6], 0.05 M K4[Fe(CN)6]﹞3H2O and 0.25 M Na2SO4 aque-
+ous solution, which was circulated at a ow rate of 75 mL/min. The de-
+salination performance was monitored by a conductivity meter (DDS
+
+142
+
+F. Luo et al. / Desalination 404 (2017) 138每146
+
+307 Conductivity Instruments, Leici Instrument, Shanghai, China). To
+test the robustness of PFED in a complicated water system, simulated
+seawater and wastewater instead of NaCl were used as feed solutions.
+As shown in Fig. 1b, seawater was desalinated with ED part for fresh
+water, which was driven by RED part from the concentration difference
+of concentrated seawater and waste water. Simulated sea water was
+prepared by dissolving 30gseacrystal (Qianjiang Sea Crystal Factory,
+Weifang, China) in 1 L deionized water while the wastewater was pre-
+pared by dissolving 0.8 g sodium chloride, 0.1 g potassium dihydrogen
+phosphate, 0.1 g ammonia chloride, 0.5 g glucose dissolved in 1 L deion-
+ized water. All the reagents used were analytical grade and provided by
+Sinopharm Chemical Reagent Co., Ltd.
+
+3. Results and discussion
+
+3.1. Optimum of RED
+
+To run up the PFED process with RED as an energy donor, the oper-
+ating parameters of RED should be optimized at rst. This section focus-
+es on investigation the effects of ow rate and salt concentration
+difference between LC and HC on energy generation.
+
+3.1.1. Inuence of ow rate
+The line ow velocity (V) can be dened as the mean uid velocity
+inside a single spacer-lled channel. It can be estimated by Eq. (10) [33],
+
+V 
+
+Q
+
+N  汛  b  汍 sp
+
+10
+
+where Q is the volumetric ow rate (mL/min) in HC or LC inlet, 汛 is the
+spacer thickness(0.075 cm), b is the compartment width (9 cm for the
+small stack) and 汍sp is the spacer porosity (75% for the woven spacer
+used in this study). For simplicity, the ow rate in the experiment is
+expressed as the volumetric ow rate.
+Flow rate is one crucial parameter affecting the RED performance,
+which can be indicated from the internal resistance (Rstack), open circuit
+voltage (EOCV), and power density (Pgross) [29]. To investigate the effect
+of ow rate on energy generation, the ow rate ratio of HC and LC was
+kept at 1:1. The pair number of membranes in this separated RED
+stack is ten. Fig. 2a shows the effects of ow rate on internal resistances
+of the RED stack. It can be seen that the resistance initially increases rap-
+idly, but then reaches a plateau and thereafter remains relatively con-
+stant. At low ow rates (Q b 40 mL/min), the residual time of ow
+
+Fig. 2. Inuence of ow rate on RED performance. (a) Open circuit voltage, (b)internal
+resistance, (c) power density. Other experimental conditions: HC, 30 g/L NaCl solution;
+LC, 1 g/L NaCl solution
+
+stream in the stack is reduced with an increase of the ow rate. In this
+case, the internal resistance is mainly dependent upon the resistance
+in LC according to Eq. (5). As a consequence, there is an increasing
+trend of resistance with an increase of ow rate. At middle ow rates
+(40 mL/min b Q b 170 mL/min), the resistance in LC almost approaches
+stable and is not signicantly affected by the ow rate. The internal re-
+sistance is more likely to be determined by the resistance ascribed to the
+reduced electromotive forces (R忖 C) and the boundary layer resistance
+(RBL) as described in Eq. (6). At high ow rates (Q N 170 mL/min), the
+boundary layer of the RED stack keeps at a very small constant value.
+Both the resistance ascribed to the reduced electromotive forces (R忖 C)
+and the boundary layer resistance (RBL) can be neglected. A constant re-
+sistance is obtained in this case. Fig. 2b indicates the effects of ow rate
+on open circuit voltage. The open circuit voltage increases at rst and
+then approaches a constant voltage of 1.4 V. According to Nernst equa-
+tion in Eq. (1), the open circuit voltage is highly related to the activities
+in the concentrated and diluted salt solution. The boundary layer is rela-
+tively laminar at low ow rates (Q b 40 mL/min) which decreases with
+an increase in ow rate. Meanwhile, the activity difference between con-
+centrated and diluted salt solution is increased with an increase of ow
+rate. Therefore, a sharply increase of open circuit voltage is observed in
+low ow rate range. At middle ow rates (40 mL/min b Q b 170 mL/min),
+the open circuit voltage increases slowly due to deceleration of boundary
+layer and the increment of the activities in concentrated and diluted salt
+solution. At high ow rates (Q N 170 mL/min), both the boundary layers
+thicknesses and activities in concentrated and diluted salt solution will
+settle to a steady state. A constant voltage will be maintained in this
+case. Fig. 2c indicates the dependence of power density on the ow
+rate. The powder density is related to both the internal resistance and
+open circuit voltage. It is found that the power density increases at rst
+and then becomes stationary, and it reaches the maximum when the
+ow rate is 67.5 mL/min (~ 0.22 cm/s line ow velocity). The output
+power density is signicantly affected by the activities in the concentrat-
+ed and diluted salt solution as well as the thickness of the boundary layer,
+and these inuences are more pronounced at low ow rate range. By
+considering the internal resistance and open circuit voltage as well as
+the power density, the ow rate in the range of 45-180 mL/min is a suit-
+able choice for the RED stack. The ow rate in the further experiment is
+chosen in this range.
+
+3.1.2. Inuences of the salt concentration difference between LC and HC
+The electricity generated by RED is caused by the diffusion of salt ions
+from HC into LC. Therefore, the salt concentration in HC and LC has signif-
+icant inuences on energy generation. Fig. 3a and Fig. 3b demonstrate
+the effects of salt concentration difference between LC and HC on open
+circuit voltage and the power density of RED stack under different ow
+rate. It should be noted that the number in the legends of Fig. 3 denotes
+the weight concentration of salts. For example, LC-HC (1 30) means
+the NaCl concentrations in LC and HC are 1 g/L and 30 g/L, respectively.
+It is interesting to nd that with an increase in the ow rate, the open cir-
+cuit voltage increases more apparently at higher salt concentration dif-
+ference. This is due to the change in activities of both concentrated and
+diluted salt solution, which is more noticeable at the high ow rate and
+high salt concentration. The similar explanation can be applied for the
+power density. It is also interesting to nd that the open circuit voltages
+increase at rst when the ratio is b 30 but then decrease when the ratio is
+larger than 70. The open circuit voltages at LC-HC (1每150) are even
+lower than that at LC-HC (1每30) or LC-HC (1每70). This phenomenon
+may be attributed to the following reasons. One is the concentration po-
+larization [20]. The salt concentration in the boundary layer of LC will be
+relatively high when a very high salt concentration is applied in HC.
+Therefore, the activity ratio between HC and LC at an extremely high
+salt concentration will be lower than that at a moderate salt concentra-
+tion. Another one is that the permselectivities of ion exchange mem-
+branes are decreased at the case of a high concentration [34].
+Meanwhile, different open circuit voltages were obtained for the same
+
+F. Luo et al. / Desalination 404 (2017) 138每146
+
+143
+
+3.2. Integrating RED and ED with NaCl solution
+
+A power free electrodialysis (PFED) stack was assembled by a com-
+bination of RED with ED. To test the feasibility of this integration, aque-
+ous sodium chloride solutions were applied as the feed solutions at rst.
+RED and ED are acted as a pair of energy's donor and acceptor, respec-
+tively. This integration in a closed loop circulation offers several bene-
+ts. At rst, it is no energy except pumping will be consumed. The
+power consumption for ED comes from two gradient salinity waters in
+RED. Furthermore, process intensication can be achieved in this com-
+bined process. The concentrated brine from ED can be delivered to the
+HC in RED, thus enhancing the power output. The increase of energy
+generation in RED can further improve the desalination performance
+in ED process. Moreover, it is possible to generate fresh water from
+brine by avoiding the directly discharge of the high salinity wastewater.
+Because the driven force of ED is generated by the concentration-gradi-
+ent in RED, this combined stack can work up when the membrane area
+of ED is much less than that of RED. Therefore, the effect of repeating
+unit of membrane in ED on the integrated performance was investigat-
+ed when the RED cell pair number is xed at twenty. Two operational
+modes in ED were considered. One is continuous mode where the
+ow stream is ※feed-and-bleed§ pass through the ED stack. The other
+is batch-wise mode where the ow stream is circulated in ED stack
+with a circulation pump. Fig. 4 illustrates a schematic diagram of these
+two operation modes.
+Fig. 5 indicates the desalination performance of integrated stack in a
+continuous mode under different LC ow rates in ED stack. It should be
+noted that the optimum ow rate in RED stack is 67.5 mL/min for a ten
+pair of membranes as aforementioned. The ow rates in RED stack in
+this integrated stack are xed at 135 mL/min for a twenty pair of mem-
+branes. As shown in Fig. 5a, all the conductivities are decreased from the
+initial feed conductivity of 2000 米S/cm, indicating the successful accom-
+plishment of the power free electrodialysis. The conductivities in the de-
+salinated water after the experiments are almost increased with the
+increase of the LC ow rate except for the four repeating unit ED stack.
+Because the salts and their concentrations in the HC and LC of RED are
+xed, the voltage generated by RED is thus constant. The resistance in
+the ED stack is folded increase with an increase in the repeating unit
+of the membranes. In fact, the RED can be considered as a constant volt-
+age ※battery§ while the ED can be considered as a ※load§ resistance. Dur-
+ing the experiment, the resistances in the ED stack are always increased
+due to the desalination of salt ions. Different desalination performances
+are obtained for different repeating unit of ED stack. For one repeating
+unit ED stack (N∩ = 1), the ED stack resistance is much less than the
+RED internal resistance. This is shown in Fig. 5b since the ED voltage is
+only 0.3 V for one repeating unit ED stack. As indicated in Eq. (3), the
+maximum power output of the system is obtained when the loading re-
+sistance equals to RED stack resistance. In other words, the power out-
+put is low when the loading resistance is much higher or less than the
+RED stack resistance. Therefore, a poor desalination performance is ob-
+tained for one repeating unit ED stack. For two repeating unit ED stack
+(N∩ = 2), the ED stack resistance is very close to RED internal resistance.
+The ED resistance almost equals to RED internal resistance when the ow
+rate in LC of ED stack is 10 mL/min. The best desalination performance is
+observed in this case with the lowest conductivity at 736 米S/cm in the de-
+salinated water. For four repeating unit ED stack (N∩ = 4), ED resistance is
+a slightly higher than RED internal resistance. In this case, the ED resis-
+tance with four repeating units is not double compared with that of
+two repeating units by considering a relative constant resistance in the
+electrode chambers. An increase in membrane area will not lead to an im-
+proved desalination performance due to a decrement in current in this
+case. Therefore, the desalination performance in four-repeating unit ED
+stack is very similar to that of two-repeating unit stack. It is interesting
+to nd that desalination performance for four-repeating unit ED stack is
+even worse than that for two-repeating unit ED stack when the ow
+rate of LC is 10 mL/min. This is due to a relatively laminar boundary
+
+Fig. 3. Inuence of the concentration ratio of high concentration compartment (HC) and
+low concentration compartment (LC) on RED performance under different ow rate. (a)
+Open circuit voltage, (b) power density. Note. The number in the legends denotes the
+weight concentration of NaCl. For example, LC-HC (1每30) means the NaCl
+concentrations in LC and HC are 1 g/L and 30 g/L, respectively.
+
+concentration ratio but at different concentration, such as LC-HC (1 10)
+and LC-HC (3 30). A lower open circuit voltage for the same concentra-
+tion ratio but higher salt concentration is also attributed to the concen-
+tration polarization and the permselectivities decrement of the ion
+exchange membranes. When it comes to the power density, it is found
+that the power densities increase at rst when the concentration ratio
+is smaller than 70 and thereafter keep almost constant. The conductivi-
+ties in both HC and LC are increased with an increase in concentration.
+But open circuit voltages are not further increased when the concentra-
+tion ratio is larger than 70 as aforementioned. As a result, the highest
+power density is obtained for the LC-HC (1每70). Meanwhile, the power
+densities for LC-HC (1每10) are about 30% lower than that for LC-HC
+(3每30). This indicates the internal resistance rather than open circuit
+voltage is the most prominent factor affecting the power generation. In
+addition, the energy generation in Eq. (8) has indicated that the maxi-
+mum energy output is mainly determined by ow rate and concentra-
+tion in the HC. A high concentration in HC is benecial for the
+maximum energy release. But a high power density is required to main-
+tain a high energy utilized efciency by considering the energy con-
+sumption for pumping according to Eq. (7). Our experiment indicates
+that LC-HC (1每30) has a relatively high power density and high energy
+utilized efciency as well as the highest open circuit voltage. It is
+conformed to the literature [34]. Therefore, the RED stack with LC-HC
+(1每30) at the ow rate of 67.5 mL/min is chosen for the further integra-
+tion experiments.
+
+144
+
+F. Luo et al. / Desalination 404 (2017) 138每146
+
+Fig. 4. Schematic diagrams of two operational modes in integrated ED and RED process. (a) Continuous mode; (b) batch-wise mode.
+
+layer in LC of ED stack at such low ow rate. The voltages in ED stack with
+different repeating units are shown in Fig. 5b. The more the repeating
+units are, the higher the voltage will be, because the loading resistance
+
+Fig. 5. Desalination performance of integrated ED and RED in a continuous mode. (a)
+Conductivity of the desalinated water; (b) the voltage of ED. Other experimental
+conditions: RED pair number is 20; ow rate in the other compartments are
+135 ml/min. Note. The number in the legend denotes the repeating unit in ED stack.
+
+increases with the repeating units. However, with an increase in ow
+rate of LC, the resistance is decreased until a plateau value is reached
+for each case.
+Due to the small membrane area of the experimental stack, the con-
+tinuous mode with ※feed-and-bleed§ pass through of ow stream has
+relatively high conductivity in the desalted water. To investigate the de-
+salination performance of the power free electrodialysis with a much
+higher salinity solution, a batch-wise mode was investigated with a con-
+ductivity of 9000 米S/cm chloride sodium solution as feed solution. Fig. 6
+indicates the desalination performance of integrated stack in a batch-
+wise mode for two- and four-repeating unit of ED stacks, respectively.
+As shown in Fig. 6a, the conductivity in the feed solution is decreased
+with the elapse of time at each case. Finally, conductivity of the desali-
+nated water decreased to ~ 72 米S/cm from the initial 9000 米S/cm, indi-
+cating the high desalination capacity. But the desalination capacity is
+not proportional to the repeating unit in the ED stack, as conrmed by
+the fact that the experiment period with four-repeating unit ED stack
+is not half of that with two-repeating unit ED stack. Because the ED
+stack occupies only a fractional part of the PFED stack. This can be indi-
+cated by the voltages in the ED stack, as shown in Fig. 6b. It is noted that
+the voltages in the ED stack increase slowly at rst but then rapidly. In
+the initial period of experiment, the ED stack resistance is lower than
+RED resistance. However, the ED resistance continuously increases
+with the PFED experiment. In the later period of experiment, the ED
+stack resistance will overwhelm the RED stack. In this case, the ED
+stack resistance will become the dominant contribution to the integrat-
+ed stack resistance. This result illustrates that only increase the repeat-
+ing unit in ED stack is not sufcient for an improved desalination
+performance in the PFED process. It is suggested that a high-effective
+PFED should be operated when ED stack resistance is equal to RED
+resistance.
+
+3.3. Integrating RED and ED with simulated sea water and wastewater
+
+The concept of PFED is successfully veried in the above section. To
+test the robustness of this integration at a complicate feed solution, in-
+tegrated RED and ED with simulated sea water and wastewater was
+also investigated. The integrated experiment was performed in a
+batch-wise mode with four-repeating unit ED stack. Fig. 7 indicates
+the desalination performance of PFED with simulated sea water and
+
+F. Luo et al. / Desalination 404 (2017) 138每146
+
+145
+
+Fig. 6. Desalination performance of integrated ED and RED in a batch-wise mode. (a)
+Conductivity of the desalinated water; (b) the voltage of ED. Other experimental
+conditions: RED cell pair number is 20; ow rate in the other compartments are
+135 mL/min; the volume of desalinated water is 250 mL . Note . The number in the
+legend denotes the repeating unit of membrane in ED stack.
+
+Fig. 7. Desalination performance of integrated ED and RED with simulated sea water and
+wastewater in a batch-wise mode. (a) Conductivity of the desalinated water; (b) the
+voltage of ED. Other experimental conditions: RED cell pair number is 20; ED repeat unit
+number is 4; Flow rate in the other compartments are 135 mL/min; the volume of
+desalinated water is 250 mL.
+
+wastewater. The desalination performance was compared with the
+above NaCl solution as the feed solution. As shown in Fig. 7a, the con-
+ductivity curve of simulated sea water and wastewater is almost the
+same as the NaCl solution. This is due to the same concentration rate be-
+tween LC and HC of RED in both NaCl solution and simulated water. At
+the same time, Fig. 7b shows the voltage in ED with NaCl solution is
+even higher than that with simulated water. At the two cases, the con-
+centration gradients can be considered to be identical, which allow
+the same total voltage by RED. This total voltage will be distributed be-
+tween the RED and ED units according the respective internal resis-
+tance. Compared with pure NaCl solution, the simulated solution will
+cause an increase in internal resistance of RED and thus voltage in ED
+at this case is relatively decreased. Nevertheless, it is feasible to produce
+fresh water by integrated ED and RED with sea water and wastewater.
+
+4. Conclusion
+
+~ 72 米S/cm conductivity was obtained in a batch-wise mode. Thirdly, the
+combined process is also successfully carried out with simulated sea
+water and wastewater. The highest power output for PFED occurs at
+the case where internal resistances of RED and ED units are equal. In
+conclusion, it is technically feasible, and economically attractive to pro-
+duce fresh water from two concentration gradient water without the
+consumption of external energy.
+
+Acknowledgements
+
+This project has been supported by the National Natural Science
+Foundation of China (No. 21490581), National High Technology Re-
+search and Development Program 863 (No. 2015AA021001) and One
+Hundred Person Project (2015-43-D) of the Chinese Academy of
+Sciences.
+
+A power free electrodialysis (PFED) was proposed with reverse elec-
+trodialysis (RED) as an engine for electrodialysis (ED). Firstly, the RED
+process was optimized from both the ow rate and concentration differ-
+ence between LC and HC. The results indicated the NaCl concentrations
+in LC and HC are 1 g/L and 30 g/L with the ow rate of 67.5 ml/min
+(0.22 cm/s line ow velocity) were the optimum conditions for RED ex-
+periment. Secondly, an in-situ integration of ED with RED was operated
+at both a continuous mode and a batch-wise mode. Desalted water with
+
+References
+
+[1] W.H. Organization, Water Quality and Health Strategy 2013每2020, World Health
+Organization, Geneva, Switzerland, 2013.
+[2] M.M. Pendergast, E.M. Hoek, A review of water treatment membrane nanotechnol-
+ogies, Energy Environ. Sci. 4 (2011) 1946每1971.
+[3] M. Pasta, C.D. Wessells, Y. Cui, F. La Mantia, A desalination battery, Nano Lett. 12
+(2012) 839每843.
+[4] M. Elimelech, W.A. Phillip, The future of seawater desalination: energy, technology,
+and the environment, Science 333 (2011) 712每717.
+
+146
+
+F. Luo et al. / Desalination 404 (2017) 138每146
+
+[5] M. Sadrzadeh, T. Mohammadi, Sea water desalination using electrodialysis, Desali-
+nation 221 (2008) 440每447.
+[6] K.Y. Wang, T.-S. Chung, M. Gryta, Hydrophobic PVDF hollow ber membranes with
+narrow pore size distribution and ultra-thin skin for the fresh water production
+through membrane distillation, Chem. Eng. Sci. 63 (2008) 2587每2594.
+[7] A. Al-Karaghouli, L.L. Kazmerski, Energy consumption and water production cost of
+conventional and renewable-energy-powered desalination processes, Renew. Sust.
+Energ. Rev. 24 (2013) 343每356.
+[8] C.X. Jiang, Y.M. Wang, Z.H. Zhang, T.W. Xu, Electrodialysis of concentrated brine
+from RO plant to produce coarse salt and freshwater, J. Membr. Sci. 450 (2014)
+323每330.
+[9] T.W. Xu, C.H. Huang, Electrodialysis-based separation technologies: a critical review,
+AICHE J. 54 (2008) 3147每3159.
+[10] C.J. Vrsmarty, P. McIntyre, M.O. Gessner, D. Dudgeon, A. Prusevich, P. Green, S.
+Glidden, S.E. Bunn, C.A. Sullivan, C.R. Liermann, Global threats to human water secu-
+rity and river biodiversity, Nature 467 (2010) 555每561.
+[11] P. Malek, J. Ortiz, H. Schulte-Herbr邦ggen, Decentralized desalination of brackish
+water using an electrodialysis system directly powered by wind energy, Desalina-
+tion 377 (2016) 54每64.
+[12] A. El-Sebaii, E. El-Bialy, Advanced designs of solar desalination systems: a review,
+Renew. Sust. Energ. Rev. 49 (2015) 1198每1212.
+[13] B.E. Logan, M. Elimelech, Membrane-based processes for sustainable power genera-
+tion using water, Nature 488 (2012) 313每319.
+[14] J.W. Post, H.V.M. Hamelers, C.J.N. Buisman, Energy recovery from controlled mixing
+salt and fresh water with a reverse electrodialysis system, Environ. Sci. Technol. 42
+(2008) 5785每5790.
+[15] R.E. Lacey, Energy by reverse electrodialysis, Ocean Eng. 7 (1980) 1每47.
+[16] R. Pattle, Production of Electric Power by Mixing Fresh and Salt Water in the Hydro-
+electric Pile, 1954.
+[17] E. Guler, Y.L. Zhang, M. Saakes, K. Nijmeijer, Tailor-made anion-exchange mem-
+branes for salinity gradient power generation using reverse electrodialysis,
+ChemSusChem 5 (2012) 2262每2270.
+[18] M. Turek, B. Bandura, Renewable energy by reverse electrodialysis, Desalination 205
+(2007) 67每74.
+[19] J.G. Hong, B.P. Zhang, S. Glabman, N. Uzal, X.M. Dou, H.G. Zhang, X.Z. Wei, Y.S. Chen,
+Potential ion exchange membranes and system performance in reverse electrodial-
+ysis for power generation: a review, J. Membr. Sci. 486 (2015) 71每88.
+[20] P. Dugocki, J. Dbrowska, K. Nijmeijer, M. Wessling, Ion conductive spacers for in-
+creased power generation in reverse electrodialysis, J. Membr. Sci. 347 (2010)
+101每107.
+
+[21] Q. Chen, Y.-Y. Liu, C. Xue, Y.-L. Yang, W.-M. Zhang, Energy self-sufcient desalination
+stack as a potential fresh water supply on small islands, Desalination 359 (2015)
+52每58.
+[22] R.A. Tufa, E. Curcio, E. Brauns, W. van Baak, E. Fontananova, G. Di Proo, Membrane
+distillation and reverse electrodialysis for near-zero liquid discharge and low energy
+seawater desalination, J. Membr. Sci. 496 (2015) 325每333.
+[23] W. Li, W.B. Krantz, E.R. Cornelissen, J.W. Post, A.R. Verliefde, C.Y. Tang, A novel hy-
+brid process of reverse electrodialysis and reverse osmosis for low energy seawater
+desalination and brine management, Appl. Energy 104 (2013) 592每602.
+[24] Y. Jande, W. Kim, Integrating reverse electrodialysis with constant current operating
+capacitive deionization, J. Environ. Manag. 146 (2014) 463每469.
+[25] P. Dugocki, K. Nymeijer, S. Metz, M. Wessling, Current status of ion exchange
+membranes for power generation from salinity gradients, J. Membr. Sci. 319
+(2008) 214每222.
+[26] J.N. Weinstein, F.B. Leitz, Electric power from differences in salinity: the dialytic bat-
+tery, Science 191 (1976) 557每559.
+[27] I. Rubinstein, J. Pretz, E. Staude, Open circuit voltage in a reverse electrodialysis cell,
+Phys. Chem. Chem. Phys. 3 (2001) 1666每1667.
+[28] E. G邦ler, Anion Exchange Membrane Design for Reverse Electrodialysis, Universiteit
+Twente, 2014.
+[29] J. Veerman, M. Saakes, S.J. Metz, G.J. Harmsen, Reverse electrodialysis: performance
+of a stack with 50 cells on the mixing of sea and river water, J. Membr. Sci. 327
+(2009) 136每144.
+[30] S. Pawlowski, P. Sistat, J.G. Crespo, S. Velizarov, Mass transfer in reverse electrodial-
+ysis: ow entrance effects and diffusion boundary layer thickness, J. Membr. Sci. 471
+(2014) 72每83.
+[31] D.A. Vermaas, M. Saakes, K. Nijmeijer, Enhanced mixing in the diffusive boundary
+layer for energy generation in reverse electrodialysis, J. Membr. Sci. 453 (2014)
+312每319.
+[32] J. Veerman, M. Saakes, S.J. Metz, G.J. Harmsen, Reverse electrodialysis: a validated
+process model for design and optimization, Chem. Eng. J. 166 (2011) 256每268.
+[33] M. Tedesco, E. Brauns, A. Cipollina, G. Micale, P. Modica, G. Russo, J. Helsen, Reverse
+electrodialysis with saline waters and concentrated brines: a laboratory investiga-
+tion towards technology scale-up, J. Membr. Sci. 492 (2015) 9每20.
+[34] A. Daniilidis, D.A. Vermaas, R. Herber, K. Nijmeijer, Experimentally obtainable ener-
+gy from mixing river water, seawater or brines with reverse electrodialysis, Renew.
+Energy 64 (2014) 123每131.
+

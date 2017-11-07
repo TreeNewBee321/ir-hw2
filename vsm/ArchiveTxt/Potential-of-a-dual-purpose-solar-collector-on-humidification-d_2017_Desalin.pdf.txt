@@ -1,0 +1,698 @@
+Potential of a dual purpose solar collector on humidication dehumidication desalination system
+
+T. Rajaseenivasan, K. Srithar 
+
+Department of Mechanical Engineering, Thiagarajar College of Engineering, Madurai 625015, Tamil Nadu, India
+
+H I G H L I G H T S
+
+ Packed bed HDH system is tested with a dual purpose solar collector.
+ Effect of turbulators on the system performance is also analyzed.
+ Turbulator augments the fresh water production rate of the system.
+ Peak distillate of 15.23 kg/m2.day is collected.
+
+article
+
+info
+
+
+
+Article history:
+Received 6 August 2016
+Received in revised form 27 October 2016
+Accepted 28 October 2016
+Available online 2 November 2016
+
+Keywords:
+Humidication dehumidication distillation
+Dual purpose solar collector
+Turbulator
+Desalination
+Solar air heater
+Solar water heater
+
+abstract
+
+An experimental investigation on a humidication dehumidication (HDH) desalination system integrated with
+a dual purpose solar collector (DPSC) is reported in this work. The DPSC is used to simultaneously heat the water
+and air needed for the distillation process. Air ows over the top surface of the absorber plate and the water ows
+through the riser tubes, attached in the bottom side of absorber plate. The heated air and water from the collector
+is supplied to the humidier, where the air gets humidied and moves towards dehumidier for condensation.
+The performance of the system is analyzed by providing semi circular turbulators (convex and concave) in the
+air ow eld. The system ability is investigated by varying the ow rate of air, hot water in humidier and cooling
+water in dehumidier. The system distillation capacity enhances with the air and water temperature and ow
+rate of air, hot water and cold water. The highest productivity of 12.36, 14.14 and 15.23 kg/m2.day is collected
+for the without turbulators, convex and concave turbulators in absorber plate respectively. The overall efciency
+of the system reaches the value of 67.6% with the concave turbulators in the DPSC.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Increase in water demand leads to the development different desali-
+nation technologies like solar still [1], ash evaporation desalination [2],
+multi effect distillation, humidication dehumidication desalination,
+vapour compression desalination, freeze desalination and adsorption
+desalination [3]. Solar still and solar based humidication dehumidica-
+tion desalination technology are suitable for low capacity fresh water
+production. Ability of solar still has been improved by minimizing the
+water depth, reduction in inclination angle [4], installation of reectors,
+coupled with solar collectors, increase in surface area [5] and recovering
+of latent heat for preheating the saline water [6].
+Pin nned wicks [7] and vertical ns [8] were improved the heat
+transfer rate in the solar still and thereby distillate rate. Energy storing
+materials increase the basin heat capacity by absorbing the heat during
+the sunshine hours and release it in evening or cloudy hours. Solar still
+was augmented by adding the materials like sand, black rubber, gravels
+[9], phase change material [10], mild steel pieces in basin [11]. Integra-
+tion of solar still with the parabolic dish concentrator [12], evacuated
+tube solar collector [13] and parabolic concentrator with cover cooling
+[14] enhanced the solar still productivity.
+The latent heat of condensation was successfully utilized to heat the
+upper basin water and thereby augmented the solar still productivity
+[15]. Reduction of water mass in upper basin was increased the distillate
+output of double basin solar still [16]. Temperature difference between
+the evaporation and condensation surface is increased by using the
+thermoelectric module in a solar still. It leads to the higher condensation
+rate of the system and improved distillate output [17]. A solar still was
+tested with a thermoelectric module and increased the production
+rate by 3.2 times greater than the conventional one [18]. A solar still
+was tested with a separate evaporation and condensation section and
+a thermoelectric module for increase the condensation rate [19]. A
+CFD analysis was carried out in a tubular solar still and compared with
+
+36
+
+Nomenclature
+
+T. Rajaseenivasan, K. Srithar / Desalination 404 (2017) 35每40
+
+Ac
+
+Cdw
+hfg
+
+area of solar collector, m2
+distilled water cost, $/kg
+latent heat of evaporation, J/kg
+Is
+solar radiation, W/﹞m2
+M
+annual yield, kg/year
+m
+mass of distilled water, kg
+t
+time, s
+T
+temperature, ～C
+u
+uncertainty
+qelectrical heat ux of electrical components, W
+TAC
+total annualized cost, $
+灰
+efciency, %
+
+the experimental results [20]. An attempt was made to improve the per-
+formance of single basin solar still by installing partition in basin and
+glass cover [21]. A stepped solar still integrated to a humidication de-
+humidication process showed better performance with improved dis-
+tillate output [22]. Performance of a humidication dehumidication
+desalination system was enlightened by connecting with a cascade
+solar still [23].
+The main reason for lower distillate output in the solar still is the oc-
+currence of evaporation and condensation in the same component. In
+the HDH system, the humidication and dehumidication process oc-
+curs in separate chamber, which ensures the higher distillate compared
+to the solar still. The inlet water temperature and humidity plays a vital
+role in the performance of HDH system and the distillate was enhanced
+with these parameters [24]. Results of the cost optimization analysis
+were reported that the solar humidication dehumidication desalina-
+tion is a suitable choice for the small scale fresh water production in the
+remote arid areas [25]. A two stage humidication desalination system
+was experimentally analyzed and found that the two stage system re-
+duced the required number of solar collectors and minimized the initial
+investment [26]. A desalination system was evaluated with the air ows
+over the hot saline water (heated by solar and electrical energy) and ob-
+served that the distillate yield was increased with water temperature
+[27]. A numerical study to investigate the performance of humidica-
+tion desalination system with solar air heater was carried out and the
+result indicated that the presence of solar air heater signicantly inu-
+enced on the system productivity [28]. A double pass solar air heater
+was integrated with the humidication desalination system and noticed
+a considerable improvement in the distillate yield [29]. Higher perfor-
+mance in humidication desalination system was obtained with the in-
+tegration of evacuated tube solar collector [30]. Performance of a
+humidication dehumidication desalination system was improved by
+using a solar air heater [31]. Developments of low cost and high efcient
+solar air heaters reduce the distilled water cost of HDH desalination sys-
+tem [32]. Experimental study on bubble column HDH desalination was
+
+carried out by connecting with the solar air heater [33] and dual pur-
+pose solar collector [34].
+The presence of rib grooves with different angles in absorber plate
+showed the higher performance compared to the conventional system
+[35]. Impinging of air into the solar collector augments the heat transfer
+rate between the air and absorber plate and the higher outlet air tem-
+perature was observed [36]. A solar collector was tested and augmented
+the outlet air temperature by providing the aluminum cans in absorber
+plate [37]. The presence of transverse and inclined ribs on absorber
+plate of solar air heater was resulted in the higher effective efciency
+[38]. Presence of conical cut out turbulators in the air heater ow eld
+enlightened the system ability [39]. A packed bed HDH desalination sys-
+tem was tested by using the different ratios of twisted tape inserts, con-
+ical cut out turbulators and half perforated circular turbulator in the air
+heater. The production rate of the modied system enhanced by 45%
+compared to conventional system [40]. Energy and exergy efciency
+of the dual purpose solar collector was found to be higher than the sin-
+gle purpose solar collector, due to effective utilization of thermal energy
+[41]. Three different uid ow channels have been used in a dual pur-
+pose solar collector and the higher potential is observed with the rect-
+angular n channel [42]. The efciency of the single purpose collector
+has been noted that the 3 to 5% lower than the dual purpose collector
+[43].
+The literature shows that the humidication dehumidication desa-
+lination system has greater opportunity for the decentralized fresh
+water production over solar still. It is observed that the distillation ca-
+pacity of the system enhances with the humidier inlet temperatures.
+Also the presence of turbulator enhances the ability of solar collectors
+and the dual purpose solar collector is efcient. In most of the previous
+works, humidication dehumidication desalination system is integrat-
+ed with the different solar collectors (Flat plate solar collector, evacuat-
+ed tube collector, parabolic trough collector) to heat the water and air
+separately.
+Thus an attempt is made in this work to analyze the effect of inte-
+grating a dual purpose solar collector with a packed bed HDH desalina-
+tion system. The dual purpose collector supplies the required hot water
+and hot air for desalination system. Also semi circular turbulators (con-
+cave and convex) are used in the air ow passage of a dual purpose solar
+collector. It augments the humidier inlet air temperature by means of
+creating the turbulence in air ow eld. The performance of the system
+is analyzed by varying the mass ow rate of air (0.84 to 1.08 kg/min),
+hot water (1 to 3 kg/min) and cooling water (1.5 to 3.5 kg/min).
+
+2. Experimental setup
+
+Schematic and photographic view of the solar packed bed humidi-
+cation dehumidication desalination system is shown in the Figs. 1 and
+2. It consists of a dual purpose solar collector humidier and dehumid-
+ier. The outer cover of a dual purpose solar collector is constructed as a
+rectangular hollow box in the size of 0.95 m ℅ 0.75 m ℅ 0.12 m and ex-
+tended as duct on both sides. The dual purpose solar collector setup is
+kept in a stand with the inclination of 10～ which is equal to the latitude
+
+Fig. 1. Schematic diagram of HDH system with dual purpose collector. (1) Blower, (2) ow control valve, (3) orice arrangement, (4) absorber plate, (5) pump, (6) riser tube arrangement,
+(7) feed water tank, (8) packed bed, (9) cooling water tank, (10) condensing cover, (11) humidication chamber, (12) hot air inlet, (13) hot water spray pipe.
+
+T. Rajaseenivasan, K. Srithar / Desalination 404 (2017) 35每40
+
+37
+
+D
+
+ehum
+midi
+ifier 
+
+Dua
+al pu
+urpo
+ose 
+sola
+ar co
+llect
+tor
+
+Or
+rifice
+e
+ar
+rrang
+gem
+ment 
+
+Distil
+D
+llate 
+Coo
+oling
+g
+c
+ollec
+ction
+n w
+water
+r tan
+nk 
+
+PPumpp
+
+Hummidiffier 
+
+Feeed wwater tannk 
+
+PPump
+p
+
+Blow
+B
+wer 
+
+Fig. 2. Photographic view of HDH system with dual purpose collector.
+
+(a)
+
+(b)
+
+(c)
+
+Fig. 3. Photographic view of (a) riser tube arrangement, (b) convex turbulators and (c) concave turbulators.
+
+of test place. A 2 mm thickness mild steel plate is used as absorber plate
+and the air pumped (by a 1 hp blower) over this plate and gets heated. A
+0.5 hp pump supplies the saline water to the dual purpose solar collec-
+tor from a storage tank. There are six riser tubes with the diameter of
+0.019 m is attached in the back side of the absorber plate as shown in
+Fig. 3a. The riser tube inlet is connected with the feed water tank and
+the outlet is connected with the humidier spray pipe. The saline
+water ows through the riser tubes and gets heated from the absorber
+plate. The hot saline water sprayed from the humidier top and the
+heated air enters into the bottom of humidier. The humidication
+chamber is constructed using the mild steel sheet with the area of
+0.09 m2 and with height of 0.5 m in one end and 0.6 m at another
+end. The humidier chamber is set with a packing material (jute
+cloth) as shown in the Fig. 1. Top cover has the inclination of 10～ to
+guide the condensate and collect in the distillate collection rate. The
+hot saline water and the air get contact with the help of packing
+materials.
+
+Some of the humid air gets condensed in the top cover and the re-
+maining moves to the dehumidier. The dehumidier is a shell and
+coil heat exchanger where the humid air ows around the three con-
+centric copper coils (0.05 m, 0.08 m, and 0.11 m) and the cooling
+water ows through the copper coil in counter direction. These coils
+are located in a 0.15 m diameter hollow pipe. Cooling water feed into
+the copper coils by using a 0.5 hp pump and three separate ow control
+valves are used to control the ow rate. The water in the cooling water
+tank is often replaced to maintain the lower cooling water inlet temper-
+ature. The experiments are extended by using the semi circular
+turbulators in absorber plate in the 6 ℅ 4 zig-zag conguration [44] as
+shown in Fig. 3b (convex) and Fig. 3c (concave). In this work, operation-
+al range of air ow rate [44], hot water [45] and cold water [45] ow rate
+was selected based on the system operational capacity and to give the
+maximum system performance. Increasing the hot ow rate beyond
+this limit reduces the system capacity. The experiments are carried
+
+Table 1
+Uncertainty analysis of measuring instruments.
+
+Sl. no
+
+Instrument
+
+Accuracy (a)
+
+1
+2
+3
+4
+5
+6
+
+Thermocouple
+Pyranometer
+Manometer
+Anemometer
+Hygrometer
+Measuring Jar
+
+㊣ 1 ～C
+㊣ 1 W/m2
+1 mm
+㊣ 0.1 m/s
+㊣ 1
+㊣ 10 ml
+
+Table 2
+Capital cost of solar HDH desalination system.
+
+Range
+ 100每1300 ～C
+0每2500 W/m2
+0每500 mm
+0每15 m/s
+0每100%
+0每500 ml
+
+Uncertainty
+
+0.06 ～C
+0.58 W/m2
+0.58 mm
+0.06 m/s
+0.58%
+5.77 ml
+
+S. no
+
+1
+2
+3
+4
+5
+6
+Total cost
+
+Components
+
+Solar collector setup
+Humidier
+Dehumidier
+Blower
+Pump
+Accessories
+
+Cost ($)
+
+68
+45
+120
+90
+46
+20
+389
+
+38
+
+T. Rajaseenivasan, K. Srithar / Desalination 404 (2017) 35每40
+
+Fig. 4. Variation of ow rate on productivity.
+
+out in the period of October 2015每February 2016 at Thiagarajar College
+of Engineering, Madurai, India.
+
+3. Uncertainty analysis and data reduction
+
+The temperature at different points in the dual purpose solar collec-
+tor, humidier and dehumidier is measured with the help of K type
+thermocouples. A hygrometer is used to measure the relative humidity
+of ambient air, humid air and dehumidied air. The uncertainty analysis
+for the remaining parameters is given in Table 1. Standard uncertainty is
+evaluated by the following equation [17,19,46].
+
+u  a
+
+p
+
+3
+
+The latent heat of evaporation is evaluated by the following equation
+[47,48]
+hfg  2:495  106
+ 1 9:4749  104 T  1:3132  107 T 24:7947  109 T 3
+
+
+i
+
+
+
+h
+
+4
+
+The cost associated with different major components of the system
+is plotted in the Table 2. The economic analysis is performed as given
+by [27,49]
+
+1
+
+C dw  TAC
+M
+
+5
+
+The uncertainty associated with the daily efciency is given by [18,
+
+19]
+
+"
+
+u 灰   灰 u _m
+
+2
+
+m2
+
+#1 =
+
+2
+
+ u I s 2
+I s
+
+2
+
+2
+
+The maximum uncertainty efciency of 1.94% is evaluated from the
+Eq. (2).
+The system overall efciency is the ratio of total latent heat of evap-
+oration of the distilled water to the total energy input (solar and electri-
+cal energy).
+m  hfg
+
+
+
+3
+
+ 
+
+
+
+灰 
+
+I s Ac
+
+  qelectrical
+
+t
+
+4. Results and discussion
+
+The major parameters varied in this study are mass ow rate (MFR)
+of air, water and cooling water. The effect of change in these parameters
+on the system performance is presented in the Fig. 4. The mass ow rate
+of hot water and cooling water is xed and the air ow rate is varied in
+the rst set and displayed in the Fig. 4(a). Similarly other two parame-
+ters are xed and one is varied in Fig. 4(b) and Fig. 4(c). It is observed
+that the distillate of the system enhances with the increase in mass
+ow rate of air, hot water and cooling water. The increase in mass
+ow rate of air enhances the mixing rate in packed bed and also resulted
+in the circulation of higher volume of air per unit time in the desalina-
+tion system. The improved mixing of air with the water and higher vol-
+ume circulation leads to carry the more amount of water vapour with
+the air and resulted in the enhanced distillate output. With the increase
+in hot water ow rate, the temperature in the humidier raises and
+
+Fig. 5. Productivity variation in HDH system.
+
+T. Rajaseenivasan, K. Srithar / Desalination 404 (2017) 35每40
+
+39
+
+terms of mass ow rate of air, hot water and cooling water in actual
+solar condition. It is observed that the system capacity increases with
+the ow rate of air, hot and cold water. The presence of turbulator en-
+hances the DPSC outlet air temperature and thereby increases the mois-
+ture content carrying capacity of air. The air with high specic humidity
+is resulted in the enhanced condensation rate. The highest distillate of
+15.23, 14.14, and 12.36 kg/m2.d is collected for the concave, convex
+and conventional system respectively. The overall efciency of the sys-
+tem reaches about 68% with the presence of turbulators in the collector.
+The cost of distilled water reaches lowest value of 0.0257 $/kg for the
+modied system.
+
+References
+
+[1] Z. Dong, L. Zhu, F. Yinyi, M. Zhu, L. Xue, Development of lower cost seawater desali-
+nation processes using nanoltration technologies 〞 a review, Desalination 376
+(2015) 109每116.
+[2] M.M.A. Raj, K.K. Murugavel, T. Rajaseenivasan, K. Srithar, A review on ash evapora-
+tion desalination, Desalin. Water Treat. 57 (2016) 13462每13471.
+[3] H. Sharon, K.S. Reddy, A review of solar energy driven desalination technologies,
+Renew. Sust. Energ. Rev. 41 (2015) 1080每1118.
+[4] M.S.S. Abujazar, S. Fatihah, A.R. Rakmi, M.Z. Shahrom, The effects of design parame-
+ters on productivity performance of a solar still for seawater desalination: a review,
+Desalination 385 (2016) 178每193.
+[5] G. Xiao, X. Wang, M. Ni, F. Wang, W. Zhu, Z. Luo, K. Cen, A review on solar stills for
+brine desalination, Appl. Energy 103 (2013) 642每652.
+[6] T. Rajaseenivasan, K.K. Murugavel, T. Elango, R.S. Hansen, A review of different
+methods to enhance the productivity of the multi-effect solar still, Renew. Sust.
+Energ. Rev. 17 (2013) 248每259.
+[7] W.M. Alaian, E.A. Elnegiry, A.M. Hamed, Experimental investigation on the perfor-
+mance of solar still augmented with pin-nned wick, Desalination 379 (2016)
+10每15.
+[8] T. Rajaseenivasan, A.P. Tinnokesh, G. Rajesh Kumar, K. Srithar, Glass basin solar still
+with integrated preheated water supply 每 theoretical and experimental investiga-
+tion, Desalination 398 (2016) 214每221.
+[9] R. Kannan, C. Selvaganesan, M. Vignesh, B.R. Babu, M. Fuentes, M. Vivar, I. Skryabin,
+K. Srithar, Solar still with vapor adsorption basin: performance analysis, Renew. En-
+ergy 62 (2014) 258每264.
+[10] O. Ansari, M. Asbik, A. Bah, A. Arbaoui, A. Khmou, Desalination of the brackish water
+using a passive solar still with a heat energy storage system, Desalination 324
+(2013) 10每20.
+[11] T. Rajaseenivasan, K.K. Murugavel, T. Elango, Performance and exergy analysis of a
+double-basin solar still with different materials in basin, Desalin. Water Treat. 55
+(7) (2015) 1786每1794.
+[12] Z.M. Omara, M.A. Eltawil, Hybrid of solar dish concentrator, new boiler and simple
+solar collector for brackish water desalination, Desalination 326 (2013) 62每68.
+[13] Z.M. Omara, M.A. Eltawil, E.A. ElNashar, A new hybrid desalination system using
+wicks/solar still and evacuated solar water heater, Desalination 325 (2013) 56每64.
+[14] K. Srithar, T. Rajaseenivasan, N. Karthik, M. Periyannan, M. Gowtham, Stand alone
+triple basin solar desalination system with cover cooling and parabolic dish concen-
+trator, Renew. Energy 90 (2016) 157每165.
+[15] T. Rajaseenivasan, T. Elango, K. Kalidasa Murugavel, Comparative study of double
+basin and single basin solar stills, Desalination 309 (2013) 27每31.
+[16] T. Rajaseenivasan, K. Kalidasa Murugavel, Theoretical and experimental investiga-
+tion on double basin double slope solar still, Desalination 319 (2013) 25每32.
+[17] N. Rahbar, J.A. Esfahani, Experimental study of a novel portable solar still by utilizing
+the heat pipe and thermoelectric module, Desalination 284 (2012) 55每61.
+[18] N. Rahbar, J.A. Esfahani, A. Asadi, An experimental investigation on productivity and
+performance of a new improved design portable asymmetrical solar still utilizing
+thermoelectric modules, Energy Convers. Manag. 118 (2016) 55每62.
+[19] J.A. Esfahani, N. Rahbar, M. Lavvaf, Utilization of thermoelectric cooling in a portable
+active solar still 〞 an experimental study on winter days, Desalination 269 (2011)
+198每205.
+[20] N. Rahbar, J.A. Esfahani, E. Fotouhi-Bafghi, Estimation of convective heat transfer co-
+efcient and water-productivity in a tubular solar still 〞 CFD simulation and theo-
+retical analysis, Sol. Energy 113 (2015) 313每323.
+[21] S. Rashidi, M. Bovand, J. Abolfazli Esfahani, Optimization of partitioning inside a sin-
+gle slope solar still for performance improvement, Desalination 395 (2016) 79每91.
+[22] M.M. Awad, S.A. El-Agouz, Enhancement of the performance of stepped solar still
+using humidication-dehumidication processes, Nat. Sci. 11 (2) (2013) 88每98.
+[23] F.F. Tabrizi, M. Khosravi, I.S. Sani, Experimental study of a cascade solar still coupled
+with a humidication每dehumidication system, Energy Convers. Manag. 115
+(2016) 80每88.
+[24] M.H. Hamed, A.E. Kabeel, Z.M. Omara, S.W. Sharshir, Mathematical and experimen-
+tal investigation of a solar humidication每dehumidication desalination unit, Desa-
+lination 358 (2015) 9每17.
+[25] M. Zamen, M. Amidpourb, S.M. Soufari, Cost optimization of a solar humidication
+dehumidication desalination unit using mathematical programming, Desalination
+239 (2009) 92每99.
+[26] M. Zamen, S.M. Soufari, S.A. Vahdat, M. Amidpour, M.A. Zeinali, H. Izanloo, H.
+Aghababaie, Experimental investigation of a two-stage solar humidication 〞 de-
+humidication desalination process, Desalination 332 (2014) 1每6.
+
+Fig. 6. Overall efciency and distilled water cost of the system.
+
+resulted in the higher heat and mass transfer rate between water and
+air. It guides to the increase in and higher specic humidity of outlet
+air in turn condensation rate (Fig. 4b). The raise in cooling water ow
+rate increases the heat transfer rate from the humid air to the water. It
+leads to the reduction in outlet humid air temperature and higher distil-
+late output. The heat loss from the humid air to cooling water increases
+with the ow rate and it leads to the condensation of more water va-
+pour from humid air (Fig. 4c). The highest distillate of 15.23 kg/m2.day
+is collected with the concave turbulators and which is 23% higher than
+the conventional system and 7.7% higher than the convex turbulators
+system.
+Fig. 5 represents the hourly distillate variation of the system with
+and without of turbulators. The average solar radiation for the different
+days of experimentation is provided in the Fig. 5. The distillate output of
+the system increases with the solar radiation for all congurations and
+reaches the maximum at noon and thereafter start to fall. Also it is
+noted that the turbulators augment the distillate rate by increasing
+the humidier inlet air temperature. The moisture content carrying ca-
+pacity of air increases with the air temperature. It leads to the absorp-
+tion of higher moisture into air and resulted in the enhanced distillate
+output. Also the increase in solar radiation raises the water and air out-
+let temperature from the solar collector which is resulted in the higher
+system capacity. Concave turbulators create the higher turbulence in
+the ow eld rather than the convex turbulators due to the orientation.
+The peak hourly distillate of 2.54 kg/m2﹞h is obtained when DPSC inte-
+grated with the convex turbulator which is 17.6% higher than the with-
+out turbulator system.
+The overall efciency and distilled water cost of the system is repre-
+sented in the Fig. 6. The efciency of the system enhances and the cost of
+distilled water decreases with the increase in mass ow rate of air. It
+shows that the efciency of the system has a considered impact on
+the distilled water cost and this water cost. The system efciency
+reaches the maximum value of 68% for concave turbulator conguration
+and it is about 55% for without turbulators in the solar collector. The
+minimum distilled water cost of 0.032, 0.027 and 0.0257 $/kg is
+achieved for the conventional, convex and concave turbulators with
+the air ow rate of 0.018 kg/s.
+
+5. Conclusion
+
+A dual purpose solar collector is fabricated and tested with a packed
+bed humidication dehumidication distillation unit. Semi circular
+turbulators with the convex and concave shape is used in the dual pur-
+pose solar collector to create the turbulence and the performance is
+compared with the conventional system. The system is investigated in
+
+40
+
+T. Rajaseenivasan, K. Srithar / Desalination 404 (2017) 35每40
+
+[27] N.A.S. Elminshawy, F.R. Siddiqui, M.F. Addas, Experimental and analytical study on
+productivity augmentation of a novel solar humidication每dehumidication
+(HDH) system, Desalination 365 (2015) 36每45.
+[28] H.E.S. Fath, A. Ghazy, Solar desalination using humidication dehumidication tech-
+nology, Desalination 142 (2002) 119每133.
+[29] C. YamalI, I. Solmus, Theoretical investigation of a humidication dehumidication
+desalination system congured by a double-pass at plate solar air heater, Desalina-
+tion 205 (2007) 163每177.
+[30] X. Li, G. Yuan, Z. Wang, H. Li, Z. Xu, Experimental study on a humidication and de-
+humidication desalination system of solar air heater with evacuated tubes, Desali-
+nation 351 (2014) 1每8.
+[31] F. Nematollahi, A. Rahimi, T.T. Gheinani, Experimental and theoretical energy and
+exergy analysis for a solar desalination system, Desalination 317 (2013) 23每31.
+[32] G. Yuan, Z. Wang, H. Li, X. Li, Experimental study of a solar desalination system
+based on humidication每dehumidication process, Desalination 277 (2011) 92每98.
+[33] K. Srithar, T. Rajaseenivasan, Performance analysis on a solar bubble column humid-
+ication dehumidication desalination system, Process Saf. Environ. Prot. 105
+(2017) 41每50.
+[34] T. Rajaseenivasan, R.K. Shanmugam, V.M. Hareesh, K. Srithar, Combined probation of
+bubble column humidication dehumidication desalination system using solar
+collectors, Energy 116 (2016) 459每469.
+[35] L. Apurba, J.S. Saini, S.C. Solanki, Effect of chamfering on heat transfer and friction
+characteristics of solar air heater having absorber plate roughened with compound
+turbulators, Renew. Energy 34 (2009) 1292每1298.
+[36] T. Rajaseenivasan, S. Ravi Prasanth, M. Salamon Antony, K. Srithar, Experimental in-
+vestigation on the performance of an impinging jet solar air heater, Alex. Eng. J.
+(2016), http://dx.doi.org/10.1016/j.aej.2016.09.004.
+[37] F. Ozgen, M. Esen, H. Esen, Experimental investigation of thermal performance of a
+double-ow solarair heater having aluminium cans, Renew. Energy 34 (2009)
+2391每2398.
+
+[38] Varun, A. Patnaik, R.P. Saini, S.K. Singal, Siddhartha, Performance prediction of solar
+air heater having roughened duct provided with transverse and inclined ribs as ar-
+ticial roughness, Renew. Energy 34 (2009) 2914每2922.
+[39] C. Muthusamy, M. Vivar, I. Skryabin, K. Srithar, Effect of conical cut-out turbulators
+with internal ns in a circular tube on heat transfer and friction factor, Int. Commun.
+Heat Mass Transfer 44 (2013) 64每68.
+[40] C. Muthusamy, K. Srithar, Energy and exergy analysis for a humidication每dehu-
+midication desalination system integrated with multiple inserts, Desalination
+367 (2015) 49每59.
+[41] I. Jafari, A. Ershadi, E. Najafpour, N. Hedayat, Energy and exergy analysis of dual pur-
+pose solar collector, World Acad. Sci. Eng. Technol. 5 (2011) 09每24.
+[42] M.R. Assari, H. Basirat Tabrizi, I. Jafari, Experimental and theoretical investigation of
+dual purpose solar collector, Sol. Energy 85 (2011) 601每608.
+[43] O. Nematollahi, P. Alamdari, M.R. Assari, Experimental investigation of a dual pur-
+pose solar heating system, Energy Convers. Manag. 78 (2014) 359每366.
+[44] T. Rajaseenivasan, S. Srinivasan, K. Srithar, Comprehensive study on solar air heater
+with circular and V-type turbulators attached on absorber plate, Energy 88 (2015)
+863每873.
+[45] C. Yldrm, I. Solmus, A parametric study on a humidication每dehumidication
+(HDH) desalination unit powered by solar air and water heaters, Energy Convers.
+Manag. 86 (2014) 568每575.
+[46] T. Rajaseenivasan, P. Nelson Raja, K. Srithar, An experimental investigation on a solar
+still with an integrated at plate collector, Desalination 347 (2014) 131每137.
+[47] N. Rahbar, J.A. Esfahani, Productivity estimation of a single-slope solar still: theoret-
+ical and numerical analysis, Energy 49 (2013) 289每297.
+[48] N. Rahbar, J.A. Esfahani, Estimation of convective heat transfer coefcient in a single-
+slope solar still: a numerical study, Desalin. Water Treat. 50 (2012) 387每396.
+[49] T. Rajaseenivasan, K. Srithar, Performance investigation on solar still with circular
+and square ns in basin with CO2 mitigation and economic analysis, Desalination
+380 (2016) 66每74.
+

@@ -1,0 +1,1399 @@
+A practical planning software program for desalination in agriculture - SPARE:WATERopt
+
+S. Multsch a,, D. Grabowski b, J. L¨¹dering c, A.S. Alquwaizany d, K. Lehnert e, H.-G. Frede a,
+P. Winker b,c, L. Breuer a,c
+
+a Institute for Landscape Ecology and Resources Management (ILR), Research Centre for BioSystems, Land Use and Nutrition (IFZ), Justus Liebig University Giessen, Heinrich-Buff-Ring 26, 35392
+Giessen, Germany
+b Department of Statistics and Econometrics, Justus Liebig University Giessen, Liecher Strasse 64, 35394 Giessen, Germany
+c Centre for International Development and Environmental Research (ZEU), Justus Liebig University Giessen, Senckenbergstrae 3, 35390 Giessen, Germany
+d Research Institute for Water and Energy, King Abdulaziz City for Science and Technology, P.O. Box 6086, Riyadh 11442, Saudi Arabia
+e IBM Deutschland GmbH, Mainz, Germany
+
+H I G H L I G H T S
+
+ A novel tool for optimizing the use of desalinated water in irrigation agriculture
+ Spatial (available land) and temporal (daily water supply) optimization of water utilization
+ Balancing water supply and demand made possible using 97% of available water
+ Gross margin is maximized by a cropping pattern dominated by cash crops using 77% of available water.
+ Irrigation by seawater desalination can be economically feasible for cash crops.
+
+article
+
+info
+
+Article history:
+Received 1 June 2016
+Received in revised form 29 September 2016
+Accepted 7 November 2016
+Available online 16 November 2016
+
+Keywords:
+Desalination
+Irrigation
+Saudi Arabia
+SPARE:WATER
+Simplex algorithm
+Optimization
+Cropping pattern
+
+abstract
+
+Water shortage limits agricultural production worldwide, and irrigation leads to a rapid depletion of water re-
+sources. Using desalinated water for irrigation reduces pressure on local resources but it is expensive. An eco-
+nomically viable utilization for using desalinated water in agriculture is only possible through the optimal
+planning and management of cropland and irrigation scheduling management. We developed a software pro-
+gram aiming to maximize the gross margin (GM) by optimizing cropping patterns using a site-specic crop
+water requirement model. We used the simplex algorithm under the boundary conditions of limited water (tem-
+poral scale) and available land (spatial scale). In a proof of concept, we tested the software for a desalination plant
+in Saudi Arabia that produces 60,000 m3 day1. A cropping pattern for 4278 ha was derived that maximizes GM
+(92 Mio US$ yr1) and uses most (97%) of the constant water supply to the plant. An optimal cropping pattern
+(4023 ha) solely maximizing GM yields a higher outcome (125 Mio US$ yr1) and requires even less water for
+irrigation. This surplus water can be used for leaching soils or other purposes. Both cropping patterns are domi-
+nated by cucumber and tomatoes, covering the largest fractions of cropland at 74% and 88%, respectively.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+1.1. Agricultural development by desalination
+A vast increase in food prices on the global market has been observed
+since 2003, and several reasons have been discussed, e.g., weather shocks,
+increasing oil prices and nancial market speculation [1]. Prices for prima-
+ry commodities, such as rice, wheat, soybean and maize, increased three-
+fold or more until peaking in 2008. After that, the prices dropped again. In-
+vestments in agricultural research and development are helpful to pre-
+vent food prices from undergoing such severe increases [2]. Because
+many regions worldwide face an increasing unsustainable use of local
+water resources [3] and increasingly rely on foreign water resources to
+support their growing populations [4], alternative pathways must be de-
+veloped to support agriculture with water because the current solutions
+are often closely associated with local water resource depletion [5,6].
+The desalination of seawater provides such an alternative and may be
+helpful to partly counteract water scarcity [7]. In particular, comprehen-
+sive investments in large-scale desalination are needed to ensure a sus-
+tainable development as reported for the Gulf Cooperation Council
+countries (GCC) [8]. The question arises as to how available water re-
+sources from new investments, as well as existing ones, can be used opti-
+mally. The importance of modelling tools has been recently highlighted to
+solve such integrated problems regarding the energy, water and food
+nexus [9] and to ensure a sustainable use of desalinated seawater for ag-
+riculture [10]. In this study, a novel spatial decision support system
+(sDSS) is presented to optimize desalinated water use for agriculture. Be-
+cause optimal agriculture management is important to successfully utilize
+desalinated water for irrigation [11], a particular emphasis is given to the
+factors of irrigation technology, salinity and crop salt tolerance, which
+have been reported to be major determinants for investigating the poten-
+tial of agricultural production on the Arabian Peninsula [12]. It has been
+shown that irrigation technology has a high impact on the national
+water consumption [13] because changes in cropping pattern as well as
+the implementation of modern irrigation technology can reduce water
+consumption by up to 32% in Saudi Arabia [14].
+
+1.2. Desalination technology and cost
+
+Improved desalination techniques [15] may reshape agricultural pro-
+duction. The applicability of different desalination techniques to provide
+water for irrigation has been recently reviewed [11], and the authors stress
+the suitability of reverse osmosis (RO) for agriculture purposes. However,
+Shaffer et al. [16] highlight the potential of forward osmosis technology
+coupled with RO for agriculture purposes compared to the sole application
+of RO because of its better water quality at lower costs. Efforts have been
+made to use renewable energy for running plants, e.g., by photovoltaic
+power, wind power or solar energy, and the feasibility of the application
+of desalination with renewable energy has been discussed widely [17,18].
+The costs for desalinated water are still high compared to the utiliza-
+tion of surface or groundwater for irrigation because the latter ones
+have no or only low prices in most countries. In most cases, only
+pumping costs are incurred. Generally, it is often unclear whether the
+cost for desalination includes capital and investment costs or the
+planned lifespan of the desalination plant [19¨C21], which makes dif-
+cult a general comparison of literature data on desalination costs. For
+example, the price for desalination using RO ranges between 0.5 and
+1.2 US$ m 3 [19], which is high compared to the water costs of
+0.05  m 3, as reported for an irrigation district in Spain [22] using sur-
+face water resources for irrigation. The key question is as follows: how
+much are farmers willing to pay? Barron et al. [23] conducted a nation-
+wide study in Australia based on various datasets of water availability,
+quality and economic aspects and stated that farmers a likely to spend
+no N 1.2 AU$ m 3 (1.0 AU$¨C0.7 US$). In contrast, a water price between
+0.14 and 0.35 US$ m 3 has been reported for an irrigation district in Jor-
+dan [24]. Overall, desalinated water remains an expensive resource, and
+its consumption should be managed properly to avoid wasting precious
+water and to ensure an economically feasible utilization.
+
+1.3. Optimization of water allocation
+
+To optimize water resource use, different scales and factors must be
+considered, i.e., (i) the spatial allocation of water (e.g., between districts)
+[22,25,26], (ii) the crop selection and cropping patterns [26] and (iii) the
+timing of the crop irrigation schedule [27], in addition to the amount of
+available irrigation water. The optimization of cropping pattern is often
+conducted by coupled crop water economic optimization models, as-
+suming a xed water supply. The optimization is often performed in a
+
+hierarchical way, e.g., Garcia-Vila and Fereres [22] derived crop produc-
+tivity functions for site-specic conditions with a dynamic crop model
+(AquaCrop [28,29]) under various supplies. These functions are then
+used in a second step in an economic model to optimize management.
+Reca et al. [30] used a three-step hierarchical system to optimize water
+use: on the eld level for single crops, on the district level for cropping
+pattern and on a hydrological system scale for complete land cover.
+Pandey et al. [31] used the Cropwat model [32] in a three-phase ap-
+proach to optimize the eld level water use as well as the cropping pat-
+tern. Shanguuan et al. [33] applied in their hierarchical approach three
+layers with different objectives in order to maximize crop yields, the ben-
+et of the cropping pattern and the benet at the basin scale. The objec-
+tive functions that are commonly optimized is the gross margin [22,25],
+the water use efciency, or a combination of both. Others optimize the
+gross income, net income, irrigation water productivity or labour use
+[26], as well as crop yield [34]. Net farm income, minimization of
+waterlogging and minimization of groundwater depletion are listed in
+another review [35]. Most optimization approaches are restricted by lim-
+itations, e.g., maximum and minimum percentages for each crop to pre-
+vent optimization for favouring only high-value crops [25], land and
+water availability [31] and irrigation depth [30]. Such limitations are im-
+plemented by penalty functions [25] or limited parameter ranges as is
+often the case for cropping patterns [30].
+Mathematical algorithms are used to solve the optimization problem.
+Four methods, i.e., linear, non-linear and dynamic programming and a ge-
+netic algorithm, have been recently discussed in the context of irrigation
+management optimization [35]. To solve nonlinear problems, simulated
+annealing (SA) comes into play. The simulated annealing approach has
+been recently reviewed for conjunctive water use management, and the
+practicability of combining optimization approaches and simulation
+models has been highlighted [36]. Brown et al. [37] used such a coupled
+approach to optimize irrigation scheduling using simulated annealing
+and the FarmWi$e/APSIM model. They showed that pasture yields could
+be increased by 10% through optimal irrigation scheduling in Canterbury
+(New Zealand). In the case of multi-objective optimization problems,
+which are limited by several constraints, linear programming is an
+often-applied method. A popular linear programming optimization meth-
+od is the simplex algorithm [38,39]. This algorithm enables an effective
+and straightforward implementation of boundary conditions, which is im-
+portant in the case of planning land use under a limited water supply and
+other constraints. Sadeghi et al. [40] optimized the management of a wa-
+tershed in Iran using the simplex method, showing that soil erosion could
+be reduced and the net benets increased through the optimal planning
+of orchards, irrigation and dryland farming. Khare et al. [41] utilized an
+economic engineering optimization model based on the simplex algo-
+rithm. They derived optimal cropping patterns supplied by either surface
+or groundwater for a planned canal system in India. The results indicate
+potential water saving through inter-basin water trade. Chen et al. [42]
+applied the Conversion of Land Use and its Effects (iCLUE) program,
+which implements the simplex method for optimizing land-use pattern
+for an area in Northern China. The authors highlight the practicability of
+the proposed method to ensure ecological security at the regional scale.
+
+1.4. Study objective
+
+Countries experiencing food price shocks as observed in the last de-
+cade [1] require measures to increase resilience. This leads to the need
+for further investments in research and development in the agricultural
+sector [2]. As part of Saudi Arabia's strategy to cope with limited water re-
+sources, desalination is proposed as one measure to address water short-
+age [8]. Given that agriculture is the largest water-consuming sector in
+Saudi Arabia, constituting N 90% of the total water use [43], there is greater
+potential to improve irrigation management in order to make the best use
+of this expensive resource. Potential strategies to improve desalinated sea-
+water use in agriculture include the spatial reallocation of crops, the diver-
+sication of cropping patterns and the optimization of water use over time
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+123
+
+by balancing supply and demand. A new sDSS for planning and optimizing
+desalinated water use in agriculture has been developed because the im-
+portance of modelling tools in such a context has been recently highlight-
+ed [10]. A software package has been implemented called
+SPARE:WATERopt aiming at the temporal and spatial economic optimiza-
+tion of cropping patterns according to limited water and land availability.
+The newly developed software SPARE:WATERopt is an extension to the
+previous published software tool SPARE:WATER [5]. A case study was pre-
+sented of a RO desalination plant in eastern Saudi Arabia along the Arabian
+Gulf with a daily water production of 60,000 m3 day1. The irrigated elds
+near the desalinated plant sum to 84,753 ha, which is considered the total
+potential area for irrigation agriculture in this study. The simplex algo-
+rithm [38,39] was used to plan cropping patterns by maximizing the
+gross margin under limited water and available land. The site-specic
+monthly crop water needs for 19 major crops grown in Saudi Arabia and
+their different sowing dates were taken from a database calculated using
+SPARE:WATER in a previous study (Multsch et al., 2016b). Two strategies
+are addressed in order to determine the optimal cropping patterns for the
+irrigation with desalinated water.
+
+2. Methods and materials
+
+2.1. Modelling framework
+
+The framework ¡°SPARE:WATERopt¡± proposed in this study(Fig. 1) aims
+to support the planning of cropping patterns in arid and semi-arid regions,
+where land and water resources limit agriculture. The software was made
+for various stakeholders, such as farmers, engineers, authorities and pri-
+vate companies (Fig. 1a), but can of course be used for further research.
+The software was implemented with VB¡¤NET for Windows computers
+with a graphical user interface (GUI). The GUI enables the conguration
+of the model, e.g., selection of region, crops, scenario settings and bound-
+ary conditions (Fig. 1b). The user can set up the software step by step in
+order to dene the scenario, regions and available crops or can load a
+pre-dened setup from .csv les in batch run mode. Optimization with
+the simplex algorithm was conducted with a script written in the Python
+programming language. We used the SciPy package and its linear
+
+programming features (Fig. 1c). The GUI and the script use of a database
+in SQLite, which contains information on arable land, prices, crop water
+needs and the results of the optimization, i.e., the cropping pattern and
+the related costs, revenues and GM (Fig. 1d).
+In the rst step, the user creates a scenario. This contains the denition
+of the water supply, water cost and objective function, as well as the irri-
+gation management parameters (salinity control, efciency and technolo-
+gy). The second step is the denition of the regions that should be supplied
+and the crops that can be grown according to a given irrigation technology.
+In the third step, the user sets boundary conditions related to minimum
+and maximum available arable land for specic crop types. By running
+this setup, the simplex algorithm determines the optimal cropping pattern
+in relation to the objective function and boundary conditions. The results
+are stored in the database, and three graphs in the GUI show the annual
+water demand and GM, as well as the monthly water needs of each crop
+per month in relation to the monthly water supply.
+
+2.1.1. Water balance
+The cropping patterns to be developed consider the limited monthly
+water supply and available land in each region. For this reason, the user
+must provide data on the monthly net irrigation requirements, i.e., the
+productive amount of irrigation that actually contributes to crop growth
+(IRRprod) for each crop and region. These data can be derived by eld ex-
+periments or by simulation models [5,29]. These simulation models re-
+quire input information on the management, soil and climate, which are
+available, for example, from public datasets from the FAO (soil: [44]; cli-
+mate: [45]) or local authorities. IRRprod is the amount of water needed to
+allow full crop growth considering no limitations through pests, diseases,
+or nutrient or water stress. Nevertheless, irrigation losses can occur
+through deep percolation (i.e., water ow to deeper soil layers or ground-
+water) [46]. Thus, IRRprod is adjusted by the irrigation efciency (IRReff) to
+include these water losses. In our study, water losses are related to on-
+farm processes. Off-farm losses, such as those through canal cracks, are
+neglected.
+Salinization is another important process to be considered. When
+water evaporates from the soil, salts remain in the rooting zone, limiting
+plant water uptake, decreasing crop yields and impacting soil structure
+
+Fig. 1. Components of the newly developed optimization framework within the spatial decision support system (sDSS) SPARE:WATERopt: (a) Stakeholders (b), Graphical User Interface
+(GUI) written in VB¡¤Net for Windows Systems, (c) Optimization algorithm (scientic programming tool SciPy), and (d) SQLite database with all input and output data.
+
+[47]. In the worst case, salt crusts seal the soil surface, making crop cultiva-
+tion impossible. Therefore, salinity management plays a major role when
+water of lower quality (i.e., with a high salt content) is used for irrigation.
+Desalinated water is of high quality and may not lead to salinization, but in
+case of blending or partially desalinated water, this problem becomes par-
+ticularly evident. Hence, management by means of additional irrigation
+(leaching requirement, LR) to wash out the salt from the rooting zone is
+an important task [48¨C51]. Based on these assumptions, the gross irriga-
+tion requirement (IRRgross) is derived as follows:
+
+IRRgross  IRRprod
+
+IRReff
+
+ LR
+
+1
+
+with IRRgross, IRRprod and LR in cubic metres per hectare (m3 ha 1) and
+IRReff in percent (%). The losses from inefcient irrigation, which do not
+contribute to crop growth (IRRunprod), are assumed to percolate. These
+water losses can fully or partly cover LR [50]. Thus, LR refers only to the ad-
+ditional leaching requirement when IRRunprod cannot cover the potential
+LR. The potential leaching requirement is calculated according to Ayers
+and Westcot [51] based on the crop's tolerable salt concentration in the
+rooting zone (ECe), the salinity of the irrigation water (ECw) and IRRprod [5].
+
+2.1.2. Economic balance
+The economic balance is determined for a cropping pattern, which is
+planned for one year. Costs refer to desalination (cdesal) costs and the
+costs to pump water from the desalination plant to the elds (ctrans). The
+costs refer to units of water per cubic metre multiplied by the gross irriga-
+tion (IRRgross) per crop and region. The revenue is calculated by multiply-
+ing the crop yield per hectare (CY) by the harvest area (x) and the
+producer price (Price). GM is calculated as follows for each region (r)
+and crop (c):
+
+gmr ;c  Pricec  CY r ;c  xr ;c
+
+
+
+
+
+
+
+Revenue
+
+ IRRgrossr ;c  ctrans  cdesal
+
+
+
+
+
+
+
+
+
+
+Cost
+
+2
+
+with cdesal and ctrans in US dollars per cubic metre (US$ m3), IRRgross in
+cubic metres per hectare (m3 ha1), Price in US dollars per tonne (US$
+t 1), CY in tonnes per hectare (t ha 1), harvest area x in hectares per
+year (ha yr 1) and gm in US dollars per hectare (US$ ha 1). The total
+GM is derived by summing gmr,c.
+
+2.1.3. Optimization algorithm
+The goal of this study is to identify the cropping patterns that make the
+best use of limited water resources for irrigation agriculture. Hence, a
+cropping pattern needs to maximize the GM and makes the best use of
+the water supply by desalination. Transport costs may limit the GM of
+elds far from the water source. Available cropland restricts the extent
+of irrigation areas in each region. Furthermore, the harvest area of some
+crops may be restricted to adjust the algorithm to specic objectives,
+e.g., limit the maximum area of cash crops or dene the minimum areas
+for staple foods. This algorithm maximizes the objective function by
+selecting the optimal cropping pattern as follows:
+
+max GM
+
+ 
+
+XR
+
+r1
+
+XC
+
+c1
+
+gmr ;c  xr ;c
+
+3
+
+with the total GM (US$ yr1), gm (US$ ha1), and harvest area x (ha yr1)
+for all regions r and all crops c, as well as the total number of regions R and
+the total number of crops C. In order to consider the boundary conditions,
+such as limited available arable land or limited available water, the objec-
+tive function is subjected to a set of boundary conditions (i.e., inequality
+and equality constraints):
+
+ainequality  x ¡Ü binequality
+ x  bequality
+aequality
+
+i 
+ii 
+
+
+
+4
+
+with (i) the upper bound inequality constraint ainequality in harvest area x
+and the upper boundary value binequality, as well as (ii) the upper bound
+equality constraint aequality in harvest area x and the values of each equality
+bequality. Eq. (4) represents the general form and is solved for three con-
+straints, which limit the selection of the possible cropping pattern. The
+rst boundary condition relates the monthly irrigation water requirement
+per crop and region to the total monthly water supply. This boundary con-
+dition (¡®monthly water supply limit¡¯) is obligatory:
+
+IRRgross1;1;1
+IRRgross2;1;1
+
+IRRgross1;1;2
+IRRgross2;1;2
+
+:::
+:::
+:::
+:::
+
+IRRgross1;R;C
+IRRgross2;R;C
+
+:::
+
+:::
+
+:::
+
+IRRgrossM ;1;1
+
+IRRgrossM ;1;2
+
+IRRgrossM ;R;C
+
+0
+BB@
+
+1
+CCA
+
+
+
+x1
+
+:::
+
+xc
+
+:::
+
+xR;C
+
+0
+BBB@
+
+1
+CCCA ¡Ü
+
+W S1
+W S2
+
+:::
+
+W SM
+
+0
+BB@
+
+1
+CCA
+
+5
+
+where IRRgross M,R,C is the irrigation requirement per hectare for all crops
+and regions in all months M and for the water supply WS (m3 month1).
+The second boundary condition is optional (Eq. (6)) (¡®use all available
+water¡¯). If activated, it forces the algorithm to use at least a minimum frac-
+tion of the available water WUmin, 0 ¡Ü WUmin ¡Ü 1. WUmin was set to 0.95 in
+this study in order to account for a small deviation from the boundary
+conditions. For higher WUmin, the optimization algorithm has difculty
+nding an optimal solution. This boundary condition is optional:
+
+IRRgross1;1;1
+IRRgross2;1;1
+
+IRRgross1;1;2
+IRRgross2;1;2
+
+:::
+:::
+:::
+:::
+
+IRRgross1;R;C
+IRRgross2;R;C
+
+:::
+
+:::
+
+:::
+
+IRRgrossM ;1;1
+
+IRRgrossM ;1;2
+
+IRRgrossM ;R;C
+
+0
+BB@
+
+1
+CCA  1
+
+
+
+x1
+
+:::
+
+xc
+
+:::
+
+xR;C
+
+0
+BBB@
+
+1
+CCCA ¡Ü
+
+W S1
+W S2
+
+:::
+
+W SM
+
+0
+BB@
+
+1
+
+CCA  1  W Umin
+
+6
+
+The third boundary condition (Eq. (7)) (¡®limited available cropland¡¯)
+restricts the sum of the harvest area of all crops in a region to the avail-
+able cropland in each region, whereby the upper bound inequality con-
+straint a has a Boolean value (0 or 1), which indicates whether or not
+the restriction is applied to the combination of crop and region:
+
+bool1;1;1 bool1;1;2
+bool2;1;1 bool2;1;2
+
+::: bool1;R;C
+::: bool;2R;C
+:::
+:::
+::: boolR;R;C
+
+:::
+
+:::
+
+boolR;1;1 boolR;1;2
+
+0
+BB@
+
+1
+CCA 
+
+x1
+
+:::
+
+xc
+
+:::
+
+xR;C
+
+0
+BBB@
+
+1
+CCCA ¡Ü
+
+CL1
+CL2
+
+:::
+
+C LR
+
+0
+BB@
+
+1
+CCA
+
+7
+
+with bool between 0 and 1 and potential cropland CL. Moreover, the
+software provides the ability to implement boundary conditions for
+the upper and lower limits of the harvest area of certain crops, i.e., to
+limit the area of cash crops or to produce at least the minima of staple
+foods. The objective function (3) and all of the inequality constraints
+(4¨C7) are linear functions. As such, the problem can be solved using a
+linear optimization method. One common method is the simplex algo-
+rithm [38,39], which has been implemented in many scientic pro-
+gramming tools, including the Python package SciPy [52]. This linear
+optimization problem is convex, and the simplex algorithm is guaran-
+teed to nd the global optimum, i.e., the best possible cropping pattern
+satisfying all of the selected constraints.
+
+2.2. Database and study site
+
+As a proof of concept, we applied our method in a case study for a de-
+salination plant close to Al-Khafjy (Saudi Arabia). Table 1 gives a sum-
+mary of the input data and sources. The information of the geographic
+location of irrigated areas was derived from the Global Map of Irrigated
+
+124
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+125
+
+Areas [53]. The cropland is ~ 200 km from south and south-west of Al-
+Khafjy and covers an area of 240 km (E-W) ¡Á 130 km (N-S). The climate
+conditions follow a W-E trend (Appendix Fig. A2). The average temper-
+ature slightly decreases from west to east (25¨C27 ¡ãC), and the average
+humidity and wind speed increase from west to east (30¨C42% and
+1.86¨C2.28 m s 1, respectively). No change is observed for sunshine
+hours when western and eastern areas are compared. This leads to an
+overall increasing W-E trend of reference evapotranspiration (2160¨C
+2400 mm yr 1). Rainfall is highest in the W and lowest in the E (108¨C
+132 mm yr 1). Data on the monthly crop irrigation requirements
+(IRRprod) are available from a nationwide dataset of 3758 irrigated
+sites in Saudi Arabia for 19 major crops and various planting dates
+¡°SPARE:WATER/Plot-
+(www.uni-giessen.de/cms/hydro/download,
+scale irrigation requirements KSA¡±) [14]. In detail, this database holds
+values on IRRprod on the basis of high resolution gridded environmental
+data (0.063¡ã) and long term climatic observations averaged from 1986
+to 2006. The data shows a good t in comparison to other modelling
+studies and eld information in Saudi Arabia [14]. IRReff and the irriga-
+tion technology are uniform in space, but with varying values among
+crop types. We have assumed modern irrigation technology, i.e. sprin-
+kler irrigation for cereals and fodder crops as well as drip irrigation for
+vegetables and fruits. The respective efciencies are 0.70 and 0.85 for
+sprinkler and drip systems [54,55]. The data on crop yields were taken
+from statistics for each province in Saudi Arabia derived from the Min-
+istry of Agriculture for the year 2011. Prices of the crops were taken
+from the FAOSTAT database [56] for Saudi Arabia, derived from the glob-
+al average, or taken from other open-access sources if national prices
+were missing for specic crops (Fig. A4). Transport costs were derived
+from the vertical and horizontal pumping cost of water,
+i.e.,
+0.05 US$ m 3 100 km horizontal and 100 m vertical [20] (Appendix
+Fig. A1). The desalination cost for RO was recently reported to be 0.5
+to 1.2 US$ m 3 for RO [19]. Thus, we assumed desalination costs of
+0.75 US$ m 3. The daily production of Al-Khafjy was assumed to be
+60,000 m3 day 1 (21,900,000 m3 yr 1) with an electric conductivity
+of 1.0 dS m 1 (1.0 dS m 1¨C640 mg L 1).
+We address two strategies to derive GM maximized cropping pat-
+terns. With Strategy I, we aim to maximize the GM and to use 95% of
+the available water from the desalination plant. Such a strategy may
+be important, particularly when no capacity for storing surplus water
+is available. All three of the boundary conditions in Eqs. (5)¨C(7) are con-
+sidered. Strategy II aims to solely maximize the gross margin and refers
+to Eqs. (5) and (7) only.
+
+3. Results
+
+3.1. Monthly irrigation demand and gross margin
+
+A cropping pattern was derived for Strategy I, i.e., maximizing GM by
+using most of the available water given the limited available cropland.
+The annual water consumption of the resulting cropping pattern sums
+to 21.318 Mio m3 yr 1 for one year (92% of the annual water supply
+
+Table 1
+Model input data.
+
+Data
+
+Net irrigation
+requirements
+Irrigated elds
+Crop yields
+
+Prices
+
+Desalination
+costs
+Water transport
+costs
+
+Reference
+
+[5,14]
+
+Siebert et al. [53]
+Ministry of
+Agriculture, Saudi
+Arabia
+FAOSTAT [56]
+
+Ghaffour et al. [19]
+
+Zhou and Tol [20]
+
+Description
+
+3758 sites, 19 major crops, different
+sowing dates
+Gridded map, 0.083¡ã, ~ 10 ¡Á 10 km
+19 major crops, average values
+between 2000 and 2011
+
+Country specic for Saudi Arabia and
+global average prices (Fig. A3)
+0.5¨C1.2 US$ m 3, reverse osmosis
+
+0.05 US$ m 3 100 km horizontal and
+100 m vertical (Fig. A1)
+
+from the desalination plant) (Fig. 2a,c). This represents the optimal so-
+lution with a GM of 92.071 Mio US$ yr 1 (Fig. 2b). Tomatoes share have
+a GM of 88.03 Mio US$ yr 1, the highest fraction of GM, and are highly
+productive (~ 30,000 US$ ha 1) (Table 2). They are grown on 71% of the
+cultivated land (Fig. 2d). The total area cultivated sums to 4278 ha
+(Table 2). Tomatoes are planted throughout most of the year, from Oc-
+tober to February. Sesame covers 11.3% of the remaining cropland, and
+millet, maize, cucumber and barley the rest of it. Most of the water is
+consumed by tomatoes (49%), followed by sesame (25%) and millet
+(13%) (Fig. 2a, c). Notably, 10% of the cropland (sesame) consumes
+25% of the available water. The production of sesame is economically
+not feasible, with a negative GM of  3732 US$ ha 1 (Table 2). This is
+also the case for barley ( 3877 US$ ha 1)
+and maize
+( 8287 US$ ha 1). The boundary condition that all of the available
+water should be consumed (Eq. (5)) leads to the cultivation of these
+economically unproductive crops. Hence, we investigated a second
+strategy without needing to use all of the available water.
+The sole maximization of the GM under limited land and water
+availability in Strategy II leads to total an annual water consumption
+of 16.945 Mio m3 yr 1 (Fig. 3a,c). This is 77% of the available water
+from desalination, providing a total GM of 125.131 Mio US$ yr 1 (Fig.
+3b). Tomatoes (43%), cucumbers (56%) and a small fraction of millet
+(2%) constitute the majority of the GM (Table 2). The distribution of
+water demands across cultivated crops shows a different partitioning
+compared to that of Strategy I as reported in Table 2. A high fraction of
+IRRgross is attributed to millet (25%), despite its low share (12%) of the
+total harvested area. In contrast, tomatoes require the same portion of
+IRRgross but cover 45% of the harvest area. Cucumber and tomatoes are
+grown on 4022 ha (almost 90% of the cultivated cropland) (Fig. 3d). Cul-
+tivating cucumber achieves the highest economic yield of approximate-
+ly 39,000 US$ ha 1 compared to that of tomatoes (~ 30,000 US$ ha 1),
+but this is associated with a nearly two-times-higher water demand
+(4734 m3 ha 1) compared to that of tomatoes (2604 m3 ha 1). The
+lowest economic yield is achieved with millet (4754 US$ ha 1), paired
+with the highest water demand (9053 m3 ha 1) of all crops in Strategy
+II (Table 2). Nevertheless, the GM is still positive, which is not the case
+for millet in Strategy I.
+
+3.2. Regional allocation and comparative advantages
+
+The regional distribution of the cropping pattern for Strategy I is shown
+in Fig. 4a. The crops are cultivated along the edges of the available cropland
+in the NW, W and SE. The boxplots in Fig. 4b illustrate the span of IRRgross
+on all of the potentially cultivated cropland (grey shaded area in Fig. 4a).
+Asterisks indicate the average IRRgross of the actually cultivated areas as al-
+located by the simplex algorithm. Some crops are cultivated in elds,
+which have a higher IRRgross compared to the average IRRgross of the entire
+cropland, as shown in Fig. 4b by the asterisks that are outside of the
+boxplots to the right. This is the case for barley, maize, millet and sesame,
+where the average IRRgross of cultivated crops is higher than the average of
+the potential areas by 54, 12, 26 and 46%, respectively. These crops are cul-
+tivated on less productive areas regarding irrigation demand. Other crops,
+such as cucumber and tomatoes, are in most cases grown in comparable
+productive areas, as shown by the low average IRRgross of the cultivated
+areas, which lies within the limits of the IQR of all potential areas or
+which is even lower than the average of the potential areas, such as for
+cucumber.
+A likely reason for the heterogeneous spatial allocation of the crops
+is the producer price. Cucumber and tomatoes are cash crops with the
+highest prot compared to that of cereals, such as millet. These crops
+are allocated to the areas with the best growing conditions as deter-
+mined by the simplex algorithm. Another reason is the boundary condi-
+tion ¡®use all available water.¡¯ This condition may lead to situations where
+a better location for crop growth (i.e., lower IRRgross) is not selected for a
+specic crop because it would not be in agreement with the boundary
+condition. To test this hypothesis, the impact of WUmin on the regional
+
+126
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+Fig. 2. Optimization of the GM and water supply according to Strategy I (¡®maximize gross margin and water use¡¯; ¡®use all available water¡¯; and ¡®limited available cropland¡¯). The monthly
+water demand of crops is shown in (a). The annual gross margin GM, gross irrigation IRRgross, and harvest area are depicted in (b), (c) and (d), respectively.
+
+distribution of crops was investigated. We set WUmin = 0.85 in a second
+model run with all other parameters xed (results not shown). In this
+case, tomatoes were also grown on elds with a lower IRRgross than
+the average of the potential arable areas. This supports our interpreta-
+tion, and we conclude that maximizing water utilization can lead to
+the cultivation of crops in comparable marginal arable elds in order
+to maintain the boundary conditions.
+The second strategy shows a different result regarding the spatial
+distribution of actually cultivated areas. These areas are concentrated
+towards the W and NW of the available cropland (Fig. 5a). The elds se-
+lected by the algorithm also provide the best growing conditions. This is
+represented by the low average IRRgross (asterisks in Fig. 4b and Fig. 5b)
+of the actually cultivated areas (cucumber Feb.: 5068 m3 ha 1, cucum-
+ber Sep.: 4352 m3 ha 1, tomato Nov.: 2428 m3 ha 1, tomato Oct.:
+2772 m3 ha 1) compared to the IRRgross of all of the potentially cultivat-
+ed cropland (represented by the boxplots in Fig. 4b and Fig. 5b). An ex-
+ception is millet, which is sown in areas where the average IRRgross is
+25% higher than the average of all regions. This nding for millet is sim-
+ilar to Strategy I, where cereals with a lower economic value are sown in
+the less productive areas.
+Another interesting aspect is the general preference of cropland in
+the W and NW. These areas have nearly the highest cost for pumping
+water from the desalination plant in Al-Khafjy to the cropland (Appen-
+dix Fig. A1). However, the reason for the preferable cultivation is the
+better environmental conditions, i.e., higher rainfall rates and lower
+
+Table 2
+Per hectare results and percentage of total.
+
+Crop
+
+Gross margin
+GM
+[US$ ha 1]
+
+IRRgross
+
+[m3 ha 1]
+
+Harvest
+area
+[ha yr 1]
+
+IRRgross Harvest
+area
+[%]
+
+[%]
+
+Strategy I: Maximize gross margin and water use on limited available land
+Barley Dec
+-3877
+5825
+254
+6.9%
+5.9%
+Cucumber
+39,405
+4494
+154
+3.2%
+3.6%
+Sep
+Maize Mar
+Millet
+Sesame
+Tomato Feb
+Tomato Jan
+Tomato Nov
+Tomato Oct
+
+-8287
+4720
+-3732
+26,400
+28,322
+29,847
+29,656
+
+10,386
+9039
+10,830
+6016
+4963
+2939
+2813
+
+3.6%
+12.5%
+24.6%
+9.7%
+8.2%
+12.6%
+18.6%
+
+74
+295
+485
+344
+351
+914
+1406
+
+1.7%
+6.9%
+11.3%
+8.0%
+8.2%
+21.4%
+32.9%
+
+Strategy II: Maximize gross margin on limited available land
+Cucumber
+38,622
+5068
+784
+Feb
+Cucumber
+Sep
+Millet
+Tomato Nov
+Tomato Oct
+
+4754
+30,015
+29,648
+
+9053
+2432
+2775
+
+461
+1568
+208
+
+39,361
+
+4401
+
+1001
+
+23.5%
+
+19.5%
+
+26.0%
+
+24.9%
+
+24.6%
+22.5%
+3.4%
+
+11.5%
+39.0%
+5.2%
+
+potential evapotranspiration (Appendix Fig. A2) that compensate for
+these costs.
+
+4. Discussion
+
+By comparing irrigation Strategies I and II, we show that economically
+productive cropping patterns can be identied using desalinated seawater
+at costs of 0.75 US$ m3. However, using all of the available water for ir-
+rigating cropland does not necessarily lead to a higher GM, as shown in
+Strategy I, which contains crops that are economically unproductive.
+Thus, it is preferable to focus on a cropping pattern, which only maximizes
+the GM as presented in Strategy II. In this case, surplus water can be stored,
+used for domestic supply and industrial use, or applied to agricultural land
+to leach salts from the root zone to maintain soil quality.
+In our study, costs refer to desalination, water transport and revenues
+to producer prices without considering potential subsidies. The assump-
+tion is that the user of the proposed model knows the target salinity
+level of the desalination plant, the daily production and the related costs
+per cubic metre. These parameters and the producer price of eld crops
+have a signicant impact on the determination of the cropping pattern
+in view of maximizing the GM. Moreover, local environmental conditions
+alter the irrigation requirement of eld crops as well as the irrigation man-
+agement (i.e., irrigation technology, efciency, and salinity level). Due to
+the complexity of the GM estimation, a comparison with other literature
+data is difcult. Nevertheless, a rough evaluation of the economic produc-
+tivity of irrigation with desalinated seawater can be made and is helpful to
+put the results of our study into context. This evaluation was performed
+for a cash crop (tomatoes) and a cereal with a lower economic value
+(barley).
+The cropping patterns that we calculated are dominated by the harvest
+area of tomatoes and cucumber. Both have a high GM of approximately
+30,000 and 39,000 US$ ha1, respectively. These results emphasize the
+economic preference of specic vegetables. Similar results have been re-
+ported by others within a modelling study growing tomatoes with desali-
+nated brackish water from RO in Brazil [57]. The irrigation demand was
+assumed to be 5 mm day1, and the authors assumed an initial yield of
+40 t ha 1, resulting in an economic value between 42,440 (1 dS m 1)
+and 28,590 US$ ha1 (6 dS m 1) for the different salinity levels. In the
+study of an irrigation district in Spain, it was shown that the GM of barley
+varies from 245 to 327  ha1 (0.10¨C0.12  m3) [58] at costs of 0.06¨C
+0.15  m3 for water distribution, extraction and storage from a regional
+groundwater store. The authors highlight that maximum benets are
+achieved when using water efciently considering decit scheduling rath-
+er than focusing on maximum yield production because the relative pro-
+ductivity of additional irrigation decreases with higher yields. This GM is
+high compared to that of our study, as we found a negative GM
+( 3877 US$ ha1). This large difference can be attributed to a 1.7-fold-
+higher IRRgross irrigation in our study as well as the lower costs for
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+127
+
+Fig. 3. Optimization of the GM and water supply according to Strategy II (¡®maximize gross margin¡¯ and ¡®limited available cropland¡¯). The monthly water demand of crops is shown in (a).
+The annual gross margin GM, gross irrigation IRRgross, and harvest area are given in (b), (c) and (d), respectively.
+
+irrigation water and subsidies of 220  ha1 in Spain. The crop yield of bar-
+ley is comparable between both studies, at 5.8 and 6.5 t ha1 in Saudi Ara-
+bia and Spain, respectively. This value is similar for similar crops, such as
+wheat. In particular, low water costs lead to an economically valuable pro-
+duction of barley in Spain. This is not possible using rather expensive de-
+salinated water, as is available in Saudi Arabia. We acknowledge that the
+environmental conditions and economic boundary conditions (subsidies,
+cost for irrigation water, prices, crop yield, etc.) are not comparable to
+those of our study, but this comparison emphasizes the general applicabil-
+ity of optimization models to solve water allocation problems.
+We also acknowledge that we did not consider other costs related to
+farming practice, e.g., pesticides, fertilization, labour, machinery, harvest-
+ing, and seeding and irrigation techniques, which may alter our results. In
+particular, fertilization might play a major role because most minerals are
+removed through the RO process. The additional minerals (Mg and Ca)
+that need to be added to the irrigation water may cost approximately
+0.09 US$ m 3 [59]. Alternatively, water blending with brackish water
+has been reported as a method to add missing minerals [59,60]. However,
+such a strategy could in turn increase the salt load to the rooting zone.
+Crop selection, in particular that of salt-tolerant crop types [61], could
+then become important.
+As with all modelling studies, the quality of our results depends on the
+input data, parameter uncertainty and model structural errors. For exam-
+ple, different model structures and parametrizations can vary the predic-
+tion of the irrigation demand of elds crops [62]. This is likely to feed
+back into the results of the optimization algorithm and could be addressed
+in future work by ensemble modelling and model-averaging techniques
+
+[62¨C64]. The cropping patterns derived by our optimization process are
+unique. However, they could be biased by only slight advantages in the
+model outputs of a target variable, e.g., a certain crop gains a minimal ad-
+ditional GM compared to that of another crop and will be therefore select-
+ed by the algorithm. Solutions with a slightly less favourable GM are not
+considered, even though they might be more robust in view of other
+model uncertainties. Such changes have been denoted as parameter per-
+turbations [65], and it is important to nd ¡®robust¡¯ solutions that are inde-
+pendent of such perturbations. Robust optimization [66] has been
+highlighted in the frame of water resource planning to address such un-
+certainties, e.g., for designing optimal groundwater remediation systems
+[67]. Overall, a comprehensive uncertainty assessment, including a
+fuzzy-based selection of non-perfect cropping patterns, is needed and
+should be considered in future model development.
+The production of desalinated seawater remains expensive, and its ap-
+plication for irrigation is justied considering other aspects of sustainabil-
+ity in addition to the solely economic balance.
+
+1. Irrigation agriculture in Saudi Arabia currently relies on pumping fos-
+sil, non-renewable groundwater [43]. This results in a highly unsus-
+tainable groundwater depletion [6].
+2. The pumping of groundwater is energy demanding and costly. We
+therefore analysed a nationwide dataset of groundwater depths
+(Ministry of Agriculture) to quantify the total pumping cost. Assum-
+ing a pumping cost of 0.05 US$ m 3 [20] for 100 m of vertical trans-
+port, the national average cost is approximately 0.16 US$ m 1 given
+an average well depth of 311 m (Fig. A3). These costs need to be
+
+Fig. 4. Harvest area (a, grey area not cultivated) and gross irrigation (IRRgross) (b) for the cropping pattern according to Strategy I. Boxes indicate the interquartile range (IQR), and whiskers
+represent 1.5 times the IQR of the calculated IRRgross for all potentially cultivated cropland. Black stars specify the average IRRgross of the actually cultivated areas as allocated by the simplex
+algorithm.
+
+128
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+Fig. 5. Harvest area (a, grey area not cultivated) and gross irrigation (IRRgross) (b) for the cropping pattern according to Strategy II. Boxes indicate the interquartile range (IQR), and
+whiskers represent 1.5 times the IQR of the calculated IRRgross for all potentially cultivated cropland. Black stars specify the average IRRgross of the actually cultivated areas as allocated
+by the simplex algorithm.
+
+considered when comparing desalinated water use with pumping
+groundwater for irrigation.
+3. The production of agricultural commodities for local markets can in-
+crease self-sufciency and foster independence from the global food
+market and resilience against price shocks. For example, the national
+food consumption of
+tomatoes
+sums
+to
+approximately
+790,000 t yr 1 [56] in Saudi Arabia. According to Strategy II, an
+area of 1776 ha can be cultivated with tomatoes, equal to 7% of the
+national consumption but only approximately 0.2% of the total culti-
+vated area (0.75 Mio ha in 2011). Hence, facilitating at least a partial
+self-sufciency for some cash crops and staple food commodities
+may be viable using desalinated seawater. Such developments are
+important because Saudi Arabia relies on foreign water resources.
+Mekonnen and Hoekstra [68] estimated that 66% of the national
+water footprint of consumption (i.e., water consumed by goods and
+services inside and outside of the country) is related to the import
+of services and goods (1995¨C2001). Such a combined analysis of de-
+salination in the frame of the water-food nexus has been highlighted
+for irrigation agriculture in Australia [23] and might be of importance
+for Saudi Arabia and other countries.
+
+In this study, the focus was on the determination of optimal
+cropping patterns, i.e., crop selection. The importance of the latter has
+been recently highlighted for Gulf Cooperation Council countries in
+order to improve the efciency of domestic food production [69], dem-
+onstrating the need for optimization tools for planning cropping pat-
+terns based on environmental and economic aspects as presented here.
+
+be further extended to any irrigation problem for which a number of
+boundary conditions are given (e.g., legally xed allocation of the
+amount of irrigation water, total available water from reservoirs or sur-
+face waters, or reduced water resource availability due to climate
+change).
+Currently, the costs for desalination vary with different systems,
+plant size and many other factors [19¨C21]. The increasing use of solar
+energy will further alter these costs. Vast solar energy investments
+are, for example, planned in Saudi Arabia [70], aiming at a high capacity
+of 41 GW. A global perspective of the applicability of solar desalination
+indicated that MENA countries are highly amenable to such systems
+[71]. This will likely decrease desalination costs and therefore change
+optimal cropping patterns. Spatial decision support systems, such as
+SPARE:WATER [5],
+in combination with economic optimization
+methods as proposed in this study, are helpful for evaluating the feasi-
+bility of solar-driven seawater desalination and for use in irrigation ag-
+riculture in the future.
+
+Acknowledgements
+
+The authors gratefully acknowledge the support of the King
+Abdulaziz City for Science and Technology (KACST), Saudi Arabia, for
+funding the research Project No. 33-900 entitled ¡°Technology for desa-
+linated seawater use in agriculture¡± (http://www.kacst.edu.sa/eng/RC/
+WERI/pages/NCWTDT.aspx).
+
+5. Conclusions
+
+Appendix A. Appendix
+
+The proposed sDSS represents a newly developed tool to maximize
+GM by optimizing cropping patterns under limited land and water
+availability for desalinated water use in agriculture. This model is driven
+by data on local crop water requirements, and the user can set specic
+parameters regarding irrigation management, i.e., irrigation technology,
+efciency, salinity control and crop salt tolerance. All of these parame-
+ters are important when managing agriculture and water use in the Ara-
+bian Peninsula [12].
+A desalination plant is dened by its daily water production, water
+price and water quality. Using a straightforward approach, our tool
+can be easily adapted to other desalination plants and may be useful
+to investigate the optimal water use of other systems. Optimization
+has shown that crops could be cultivated even far from the desalination
+plant. Hence, spatial aspects and distances should be considered when
+optimizing desalinated seawater use in agriculture. This concept can
+
+Fig. A1. Transport costs for pumping water from the Al-Khafjy desalination plant to
+agricultural elds.
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+129
+
+Fig. A2. Annual climatic conditions at irrigated elds close to Al-Khafjy (ETo = reference evapotranspiration; data from the Presidency of Meteorology & Environment, PME, Saudi Arabia).
+
+Fig. A3. Groundwater (GW) depths and associated pumping costs in Saudi Arabia. The pumping costs were calculated according to costs of 0.05 US$ m1 for vertical transport [20] [data
+source for groundwater depths: Ministry of Agriculture, Saudi Arabia].
+
+130
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+Fig. A4. Producer prices of crops according to information given by FAOSTAT [56].
+
+References
+
+[1] D. Headey, S. Fan, Anatomy of a crisis: the causes and consequences of surging food
+prices, 2008. Agric. Econ. 39 375¨C391, http://dx.doi.org/10.1111/j.1574-0862.2008.
+00345.x.
+[2] J. Von Braun, The food crisis isn't over, 2008. Nature 456 701, http://dx.doi.org/10.
+1038/456701a.
+[3] Y. Wada, M.F. Bierkens, Sustainability of global water use: past reconstruction and
+future projections, 2014. Environ. Res. Lett. 9 104003, http://dx.doi.org/10.1088/
+1748-9326/9/10/104003.
+[4] S. Suweis, A. Rinaldo, A. Maritan, P. D'Odorico, Water-controlled wealth of nations,
+2013. Proc. Natl. Acad. Sci. USA 110 4230¨C4233, http://dx.doi.org/10.1073/pnas.
+1222452110.
+[5] S. Multsch, Y.A. Al-Rumaikhani, H.-G. Frede, L. Breuer, A Site-specic Agricultural
+water Requirement and footprint Estimator (SPARE: WATER 1.0), 2013. Geosci.
+Model Dev. 6 1043¨C1059, http://dx.doi.org/10.5194/gmd-6-1043-2013.
+[6] Y. Wada, L.P.H. Beek, M.F. Bierkens, Nonsustainable groundwater sustaining irriga-
+tion: A global assessment, 2012. Water Resour. Res. 48 W00L06, http://dx.doi.org/
+10.1029/2011WR010562.
+[7] M. Elimelech, W.A. Phillip, The future of seawater desalination: energy, technology,
+and the environment, 2011. Science 333 712¨C717, http://dx.doi.org/10.1126/
+science.1200488.
+[8] M.A. Dawoud, Water import and transfer versus desalination in arid regions: GCC
+countries case study, 2011. Desalin. Water Treat. 28 153¨C163, http://dx.doi.org/10.
+5004/dwt.2011.2156.
+[9] M. Bazilian, H. Rogner, M. Howells, S. Hermann, D. Arent, D. Gielen, P. Steduto, A.
+Mueller, P. Komor, R.S.J. Tol, K.K. Yumkella, Considering the energy, water and
+food nexus: towards an integrated modelling approach, 2011. Energ Policy 39
+7896¨C7906, http://dx.doi.org/10.1016/j.enpol.2011.09.039.
+[10] V. Mart¨ªnez-Alvarez, B. Martin-Gorriz, M. Soto-Garc¨ªa, Seawater desalination for
+crop irrigation¡ªa review of current experiences and revealed key issues, 2016. De-
+salination 381 58¨C70, http://dx.doi.org/10.1016/j.desal.2015.11.032.
+[11] S. Burn, M. Hoang, D. Zarzo, F. Olewniak, E. Campos, B. Bolto, O. Barron, Desalination
+techniques¡ªa review of the opportunities for desalination in agriculture, 2015. De-
+salination 364 2¨C16, http://dx.doi.org/10.1016/j.desal.2015.01.041.
+[12] A.A. Jaradat, Saline agriculture in the Arabian Peninsula: management of marginal
+lands and saline water resources, J. Food Agric. Environ. 3 (2005) 302¨C306.
+[13] S. Multsch, Y.A. Alrumaikhani, O.A. Alharbi, H.G. Frede, L. Breuer, Internal water foot-
+print assessment of Saudi Arabia using the Water footprint Assessment Framework
+(WAF), in: F. Chan, D. Marinova, R.S. Anderssen (Eds.), MODSIM2011, 19th Interna-
+tional Congress on Modelling and Simulation, Modelling and Simulation Society of
+Australia and New Zealand 2011, pp. 829¨C935.
+[14] S. Multsch, A.S. Alquwaizany, O.A. Alharbi, M. Pahlow, H.-G. Frede, L. Breuer, Water-
+saving strategies for irrigation agriculture in Saudi Arabia, 2016. Int. J. Water Resour.
+Dev. 1¨C18. , http://dx.doi.org/10.1080/07900627.2016.1168286.
+[15] R.F. Service, Desalination freshens up, 2006. Science 313 1088, http://dx.doi.org/10.
+1126/science.313.5790.1088.
+[16] D.L. Shaffer, N.Y. Yip, J. Gilron, M. Elimelech, Seawater desalination for agriculture by
+integrated forward and reverse osmosis: improved product water quality for poten-
+tially less energy, 2012. J. Membr. Sci. 415 1¨C8, http://dx.doi.org/10.1016/j.memsci.
+2012.05.016.
+[17] F. Trieb, H. M¨¹ller-Steinhagen, J. Kern, J. Scharfe, M. Kabariti, A. Al Taher, Technolo-
+gies for large scale seawater desalination using concentrated solar radiation, 2009.
+Desalination 235 33¨C43, http://dx.doi.org/10.1016/j.desal.2007.04.098.
+[18] M.A. Eltawil, Z. Zhengming, L. Yuan, A review of renewable energy technologies in-
+tegrated with desalination systems, 2009. Renew. Sust. Energ. Rev. 13 2245¨C2262,
+http://dx.doi.org/10.1016/j.rser.2009.06.011.
+[19] N. Ghaffour, T.M. Missimer, G.L. Amy, Technical review and evaluation of the eco-
+nomics of water desalination: current and future challenges for better water supply
+sustainability, 2013. Desalination 309 197¨C207, http://dx.doi.org/10.1016/j.desal.
+2012.10.015.
+
+[20] Y. Zhou, R.S. Tol, Evaluating the costs of desalination and water transport, 2005.
+Water Resour. Res. 41. , http://dx.doi.org/10.1029/2004WR003749.
+[21] I.C. Karagiannis, P.G. Soldatos, Water desalination cost literature: review and assess-
+ment, 2008. Desalination 223 448¨C456, http://dx.doi.org/10.1016/j.desal.2007.02.
+071.
+[22] M. Garc¨ªa-Vila, E. Fereres, Combining the simulation crop model AquaCrop with an
+economic model for the optimization of irrigation management at farm level, 2012.
+Eur. J. Agron. 36 21¨C31, http://dx.doi.org/10.1016/j.eja.2011.08.003.
+[23] O. Barron, R. Ali, G. Hodgson, D. Smith, E. Qureshi, D. McFarlane, E. Campos, D. Zarzo,
+Feasibility assessment of desalination application in Australian traditional agricul-
+ture, Desalination 364 (2015) 33¨C45.
+[24] A.Z. Salman, E. Al-Karablieh, Measuring the willingness of farmers to pay for
+groundwater in the highland areas of Jordan, 2004. Agric. Water Manag. 68
+61¨C76, http://dx.doi.org/10.1016/j.agwat.2004.02.009.
+[25] S.-F. Kuo, C.-W. Liu, Simulation and optimization model for irrigation planning and
+management, 2003. Hydrol. Process. 17 3141¨C3159, http://dx.doi.org/10.1002/hyp.
+1269.
+[26] I.J. Lorite, L. Mateos, F. Orgaz, E. Fereres, Assessing decit irrigation strategies at the
+level of an irrigation district, 2007. Agric. Water Manag. 91 51¨C60, http://dx.doi.org/
+10.1016/j.agwat.2007.04.005.
+[27] S. Geerts, D. Raes, Decit irrigation as an on-farm strategy to maximize crop water
+productivity in dry areas, 2009. Agric. Water Manag. 96 1275¨C1284, http://dx.doi.
+org/10.1016/j.agwat.2009.04.009.
+[28] D. Raes, P. Steduto, T.C. Hsiao, E. Fereres, AquaCrop the FAO crop model to simulate
+yield response to water: II. Main algorithms and software description, 2009. Agron.
+J. 101 438¨C447, http://dx.doi.org/10.2134/agronj2008.0140s.
+[29] P. Steduto, T.C. Hsiao, D. Raes, E. Fereres, AquaCrop¡ªThe FAO crop model to simulate
+yield response to water: I. Concepts and underlying principles, 2009. Agron. J. 101
+426¨C437, http://dx.doi.org/10.2134/agronj2008.0139s.
+[30] J. Reca, J. Rold¨¢n, M. Alcaide, R. L¨®pez, E. Camacho, Optimisation model for water al-
+location in decit irrigation systems: I. Description of the model, 2001. Agric. Water
+Manag. 48 103¨C116, http://dx.doi.org/10.1016/S0378-3774(00)00126-8.
+[31] A. Pandey, M. Ostrowski, R.P. Pandey, Simulation and optimization for irrigation and
+crop planning, 2012. Irrig. Drain. 61 178¨C188, http://dx.doi.org/10.1002/ird.633.
+[32] M. Smith, CROPWAT: A Computer Program for Irrigation Planning and Manage-
+ment, Food and Agriculture Organization of the United Nations, Rome, 1992.
+[33] Z. Shangguan, M. Shao, R. Horton, T. Lei, L. Qin, J. Ma, A model for regional optimal
+allocation of irrigation water resources under decit irrigation and its applications,
+2002. Agric. Water Manag. 52 139¨C154, http://dx.doi.org/10.1016/S0378-
+3774(01)00116-0.
+[34] S. Shang, X. Mao, Application of a simulation based optimization model for winter
+wheat irrigation scheduling in North China, 2006. Agric. Water Manag. 85
+314¨C322, http://dx.doi.org/10.1016/j.agwat.2006.05.015.
+[35] A. Singh, Irrigation planning and management through optimization modelling,
+2014. Water Resour. Manag. 28 1¨C14, http://dx.doi.org/10.1007/s11269-013-
+0469-y.
+[36] A. Singh, Simulation¨Coptimization modeling for conjunctive water use manage-
+ment, 2014. Agric. Water Manag. 141 23¨C29, http://dx.doi.org/10.1016/j.agwat.
+2014.04.003.
+[37] P.D. Brown, T.A. Cochrane, T.D. Krom, Optimal on-farm irrigation scheduling with a
+seasonal water limit using simulated annealing, 2010. Agric. Water Manag. 97
+892¨C900, http://dx.doi.org/10.1016/j.agwat.2010.01.020.
+[38] G.B. Dantzig, Application of the simplex method to a transportation problem, Activ-
+ity Analysis of Production and Allocation, 13, 1951, pp. 359¨C373.
+[39] G.B. Dantzig, A. Orden, P. Wolfe, The generalized simplex method for minimizing a
+linear form under linear inequality restraints, Pac. J. Math. 5 (1955) 183¨C195.
+[40] S.H.R. Sadeghi, K. Jalili, D. Nikkami, Land use optimization in watershed scale, 2009.
+Land Use Policy 26 186¨C193, http://dx.doi.org/10.1016/j.landusepol.2008.02.007.
+[41] D. Khare, M.K. Jat, J.D. Sunder, Assessment of water resources allocation options:
+conjunctive use planning in a link canal command, 2007. Resour. Conserv. Recycl.
+51 487¨C506, http://dx.doi.org/10.1016/j.resconrec.2006.09.011.
+
+S. Multsch et al. / Desalination 404 (2017) 121¨C131
+
+131
+
+[42] Y. Chen, X. Li, W. Su, Y. Li, Simulating the optimal land-use pattern in the farming-
+pastoral transitional zone of Northern China, 2008. Comput. Environ. Urban. Syst.
+32 407¨C414, http://dx.doi.org/10.1016/j.compenvurbsys.2008.01.001.
+[43] M.F. Al-Rashed, M.M. Sherif, Water resources in the GCC countries: an overview,
+59¨C75, http://dx.doi.org/10.1023/A:
+2000. Water Resour. Manag.
+14
+1008127027743.
+[44] FAO, UNESCO, The Digital Soil Map of the World, ((C) FAO/UNESCO, 1995, Version
+3.6.), 2003.
+[45] G. Muoz, J. Grieser, Climwat 2.0 for CROPWAT, FAO of the UN, Rome, Italy, 2006.
+[46] R.G. Allen, L.S. Pereira, D. Raes, M. Smith, Crop Evapotranspiration-Guidelines for
+Computing Crop Water Requirements-Fao Irrigation and Drainage Paper 56, 300,
+FAO, Rome, 1998 6541.
+[47] W.W. Wallender, K.K. Tanji, Agricultural Salinity Assessment and Management,
+American Society of Civil Engineers (ASCE), 2011.
+[48] G. Hussain, A. Alquwaizan, A. Al-Zarah, Guidelines for irrigation water quality and
+water management in the Kingdom of Saudi Arabia: an overview, J. Appl. Sci. 10
+(2010) 79¨C96.
+[49] J. Letey, G.J. Hoffman, J.W. Hopmans, S.R. Grattan, D. Suarez, D.L. Corwin, J.D. Oster, L.
+Wu, C. Amrhein, Evaluation of soil salinity leaching requirement guidelines, Agric.
+Water Manag. 98 (2011) 502¨C506.
+[50] T.A. Howell, Irrigation Efciency, Encyclopedia of Water Science, 2003. Marcel Dek-
+ker, New York, 2003 467¨C472, http://dx.doi.org/10.1016/j.agwat.2010.08.009.
+[51] R.S. Ayers, D.W. Westcot, Water Quality for Agriculture, Food and Agriculture Orga-
+nization of the United Nations, Rome, 1985.
+[52] E. Jones, T. Oliphant, P. Peterson, SciPy: Open source Scientic Tools for Python,
+(Http://www.Scipy.Org/), 2001.
+[53] S. Siebert, V. Henrich, K. Frenken, J. Burke, Global Map of Irrigation Areas version 5,
+2, Rheinische Friedrich-Wilhelms-University, Bonn, Germany/Food and Agriculture
+Organization of the United Nations, Rome, Italy, 2013 1299¨C1327.
+[54] C. Brouwer, K. Prins, M. Heibloem, Irrigation Water Management: Irrigation Sched-
+uling, FAO Land and Water Development Division, 1989.
+[55] A.A. Al-Zeid, E.U. Quintana, M.I. Abu Khate, M.N. Nimah, F.H. Al-Samerai, I.I. Bashour,
+Crop Water Requirement for Principle Crops in Saudi Arabia, Ministry of Agriculture
+and Water, Riyadh, 1988.
+[56] FAO, FAOSTAT, Food and Agriculture Organization of the United Nations (FAO),
+(Website accessed on [2015/05/05], Rome), 2015.
+[57] T.M. Soares, C. Almeida, J.A. Frizzone, E.F.F. Silva, S.N. Duarte, Economic risk analysis
+of tomato irrigation using desalinated water by reverse osmosis, 2013. Irrig. Drain.
+62 658¨C665, http://dx.doi.org/10.1002/ird.1764.
+[58] J.F.O. Alvarez, J.A. de Juan Valero, J.M.T. Mart¨ªn-Benito, E.L. Mata, MOPECO: an eco-
+nomic optimization model for irrigation water management, 2004. Irrig. Sci. 23
+61¨C75, http://dx.doi.org/10.1007/s00271-004-0094-x.
+
+[59] U. Yermiyahu, A. Tal, A. Ben-Gal, J. Tarchitzky, O. Lahav, Rethinking desalinated
+water quality and agriculture, Science 318 (2007) 920¨C921.
+[60] A. Ben-Gal, U. Yermiyahu, S. Cohen, Fertilization and blending alternatives for irriga-
+tion with desalinated water, 2009. J. Environ. Qual. 38 529¨C536, http://dx.doi.org/
+10.2134/jeq2008.0199.
+[61] J. Rozema, T. Flowers, Crops for a salinized world, Science 322 (2008) 1478¨C1480.
+[62] S. Multsch, J.-F. Exbrayat, M. Kirby, N.R. Viney, H.-G. Frede, L. Breuer, Reduction of
+predictive uncertainty in estimating irrigation water requirement through multi-
+model ensembles and ensemble averaging, 2015. Geosci. Model Dev. 8
+1233¨C1244, http://dx.doi.org/10.5194/gmd-8-1233-2015.
+[63] J.F. Exbrayat, N.R. Viney, H.G. Frede, L. Breuer, Using multi-model averaging to im-
+prove the reliability of catchment scale nitrogen predictions, 2013. Geosci. Model
+Dev. 6 117¨C125, http://dx.doi.org/10.5194/gmd-6-117-2013.
+[64] J.A. Huisman, L. Breuer, H. Bormann, A. Bronstert, B.F.W. Croke, H.-G. Frede, T. Grff,
+L. Hubrechts, A.J. Jakeman, G. Kite, Assessing the impact of land use change on hy-
+drology by ensemble modeling (LUCHEM) III: scenario analysis, 2009. Adv. Water
+Resour. 32 159¨C170, http://dx.doi.org/10.1016/j.advwatres.2008.06.009.
+[65] K. Deb, H. Gupta, Introducing robustness in multi-objective optimization, 2006. Evol.
+Comput. 14 463¨C494, http://dx.doi.org/10.1162/evco.2006.14.4.463.
+[66] D.W. Watkins, D.C. McKinney, Robust optimization for incorporating risk and uncer-
+tainty in sustainable water resources planning, IAHS Publ. 231 (1995) 225¨C232.
+[67] K.L. Ricciardi, G.F. Pinder, G.P. Karatzas, Efcient groundwater remediation system
+design subject to uncertainty using robust optimization, 2007. J. Water Resour.
+Plan. Manag.
+133
+253¨C263,
+http://dx.doi.org/10.1061/(ASCE)0733-
+9496(2007)133:3(253).
+[68] M.M. Mekonnen, A.Y. Hoekstra, National water footprint accounts: the green, blue
+and grey water footprint of production and consumption, Value of Water Research
+Report Series No. 47, UNSECO-IHE, Delft, 2011.
+[69] O. Saif, T. Mezher, H.A. Arafat, Water security in the GCC countries: challenges and
+opportunities, 2014. J. Environ. Stud. Sci. 4 329¨C346, http://dx.doi.org/10.1007/
+s13412-014-0178-8.
+[70] S. AlYahya, M.A. Irfan, The techno-economic potential of Saudi Arabia's solar indus-
+try, 2016. Renew. Sust. Energ. Rev. 55 697¨C702, http://dx.doi.org/10.1016/j.rser.
+2015.11.017.
+[71] A. Pugsley, A. Zacharopoulos, J.D. Mondol, M. Smyth, Global applicability of solar de-
+salination, 2016. Renew. Energy 88 200¨C219, http://dx.doi.org/10.1016/j.renene.
+2015.11.017.
+

@@ -1,0 +1,3917 @@
+A variable forgetting factor diffusion recursive least squares algorithm  for distributed estimation 
+
+Y.J. Chu, C.M. Mak 
+
+
+Department of Building Services Engineering, The Hong Kong Polytechnic University, Hung Hom, Kowloon, Hong Kong 
+
+article
+
+info
+
+Article history: 
+Received 7 March 2017 
+Revised 25 April 2017 
+Accepted 7 May 2017 
+Available online 16 May 2017 
+
+Keywords: 
+Adaptive networks 
+Diffusion RLS 
+MSD analysis 
+VFF 
+
+abstract
+
+Distributed recursive least squares (RLS) algorithms have superior convergence properties compared to 
+the least mean squares (LMS) counterpart. However, with a xed forgetting factor (FF), they are not suit- 
+able for tracking time-varying (TV) parameters. This paper proposes a novel diffusion variable FF RLS 
+(Diff-VFF-RLS) algorithm based on a local polynomial modeling (LPM) of the unknown TV system. The 
+diffusion RLS solution is derived analytically such that the estimation deviation from the true value is in- 
+vestigated. Based on the analysis and the LPM of the TV system, a new optimal VFF formula that tries to 
+minimize the estimation deviation is obtained. Simulations are conducted to verify the theoretical anal- 
+ysis in terms of the steady-state mean square deviation (MSD) and the VFF formula. Results also show 
+that the convergence and tracking performance of the proposed algorithm compares favorably with con- 
+ventional ones. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Distributed estimation over ad hoc adaptive networks is an at- 
+tractive and challenging problem, where a collection of networked 
+nodes can interact locally and adapt to track parameters of interest 
+in a collaborative way. Much attention has been paid to distributed 
+strategies and cooperation policies (combination weights) of adap- 
+tive networks [1] . Three frequently used strategies are based on the 
+incremental [2,3] , consensus [4] , and diffusion [5¨C9] techniques. 
+Diffusion strategies are particularly prominent due to their im- 
+proved robustness and enlarged stable region [1] . We hence focus 
+on this class of strategies in the rest of the paper. 
+Algorithms based on diffusion strategies update the estimate at 
+each node in the network mainly in two steps [1] : adaptation and 
+combination. According to the order of the two steps, there are two 
+different diffusion strategies called the adapt-then-combine (ATC) 
+or the combine-then-adapt (CTA) diffusion. Current research has 
+been focusing on the combination part that aims to improve es- 
+timation accuracy. A common choice for the combination weights 
+is Metropolis rules [4] . A pioneer work [5] for the diffusion recur- 
+sive least squares (RLS) algorithm seeks combination weights that 
+minimize the estimation deviation through convex optimization. A 
+similar rule for the diffusion least mean squares (LMS) algorithm 
+[7] puts more weights to nodes that are well connected and less 
+affected by noises [10] . 
+As an alternative to the research on combination policy, re- 
+search on adaptation develops techniques that accelerate the con- 
+vergence and tracking capability for a given network. A variety of 
+diffusion variable step-size (VSS) LMS-type algorithms have been 
+proposed [11¨C13] that employ larger step-sizes to have fast rate 
+when the algorithm is far from convergence while smaller ones 
+when the algorithm is close to convergence. They can be derived 
+from different optimization criteria and differ from the measure of 
+convergence used. For the RLS-type algorithms [14¨C16] , they usu- 
+ally achieve fast convergence and small mean square error (MSE) 
+in stationary environment if a large forgetting factor (FF) is used; 
+while in nonstationary environment with time-varying (TV) sys- 
+tem parameters, a relatively small FF is required to facilitate fast 
+parameter tracking. Thus, the FF needs to be made variable for TV 
+systems. A number of variable FF (VFF) techniques [17¨C20] have 
+been proposed for the single node estimation problems. For dis- 
+tributed RLS algorithms, however, only a few works that focuses 
+on adaptation schemes has been conducted. It is probably due to 
+the diculty in understanding how the topology of adaptive net- 
+works that allows nodes to interact within the neighborhood af- 
+fects the performance of the distributed adaptive algorithms. In 
+stationary environments, a detailed analysis in terms of mean and 
+mean square convergence performance has been carried out and a 
+diffusion VFF RLS (Diff-VFF-RLS) algorithm, called the ATC-LCT-RLS 
+algorithm, has been derived in a conference paper [21] . 
+This paper aims to derive a new VFF version of the Diff-RLS 
+algorithm, which has not been widely-discussed in the current lit- 
+erature. To this end, we start from nding an analytical expres- 
+
+
+Table 1 
+Summary of important symbols (in order of appearance in the paper). 
+
+Eq. (1) : 
+
+K 
+
+Number of nodes 
+
+{ d k ( n ), x k ( n ), 
+
+¦Çk ( n )} 
+
+Desired, input, and noise signals received at the k th node 
+Unknown system vector of length L 
+Length of h ( n ) and adaptive lters 
+ L 
+(n 
+)
+(n 
+ 1)] 
+T , input vector for the k th node of length L 
+Forgetting factor or variable forgetting factor 
+ 1)
+¦Ë¦Ën 
+(n 
+ , weight (at time index n ) of square errors (at time index i ) 
+Local estimate of the unknown system of length L 
+¡ÁK ), selection matrix which is right stochastic 
+Cluster averaged estimate of the unknown system of length L 
+¡Á K ), combination matrix which is left stochastic 
+(n 
+)
+(i 
+)
+(i 
+)] , weighted input covariance matrix at node k 
+(i 
+)] , input covariance matrix at node k 
+, cluster averaged input covariance matrix at node k 
+X (n 
+1 , the inverse of cluster averaged input covariance matrix at k 
+(n 
+)
+)
+)
+A column of N elements with the n th element equal to U n 
+¡Á L ), input vector of all nodes at time index n 
+(n 
+)
+(n 
+)] 
+ 1)
+¡Á L ), input signal matrix 
+ X (n 
+)
+ X (L 
+ col 
+ (( n - L 
+ 2) K 
+ diag 
+ , a diagonal matrix of order K 
+ L 
+(n 
+)
+(n 
+)
+ diag 
+¡Á 1), desired signal vector at time index n 
+ , a diagonal matrix of order ( n 
+(n 
+)
+(n 
+)] 
+ 1)
+ L 
+¡Á 1, desired signal vector 
+ col 
+ d (n 
+)
+ d (L 
+ (( n 
+ L 
+ diag 
+(n 
+)
+(n 
+)
+ , a diagonal matrix of order ( n 
+ (n 
+)
+¦Äh 
+ (n 
+)
+ , rst order derivative of the unknown system with h 
+ (n 
+)
+ E [ h 
+ (n 
+)] and 
+¦Äh 
+(1) ( n ), respectively, 
+the mean and variance of h 
+(n 
+ L 
+ L 
+ diag 
+ 1)
+ , a diagonal matrix of order ( n 
+ 1)
+ L 
+¡Á 1, modeling residue vector with 
+¦Î (n 
+)
+¦Î (L 
+¦Î (n 
+)
+ col 
+ 1)
+ (( n 
+ L 
+¡Á 1, background noise vector with 
+¦Ç(n 
+)
+¦Ç(L 
+¦Ç( n ) 
+ col 
+X (n 
+ (( n 
+¡Á L ) 
+)
+
+)
+)
+(n 
+)
+(m 
+)
+(m 
+)
+
+h ( n ) 
+L 
+
+x k ( n ) 
+
+=
+
+ [ x k 
+
+,
+
+...,
+
+ x k 
+
++
+
+Eq. (2) : 
+
+¦Ë or 
+¦Ë( n ) 
+(n 
+)
+
+¦Ën 
+i 
+
+=
+
+i 
+1 
+
+Eq. (3): 
+
+¦×
+
+ k ( n ) 
+
+C 
+
+=
+
+ { c lk } ( K 
+
+Eq. (4): 
+
+w k ( n ) 
+
+A 
+
+=
+=
+=
+=
+=
+
+ { a lk } ( K 
+1 
+¦Ën 
+i 
+i 
+ E [ x k 
+T 
+k 
+j=1 
+c jk R x _ j 
+T (n 
+k 
+
+Eq. (5) : 
+
+R X _ k 
+R x _ k 
+
+(n 
+)
+
+(cid:2)
+(cid:2)
+
+ n 
+ L 
+
+=
+
+ E [ x k 
+
+ x 
+
+T 
+k 
+
+(i 
+)
+
+ x 
+
+R
+
+ k 
+
+ K 
+
+P k ( n ) 
+
+(
+
+X
+
+)
+
+
+
+col{ U 1 ,¡­, U N } 
+X ( n ) 
+X (n 
+)
+
+=
+=
+=
+=
+=
+=
+=
+=
+
+ [ x 1 
+
+...
+
+ x K 
+
+T ( K 
+
+{
+
+,
+
+...,
+
+}
+
++
+
+C k 
+k ( n ) 
+
+{
+{
+
+ c 1 k 
+ c 2 k 
+ C k 
+
+,
+
+,
+
+...
+
+,
+
+ c K k 
+
+}
+
+,
+
+¦Ë1 
+
+ C k 
+
+,
+
+...,
+
+¦Ën 
+L 
++1 
+T ( K 
+
+ C k 
+
+}
+
++
+
+ 2 ) K 
+
+Eq. (7) : 
+Eq. (9) : 
+
+d ( n ) 
+d ( n ) 
+
+ [ d 1 
+
+,
+
+...,
+
+ d K 
+
+{
+
+,
+
+...,
+
+}
+
++
+
+ 2 ) K ) 
+
+lk ( n ) 
+(1) ( t n ) or h 
+(1) ( n ) 
+
+{
+
+¦Ë1 
+ [ A ] lk C l 
+(1)
+
+,
+
+ [ A 
+
+2 ] lk C l 
+
+,
+
+...,
+
+¦Ën 
+L 
++1 
+
+ [ A 
+
+L 
++2 ] lk C l 
+n 
+
+}
+
++
+
+ 2 ) K 
+
+Eq. (12) or (13) : 
+
+h 
+
+ h 
+
+(1)
+
++
+
+(1)
+
+=
+
+(1)
+
+(1) ( n ) 
+
+Eq. (14) : 
+
+D ¦Ó ( n ) 
+
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+
+{
+
+ 0 I K 
+
+,
+
+1 I K 
+
+,
+
+...,
+
++
+
+ I K 
+ 2 ) K ) 
+ 2 ) K ) 
+
+}
+
++
+
+ 2 ) K 
+
+¦Î ( n ) 
+¦Ç( n ) 
+(n 
+)
+
+{
+{
+
+,
+
+...,
+
+}
+}
+
++
++
+
+=
+=
+
+ [ 
+ [ 
+
+¦Î1 
+¦Ç1 
+
+(n 
+)
+(n 
+)
+
+,
+
+...,
+
+¦ÎK 
+¦ÇK 
+
+(n 
+)] 
+(n 
+)] 
+
+T 
+
+,
+
+...,
+
+,
+
+...,
+
+T 
+
+Eq. (15) : 
+Eq. (20) : 
+
+R ¦Ó _ l 
+ R X _ l 
+
+X
+
+T (n 
+
+l 
+
+(n 
+)
+
+ D ¦Ó (n 
+1 
+¦Ë2 
+m 
+m 
+n 
+l=1 
+(¦Ò 2 ¦Çl 
+ ¦Ò 2 ¦Î l 
+ R X _ l 
+ c l i c l j 
+(1)
+
+ ( L 
+ x l 
+ x 
+
+ lim 
+ E [ ||
+
+n 
+
+¡ú¡Þ
+
+(cid:2)
+
+ n 
+
+=
+
+ L 
+
+T 
+l 
+
+=
+
+¦Ë2 R x _ l 
+1 
+1 
+
+R
+
+ i j 
+¦Ò 2 ¦Äh 
+¦Ò 2 ¦Çl 
+¦Ò 2 ¦Î l 
+¦Ò 2 
+h 
+¦Ò 2 
+ l 
+
+(cid:2)
+
+ K 
+
++
+
+)
+
+¦Äh 
+2 ] , variance of h 
+(n 
+)] , variance of the background noise 
+(n 
+)] , variance of the modeling residue 
+ (n 
+)
+, variance of the unknown system 
+
+ [ n ] 
+
+|
+
+|
+
+(1) ( n ) 
+
+ E [ ¦Ç2 
+l 
+ E [ ¦Î 2 
+l 
+(1)
+¦Ò 2 ¦Çl 
+
+Eq. (21) : 
+
+(n 
+)
+
+||
+
+h 
+
+|
+
+|
+
+2 +
+
+¦Ò 2 ¦Äh 
+
++
+
+¦Ò 2 ¦Î l 
+
+sion for the solution to the Diff-RLS algorithm and discuss con- 
+ditions for the solution to be unbiased from the true value in 
+Section 2.2 Based on the solution and a local polynomial (LP) 
+modeling of the unknown system [20] , the mean square deviation 
+(MSD) of the Diff-RLS algorithm in TV environments is derived in 
+Section 2.3 An analytical formula of an optimal FF is hence ob- 
+tained by balancing the bias and variance terms in MSD. The un- 
+derlying mechanism of the combination strategy that improves the 
+estimation performance of adaptive networks is illustrated using a 
+simplied case at the end of Section 2.3 . The validity of the theo- 
+retical analysis and performance of the proposed ATC-VFF-RLS al- 
+gorithm is examined in Section 3 and conclusions are drawn in 
+Section 4 . A summary of important symbols has been listed in 
+Table 1 . 
+Overall, the main contribution of this paper is the proposed 
+ATC-VFF-RLS algorithm with improved convergence and tracking 
+capability, which is derived from the MSD analysis of the Diff-RLS 
+algorithm in TV environments. The algorithm is different from the 
+classical work [5] in that it deals with the tracking problems of 
+the conventional Diff-RLS algorithm in [5] . Although similar as- 
+sumptions have been used, the performance analysis for Diff-RLS 
+algorithms in TV environments is new and different from [5] . The 
+main differences include: (1) an analytical solution to the Diff-RLS 
+algorithm is obtained instead of the mean convergence analysis 
+in [5] ; (2) the MSD in TV environments is derived from the an- 
+alytical solution directly rather than the mean square performance 
+analysis for constant systems [5] ; and (3) conditions for an un- 
+biased RLS solution and the optimal FF formula are not claried 
+in [5] . The current work is also different from our previous paper 
+[20] which involves the LP modeling, since the adaptive network 
+
+allows gradients and estimates combination within the neighbor- 
+hood, which makes the performance analysis completely different 
+from and much more complicated than that for the single node 
+RLS algorithm in [20] . 
+
+2. The Diff-VFF-RLS algorithm 
+
+2.1. Review of the ATC-RLS algorithm 
+
+We consider a network of K connected nodes, labeled k 
+ 1, 2 
+¡­ K . The neighborhood of node k is denoted by 
+and is con- 
+nected to k by an edge. Any two neighboring nodes have the abil- 
+ity to share information through the edge. The k th node collects 
+data { d k 
+( n )} that satisfy the linear model with unknown sys- 
+tem vector h ( n ) of length L : 
+
+=
+
+N
+
+ k 
+
+( n ), x k 
+
+d k 
+
+(n 
+)
+
+=
+
+ h 
+
+T (n 
+
+)
+
+ x k 
+
+(n 
+)
+
++
+
+¦Ç
+
+k 
+
+(n 
+)
+
+(1) 
+
+ L 
+(n 
+)
+(n 
+)
+(n 
+ 1)] 
+T is the input vector, and 
+where x k 
+( n ) is the additive noise independent of { x k 
+( n )} and h ( n ). The 
+objective of the network is to estimate the TV system h ( n ) by min- 
+imizing the LS cost function 
+
+=
+
+ [ x k 
+
+,
+
+...,
+
+ x k 
+
++
+
+¦Ç
+
+k 
+
+arg min 
+
+w 
+
+n (cid:3)
+¦Ën 
+i 
+1 
+
+i 
+
+=
+
+ L 
+
+(n 
+)
+
+K (cid:3)
+=1 
+k 
+
+e 
+
+2 
+k 
+
+(i 
+)
+
+(2) 
+
+ w 
+(i 
+)
+(i 
+)
+(i 
+)
+(n 
+)
+where e k 
+ , and 
+ is the weight (at time 
+(n 
+)
+index n ) of square errors (at time index i ). 
+ serves as an 
+exponential window since it decreases exponentially towards past 
+data, and is calculated recursively by using a FF 
+¦Ë satisfying 0 
+ 1)
+<¦Ë < 1, i.e. 
+(n 
+)
+(n 
+(n 
+)
+¦Ë can be 
+ with 
+¦Ë( n ), for a better 
+made variable at each time index n , i.e. the VFF 
+
+=
+
+ d k 
+
+T x k 
+
+¦Ë
+
+i 
+n 
+
+¦Ë
+
+i 
+n 
+
+<
+
+¦Ë
+
+i 
+n 
+
+=
+
+¦Ë¦Ë
+
+i 
+1 
+n 
+
+¦Ë0 
+
+=
+
+ 1 . 
+
+Y.J. Chu, C.M. Mak / Signal Processing 140 (2017) 219¨C225 
+K (cid:3)
+K (cid:3)
+a lk [ 
+¦Ë2 a jl w j 
+l=1 
+K (cid:3)
+j=1 
+¦Ëa jl P j 
+j=1 
+
+221 
+
+Table 2 
+Diffusion ATC-RLS strategy. 
+
+Initialization for node k : 
+(0)
+¦Ä I L , with 
+¦Ä a small positive constant; 
+(0)
+ 0 is a null vector. 
+Update: 
+ 1)
+Given 
+(n 
+)
+(n 
+Adaptation at time n for l 
+(n 
+)
+(n 
+)
+
+P k 
+w k 
+
+=
+=
+
+¦×
+
+ k 
+
+=
+
+ w k 
+
+ , P k 
+
+(n 
+)
+
+=
+
+ 1)
+¦Ë(n 
+)
+(n 
+)  x 
+(n 
+
+1 P k 
+
+¡Ê
+
+N
+
+ k : 
+
+¦×
+
+ k 
+
+¡û
+¡û
+
+¦×
+
+ k 
+
++
+
+c lk 
+P k 
+ c lk 
+T 
+ c lk 
+l 
+P k 
+ c lk 
+T 
+l 
+
+(n 
+)
+(n 
+)
+x 
+(n 
+)
+(n 
+)
+(n 
+)
+x 
+
+ x l 
+ P k 
+ x 
+ P k 
+
+(n 
+)
+(n 
+)
+(n 
+)
+(n 
+)
+
+1+
+1+
+
+ x l 
+ P k 
+ x l 
+
+(n 
+)
+(n 
+)
+(n 
+)
+
+(
+
+ d l 
+
+T 
+l 
+
+(n 
+)
+
+¦×
+
+ k 
+
+(n 
+))
+
+(3a) 
+
+P k 
+
+(n 
+)
+
+ P k 
+
+(n 
+)
+
+ x l 
+
+T 
+l 
+
+(3b) 
+
+End of l 
+Combination : 
+(n 
+)
+
+w k 
+
+=
+
+(cid:2)
+
+l¡Ê
+
+N
+
+ k 
+
+a lk 
+
+¦×
+
+ l 
+
+(n 
+)
+
+(4) 
+
+tracking. To address problems in (2) , an ATC-type strategy is devel- 
+oped [5] and takes the form as listed in Table 2 . The local estimate 
+( n ) at node k shares the neighboring gradients through a posi- 
+tive weighting coecient c lk 
+from node l 
+as shown in (3a) in 
+Table 2 . The cluster averaged estimate, w k 
+( n ), combines the local 
+solutions over l 
+using weights a lk 
+as shown in (4) in Table 2 . 
+The nonnegative scalars { c lk 
+} are selected such that C 
+ is 
+right stochastic and A 
+ is left stochastic [1] . (3)(4) 
+
+¦×
+
+ k 
+
+¡Ê
+
+N
+
+ k 
+
+¡Ê
+
+N
+
+ k 
+
+, a lk 
+ a lk 
+
+=
+
+{
+
+ c lk 
+
+}
+
+=
+
+{
+
+}
+
+2.2. Solution to the ATC-RLS algorithm 
+
+To make the analysis tractable, we use lim n 
+(n 
+)
+(i 
+)
+(i 
+)] 
+lim n 
+[22] , 
+(cid:5)1 ] 
+which is based on the fact that the input signal is stationary and 
+(i 
+)
+(i 
+)] 
+. Then the assumption holds for large n 
+(n 
+)
+
+¡ú¡Þ
+
+ E [ R X _ k 
+¦Ën 
+¡Ö 1 
+1 
+¦Ë R x _ k 
+¦Ë R x _ k 
+1 
+1 
+
+(n 
+)] 
+
+=
+
+¡ú¡Þ
+
+(cid:2)
+
+ n 
+ L 
+
+i 
+
+=
+
+1 
+
+¦Ë
+
+i 
+n 
+
+ E [ x k 
+
+ x 
+
+T 
+k 
+
+=
+
+L 
++2 
+
+E [ x k 
+
+ x 
+
+T 
+k 
+
+=
+
+ R x _ k 
+
+lim 
+
+n 
+
+¡ú¡Þ
+
+E [ P k 
+
+(n 
+)] 
+
+=
+
+ lim 
+E [ 
+
+n 
+
+¡ú¡Þ
+
+(cid:4)
+
+X
+
+T (n 
+
+)
+
+
+
+k 
+ 1 
+
+(n 
+)
+
+X
+
+=
+
+(cid:6)
+
+K (cid:3)
+c jk R X _ j 
+j=1 
+
+(cid:7)
+
+=
+
+(1 
+
+ ¦Ë)
+
+(cid:6)
+
+K (cid:3)
+c jk R x _ j 
+j=1 
+
+(cid:7)
+
+ 1 
+
+=
+
+(1 
+
+ ¦Ë)
+
+R
+
+1 
+
+k 
+
+(5) 
+1 is a concise expression for 
+where P k 
+(n 
+)
+(n 
+)
+(n 
+)
+the inverse of the cluster averaged covariance matrix, and the no- 
+(n 
+)
+
+tations such as 
+ and 
+( n ) have been dened in Table 1 . 
+Eq. (5) is in consistency with the result in [ 5 ]. 
+Under the assumption (5) , the update for P k 
+( n ) in (3b) is unnec- 
+ 1)
+essary such that (3a) can be expressed as 
+(n 
+(n 
+ x 
+ 1)] for l 
+1)
+(n 
+)
+(n 
+(n 
+)
+(n 
+)
+(n 
+ 1,¡­, K , where 
+ 1)
+(n 
+ is the adaptive lter for the l th loop during the 
+ 1)
+ 1)
+incremental update with 
+(n 
+(n 
+(n 
+)
+ 1)
+(n 
+ . Summing (3a) over l , we have 
+
+=
+
+(
+
+X
+
+T (n 
+
+)
+
+
+
+k 
+
+X
+
+)
+
+X
+
+k 
+
+¦×
+
+(l )
+k 
+
+=
+
+¦×
+
+(l1)
+k 
+
+
+
++
+
+ c lk 
+P k 
+
+ x l 
+
+)[ d l 
+
+T 
+l 
+
+¦×
+
+(l1)
+k 
+
+=
+
+¦×
+
+(l )
+k 
+
+¦×
+
+(0)
+k 
+
+=
+
+ w k 
+
+ and 
+
+¦×
+
+ k 
+
+=
+
+¦×
+
+(K )
+k 
+
+¦×
+
+ k 
+
+(n 
+)
+
+=
+
+ w k 
+
+ 1)
+(n 
+
++
+
+ P k 
+
+(n 
+)
+
+ X 
+
+T (n 
+
+)
+
+ C k e k 
+
+(n 
+)
+¡Á 1) reads e k,l 
+(n 
+)
+(n 
+)
+where the l th element of e k 
+ 1)
+( n ) ( K 
+x 
+(n 
+)
+(n 
+ . To further relates the cluster averaged esti- 
+ 1)
+mate w k 
+(n 
+ to the update of the local estimate 
+( n ), we use 
+ 1)
+ 1)
+(n 
+(n 
+ for l 
+ 1,¡­, K . Hence 
+ 1)
+ X 
+(n 
+(n 
+)
+(n 
+)
+ 1)
+(n 
+(n 
+)
+)
+¡Á 1), X (n 
+where d (n 
+)
+(n 
+)
+(n 
+)] 
+)
+(n 
+)
+¡ÁL ), and we have used the fact P 
+(n 
+)
+¦ËP 
+(n 
+( K 
+X 
+X ( n ) 
+[5] 
+such 
+that 
+under 
+the 
+assumption 
+ 1)
+ 1)
+(5) P k 
+(n 
+)
+(n 
+)
+(n 
+(n 
+)
+)
+X (n 
+(n 
+Substituting (7) into (4), the update for w k 
+( n ) becomes 
+
+(6) 
+
+=
+
+ d l 
+
+
+
+T 
+l 
+(l1)
+k 
+
+¦×
+
+ l1 
+(
+)
+k 
+
+¦×
+
+ k 
+
+¦×
+
+=
+
+ w k 
+
+=
+
+¦×
+
+ k 
+
+(n 
+)
+
+=
+=
+
+ w k 
+
++
++
+
+ P k 
+ P k 
+
+ X 
+
+T (n 
+ C k [ d (n 
+T (n 
+ C k d (n 
+T ( K 
+
+)
+
+)
+
+ w k 
+
+ 1)] 
+(n 
+
+¦Ëw k 
+
+ X 
+
+)
+
+(7) 
+
+=
+
+ [ d 1 
+
+,
+
+...,
+
+ d K 
+
+=
+=
+
+ [ x 1 
+
+...
+
+ x K 
+
+(n 
+)] 
+
+T 
+
+1 
+k 
+
+1 
+k 
+
+ 1)+
+
+T ( n ) C k 
+
+ P 
+
+1 
+K (cid:3)
+k 
+a lk [ 
+¦Ëw l 
+l=1 
+
+ w k 
+
+=
+
+ [ 
+
+¦Ë +
+
+ P k 
+
+ X 
+
+T (n 
+
+ C k 
+
+)] w k 
+
+ . 
+
+w k 
+
+(n 
+)
+
+=
+
+ 1)
+(n 
+
++
+
+ P l 
+
+(n 
+)
+
+ X 
+
+T (n 
+
+)
+
+ C l d (n 
+
+)] 
+
+=
+
+ 2)
+(n 
+
++
+
+(n 
+)
+
+ X 
+
+T (n 
+
+ 1)
+
+ C j d (n 
+
+ 1)
+
++
+
+ P l 
+
+(n 
+)
+
+ X 
+
+T (n 
+
+)
+
+ C l d (n 
+
+)] 
+
+.
+
+(8) 
+
+It 
+seen 
+from 
+(8) 
+that w k 
+( n ) 
+combines 
+ 1 ,¡­, n , 
+(n 
+)
+(n 
+)
+d (i 
+)
+ over l 
+for i 
+where [ 
+indicates the ( lk )th entry of a matrix, and the other 
+terms vanish as n 
+ . Then, the solution to the Diff-RLS nds 
+
+can be 
+
+¦Ë
+
+i 
+n 
+
+ [ A 
+
++1 
+i ] lk 
+¡¤ ] lk 
+n 
+P l 
+K (cid:3)
+P l 
+l=1 
+
+ X 
+
+T (i 
+
+)
+
+ C l 
+
+¡Ê
+
+N
+
+ k 
+
+=
+
+ L 
+
+¡ú
+
+¡Þ
+
+w k 
+
+(n 
+)
+
+=
+
+(n 
+)
+
+X
+
+T (n 
+
+)
+
+
+
+lk 
+
+(n 
+)
+
+ d 
+
+(n 
+)
+
+(9) 
+
+ L 
+where 
+( n ) is a diagonal matrix of order ( n 
+ 2 ) K , i.e., 
+
+(n 
+)
+(n 
+)
+(n 
+)
+ diag 
+ 1)
+ L 
+¡Á 1) is the output 
+ and 
+d 
+(n 
+)
+ col 
+ d (n 
+)
+ d (L 
+ (( n 
+vector. 
+Note the nonnegative combination matrix A , which satises 
+T with 1 a vector of unity entries [1] , is irreducible and 
+1 
+aperiodic such that A converges to a unique matrix as time pro- 
+gresses, i.e. 
+
+
+
+lk 
+
++
+
+lk 
+
+=
+
+{
+
+ [ A ] lk 
+C l 
+
+,
+
+¦Ë1 
+
+ [ A 
+
+2 ] lk 
+C l 
+
+,
+
+...,
+
+¦Ën 
+L 
++1 
+
+ [ A 
+
+L 
++2 ] lk 
+n 
+C l 
+
+}
+
+=
+
+{
+
+,
+
+...,
+
+}
+
++
+
+ 2 ) K 
+
+T A 
+
+=
+
+ 1 
+
+lim 
+E [ A 
+
+n 
+
+¡ú¡Þ
+
+n ] 
+
+=
+
+ B 
+
+,
+
+ where 1 
+
+T B 
+
+=
+
+ 1 
+
+T .
+
+(10) 
+
+Under the condition (10) , which is in consistency with that for 
+Diff-LMS algorithms [23] , (9) becomes 
+
+w k 
+
+(n 
+)
+
+n 
+
+¡ú¡Þ
+
+ =
+
+K (cid:3)
+[ B ] lk 
+P l 
+l=1 
+
+(n 
+)
+
+X
+
+T (n 
+
+)
+
+
+
+l 
+
+(n 
+)
+
+ d 
+
+(n 
+)
+
+.
+
+(11) 
+
+Eq. (11) shows that the Diff-RLS solution is unbiased to a time- 
+invariant system h 
+(n 
+)
+ h 0 , where the desired signal can be writ- 
+(n 
+)
+(n 
+)
+ten as d 
+ h 0 . In the rest of the paper, we carry out the 
+MSD analysis based on (11) . 
+
+=
+
+=
+
+X
+
+2.3. Estimation deviation analysis 
+
+To start with, we assume that the system vector of length L 
+is continuous and differentiable. It then admits a local rst order 
+polynomial expansion at time t n [20] , which reads 
+ r (
+
+h 
+(
+
+ t m 
+
+)
+
+=
+
+ h 
+
+(
+
+ t n 
+
+)
+
++
+
+1 
+1! 
+
+h 
+
+(1)
+
+ (
+
+ t n 
+
+)(
+
+ t m 
+
+ t n 
+
+)
+
++
+
+ t m 
+
+ t n 
+
+)
+
+(12) 
+
+where t m belongs to a closed neighborhood of t n , h 
+derivative of h ( t ) at t n , and r (
+)
+ is the remainder of o(
+)
+)
+ . h ( t ) is deterministic while both h 
+ are L th- 
+order random vectors and are assumed to be wide-sense station- 
+ary processes inside the neighborhood. Here, the channel coe- 
+cients are modeled locally as a rst-order polynomial with addi- 
+tional stochastic variations. Substituting (12) into (1) with t n 
+we have 
+(m 
+)
+
+(1) ( t n ) is the 
+ t n 
+
+ t m 
+
+ t n 
+(1) ( t n ) and r (
+
+ t m 
+
+
+
+t n 
+
+ t m 
+
+=
+
+ n T s , 
+
+d k 
+
+=
+=
+
+ x 
+
+T 
+k 
+T 
+k 
+
+(m 
+)
+(m 
+)
+(m 
+)(h 
+(n 
+)
+
+ h 
+
++
++
+
+¦Ç
+
+k 
+(1)
+
+(m 
+)
+ n 
+ (n 
+)(m 
+))
+where the time index indicates digital signals, e.g. h ( n ) is short for 
+ n 
+h ( nT s ) with T s the sampling period, and 
+(m 
+)
+(m 
+)
+ r (m 
+)
+ (n 
+)
+ (n 
+)
+¦Äh 
+ (n 
+)
+ (n 
+)
+The random vector h 
+ such that h 
+ (n 
+)] and 
+¦Äh 
+E [ h 
+(1) ( n ) are, respectively, the mean and variance of 
+h 
+(1) ( n ). Then, the observed signal vector can be expressed as 
+d 
+(n 
+)
+(n 
+)
+(n 
+)
+(n 
+)
+ (n 
+)
+(n 
+ L 
+where D ¦Ó (n 
+)
+ diag 
+ 1)
+is 
+a di- 
+agonal matrix with I K . the identity matrix of order K , 
+ 1)
+ 1)
+¦Î (n 
+)
+¦Î (n 
+)
+¦Î (L 
+¦Ç(n 
+)
+¦Ç(n 
+)
+¦Ç(L 
+ col 
+and 
+ col 
+are, respectively, the residue and background noise vectors with 
+
+ x 
+
+ h 
+
++
+
+¦Ç
+
+k 
+
+(m 
+)
+
++
+
+¦Î
+
+k 
+
+(m 
+)
+
+(13) 
+
+¦Î
+
+k 
+(1)
+
+=
+
+ x 
+
+T 
+k 
+
+ . 
+
+(1)
+
+=
+
+ h 
+
+(1)
+
++
+
+(1)
+
+=
+
+(1)
+
+=
+
+X
+
+ h 
+
++
+
+ D ¦Ó (n 
+
+)
+
+X
+
+ h 
+
+(1)
+
++
+
+¦Î (n 
+)
+
++
+
+¦Ç(n 
+)
+
+(14) 
+
+=
+
+{
+
+ 0 I K 
+
+,
+
+1 I K 
+
+,
+
+...,
+
++
+
+ I K 
+
+}
+
+=
+
+{
+
+,
+
+...,
+
+}
+
+=
+
+{
+
+,
+
+...,
+
+}
+
+222 
+
+Y.J. Chu, C.M. Mak / Signal Processing 140 (2017) 219¨C225 
+
+¦Î (n 
+)
+¡Á 1). 
+( K 
+Substituting (14) into (11) leads to a Diff-RLS solution: 
+
+=
+
+ [ 
+
+¦Î1 
+
+(n 
+)
+
+,
+
+...,
+
+¦ÎK 
+K (cid:3)
+[ B ] lk 
+(P l 
+l=1 
+T (n 
+
+(n 
+)] 
+
+T ( K 
+
+¡Á 1) and 
+
+¦Ç( n ) 
+
+=
+
+ [ 
+
+¦Ç1 
+
+(n 
+)
+
+,
+
+...,
+
+¦ÇK 
+
+(n 
+)] 
+
+T 
+
+w k 
+
+(n 
+)
+
+=
+
+ h 
+
+(n 
+)
+
++
+
+(n 
+)
+
+ R ¦Ó _ l 
+
+(n 
+)
+
+ h 
+
+(1)
+
+ (n 
+)
+
++
+
+ P l 
+
+(n 
+)
+
+X
+
+)
+
+
+
+l 
+
+(n 
+)(¦Î (n 
+)
+
++
+
+¦Ç(n 
+)))
+
+(15) 
+
+where R ¦Ó _ l 
+
+(n 
+)
+(n 
+)
+(n 
+)
+ . Since the remainder 
+ n 
+r (m 
+)
+ is assumed to be zero-mean and independent of the 
+¦Î ( n ) is zero. 
+input [20] , the expectation between 
+(n 
+)
+ and 
+Consequently, 
+
+=
+
+X
+
+T (n 
+
+)
+
+
+
+l 
+
+ D ¦Ó (n 
+
+)
+
+X
+
+X
+
+E [ w k 
+
+(n 
+)] 
+
+=
+
+ h 
+
+(n 
+)
+
++
+
+K (cid:3)
+[ B ] lk 
+P l 
+l=1 
+
+(n 
+)
+
+ R ¦Ó _ l 
+
+(n 
+)
+
+ h 
+
+(1)
+
+ (n 
+)
+
+.
+
+(16) 
+
+It can be seen that if h 
+ (n 
+ 0, the optimal LS solution is iden- 
+tical to the system coecients due to the property of the combi- 
+nation matrix (10) . Then, we analyze the deviation of w k 
+( n ) from 
+h ( n ), i.e. 
+ h 
+ h 
+ E [ w k 
+(n 
+)
+(n 
+)] 
+(n 
+)
+(n 
+)] 
+The term in the rst brackets corresponds to bias while the lat- 
+ter corresponds to variance. From (17) , the MSD nds 
+ h 
+(n 
+)
+(n 
+)
+ h 
+ E [ w k 
+(n 
+)] 
+(n 
+)
+(n 
+)] 
+ E [ 
+(1 
+ ¦Ë)
+(n 
+)
+Using (15) , (16) , R ¦Ó _ l 
+according to Appendix 
+A of [22] , and the assumption in (5) , we have 
+ h 
+(n 
+)] 
+(n 
+)
+
+(1)
+
+)=
+
+w k 
+
+(n 
+)
+
+=
+
+{
+
+ E [ w k 
+
+}
+
++
+
+{
+
+ w k 
+
+(n 
+)
+
+}
+
+.
+
+(17) 
+
+J MSD _ k 
+
+=
+=
+
+ E [ 
+
+||
+
+ w k 
+
+||
+||
+
+2 
+2 
+2 
+2 
+
+] 
+
+||
+
+ E [ w k 
+
++
+
+||
+
+ w k 
+
+(n 
+)
+
+||
+
+2 
+2 
+
+] 
+
+.
+
+(18) 
+
+=
+
+2 R
+
+ l 
+
+E [ w k 
+
+=
+
+ 1 
+1 
+
+¦Ë
+
+K (cid:3)
+[ B ] lk 
+l=1 
+
+h 
+
+(1)
+
+ (n 
+)
+
+=
+
+ 1 
+1 
+
+¦Ë h 
+
+(1)
+
+ (n 
+)
+
+(19) 
+
+w k 
+
+(n 
+)
+
+ E [ w k 
+(n 
+)] 
+
+=
+
+ 1 
+1 
+
+¦Ë
+
+¦Äh 
+
+(1)
+
+ (n 
+)
+
++
+
+K (cid:3)
+[ B ] lk 
+P l 
+l=1 
+
+(n 
+)
+
+X
+
+T (n 
+
+)
+
+
+
+l 
+
+(n 
+)(¦Î (n 
+)
+
++
+
+¦Ç(n 
+))
+
+ (20) 
+
+For 
+ther 
+T r (
+E [ 
+
+the 
+have 
+
+variance 
+var 
+(
+(n 
+)
+(n 
+)
+
+term 
+(20) , 
+ E [ w k 
+(n 
+)
+(n 
+)])
+(n 
+)
+)
+where 
+
+we 
+(1 
+
+fur- 
+
+ w k 
+ P j 
+
+=
+
+¦Ò 2 ¦Äh 
+
+/
+
+ ¦Ë)
+
+2 +
+¦Ò 2 ¦Äh 
+ R X _ l 
+¦Ç2 
+l 
+
+(cid:2)
+(cid:2)
+
+ K 
+
+=1 
+i 
+(1)
+
+(cid:2)
+
+ K 
+
+j=1 
+[ B ] ik 
+[ B ] jk 
+P i 
+2 ] , 
+1 
+¦Ë2 
+m 
+n 
+¦Î 2 
+l 
+
+ R i j 
+l=1 
+(¦Ò 2 ¦Çl 
+T 
+l 
+
+ , 
+
+=
+=
+
+||
+
+¦Äh 
+
+ [ n ] 
+ n 
+
+|
+
+|
+
+R
+
+ i j 
+
+=
+
+(cid:2)
+
+ K 
+
++
+=
+
+¦Ò 2 ¦Î l 
+ c l i 
+c l j 
+ R X _ l 
+¦Ë2 
+1 
+R x _ l 
+1 
+
+)
+
+with
+
+lim 
+
+n 
+
+¡ú¡Þ
+
+m 
+¦Ò 2 ¦Î l 
+
+=
+
+ L 
+
+(n 
+)
+(m 
+)
+(m 
+)
+, and 
+ E [ 
+(n 
+)] 
+(n 
+)] are the variances of system and model noises 
+at the l th node. Consequently, 
+
+ x l 
+
+ x 
+
+¦Ò 2 ¦Çl 
+
+=
+
+and 
+
+=
+
+ E [ 
+
+J MSD _ k 
+
+(n 
+)
+
+=
+
+1 
+¦Ë)
+(1 
+
+2 
+
+¦Ò 2 
+h 
+
+(n 
+)
+
++
+
+1 
+
+¦Ë
+1+
+
+¦Ë T k 
+
+(21) 
+
+where 
+
+T k 
+¦Ò 2 ¦Çl 
+
+=
+
+ T r (
+
+(cid:2)
+
+ K 
+
+=1 
+i 
+
+(cid:2)
+
+ K 
+
+j=1 
+[ B ] ik 
+[ B ] jk 
+
+R
+
+1 
+i 
+
+(
+
+(cid:2)
+
+ K 
+
+l=1 
+¦Ò 2 
+c l i 
+c l j 
+R x _ l 
+ l 
+
+)
+
+R
+
+1 
+
+j 
+
+)
+
+with 
+
+¦Ò 2 
+ l 
+
+=
+
++
+
+¦Ò 2 ¦Î l 
+
+provides information on signal to noise ratio 
+(SNR) and is irrelative to FF, and 
+(n 
+)
+h 
+ (n 
+)
+is 
+the system variance. To minimize (2) , one takes the derivative of 
+(n 
+)
+ and let it equal to zero to get 
+
+¦Ò 2 
+h 
+
+=
+
+||
+
+(1)
+
+|
+
+|
+
+2 +
+
+¦Ò 2 ¦Äh 
+
+J MSD 
+
+=
+
+1 
+K 
+
+(cid:2)
+
+ K 
+
+=1 
+J MSD _ k 
+k 
+¦Ò 2 
+h 
+
+T 
+
+(1 
+
++
+
+¦Ë)
+
+2 
+
+=
+
+(n 
+)
+ ¦Ë)
+
+(1 
+
+3 
+
+(22) 
+
+where T 
+. To proceed further, we let 
+¦Ë . Then, 
+¦Ì2 (¦Ì + 1)
+(n 
+)
+(22) reduces to 
+ 2 T 
+ . For moderate and large val- 
+ues of 
+¦Ë, say, 0.5 
+ 1, 
+¦Ì satises 
+ 1 and we can use the as- 
+¡Ö ¦Ì for computational eciency [20] . Under this 
+sumption 
+(
+ 2 T 
+(n 
+)
+)
+3 and the optimal FF is determined as 
+(¦Ì + 1)
+
+=
+
+1 
+K 
+
+(cid:2)
+
+ K 
+
+=1 
+T k 
+k 
+
+¦Ì =
+
+1+
+
+¦Ë
+
+1 
+
+=
+
+/¦Ò 2 
+
+h 
+
+<¦Ë<
+
+¦Ì>>
+
+¦Ì +
+¦Ì =
+
+ 1 
+
+assumption, 
+
+/¦Ò 2 
+
+h 
+
+1 
+
+¦Ë
+
+opt 
+
+=
+
+(¦Ì  1)
+
+/
+
+,
+
+ i f ¦Ë
+
+opt 
+
+>
+
+ 0 
+
+.
+
+(23) 
+
+Table 3 
+Arithmetic complexities of two DIFF-VFF-RLS 
+algorithms. 
+
+w k ( n ) 
+
+ATC-VFF-RLS 
+O ( K 
+
+ATC-LCT-RLS 
+O ( K 
+
+2 L 
+2 ) 
+
+2 L 
+2 ) 
+
+¦Ë( n ) 
+
+T 
+¦Ò 2 
+ 
+
+O ( K 
+O ( K 
+3 
+
+2 L 
+2 ) 
+2 ) 
+
+W _ i 
+¦Ò 2 
+h 
+
+6 K 
+
+K : number of nodes; L : lter length. 
+
+¦Ë( n ) can be calculated from (23) at each time index 
+Then, a VFF 
+n , i.e. 
+
+¦Ë(n 
+)
+
+=
+
+ [ 
+
+(cid:4)
+
+2 T 
+
+/¦Ò 2 
+
+h 
+
+(n 
+)
+
+(cid:5) 1 
+
+3  1] 
+In (24) , the estimation of T k 
+is computationally consum- 
+ing and should be simplied. We hence assume that the 
+weighted noise variance 
+at neighboring nodes is close to 
+each other [10] and equal to ¦Ò 2 
+. Then, T k 
+T r (
+¦Ò 2 
+)
+ , where 
+can be estimated by 
+(n 
+)
+¦Ë(n 
+)
+means of P i 
+( n ), i.e. 
+ . This process needs 
+2 ) times of multiplications. Since 
+(n 
+)
+(n 
+)
+O ( KL 
+ and 
+ can be es- 
+timated by using a xed FF [20] that is computationally ecient 
+compared to the calculation of T k 
+, the multiplication required by 
+2 ), which is in the same order of the Diff-RLS algo- 
+(24) is O ( K 
+rithm. The arithmetic complexity of the propose algorithm is listed 
+in Table 3 . It should be mentioned that although (24) is derived 
+from modeling the differentiable system as a LP, the proposed VFF 
+scheme can also accelerate the tracking speed of Diff-RLS algo- 
+rithms signicantly for sudden change systems due to the on-line 
+estimation methods for noise variances. It has been shown in sim- 
+ulation results. 
+We now discuss a special case when both noise variances and 
+input covariance matrices are the same for each node: 
+
+/
+
+ [ 
+
+(cid:4)
+
+2 T 
+
+/¦Ò 2 
+
+h 
+
+(n 
+)
+
+(cid:5) 1 
+3 +
+
+¦Ë(n 
+)
+ 1] 
+ if 
+
+,
+
+>
+
+ 0 
+
+.
+
+ (24) 
+
+¦Ò 2 
+ l 
+c l i 
+
+W _ i 
+
+=
+
+1 
+K 
+
+(cid:2)
+
+ K 
+
+l=1 
+¦Ò 2 
+c l i 
+ l 
+1 
+i 
+
+=
+
+(cid:2)
+
+ K 
+
+j=1 
+[ B ] jk 
+
+(cid:2)
+
+ K 
+
+=1 
+i 
+
+1 
+[ B ] ik 
+W _ i 
+1 
+= P i 
+i 
+i 
+
+R
+
+R
+
+R
+
+(cid:2)
+
+ n 
+
+=0 
+i 
+¦Ò 2 
+h 
+
+¦Ò 2 
+ l 
+
+2 L 
+
+¦Ò 2 ¦Çl 
+
+=
+
+¦Ò 2 ¦Ç ,
+
+¦Ò 2 ¦Î l 
+
+=
+
+¦Ò 2 ¦Î ,
+
+ R x _ l 
+
+=
+
+ R x 
+
+,
+
+ for l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ K 
+
+(25) 
+
+In this case, T k 
+(
+
+¦Ò 2  T r (R 
+reduces to T k 
+)
+ . It can be seen that 
+is a con- 
+stant smaller than 1, indicating that SNR at the k th node is in- 
+creased by using the diffusion strategy. This also explains the im- 
+proved performance of distributed estimation. 
+
+=
+
+¦Ñ
+
+k 
+
+1 
+x 
+
+)
+¦Ñ
+
+ and 
+
+¦Ñ
+
+k 
+
+=
+
+(cid:2)
+
+ K 
+
+=1 
+i 
+
+(cid:2)
+
+ K 
+
+j=1 
+[ B ] ik 
+[ B ] jk 
+
+(cid:2)
+
+ K 
+
+l=1 
+c l i 
+c l j 
+
+k 
+
+3. Simulation results 
+
+In this section, we evaluate the proposed ATC-VFF-RLS algo- 
+rithm and its performance analysis. All results are obtained by av- 
+eraging 50 Monte-Carlo simulations if not specied. 
+
+3.1. Evaluation of VFF formula for random walk model 
+
+The proposed VFF formula in (23) is evaluated by the identi- 
+cation of a random walk system: h 
+(n 
+ 1)
+(n 
+)
+¦Ä(n 
+)
+ , where 
+¦Ä( n ) is a zero-mean white Gaussian random vector with covari- 
+¡Á 10 
+ance matrix 4 
+1 
+1 
+and the initial value of the channel is h 0 
+[ 
+ 1] of length L 
+ 10. The measurements are generated 
+according to (1) , where x k 
+( n ) is a rst-order auto-regressive (AR) 
+(n 
+ 1)
+(n 
+)
+(n 
+)
+process x k 
+ with g k 
+( n ) a zero-mean Gaus- 
+sian process. The network has a total of K 
+ 5 nodes. The variances 
+( n )} at each node are set to 1, 1, 0.5, 0.5 and 2. Metropo- 
+lis weights [4] are used for both the selection matrix C and the 
+combination matrix A . The variance of noises are selected so as to 
+achieve an averaged SNR of 0, 10 and 20 dB 
+ATC-RLS algorithms with different but xed FF values in the 
+range [0.5, 0.999] are examined. The simulated MSD curves are 
+compared with theoretical predictions in Fig. 1 . It can be seen that 
+
++
+
+=
+
+ h 
+
++
+
+¨C 5 I 10 
+
+=
+
+,
+
+ 1 
+
+,
+
+,
+
+...,
+
+=
++
+
++
+
+=
+
+ 0 
+ 9 x k 
+
+.
+
+ g k 
+
+=
+
+of { x k 
+
+Y.J. Chu, C.M. Mak / Signal Processing 140 (2017) 219¨C225 
+
+223 
+
+(a)
+
+(b)
+
+(c)
+
+Fig. 1. Simulated and theoretical results of the steady-state MSDs for the ATC-RLS 
+algorithm using different FFs with the colored input at SNR 
+ (a) 0 dB (b) 10 dB (c) 
+20 dB K 
+ 5, L 
+ 10. 
+
+=
+
+=
+
+=
+
+Fig. 2. The MSD curves of different ATC algorithms with the colored input at 
+SNR 
+ (a) 0 dB (b) 10 dB and (c) 20 dB K 
+ 20, L 
+ 10. 
+
+=
+
+=
+
+=
+
+Table 4 
+Accuracy analysis of the theoretical predictions for the ATC-RLS algorithm in Fig. 1 . 
+
+SNR 
+
+Point 1 
+
+Point 2 
+
+Point 3 
+
+Point 4 
+
+Point 5 
+
+0 dB 
+10 dB 
+20 dB 
+
+2 .4 
+2 .3 
+1 .7 
+
+2 .3 
+2 .2 
+1 .9 
+
+5.2 
+1.9 
+2.2 
+
+7.5 
+6.6 
+3.0 
+
+>
+
+ 10 
+8.9 
+5.8 
+
+Points 1¨C5 correspond to the simulated results in Fig. 1 (from left to right) 
+
+the simulated and theoretical results for MSD are in good agree- 
+ment for comparatively small FFs, and the optimal FFs are within 
+this region such that the selection of the optimal FF is not af- 
+fected signicantly. A detailed accuracy analysis has been shown 
+in Table 4 , where the ratios between the predicted and simulated 
+results (in dB) have been calculated. It shows that the ratios are 
+within 3 dB when the FF is no larger than 0.96 (the underlined ra- 
+
+224 
+
+Y.J. Chu, C.M. Mak / Signal Processing 140 (2017) 219¨C225 
+
+(a)           
+
+(b)           
+
+(c)
+
+Fig. 3. The FF curves of ATC-LCT-RLS and ATC-VFF-RLS algorithms with the colored input at SNR 
+
+=
+
+ (a) 0 dB (b) 10 dB and (c) 20 dB K 
+
+=
+
+=
+
+ 20, L 
+
+ 10. 
+
+tios are calculated at FFs equal to or larger than 0.96), and the pre- 
+diction is more accurate at higher SNRs. The discrepancies between 
+theory and simulation results are caused by assumptions used for 
+analysis [17,20] . In Fig. 1 , simulated and theoretical results illus- 
+trate that the optimal FF decreases slightly with the SNR. It indi- 
+cates how the FF balances between the tracking speed and estima- 
+tion accuracy in noisy environments. Next, we examine the perfor- 
+mance of the VFF formula with noise variance mismatches, where 
+ T is replaced by the estimated val- 
+the true variance ratio b 
+ b 
+ b 
+ues 
+  T . The predicted MSDs at the variance ratios 
+ 10 b , 
+0.1 b are marked by ¡® 
+¡¯ in Fig. 1 . The results show that the FF for- 
+mula is not particularly sensitive to variance mismatches. If noise 
+variance information is not exactly known in practical applications, 
+(24) can provide a good reference for FF selection. 
+
+¦Ò 2 
+h 
+
+¦Ò 2 
+h 
+
+=
+
+=
+
+=
+
+  
+
+/
+
+/
+
+curves for ATC-LCT-RLS and ATC-VFF-RLS are shown in Fig. 3 . It can 
+be seen that, in time-varying systems, the proposed VFF formula 
+(24) can converge quickly to an appropriate value so that faster 
+convergence rate and smaller estimation deviation can be achieved. 
+
+4. Conclusion 
+
+A new VFF diffusion RLS algorithm has been presented that is 
+derived from the MSD performance analysis of the Diff-RLS algo- 
+rithm for channels whose coecients are modeled by LP. Simu- 
+lations show that the theoretical and experimental results are in 
+good agreement with each other. Comparison with other diffusion 
+algorithms illustrates the improved convergence and tracking per- 
+formance of the proposed algorithm. 
+
+3.2. Evaluation of the ATC-VFF-RLS algorithm 
+
+Acknowledgment 
+
+,
+
+,
+
+ 1 
+
+.
+
+=
+
+...,
+
++
+
+=
+
++
+
+=
+
+ g k 
+
+ 0 
+ 5 x k 
+
+¨C 5 I 10 
+
+In this experiment, a larger network with K 
+ 20 nodes is con- 
+sidered. Metropolis weights are also used for the selection and the 
+combination matrices. The system to be identied also follows a 
+random walk model with the initial value h 0 
+, and it has a sud- 
+den jump to h 1 
+ [1 
+ 1] of the same length at the 800th sam- 
+ple. The covariance matrix for this random walk process is also 
+¡Á 10 
+4 
+. The averaged SNR is set to 0, 10 and 20 dB AR se- 
+quences are also used as inputs to excite the system, i.e. x k 
+(n 
+1)
+(n 
+)
+(n 
+)
+ and the input variances at each node range 
+from 0.5 to 2. The algorithms under test include ATC-LMS in [6] , 
+ATC-VSS-LMS in [13] , which outperforms other VSS Diff-LMS algo- 
+rithms, ATC-RLS in [5] , and ATC-LCT-RLS in [21] . 
+The step-size for ATC-LMS is set to 0.02 while the FF for ATC- 
+RLS is set to 0.98. Since it is dicult to choose parameters so as to 
+let the two algorithms converge to a similar steady-state MSD in 
+TV environment, we just follow a selection rule for time-invariant 
+systems. The user parameters for ATC-VSS-LMS and ATC-LCT-RLS 
+are selected as suggested, respectively, in [13] and [21] except that 
+the upper and lower bounds of the FF are tuned so as to pro- 
+vide the best performance at SNR 
+ 0 dB For the proposed ATC- 
+VFF-RLS, we use the estimated input and noise variances as sug- 
+gested in [20] for the calculation of the FF (24) . The simulation 
+results are shown in Fig. 2 . It can be seen that ATC-RLS has much 
+faster initial convergence speed than ATC-LMS, but it has problems 
+in tracking and steady-state MSD. The ATC-VSS-LMS algorithm has 
+signicantly improved convergence and tracking performance over 
+its xed step-size version, especially at higher SNRs. The perfor- 
+mance of the ATC-LCT-RLS algorithm is comparable with ATC-VFF- 
+RLS at SNR 
+ 0 dB, but is slightly affected by the change of noise 
+variances. The proposed ATC-VFF-RLS algorithm in each case con- 
+verges faster to a much lower steady-state MSD than the ATC-LCT- 
+RLS at the cost of a higher complexity for the calculation of FFs, a 
+comparison of which is presented in Table 3 . To further examine 
+the VFF strategies of the two VFF diffusion RLS algorithms, the FF 
+
+=
+
+=
+
+The work described in this study was fully supported by a grant 
+from the Hong Kong Polytechnic University (The Hong Kong Poly- 
+technic University Postdoctoral Fellowships Scheme, G-YW0L ). The 
+rst author is indebted to Prof. S. C. Chan for his inspiration for 
+writing this paper. 
+
+References 
+
+[1] A.H. Sayed , Adaptive networks, Proc. IEEE 102 (4(Apr.)) (2014) 460¨C497 . 
+[2] C.G. Lopes , A.H. Sayed , Incremental adaptive strategies over distributed net- 
+works, IEEE Trans. Signal Process. 55 (8(Aug.)) (2007) 4064¨C4077 . 
+[3] Y. Liu , K.S. Tang , Enhanced incremental LMS with norm constraints for dis- 
+tributed in-network estimation, Signal Process. 90 (8(Aug.)) (2010) 2621¨C2627 . 
+[4] L. Xiao , S. Boyd , Fast linear iterations for distributed averaging, Syst. Control 
+Lett. 53 (1(Sep.)) (2004) 65¨C78 . 
+[5] F.S. Cattivelli , C.G. Lopes , A.H. Sayed , Diffusion recursive least-squares for dis- 
+tributed estimation over adaptive networks, IEEE Trans. Signal Process. 56 
+(5(May)) (2008) 1865¨C1877 . 
+[6] C.G. Lopes , A.H. Sayed , Diffusion least-mean squares over adaptive networks: 
+formulation and performance analysis, IEEE Trans. Signal Process. 56 (7(Jul.)) 
+(2008) 3122¨C3136 . 
+[7] F.S. Cattivelli , A.H. Sayed , Diffusion LMS strategies for distributed estimation, 
+IEEE Trans. Signal Process. 58 (3(Mar.)) (2010) 1035¨C1048 . 
+[8] A. Bertrand , M. Moonen , Distributed signal estimation in sensor networks 
+where nodes have different interests, Signal Process. 92 (7(Jul.)) (2013) 
+1679¨C1690 . 
+[9] J. Ni , J. Chen , X. Chen , Diffusion sign-error LMS algorithm: formulation and 
+stochastic behavior analysis, Signal Process. 128 (Nov.) (2016) 142¨C149 . 
+[10] J. Chan , C. Richard , A.H. Sayed , Diffusion LMS over multitask networks, IEEE 
+Trans. Signal Process. 63 (11(Jun.)) (2015) 2733¨C2748 . 
+[11] M.O.B. Saeed , A. Zerguine , A new variable step-size strategy for adaptive net- 
+works, in: Proceeding of the Asilamar Conference on Signals, Systems, and 
+Computers, Pacic Grove, CA, Nov., 2011, pp. 312¨C315 . 
+[12] A . Khalili , A . Rastegarnia , J.A . Chambers , W.M. Bazzi , An optimum step-size 
+assignment for incremental LMS adaptive networks based on average con- 
+vergence rate constraint, AEU¡ªInt. Electron. Commun. 67 (3(Mar.)) (2013) 
+263¨C268 . 
+[13] H. Lee , S. Kim , J. Lee , W. Song , A variable step-size diffusion LMS algo- 
+rithm for distributed estimation, IEEE Trans. Signal Process. 63 (7(Apr.)) (2015) 
+1808¨C1820 . 
+[14] H.C. So , A comparative study of three recursive least-squares algorithms for 
+single-tone frequency tracking, Signal Process. 83 (9(Sep.)) (2003) 2059¨C2062 . 
+[15] A.H. Sayed , N.J. Hoboken , Adaptive Filters, P John Wiley & Sons, NJ, 2008 . 
+
+Y.J. Chu, C.M. Mak / Signal Processing 140 (2017) 219¨C225 
+
+225 
+
+[16] Y.J. Chu , C.M. Mak , A new QR decomposition-based RLS algorithm using the 
+Split Bregman method for L1-regularized problems, Signal Process. 128 (Nov.) 
+(2016) 303¨C308 . 
+[17] C.F. So , S.C. Ng , S.H. Leung , Gradient based variable forgetting factor RLS algo- 
+rithm, Signal Process. 83 (6(Jun.)) (2003) 1163¨C1175 . 
+[18] C. Paleologu , J. Benesty , S. Ciochina , A robust variable forgetting factor recur- 
+sive least-squares algorithm for system identication, IEEE Signal Process. Lett. 
+15 (2008) 597¨C600 . 
+[19] B. Qin , Y. Cai , B. Champagne , R.C. de Lamare , M. Zhao , A low-complexity 
+variable forgetting factor constant modulus RLS algorithm for blind adaptive 
+beamforming, Signal Process. 105 (2014) 277¨C282 . 
+[20] Y.J. Chu , S.C. Chan , A new local polynomial modeling-based variable forgetting 
+factor RLS algorithm and its acoustic applications, IEEE Trans. Audio Speech 
+Lang. Process. 23 (11( Nov.)) (2015) 2059¨C2069 . 
+
+[21] L. Zhang , Y. Cai , C. Li , R.C. de Lamare , M. Zhao , Low-complexity correlated 
+time-averaged variable forgetting factor mechanism for diffusion RLS algo- 
+rithm in sensor networks, in: Proceeding of . IEEE SAM 2016, Rio de Janeiro, 
+Brazil, 10-13 Jul., 2016, pp. 1¨C5 . 
+[22] S.C. Chan , Y.J. Chu , Z.G. Zhang , K.M. Tsui , A new variable regularized QR de- 
+composition-based recursive least M-estimate algorithm¡ªperformance analysis 
+and acoustic applications, IEEE Trans. Audio Speech Lang. Process. 21 (5(May)) 
+(2013) 907¨C922 . 
+[23] X. Zhao , A.H. Sayed , Performance limits for distributed estimation over LMS 
+adaptive networks, IEEE Trans. Signal Process. 60 (10(Oct.)) (2012) 5107¨C5113 . 
+

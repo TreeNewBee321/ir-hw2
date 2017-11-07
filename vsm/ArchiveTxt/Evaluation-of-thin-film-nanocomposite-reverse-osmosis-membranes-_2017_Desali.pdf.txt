@@ -1,0 +1,838 @@
+Evaluation of thin lm nanocomposite reverse osmosis membranes for long-term brackish water desalination performance
+
+Pinar Cay-Durgun a,b, Cailen McCloskey a, John Konecny a, Afsaneh Khosravi a, Mary Laura Lind a,b,
+
+a School for Engineering of Matter, Transport and Energy, Arizona State University, Tempe, AZ 85287, USA
+b Nanosystems Engineering Research Center for Nanotechnology-Enabled Water Treatment, Arizona State University, Tempe, AZ, 85287, USA
+
+H I G H L I G H T S
+
+ NaA type zeolite nanoparticles embedded in polyamide membranes via interfacial polymerization process.
+ Hand-cast TFC and TFN membranes were tested for ~ 3000 h in a cross-ow testing system.
+ TFN membranes demonstrated enhanced water-salt permselectivity compared to TFC membranes.
+ TFN membranes exhibited desalination performance stability over long term application.
+
+article
+
+info
+
+
+
+Article history:
+Received 8 June 2016
+Received in revised form 18 October 2016
+Accepted 27 October 2016
+Available online 23 November 2016
+
+Keywords:
+Thin lm nanocomposite membrane
+Reverse osmosis
+Nanoparticles
+Long-term performance
+Desalination
+
+abstract
+
+Nanoparticle addition in the currently widely used thin lm composite (TFC) membranes is a promising technol-
+ogy to advance separation performance and bring novel functionality in membrane desalination processes. These
+thin lm nanocomposite (TFN) membranes boast many advantages over their TFC counterparts such as increased
+water ux without compromising salt rejection and bacterial resistance. However, the stability of TFN mem-
+branes is unknown in industrial, long-term applications. Via interfacial polymerization, we synthesized a series
+of polyamide TFC and TFN membranes with different nanoparticle content, 0 wt%, 0.15 wt%, 0.30 wt%, in the cast-
+ing solutions. At the United States Bureau of Reclamation's Water Quality Improvement Center in Yuma, AZ, the
+membranes were tested for ~ 3000 h in a lab-scale testing system. We characterized the physico-chemical nature
+and morphology of the membranes before and after the testing. All membranes exhibited relatively stable long-
+term separation performances. At the highest zeolite loading tested, in comparison with the TFC membrane,
+water permeance increased from 3.7 ㊣ 0.6 米m MPa1 s1 to 5.3 ㊣ 0.5 米m MPa1 s1 and solute rejection slight-
+ly increased from 97.4 ㊣ 0.3% to 97.9 ㊣ 0.1%. In this study, TFN membranes exhibited long-term desalination sta-
+bility and improved separation performance compared to TFC membranes.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Reverse osmosis (RO) is a pressure-driven membrane process which
+is currently the most dominant technology for water desalination be-
+cause of its relatively low energy consumption compared to non-mem-
+brane based desalination processes (e.g, thermal processes such as
+multi-stage ash and distillation) [1]. From the rst cellulose acetate
+membranes to the current polyamide thin lm composite (TFC)
+membranes, permeability increased from 1.4 米m MPa 1 s 1 to 5.5每
+8.3 米m MPa 1 s 1 for seawater and 8.3每13.9 米m MPa1 s1 for brack-
+ish water with very high rejections (N 99%) of ionic solutes, such as
+sodium and chloride [2,3]. This technology widely uses the thin lm
+composite (TFC) polyamide (PA) membrane which consists of an
+interfacially polymerized, ultrathin, crosslinked, aromatic PA layer
+onto microporous polysulfone supported by a non-woven polyester
+layer. The interfacial polymerization is a complex process involving
+the condensation reaction of an amine and an acid chloride at the inter-
+face of an aqueous and organic solution [4]. This dense PA structure is
+highly salt selective and the thinness of this layer (~ 100 nm) enables
+high water permeance in wide temperature and pH ranges [5,6]. Never-
+theless, further performance improvement of polyamide TFC mem-
+branes in desalination applications is challenging because of two main
+factors. First, the ※upper bound§ permeability/selectivity trade-off ob-
+served in polymeric membranes for gas separations [7] also constrains
+the maximum performance of polymeric desalination membranes [8].
+Second, polyamide membranes are susceptible to damage from biolog-
+ical fouling, scaling, and free chlorine (the most common disinfection
+agent in water treatment) [9,10]. Biolms on the PA surface increase
+the resistance of the total membrane, resulting in ux decline and
+ultimately in lower membrane performance and lifetime [10]. Some
+fouling and scaling may be minimized through appropriate cross-ow
+conditions within the RO membrane module to minimize issues with
+concentration polarization [11,12]. Although free chlorine is a low-cost
+and effective disinfection chemical for reducing biolm layers, the PA
+structure degrades after continuous exposure to trace amounts of chlo-
+rine (at amounts three orders of magnitude lower than the effective
+chlorine present in disinfected water [13]). The PA degradation may re-
+sult in increasing the water ux and the salt passage [6,13]. On the other
+hand, water permeance, solute rejection, and operational robustness of
+the membrane highly affect the energy consumption and operational
+costs of RO desalination processes [1,5]. Thus, there is a need to address
+these membrane challenges in desalination processes.
+Coatings of porous metals, metal oxides, and zeolites are applied to
+mesoporous ceramic membranes or metallic membranes formed to
+develop mechanically enhanced and chemically durable membranes
+for water purication processes [5,14]. Compared to polymeric mem-
+branes, defect-free, versatile zeolitic membranes may enhance desalina-
+tion performances, however, they have higher membrane production
+costs [14,15]. Moreover, because of the rigid structure, zeolitic mem-
+branes have lower permeation surface area density in a membrane
+module, which may cause an increase in operational costs [14,16].
+These membranes are therefore rarely used for commercial desalination
+processes [5,15,16].
+Mixed Matrix Membranes (MMMs) have emerged as an alternative
+to pure polymeric membranes or zeolitic membranes [17]. MMMs are
+composed of an inorganic ller phase dispersed through a continuous
+polymer phase. Ideally, the MMM retains the desirable characteristics
+of the individual components while obviating their individual disadvan-
+tages. MMMs have been studied extensively for gas separation applica-
+tions [18,19]. For water separation applications, recent studies of
+nanoparticles embedded into the thin lm polyamide structure during
+an interfacial polymerization process showed improved membrane per-
+formance [20]. In these advanced membranes for water treatement var-
+ious nanollers have been studied such as zeolite nanoparticles [21每29],
+carbon nanotubes [30每33], silica [34每36], silver [30], and metal oxides
+[37]. Superhydrophilic, nanosized Linde Type A (LTA) zeolites have
+demonstrated promising results in thin lm nanocomposite (TFN) poly-
+amide membranes for RO processes [21,22,24每26]. This zeolite consists
+of an aluminosilicate framework with a molecular formula of Na12
+[(AlO2)12(SiO2)12]﹞27H2O (lowest possible silicon/aluminum ratio in
+LTA is 2). Because of this aluminum rich structure, LTA is a super-hydro-
+philic zeolite. However, it may not be stable under acidic environments
+[28] (dealumination may occur at low pH [38]). LTA (NaA type) has 3-
+dimensional narrow-pores with a diameter of 4.2  [39], which is suit-
+able for selecting water, but excluding hydrated ions and small organic
+molecules [40,41]. The 3-dimensional structure of the LTA pores ensures
+access to the pore regardless of how the zeolite is oriented in the poly-
+mer (and is much simpler to embed in membrane structure compared
+to 1-dimensional structures such as carbon-nanotubes which require
+precise orientation to take advantage of the pore structure). Polyamide
+membranes with incorporated LTA nanoparticles are hydrophilic and
+have higher ux and similar rejection when compared with commercial
+membranes [21,22,24每26]. Furthermore, previous research on TFN
+membranes has demonstrated an increase in properties (smoother
+and more hydrophilic surfaces) that limit bacterial adhesion to mem-
+brane surfaces in short-term bacterial adhesion tests [26]. However,
+the performances of TFNs vary as a function of the type, size, and con-
+centration of nanoparticles [21,22,24]. In addition, there may be some
+※non-ideal effects§ [42] in MMMs such as particle aggregation at higher
+zeolite loadings [43] and void or rigidied polymer formation at the
+polymer/particle interface [42]. This may result in decreased perfor-
+mance of the membrane. In our publication analyzing the permeance
+of pure zeolite-4A molecular sieves and nanocomposite zeolite-4A/
+polymeric MMMs for water separations, we demonstrated that trans-
+port may occur both at the molecular sieve/polymer matrix interface
+
+and through the molecular sieves [44]. However Turgman-Cohen et al.
+performed a molecular dynamic simulation study on pressure-driven
+water transport through thin lm membranes of LTA zeolite [45].
+Based on this simulation result, they hypothesize that preferential ow
+may be around the zeolite particles not through the zeolite pores [45].
+Reverse osmosis desalination applications are divided into two pri-
+mary categories based on feed type: brackish water or sea water. Feed
+water salinity ranges determine the type. In 2010, Kurth et al. published
+the long-term performance of TFN membranes (with unknown types of
+inorganic particles) for seawater desalination [46]. However, to our best
+knowledge, no publications report the long-term performance and sta-
+bility of TFN membranes for brackish water desalination. The differ-
+ences in feed water characteristics such as foulants and salinity, in
+addition to the operating conditions such as pressure and temperature,
+cause the ux and rejection of the membranes to vary between brackish
+water and seawater desalination [47].
+The objective of our research is to evaluate the long-term effective-
+ness of mixed matrix nanocomposite membranes for treating brackish
+water with reverse osmosis (RO) in an operating plant environment.
+The ultimate impact of this research is to increase the amount of
+available technology for reclaiming and purifying water supplies with
+reduced energy demands. This is the rst report on long-term perfor-
+mance of TFN membranes with brackish feed waters.
+
+2. Experimental methods
+
+2.1. Materials
+
+Chemicals used in this manuscript are referred to with the following
+nomenclature. We used a polysulfone coated non-woven polyester ul-
+traltration membrane (PSf, NanoH2O) as a support membrane. We
+prepared monomer solutions of meta-phenylene diamine (MPD, 99%,
+Sigma-Aldrich) in ultrapure deionized water (milli-Q water, Millipore),
+and trimesoyl chloride (TMC, 98%, Spectrum) in the organic solvent
+Isoparran-G (Isopar-G, Sigma-Aldrich), for the synthesis of the thin
+polyamide lm. We used freeze dried powdered Linde type A zeolites
+(LTA, 4A, Na+, NanoScape) with an ~ 100 nm mean particle size. The
+post-cure rinses consisted of solutions of sodium hypochlorite (NaOCl,
+reagent grade, Sigma-Aldrich) and sodium bisulte (NaHSO3, reagent
+grade, Sigma-Aldrich).
+
+2.2. Membrane synthesis
+
+Our casting procedure is based on previously published methods
+[21,22,25,26]. Thin lm composite (TFC) membranes are pure polyam-
+ide membranes without nanoparticles. Thin lm nanocomposite (TFN)
+membranes are similar polyamide membranes, with nanoparticles dis-
+persed in the TMC-Isopar-G monomer solution.
+First, we prepared the MPD in water and TMC in organic solvent
+monomer solutions separately. The solutions were magnetically stirred
+at 300 rpm for at least 3 h prior to use.
+For the casting, a sheet of polysulfone coated polyester support
+membrane was taped on all sides onto a glass plate. Then, we soaked
+the support into 3.5 wt% MPD in milli-Q water monomer solution for
+2 min, with the active side (PSf side) facing down in the solution and
+the back of the plate not submerged. After lifting the plate from the
+amine solution, to increase the uniformity of the membrane surface,
+we removed the excess solution from the surface with a rubber nger-
+print ink roller. Then, we immediately placed the MPD coated mem-
+brane vertically into a monomer solution of 0.15 wt% TMC in isopar-G
+for the interfacial polymerization reaction. After 1 min, we removed
+the plate from the solution and held it vertically for 2 min. We cured
+the membrane through a series of post-treatment rinses. First, the
+membrane was placed into a water bath at ~ 95 ～C with active side up
+for 2 min. Then, the membrane was removed from the glass plate and
+placed into 1.5 mL L1 NaOCl in deionized water for 2 min. We believe
+
+that NaOCl removes the unreacted MPD on the structure. Next, the
+membrane was placed into 1 g L 1 NaHSO3 in deionized water for
+30 s. We believe NaHSO3 neutralizes the unreacted NaOCl, which pro-
+tects the polyamide from degradation caused by the chlorine. Finally,
+the membrane was placed into a fresh water bath at ~ 95 ～C with active
+side down for 2 min. The resulting membranes were placed into 1 L of
+milli-Q water in a light-proof Nalgene bottle until testing.
+The only difference between the TFC and TFN membrane synthesis
+procedures is that we dispersed LTA zeolite nanoparticles in the TMC-
+isopar G solution with ultra-sonication at 20 ～C for 30 min. We poured
+the sonicated solution into the membrane vertical solution holder im-
+mediately prior to the polymerization reaction.
+For this work, we synthesized three types of polyamide/LTA zeolite
+thin lm membranes, each with a different zeolite loading: 0 wt%,
+0.15 wt%, 0.30 wt% of nanoparticles in the TMC-organic solution. The
+names of each membrane set are TFC, TFN 0.15, and TFN 0.30,
+respectively.
+
+2.3. Long-term performance test
+
+The operators at the United States Bureau of Reclamation Water
+Quality Improvement Center (WQIC) in Yuma, AZ tested the hand-
+cast membranes synthesized at ASU nearly continuously in a small-
+scale 9-cell cross-ow test unit, as depicted in Fig. 1, for approximately
+3000 h with an applied hydraulic pressure of 200 psi. They placed nine
+different samples into the nine cell WQIC system (in which the cells are
+in series) in such a way that, for each zeolite loading, two samples were
+taken from the rst membrane and one sample from the second mem-
+brane with the same nanoparticle loading. In total, three TFC, three TFN
+0.15, and three TFN 0.30 membrane coupons were tested during the
+long-term performance test. The feed ow rate of the system was
+1.5 gal min 1 and the effective membrane area tested for each cell
+was 18.37 cm2. Prior to sending the membrane coupons to the WQIC
+for long term testing, we conrmed their defect-free nature through
+short term water ux and rejection measurements in a cross-ow labo-
+ratory-scale RO system at ASU.
+At the WQIC, our membranes were tested with feed of controlled
+waters without pH adjustment. The WQIC operators measured ow
+rate, conductivity, temperature and pressure measurements every
+12 h for both feed and permeate products. They also took the pH and
+free chlorine measurements of the feed. Additionally, once a week
+they analyzed the feed composition. Table 1 gives the key feed water pa-
+rameters. The feed had a relatively narrow pH range, low chlorine con-
+centration and dissolved salt content. The feed also had a low fouling
+character (total organic content b 0.5 mg L 1).
+
+To evaluate the membrane performances, we obtained the salt
+water ux (J) [米m s 1] from the ow rate divided by the membrane
+area. We calculated observed water permeance (A), often called the
+water permeability coefcient, by normalizing the ux by the applied
+pressure (忖P) and the osmotic pressure (忖羽) difference as A = J/
+(忖P  忖羽) [米m MPa 1 s 1]. In addition, we calculated the observed re-
+jection from R = 1  Cp/Cf where Cp and Cf [S cm 1] were the conduc-
+tivity of the permeate and the feed solution respectively. The salt
+permeance (B) was determined by B = J(1  R)/R [米m s 1]. Finally,
+we calculated the water-salt permselectivity (A/B) by A/B = R/(忖P 
+忖羽)(1  R) [MPa 1]. In our calculations, to evaluate the membranes
+under the same conditions, we calculated the performances under ob-
+served condition and assumed no concentration polarization (for low
+salinity water testing under low pressure, the assumption may valid
+[48]).
+
+2.4. Membrane characterization
+
+We measured the contact angles of the membranes with de-ionized
+water sessile drop contact angle analysis (Easy Drop; Krss) to evaluate
+surface hydrophilicity of all membranes. The drop volume of the water
+was 1 米L. The steady-state values of the angles on both sides of the drop
+were measured on air-dried samples. Twelve measurements were
+taken on each membrane sample. We removed the highest and the low-
+est values, and reported the average value and the standard deviation of
+the remaining measurements. We used attenuated total reectance每
+Fourier transform infrared (ATR每FTIR, 6700 FTIR; Thermo Nicolet)
+with diamond crystal smart orbit to provide insight into the functional-
+ity of the thin lm. We dried the membrane samples in a desiccator
+overnight prior to ATR-FTIR measurement. We used scanning electron
+microscopy (SEM, ESEM XL-30, Philips) to determine the surface mor-
+phology of the membranes at various magnications. Dried membrane
+samples were sputter coated with Au
+
+P
+
+.
+
+C
+a
+y
+
+-
+
+D
+
+u
+
+r
+
+g
+u
+n
+
+e
+
+t
+
+a
+
+l
+.
+
+/
+
+D
+
+e
+s
+
+a
+
+l
+i
+
+n
+a
+
+Fig. 2. Average measured performances of TFC, TFN 0.15, and TFN 0.30 membranes under 200 psi. (a) Water ux. (b) Salt rejection. (c) Water-salt permselectivity.
+
+t
+i
+
+o
+n
+4
+0
+4
+
+(
+
+2
+0
+1
+7
+
+)
+
+3
+0
+4
+每
+3
+1
+2
+
+3
+0
+7
+
+308
+
+P. Cay-Durgun et al. / Desalination 404 (2017) 304每312
+
+quantify roughness of the dried membranes at a xed scanning rate of
+1 Hz. The tip radius was 8每12 nm, the cantilever length was 215每
+235 米m with a spring constant of 3 N m 1. For AFM analysis, three mea-
+surements were taken on each sample for 25 米m2 scan area. We
+employed the tapping mode because polymers could be easily damaged
+by the tip. We reported the roughness in terms of the root-mean
+squared (RMS) roughness, the standard deviation of the averaged
+roughness, and surface area difference (SAD), the increase of the 3-D
+surface area over the 2-D surface area.
+
+3. Results and discussion
+
+3.1. Long term performance evaluation
+
+The operators at the WQIC collected data from the system twice a
+day for 2760 h; they emailed the raw data to ASU where we analyzed
+it. Operating conditions such as pressure and temperature govern re-
+verse osmosis performance. Pressure difference is the driving force for
+water ux, however the pressure difference does not have a large inu-
+ence on salt passage. Consequently, separation performance is en-
+hanced with increasing applied pressure. However, high applied
+pressure results in increased power consumption and operational
+costs. In our experiment, the system had overall stable pressure except
+on three occasions. There was a sudden pressure increase at 174 h into
+the test, a scheduled plant water supply outage at 996 h into the test and
+a pump failure at 1765 h into the test. Abrupt pressure changes might
+lead to possible membrane damage.
+In addition, the temperature of the WQIC feed uctuates throughout
+the day; there is an overall increase in daily temperature with time dur-
+ing the testing period. The measurements were taken twice daily at ap-
+proximately the same times each day, and the temperature uctuates
+(because the test started in May and ended in September). Therefore,
+the feed temperature increased as a result of the external weather dur-
+ing the long-term test. Feed viscosity, salt diffusivity and concentration
+polarization are largely dependent on temperature. Increases in tem-
+perature enhance the water and salt permeation through the mem-
+brane, thus, the ux performance increases and the salt rejection
+performance decreases [49,50].
+In addition to pressure and temperature, feed composition also has
+an effect on the membrane performance. Conductivity (proportional
+to the concentration of total dissolved salts) and pH (concentration of
+hydronium ions) can be used to evaluate the feed composition effect
+on the long-term tests. However, conductivity and pH are functions of
+temperature [51,52]. Moreover, during the test, the feed composition
+also changed independently from the temperature. Therefore, we
+could not distinguish the actual individual contributions of composition,
+temperature, and pH on our tested membranes. But still we examined
+the ux response to the changed parameters in terms of stability. We
+concluded that the performance stabilities are similar for TFC and TFN
+membranes for brackish water desalination.
+We averaged the performances of the samples for each membrane
+set, TFC, TFN 0.15, and TFN 0.30. Fig. 2 presents the averaged perfor-
+mance results (water ux Fig. 2a, salt rejection Fig. 2b, water-salt
+permselectivity Fig. 2c) and Table 2 exhibits all the averaged perfor-
+mance results (water ux, salt rejection, water permeance, salt
+permeance, water/salt permselectivity). The average brackish water
+
+Fig. 3. Average pure water contact angle of the hand-cast TFC and TFN membranes before
+and after the long term performance test.
+
+permeance of the membranes with 0 wt%, 0.15 wt% and 0.30 wt% zeolite
+loadings were calculated as 3.7 ㊣ 0.6, 4.7 ㊣ 0.3 and 5.3 ㊣ 0.5 米m MPa 1-
+s 1, respectively. There is a 21% permeance increase for TFN 0.15 mem-
+branes compared to TFC membranes (with no zeolites). Moreover, the
+permeance improvement for TFN 0.30 membranes is 43% compared to
+the TFC membranes. These results show that water permeance in-
+creases with the zeolite loading, as expected. We obtained the maxi-
+mum salt rejection for TFN 0.30 membranes of 97.9 ㊣ 0.1%. We
+obtained similar salt rejection for TFC and TFN 0.15 membranes,
+97.4 ㊣ 0.3% and 97.2 ㊣ 1.0% respectively.
+As can be seen in Fig. 2, the performance results indicate that all the
+membranes recovered their performance after the rst abrupt pressure
+change (around 174 h) and the scheduled water outage (around 996 h).
+However, after the pump failure (at 1765 h), one of the TFN 0.15 mem-
+brane had a dramatic decrease in the salt rejection performance. After
+that, it took 3每4 days for the membrane to partially recover its pre-out-
+age performance. After the recovery, its average salt rejection was re-
+corded as 95.3 ㊣ 0.4% compared to 98.2 ㊣ 0.1% before the pump
+failure. Upon examination of the membrane surfaces after the end of
+the long-term test at the WQIC, we also observed color changes on the
+edges of active side surface of one of the three TFN 0.15 membranes.
+We did not observe such color changes on the other membranes. We
+hypothesize that there was damage to the membrane surface resulting
+from the abrupt pressure change created by the power failure, and that
+this damage inuenced the salt rejection.
+
+3.1. Membrane properties
+
+We performed sessile drop contact angle analysis for all membranes
+before and after the performance test. Because of the presence of super-
+hydrophilic nanoparticles, other researchers have found that thin lm
+mixed matrix membranes show lower pure water contact angle than
+corresponding thin lm polymer membranes [22,24,25]. Therefore, we
+expected to observe smaller contact angles with increasing zeolite con-
+tent. However, as seen in Fig. 3, before the performance test, TFN
+
+Table 2
+Summary of the long-term separation performances.
+
+Membrane
+set
+
+TFC
+TFN 0.15
+TFN 0.30
+
+LTA loading
+(wt%)
+
+0.00
+0.15
+0.30
+
+Water ux, J
+(米m s 1)
+
+4.8 ㊣ 0.5
+6.0 ㊣ 0.6
+6.8 ㊣ 0.6
+
+Salt rejection, R
+(%)
+
+Water permeance, A
+(米m MPa 1 s 1)
+
+Salt permeance, B
+(米m s 1)
+
+Water-salt permselectivity, A/B
+(MPa 1)
+
+97.4 ㊣ 0.3
+97.2 ㊣ 1.0
+97.9 ㊣ 0.1
+
+3.7 ㊣ 0.6
+4.7 ㊣ 0.3
+5.3 ㊣ 0.5
+
+0.16 ㊣ 0.01
+0.21 ㊣ 0.11
+0.12 ㊣ 0.02
+
+24.2 ㊣ 3.47
+34.4 ㊣ 7.36
+44.2 ㊣ 8.59
+
+membranes demonstrated higher average water contact angle results
+than corresponding TFC membranes. We hypothesize this unexpected
+result is partially attributable to the presence of zeolite aggregation
+which yields a rough non-uniform surface. This hypothesis may also ex-
+plain the decrease in contact angle values after the performance test.
+Previously, we have observed aggregation of LTA zeolite nanoparticles
+in polyamide membranes. Mechanical compaction during the perfor-
+mance test may release any loosely bonded zeolite clumps from the
+membrane surface, which could result in the observed decrease in the
+contact angle values of TFN membranes compare the values of before
+performance test.
+Fig. 4 shows the detailed ATR-FTIR spectra of TFC and TFN mem-
+branes in the range from 1800 cm 1 to 750 cm 1 before and after the
+performance test. The broad peak at 1050每950 cm 1 is characteristic
+of Si
+
+310
+
+P. Cay-Durgun et al. / Desalination 404 (2017) 304每312
+
+provides the percentage difference between the three dimensional sur-
+face area over the two dimensional surface area. Larger RMS and SAD
+values correspond to rougher membranes [25]. Before the performance
+test, while TFN 0.15 membranes had smallest RMS values, TFN 0.30
+membranes have signicantly higher RMS value than TFC membranes.
+For TFN 0.30 membranes, due to structural difference and/or zeolite ag-
+gregation, we might have higher roughness difference. Compaction of
+the membrane coupled with washing off of zeolite aggregates could ac-
+count for the observed reduction in RMS value after the performance
+test for the TFN 0.30 membranes. In addition, we observed increased
+roughness for TFC and TFN 0.15 membranes after the performance
+test compared to untested membranes. Surface deposition of potential
+foulants or scalants might explain this behavior. Generally, others
+have observed that TFN membranes were rougher with more surface
+area compared to TFC membranes [25]. According to our SAD results,
+prior to the performance test, our TFN membranes were rougher with
+increased zeolite loading. This result correlated with our contact angle
+as well as water permeance results. However, after the performance
+test, the high zeolite loaded TFN membranes SAD results shows that
+they become smoother during the performance test. We hypothesized
+that the aggregated zeolites might be washed off creating smoother
+membrane surfaces. Table 3 summarizes the membrane physical prop-
+erty characterization for the membranes before and after the long-term
+performance test.
+
+4. Conclusions
+
+We evaluated the long-term performance of our hand-cast thin
+lm composite and thin lm nanocomposite membranes. Except for
+a scheduled plant water supply outage and a pump failure, our
+
+Fig. 6. SEM image for zeolite aggregation on TFN 0.30 membrane prior to the test.
+
+overcome the zeolite aggregation problem [24]. In the future, applying
+this procedure may minimize particle aggregation in thin lm mixed
+matrix membranes.
+We examined the surface morphologies of the WQIC tested mem-
+branes with SEM after completion of the long-term testing. The repre-
+sentative images are in Fig. 7. We did not observe a signicant
+polyamide structure change. Fouling leads to decreased membrane
+permeance and decreased salt rejection [10]. Because we did not have
+signicant membrane performance impairment and the feed had low
+organic content, we expected a negligible fouling rate in this experi-
+ment. Indeed, we noticed minimal deposition on and color change of
+the membrane surface. Visually, the higher zeolite loaded TFN mem-
+branes have the cleanest surfaces.
+Fig. 8 presents atomic force microscopy analysis. We quantied sur-
+face roughness of all membranes with two parameters: root mean
+square roughness (RMS) and surface area difference (SAD). RMS repre-
+sents the standard deviation of the height values within a scan area. SAD
+
+Fig. 7. SEM images for surface morphology of the membranes after the long-term performance test at the WQIC. (a) TFC membrane, (b) TFN 0.15 membrane, (c) TFN 0.30 membrane.
+
+Fig. 8. Average surface property of TFC and TFN membranes before and after the long-term performance test. (a) Root mean squared roughness, (b) Surface area difference.
+
+P. Cay-Durgun et al. / Desalination 404 (2017) 304每312
+
+311
+
+Table 3
+Summary of membrane physical properties before and after the performance test.
+Contact angle (～)
+Contact angle (～)
+62.1 ㊣ 8.1
+44.0 ㊣ 5.4
+85.4 ㊣ 4.3
+48.4 ㊣ 3.2
+95.2 ㊣ 18.9
+50.8 ㊣ 2.8
+
+LTA loading (wt%)
+
+Membrane set
+
+TFC
+0.00
+TFN 0.15
+0.15
+TFN 0.30
+0.30
+ Before long-term performance test.
+ After long-term performance test.
+
+RMS (nm)
+72.9 ㊣ 1.1
+60.9 ㊣ 6.5
+94.7 ㊣ 5.4
+
+RMS (nm)
+81.6 ㊣ 2.6
+77.6 ㊣ 3.6
+74.6 ㊣ 5.0
+
+SAD (%)
+58.3 ㊣ 1.1
+64.2 ㊣ 5.1
+66.0 ㊣ 5.1
+
+SAD (%)
+64.3 ㊣ 8.6
+65.0 ㊣ 1.9
+46.1 ㊣ 7.3
+
+membranes were tested for approximately 3000 h in an operating plant
+environment. All TFN membranes demonstrated higher salt water ux
+than the TFC membranes while maintaining similar average salt rejec-
+tion. The TFN membranes with 0.15 wt% LTA content had a 1.3 times
+higher water permeance than the TFC membranes and those with
+0.30 wt% LTA content had a 1.4 times higher water permeance than
+the TFC membranes. In addition, TFN membranes had higher salt
+selectivity than the TFC membranes (TFN 0.15 and TFN 0.30 membranes
+exhibited 1.4 and 1.8 times higher permselectivities than TFC mem-
+branes). The long-term performance data demonstrate that increases
+in zeolite loading enhanced long-term separation performance (both
+water permeance and salt selectivity) for brackish water reverse osmo-
+sis desalination.
+Our results show that thin lm nanocomposite membranes had
+stable long-term ux and rejection performance in comparison to
+thin lm composite membranes. However, we did not evaluate the
+membranes under high fouling and extreme pH conditions. In addi-
+tion the membranes did not experience cleaning or chemical treat-
+ments . Thus , there is a need for cont inued research into the ir
+tolerance to harsh fouling and chemical env ironments to validate
+their possible contr ibut ion to reduce the energy consumpt ion for
+brackish water desalination.
+
+Acknowledgements
+
+This work was supported by a United States Department of The
+Interior, Bureau of Reclamation 每 cooperative agreement #R13AC3400
+and the Ira A. Fulton Schools of Engineering at Arizona State University.
+Article preparation was supported by the NSF Nanosystems Engineering
+Research Center for Nanotechnology-Enabled Water Treatment (ERC-
+1449500).
+We are very grateful to Dr. Thaddeus Graczky from Northern Arizona
+University, Angela Adams of the USBR Richard Bash, Dr. Charles D.
+Moody and WQIC operations personnel for their collaboration. We
+would like to acknowledge lab manager Fred Pena at ASU for his exten-
+sive help building custom made reverse osmosis testing system. We
+gratefully acknowledge the use of characterization facilities at the LeRoy
+Erying Center for Solid State Science and the Bio-Design Institute at
+Arizona State University.
+
+References
+
+[1] D. Li, H.T. Wang, Recent developments in reverse osmosis desalination membranes,
+J. Mater. Chem. 20 (2010) 4551每4566.
+[2] T. Hodgson, Selective properties of cellulose acetate membranes towards ions in
+aqueous solutions, Desalination 8 (1970) 99每138.
+[3] J.R. Werber, A. Deshmukh, M. Elimelech, The critical need for increased selectivity,
+not increased water permeability, for desalination membranes, Environ. Sci.
+Technol. Lett. 3 (2016) 112每120.
+[4] B. Khorshidi, T. Thundat, B.A. Fleck, M. Sadrzadeh, A novel approach toward fabrica-
+tion of high performance thin lm composite polyamide membranes, Sci. Rep. 6
+(2016) 22069.
+[5] M.M. Pendergast, E.M.V. Hoek, A review of water treatment membrane nanotech-
+nologies, Energy Environ. Sci. 4 (2011) 1946每1971.
+[6] G.M.L., H.S. Geise, D.J. Miller, B.D. Freeman, J.E. Mcgrath, D.R. Paul, Water purication
+by membranes: the role of polymer science, J. Polym. Sci. Polym. Phys. 48 (2010)
+1685每1718.
+[7] L.M. Robeson, Correlation of separation factor versus permeability for polymeric
+membranes, J. Membr. Sci. 62 (1991) 165每185.
+
+[8] G.M. Geise, H.B. Park, A.C. Sagle, B.D. Freeman, J.E. McGrath, Water permeability and
+water/salt selectivity tradeoff in polymers for desalination, J. Membr. Sci. 369 (2011)
+130每138.
+[9] J. Glater, S.K. Hong, M. Elimelech, The search for a chlorine-resistant reverse-osmosis
+membrane, Desalination 95 (1994) 325每345.
+[10] A. Matin, Z. Khan, S.M.J. Zaidi, M.C. Boyce, Biofouling in reverse osmosis membranes
+for seawater desalination: phenomena and prevention, Desalination 281 (2011)
+1每16.
+[11] M. Goosen, S. Sablani, H. Al-Hinai, S. Al-Obeidani, R. Al-Belushi, D. Jackson, Fouling of
+reverse osmosis and ultraltration membranes: a critical review, Sep. Sci. Technol.
+39 (2005) 2261每2297.
+[12] E.M. Hoek, A.S. Kim, M. Elimelech, Inuence of crossow membrane lter geometry
+and shear rate on colloidal fouling in reverse osmosis and nanoltration separations,
+Environ. Eng. Sci. 19 (2002) 357每372.
+[13] H.B. Park, B.D. Freeman, Z.B. Zhang, M. Sankir, J.E. McGrath, Highly chlorine-tolerant
+polymers for desalination, Angew. Chem. 120 (2008) 6108每6113.
+[14] A. Rodr赤guez-Calvo, G. Silva-Castro, F. Osorio, J. Gonz芍lez-L車pez, C. Calvo, Novel mem-
+brane materials for reverse osmosis desalination, Hydrol. Current. Res. 5 (2014) 2.
+[15] S. Daer, J. Kharraz, A. Giwa, S.W. Hasan, Recent applications of nanomaterials in
+water desalination: a critical review and future opportunities, Desalination 367
+(2015) 37每48.
+[16] K.P. Lee, T.C. Arnot, D. Mattia, A review of reverse osmosis membrane materials for
+desalination〞development to date and future potential, J. Membr. Sci. 370 (2011)
+1每22.
+[17] C.M. Zimmerman, A. Singh, W.J. Koros, Tailoring mixed matrix composite mem-
+branes for gas separations, J. Membr. Sci. 137 (1997) 145每154.
+[18] G.X.L. Dong, H. Y., V.K. Chen, Challenges and opportunities for mixed-matrix mem-
+branes for gas separation, J. Mater. Chem. A 1 (2013) 4610每4630.
+[19] T.-S. Chung, L.Y. Jiang, Y. Li, S. Kulprathipanja, Mixed matrix membranes (MMMs)
+comprising organic polymers with dispersed inorganic llers for gas separation,
+Prog. Polym. Sci. 32 (2007) 483每507.
+[20] W. Lau, S. Gray, T. Matsuura, D. Emadzadeh, J.P. Chen, A. Ismail, A review on polyam-
+ide thin lm nanocomposite (TFN) membranes: history, applications, challenges
+and approaches, Water Res. 80 (2015) 306每324.
+[21] M.L. Lind, A.K. Ghosh, A. Jawor, X.F. Huang, W. Hou, Y. Yang, E.M.V. Hoek, Inuence
+of zeolite crystal size on zeolite-polyamide thin lm nanocomposite membranes,
+Langmuir 25 (2009) 10139每10145.
+[22] B.H. Jeong, E.M.V. Hoek, Y.S. Yan, A. Subramani, X.F. Huang, G. Hurwitz, A.K. Ghosh,
+A. Jawor, Interfacial polymerization of thin lm nanocomposites: a new concept for
+reverse osmosis membranes, J. Membr. Sci. 294 (2007) 1每7.
+[23] M. Fathizadeh, A. Aroujalian, A. Raisi, Effect of added NaX nano-zeolite into polyam-
+ide as a top thin layer of membrane on water ux and salt rejection in a reverse os-
+mosis process, J. Membr. Sci. 375 (2011) 88每95.
+[24] H. Dong, X.Y. Qu, L. Zhang, L.H. Cheng, H.L. Chen, C.J. Gao, Preparation and character-
+ization of surface-modied zeolite-polyamide thin lm nanocomposite membranes
+for desalination, Desalin. Water Treat. 34 (2011) 6每12.
+[25] M.L. Lind, D.E. Suk, T.V. Nguyen, E.M.V. Hoek, Tailoring the structure of thin lm
+nanocomposite membranes to achieve seawater RD membrane performance, Envi-
+ron. Sci. Technol. 44 (2010) 8230每8235.
+[26] M.L. Lind, B.H. Jeong, A. Subramani, X.F. Huang, E.M.V. Hoek, Effect of mobile cation
+on zeolite-polyamide thin lm nanocomposite membranes, J. Mater. Res. 24 (2009)
+1624每1631.
+[27] N. Ma, J. Wei, R.H. Liao, C.Y.Y. Tang, Zeolite-polyamide thin lm nanocomposite
+membranes: towards enhanced performance for forward osmosis, J. Membr. Sci.
+405 (2012) 149每157.
+[28] H. Huang, X. Qu, X. Ji, X. Gao, L. Zhang, H. Chen, L. Hou, Acid and multivalent ion re-
+sistance of thin lm nanocomposite RO membranes loaded with silicalite-1
+nanozeolites, J. Mater. Chem. A 1 (2013) 11343每11349.
+[29] H. Huang, X. Qu, H. Dong, L. Zhang, H. Chen, Role of NaA zeolites in the interfacial
+polymerization process towards a polyamide nanocomposite reverse osmosis mem-
+brane, RSC Adv. 3 (2013) 8203每8207.
+[30] E.-S. Kim, G. Hwang, M.G. El-Din, Y. Liu, Development of nanosilver and multi-
+walled carbon nanotubes thin-lm nanocomposite membrane for enhanced water
+treatment, J. Membr. Sci. 394 (2012) 37每48.
+[31] J. Park, W. Choi, S.H. Kim, B.H. Chun, J. Bang, K.B. Lee, Enhancement of chlorine resis-
+tance in carbon nanotube based nanocomposite reverse osmosis membranes,
+Desalin. Water Treat. 15 (2010) 198每204.
+[32] S. Roy, S.A. Ntim, S. Mitra, K.K. Sirkar, Facile fabrication of superior nanoltration
+membranes from interfacially polymerized CNT-polymer composites, J. Membr.
+Sci. 375 (2011) 81每87.
+[33] W.-F. Chan, H.-y. Chen, A. Surapathi, M.G. Taylor, X. Shao, E. Marand, J.K. Johnson,
+Zwitterion functionalized carbon nanotube/polyamide nanocomposite membranes
+for water desalination, ACS Nano 7 (2013) 5308每5319.
+
+312
+
+P. Cay-Durgun et al. / Desalination 404 (2017) 304每312
+
+[34] J. Yin, E.-S. Kim, J. Yang, B. Deng, Fabrication of a novel thin-lm nanocomposite
+(TFN) membrane containing MCM-41 silica nanoparticles (NPs) for water purica-
+tion, J. Membr. Sci. 423 (2012) 238每246.
+[35] G.L. Jadav, P.S. Singh, Synthesis of novel silica-polyamide nanocomposite membrane
+with enhanced properties, J. Membr. Sci. 328 (2009) 257每267.
+[36] M. Bao, G. Zhu, L. Wang, M. Wang, C. Gao, Preparation of monodispersed spherical
+mesoporous nanosilica每polyamide thin lm composite reverse osmosis membranes
+via interfacial polymerization, Desalination 309 (2013) 261每266.
+[37] C. Kong, T. Kamada, T. Shintani, M . Kanezashi, T. Yoshioka , T. Tsuru, Enhanced
+performance of inorganic-polyamide nanocomposite membranes prepared by
+metal-alkoxide-assisted interfacial polymer ization, J. Membr . Sci . 366 (2011)
+382每388.
+[38] H.L. Jamieson, H. Yin, A. Waller, A. Khosravi, M.L. Lind, Impact of acids on the struc-
+ture and composition of Linde Type A zeolites for use in reverse osmosis membranes
+for recovery of urine-containing wastewaters, Microporous Mesoporous Mater. 201
+(2015) 50每60.
+[39] D. Breck, W. Eversole, R. Milton, T. Reed, T. Thomas, Crystalline zeolites. I. The prop-
+erties of a new synthetic zeolite, type A, J. Am. Chem. Soc. 78 (1956) 5963每5972.
+[40] B. Tansel, J. Sager, T. Rector, J. Garland, R.F. Strayer, L. Levine, M. Roberts , M.
+Hummerick, J. Bauer, Signicance of hydrated radius and hydration shells on ionic
+permeability during nanoltration in dead end and cross ow modes, Sep. Purif.
+Technol. 51 (2006) 40每47.
+[41] B. Van der Bruggen, J. Schaep, D. Wilms, C. Vandecasteele, Inuence of molecular
+size, polarity and charge on the retention of organic molecules by nanoltration, J.
+Membr. Sci. 156 (1999) 29每41.
+[42] T.T. Moore, W.J. Koros, Non-ideal effects in organic每inorganic materials for gas sep-
+aration membranes, J. Mol. Struct. 739 (2005) 87每98.
+
+[43] D.Q. Vu, W.J. Koros, S.J. Miller, Mixed matrix membranes using carbon molecular
+sieves: I. Preparation and experimental results, J. Membr. Sci. 211 (2003) 311每334.
+[44] P. Cay-Durgun, S.G. Fink, A. Shabilla, H. Yin, K.A. Sasaki, M.L. Lind, Analysis of the
+water permeability of Linde Type A zeolites in reverse osmosis, Sep. Sci. Technol.
+49 (2014) 2824每2833.
+[45] S. Turgman-Cohen, J.C. Araque, E.M. Hoek, F.A. Escobedo, Molecular dynamics of
+equilibrium and pressure-driven transport properties of water through LTA-type
+zeolites, Langmuir 29 (2013) 12389每12399.
+[46] C.J. Kurth, R.L. Burk, J. Green, Improving seawater desalination with nanocomposite
+membranes, IDA J. Desalin. Water Reuse 2 (2010) 26每31.
+[47] L.F. Greenlee, D.B. Fawler, B.D. Freeman, B. Marrot, P. Moulin, Reverse osmosis desa-
+lination: water sources, technology, and today's challenges, Water Res. 43 (2009)
+2317每2348.
+[48] L. Song, S. Yu, Concentration polarization in cross-ow reverse osmosis, American
+Institute of Chemical Engineers, AIChE J 45 (1999) 921.
+[49] X. Jin, A. Jawor, S. Kim, E. Hoek, Effects of feed water temperature on separation per-
+formance and organic fouling of brackish water RO membranes, Desalination 239
+(2009) 346每359.
+[50] A. Jawor, E. Hoek, Effects of feed water temperature on inorganic fouling of brackish
+water RO membranes, Desalination 235 (2009) 44每57.
+[51] J.J. Barron, C. Ashton, The Effect of Temperature on Conductivity Measurement, TSP-
+07, Issue 3, Technical Article of Reagent Diagnostics Ltd, 2007.
+[52] J.J. Barron, C. Ashton, L. Geary, The Effects of Temperature on pH Measurement, TSP-
+01, Issue 2, Technical Article of Reagent Diagnostics Ltd, 2005.
+[53] S.Y. Kwak, S.G. Jung, Y.S. Yoon, D.W. Ihm, Details of surface features in aromatic
+polyamide reverse osmosis membranes characterized by scanning electron and
+atomic force microscopy, J. Polym. Sci. Polym. Phys. 37 (1999) 1429每1440.
+

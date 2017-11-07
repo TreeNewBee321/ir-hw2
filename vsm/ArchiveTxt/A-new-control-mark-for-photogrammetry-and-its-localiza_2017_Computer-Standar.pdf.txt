@@ -1,0 +1,1754 @@
+A new control mark for photogrammetry and its localization from single image using computer vision 
+
+
+article
+
+info
+
+Keywords: 
+Control mark 
+Camera 
+Computer vision 
+Detection 
+Measurement 
+
+
+abstract
+
+Computer Vision takes part in many industrial applications mainly in robotics and measurement systems. Geodesy 
+uses computer vision rather indirectly using specialized software tools for measurements of data captured with 
+digital cameras or LIDAR systems. This paper describes new control mark and its advantages for deformation 
+measurements, and surface reconstruction. Furthermore, we describe control mark detection method using com- 
+puter vision algorithms, and its localization from single image. We also compare this method to spatial polar 
+method. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+
+1. Introduction 
+
+Reconstruction of surface and structure of objects is important task in 
+many industrial applications. Very popular method for surface or object 
+reconstruction is known as photogrammetry well described in Kapica 
+and Sladkova [5] . The information we obtain from most photogrammet- 
+ric systems using control marks are three-dimensional positions of the 
+marks. We have focused on stereo-metrical system with control marks, 
+where the main measurement tool is a camera. The user takes multiple 
+images of the measured object with control marks from dierent angles, 
+and then the three-dimensional coordinates of each mark are computed. 
+This measurements are done repeatedly over time to measure the shift 
+and deformation of the monitored object well described in DIAS-DA- 
+COSTA [14] . The important part of every photogrammetric system is 
+detection of control marks using computer vision techniques. Good de- 
+tection rate and precise measurement of the control mark are essential 
+for reliable results. We have been working on an improvement of detec- 
+tion rates of control marks and a way for extraction of more data from 
+them. 
+Every control mark have to be easily distinguishable from the envi- 
+ronment it is located in. Therefore, the control mark is often realized as 
+an image with high contrast colors or intensities (in most cases black and 
+white), MORIYAMA [15] . Also, the shape of the mark should be very dif- 
+ferent from shapes of the objects that are naturally present in surveyed 
+locations. These premises allows photogrammetric tools to easily detect 
+those marks in the image with higher reliability (lower number of false 
+detections). Hereby we can say that the use of control marks with simple 
+shape like circle is highly unreliable and the user is forced to mark the 
+marks on the image manually. 
+
+We have designed a new control mask, which is more complex, and 
+therefore, it is less likely that there will be similar objects in the im- 
+age causing false detection. Furthermore, the mark is designed in such 
+a way, that we can easily extract its three-dimensional rotation. This 
+is useful mainly when we are measuring deformation of the object of 
+interest. We also propose a photogrammetric method using only single 
+camera image for three-dimensional localization. We describe the new 
+control mark, and new localization method in greater detail in following 
+sections. 
+Testing detection of newly proposed targets took place both in the 
+laboratory conditions and outdoors on the retaining wall no. 8246 in 
+the undermined part of the D1 motorway in Ostrava, the city district 
+of Svinov. The results of the testing show that the location of targets 
+and their detection can also be successfully applied to more complex 
+constructions in the real environment. 
+
+2. Control mark 
+
+The control mark must be easily visible and distinguishable from the 
+environment we are going to place it into. Therefore, the mark must 
+have high contrast colors or intensities and its shape should be more 
+complex than objects usually present in most locations to make it more 
+distinguishable from the surveyed environment. It must provide more 
+than one coordinate, so it would be possible to extract its rotation in 
+three-dimensional space, and to estimate it position from single image, 
+for dicult situations, when it is not possible to take more images from 
+dierent angles (e.g. narrow areas). 
+We have designed a control mark, which meets all given require- 
+ments. As seen in Fig. 1 , it is rectangular with specially designed inter- 
+nal pattern to ensure its uniqueness. It is also diagonally asymmetrical, 
+and therefore, we can conclusively extract its rotation. Consequently, 
+each point on the mark can be uniquely identied. The border around 
+the mark ensures its relatively easy distinction from other objects in the 
+image. We describe the detection algorithm in the following section. 
+
+3. Control mark detection 
+
+The object detection is important task in computer vision. There are 
+numerous methods for this task. Well researched domains of object de- 
+tection include face detection described in Yang et al. [12] and pedes- 
+trian detection described in Enzweiler and Gavrila [3] . The most known 
+detector tools are SVM developed by Cortes and Vapnik [2] and Ada- 
+Boost developed by Viola and Jones [11] . These detectors are trained, 
+and therefore, they need training sets consisting of positive samples 
+(consisting the object of interest) and negative samples (other objects 
+or parts of background image) to work. There are also moving object 
+detectors based on background subtraction described in Malik et al. [6] . 
+These methods are learning the background of the image (slowly mov- 
+ing or stationary objects) and subtracts the foreground (moving objects). 
+Another, method for object detection is to analyze a contour of the ob- 
+ject extracted from image segmentation or directly from image gradient. 
+The last mentioned method is most suitable for our task, because it is 
+working correctly also for rotated and scaled images. This is important, 
+because our marks can be positioned from dierent distances, angles, 
+and with dierent rotations as it can be seen in Fig. 2 . 
+Our detection method consists of few fundamental steps. First, we 
+lter the image noise to reduce its inuence on detection. Then we ex- 
+tract important edges and corners from the image. After that, we nd 
+continuous contours from edges consisting only four corners (rectangu- 
+lar control mark). Extracted contours are candidates for our detected 
+mark. The last step is to test each candidate against predened pattern 
+(expected appearance of the control mark) using algorithm known as 
+pattern matching. This step is done for multiple permutations of the cor- 
+ner points to nd the right orientation of the control mark. This method 
+is described in further detail in following subsections. 
+
+ing variation of color and brightness. It is error caused by sensor chip of 
+the camera. If this noise is not ltered out, the edge and corner detec- 
+tors will not work properly. Therefore, we use image ltering to reduce 
+noise. 
+The most used image lter for noise reduction is Gaussian lter de- 
+scribed in Stockman and Shapiro [10] . The Gaussian function is used as 
+a kernel function for image convolution with noisy image. Gaussian l- 
+ter reduces random image noise very eectively, but with the noise also 
+the edges in the image are blurred. This is due to properties of edges 
+and noise in frequency domain of the image. Both noise and edges are 
+represented by frequencies and the Gaussian blurring works as a low- 
+pass lter in frequency domain. To preserve edges in the image other 
+method for ltering must be used. 
+The lter we have used is known as Perona-Malik lter developed 
+by Perona and Malik [8] . This lter preserves important details in the 
+image, typically edges and lines, which is important for our method. 
+This lter is based on heterogeneous diusion described by following 
+equation 
+
+
+ 
+
+=  
+
+ ( 
+
+ 
+
+
+ ) 
+
+,
+
+(1) 
+
+where I represents image, t is time,  represents gradient operator, and c 
+is diusion coecient. The diusion coecient is very important in the 
+equation. It describes behavior along the edges in the image. The basic 
+idea is to slow down the diusion process (ltering) along the edges. 
+This way, similar intensities are ltered more, and therefore, creating 
+homogeneous areas separated by preserved signicant edges. The dif- 
+fusion coecient is driven by image gradient magnitude and has the 
+following form 
+
+′  
+
+
+
+′ ) = 
+
+
+
+ ( 
+
+)2 
+
+,
+
+′
+
+( ′ 
+
+1 
+
+
+
+
+1 + 
+
+(2) 
+
+where K represents a sensitivity to edges. The result of image ltering 
+using the Perona-Malik lter can be seen in Fig. 3 . As you can see, the 
+detail of control mark is much more homogeneous than in original im- 
+age, yet the edges are preserved. This step signicantly improves edge 
+and corner detection. 
+
+3.2. Edges and corners detection 
+
+3.1. Image ltering 
+
+Image ltering is a process used for reduction of undesirable proper- 
+ties of the image. Image noise is random component of the image caus- 
+
+Corners and edges are important features for our control mark de- 
+tector. Edges are parts of the image, where image intensities change 
+rapidly (high gradient magnitude). We are often looking for thin edges 
+
+Fig. 2. Views on control marks from dierent angles. 
+
+2 
+
+R. Dando  et al. 
+
+Computer Standards & Interfaces 000 (2017) 1每8 
+
+ARTICLE IN PRESS 
+
+JID: CSI 
+
+[m5GeSdc; September 11, 2017;16:16 ] 
+
+Fig. 4. Edges and corners detection: (a) Original image; (b) Canny edge detector output; (c) Canny edge detector output dilated; (d) Harris corner detection output. 
+
+corresponding with boundaries of the objects in the image. On the other 
+hand, corners are areas in the image, where the edges rapidly change 
+its shape, for example intersection of two lines. Combination of edges 
+and corners is essential for control mark detection. The basic idea is to 
+nd continuous contour having exactly four corners, because it is exact 
+representation of our control mark boundaries. 
+We have used Canny edge detector developed by Canny [1] also 
+known as optimal detector, because it is adaptable to various environ- 
+ments. This algorithm consists of four basic steps. The First step is to l- 
+ter the image. The authors proposed to use Gaussian lter, but we have 
+already ltered the image using the Perona-Malik lter. The second step 
+is to nd image gradient magnitudes and orientations. The Sobel opera- 
+tors are used for this task. Convolution of Sobel operators with the input 
+image creates two output images with approximated partial derivations 
+for x-axis and D y 
+for y -axis. This step can be described by following 
+equations 
+
+D x 
+
+
+
+ 
+
+= 
+
+
+
+  
+
+
+ 
+ 
+ 
+﹟
+
+1 
+2 
+1 
+
+0 
+0 
+0 
+
+1 
+2 
+1 
+
+
+ 
+ 
+ 
+
+,
+
+
+
+ 
+
+= 
+
+
+
+  
+
+
+ 
+ 
+ 
+
+1 2 1 
+0 
+0 
+0 
+1 
+2 
+1 
+
+
+ 
+ 
+ 
+
+,
+
+(3) 
+
+where I is the input image, and  is a convolution operator. To compute 
+approximate magnitude and orientation of the gradient the following 
+formulas are used 
+
+( 
+,
+
+
+
+ ) = 
+
+
+
+ 
+
+( 
+
+,
+
+
+
+ ) 
+
+2 + 
+
+
+
+ 
+
+( 
+
+,
+
+
+
+ ) 
+
+2 ,
+
+(4) 
+
+成( 
+
+,
+
+
+
+ ) = ar ct an 
+
+(
+
+ 
+
+ 
+
+( 
+( 
+
+,
+
+
+
+ ) 
+ ) 
+
+
+
+ 
+
+,
+
+
+
+)
+
+(5) 
+
+where G is gradient magnitude image, and 成 is gradient orientations 
+image. The orientations are often rounded to one of four angles (0, 45, 
+90 or 135). Third step is to apply Non-maximum suppression to lter 
+out every pixel that is not in local gradient maximum. Only pixels which 
+form thin edges remain. The last step is to threshold pixels according to 
+gradient magnitudes. There are two thresholds: upper and lower. If a 
+pixel gradient is above the higher threshold, then the pixel is accepted 
+as edge. If a pixel gradient is under the lower threshold, it is rejected. 
+If it is between lower and upper threshold, it is accepted only if the 
+pixel is connected to pixel with gradient above upper threshold. The 
+result of Canny edge detector can be seen in Fig. 4 b. We must make the 
+edges more thick, because we are going to use the edges in combination 
+with corners, and they must be on the border of the control mark. We 
+have used dilatation for this task. The result of dilatation can be seen in 
+Fig. 4 c. 
+The corner can be dened as a point in the image, where two edges 
+intersect, or as a point in the image which has at least two signicant 
+edges in the neighborhood with dierent orientations. The algorithm 
+we have used is called Harris corner detector or it is also referred to as 
+Harris operator developed by Harris and Stephens [4] . This operator is 
+improved Moravec corner detector proposed by Moravec [7] . This im- 
+proved corner detector uses dierentials of the corner score with respect 
+to direction. First step is to compute approximation of a sum of squared 
+
+dierences (SSD), denoted as S , which is computed as form 
+
+ ( 
+,
+
+
+
+ ) ＞
+
+﹉
+
+
+
+﹉
+
+
+
+
+
+ ( 
+
+,
+
+
+
+ ) 
+
+(
+
+ 
+
+( 
+
+,
+
+
+
+ ) 
+
+
+
+ + 
+
+
+
+ 
+
+( 
+
+,
+
+
+
+ ) 
+
+
+
+)2 ,
+
+(6) 
+
+where w is a window function (usually Gaussian), D x 
+and D y 
+are images 
+of partial derivatives of input image, and x and y are image coordinates. 
+This can be easily rewritten into matrix formula 
+
+
+
+ ( 
+
+,
+
+
+
+ ) ＞ ( 
+
+
+
+
+
+ ) 
+
+
+
+ ( 
+
+
+
+
+
+ ) 
+
+
+
+ ,
+
+(7) 
+
+
+
+ = 
+
+﹉
+
+
+
+﹉
+
+
+
+
+
+ ( 
+
+,
+
+
+
+ ) 
+
+(
+
+ 
+
+2 
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+2 
+
+
+
+)
+
+.
+
+(8) 
+
+Typically, the corner is indicated, when the S has high variations in 
+all directions of the vector ( x y ). Following step is to analyze eigenval- 
+ues of the matrix A . If both eigenvalues 
+and 
+have values near 0, 
+then the point has no feature of interest. If 
+is near to 0 and 
+has 
+large positive value, then the point is marked as edge. Finally, if both 
+and 
+have large positive number, the point is marked as corner. It 
+is suggested that we should not compute eigenvalues exactly, and use 
+following computation instead and analyze its value 
+
+1 
+
+2 
+
+1 
+
+2 
+
+1 
+
+2 
+
+
+
+ 
+
+= det ( 
+
+
+
+ )  
+
+ 
+
+
+
+
+
+2 ( 
+
+
+
+ ) 
+
+,
+
+(9) 
+
+where M c 
+is the value we have to analyze, and 
+ is sensitivity coecient, 
+which should be set between 0 . 04  0 . 15 as the authors suggest. The 
+result of corner detector combined with edge detector can be seen in 
+Fig. 4 d. 
+
+3.3. Detection 
+
+As an input for detection the edges and corners with input image are 
+used. The detection itself can be described in three basic steps. First, we 
+nd all contours with four corners, then we nd corresponding permuta- 
+tion for the corner points to match the contour orientation with template 
+orientation, and nally, we compare the template pattern with detected 
+object within the detected contour. 
+First we nd the contours using connected components algorithm. 
+Subsequently, we compute the number of corner in each contour, and 
+if it is four, we mark the object as a candidate for the control mark. An 
+example of result from this step can be seen in Fig. 5 . In our example, 
+the number of candidates is reduced to one. 
+Now we only have the objects with four corners, and we must nd 
+only those, that look the same as our control mark. We use pattern 
+matching for this task. The problem is, that we do not know the order 
+of corners of the object, and also, the object in the image is transformed 
+(rotated, scaled). These problems must be dealt with. We use a combi- 
+nation of corner permutations and perspective transformation known as 
+homography. 
+Homography is a transformation for projection between two planes. 
+It is often used in road surface monitoring systems, where we want to 
+have a bird-like (up-down) view on the road around the car. To nd 
+a perspective transformation we need at least four points in the input 
+image and four points in the output image for exact computation of the 
+homography matrix H . The matrix H represents a transformation matrix 
+
+3 
+
+JID: CSI 
+
+R. Dando  et al. 
+
+ARTICLE IN PRESS 
+
+[m5GeSdc; September 11, 2017;16:16 ] 
+
+Computer Standards & Interfaces 000 (2017) 1每8 
+
+Fig. 5. Extracted candidate contour for control mark detection, and its visualization onto the mark in the image. 
+
+Fig. 6. Transformed images and theirs corresponding SSD in comparison with used template pattern in ascending order. 
+
+for the points from one image plane to the other in such a way, that 
+the transformation transforms the input points onto the output points 
+with minimal projection error. The homography can be described using 
+following formulas 
+
+(
+(
+
+
+
+ 
+
+
+
+∩
+
+
+
+
+
+ 
+
+= 
+
+= 
+
+
+
+ 
+
+
+
+ 
+
+1 
+
+ ,
+
+= 
+
+∩ 
+
+ 
+
+ 
+
+
+
+∩ 
+
+ 
+
+∩
+
+
+
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+ 11 
+ 21 
+ 31 
+
+
+
+
+
+
+
+ 12 
+ 22 
+ 32 
+
+)
+
+ ,
+
+)
+
+ 
+ 
+ 
+
+ 13 
+ 23 
+ 33 
+
+,
+
+
+
+
+
+
+
+(10) 
+
+(11) 
+
+(12) 
+
+(13) 
+
+(14) 
+
+is used. Furthermore, the lowest SSD is also used for decision if the de- 
+tected object is our control mark (thresholding is used). The transformed 
+images in comparison with template image with measured SSD can be 
+seen in Fig. 6 . In this gure, the transformed image nearest to control 
+mark pattern (the one with least SSD) is the one we consider to have 
+corners in the correct order. Now we know positions of the point on 
+the control mark in the image, therefore, we can use it to measure the 
+location of the mark itself (e.g. using stereoscopy). 
+
+4. Measuring control mark position from single image 
+
+We need to know positions of control marks to reconstruct three- 
+dimensional model of measured object, and also to measure its occa- 
+sional deformation. In many cases, it is dicult to measure in hardly 
+accessible places with limited room for camera manipulation. There- 
+fore, we were highly motivated to develop a simple method for control 
+mark localization using only single camera image. 
+As we have mentioned earlier, the increased complexity of control 
+mark makes it more dicult for detection, but on the other hand, more 
+complex control mark decreases the probability there will be any other 
+object in the image causing false detection. Another asset with complex 
+marks is that we know its structure and also distances between its cor- 
+ners (points of interest). Knowing enough information about the object 
+we are trying to detect and about camera we are using for measurement 
+allows us to measure its position. 
+The rst part of the information we have to acquire the intrinsic and 
+extrinsic camera parameters. We would need these two also if we were 
+using stereoscopy for measurement. These parameters are important for 
+distortion compensation and also for information about focal length and 
+center of the view-port. These data are essential for reconstruction of the 
+measured object. Without these data the measurement would be unnec- 
+essarily inaccurate. Number of points of interest is also very important 
+
+
+
+∩
+
+
+
+= 
+
+
+
+ 
+
+
+
+ 
+
+,
+
+
+
+
+
+ 
+
+= 
+
+
+
+1 
+
+,
+
+
+
+
+
+∩
+
+
+
+= 
+
+∩
+
+
+
+ 
+
+,
+
+∩
+
+
+
+where p a 
+is input point from input image plane, p ∩ b 
+is output point in 
+output image plane, H ab 
+is projective transformation used for transfor- 
+mation of the point p a 
+onto the point p ∩ b 
+, x and y are image coordinates, 
+and w ∩ homogeneity coecient for conversion of point p ∩ b 
+to point p b 
+. 
+To nd the homography matrix H the basic Direct Linear Transforma- 
+tion Algorithm (DLTA) is used. 
+The idea of distinction between control marks and other objects is 
+given by comparison of sample pattern with data extracted from the 
+image (pattern matching). First we must transform object dened by 
+detected contour from input image into the same image space as the 
+sample pattern (register both images using homography). Since both 
+images are registered we can compare them pixel by pixel using the 
+previously mentioned SSD. This comparison is done for each possible 
+and logical permutation of the corners (no edge is crossing the other 
+edge), and as the result, the order of the corners with the lowest SSD 
+
+4 
+
+JID: CSI 
+
+R. Dando  et al. 
+
+ARTICLE IN PRESS 
+
+[m5GeSdc; September 11, 2017;16:16 ] 
+
+Computer Standards & Interfaces 000 (2017) 1每8 
+
+part in object localization. We need at least four point and theirs relative 
+positions to nd three-dimensional position of an object. 
+In our case, we have four points in each detected object and also all 
+camera parameters. This is enough to nd three-dimensional position 
+of the control mark. We use re-projection for the localization itself. The 
+idea is to project the known shape of the control mark (corner points) 
+onto the view-port in such a way, that it matches the detected mark 
+in the image. Therefore, we need to nd unknown projection param- 
+eters, namely, translation and rotation vector. Parameters for camera 
+matrix are known from camera calibration. Many optimization method 
+can be used to nd the unknown translation and rotation vectors. We 
+have used genetic algorithm described in Schmitt [9] , which is heuristic 
+search method inspired in natural selection. Every evolutionary algo- 
+rithm uses some kind of tness function to evaluate the tness (quality) 
+of the solution. We will discuss these ideas in greater detail in following 
+subsections. 
+
+4.1. Genetic algorithm 
+
+Genetic algorithm is a method for heuristic search for optimal re- 
+sults. The method works with multiple results at the same time. Each 
+result is encoded in structure known as chromosome and all results to- 
+gether form a new generation (population). Each generation has one or 
+more representatives from previous generation known as parents, which 
+represent the former best results. Each new generation is created using 
+the parents (best results) from former generation. To fulll this task, the 
+crossover, mutation, and selection operators are used. 
+Crossover operator also known as recombination represents the com- 
+bination of the best results (parents) to create new generation (results). 
+According to encoding if the information the crossover operator varies. 
+For example, if the information is encoded in binary manner (each bit 
+represents gene), then the crossover operator will randomly select each 
+bit from one of the parents and copies it to a new chromosome in the 
+upcoming generation. Whole new generation is created this way. 
+Another important operator is mutation. This operator introduces 
+diversity into the population. The diversity is important for heuristic 
+search. After crossover each of the chromosomes are combination of the 
+best chromosomes, but these chromosomes without mutation are all the 
+same, and therefore, the mutation is introduced. This operator changes 
+each chromosome (result) a bit so each population covers greater part 
+of search space. In the case of binary encoding, random bits (genes) are 
+inverted. This prepares the ground for the nal operator, the selection. 
+Selection operator selects new parents for the next generation. In 
+nature only the best individuals survive. The same principle applies for 
+genetic algorithms. Only the best chromosomes are selected to be used 
+in next generation. We need some kind of a measure to evaluate the 
+tness of each individual. This measure is a tness function, which is 
+dierent for each application. For example, for the problem of nding 
+a maximum of a function the tness function is the evaluation of the 
+function itself. The higher is the value the higher is the tness. We will 
+discuss our application of genetic algorithm in the following subsection. 
+
+4.2. Estimation of projective matrix 
+
+The camera parameters as focal length and center of the view-plane 
+are already known, but we have to estimate rotation and translation 
+vectors. Estimation of these parameters will allow us to nd location 
+of object of interest. The rst step is to put control mark model into 
+the center of projection and then estimate the translation and rotation 
+which will put projected model onto detected object in the image. We 
+nd these parameters using genetic algorithm. 
+First problem we have to solve is the encoding. We have six param- 
+eters in total: rotation along three axes ( 
+   ), and translation vector 
+). We encode these parameters as an array of oat values. So 
+each chromosome in population has six genes represented as oat val- 
+ues. The mutation operator is then dened as an addition of random 
+
+( t x 
+
+t y 
+
+t z 
+
+Fig. 7. Scheme of laboratory testing environment. 
+
+vector to chromosome. And for the selection operator (tness function) 
+the re-projection error is used. Re -projection error uses points in de- 
+ned space 次 and points in dierent space 忙 projected to space 次 using 
+transformation matrix P (projection) P: 忙 ↙ 次 . The squared dierences 
+between actual and projected points are then used for tness function. 
+This re-projection error can be expressed using following equation 
+
+ ﹉
+
+
+
+|| 
+
+
+
+ =1 
+
+||2 ,
+
+
+
+ 
+
+= 
+
+ 
+
+
+
+ ( 
+
+
+
+∩
+
+
+
+) 
+
+(15) 
+
+(16) 
+
+where x i 
+﹋ 次 is an image point detected on control mark, x i 
+0 ﹋ 忙 is con- 
+trol mark point in three-dimensional space, which can be transformed 
+onto the view-port (two-dimensional image) using transformation ma- 
+trix P . Finally, N represents number of control points present on the 
+control mark, which is four in our case. Hereby, we can say, that we are 
+looking for such transformation P min 
+with minimal re-projection error, 
+for which the following equation is valid 
+
+ ﹉
+
+
+
+|| 
+
+
+
+ min 
+
+= arg min 
+
+
+
+
+
+ =1 
+
+||2 ,
+
+ 
+
+
+
+ ( 
+
+
+
+∩
+
+
+
+) 
+
+where argmin represents the search of the transformation matrix P min 
+in search space 忙 containing all possible transformations. In our case, 
+this function is realized using genetic algorithm. As soon as we nd the 
+transformation, we can nd three-dimensional position of control mark 
+with transformation of control mark using only rotation and translation. 
+
+5. Experiments 
+
+The accuracy of detection of new control marks and determination 
+of their spatial position were conducted under laboratory conditions. 
+To verify the accuracy of the values obtained from detection the geode- 
+tic method known as spatial polar method was used. The test included 
+brackets for control marks and simple micro-network for geodetic mea- 
+surements. Brackets allow any shifts and rotations of control marks. 
+Micro-network consists of two reective plates representing the approx- 
+imate line. Diagram of the test unit is shown in Fig. 7 . 
+
+5.1. Spatial polar method 
+
+The spatial polar method shown in Fig. 8 is based on the measuring 
+of slope length d from the known point (survey station S ), horizontal 
+angle (for the determination of the bearing) and zenith angle z to the 
+determined point (detailed survey point P ). The equations for the cal- 
+culation of coordinate dierences between the survey station S and the 
+determined point P resulting from proposed scheme are as follows 
+
+= 
+
+
+
+  
+
+ sin ( 
+
+
+
+ ) 
+
+ cos ( 
+
+ 
+
+) 
+
+,
+
+(17) 
+
+忖
+
+  
+
+5 
+
+R. Dando  et al. 
+
+Computer Standards & Interfaces 000 (2017) 1每8 
+
+ARTICLE IN PRESS 
+
+JID: CSI 
+
+[m5GeSdc; September 11, 2017;16:16 ] 
+
+Table 1 
+
+First attempt of methods comparison. 
+
+Frame number 
+
+Spatial distance between control mark centers [m] 
+
+
+
+ [m] 
+
+
+
+ [m 
+
+2 ] 
+
+Fotogrammetically 
+
+Geodetically 
+
+1 
+2 
+3 
+4 
+
+351 . 4﹞10 
+339 . 6﹞10 
+338 . 6﹞10 
+344 . 0﹞10 
+
+ 3 
+ 3 
+ 3 
+ 3 
+
+338 . 0﹞10 
+338 . 0﹞10 
+338 . 0﹞10 
+338 . 0﹞10 
+
+ 3 
+ 3 
+ 3 
+ 3 
+
+ 13 . 4﹞10 
+ 1 . 6﹞10 
+ 0 . 6﹞10 
+ 6 . 0﹞10 
+
+ 3 
+ 3 
+ 3 
+ 3 
+
+179 . 56﹞10 
+2 . 56﹞10 
+0 . 36﹞10 
+36﹞10 
+221 . 48﹞10 
+
+ 6 
+ 6 
+ 6 
+ 6 
+
+曳
+
+ = 
+
+ 6 
+
+Table 2 
+
+Second attempt of methods comparison. 
+
+Frame number 
+
+Spatial distance between control mark centers [m] 
+
+
+
+ [m] 
+
+
+
+ [m 
+
+2 ] 
+
+Fotogrammetically 
+
+Geodetically 
+
+1 
+2 
+3 
+4 
+
+379 . 5﹞10 
+377 . 1﹞10 
+379 . 7﹞10 
+377 . 9﹞10 
+
+ 3 
+ 3 
+ 3 
+ 3 
+
+372 . 0﹞10 
+372 . 0﹞10 
+372 . 0﹞10 
+372 . 0﹞10 
+
+ 3 
+ 3 
+ 3 
+ 3 
+
+ 7 . 5﹞10 
+ 5 . 1﹞10 
+ 7 . 7﹞10 
+ 5 . 9﹞10 
+
+ 3 
+ 3 
+ 3 
+ 3 
+
+56 . 25﹞10 
+26 . 01﹞10 
+59 . 29﹞10 
+34 . 81﹞10 
+176 . 36﹞10 
+
+ 6 
+ 6 
+ 6 
+ 6 
+ 6 
+
+曳
+
+ = 
+
+Fig. 8. The scheme of spatial polar method. 
+
+Fig. 9. The principle of bearing calculation. 
+
+忖
+
+  
+
+= 
+
+
+
+  
+
+ sin ( 
+
+
+
+ ) 
+
+ sin ( 
+
+ 
+
+) 
+
+,
+
+(18) 
+
+忖
+
+  
+
+= 
+
+
+
+  
+
+ cos ( 
+
+
+
+ ) 
+
+,
+
+(19) 
+
+The bearing 
+ , as shown in Fig. 9 , is an angle which is closed 
+by the parallel with the positive semi-axis X pointing to the south, 
+passing through the station S , and by the requested side. The bearing 
+therefore cannot be directly measured, hence the horizontal angle 
+
+
+
+from another known point (orientation O ) is observed. The bearing 
+is calculated from the bearing 
+(determined from the known 
+coordinates of the points S and O ) and the measured horizontal angle 
+ using the expression 
+
+ SP 
+
+ SO 
+
+
+
+ 
+
+= 
+
+
+
++ 
+
+,
+
+(20) 
+
+Basic equations for space coordinates computation of a detailed 
+(measured) survey point have the form 
+
+
+
+ 
+
+= 
+
+
+
+ 
+
++ 忖
+
+  
+
+,
+
+(21) 
+
+
+
+ 
+
+= 
+= 
+
+
+
+ 
+
++ 忖
++ 忖
+
+  
+
+,
+
+(22) 
+
+
+
+ 
+
+
+
+ 
+
+  
+
+,
+
+(23) 
+
+Using substitution we can rewrite these equations into the following 
+form 
+
+
+
+ 
+
+= 
+
+
+
+ 
+
++ 
+
+
+
+  
+
+ sin ( 
+
+
+
+ ) 
+
+ cos ( 
+
+ 
+
+) 
+
+,
+
+(24) 
+
+
+
+ 
+
+= 
+
+
+
+ 
+
++ 
+
+
+
+  
+
+ sin ( 
+
+
+
+ ) 
+
+ sin ( 
+
+ 
+
+) 
+
+,
+
+(25) 
+
+
+
+ 
+
+= 
+
+
+
+ 
+
++ 
+
+
+
+  
+
+ cos ( 
+
+
+
+ ) + 
+
+
+
+ 
+
+,
+
+(26) 
+
+In the equation for the Z -coordinate, the height of the instrument v P 
+above the stabilization mark dening the survey station must be added 
+to the basic term. 
+
+5.2. Measurements 
+
+Coordinates of the center marks measured using geodetic method 
+were calculated in Groma 9.1 software. Furthermore, the calculated co- 
+ordinates of the spatial distance between the two marks were compared 
+with the length computed from coordinates of control marks detected by 
+our photogrammetric method. Table 1 contains rst attempt for a com- 
+parison of both methods on a series of 4 images. From the measured 
+data we can compute the mean error as follows 
+
+
+
+ = ㊣ 
+
+﹟
+ ﹟
+ ﹟
+ ﹟
+
+ 1 
+
+
+
+
+
+ ﹉
+
+
+
+ =1 
+
+
+
+ 
+
+
+
+ 
+
+= ㊣ 
+
+﹟
+
+ 1 
+
+221 
+ 48 = ㊣7 
+4 
+
+.
+
+.
+
+ 4 
+
+ 10 
+
+3 .
+
+(27) 
+
+In our second attempt the position of control marks were changed 
+and the results of this measurements are shown in Table 2 . In this case, 
+the mean error m is 6﹞10 
+These are measurements in laboratory conditions. The camera＊s dis- 
+tance from targets was about 5 m. Only the ability to detect new targets 
+was tested in the real situations. 
+
+ 3 m. 
+
+6 
+
+JID: CSI 
+
+R. Dando  et al. 
+
+ARTICLE IN PRESS 
+
+[m5GeSdc; September 11, 2017;16:16 ] 
+
+Computer Standards & Interfaces 000 (2017) 1每8 
+
+Fig. 10. Detection of targets on the retaining wall no. 8246. 
+
+to improve accuracy. Recently, we have prepared a new test platform 
+that allows us to measure control markers in laboratory conditions for 
+longer distances. Then the method will be tested in a similar manner 
+also in the exterior and compared with geodetic methods. 
+
+6. Testing 
+
+Detecting the image, or a suitable target in space can also be used 
+for example for monitoring the structural deformation. The spatial shifts 
+of structures occurs mainly due to anthropogenic and natural factors. 
+In the Upper Silesian Coal Basin, it is mainly the case of the eects 
+of mining activities. Although most of the coal mines in the Ostrava- 
+Karvina district are already closed, according to Schenk [13] , it can take 
+several years before the impact of mining in the subsidence trough fades 
+away. 
+Monitoring shifts, not only on the undermined territory, can prevent 
+deformation and, in extreme cases, the devastation of the structure. A 
+number of methods, either geodetic or physical, are used for the mea- 
+surement of the values used for the calculation of the shifts. 
+For further testing of the detection of new targets, the retaining wall 
+no. 8246 on the D1 motorway in Ostrava was used, which is part of the 
+yover in Rudn芍. The retaining wall is located in close proximity to the 
+safeguard pillar of the former Odersk Pit and Svinov Pit. Both pits were 
+already liquidated in 1992, so it is assumed that the eects of mining on 
+the surface have faded away. The retaining wall no. 8246, however, is a 
+very important part of the viaducts and one of the reasons for monitor- 
+ing the shifts is its position in the undermined area. Monitoring spatial 
+displacements takes place at 56 points since 2004. 
+The monitored points, which are stabilized by reective labels, 
+have been supplemented by new code targets with dimensions of 
+0.15 m ℅ 0.15 m. They were also photographed using the digital camera 
+Canon EOS 7D. Photographing had to be done in stages because of the 
+size of the wall. 
+The detection of the bull＊s-eyes, as shown in Fig. 10 , was carried 
+out without problems even on such a large object, and their position in 
+space was determined for all of them. Their position was also determined 
+using the spatial polar method by the total station Leica TS 30 (angle 
+accuracy: 0,15 mgon; distance accuracy: 1 mm + 1 ppm), and the mean 
+error of the detection of targets was determined. The mean error of new 
+
+Fig. 11. Sample location of the target. 
+
+We can deduct from our measurements that the accuracy of our 
+method is about ㊣ 7﹞10 
+ 3 m. The mean error was achieved when scan- 
+ning from a relatively short distance under laboratory conditions. In the 
+future, we are planning modications to our software which are going 
+
+7 
+
+JID: CSI 
+
+R. Dando  et al. 
+
+ARTICLE IN PRESS 
+
+[m5GeSdc; September 11, 2017;16:16 ] 
+
+Computer Standards & Interfaces 000 (2017) 1每8 
+
+photogrammetric methods for testing on the retaining wall no. 8246 was 
+㊣ 0.007 m. 
+However, the problem arose when calculating the shifts. It is not 
+yet possible to dene reference points or the coordinate system in the 
+software. For the calculation of shifts in the coordinate system of the 
+darkroom, the targets would have to be photographed at various stages 
+in the same position of the darkroom. 
+Since the rst trials, however, the software has been adjusted for the 
+detection of the mark. The software innovation should lead to better 
+and more accurate results. It will include the possibility of dening the 
+reference points, coordinate system and scale. 
+Currently, a new test base is being prepared, which allows pho- 
+tographing marks in laboratory conditions and for longer distances. 
+Then the method will be tested in a similar way also in the exterior 
+and compared with geodetic methods. 
+
+6.1. The method application 
+
+The newly proposed one-snap photogrammetric method can have 
+a wide range of applications. The fundamental dierence from terres- 
+trial intersection photogrammetric method is to determine the spatial 
+coordinates of the center of the target from only one image. Newly de- 
+veloped software also determines the spatial coordinates in addition to 
+also rotate targets in space. The new method can thus be used for moni- 
+toring the displacement of various types of structures. However, targets 
+of a suitable material would have to be placed on the object. A sample 
+location of the target is shown in Fig. 11 . 
+Aesthetically, it would be possible to adapt the color of the target 
+not to disturb the overall impression of the structure. However, their 
+basic shape must be respected. The big advantage of the newly proposed 
+method is the possibility of continuous monitoring of the targets. In 
+the next phase of testing, this possibility will be tested with a CMOS 
+sensor, or a simple darkroom. In the case of quality results, there is the 
+possibility of connecting the darkroom with the GSM module that would 
+send the images to the server with the evaluation software. 
+
+7. Conclusions 
+
+We have developed a new photogrammetric method for localization 
+of control marks from single image. We have also designed a new control 
+
+mark that can be used with our new method. The newly designed control 
+mark allows us to measure not only its position, but also to measure its 
+rotation, which can be very useful for measured surface reconstruction. 
+The ability to measure the position of control marks from single image 
+allows to measure tide or generally small areas, where more images from 
+more dierent angles cannot be taken. We have compared our method 
+to spatial polar method and we deduced that the accuracy of our method 
+is about ㊣ 7﹞10 
+
+ 3 m. 
+
+References 
+
+[1] J. Canny , A. computational approach to edge detection, Pattern Anal. Mach. Intell. 
+IEEE Trans. PAMI 8 (1986) 679每698 . 
+[2] C. Cortes , V. Vapnik , Support-vector networks, Mach. Learn. 20 (1995) 273每297 . 
+[3] M. Enzweiler , D. Gavrila , Monocular pedestrian detection: survey and experiments, 
+Pattern Anal. Mach. Intell. IEEE Trans. PAMI 31 (2009) 2179每2195 . 
+[4] C. Harris , M. Stephens , A combined corner and edge detector, in: In Proc. of Fourth 
+Alvey Vision Conference, 1988, pp. 147每151 . 
+[5] R. Kapica , D. Sladkova , Photogrammetric analysis of objects in undermined territo- 
+ries, Geodesy Cartography 37 (2011) 49每55 . 
+[6] A.A. Malik , A. Khalil , H.U. Khan , Object detection and tracking using background 
+subtraction and connected component labeling, Int. J. Comput. Appl. 75 (2013) 1每5 
+Published by Foundation of Computer Science, New York, USA . 
+[7] H.P. Moravec , Obstacle Avoidance and Navigation in the Real World by a Seeing 
+Robot Rover Ph.D. thesis. Stanford, CA, USA. AAI8024717, 1980 . 
+[8] P. Perona , J. Malik , Scale-space and edge detection using anisotropic diusion, Pat- 
+tern Anal. Mach. Intell. IEEE Trans. 12 (1990) 629每639 . 
+[9] L.M. Schmitt , Theory of genetic algorithms, Theor. Comput. Sci. 259 (2001) 1每61 . 
+[10] G. Stockman , L.G. Shapiro , Computer Vision, rst ed., Prentice Hall PTR, Upper 
+Saddle River, NJ, USA, 2001 . 
+[11] P. Viola , M. Jones , Rapid object detection using a boosted cascade of simple features, 
+in: Computer Vision and Pattern Recognition, 2001. CVPR 2001. Proceedings of the 
+2001 IEEE Computer Society Conference on, 2001 pp. I每511每I每518 vol.1 . 
+[12] M.H. Yang , D. Kriegman , N. Ahuja , Detecting faces in images: a survey, Pattern Anal. 
+Mach. Intell. IEEE Trans. 24 (2002) 34每58 . 
+[13] J. Schenk , in: Dynamika Poklesov谷 Kotliny, Textbook, V  B - TU Ostrava, HGF, IGDM, 
+2000, p. 13 . 
+[14] DIAS-DA-COSTA, D., et al. Monitoring of concrete members using photogrammetry 
+and image processing. 2014. 
+[15] T. Moriyama , et al. , Automatic target-identication with the color-coded-targets, in: 
+The International Archives of Photogrammetry and Remote Sensing, Beijing, XXI 
+Congress, WG, 2008, pp. 39每44 . 
+
+8 
+

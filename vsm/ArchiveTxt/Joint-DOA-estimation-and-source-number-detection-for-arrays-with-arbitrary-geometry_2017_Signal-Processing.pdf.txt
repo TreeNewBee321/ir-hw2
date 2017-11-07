@@ -1,0 +1,4841 @@
+Joint DOA estimation and source number detection for arrays with arbitrary geometry 
+
+Falamarz Izedi, Mahmood Karimi 
+
+, Mostafa Derakhtian 
+
+
+
+School of Electrical and Computer Engineering, Shiraz University, Shiraz, Iran 
+
+article
+
+info
+
+Article history: 
+Received 22 October 2016 
+Revised 20 April 2017 
+Accepted 6 May 2017 
+Available online 16 May 2017 
+
+Keywords: 
+DOA estimation 
+Source number detection 
+Array processing 
+Nonuniform array 
+
+
+abstract
+In this paper, we focus on the problem of joint direction-of-arrival (DOA) estimation and source number 
+detection for an array of sensors. We propose a CLEAN-based sequential algorithm that uses a sequential 
+hypothesis testing procedure. This method can be employed for any array with an arbitrary geometry. 
+We also manage to reduce the computational complexity of the proposed method. Additionally, we de- 
+rive an analytical performance bound for the source number detection algorithm. Our simulation results 
+show that the proposed method achieves an appropriate performance even for low SNR or small num- 
+ber of snapshots. It is shown that the proposed method is applicable to both correlated and uncorrelated 
+sources. Unlike popular methods, the algorithm does not require to know the number of sources for the 
+DOA estimation and is able to estimate the number and the DOA of sources jointly. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+1. Introduction 
+
+Array signal processing has applications in areas such as 
+radar, sonar, wireless communication, radio astronomy, seismology, 
+acoustics, and medical imaging [1,2] . Two of the most important 
+problems in the array signal processing are the direction-of-arrival 
+(DOA) estimation and source number detection. Due to the cost, 
+available space and system performance in practical scenarios, it 
+tends to be unsuitable to restrict the array geometry to a certain 
+class. Therefore, the methods that can be applied to arbitrary array 
+geometries are in great demand [3,4] . 
+For the DOA estimation problem, the multiple signal classi- 
+cation (MUSIC) algorithm [5] is one of the well-known subspace- 
+based methods. This algorithm can be applied to any type of array 
+geometry. A version of this algorithm, which is referred to as root- 
+MUSIC, utilizes polynomial rooting [6] . However, this method is 
+only applicable to the uniform linear array (ULA). In [7] a method 
+is presented to extend the application of the root-MUSIC to the 
+nonuniform linear array case. Fourier-domain root-MUSIC is an- 
+other method which develops the root-MUSIC algorithm for DOA 
+estimation in the sensor arrays of an arbitrary geometry [8] . An- 
+other popular technique for DOA estimation is the estimation of 
+signal parameters via rotational invariance techniques (ESPRIT) [9] . 
+In the ESPRIT method, the array geometry is required to be shift 
+invariant which limits the application of this method to a certain 
+class of arrays. Array interpolation is a DOA estimation technique 
+employed for nonuniform arrays [10¨C12] . This method involves ap- 
+plying transformation to the received signal in order to obtain an 
+interpolation of the signal over a virtual ULA. Manifold separation 
+technique [13] models the received waveform by means of an or- 
+thogonal expansion and approximates the true array steering vec- 
+tor as the product of a matrix that depends only on the array pa- 
+rameters and a Vandermond vector which depends merely on the 
+angle of arrival. 
+Some other DOA estimation methods are based on a technique 
+called CLEAN [14] . CLEAN is developed initially for radio astron- 
+omy. The main idea of CLEAN is to remove the strongest signals 
+from the observed data successively. In [15] , a simple version of 
+CLEAN method is applied to the DOA estimation problem. In this 
+simple version, the cancellation of signal components is not per- 
+fect and as a result, the performance of DOA estimation degrades. 
+In [3] , a method is proposed for DOA estimation in nonuniform 
+linear arrays. This method is a combination of CLEAN, Root-MUSIC 
+and Toeplitz Completion techniques. However, this method needs 
+an initial estimate of DOA of sources and the number of sources 
+must be known. 
+A popular sequential search technique for nding a sparse so- 
+lution is orthogonal matching pursuit (OMP) [16] . This method can 
+be utilized for DOA estimation. 
+Source signals are correlated on condition that multipath reec- 
+tions are present. When the source signals are correlated, the sig- 
+nal covariance matrix may become rank-decient and many of the 
+mentioned methods fail to nd the source DOA [3] . Certain meth- 
+ods such as forward-backward spatial smoothing (FBSS) [18] can be 
+used to improve the rank. The FBSS is one of the best methods to 
+deal with the correlated sources, particularly when ULAs are con- 
+sidered [3] . The disadvantage of this technique is that it uses the 
+subarrays and therefore the resulting covariance matrix size is less 
+than the original covariance matrix size. It must also be pointed 
+out that the FBSS cannot be used directly for an array with an ar- 
+bitrary geometry. 
+Regarding the source number detection problem, the mini- 
+mum description length (MDL) method [19] is one of the most 
+successful methods. Another popular method is Akaike informa- 
+tion criterion (AIC) [20] . These methods share common origins in 
+the information-theoretic and Bayesian formulation of the general 
+model selection problem [19] . The MDL and AIC are known to suf- 
+fer in the detection performance for the small number of snap- 
+shots. 
+In this paper, we propose a CLEAN-based algorithm by solving a 
+sequential generalized likelihood ratio test (GLRT) to estimate both 
+DOA and the number of sources. This method can be used for ar- 
+rays with an arbitrary geometry. Moreover, we reduce the compu- 
+tational complexity of the proposed method. An analytical perfor- 
+mance bound for source number detection is also derived. It has 
+been illustrated that the proposed technique has an appropriate 
+performance in the case of small snapshots for two closely spaced 
+targets. The proposed method is applicable to both correlated and 
+uncorrelated sources. It is noteworthy that the proposed method is 
+a CLEAN-based algorithm that is developed through an statistical 
+approach by solving a sequential generalized likelihood ratio test. 
+It is also worth mentioning that although some versions of CLEAN 
+exist in the literature, there appear to be very few statistical stud- 
+ies about this method [15] . To the best of our knowledge, no other 
+method in the literature looks at the CLEAN algorithm from the 
+GLRT point of view. 
+The remainder of this paper is organized as follows. 
+Section 2 describes the signal model. The proposed method for the 
+joint DOA estimation and source number detection is presented 
+in Section 3 . Section 4 is presented to reduce the computational 
+complexity of the proposed method. The performance bound of 
+the proposed source number detection algorithm, is analyzed in 
+Section 5 . Simulation results, presented in Section 6 , explore the 
+validation of the theoretical results. Finally, Section 7 concludes 
+the paper. 
+Notation: Matrices are denoted by the upper boldface letters 
+and vectors by the lower boldface letters. | x | shows the absolute 
+value of x and 
+ stands for the Euclidean norm. The superscript 
+(¡¤)
+H denotes the Hermitian of a matrix or a vector. Pr 
+ stands for 
+(
+)
+the probability. Furthermore, we use the notation 
+ to in- 
+dicate the complex normal distribution with the mean 
+¦Ì and the 
+covariance matrix C . Finally, I is the identity matrix. 
+
+(cid:3)
+
+ x 
+
+(cid:3)
+
+C
+
+N
+
+¦Ì,
+
+ C 
+
+2. The signal model 
+
+Consider an array of M omnidirectional sensors with nonuni- 
+form spacing in the xy plane. Assume that this array receives sig- 
+nals from L ( L 
+ M ) narrowband far-eld sources with the un- 
+known DOAs, 
+T . We intend to estimate the number 
+¡Á 1 array output vector at the 
+of sources and their DOAs. The M 
+n th snapshot can be modeled as [1] : 
+
+<
+
+¦È (cid:2)
+
+ [ 
+
+¦È1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦ÈL ] 
+
+x 
+(n 
+)
+
+=
+
+ A L 
+
+(
+
+¦È )
+
+ s L 
+
+(n 
+)
+
++
+
+ w 
+
+(n 
+)
+
+,
+
+(1) 
+¡Á 1 vector of signal DOAs. 
+T is the L 
+¡Á L signal steering matrix and 
+(¦È1 
+)
+(¦ÈL 
+)] is the M 
+¡Á 1 steering vector of the i th source which 
+is the M 
+
+where 
+(
+(¦È
+
+¦È =
+
+ [ 
+
+¦È1 
+
+,
+.
+.
+.
+,
+,
+. . .
+,
+
+¦ÈL ] 
+
+A L 
+
+¦È )
+
+(cid:2)
+
+ [ a 
+
+ a 
+
+a 
+
+i 
+
+)
+
+|
+
+ i 
+
+=1 
+
+,
+
+...
+,L 
+
+can be expressed as 
+
+a 
+(¦Èi 
+)
+
+=
+
+(cid:2)
+
+exp 
+¡Á exp 
+2 
+(x M sin 
+,
+j 
+¦Ë is the wavelength of the signal and {
+where 
+the coordinates of the m th array sensor. s L 
+(n 
+)
+(n 
+)
+(n 
+)] 
+¡Á 1 vector of the signal waveforms and w 
+(n 
+)
+is the L 
+¡Á 1 vector of the complex Gaussian 
+(n 
+)
+(n 
+)] 
+T is the M 
+¦Ò 2 I . Here- 
+sensor noises with the zero mean and covariance matrix 
+¦È ) by A L and a ( 
+after, for simplicity, we show A L ( 
+. 
+
+(cid:3)
+(cid:3)
+
+2 
+j 
+
+¦Ð
+¦Ë
+¦Ð
+¦Ë
+
+(x 1 sin 
+
+¦Èi 
+
++
+
+ y 1 cos 
+¦Èi 
+
+)
+
+(cid:4)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦Èi 
+
++
+
+ y M cos 
+¦Èi 
+
+)
+
+(cid:4)(cid:5)
+
+ i 
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ L,
+
+(2) 
+
+ x m 
+ y m 
+ [ s 1 
+
+,
+
+}
+|
+
+ m 
+
+=1 
+
+,
+
+...
+
+,M are 
+T 
+
+(cid:2)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ s L 
+
+(cid:2)
+
+[ w 1 
+
+,
+
+. . .
+
+,
+
+ w M 
+
+¦È
+
+) by a i 
+i 
+
+3. The proposed method 
+
+In order to estimate the number of sources, we propose a se- 
+quential algorithm which results from the solution of a sequential 
+composite hypothesis testing problem. Solving this problem at the 
+ th stage will determine whether there is a source in the direc- 
+tion of 
+ or not. The presence or absence of this source must be 
+determined in the presence of the other sources in the unknown 
+1 . The hypothesis testing problem at the 
+direction of 
+ th stage can be modeled as 
+
+(cid:6)
+
+¦È (cid:6)
+
+¦È1 
+
+,
+
+¦È2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦È(cid:6)
+
+(cid:6)
+
+
+ 
+ 
+ 
+ 
+
+H
+
+((cid:6)
+)
+0 
+
+: x 
+(n 
+)
+
+=
+
+ A (cid:6)
+
+1 s (cid:6)
+1 
+
+(n 
+)
+
++
+
+ w 
+
+(n 
+)
+
+,
+
+n 
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ N;
+ N;
+
+(cid:6) 
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ L 
+
+H
+
+((cid:6)
+)
+1 
+
+: x 
+(n 
+)
+
+=
+
+ A (cid:6)
+
+1 s (cid:6)
+1 
+
+(n 
+)
+
++
+
+ a (cid:6)
+ s (cid:6)
+
+(n 
+)
+
++
+
+ w 
+
+(n 
+)
+
+,
+
+n 
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+(cid:6)
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ L,
+
+(3) 
+ 1 sources; 
+
+¡Á ((cid:6)
+where A (cid:6)
+1 is the M 
+more explicitly, 
+
+ 1)
+
+ steering matrix of 
+
+(cid:6)
+
+A (cid:6)
+
+1 
+1 
+
+(cid:2)
+
+ [ a 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ a (cid:6)
+
+1 ] 
+
+.
+
+(4) 
+ 1)
+¡Á 1 vector of the sig- 
+(n 
+)
+(n 
+)
+(n 
+)] 
+T is the 
+nal waveforms and s (cid:6)
+ ( n ) is the scalar signal of the 
+ th source. This 
+is a composite hypothesis problem with the unknown parameters 
+and s i 
+( n ) for i 
+ . The noise variance is assumed to be 
+known. We employ the GLR test to solve the composite hypothesis 
+problem. The details of the derivation of this GLR-based detector is 
+presented in Appendix A . The likelihood ratio is 
+
+s (cid:6)
+
+(cid:2)
+
+ [ s 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ s (cid:6)
+
+1 
+
+((cid:6)
+
+(cid:6)
+
+¦È
+
+i 
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+(cid:6)
+
+L
+
+ (cid:6)
+
+(x 
+)
+
+=
+
+ max 
+
+¦È
+
+N (cid:10)
+n 
+=1 
+
+|
+
+ a 
+
+H (¦È )
+a 
+H (¦È )
+
+ P 
+
+¡Í
+¡Í
+
+(cid:6)
+
+1 
+1 
+
+x 
+(n 
+)
+a 
+(¦È )
+
+|
+
+2 
+
+ P 
+
+(cid:6)
+
+=
+
+N (cid:10)
+n 
+=1 
+
+|
+
+ a (cid:6)
+
+H P 
+1 
+H P 
+1 
+
+¡Í
+
+(cid:6)
+
+x 
+(n 
+)
+
+|
+
+2 
+
+a (cid:6)
+
+¡Í
+
+(cid:6)
+
+a (cid:6)
+
+H
+
+((cid:6)
+)
+1 
+((cid:6)
+)
+0 
+
+ H
+
+¦Ç(cid:6)
+
+,
+
+(5) 
+
+where 
+ is the 
+ th stage threshold which is determined based on 
+¡Á 1 steering vector 
+the 
+ th stage false alarm probability, a (cid:6)
+ is the M 
+(cid:13)1 A 
+corresponding to the estimated direction 
+ , and P 
+is a matrix 
+that is orthogonal to the A (cid:6)
+ and is given by 
+ A (cid:6)
+I 
+I 
+
+¦Ç(cid:6)
+
+(cid:6)
+
+(cid:6)
+
+¦È (cid:6)
+
+¡Í
+
+(cid:6)
+
+1 
+
+1 
+
+,
+
+P 
+
+¡Í
+
+(cid:6)
+
+1 
+
+=
+
+(cid:11)
+
+1 
+
+(cid:12)
+
+A 
+
+H 
+1 
+
+(cid:6)
+
+A (cid:6)
+
+1 
+
+H 
+1 
+
+(cid:6)
+
+(cid:6)
+(cid:6)
+
+>
+
+ 1 
+ 1 
+
+=
+
+,
+
+(6) 
+
+and as a result 
+(x 
+)
+. Using (5) , our CLEAN-based 
+algorithm for joint DOA estimation and source enumeration can be 
+summarized as follows: 
+
+L
+
+ 1 
+
+=
+
+(cid:14)
+
+ N 
+
+=1 
+n 
+
+|
+
+ a 1 
+
+H x 
+
+(n 
+)
+M 
+
+|
+
+2 
+
+Step 1 Compute 
+(x 
+)
+ and then compare it with the predeter- 
+mined threshold value, 
+. If this value is not greater than 
+the threshold value, stop the algorithm and L 
+ 0 . Other- 
+
+L
+
+ 1 
+
+,
+
+¦Ç
+
+1 
+
+=
+
+wise 
+ arg max ¦È
+and go to the step 2. 
+Step 2 For k 
+ perform the following procedure: 
+1) Dene A k 
+. Where a k 
+steering vector in the direction of 
+ ¦È
+. 
+2) Compute P 
+for A k 
+using (6) and then calculate 
+(x 
+)
+ from (5) . 
+
+ ¦È1 
+
+=
+
+(cid:14)
+
+ N 
+
+=1 
+n 
+
+|
+
+ a 
+
+H (¦È )
+(n 
+)
+M 
+
+ x 
+
+|
+
+2 
+
+=
+
+ 2 
+ 3 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+1 
+
+as A k 
+1 
+
+(cid:2)
+
+(cid:15)
+
+a 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ a k 
+
+1 
+
+(cid:16)
+
+1 
+
+is the 
+
+1 
+k 
+
+¡Í
+
+1 
+k 
+
+1 
+
+L
+
+ k 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+151 
+
+3) Compare 
+(x 
+)
+ with the k th stage threshold value. 
+(x 
+)
+4) If 
+ is smaller than the threshold, terminate the 
+ 1 and 
+algorithm. The number of sources is  L 
+the estimated vector of the source directions is 
+[ 
+ ¦È
+] 
+(x 
+)
+5) If 
+ is greater than the threshold, solve for 
+
+L
+
+ k 
+
+L
+
+ k 
+
+=
+
+ k 
+
+ ¦È =
+
+ ¦È1 
+
+,
+
+. . .
+
+,
+
+1 
+k 
+
+T . 
+
+L
+
+ k 
+
+ ¦È
+
+k 
+
+=
+
+arg max ¦È
+
+(cid:14)
+
+ N 
+
+=1 
+n 
+
+|
+
+ a 
+
+H (¦È )
+
+ P 
+
+¡Í
+¡Í
+
+1 
+k 
+1 
+k 
+
+x 
+(n 
+)
+a 
+(¦È )
+1 
+
+|
+
+2 
+
+H (¦È )
+a 
+
+ P 
+
+. 
+
+6) Insert a k 
+instead of a k 
+into A k 
+then, compute P 
+ ¦È
+and nally calculate (5) to update 
+
+1 
+
+¡Í
+
+1 
+k 
+
+1 
+k 
+
+. 
+
+Please note that the last stage of the step 2 is added to improve the 
+performance of the DOA estimation and source number detection, 
+especially when there are strong sources. In this case, the men- 
+tioned stage improves the signal components cancellation and as a 
+result, the residuals will be suciently small. 
+
+Remark 1. In the case of two-dimensional DOA estimation, the M 
+¡Á 1 steering vector of the i th source can be expressed as 
+2 
+j 
+
+a 
+(¦Èi 
+
+,
+
+¦Õi 
+
+)
+
+=
+
+(cid:2)
+
+exp 
+¡Á exp 
+
+(cid:3)
+(cid:3)
+
+¦Ð
+¦Ë
+
+(x 1 sin 
+¦Õi sin 
+
+¦Èi 
+
++
+
+ y 1 sin 
+
+¦Õi cos 
+
+¦Èi 
+
+)
+
+(cid:4)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+2 
+j 
+
+¦Ð
+¦Ë
+
+(x M sin 
+¦Õi sin 
+
+¦Èi 
+
++
+
+ y M sin 
+
+¦Õi cos 
+
+¦Èi 
+
+)
+
+(cid:4)(cid:5)
+
+,
+
+ (7) 
+
+where 
+and 
+are the i th source DOAs ( 
+is the angle of the i th 
+source DOA vector with respect to the z -axis and 
+is the angle 
+between the projection of the i th source DOA vector on the xy - 
+plane and the y -axis). In this case, the likelihood ratio should be 
+¦È and 
+¦Õ . In other words 
+maximized for all values of 
+
+¦È
+
+i 
+
+¦Õ
+
+i 
+
+¦Õ
+
+i 
+
+¦È
+
+i 
+
+L
+
+ (cid:6)
+
+(x 
+)
+
+=
+
+ max 
+
+¦È ,¦Õ
+
+N (cid:10)
+n 
+=1 
+
+|
+
+ a 
+
+H (¦È ,
+H (¦È ,
+
+¦Õ )
+¦Õ )
+
+ P 
+
+¡Í
+¡Í
+
+(cid:6)
+
+1 
+1 
+
+x 
+(n 
+)
+a 
+(¦È ,
+¦Õ )
+
+|
+
+2 
+
+a 
+
+ P 
+
+(cid:6)
+
+.
+
+(8) 
+
+4. Reducing the computational complexity of the proposed 
+method and computational complexity analysis 
+
+In this section, rst we develop a recursive form for P 
+given 
+by (6) and then we employ Fourier series expansion and discrete 
+Fourier transform (DFT) to reduce the computational complexity of 
+(5) . After reducing the computational complexity, we will analyze 
+the computational complexity of the proposed method. 
+
+¡Í
+
+(cid:6)
+
+1 
+
+4.1. Recursive form of P 
+
+¡Í
+
+(cid:6)
+
+According to [17] , P 
+
+¡Í
+
+(cid:6)
+
+can be written as follows 
+
+P 
+
+¡Í
+
+(cid:6)
+
+=
+
+ P 
+
+¡Í
+
+(cid:6)
+
+1 
+
+ ¦Í(cid:6)
+
+¦ÍH 
+
+(cid:6)
+
+,
+
+(9) 
+
+where 
+
+¦Í(cid:6)
+
+(cid:2)
+
+P 
+
+¡Í
+¡Í
+
+(cid:6)
+
+1 
+1 
+
+a (cid:6)
+
+(cid:3)
+
+ P 
+
+(cid:6)
+
+a (cid:6)
+
+(cid:3)
+
+.
+
+(10) 
+
+4.2. Approximate form of 
+
+L
+
+ (cid:6)
+
+(x 
+)
+
+If we dene f (¦È )
+H (¦È )
+x 
+(n 
+)
+ in order to calcu- 
+¦È ) at K 1 
+O (K 1 M 
+late f ( 
+points, the order of computation is going to be 
+)
+ operations for L number of sources. Similar to the 
+method proposed in [8] , we can approximate f ( 
+¦È ) to reduce the 
+computational complexity. 
+¦È ) is periodic in 
+¦È with period 2 
+¦Ð , it can be ex- 
+Since f ( 
+pressed by its Fourier series expansion. The Fourier coecients are 
+given by 
+
+(cid:2)
+
+(cid:14)
+
+ N 
+
+=1 
+n 
+
+(cid:17)(cid:17)a 
+
+ P 
+
+¡Í
+
+(cid:6)
+
+(cid:17)(cid:17)2 ,
+
+2 NL 
+
+F k 
+
+=
+
+1 
+2 
+
+¦Ð
+
+(cid:18)
+
+ ¦Ð
+
+¦Ð
+
+f (¦È )
+
+ e 
+
+ jk¦È
+
+d¦È .
+
+(11) 
+
+Table 1 
+The orders of the computational complexities of the proposed 
+method, spectral music. 
+
+Algorithm 
+
+Computational complexity 
+ L 
+O (M 
+(M 
+)
+O ([ KM 
+
+Spectral MUSIC 
+Proposed method 
+
+3 +
+2 N 
+
+ K 1 
+
+ M 
+
++
++
+
+ M 
+
+2 N )
+
++
+
+ K log 2 
+
+K 
+
+ K 1 log 2 
+K 1 
+
++
+
+ M 
+
+2 ] L 
+
+)
+
+ 1 points, the function f ( 
+Truncating the Fourier series to 2 K 
+¦È ) can 
+be approximated as 
+
+f (¦È )
+
+(cid:5)
+
+(K1)
+
+ (cid:10)
+
+k 
+
+=
+
+(K1)
+K1 (cid:10)
+(K1)
+
+jk¦È .
+F k e 
+
+(12) 
+
+Using a numerical approximation of (11) we will have 
+
+F k 
+
+(cid:5)
+
+1 
+2 
+
+¦Ð
+
+r=
+
+f (r¦È )
+
+ e 
+
+ jkr¦È ¦È (cid:2)
+
+  F k 
+
+,
+
+(13) 
+
+ 1)
+(2 K 
+Where 
+ . Now, we can compute (13) using the 
+DFT. Using the above approximation, (12) can be rewritten as 
+
+¦È =
+
+ 2 
+
+¦Ð /
+
+f (¦È )
+
+(cid:5)
+
+K1 (cid:10)
+(K1)
+
+k 
+
+=
+
+jk¦È (cid:2)
+ F k e 
+
+ f 
+(¦È )
+
+.
+
+(14) 
+
+Now, let us use zero-padding in (14) to increase the number of val- 
+ 1 to 2 K 1 
+ 1 where 2 K 1 
+ 1 is the required number 
+ues from 2 K 
+(cid:6) K ). Then (14) becomes 
+of search steps over 
+
+¦È ( K 1 
+
+ f 
+(¦È )
+
+=
+
+K 1 
+
+1 (cid:10)
+
+k 
+
+=
+
+(K 1 
+1)
+
+F k e 
+jk¦È ,
+
+(15) 
+
+where 
+
+F k 
+
+=
+
+(cid:11)
+
+ F k 
+
+,
+,
+
+¡Ü K 
+ 1 
+if 
+ 1 
+ 1 
+(16) 
+if K 
+ 1 
+In short, at rst, f ( 
+¦È ) must be directly calculated at the 2 K 
+point. Then using these values and (13) ,  F k 
+ 1 point. At last using the zero-padding and (15) , 
+must be calculated at 
+ f 
+(¦È )
+the 2 K 
+ 1 point using IDFT. Note that if 
+must be calculated at the 2 K 1 
+we don¡¯t use this section, f ( 
+¦È ) must be directly calculated at the 
+ 1 point. 
+
+|
+
+ k 
+
+|
+
+0 
+
+<
+
+|
+
+ k 
+
+|
+
+¡Ü K 1 
+
+.
+
+2 K 1 
+
+4.3. Computational complexity analysis 
+
+The order of the computational complexities of the proposed 
+method and spectral MUSIC have been compared in Table 1 . Note 
+that the computational complexity of the eigen-decomposition 
+O (M 
+step is represented by the term 
+ . The computation of K 1 
+O (K 1 
+samples of the MUSIC null-spectrum function requires 
+(M 
+)
+ M )
+L 
+ operations and computing the sample covariance matrix 
+O (M 
+2 N )
+needs 
+ operations. To obtain the order of the computa- 
+¦È ) 
+tional complexity of the proposed method, rst we calculate f ( 
+ 1 points. The order of this calculation is 
+O (KM 
+in 2 K 
+2 N )
+ . The or- 
+ 1 samples of  F k 
+O (K log 2 
+der of computation of 2 K 
+is 
+K )
+ . One can 
+O (K 1 log 2 
+show that the complexity order of f ( 
+¦È ) in (15) is 
+)
+ op- 
+erations. Finally, the complexity of P 
+in Eq. (9) can be computed 
+O (M 
+to be 
+ . It should be noted that these computations must be 
+(cid:6) K . These results are sum- 
+repeated L times and also note that K 1 
+marized in Table 1 . 
+As can be seen from Table 1 , the computational complexities 
+of the methods depend on the scenario and array parameters. 
+The value of K 1 
+must be chosen to make sure that the errors 
+caused by the angular grid step size are negligible relative to the 
+value of the RMSE. Consider a numerical scenario where the num- 
+ber of elements is M 
+ 12 
+ the number of snapshots is N 
+ 10 
+
+3 )
+
+
+
+K 1 
+
+¡Í
+
+(cid:6)
+
+2 )
+
+=
+
+,
+
+=
+
+,
+
+152 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+Fig. 1. DOA estimation RMSEs versus SNR for two uncorrelated sources at 
+
+¦È1 
+
+=
+
+5 
+
+
+
+and 
+
+¦È2 
+
+=
+
+ 10 
+
+
+
+( N 
+
+=
+
+ 10 ). The NUA of Table 2 with M 
+
+=
+
+ 12 is considered. 
+
+the number of sources L 
+ 64 and K 1 
+ 8192 . In this sce- 
+nario the dominant term of the computational complexity for the 
+ L 
+(M 
+)
+spectral MUSIC is K 1 
+ M which is equal to 983 
+ 040 . For the 
+proposed method the terms KM 
+log 2 
+L are dominant 
+that are equal to 184 
+ 320 and 212 
+ 992 respectively. Therefore, in 
+this scenario spectral MUSIC needs more computations than the 
+proposed method. Please note that the spectral MUSIC algorithm 
+must be accompanied by an enumeration algorithm. Consequently, 
+the computational complexity of this enumeration algorithm must 
+be added to that of spectral MUSIC method but the proposed 
+method estimates the number and the DOA of the sources 
+jointly. 
+Please note that, without the method provided in previous 
+O (K 1 M 
+subsection, calculation of f ( 
+¦È ) at K 1 
+points needs 
+)
+ op- 
+erations for L number of sources that is equal to 23,592,960. This 
+shows that the method presented in Section 4.2 reduces the com- 
+putational complexity dramatically. 
+
+=
+
+ 2 
+ K 
+
+,
+
+=
+
+=
+
+,
+
+2 NL and K 1 
+
+K 1 
+
+,
+
+,
+
+2 NL 
+
+Remark 2. For the two-dimensional case, the computational com- 
+plexity of the proposed method increases proportional to the 
+¦Õ . 
+search step size of 
+
+5. Performance analysis 
+
+One of the most important metrics in the performance analy- 
+sis of a source enumeration algorithm is the probability of correct 
+detection of the number of sources. In this section, we derive a 
+performance bound on the probability of correct detection by as- 
+suming that the directions of the sources are known. Given the 
+number of sources is equal to L , the conditional correct detection 
+probability can be stated as: 
+
+P c 
+
+|
+
+ (cid:6)
+
+=
+
+ L 
+
+=
+
+ Pr 
+
+(L
+
+ 1 
+
+(x 
+)
+
+>
+
+¦Ç1 
+
+,
+
+L
+
+ 2 
+
+(x 
+)
+)
+
+>
+
+¦Ç2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+L
+
+ L 
+
+(x 
+)
+
+>
+
+¦ÇL 
+¦Ç2 
+
+,
+
+L
+
+ L 
+
++1 
+¦ÇL 
+
+(x 
+)
+(17) 
++1 are the detection thresholds. Now consider 
+where 
+the following lemma: 
+
+<
+
+¦ÇL 
++1 
+
+,
+
+¦Ç1 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+Lemma 1. 
+
+L
+
+ i 
+
+(x 
+)
+
+ and 
+
+L
+
+ j 
+
+(x 
+)
+
+ are independent for i 
+
+=
+
+ j. 
+
+Proof. See Appendix B . 
+
+(cid:4)
+
+Using Lemma 1 , the Eq. (17) can be stated as 
+
+P c 
+
+|
+
+ (cid:6)
+
+=
+
+ L 
+
+=
+
+ Pr 
+¡Á Pr 
+
+(L
+(L
+
+ 1 
+
+(x 
+)
+
+>
+
+¦Ç1 
+
+)
+
+ Pr 
+
+(L
+
+ 2 
+
+(x 
+)
+
+>
+
+¦Ç2 
+
+)
+
+.
+
+.
+
+.
+
+ Pr 
+
+(L
+
+ L 
+
+(x 
+)
+
+>
+
+¦ÇL 
+
+)
+
+ L 
+
++1 
+
+(x 
+)
+
+<
+
+¦ÇL 
++1 
+
+)
+
+.
+
+(18) 
+
+Dening the random variable z ( n ) as 
+
+z(n 
+)
+
+(cid:2)
+
+a 
+
+H 
+i 
+
+P 
+
+¡Í
+¡Í
+
+1 
+i 
+¦Ò 2 
+1 
+a i 
+i 
+N (cid:10)
+=1 
+n 
+
+x 
+(n 
+)
+
+(cid:19)
+
+a 
+
+H 
+i 
+
+P 
+
+,
+
+(19) 
+
+L
+
+ i 
+
+(x 
+)
+
+ in (5) is equivalent to 
+
+L
+
+ i 
+
+(x 
+)
+
+¡Ô L
+
+ i 
+
+(z )
+
+=
+
+|
+
+ z(n 
+)
+
+ |
+
+2 ,
+
+(20) 
+
+where z ( n ); n 
+ N are N independent, normally distributed 
+complex random variables with the mean 
+( n ) and the unit vari- 
+ance in which 
+( n ) is given by 
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦Ì
+
+i 
+
+¦Ì
+
+i 
+
+¦Ìi 
+
+(n 
+)
+
+=
+
+a 
+
+H 
+i 
+
+P 
+
+¡Í
+
+1 
+A L s L 
+i 
+¦Ò 2 
+H 
+1 
+a i 
+i 
+i 
+
+(n 
+)
+
+(cid:19)
+
+a 
+
+P 
+
+¡Í
+
+.
+
+(21) 
+
+Thus, 
+(z )
+ is a random variable that has noncentral chi-squared 
+distribution with 2 N degrees of freedom and non-centrality param- 
+eter 
+, which is related to 
+( n ) as 
+
+L
+
+ i 
+
+¦Ë
+
+N (cid:10)
+i 
+=1 
+n 
+
+¦Ì
+
+i 
+
+¦Ëi 
+
+=
+
+|
+
+¦Ìi 
+
+(n 
+)
+
+|
+
+2 =
+
+N (cid:10)
+n 
+=1 
+
+a 
+
+H 
+i 
+
+P 
+
+¡Í
+
+1 
+A L s L 
+i 
+H 
+i 
+
+(n 
+)
+a 
+P 
+
+ s L 
+
+(n 
+)
+
+H A 
+H 
+L 
+1 
+¦Ò 2 
+a i 
+i 
+
+P 
+
+¡Í
+
+1 
+a i 
+i 
+
+¡Í
+
+.
+
+(22) 
+
+Using the cumulative distribution function of the non-central chi- 
+squared distribution, we have [21] 
+
+Pr 
+
+(L
+
+ i 
+
+(x 
+)
+
+>
+
+¦Çi 
+
+)
+
+=
+
+Q
+
+ N 
+
+(cid:3)(cid:19)
+(cid:4)
+
+ ¦Ëi 
+
+,
+
+¡Ì
+
+ ¦Çi 
+
+(cid:4)
+
+,
+
+(23) 
+
+where 
+
+Q
+
+ N 
+
+(a,
+ b)
+
+ is the Marcum Q-function dened as [22] 
+
+Q
+
+ N 
+
+(a,
+
+ b)
+
+=
+
+(cid:18)
+
+ ¡Þ
+
+b 
+
+x 
+
+(cid:3)
+
+x 
+a 
+
+N1 
+
+exp 
+
+(cid:20)
+
+ x 
+
+2 +
+
+ a 
+
+2 
+
+2 
+
+(cid:21)
+
+I N1 
+
+(ax 
+)d x,
+
+(24) 
+
+ 1 . 
+and I N1 is the modied Bessel function of order N 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+153 
+
+Fig. 2. DOA estimation RMSEs versus SNR for three uncorrelated sources at 
+
+¦È1 
+
+=
+
+5 
+, 
+
+
+
+¦È2 
+
+=
+
+ 10 
+
+
+
+and 
+
+¦È3 
+
+=
+
+ 30 
+
+
+
+( N 
+
+=
+
+ 10 ). The NUA of Table 2 with M 
+
+=
+
+ 12 is considered. 
+
+Fig. 3. DOA estimation RMSEs versus N for two uncorrelated sources at 
+
+¦È1 
+
+=
+
+5 
+
+
+
+and 
+
+¦È2 
+
+=
+
+ 10 
+
+
+
+(SNR 
+
+=
+
+ 10 dB). The NUA of Table 2 with M 
+
+=
+
+ 12 is considered. 
+
+Thus, (18) can be stated as 
+
+P c 
+
+|
+
+ (cid:6)
+
+=
+
+ L 
+
+=
+
+Q
+
+ N 
+
+(cid:3)(cid:19) 
+(cid:3)(cid:19) 
+
+¦Ë1 
+
+,
+
+¡Ì
+
+ ¦Ç1 
+
+(cid:4)
+(cid:4)(cid:3)
+
+Q
+
+ N 
+
+(cid:3)(cid:19) 
+
+¦Ë2 
+
+,
+
+¡Ì
+
+ ¦Ç2 
+
+(cid:4)
+
+.
+
+.
+
+.
+
+Q
+
+ N 
+
+¦ËL 
+
+,
+
+¡Ì
+
+ ¦ÇL 
+
+1 
+
+ Q
+
+ N 
+
+(cid:3)(cid:19)
+
+ ¦ËL 
++1 
+
+,
+
+¡Ì
+
+ ¦ÇL 
++1 
+
+(cid:4)(cid:4)
+
+.
+
+(25) 
+
+For the cases where there is only one or two sources we can sim- 
+plify the correct detection probability as follows: 
+
+Case 1 One source ( L 
+ 1 ): 
+In this case, we have 
+
+=
+
+P c 
+
+|
+
+ (cid:6)
+
+=1 
+
+=
+
+ Pr 
+
+(L
+
+ 1 
+
+(x 
+)
+
+>
+
+¦Ç1 
+
+)
+
+ Pr 
+
+(L
+
+ 2 
+
+(x 
+)
+
+<
+
+¦Ç2 
+
+)
+
+.
+
+(26) 
+
+Hence, we have 
+
+P c 
+
+|
+
+ (cid:6)
+
+=1 
+
+=
+
+Q
+
+ N 
+
+
+(cid:25)
+ (cid:26)
+ 
+ (cid:26)
+ (cid:27)
+ 
+ 
+ 
+
+ M 
+
+N (cid:14)
+n 
+=1 
+¦Ò 2 
+
+|
+
+ s 1 
+
+(n 
+)
+
+|
+
+2 
+
+,
+
+¡Ì
+
+ ¦Ç1 
+
+
+ 
+ 
+ 
+ 
+
+F ¦Ö 2 
+2 N 
+
+(¦Ç2 
+)
+
+.
+
+(27) 
+
+(¦Ç2 
+)
+where F ¦Ö 2 
+tion with 2 N degrees of freedom [22] . 
+Case 2 Two sources ( L 
+ 2 ): 
+In this case, we have 
+(x 
+)
+ Pr 
+>
+
+2 N 
+
+ is the central chi-squared distribution func- 
+
+=
+
+P c 
+
+|
+
+ (cid:6)
+
+=2 
+
+=
+
+(L
+
+ 1 
+
+¦Ç1 
+
+)
+
+ Pr 
+
+(L
+
+ 2 
+
+(x 
+)
+
+>
+
+¦Ç2 
+
+)
+
+ Pr 
+
+(L
+
+ 3 
+
+(x 
+)
+
+<
+
+¦Ç3 
+
+)
+
+.
+
+(28) 
+
+154 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+Fig. 4. DOA estimation RMSEs for two uncorrelated sources. One is xed at 10 ¡ã and the second has swept (SNR 
+considered. 
+
+=
+
+ 10 dB and N 
+
+=
+
+ 10 ). The NUA of Table 2 with M 
+
+=
+
+ 12 is 
+
+Fig. 5. DOA estimation RMSEs versus SNR for two fully correlated sources at 
+considered. 
+
+=
+
+5 
+
+
+
+¦È1 
+
+and 
+
+¦È2 
+
+=
+
+
+
+ 10 
+
+=
+
+( N 
+
+ 10 ). A ULA with M 
+
+=
+
+ 12 and a sensor spacing equal to 
+
+¦Ë
+2 
+
+is 
+
+Thus, we have 
+
+|
+
+P c 
+
+ (cid:6)
+
+=2 
+
+=
+
+Q
+
+ N 
+
+ M 
+
+
+(cid:25)
+ (cid:26)
+ 
+ (cid:26)
+ (cid:27)
+ 
+ 
+ 
+
+(cid:25)
+ (cid:26)
+ 
+ 
+ (cid:27)
+ (cid:26)
+ 
+ 
+
+ N 
+
+¡ÁQ
+
+|
+
+N (cid:14)
+n 
+=1 
+¦Ò 2 
+
+ s 1 
+
+(n 
+)
+
+|
+
+2 
+
+,
+
+¡Ì
+
+ ¦Ç1 
+
+
+ 
+ 
+ 
+ 
+
+¡Í
+
+N (cid:14)
+a 2 
+1 
+=1 
+n 
+¦Ò 2 
+
+|
+
+ a 
+
+H 
+2 
+
+P 
+
+(n 
+)
+
+ s 2 
+
+|
+
+2 
+
+,
+
+¡Ì
+
+It is noteworthy that the values of the thresholds at each stage 
+are dependent on the false alarm probability ( P fa 
+) and the value of 
+false alarm probability will affect the correct detection probability. 
+In fact, in the proposed method, the correct detection probability 
+is obtained from the product of the detection probability at each 
+stage and 1 
+of the nal stage. Therefore, the probability of 
+false alarm must be selected in such a manner that the probabil- 
+ity of detection becomes suciently large at each stage while P fa 
+remains small enough. 
+
+ P f a 
+
+.
+
+(29) 
+
+
+ 
+ 
+ 
+ 
+
+ ¦Ç2 
+
+(¦Ç3 
+)
+
+F ¦Ö 2 
+2 N 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+155 
+
+Fig. 6. DOA estimation RMSEs versus N for two fully correlated sources at 
+considered. 
+
+=
+
+5 
+
+
+
+¦È1 
+
+and 
+
+¦È2 
+
+=
+
+
+
+ 10 
+
+=
+
+(SNR 
+
+ 10 dB). A ULA with M 
+
+=
+
+ 12 and a sensor spacing equal to 
+
+¦Ë
+2 
+
+is 
+
+Fig. 7. DOA estimation RMSEs for two fully correlated sources. One is xed at 10 ¡ã and the second has swept (SNR 
+spacing equal to 
+is considered. 
+
+¦Ë
+2 
+
+=
+
+ 10 dB and N 
+
+=
+
+ 10 ). A ULA with M 
+
+=
+
+ 12 and a sensor 
+
+6. Simulation results 
+
+In this section, a number of numerical examples are presented. 
+For DOA estimation performance analysis, the Root Mean Square 
+Error (RMSE) is considered. For each of the performance compar- 
+isons, 10 0 0 independent Monte Carlo trials have been used. In DOA 
+estimation performance examples, the comparison is made among 
+the proposed method, the spectral MUSIC and OMP for uncorre- 
+lated sources, and also FBSS and OMP for fully correlated sources. 
+The benchmark is considered to be the Cramer Rao bound (CRB) 
+[3] . In addition, for the source number detection examples, the 
+proposed method is compared with the MDL method. The range of 
+
+
+
+¦È <
+
+ 90 
+
+ <
+
+and the likelihood ratio is computed in 8192 
+
+90 
+¦È is 
+point. 
+Fig. 1 demonstrates the DOA estimation RMSEs of the proposed 
+method, spectral MUSIC and OMP versus the sensor signal-to-noise 
+ratio (SNR). The number of snapshots is set to be N 
+ 10 . Two 
+equal power uncorrelated signal sources are assumed to impinge 
+5 
+on the array from the directions 
+and 
+ 10 
+. A nonuni- 
+form array (NUA) of 12 sensors is considered. This type of array 
+geometry is designed in [23] for azimuthal DOA estimation. The 
+locations of sensors of this array are given in Table 2 . It can be 
+seen from Fig. 1 that the proposed method outperforms the OMP 
+and spectral MUSIC. OMP performance increases with a very small 
+
+¦È1 
+
+¦È2 
+
+=
+
+=
+
+
+
+=
+
+
+
+156 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+Fig. 8. DOA estimation RMSEs versus SNR in the case of single snapshot ( N 
+spacing equal to 
+is considered. 
+
+¦Ë
+2 
+
+=
+
+ 1 ) for two fully correlated sources at 
+
+=
+
+5 
+
+
+
+and 
+
+¦È2 
+
+=
+
+¦È1 
+
+
+
+=
+
+ 10 
+. A ULA with M 
+
+ 12 and a sensor 
+
+Fig. 9. Two-dimensional DOA estimation RMSEs versus SNR for the proposed method. Two uncorrelated sources at ( 
+sidered. The NUA of Table 2 with M 
+ 12 is used and N 
+ 10 . 
+
+=
+
+=
+
+=
+
+5 
+
+ ,
+
+=
+
+¦Õ1 
+
+¦È1 
+
+
+
+ 60 
+) and ( 
+
+=
+
+ ,
+
+ 10 
+
+=
+
+¦Õ2 
+
+
+
+ 70 
+) are con- 
+
+¦È2 
+
+rate as the SNR increases. The reason is that the signal components 
+cancellation is not done properly due to the DOA estimation error 
+of the previous stage. Therefore, the signal residuals are not suf- 
+ciently small and affect DOA estimation performance of the next 
+stage. The similar simulation with different number of sources is 
+considered in Fig. 2 . The number of sources is considered to be 
+three in this simulation. The same performance behavior is ob- 
+served as previous example. 
+Fig. 3 depicts the RSME for a given SNR (SNR 
+ 10 dB) versus 
+5 
+the number of snapshots for the source directions 
+and 
+ 10 
+and the same array conguration. The sources are con- 
+
+¦È1 
+
+=
+
+=
+
+=
+
+
+
+
+
+¦È2 
+
+sidered to be uncorrelated in this example. It is observed that the 
+performance of the proposed method is better in comparison with 
+the spectral MUSIC and OMP method. As it can be seen, that the 
+spectral MUSIC does not have a good performance when the num- 
+ber of snapshots is small. This is due to the fact that in this case 
+an accurate estimation of the sample covariance matrix is not pro- 
+vided. 
+In Fig. 4 there are two uncorrelated sources, one is xed at 
+10 
+to 30 ¡ã. The SNR is equal 
+ 10 
+and the other sweeps from 
+to 10 dB and the array geometry is the same as the rst exam- 
+ple. As can be seen, the proposed method has a better perfor- 
+
+¦È =
+
+
+
+
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+157 
+
+Fig. 10. Probability of correct detection of the number of sources versus SNR for two uncorrelated sources at 
+M 
+ 12 is considered. 
+
+=
+
+=
+
+5 
+
+
+
+¦È1 
+
+and 
+
+¦È2 
+
+=
+
+
+
+ 10 
+
+=
+
+( N 
+
+ 100 ). The NUA of Table 2 with 
+
+Fig. 11. Probability of correct detection of the number of sources for two uncorrelated sources. One source is xed at 10 ¡ã and the second has swept (SNR 
+N 
+ 100 ). The NUA with M 
+ 12 of Table 2 is considered. 
+
+=
+
+=
+
+=
+
+ 0 dB and 
+
+mance in comparison with the spectral MUSIC and OMP for two 
+closely located sources. It can be seen that the proposed method 
+and the OMP, encounter a performance degradation in some source 
+angles. The reason of this performance degradation is that these 
+two methods can be seen as a type of spatial ltering technique. 
+Therefore, this degradation in some source angles results from the 
+side lobe effects. The location and amount of performance degra- 
+dation depends on array geometry, SNR value and the DOA esti- 
+mation method. Spectral MUSIC is based on the signal and noise 
+subspaces. Consequently, the performance behavior of this method 
+is different from the proposed method and OMP. 
+
+For fully correlated sources, the same scenarios as in the Figs. 1, 
+3 and 4 are considered in Figs. 5¨C7 , respectively. Since the sources 
+are fully correlated, the spectral MUSIC method fails. Therefore, in 
+these simulations the comparison is carried out between the pro- 
+posed method, the FBSS and OMP methods. It should be noted that 
+the FBSS method is solely applicable to uniform arrays. Hence, we 
+have considered a ULA with M 
+ 12 and a sensor spacing equal 
+to 
+. It is seen that the proposed method usually outperforms 
+the FBSS and OMP methods in the fully correlated source case. 
+In Fig. 8 a single snapshot scenario is considered. The sources are 
+
+¦Ë
+2 
+
+=
+
+158 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+Fig. 12. Probability of correct detection of the number of sources for three uncorrelated sources. Two sources are xed at 10 ¡ã , 30 ¡ã and the third has swept (SNR 
+and N 
+ 100 ). The NUA with M 
+ 12 of Table 2 is considered. 
+
+=
+
+=
+
+=
+
+ 0 dB 
+
+Table 2 
+Sensor locations Of The NUA array. 
+
+M 
+
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+
+x m / 
+
+¦Ë
+0.016 
+1.776 
+1.825 
+3.811 
+2.859 
+3.849 
+2.372 
+3.001 
+2.204 
+0.195 
+2.142 
+2.069 
+
+¦Ë
+
+y m / 
+
+3.336 
+2.892 
+3.313 
+0.300 
+0.170 
+0.051 
+2.069 
+2.123 
+2.114 
+3.250 
+0.535 
+3.183 
+
+
+
+
+
+¦Õ
+
+ ,
+
+ ,
+
+=
+
+=
+
+=
+
+=
+
+¦È2 
+
+¦È1 
+
+¦Õ1 
+
+¦Õ2 
+
+fully correlated. As it can be seen, the proposed method is also ap- 
+plicable to the single snapshot case. 
+We consider a two-dimensional scenario in Fig. 9 . Two uncor- 
+5 
+related sources are assumed at the directions ( 
+ 60 
+) 
+and ( 
+ 10 
+ 70 
+). This gure demonstrates the RMSEs in 
+¦È directions versus SNR for the proposed method. As it can be 
+and 
+seen, we can apply the proposed method to the two-dimensional 
+scenarios. Fig. 10 shows the probability of correct detection of the 
+number of sources versus SNR. The false alarm probability is set to 
+0.01 in each stage. As a result, the maximum value of correct de- 
+tection probability tends to be 0.99, which is a suitable value for 
+correct detection probability. The threshold values are obtained by 
+the Monte Carlo simulations to achieve the mentioned false alarm 
+probability. Note that the noise variance is assumed to be known 
+a priori. It is observed that there is a dramatic performance differ- 
+ence between the proposed method and the MDL method. It can 
+also be observed that the performance gap between the proposed 
+method and the analytical performance bound derived in Eq. (29) , 
+is about 2 dB. It should be noted that the probability of correct 
+detection of the proposed method is obtained using Monte Carlo 
+simulation. In Fig. 11 , one source is xed at 
+ 10 
+and the other 
+
+¦È =
+
+
+
+
+
+=
+
+10 
+sweeps from 
+to 30 ¡ã with SNR 
+ 0 dB. It can be seen that 
+the proposed method can provide a better source number detec- 
+tion when the sources are close to each other. In Fig. 12 , the num- 
+ber of sources is three. The directions of two sources are xed at 
+10 
+ 10 
+ 30 
+and the third source sweeps from 
+to 50 ¡ã
+with SNR 
+ 0 dB. It can be seen that the proposed method has a 
+good performance in the case of three sources. 
+
+¦È2 
+
+¦È1 
+
+=
+
+=
+
+=
+
+ ,
+
+
+
+
+
+7. Conclusion 
+
+In this paper we proposed a sequential algorithm to solve 
+the problem of the joint direction-of-arrival (DOA) estimation and 
+source number detection for arrays with arbitrary geometry. This 
+algorithm results from solving a sequential hypothesis testing 
+problem. Simulation results show that the proposed algorithm usu- 
+ally has a performance better than the spectral MUSIC and FBSS 
+method in the case of low SNR or small number of snapshots. In 
+addition, the performance of the proposed method in source num- 
+ber detection is usually better than the MDL method. 
+
+Appendix A. Derivation of relation (5) 
+
+In order to solve the hypothesis testing problem (3) , we apply 
+a suitable transformation to the received signal. Using this trans- 
+formation, the unknown parameters will be reduced to only two 
+parameters that are s (cid:6)
+ ( n ) and the azimuth direction of the 
+ th 
+source. To do this, we use the singular value decomposition (SVD) 
+to rewrite A (cid:6)
+1 as 
+
+(cid:6)
+
+1 
+
+(cid:6)
+
+0 
+
+A (cid:6)
+
+1 
+
+U 1 U 2 
+
+0 
+0 
+V 
+¡Á ((cid:6)
+ 1)
+¡Á (M 
+ 1)
+where U 1 
+and U 2 
+are M 
+ and M 
+ orthogonal 
+1 and orthogonal space 
+matrices which span the columns of the A (cid:6)
+to columns of the A (cid:6)
+ respectively. In other words, we have 
+
+(A.1) 
+
+ (cid:6)
+
++
+
+,
+
+1 
+
+,
+
+V 
+
+H 
+1 
+H 
+2 
+
+(cid:15)
+
+=
+
+(cid:16)(cid:31)(cid:14)
+
+ (cid:31)
+
+U 
+
+H 
+2 
+
+A (cid:6)
+
+1 
+
+=
+
+.
+
+ 0 
+
+(A.2) 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+159 
+
+Multiplying the received signal from left side by U 
+rewritten as 
+(n 
+)
+(n 
+)
+
+H 
+2 
+
+,
+
+ (3) can be 
+
+(cid:11)
+
+H
+H
+
+((cid:6)
+)
+0 
+((cid:6)
+)
+1 
+
+: x u 
+: x u 
+
+=
+=
+
+ w u 
+ a 
+
+(n 
+)
+(n 
+)
+
+,
+
+n 
+n 
+
+=
+=
+
+ 1 
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ N 
+
+u 
+
+(cid:6)
+
+s (cid:6)
+
++
+
+ w u 
+
+(n 
+)
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ N,
+
+(A.3) 
+
+where x u 
+(n 
+)
+x 
+(n 
+)
+(n 
+)
+w 
+(n 
+)
+ . Since 
+¡Á 1 vector of the Gaussian noise 
+U 
+ I and w ( n ) is an M 
+with zero mean and the covariance matrix 
+¦Ò 2 I, w u ( n ) is also an 
+¡Á 1 vector of the Gaussian noise with zero mean and 
+(M 
+ 1)
+the covariance matrix 
+To obtain the GLR detector for this composite hypothesis testing 
+problem, the Maximum Likelihood (ML) estimate of the unknown 
+paremeters should be inserted into the probability density function 
+(PDF) under hypotheses 
+and 
+. According to the (A.3) , the 
+PDF under each assumption can be written as 
+
+(cid:2)
+
+ U 
+
+H 
+2 
+
+ , a 
+
+u 
+
+(cid:6)
+
+(cid:2)
+
+ U 
+
+H 
+2 
+
+a (cid:6)
+
+ and w u 
+
+(cid:2)
+
+ U 
+
+H 
+2 
+
+H 
+U 2 
+2 
+
+=
+
+ (cid:6)
+
++
+
+¦Ò 2 I . 
+
+H
+
+((cid:6)
+)
+0 
+
+H
+
+((cid:6)
+)
+1 
+
+f (x u 
+
+; H
+
+((cid:6)
+)
+0 
+
+)
+
+=
+
+(cid:3)
+(cid:3)
+
+1 
+
+¦Ð ¦Ò 2 
+
+(cid:4)(
+(cid:4)(
+
+ N (M(cid:6)
+
++1)
+
+ )
+
+exp 
+
+(cid:20)
+(cid:20)
+
+
+
+(cid:14) N 
+=1 
+n 
+(cid:14) N 
+¦Ò 2 
+=1 
+n 
+
+(cid:3)
+
+ x u 
+
+(n 
+)
+
+(cid:3)
+
+2 
+
+(cid:21)
+
+,
+
+(A.4) 
+
+f (x u 
+
+; H
+
+((cid:6)
+)
+1 
+
+)
+
+=
+
+1 
+
+¦Ð ¦Ò 2 
+
+ N (M(cid:6)
+
++1)
+
+ )
+
+exp 
+
+
+
+(cid:3)
+
+ x u 
+
+(n 
+)
+
+ a 
+
+u 
+
+(cid:6)
+
+s (cid:6)
+
+(n 
+)
+
+(cid:3)
+
+2 
+
+¦Ò 2 
+
+(cid:21)
+
+.
+
+(A.5) 
+
+It is not dicult to show that the ML estimates of the unknown 
+parameters s (cid:6)
+ ( n ) and the azimuth direction of the 
+ th source under 
+the 
+hypothesis are 
+
+(cid:6)
+
+H
+
+((cid:6)
+)
+1 
+
+H
+
+((cid:6)
+)
+1 
+
+: 
+
+!
+
+ s (cid:6)
+
+(n 
+)
+ ¦È(cid:6)
+ arg max ¦È ( f (x u 
+
+=
+
+a 
+
+u 
+H x u 
+(cid:6)
+u 
+2 
+(cid:6)
+
+(n 
+)
+
+(cid:3)
+
+ a 
+
+(cid:3)
+
+=
+
+; H
+
+((cid:6)
+)
+1 
+
+,
+
+  s (cid:6)
+
+(n 
+)))
+
+.
+
+(A.6) 
+
+Substituting (A.6) into (A.5) , the likelihood ratio can be stated as 
+
+L
+
+ (cid:6)
+
+(x u 
+
+)
+
+=
+
+ max 
+
+¦È
+
+N (cid:10)
+n 
+=1 
+N (cid:10)
+=1 
+n 
+
+|
+
+ a 
+
+u H (¦È )
+
+ x u 
+
+(n 
+)
+
+|
+
+2 
+
+(cid:3)
+
+ a 
+
+u (¦È )
+
+(cid:3)
+
+2 
+
+.
+
+(A.7) 
+
+Now we can write 
+
+L
+
+ (cid:6)
+
+(x 
+)
+
+=
+
+ max 
+
+¦È
+
+|
+
+ a 
+
+H (¦È )
+x 
+(n 
+)
+H (¦È )
+(cid:13)1 A 
+From [24] we have 
+ A (cid:6)
+The nal result can be achieved by substituting (A.9) into (A.8) as 
+
+ U 2 U 
+ U 2 
+
+H 
+2 
+
+|
+
+2 
+
+(cid:3)
+
+ a 
+
+(cid:3)
+
+2 
+
+.
+
+(A.8) 
+
+U 2 U 
+H 
+2 
+
+=
+
+ I 
+
+1 
+
+(cid:12)
+
+A 
+
+H 
+1 
+
+(cid:6)
+
+A (cid:6)
+
+1 
+
+H 
+1 
+
+(cid:6)
+
+(cid:2)
+
+ P 
+
+¡Í
+
+(cid:6)
+
+1 
+
+.
+
+(A.9) 
+
+L
+
+ (cid:6)
+
+(x 
+)
+
+=
+
+ max 
+
+¦È
+
+N (cid:10)
+n 
+=1 
+
+|
+
+ a 
+
+H (¦È )
+a 
+H (¦È )
+
+ P 
+
+¡Í
+¡Í
+
+(cid:6)
+
+1 
+1 
+
+x 
+(n 
+)
+a 
+(¦È )
+
+|
+
+2 
+
+ P 
+
+(cid:6)
+
+=
+
+N (cid:10)
+n 
+=1 
+
+|
+
+ a (cid:6)
+
+H P 
+1 
+H P 
+1 
+
+¡Í
+
+(cid:6)
+
+x 
+(n 
+)
+
+|
+
+2 
+
+a (cid:6)
+
+¡Í
+
+(cid:6)
+
+a (cid:6)
+
+H
+
+((cid:6)
+)
+1 
+((cid:6)
+)
+0 
+
+ H
+
+¦Ç(cid:6)
+
+,
+
+(A.10) 
+
+where a (cid:6)
+ is the steering vector corresponding to the estimated di- 
+rection for the 
+ th source. 
+
+(cid:6)
+
+Appendix B. Proof of Lemma 1 
+
+In order to show that 
+(x 
+)
+ and 
+(x 
+)
+of each other, we use the following theorem. 
+¡Á 1 complex vector with the probability 
+Theorem 1. Let z be an M 
+¡Á M Hermitian 
+(
+)
+density function 
+ and let B and D be the M 
+matrices. If BCD 
+ then the second-order statistics z 
+H Bz and z 
+are independent of each other [25] . 
+
+L
+
+ i 
+
+L
+
+ j 
+
+ ( i 
+
+=
+
+ j ) are independent 
+
+C
+N
+=
+
+¦Ì,
+
+ C 
+
+,
+
+ 0 
+
+,
+
+H Dz 
+
+To use this theorem, we can rewrite 
+equivalent form 
+
+L
+
+ i 
+
+(x 
+)
+
+ and 
+
+L
+
+ j 
+
+(x 
+)
+
+ as an 
+
+
+ 
+ 
+ 
+ 
+
+L
+
+ i 
+
+(x 
+)
+
+¡Ô N (cid:14)
+¡Ô N (cid:14)
+
+=1 
+n 
+
+x 
+
+H (n 
+
+)
+
+ P 
+
+¡Í
+
+1 
+a i a 
+H 
+i 
+i 
+
+P 
+
+¡Í
+
+1 
+i 
+
+x 
+(n 
+)
+
+L
+
+ j 
+
+(x 
+)
+
+=1 
+n 
+
+x 
+
+H (n 
+
+)
+
+ P 
+
+¡Í
+
+j1 
+a j a 
+H 
+j 
+
+P 
+
+¡Í
+
+j1 
+
+x 
+(n 
+)
+
+.
+
+(B.1) 
+
+Dening B 
+a 
+, D 
+a 
+P 
+and C 
+ if BD 
+(x 
+)
+(x 
+)
+then 
+ and 
+ j ) are independent of each other accord- 
+ing to the Theorem 1 . Assuming i 
+ j , we have 
+P 
+(cid:13)1 A 
+(cid:13)1 A 
+] and A j1 
+(cid:13)1 A 
+(cid:13)1 A 
+)
+ 0 and as a result A 
+
+(cid:2)
+
+ P 
+
+¡Í
+
+1 
+a i 
+i 
+
+H 
+i 
+
+P 
+
+¡Í
+
+1 
+i 
+
+(cid:2)
+
+ P 
+
+¡Í
+
+j1 
+a j 
+
+H 
+j 
+
+¡Í
+
+j1 
+
+=
+
+ I 
+
+,
+
+=
+
+ 0 
+
+L
+
+ i 
+
+L
+
+ j 
+
+ ( i 
+
+=
+
+<
+
+BD 
+
+=
+
+ P 
+
+¡Í
+
+1 
+a i a 
+H 
+i 
+i 
+
+P 
+
+¡Í
+
+1 
+i 
+
+P 
+
+¡Í
+
+j1 
+a j a 
+H 
+j 
+
+¡Í
+
+j1 
+
+.
+
+(B.2) 
+
+Now we have 
+
+!
+
+P 
+
+¡Í
+¡Í
+
+1 
+i 
+j1 
+
+=
+=
+
+ I 
+
+ A i 
+1 
+ A j1 
+1 
+
+(cid:12)
+(cid:12)
+
+A 
+
+H 
+1 
+A i 
+1 
+i 
+H 
+j1 
+A j1 
+
+H 
+1 
+i 
+H 
+j1 
+
+P 
+
+ I 
+
+A 
+
+,
+
+(B.3) 
+
+where A i 
+quently 
+
+=
+
+ [ a 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ a i 
+
+1 
+
+=
+
+ [ A i 
+
+1 
+
+,
+
+ a i 
+
+.
+
+.
+
+.
+
+,
+
+ a j1 
+
+] . Conse- 
+
+P 
+
+¡Í
+
+1 
+i 
+
+P 
+
+¡Í
+
+j1 
+
+=
+=
+
+(I 
+
+ A i 
+1 
+H 
+1 
+A i 
+1 
+i 
+ A i 
+1 
+j1 
+H 
+j1 
+j1 
+
+(cid:12)
+
+A 
+
+H 
+1 
+i 
+
+ P 
+
+¡Í
+
+j1 
+
+ P 
+
+¡Í
+
+(cid:12)
+
+A 
+
+H 
+1 
+A i 
+1 
+i 
+
+H 
+1 
+i 
+
+P 
+
+¡Í
+
+j1 
+
+.
+
+(B.4) 
+
+We know that A 
+have 
+
+P 
+
+¡Í
+
+=
+
+H 
+1 
+i 
+
+P 
+
+¡Í
+
+j1 
+
+=
+
+ 0 . Thus, we 
+
+P 
+
+¡Í
+
+1 
+i 
+
+P 
+
+¡Í
+
+j1 
+
+=
+
+ P 
+
+¡Í
+
+j1 
+
+.
+
+(B.5) 
+
+Substituting (B.5) into (B.2) yields 
+
+BD 
+
+=
+
+ P 
+
+¡Í
+
+1 
+a i a 
+H 
+i 
+i 
+
+P 
+
+¡Í
+
+j1 
+a j a 
+H 
+j 
+
+P 
+
+¡Í
+
+j1 
+
+.
+
+(B.6) 
+
+It is clear that a 
+plete. 
+
+H 
+i 
+
+P 
+
+¡Í
+
+j1 
+
+=
+
+ 0 . Therefore, BD 
+
+=
+
+ 0 and the proof is com- 
+
+References 
+
+[1] H.L. Van Trees , Optimum Array Processing, Part IV of Detection, Estimation and 
+Modulation Theory, Wiley, New York, 2002 . Chapter 1. 
+[2] A.M. Zoubir , M. Viberg , R. Chellappa , S. Theodoridis , Array and Statistical Signal 
+Processing, vol. 3, Academic Press Library in Signal Processing, 2014 . Chapter 
+20. 
+[3] E. Tuncer , B. Friedlander , Classical and Modern Direction-of-Arrival Estimation, 
+Elsevier Inc., 2009 . Chapters 1,4. 
+[4] M. Elbir , E. Tuncer , 2-d DOA and mutual coupling coecient estimation for 
+arbitrary array structures with single and multiple snapshots, Digital Signal 
+Process. 54 (2016) 75¨C86 . 
+[5] R.O. Schmidt , Multiple emitter location and signal parameter estimation, IEEE 
+Trans. Antennas Propag. 34 (3) (1986) 276¨C280 . 
+[6] A. Barabell , Improving the resolution performance of eigenstructure-based di- 
+rection-nding algorithms, in: Proc. ICASSP, 1983, pp. 336¨C339 . 
+[7] C.E. Kassis , J. Picheral , C. Mokbel , Advantages of nonuniform arrays using root¨C
+MUSIC, Signal Process. J. 90 (2) (2010) 689¨C695 . 
+[8] M. Rubsamen , A.B. Gershman , Direction-of-arrival estimation for nonuniform 
+sensor arrays: from manifold separation to fourier domain MUSIC methods, 
+IEEE Trans. Signal Process. 57 (2) (2009) 588¨C599 . 
+[9] A. Paulraj , R. Roy , T. Kailath , A subspace rotation approach to signal parameter 
+estimation, Proc. IEEE 74 (7) (1986) 1044¨C1046 . 
+[10] B. Friedlander , The root-MUSIC algorithm for direction nding with interpo- 
+lated arrays, Signal Process. 30 (1993) 15¨C25 . 
+[11] P. Hyberg , M. Jansson , B. Ottersten , Array interpolation and bias reduction, IEEE 
+Trans. Signal Process. 52 (10) (2004) 2711¨C2720 . 
+[12] P. Hyberg , M. Jansson , B. Ottersten , Array interpolation and DOA MSE reduc- 
+tion, IEEE Trans. Signal Process. 53 (12) (2005) 4 464¨C4 471 . 
+[13] F. Belloni , A. Richter , V. Koivunen , DOA estimation via manifold separa- 
+tion for arbitrary array structures, IEEE Trans. Signal Process. 55 (10) (2007) 
+4 800¨C4 810 . 
+[14] J.A. Hogbom , Aperture synthesis with non-regular distribution of interferome- 
+ter baselines, Astron. Astrophys. Suppl. 15 (1974) 417¨C426 . 
+[15] P. Stoica , R. Moses , Spectral Analysis of Signals, Prentice-Hall, 2005 . Chapter 6. 
+[16] S.F. Cotter , B.D. Rao , K. Engan , K. Kreutz-Delgado , Sparse solutions to linear in- 
+verse problems with multiple measurement vectors, IEEE Trans. Signal Process. 
+53 (7) (2005) 2477¨C2488 . 
+[17] S. Kay , Fundamentals of Statistical Signal Processing, Volume I: Estimation The- 
+ory, 1993 . Chapter 8. 
+[18] S.U. Pillai , B.H. Kwon , Forward/backward spatial smoothing techniques for co- 
+herent signal identication, IEEE Trans. Signal Process. 37 (1) (1989) 8¨C15 . 
+[19] M. Wax , I. Ziskind , Detection of the number of coherent signals by the 
+MDL principle, IEEE Trans. Acoustics Speech Signal Process. 37 (8) (1989) 
+1190¨C1196 . 
+[20] M. Wax , T. Kailath , Detection of signals by information theoretic criteria, IEEE 
+Trans. Acoust. Speech Signal Process. 33 (2) (1985) 387¨C392 . 
+[21] V.M. Kapinas , S.K. Mihos , G.K. Karagiannidis , On the monotonicity of the gen- 
+eralized marcum and nuttall q-functions, IEEE Trans. Inf. Theory 55 (8) (2009) 
+3701¨C3710 . 
+
+160 
+
+F. Izedi et al. / Signal Processing 140 (2017) 149¨C160 
+
+[22] N.L. Johnson , S. Kotz , N. Balakrishnan , Continuous Univariate Distributions, vol. 
+2, Wiley, 1970 . 
+[23] M. Rubsamen , A.B. Gershman , Sparse array design for azimuthal direc- 
+tion-of-arrival estimation, IEEE Trans. Signal Process 59 (12) (2011) 5957¨C5969 . 
+
+[24] A.J. Laub , Matrix Analysis for Scientists and Engineers, Society for Industrial 
+Mathematics, 2004 . Chapter 7. 
+[25] C. Alvin , G. Rencher , S. Bruce , Linear Models in Statistics, Wiley, 2008 . 
+Chapter 4. 
+

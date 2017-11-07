@@ -1,0 +1,2220 @@
+Fusion of electronic nose, electronic tongue and computer vision for animal source food authentication and quality assessment e A review
+
+Ambra Rita Di Rosa a, *, Francesco Leone a, Federica Cheli b, Vincenzo Chiofalo a
+
+a Department of Veterinary Science, Universita degli Studi di Messina, 98168, Italy
+b Department of Health, Animal Science and Food Safety, Universita degli Studi di Milano, 20134, Italy
+
+article
+
+info
+
+Article history:
+Received 27 January 2017
+Received in revised form
+6 April 2017
+Accepted 21 April 2017
+Available online 21 April 2017
+
+Keywords:
+Electronic nose
+Electronic tongue
+Computer vision systems
+Chemometrics
+Multi-sensor data fusion
+Animal source food
+
+
+
+abstract
+
+Electronic nose, electronic tongue and computer vision systems, designed to articially perceive avour
+and appearance, have been increasingly used in the food industry as rapid and reliable tools for quality
+assessment. The use of multivariate analysis methods, together with electronic senses, has shown to be
+very powerful; however, due to the high complexity of food, the employment of just single sensor data is
+often insufcient. In recent years, much research has been performed to develop several data fusion
+strategies, combining the outputs of multiple instrumental sources, for improving the quality assessment
+and authentication of food. The aim of this work is to review the recent achievements in the eld of
+articial sensors¡¯ application, in the evaluation of animal source food products.
+ 2017 Elsevier Ltd. All rights reserved.
+
+1. Introduction
+Nowadays, all food products need to be monitored, in order to
+ensure an acceptable level of quality and safety. To achieve this
+objective, several analysis steps must be implemented across the
+entire food supply chain; beginning from the raw ingredients and
+extending to the nal product (Nielsen, 2010). Consumers prefer
+safe, nutritious and high-quality food products, and are willing to
+pay more than the normal price, as long as they receive guarantees
+about the food they purchased (Kealesitse and Kabama, 2012).
+Therefore, to compete effectively in the marketplace, food com-
+panies must produce foods that meet these consumers¡¯ expecta-
+tions. In addition, to market safe and high-quality foods, attention
+must be paid to the government regulations and to the policies and
+standards of international organizations (Nielsen, 2010). Generally,
+food quality is specied in terms of traceable origin, known
+chemical composition, adequate physical properties, satisfactory
+sensory evaluation, safety and health safeguards with respect to
+microbiological and toxic contamination, and is inuenced by the
+processing and storage. Once food authentication has been granted,
+the main basic technique for quality assessment from the consumer
+point of view is sensory analysis (Borras et al., 2015), which is based
+on the examination of a product through the evaluation of the at-
+tributes perceptible by the ve sense organs (Piana et al., 2004).
+This method allows to establish the organoleptic prole of diverse
+products, however, suffers from several disadvantages. Sensory
+analysis is considered time consuming and expensive (Kiani et al.,
+2016), subjective (depending upon the professional acumen of
+the personnel involved), inconsistent and unpredictable, due to
+various human factors (Banerjee et al., 2016), and requires a panel
+of skilled assessors. On the other hand, conventional standard
+methods for gas or liquid-phase detection and analysis usually rely
+on the utilization of precision laboratory instruments like gas
+chromatographyemass spectrometry (GC-MS). These methods,
+providing an accurate approach for the analysis of type and con-
+centration of the single component in a mixture of substances, may
+be considered a useful sensorial tool for food avour analysis.
+However, they are laborious and time-consuming, require consid-
+erable analytical skills, involve a lot of tedious and complex pre-
+treatment of samples, and use many hazardous organic reagents
+that require high costs for storage and disposal (Huang et al., 2015).
+In recent years, much research has been performed to substitute
+the perception of human senses with ¡°articial sensors¡±,
+in-
+struments providing signals related to the sensory attributes
+(Borras et al., 2015). In this regard, advances in sensor technology,
+electronics, biochemistry and articial
+intelligence led to the
+development of instruments such as electronic nose (E-Nose),
+electronic tongue (E-Tongue) and computer vision systems (CVSs),
+capable of measuring and characterizing aroma, taste and colour of
+various
+products
+(Wilson and
+Baietto,
+2009; Ghasemi-
+Varnamkhasti et al., 2011; Cubero et al., 2011). Despite commer-
+cial systems are still expensive, their cost can be amortized in terms
+of reduced time and cost of analysis. Several advantages are offered
+by the applying of electronic senses, over the aforementioned
+techniques, and a complete view is given in Table 1.
+As the ideal method for in-line process control should enable
+direct, rapid, precise, and accurate determination of several target
+compounds, with minimal or no sample preparation and reagent
+consumption, chemical multisensor systems are one of the most
+promising approaches in this eld (Fig. 1). The real time monitoring
+of production processes is an actual food industry need; however,
+the analysis are performed off-line by wet chemical assays, often
+involving enzymatic reactions or separation techniques (Peris and
+Escuder-Gilabert, 2013).
+In this regard, several papers were
+recently published in the literature (Peris and Escuder-Gilabert,
+2013; Ghasemi-Varnamkhasti and Aghbashlo, 2014; Wei et al.,
+2017; Hosseinpour et al., 2013). A novel method combining the
+
+Fig. 1. Suitability of E-Nose, E-Tongue and CVS for in-line monitoring, modied from
+Gunasekaran (1996).
+
+articial senses, called ¡°sensor fusion¡±, is increasingly used in food
+quality assessment. Fusion of data coming from complementary
+sensors has been applied to a wide range of food and beverages, to
+authenticate origin and assess quality, enhancing signicantly the
+performance of the same instruments when used individually. The
+aim of this work is to review the achievements in the eld of
+articial sensor (nose, tongue and eye) application in the evaluation
+of animal source food products considering the most relevant
+contributions in this eld over the past ve years. After a brief
+comment of the principles behind the design of electronic sensors,
+the review will focus on the description of data analysis and fusion
+methods.
+
+2. E-Nose
+
+In the food¡¯ industry, monitoring of products, in terms of quality
+and control of production processes, are performed via physico-
+chemical measurements, despite the extreme importance of aroma
+as an indicator of quality and product conformity. This was mainly
+due to the lack of reliable odour assessing instruments (Ampuero
+and Bosset, 2003). The electronic nose is a technology designed
+to mimic the olfactory system of humans (Song et al., 2013).
+Gardner and Bartlett (1994) dened an electronic nose as an in-
+strument that comprises an array of electronic chemical sensors
+with partial specicity and an appropriate pattern-recognition
+system that is capable of recognizing simple or complex odours
+(Fig. 2). Before the advent of solid-state gas sensors arrays, the term
+¡°electronic nose¡± was related to the techniques used in the iden-
+tication and quantication of volatile compounds, in the head-
+space of a product, such as gas chromatography-mass spectrometry
+(GC-MS), gas chromatography-ame ionization detector (GC-FID)
+and solid-phase micro extraction-mass spectrometry (SPME-MS),
+coupled with multivariate statistical analysis (Marsili, 1999). Today,
+the electronic noses are instruments, based on the interaction of
+
+Table 1
+Comparison between electronic senses, sensory analysis and conventional laboratory instruments features.
+
+Feature
+
+E-Nose
+
+E-Tongue
+
+Computer Vision
+
+Sensory analysis
+
+Conventional laboratory instruments
+
+Rapidness
+Low-cost analysis
+Use of chemicals
+Objectiveness
+Non-destructive measurements
+Sample pre-treatment
+Simplicity
+Single operator
+Permanent storage of data
+
+Yes
+Yes
+No
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+
+Yes
+Yes
+No
+Yes
+No
+Yes
+Yes
+Yes
+Yes
+
+Yes
+Yes
+No
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+
+No
+No
+No
+No
+Yes
+No
+No
+No
+Yes
+
+No
+No
+Yes
+Yes
+No
+Yes
+No
+Yes
+Yes
+
+64
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+noses. Next to the instrumental evolution, there was an improve-
+ment of the signal processing techniques. An example is the
+building of accurate predictive models, based on PLS, MLR, SVM and
+ANN, for the determination of quality parameters (Huang et al.,
+2015) or adulterants detection and quantication (Tian et al.,
+2013). Although the E-Nose technology offers various advantages
+over traditional analysis, such as the reduction in time and cost of
+analysis, and its environmentally friendly nature (Smyth and
+Cozzolino, 2013); the sensors still present a number of weak
+points. These includes the noise by major compounds, which may
+not be relevant to aroma (Rodriguez-Mendez et al., 2004); the
+sensor drift or poisoning (Lout et al., 2015), and the responses
+obtained by each sensor, which provide highly ambiguous quali-
+tative or quantitative information, resulting in a sort of ¡°nger-
+print¡± of the sample (Ampuero and Bosset, 2003).
+Recent trends to overcome sensor shortcomings include:
+ The integration of electronic nose analysis with gas chroma-
+tography: Cheng et al. (2013), for example, employed an elec-
+tronic nose to distinguish different propolis samples, according
+to their geographical origin. Moreover, via DHS-GC/MS, they
+were able to identify the volatile compounds most correlated
+with the discrimination;
+ The development of hybrid electronic noses, based on the
+combination of different sensor technologies: the most common
+utilization of hybrid systems involve MOS and MOSFET, how-
+ever, commercial system are available that use MOS, MOSFET
+and BAW in various combinations. The major advantage of this
+type of electronic nose is that it incorporates the advantages
+inherent to the different transducer technologies, at the same
+time giving a choice for which chemical sensors can be used
+(Kiani et al., 2016).
+
+Another aspect is the humidity of the headspace above a food
+sample. With sensors that are reactive to the presence of water, this
+may be an interfering factor, as the water vapour concentration in
+the headspace is normally orders of magnitude higher than the
+concentration of the aroma compounds, whose presence one
+wishes to detect (Visser and Taylor, 1998). To deal with this inter-
+ference, two methodologies are commonly used. One is sample
+pre-treatment to obtain xed experimental conditions, and the
+other is a parametric compensation by additional measuring of the
+variable parameters and calibration under, e.g., different humidity
+conditions (Rock et al., 2008). An universal E-Nose, able to cope
+with every odour type, is non realistic. Therefore, data processing
+and instrumentation must be specically designed for each
+application.
+
+Fig. 2. Components of E-Nose.
+
+semi-selective sensors with volatile compounds. Several types of
+sensors are employed in the electronic nose architectures, and the
+most popular are reported in Table 2.
+A specic description of sensor characteristics and properties is
+outside the scope of this review. Interested readers are referred to
+the following reviews for details on this topic (Albert et al., 2000;
+Schaller et al., 1998; Nagle et al., 2002; Ampuero and Bosset,
+2003; James et al., 2005). The concept of an articial nose system
+was proposed by Persaud and Dodd (1982). At the beginning of the
+1990s the rst applications of the electronic nose for food analysis
+appeared (Winquist et al., 1993; Olafsson et al., 1992). Later on, E-
+Noses have been used in various research elds; however, the most
+attention has been paid to the food industry. At research and food
+industry levels, the E-Nose technology have been employed for
+quality control of raw and manufactured products: process, fresh-
+ness and maturity monitoring, shelf-life investigations, authen-
+ticity assessments of premium products and microbial pathogen
+detection. These research topics and food industry requirements in
+term of food analysis have been identied by Schaller et al. (1998).
+Since then, a huge literature regarding this topic can be found
+(Lout et al., 2015). The most recent applications, last 5 years, of
+electronic noses in food assessment are listed in Table 3.
+These results indicate that the most recent E-Nose applications,
+in food industry, remained unchanged over time. Many differences
+are found, instead, in the data collection and elaboration processes.
+The technologic advance led to the wide diffusion of commercial
+electronic noses, automated and with a greater number of sensors,
+further, the devices miniaturization brought to portable electronic
+
+Table 2
+E-Nose: most popular sensors.
+
+Sensors
+
+MOS (Metal-oxide
+semiconductor)
+
+CP (Conducting polymer)
+
+Piezoelectric crystal sensors,
+including BAW (Bulk
+acoustic wave) and SAW
+(Surface acoustic wave)
+
+Description
+
+metal-oxide semiconducting lm (SnO2, TiO2, ZnO, ZrO2), coated onto a
+substrate. Oxygen from the air is dissolved in the sensor lattice setting its
+electrical resistance to a background level. During the measurement, the volatile
+molecules are adsorbed at the surface of the semiconductor, where they react
+with the oxygen species, causing a modication of the sensor resistance.
+conducting organic polymer sensors, made of semiconducting materials,
+aromatic or heteroaromatic, such as polypyrrole, polyaniline, polythiophene,
+polyindole, deposited onto a substrate and between two gold-plated electrodes,
+whose electrical conductivity is altered in response to organic vapours.
+consist of a piezoelectric quartz, LiNbO3, or LiTaO3 crystal, coated with a
+membrane, which, depending on its afnity, selectively adsorbs the volatile
+molecules present. Adsorption of volatile compounds onto the sensing
+membrane increases the mass of the device resulting in a change in its
+resonance frequency
+
+References
+
+Ampuero and Bosset, 2003
+
+Ampuero and Bosset, 2003; James et al., 2005
+
+Ampuero and Bosset, 2003
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+65
+
+Table 3
+Application of electronic noses, in the last 5 years, on food assessment.
+
+Category
+
+Application
+
+Electronic nose model
+
+Number of sensors and technology
+
+Reference
+
+Pork
+
+Cheese
+
+Egg
+
+Fish
+
+Mutton
+Butter
+Ham
+
+Yogurt
+Honey
+
+Poultry
+
+Beef
+
+Rapid identication for halal authentication
+Predicting shelf-life
+Effects of kimchi and smoking on quality characteristics and
+shelf-life of cooked sausages
+Measuring total volatile basic nitrogen and total viable counts
+during refrigerated storage
+Classication of Pecorino
+Consumer acceptability of ovine cheese from ewes fed extruded
+linseed-enriched diets
+Physicochemical and textural properties of reduced fat Cheddar
+Discrimination of cow feeding with olive by-product from
+cheese
+Detect the authenticity of Parmigiano-Reggiano
+Prediction of TVB-N in eggs
+Discriminating eggs from different poultry species
+Species discrimination among three kinds of puffer sh
+Detection of off-avours in catsh
+A model for discrimination freshness of shrimp
+Analysis of pork adulteration in minced mutton
+Development of a method for butter type differentiation
+Characterization and differentiation of Italian Parma, San
+Daniele and Toscano dry-cured hams
+Flavour analysis of stirred yoghurt with cheddar cheese adding
+Botanical origin identication and quality determination of
+honey
+Contribution of chicken base addition to aroma characteristics
+of Maillard reaction products
+Rapid measuring and modelling avour quality changes of
+oxidized chicken fat
+Quality assessment of beef llets
+Rapid detection of meat spoilage
+
+zNose
+FOX 4000
+7100 zNose
+
+PEN3
+
+EOS 507
+EOS 835
+
+zNose
+FOX 4000
+
+EOS 835
+PEN3
+FOX 4000
+FOX 4000
+AromaScan A32S
+Figaro Engineering
+PEN2
+PEN2
+PEN2
+
+FOX 4000
+FOX 4000
+
+FOX 4000
+
+FOX 4000
+
+LibraNose
+LibraNose
+
+1 SAW
+18 MOS
+1 SAW
+
+10 MOS
+
+6 MOS
+6 MOS
+
+1 SAW
+18 MOS
+
+6 MOS
+10 MOS
+18 MOS
+18 MOS
+15 CP
+6 MOS
+10 MOS
+10 MOS
+10 MOS
+
+18 MOS
+18 MOS
+
+18 MOS
+
+18 MOS
+
+8 BAW
+8 BAW
+
+Nurjuliana et al., 2011
+Tang et al., 2013
+Kim et al., 2014
+
+Li et al., 2016
+
+Cevoli et al., 2011
+Branciari et al., 2012
+
+Nateghi et al., 2012
+Di Rosa et al., 2015
+
+Sberveglieri et al., 2015
+Liu and Tu, 2012
+Wang et al., 2014
+Zhang et al., 2012
+Wilson et al., 2013
+Du et al., 2015
+Tian et al., 2013
+Lorenzen et al., 2013
+Laureati et al., 2014
+
+Li et al., 2014
+Huang et al., 2015
+
+Xiao et al., 2015
+
+Song et al., 2013
+
+Mohareb et al., 2016
+Kodogiannis, 2016
+
+3. E-Tongue
+
+Hayashi et al. (1990) proposed the rst electronic tongue
+concept, called ¡°taste sensor¡±, which consisted of a multichannel
+electrode with transducers composed of lipid membranes immo-
+bilized with a polymer, for the intension of mimicking the functions
+of human gustatory receptors. The taste we perceive is composed of
+ve kinds of taste qualities: sourness, saltiness, sweetness, bitter-
+ness and umami. Additional quality are pungency and astringency,
+which are related to the sense of pain (Tahara et al., 2013) (Table 4).
+The objective of the electronic tongue technology is to study the
+chemical substances showing the ve basic taste qualities. After-
+ward, other tastes like astringent and pungent substances were
+investigated (Zou et al., 2015).
+The electronic tongue can be described as an analytical tool,
+including an array of non-specic, poorly selective chemical sen-
+sors, with partial specicity (cross-selectivity), coupled with che-
+mometric processing,
+for
+recognizing the qualitative and
+quantitative composition of multispecies solutions (Fig. 3) (Ha
+et al., 2015). A variety of chemical sensors can be employed in the
+
+Fig. 3. Components of E-Tongue.
+
+Table 4
+Chemical substances showing the ve basic taste qualities, pungency and astrin-
+gency, as reported by Toko et al., 2016.
+
+Taste
+
+Sweetness
+Saltiness
+Sourness
+
+Bitterness
+Umami
+
+Astringency
+Pungency
+
+Main materials
+
+Sucrose, glucose, articial sweetener
+Cations, represented by sodium ions
+Dissociated hydrogen ions from acetic acid,
+hydrochloric acid, citric acid, etc.
+Caffeine, theobromine, quinine, humulone
+Monosodium glutamate (MSG), disodium inosinate
+(IMP), disodium guanylate (GMP)
+Tannin-based compounds
+Capsaicin, allyl isothiocyanate, piperine
+
+design of electronic tongues: electrochemical
+(voltammetric,
+potentiometric, amperometric,
+impedimetric, conductimetric),
+optical or enzymatic sensors (biosensors). However, most of these
+systems are based on potentiometric sensors
+(Ciosek and
+Wroblewski, 2011). In potentiometry, a potential is measured be-
+tween two electrodes under the conditions of no current ow. The
+measured potential may then be used to determine the analytical
+quantity of interest, generally the concentration of some compo-
+nent of the solution (Zou et al., 2015). Ion-selective electrodes (ISEs)
+represent the largest group among potentiometric sensors (Ciosek
+and Wroblewski, 2011). The potential of the ion-selective elec-
+trodes is a function of the activity of ionic species in a sample
+
+66
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+solution and is formed in the ion-sensitive membrane, where se-
+lective complexation (ion recognition) of the analyte molecules
+occurs (Ciosek and Wroblewski, 2007). Potentiometric ion and
+chemical sensors based on eld-effect devices form another group
+of transducers that can be easily miniaturized and are fabricated by
+means of microelectronic technology. Among them, most studies
+are ion-sensitive eld-effect transistors (ISFETs), with different ion-
+selective membranes (often also called chemically sensitive eld-
+effect transistors or Chem-FETs) (Zou et al., 2015). Voltammetric
+sensors have been extensively used in E-Tongue systems, as well.
+Voltammetry is a very powerful analytical technique, due to fea-
+tures such as its very high sensitivity, versatility, simplicity and
+robustness. Normally, redox-active compounds are oxidized or
+reduced at the working electrode, giving rise to a current, which is
+measured at a xed potential. When a complex media, consisting of
+several redox-active species and various ions, is analysed, the
+selectivity of the system is often insufcient for specic analysis of
+single components. Thus, rather complicated voltammograms are
+obtained and the interpretation of data usually rely on multivariate
+analysis methods. The rst prototype of a voltammetric E-Tongue
+was proposed by Winquist et al. (1997), which were able to classify
+various fruit drinks and milk, and also follow some aging processes.
+Later, an E-Tongue based on chemically modied voltammetric
+electrodes was successfully employed for the evaluation of poly-
+phenolic content in extra virgin oils (Rodriguez-Mendez et al.,
+2008). Finally, the group of del Valle developed an E-Tongue sys-
+tem, based on voltammetric sensors with different modiers
+(metallic nano-sized particles and conducting polymers), capable
+of distinguishing between different kinds of Cava wines (Ceto et al.,
+2010). However, we suggest the reading of the following reviews
+for detailed information about E-Tongue sensor technologies (Ha
+et al., 2015; Zou et al., 2015; Ciosek and Wroblewski, 2007). Over
+the past years, the E-Tongues have emerged as rapid and easy-to-
+use tools, very promising for evaluation of food quality, especially
+in such situations in which only qualitative or semi-quantitative
+information is required (Escuder-Gilabert and Peris, 2010). A
+search of the recent, relevant literature shows that the major cat-
+egories of use for electronic tongues are freshness evaluation and
+shelf life investigation; process monitoring; quality control studies;
+authenticity assessment and foodstuff
+recognition (Escuder-
+Gilabert and Peris, 2010). Some examples of the most recent elec-
+tronic tongue applications are reported in Table 5.
+The E-Tongue employment is easy for liquid food products
+(milk, eggs, yogurt and honey), whose preparation is limited to
+dilution and/or ltration, but laborious for solids. Different authors
+reported the procedure for ham (Dang et al., 2015) and beef (Zhang
+et al., 2015; Apetrei and Apetrei, 2016) test sample solutions
+preparation. The process involves the sample homogenization with
+a solvent, a centrifugation, the aqueous supernatant separation and
+its ltration. However, other authors (Gil et al., 2011; Ruiz-Rico
+et al., 2013), using laboratory-made electronic tongues, based on
+metallic electrodes, reported an alternative method, which consist
+in introducing the sensors directly in the crude samples. The main
+disadvantages of E-Tongue sensors are that they are easily affected
+by environmental conditions i.e. temperature and humidity, which
+may cause sensor drift (Wadehra and Patil, 2016), and the
+adsorption of solution components that inuence the membrane
+potential (Escuder-Gilabert and Peris, 2010). These factors can be
+minimized by controlling the room temperature and washing the
+electrodes, alternating a cleaning beaker (containing water) to the
+samples solutions during the analysis. Even with technological
+advances and promising results, these sensors still cannot mimic
+the biological features of human tongue, concerning identifying
+elusive analytes in complicated mixtures.
+In this case, bio-
+electronics tongues, equipped with enzymatic and gustatory
+
+receptor-based biosensors array, can provide taste signals triggered
+by the binding activities between selective taste receptors and
+tastants, making it possible to develop articial taste sensors that
+more closely mimic human taste system (Ha et al., 2015).
+
+4. CVS
+
+Computer vision is the science that develops theoretical and
+algorithmic basis to automatically extract and analyse useful in-
+formation about physical objects from images (Wu and Sun, 2013).
+Timmermans (1998) states that it encloses the capturing, process-
+ing and analysis of two-dimensional images, with others noting
+that it aims to duplicate the effect of human vision by electronically
+perceiving and understanding an image (Sonka et al., 1993). In
+general, the hardware conguration of a computer vision system
+consists of an illumination device, a camera, a personal computer
+and a high-resolution monitor (Wu and Sun, 2013) (Fig. 4). As in the
+case of the human eye, the operation of CVS depends on the in-
+tensity of lighting. Properly designed lighting can improve the
+precision of analysis and decrease analysis time. Fluorescent and
+incandescent bulbs are the most frequently used light sources.
+Luminescent electric diodes (LEDs), quartz halogen lamps, metal
+halide lamps and high-pressure sodium lamps are also used
+(Sliwinska et al., 2014). Moreover, a camera converting photons to
+electrical signals is used (Wu and Sun, 2013). There are two types of
+cameras, that is, analog and digital cameras, which are equipped
+with CCD (Charged-coupled device) or CMOS (Complementary
+metal-oxide semiconductor) sensor arrays. In an analog camera, the
+recorded image is transformed into the analog signal and then
+transferred to a frame grabber, which transforms the analog signal
+into a digital data stream and sends it to the computer memory. In
+digital cameras, a frame grabber is not needed because the analog
+signal is sent directly to the computer via a USB or FireWire adapter
+(Sliwinska et al., 2014). Interested readers are referred to the
+following reviews for a specic description of computer vision
+systems components (Wu and Sun, 2013; Sliwinska et al., 2014).
+The image processing and the image analysis represent the core of
+computer vision (Krutz et al., 2000). Image processing involves a
+series of operation that enhance the quality of an image in order to
+remove defects. Image analysis is the process of distinguishing the
+objects from the background and producing quantitative informa-
+tion (Brosnan and Sun, 2004). As a non-destructive detecting
+approach, CVS have been used increasingly in the food industry for
+inspection and evaluation purposes as they provide suitably rapid,
+economic, consistent and objective assessment (Sun, 2000). Pre-
+cisely, CVSs are feasible to classify food products into specic
+grades, detect defects and estimate properties such as colour,
+shape, size, surface defects, and contamination (Ma et al., 2016).
+Some examples are listed in Table 6.
+Results show how CVS applications are targeted at those food
+products for which the appearance is the main key quality attribute
+evaluated by the consumers. In freshness assessment of seafood
+products, sensory evaluation is a prevalent procedure and gives
+valuable information about the quality and consumer acceptance.
+This method is based on signicant appearance parameters such as,
+skin, slime, eyes, gills and belly (Dowlati et al., 2013). Further,
+consumers associate freshness of red meat with a homogeneous,
+bright cherry-red colour and consider dark red, purple or brown
+meat as unacceptable (Sun et al., 2011). Traditionally, quality in-
+spection of agricultural and food products has been performed by
+human graders. However, in most cases these manual inspections
+are time-consuming and laborious. Moreover, the accuracy of the
+tests cannot be guaranteed (Park et al., 1996). The applying of
+computer vision techniques could offer several advantages,
+including:
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+67
+
+Table 5
+Electronic tongues applications, in the last 5 years, on animal source food assessment.
+
+Category
+
+Object of investigation
+
+Milk
+
+Pork
+Poultry
+Honey
+
+Ham
+
+Yogurt
+Beef
+
+Fish
+
+Detection of antibiotic residues
+Discrimination of urea and melamine adulterated skimmed milk powder
+Monitoring of quality and storage time
+Brands classication
+Qualitative analysis of milk adulterated with urea
+Monitoring of physicalechemical and microbiological changes under cold storage
+Changes of avour compounds of hydrolysed chicken bones during Maillard reaction
+Discrimination according to the botanical origin
+Tracing oral and geographical origins
+Articial neural networks analysis of the data obtained with an electronic tongue,
+applied to ham-curing process with different salt formulations
+Comparison of umami taste peptides in water-soluble extractions
+Evaluation of varieties
+Flavour assessment, recognition and chemical compositions according to its correlation
+with avour
+Detection of ammonia and putrescine
+Freshness monitoring
+Quality assessment
+
+Principle of detection
+
+Reference
+
+Voltammetry
+Wei and Wang, 2011
+Voltammetry
+Hilding-Ohlsson et al., 2012
+Voltammetry
+Wei et al., 2013a
+Voltammetry
+Yu et al., 2015
+Voltammetry
+Li et al., 2015
+Potentiometry
+Gil et al., 2011
+Potentiometry
+Sun et al., 2014
+Potentiometry
+Escriche et al., 2012
+Potentiometry and Voltammetry Wei and Wang, 2014
+Potentiometry
+Gil-Sanchez et al., 2015
+
+Voltammetry
+Voltammetry
+Potentiometry
+
+Voltammetry
+Voltammetry
+Voltammetry
+
+Dang et al., 2015
+Wei et al., 2013b
+Zhang et al., 2015
+
+Apetrei and Apetrei, 2016
+Apetrei et al., 2013
+Ruiz-Rico et al., 2013
+
+ The rapidness, preciseness, objectiveness, efciency and non-
+destruction of the measurement with low cost and no sample
+pre-treatment (Wu and Sun, 2013);
+
+Fig. 4. Components of CVS.
+
+Fig. 5. a) Low-level fusion process, b) Mid-level fusion process, c) High-level fusion
+process.
+
+ The permanent storage of data, allowing further analysis later
+ Image capturing and illumination devices are easy to mount,
+(Tarbell and Reid, 1991);
+remove, replace, and upgrade;
+ The possibility of automation for in-line monitoring and con-
+trolling of industrial scale food operations (Hosseinpour et al.,
+2013).
+
+However, extra chemical composition information cannot be
+extracted by using CVSs. With the help of spectrometry, chemical
+composition information can be obtained successfully (Ma et al.,
+2016). With hyperspectral
+imaging technique, several authors
+achieved excellent results in a variety of applications; few examples
+are reported in Table 7.
+Further, the employment of 3-dimensionals cameras may help
+to improve analysis, provide more information and allow the
+study of complex or irregular-shape materials with fewer errors
+and less time (Ma et al., 2016). Mortensen et al. (2016), for
+example, recently reported the development of a fully auto-
+mated, 3D camera-based weighing system for broiler chickens. In
+addition, these devices may nd application in texture analysis,
+so far based on 2D image sequences, where the texture distri-
+bution is limited to a single plane. The use of three-dimensional
+images could help to avoid the loss of information when texture
+features are studied from different orientations (Avila et al.,
+2015).
+
+5. Statistical approach
+
+A measurement performed by means of electronic senses
+generates a vast volume of data; therefore, it is necessary to
+apply methods of data analysis, which allow for data classica-
+tion (Sliwinska et al., 2014). The use of multivariate analysis
+methods, together with sensor arrays, has shown to be very
+powerful. Two main issues are dealt with, to search for a struc-
+ture and correlation in the data, or to make a model from a
+training set of data, which is then used to make predictions from
+test data (Zou et al., 2015). So far, many pattern analysis tech-
+niques for data analysis of sensor array measurements were
+presented (Ciosek and Wroblewski, 2007). The most popular are
+listed in Table 8:
+These techniques are routinely used in conjunction with elec-
+tronic senses. Some examples are listed below (Table 9).
+
+68
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+Table 6
+Computer vision application, in the last 5 years, on animal source food.
+
+Category Object of investigation
+
+Device
+
+Quality attribute measured
+
+References
+
+Poultry
+Pork
+
+Beef
+
+Egg
+
+Fish
+
+Honey
+
+Estimation of fat content
+Generic digital camera
+Lightness of the colour as a factor for assessing the quality
+CMOS
+Evaluating the appearance of Lucanian dry sausage
+CMOS
+Prediction of colour attributes
+Generic digital camera
+Detection of PSE
+CMOS
+Defect detection
+CMOS
+Tracking meat cuts in slaughterhouses
+Microsoft Kinect camera
+Predicting colour grade
+Generic digital camera
+Measurement of colour
+CMOS
+Identication of micro-crack
+CCD
+Expert grading system
+CCD
+Volume prediction
+CCD
+External and internal defect detection
+Generic digital camera
+Quantication of gaping, bruising, and blood spots in salmon llets Generic digital camera
+Species classication
+Smartphone
+Estimation of sushi shrimp weight
+CCD
+An efcient shape analysis method for shrimp
+CCD
+Freshness assessment
+CCD
+Online monitoring of shrimp colour changes during drying
+CCD
+Classication of boiled shrimp¡¯s shape
+Generic digital camera
+Characterization
+CCD
+
+Colour
+Colour
+Colour
+Colour
+Colour
+Colour
+Colour
+Colour
+Colour
+Defects
+Size and defects
+Size
+Defects
+Defects and colour
+Colour
+Size
+Size
+Colour
+Colour
+Shape
+Colour
+
+Chmiel et al., 2011a
+Chmiel et al., 2011b
+Girolami et al., 2014
+Sun et al., 2016
+Chmiel et al., 2016
+Chmiel and Slowinski, 2016
+Larsen et al., 2014
+Sun et al., 2011
+Girolami et al., 2013
+Li et al., 2012
+Omid et al., 2013
+Soltani et al., 2014
+Arivazhagan et al., 2013
+Balaban et al., 2011
+Hu et al., 2012
+Poonnoy and Chum-in, 2012
+Lee et al., 2012a
+Dowlati et al., 2013
+Hosseinpour et al., 2013
+Poonnoy et al., 2014
+Shaee et al., 2014
+
+Table 7
+Recently reported hyperspectral image applications.
+
+Object of investigation
+
+Image processing
+
+Optimal wavelength selection Multivariable data analysis
+
+References
+
+Rapid evaluation of thiobarbituric acid
+(TBA) value in grass carp llet
+
+Non-destructive prediction of
+thiobarbituric acid reactive
+substances (TBARS) value for
+freshness evaluation of chicken meat
+Model improvement for predicting
+moisture content in pork longissimus
+dorsi muscles under diverse
+processing conditions
+Rapid prediction of hydroxyproline
+content in chicken meat
+Quantitative determination of total
+pigments in red meats
+
+6. Sensor fusion
+
+Calibration, identication of ROI
+(Region of interest), spectra extraction,
+MSC (Multiplicative scatter correction)
+Calibration, identication of ROI,
+spectra extraction, MSC
+
+RC (Regression coefcients)
+
+PLSR, MLR
+(Multiple linear regression)
+
+Cheng et al., 2015
+
+SPA (Successive
+projection algorithm)
+
+PLSR
+
+Xiong et al., 2015a
+
+Calibration, identication of ROI,
+spectra extraction, GLGCM (Grey-level-
+gradient co-occurrence matrix)
+
+Calibration, identication of ROI,
+spectra extraction
+Calibration, identication of ROI,
+spectra extraction
+
+RC
+
+RC
+
+RC, SPA
+
+PCA, PLSR
+
+Ma et al., 2017
+
+PLSR
+
+PLSR
+
+Xiong et al., 2015b
+
+Xiong et al., 2015c
+
+Due to the high complexity of food, the employment of just
+single sensor data, E-nose or E-tongue or E-eye, is insufcient, and
+multi-sensor data fusion techniques, combining the outputs of
+multiple instrumental
+sources,
+represent
+the challenge for
+improving the quality assessment and authentication of food
+(Borras et al., 2015). Fusion of data from complementary sensors,
+responding to different signature phenomena, may increase the
+probability of correct classication; therefore, characteristics that
+are not classied by one sensor may be apparent or measured by
+another (Banerjee et al., 2016). However, this is not always true in
+practical experience, because not all features are important for
+understanding or representing the underlying phenomenon of in-
+terest (Liu et al., 2009). In general, multi-sensor data fusion is the
+technique related to problem of how to combine data from one or
+multiple (and possibly diverse) sensors, in order to make inferences
+about a physical event, activity or situation (Masnan et al., 2012).
+Mitchell (2007) dened multi-sensor data fusion as the theory,
+techniques, and tools, which are used for combining sensor data, or
+data derived from sensory data into a common representational
+format (Masnan et al., 2012). Fusion processes are often categorized
+in a three-level model, distinguishing low, intermediate, and high
+level fusion (Elmenreich, 2002). It is important to note that all three
+
+levels use feature extraction, transforming the raw signal provided
+by the sensor into a reduced vector of features describing parsi-
+moniously the original information, and identity declaration that
+assigns a quality class to the measured produce based on the
+feature extraction process (Zou et al., 2015). The different data
+fusion approaches are described in Table 10.
+In summary, low-level fusion is conceptually simple (Borras
+et al., 2015) and it is believed the most accurate technique (Hall
+and Llinas, 1997), due to the fact that the originality information
+from each sensor is maintained and used in further processes
+(Masnan et al., 2012). Some limitations are a high volume data and
+the possible predominance of one data source over the others. This
+is partially overcome by mid-level fusion, where feature extraction
+signicantly reduces the data dimensionality (Borras et al., 2015). In
+addition, low-level fusion necessitates consubstantial sensors and
+extensive data manipulation, takes a lot of time, and could not be
+used for real-time data processing (Kiani et al., 2016). Feature level
+fusion is very useful for non-commensurate type data, i.e., if sensors
+are looking for different physical parameters (Banerjee et al., 2016).
+Here, the challenge is to nd the optimal combination of extracted
+features and pre-processing that describe the signicant variation
+of the instrumental responses and provides the best nal model
+(Borras et al., 2015). High-level fusion, nally, allows focusing on
+each individual techniques, but the nal identity declaration is
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+69
+
+Table 8
+Most frequently used statistical analysis coupled with sensor arrays.
+
+Technique
+
+Description
+
+PCA (Principal components
+analysis)
+
+ANNs (Articial neural
+networks)
+
+LDA (Linear discriminant
+analysis)
+
+PLSR (Partial least square
+regression)
+
+SVM (Support vector machines)
+
+is a dimension reduction technique that creates a few new variables called principal
+components (PCs) from linear combination of the original variables. For highly collinear
+data, a few principal components retain the same information as many original variables,
+and allow the distribution of samples and variables to be easily plotted and visually
+analysed. Because is easy to use, this unsupervised exploratory technique is usually applied
+prior to any other more complex classication or prediction.
+are computational models, inspired by the way biological nervous systems, which goal is to
+solve problems in the same way that the human brain would. ANNs are composed of a large
+number of densely interconnected adaptive simple processing elements (called articial
+neurons or nodes), distributed in different layers. The rst layer is called ¡°input layer¡± and is
+responsible for inputting data into the network. The number of neurons in this layer equals
+the number of values that are concurrently being fed into the network. The last neuron layer,
+a so-called ¡°output layer¡±, is used to generate the output values. Hidden layers, which do not
+interact with the external environment, can be present between the input and output layers.
+Neurons assigned to specic hidden layers process the input information into the output
+information. A vast number of networks, new or modications of existing ones are being
+constantly developed. Backpropagation (BP) and radial basis function (RBF) networks are
+the most frequently used in data fusion. In the rst type, the term backpropagation refers to
+the way the error is propagated backward from the output layer, to the hidden layer, and
+nally to the input layer. The second type of networks, unlike the sigmoid transfer function
+in BPANNs, employ a radial basis function (such as a Gaussian kernel). In general, ANNs are
+more robust and often outperform other computational tools in solving a variety of
+problems ranging from modelling, classication, pattern recognition and multivariate data
+analysis.
+is most commonly used as dimensionality reduction technique in the pre-processing step
+for pattern classication and machine learning applications. The goal is to project a dataset
+onto a lower-dimensional space with good class-separability in order avoid overtting and
+reduce computational costs. The general LDA approach is very similar to a PCA, but in
+addition to nding the component axes that maximize the variance of our data, we are
+additionally interested in the axes that maximize the separation between multiple classes.
+Both LDA and PCA are linear transformation techniques that are commonly used for
+dimensionality reduction. PCA can be described as an ¡°unsupervised¡± algorithm, since it
+¡°ignores¡± class labels and its goal is to nd the directions (the so-called principal
+components) that maximize the variance in a dataset. In contrast to PCA, LDA is ¡°supervised¡±
+and computes the directions (¡°linear discriminants¡±) that will represent the axes that
+maximize the separation between multiple classes. Although it might sound intuitive that
+LDA is superior to PCA for a multi-class classication task where the class labels are known,
+this might not always the case. In practice, it is also not uncommon to use both LDA and PCA
+in combination, e.g., PCA for dimensionality reduction followed by an LDA.
+combines features from and generalizes PCA and multiple linear regression. Its goal is to
+analyse or predict a set of dependent variables from a set of independent variables or
+predictors. This prediction is achieved by extracting from the predictors a set of orthogonal
+factors called latent variables, which have the best predictive power. PLSR is particularly
+useful when we need to predict a set of dependent variables from a (very) large set of
+independent variables (i.e., predictors). This approach originated in the social sciences, but
+became popular rst in chemometrics and then in sensory evaluation.
+is a supervised machine learning algorithm that can be used for either classication or
+regression challenges. However, it is mostly used in classication problems. Similarly to
+ANN, the assignment of objects to specic classes by the SVM method is realized with the
+use of a training set. The underlying principle of SVM is the creation of an optimal
+hyperplane that would separate the data belonging to the opposite classes, with the highest
+possible condent margin.
+
+References
+
+Borras et al., 2015
+
+Zou et al., 2015
+Basheer and Hajmeer, 2000
+Sliwinska et al., 2014
+Borras et al., 2015
+Haykin, 1994
+Goyal and Goyal, 2011
+Debska and Guzowska-Swider, 2011
+
+Raschka, 2014
+Martinez and Kak, 2001
+
+Abdi, 2010
+
+Sliwinska et al., 2014
+
+obtained from only a few values. One advantage is that every in-
+dividual matrix is treated independently, and the results from
+inefcient techniques do not worsen the overall performance as
+much as in the other fusion levels. However, the classication or
+regression models that work best for each block needs to be
+determined, to ensure better performances than individual models
+(Borras et al., 2015). This requires a knowledge base of the target,
+substantial pre-processing and causes considerable information
+losses (Kiani et al., 2016). Data fusion has been applied to a wide
+range of food and beverages to authenticate origin and assess
+quality. Most of the analysis combine gas sensor and liquid sensor
+devices and, sometimes, UVeVis spectroscopy or CVSs, considered
+as an E-eye. These techniques used all together are called ¡°elec-
+tronic panel¡± since they emulate the human panel responses when
+sensory analysing the products (Borras et al., 2015). The following
+table summarizes the main recently applications of data fusion in
+
+animal source food (Table 11).
+Overall results shows clearly an increase in the classication
+accuracies, using fusion methods, compared to any of the single
+modality data. Zakaria et al. (2011) found the electronic nose and
+tongue to be ineffective in the discrimination of different honey
+samples. However, by applying data fusion, the classication of
+honey with different oral origin, sugar syrups and adulterated
+samples was achieved. In this experiment, PCA and LDA were
+chosen to perform the low-level fusion, while PNN was used to
+verify and validate the fusion of data. Other authors (Subari et al.,
+2014) reported the honey concentration estimation mean abso-
+lute error result of single modality, based on electronic nose or FT-
+IR that was 15.0%; higher compared to fusion result, which gave
+6.9%. In this work, 32 resistances of electronic nose and 5 selected
+peaks of FT-IR spectra were used to train a MLP-ANN in order to
+achieve the estimation task. In addition, multi-sensor data fusion
+
+70
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+Table 9
+Multivariate statistical analysis applied to animal source food assessment.
+
+Technique used
+
+Object of investigation
+
+Device
+
+Reference
+
+PCA
+
+ANNs
+
+LDA
+
+PLSR
+
+SVM
+
+Classication of Hairtail sh and pork freshness
+Geographical origin identication of propolis
+Discriminating eggs from different poultry species
+Eggshell crack detection
+Classication of Pecorino cheeses
+Honey characterization
+Classication of boiled shrimp¡¯s shape
+Eggs volume prediction
+Honey purity estimation
+Analysis of ham-curing processes with different salt formulations
+Discrimination between products made from Iberian pigs and from other pigs
+Discrimination of meat from llama and alpaca
+Honey quality assessment
+Evaluation of meat quality in relation to storage time
+Rapid measuring and modelling avor quality changes of oxidized chicken fat
+Predict fresh beef colour grading
+Fish species classication
+Prediction of total viable counts on chilled pork
+Sensory and microbiological quality assessment of beef llets
+Quality assessment of beef llets
+
+E-nose
+E-nose, GC-MS
+E-nose
+CVS, Acoustic response
+E-nose
+CVS
+CVS
+CVS
+E-nose, FT-IR
+E-tongue
+E-nose
+E-nose
+E-nose, E-tongue
+E-nose
+E-nose
+CVS
+CVS
+E-nose
+E-nose
+E-nose
+
+Tian et al., 2012
+Cheng et al., 2013
+Wang et al., 2014
+Pan et al., 2011
+Cevoli et al., 2011
+Shaee et al., 2014
+Poonnoy et al., 2014
+Soltani et al., 2014
+Subari et al., 2014
+Gil-Sanchez et al., 2015
+Gonzalez-Martin et al., 2000
+Neely et al., 2001
+Masnan et al., 2012
+Vestergaard et al., 2007
+Song et al., 2013
+Sun et al., 2011
+Hu et al., 2012
+Wang et al., 2012
+Papadopoulou et al., 2013
+Mohareb et al., 2016
+
+Table 10
+Description of the different data fusion methodologies.
+
+Fusion level
+
+Description
+
+Low
+
+Intermediate
+
+High
+
+data from all sources are simply concatenated sample-wise into a single matrix that has many rows as samples and as many
+columns as signals measured by the different instruments (Fig. 5a). In order to fuse raw sensor data, the original sensor data
+must be commensurate, i.e., must be observations of similar physical quantities. For instance, one acoustic wave sensor data that
+measures sound cannot be merged with visual image data.
+some relevant features are rst extracted from each data source separately and then concatenated into a single array that is used
+for multivariate classication and regression (Fig. 5b). The most common approach is to fuse a number of latent variables
+obtained independently from the signals of each instrument. Usually scores from principal component analysis (PCA) or partial-
+least square discriminant analysis (PLS-DA) are used.
+a separate model is built for each available data set, and then, the model responses are combined to produce a nal ¡°fused¡±
+response. The majority vote method is the easiest approach in food classication; each of the available models predicts a class
+label for a sample, and the class label that is predicted by the majority of the models is selected. More advanced methods are
+available, but they require probabilistic model outputs. The naive Bayes approach, for example, multiplies the class probabilities
+assuming independence, and selects the class label with the highest probability. In Fig. 5c, decision level fusion is depicted.
+
+References
+
+Borras et al., 2015
+Hall and Llinas, 1997
+Banerjee et al., 2016
+
+Borras et al., 2015
+
+Doeswijk et al., 2011
+Kuncheva, 2004
+
+has proven to be efcient, as a non-destructive tool, in the detection
+of sh freshness (Han et al., 2014). Electronic nose and electronic
+tongue data were analysed by principal component analysis (PCA)
+and different three-layer basis function neural network (RBF-NN)
+were established. Further, performance of RBF-NN models with
+different numbers of principal components (PCs) as the input were
+compared. Experimental results revealed that the discrimination
+rates improved to 94.0% and 93.9% in the training set and prediction
+set, respectively, building the RBF-NN with the combination of the
+
+two instrument data. Finally, Santonico et al. (2015) demonstrate
+the possibility to analyse mozzarella cheese easily and without
+damaging the product, using liquid sensors (electronic tongue) and
+an electro-dynamic probe (to determine the mechanical pro-
+prieties). The classication was performed using partial-least
+squares discriminant analysis (PLS-DA). Of the three levels of data
+fusion, low and mid-level fusion are the most used. Low-level
+fusion is the rst attempt approach, but, when data are very
+different in size or scale, the more tuneable mid-level fusion can
+
+Table 11
+Data fusion main applications on animal source food, reported in the last ve years.
+
+Category
+
+Application
+
+Input data
+
+Fusion level
+
+References
+
+Fish
+
+Honey
+
+Milk
+Egg
+Cheese
+Pork
+
+Non-destructive detection of freshness during preservation
+Fresh/frozen-thawed discrimination
+Freshness detection
+Classication and detection of adulteration
+Enhancing classication performance
+Classication of pure and adulterated
+Determination of the botanical origin
+Taste assessment
+Purity estimation
+Classify botanical origin and determine adulteration
+Aging time and brand classication
+Shell crack detection
+Mozzarella characterization and authentication
+Non-destructive measurement of total volatile basic nitrogen (TVB-N)
+
+E-nose, E-tongue
+CVS, NIR, texture analyser
+CVS, NIR
+E-nose, E-tongue, FT-IR, GC-MS
+E-nose, E-tongue
+E-nose, NIR
+E-tongue, UVeViseNIR
+E-nose, E-tongue, FT-IR
+E-nose, FT-IR
+E-nose, E-tongue, NIR, FT-IR
+E-nose, E-tongue
+CVS, ARS
+E-tongue, mechanical sensor
+E-nose, CVS, NIR
+
+Intermediate
+Intermediate
+Intermediate
+Low
+Low
+Low and Intermediate
+Intermediate
+Intermediate
+Low
+Intermediate
+Intermediate
+High
+Low
+Intermediate
+
+Han et al., 2014
+Ottavian et al., 2014
+Huang et al., 2016
+Zakaria et al., 2011
+Masnan et al., 2012
+Subari et al., 2012
+Ulloa et al., 2013
+Maamor et al., 2014
+Subari et al., 2014
+Gan et al., 2016
+Bougrini et al., 2014
+Pan et al., 2011
+Santonico et al., 2015
+Huang et al., 2014
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+71
+
+yield better results (Borras et al., 2015). High-level fusion, instead, is
+the least used approach. Several researchers reported various lim-
+itations while working with the combined systems. Often, the
+sensor devices are used separately, with different experimental
+conditions, which may lead to error in the nal decision. Another
+difculty is the correlating parameter. The instruments are trained
+with respect to sensory panel data or chemical analysis data. Sen-
+sory panel data are subjective in nature and results in poor classi-
+cation or quality estimation for these systems. In that respect,
+chemical analysis data is much more reliable. But, at the same time,
+the electronic sensor systems are mostly used for natural products,
+which comprise of a large number of chemicals, and correlation
+models are developed on the basis of one or two major chemicals
+and, thus, the limitations of the trained model continues to be
+there. Concretely, combining multiple articial sensing systems
+enhances the performance of classication or quality evaluation of
+the products under consideration, but the combined system are still
+in the premature stage and with more research in this area would
+make numerous applications successful
+in the coming years
+(Banerjee et al., 2016).
+
+7. Conclusion and future Trends
+
+Traditionally, food quality evaluation has been performed by
+panels of trained human experts; despite this approach still suffers
+from several disadvantages, such as being time consuming,
+expensive and subjective, it is the most common used. On the other
+hand, also instrumental standard methods, relying on precision
+laboratory devices, suffers of similar drawbacks, being time-
+consuming, labour intensive and expensive. In recent years, hu-
+man senses were substituted with articial sensors, which have
+been increasingly employed in the food industry for quality control
+purposes; process, freshness and maturity monitoring; shelf life
+investigations; authenticity assessments and microbial pathogen
+detection. Electronic senses offers various advantages over tradi-
+tional analysis, such as the rapidness, preciseness, objectiveness,
+efciency and non-destruction of the measurement with low cost,
+environmentally friendly nature and no sample pre-treatment.
+Nevertheless, the permanent storage of data and the possibility of
+automation for on-line monitoring of industrial scale operations
+should be considered. These techniques used all together are called
+¡°electronic panel¡± and this approach is possible due to the fusion of
+data coming from complementary sensors. Data fusion has been
+applied to a wide range of food and beverages to authenticate origin
+and assess quality, enhancing signicantly the performance of
+classication or quality evaluation. Most of the analysis combine
+gas and liquid sensors and, sometimes, UVeVis spectroscopy or
+CVSs, considered as an E-eye. Despite the promising results ob-
+tained so far, there is still room for improvement. Novel articial
+sensing devices, such as E-Noses and E-Tongues based on hybrid or
+bioelectronic sensors, are being studied. Hybrid systems are
+equipped with a combination of different sensor technologies,
+incorporating the advantages inherent to the different transducers
+and, at the same time, giving a choice for which chemical sensors
+can be used. Even with technological advances and promising re-
+sults, these sensors still cannot mimic the biological features of
+human counterparts. Bioelectronic systems can provide signals
+triggered by the binding activities between selective receptors and
+odorous compounds or tastants. Recently, bioelectronic noses, us-
+ing human olfactory receptors as primary recognition elements and
+nanomaterials as secondary transducers, have been reported (Yoon
+et al., 2009; Kim et al., 2008, Lee et al., 2012b, c; Jin et al., 2012; Park
+et al., 2012a). Bioelectronic noses rapidly recognize target mole-
+cules and can be operated relatively simply. In addition, they can be
+easily integrated and multiplexed into small chips that enable the
+
+systems to be portable and, thus, suitable for on-site analysis (Son
+et al., 2017). Beyond human receptors, some efforts to design bio-
+electronic noses have used olfactory receptors of various mammals,
+such as dogs and mice, which perform better than humans in smell
+sensing (Park et al., 2012b; Goldsmith et al., 2011). Nevertheless,
+electronic mucosa, which is an improvement of the E-Nose tech-
+nology, was developed. In this instrument, the sensor arrays have
+been combined with two retentive columns (mimicking two nasal
+paths) in order to add another dimension to the common E-Nose,
+using temporal information from sensors. The retentive columns,
+coated with an absorbent material, acts like the mucous layer in the
+nasal cavity by delaying selectively some odour molecules, while
+letting other pass through with minimal delay. This provides dif-
+ferential temporal data, which are complementary to the conven-
+tional response (Ghasemi-Varnamkhasti and Aghbashlo, 2014;
+Gardner et al., 2012). In addition to these, considered as the evo-
+lution of traditional instruments, tactile sensors are being devel-
+oped, e.g., Nakamoto et al. (2015) presented the prototype of a
+sensor,
+inspired by human teeth, successfully applied to food
+texture measurements. Moreover, also data fusion strategies are
+object of investigations. Borras et al. (2015) identied several future
+trends, including combination of low and mid-level data fusion,
+fusion of second and higher-order data, i.e., hyperspectral images or
+data from hyphenated techniques, and the combination of rst
+order-data from evolving systems, i.e., on-line monitored systems.
+
+Declaration of interest
+
+The authors declare no conict of interest.
+
+Acknowledgements
+
+This research did not receive any specic grant from funding
+agencies in the public, commercial, or not-for-prot sectors.
+
+References
+
+Abdi, H., 2010. Partial least squares regression and projection on latent structure
+regression. Wiley Interdiscip. Rev. Comput. Stat. 2 (1), 97e106. http://
+dx.doi.org/10.1002/wics.51.
+Albert, K.J., Lewis, N.S., Schauer, C.L., Sotzing, G.A., Stitzel, S.E., Vaid, T.P., Walt, D.R.,
+2000. Cross-reactive chemical sensor arrays. Chem. Rev. 100 (7), 2595e2626.
+http://dx.doi.org/10.1021/cr980102.
+Ampuero, S., Bosset, J.O., 2003. The electronic nose applied to dairy products: a
+review. Sensors Actuators B 94 (1), 1e12. http://dx.doi.org/10.1016/S0925-
+4005(03)00321-6.
+Apetrei, I.M., Rodriguez-Mendez, M.L., Apetrei, C., de Saja, J., 2013. Fish freshness
+monitoring using an E-tongue based on polypyrrole modied screen-printed
+electrodes.
+IEEE Sensors J. 13 (7), 2548e2554. http://dx.doi.org/10.1109/
+JSEN.2013.2253317.
+Apetrei,
+I.M., Apetrei, C., 2016. Application of voltammetric e-tongue for the
+detection of ammonia and putrescine in beef products. Sensors Actuators B 234,
+371e379. http://dx.doi.org/10.1016/j.snb.2016.05.005.
+Arivazhagan, S., Shebiah, R.N., Sudharsan, H., Kannan, R.R., Ramesh, R., 2013.
+External and internal defect detection of egg using machine vision. J. Emerg.
+Trends Comput. Inf. Sci. 4 (3), 257e262.
+Avila, M.M., Caballero, D., Duran, M.L., Caro, A., Perez-Palacios, T., Antequera, T.,
+2015. Including 3D-textures in a computer vision system to analyze quality
+traits of loin. Comput. Vis. Syst. 9163, 456e465. http://dx.doi.org/10.1007/978-
+3-319-20904-3_41.
+Balaban, M.O., Sengor, G.F.U., Soriano, M.G., Ruiz, E.G., 2011. Quantication of
+gaping, bruising and blood spots in salmon llets using image analysis. J. Food
+Sci. 76 (3), 291e297. http://dx.doi.org/10.1111/j.1750-3841.2011.02060.x.
+Banerjee, R., Tudu, B., Bandyopadhyay, R., Bhattacharyya, N., 2016. A review on
+combined odor and taste sensor systems. J. Food Eng. 190, 10e21. http://
+dx.doi.org/10.1016/j.jfoodeng.2016.06.001.
+Basheer,
+I.A., Hajmeer, M., 2000. Articial neural networks:
+fundamentals,
+computing, design and application. J. Microbiol. Methods 43 (1), 3e31. http://
+dx.doi.org/10.1016/S0167-7012(00)00201-3.
+Borras, E., Ferre, J., Boque, R., Mestres, M., Acena, L., Busto, O., 2015. Data fusion
+methodologies for food and beverage authentication and quality assessment e
+a
+review.
+Anal.
+Chim.
+Acta
+891,
+1e14.
+http://dx.doi.org/10.1016/
+j.aca.2015.04.042.
+
+72
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+Bougrini, M., Tahri, K., Haddi, Z., El Bari, N., Llobet, E.,
+Jaffrezic-Renault, N.,
+Bouchikhi, B., 2014. Aging time and brand determination of pasteurized milk
+using a multisensor e-nose combined with a voltammetric e-tongue. Mater. Sci.
+Eng. C 45, 348e358. http://dx.doi.org/10.1016/j.msec.2014.09.030.
+Branciari, R., Valiani, A., Trabalza-Marinucci, M., Miraglia, D., Ranucci, D., Acuti, G.,
+Esposto, S., Mughetti, L., 2012. Consumer acceptability of ovine cheese from
+ewes fed extruded linseed-enriched diets. Small Ruminant Res. 106, 43e48.
+http://dx.doi.org/10.1016/j.smallrumres.2012.04.032.
+Brosnan, T., Sun, D.-W., 2004. Improving quality inspection of food products by
+computer vision e a review. J. Food Eng. 61, 3e16. http://dx.doi.org/10.1016/
+S0260-8774(03)00183-3.
+Cevoli, C., Cerretani, L., Gori, A., Gallina Toschi, T., Fabbri, A., 2011. Classication of
+Pecorino cheeses using electronic nose combined with articial neural network
+and comparison with GCeMS analysis of volatile compounds. Food Chem. 129
+(3), 1315e1319. http://dx.doi.org/10.1016/j.foodchem.2011.05.126.
+Ceto, X., Gutierrez, J.M., Moreno-Baron, L., Alegret, S., del Valle, M., 2010. Voltam-
+metric electronic tongue in the analysis of Cava wines. Electroanalysis 23 (1),
+72e78. http://dx.doi.org/10.1002/elan.201000439.
+Cheng, H., Qin, Z.H., Guo, X.F., Hu, X.S., Wu, J.H., 2013. Geographical origin identi-
+cation of propolis using GCeMS and electronic nose combined with principal
+component analysis. Food Res. Int. 51 (2), 813e822. http://dx.doi.org/10.1016/
+j.foodres.2013.01.053.
+Cheng, J.-H., Sun, D.-W., Pu, H.-B., Wang, Q.-J., Chen, Y.-N., 2015. Suitability of
+hyperspectral imaging for rapid evaluation of thiobarbituric acid (TBA) value in
+grass carp (Ctenopharyngodon idella) llet. Food Chem. 171, 258e265. http://
+dx.doi.org/10.1016/j.foodchem.2014.08.124.
+Chmiel, M., Slowinski, M., Dasiewicz, K., 2011a. Application of computer vision
+systems for estimation of fat content in poultry meat. Food Control. 22 (8),
+1424e1427. http://dx.doi.org/10.1016/j.foodcont.2011.03.002.
+Chmiel, M., Slowinski, M., Dasiewicz, K., 2011b. Lightness of the color measured by
+computer image analysis as a factor for assessing the quality of pork meat. Meat
+Sci. 88 (3), 566e570. http://dx.doi.org/10.1016/j.meatsci.2011.02.014.
+Chmiel, M., Slowinski, M., 2016. The use of computer vision system to detect pork
+defects. LWT e Food Sci. Technol. 73, 473e480. http://dx.doi.org/10.1016/
+j.lwt.2016.06.054.
+Chmiel, M., Slowinski, M., Dasiewicz, K., Florowski, T., 2016. Use of computer vision
+system (CVS)
+for detection of PSE pork meat obtained from m. semi-
+membranosus. LWT - Food Sci. Technol. 65, 532e536. http://dx.doi.org/10.1016/
+j.lwt.2015.08.021.
+Ciosek, P., Wroblewski, W., 2007. Sensor arrays for liquid sensing - electronic tongue
+systems. Analyst 132, 963e978. http://dx.doi.org/10.1039/B705107G.
+Ciosek, P., Wroblewski, W., 2011. Potentiometric electronic tongue for foodstuff and
+biosample recognition - an overview. Sensors 11 (5), 4688e4701. http://
+dx.doi.org/10.3390/s110504688.
+Cubero, S., Aleixos, N., Molto, E., Gomez-Sanchis, J., Blasco, J., 2011. Advances in
+machine vision applications for automatic inspection and quality evaluation of
+fruits and vegetables. Food Bioprocess Technol. 4 (4), 487e504. http://
+dx.doi.org/10.1007/s11947-010-0411-8.
+Dang, Y., Gao, X., Ma, F., Wu, X., 2015. Comparison of umami taste peptides in water-
+soluble extractions of Jinhua and Parma hams. LWT e Food Sci. Technol. 60
+(2e2), 1179e1186. http://dx.doi.org/10.1016/j.lwt.2014.09.014.
+Debska, B., Guzowska-Swider, B., 2011. Application of articial neural network in
+food classication. Anal. Chim. Acta 705 (1e2), 283e291. http://dx.doi.org/
+10.1016/j.aca.2011.06.033.
+Di Rosa, A.R., Liotta, L., Velez-Cervera, N., Lo Presti, V., Chiofalo, V., 2015. E-nose for
+discrimination of cow feeding with olive by products from cheese. In: 15th
+International Symposium on Olfaction and Electronic Nose (ISOEN), Dijon,
+France.
+Doeswijk, T.G., Smilde, A.K., Hagemann, J.A., Westerhuis, J.A., van Eeuwijk, F.A., 2011.
+On the increase of predictive performance with high-level data fusion. Anal.
+Chim. Acta 705 (1e2), 41e47. http://dx.doi.org/10.1016/j.aca.2011.03.025.
+Dowlati, M., Mohtasebi, S.S., Omid, M., Razavi, S.H., Jamzad, M., de la Guardia, M.,
+2013. Freshness assessment of gilthead sea bream (Sparus aurata) by machine
+vision based on gill and eye color changes. J. Food Eng. 119 (2), 277e287. http://
+dx.doi.org/10.1016/j.jfoodeng.2013.05.023.
+Du, L., Chai, C., Guo, M., Lu, X., 2015. A model for discrimination freshness of shrimp.
+Sens. Bio-Sensing Res. 6, 28e32. http://dx.doi.org/10.1016/j.sbsr.2015.11.001.
+Elmenreich, W., 2002. Principles of Sensor Fusion. Sensor Fusion in Time-triggered
+Systems,
+pp.
+7e16.
+https://mobile.aau.at/~welmenre/papers/elmenreich_
+Dissertation_sensorFusionInTimeTriggeredSystems.pdf.
+Escriche, I., Kadar, M., Domenech, E., Gil-Sanchez, L., 2012. A potentiometric elec-
+tronic tongue for the discrimination of honey according to the botanical origin.
+Comparison with traditional methodologies: physicochemical parameters and
+volatile prole.
+J. Food Eng. 109 (3), 449e456. http://dx.doi.org/10.1016/
+j.jfoodeng.2011.10.036.
+Escuder-Gilabert, L., Peris, M., 2010. Review: highlights in recent applications of
+electronic tongues in food analysis. Anal. Chim. Acta 665 (1), 15e25. http://
+dx.doi.org/10.1016/j.aca.2010.03.017.
+Gan, Z., Yang, Y., Li, J., Wen, X., Zhu, M., Jiang, Y., Ni, Y., 2016. Using sensor and
+spectral analysis to classify botanical origin and determine adulteration of raw
+honey.
+J.
+Food
+Eng.
+178,
+151e158.
+http://dx.doi.org/10.1016/
+j.jfoodeng.2016.01.016.
+Gardner, J.W., Bartlett, P.N., 1994. A brief history of electronic noses. Sensors Ac-
+tuators B 18e19 (1), 210e211. http://dx.doi.org/10.1016/0925-4005(94)87085-3.
+Gardner, J.W., Covington, J.A., Harun, F.K.C., 2012. Electronic mucosa: a natural
+
+successor to the electronic nose system?. In: Human Olfactory Displays and
+Interfaces: Odor Sensing and Presentation. IGI Global, pp. 257e274. http://
+dx.doi.org/10.4018/978-1-4666-2521-1.ch012.
+Ghasemi-Varnamkhasti, M., Mohtasebi, S.S., Rodriguez-Mendez, M.L., Lozano, J.,
+Razavi, S.H., Ahmadi, H., 2011. Potential application of electronic nose tech-
+nology in brewery. Trends Food Sci. Technol. 22 (4), 165e174. http://dx.doi.org/
+10.1016/j.tifs.2010.12.005.
+Ghasemi-Varnamkhasti, M., Aghbashlo, M., 2014. Electronic nose and electronic
+mucosa as innovative instruments for real-time monitoring of food dryers.
+Trends
+Food Sci. Technol. 38 (2), 158e166. http://dx.doi.org/10.1016/
+j.tifs.2014.05.004.
+Gil, L., Barat, J.M., Baigt, D., Martinez-Manez, R., Soto, J., Garcia-Breijo, E., Aristoy, M.-
+C., Toldra, F., Llobet, E., 2011. Monitoring of physicalechemical and microbio-
+logical changes in fresh pork meat under cold storage by means of a potenti-
+ometric electronic tongue. Food Chem. 126 (3), 1261e1268. http://dx.doi.org/
+10.1016/j.foodchem.2010.11.054.
+Gil-Sanchez, L., Garrigues,
+J., Garcia-Breijo, E., Grau, R., Alino, M., Baigts, D.,
+Barat, J.M., 2015. Articial neural networks (Fuzzy ARTMAP) analysis of the data
+obtained with an electronic tongue applied to a ham-curing process with
+different salt formulations. Appl. Soft Comput. 30, 421e429. http://dx.doi.org/
+10.1016/j.asoc.2014.12.037.
+Girolami, A., Napolitano, F., Faraone, D., Braghieri, A., 2013. Measurement of meat
+color using a computer vision system. Meat Sci. 93 (1), 111e118. http://
+dx.doi.org/10.1016/j.meatsci.2012.08.010.
+Girolami, A., Napolitano, F., Faraone, D., Di Bello, G., Braghieri, A., 2014. Image
+analysis with the computer vision system and the consumer test in evaluating
+the appearance of Lucanian dry sausage. Meat Sci. 96 (1), 610e616. http://
+dx.doi.org/10.1016/j.meatsci.2013.08.006.
+Goldsmith, B.R., Mitala,
+J.J.,
+Josue,
+J., Castro, A., Lerner, M.B., Bayburt, T.H.,
+Khamis, S.M., Jones, R.A., Brand, J.G., Sligar, S.G., Luetje, C.W., Gelperin, A.,
+Rhodes, P.A., Discher, B.M., Johnson, C., 2011. Biomimetic chemical sensors using
+nanoelectronic readout of olfactory receptor proteins. ACS Nano 5 (7),
+5408e5416. http://dx.doi.org/10.1021/nn200489j.
+Gonzalez-Martin, I., Perez-Pavon, J.L., Gonzalez-Perez, C., Hernandez-Mendez, J.,
+Alvarez-Garcia, N., 2000. Differentiation of products derived from Iberian breed
+swine by electronic olfactometry. Anal. Chim. Acta 424 (12), 279e287. http://
+dx.doi.org/10.1016/S0003-2670(00)01106-5.
+Goyal, S., Goyal, G.K., 2011. Cascade and feedforward backpropagation articial
+neural network models for prediction of sensory quality of instant coffee
+avoured sterilized drink. Can. J. Artif. Intell. Mach. Learn. Pattern Recognit. 2
+(6), 78e82.
+Gunasekaran, S., 1996. Computer vision technology for food quality assurance.
+Trends Food Sci. Technol. 7 (8), 245e256. http://dx.doi.org/10.1016/0924-
+2244(96)10028-5.
+Ha, D., Sun, Q., Su, K., Wan, H., Li, H., Xu, N., Sun, F., Zhuang, L., Hu, N., Wang, P., 2015.
+Recent achievements in electronic tongue and bioelectronic tongue as taste
+sensors. Sensors Actuators B 207, 1136e1146. http://dx.doi.org/10.1016/
+j.snb.2014.09.077.
+Hall, D.L., Llinas, J., 1997. An introduction to multisensor data fusion. Proc. IEEE 85
+(1), 6e23. http://dx.doi.org/10.1109/5.554205.
+Han, F., Huang, X., Teye, E., Gu, F., Gu, H., 2014. Nondestructive detection of sh
+freshness during its preservation by combining electronic nose and electronic
+tongue techniques in conjunction with chemometric analysis. Anal. Methods 6
+(2), 529e536. http://dx.doi.org/10.1039/C3AY41579A.
+Hayashi, K., Yamanaka, M., Toko, K., Yamafuji, K., 1990. Multichannel taste sensor
+using lipid membranes. Sensors Actuators B 2 (3), 205e213. http://dx.doi.org/
+10.1016/0925-4005(90)85006-K.
+Haykin, S., 1994. Neural Networks: a Comprehensive Foundation, 2d ed. Pearson
+Education, Inc.
+Hilding-Ohlsson, A., Fuerbach, J.A., Sacco, N.J., Bonetto, M.C., Corton, E., 2012. Vol-
+tammetric discrimination of urea and melanin adulterated skimmed milk
+powder. Sensors 12 (9), 12220e12234. http://dx.doi.org/10.3390/s120912220.
+Hosseinpour, S., Raee, S., Mohtasebi, S.S., Aghbashlo, M., 2013. Application of
+computer vision technique for on-line monitoring of shrimp color changes
+during drying.
+J. Food Eng. 115 (1), 99e114. http://dx.doi.org/10.1016/
+j.jfoodeng.2012.10.003.
+Hu, J., Li, D., Duan, Q., Han, Y., Chen, G., Si, X., 2012. Fish species classication by
+color, texture and multi-class support vector machine using computer vision.
+Comput.
+Electron.
+Agric.
+88,
+133e140.
+http://dx.doi.org/10.1016/
+j.compag.2012.07.008.
+Huang, L., Zhao, J., Chen, Q., Zhang, Y., 2014. Nondestructive measurement of total
+volatile basic nitrogen (TVB-N) in pork meat by integrating near infrared
+spectroscopy, computer vision and electronic nose techniques. Food Chem. 145,
+228e236. http://dx.doi.org/10.1016/j.foodchem.2013.06.073.
+Huang, L., Liu, H., Zhang, B., Wu, D., 2015. Application of electronic nose with
+multivariate analysis and sensor selection for botanical
+identication and
+quality determination of honey. Food Bioprocess Technol. 8 (2), 359e370.
+http://dx.doi.org/10.1007/s11947-014-1407-6.
+Huang, X., Xu, H., Wu, L., Dai, H., Yao, L., Han, F., 2016. A data fusion detection
+method for sh freshness based on computer vision and near-infrared spec-
+troscopy. Anal. Methods 8 (14), 2929e2935. http://dx.doi.org/10.1039/
+C5AY03005F.
+James, D., Scott, S.M., Ali, Z., O¡¯Hare, W.T., 2005. Chemical sensors for electronic nose
+systems. Microchim. Acta 149 (1), 1e17. http://dx.doi.org/10.1007/s00604-004-
+0291-6.
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+73
+
+Jin, H.J., Lee, S.H., Kim, T.H., Song, H.S., Park, T.H., Hong, S., 2012. Nanovesicle-based
+bioelectronic nose platform mimicking human olfactory signal transduction.
+Biosens.
+Bioelectron.
+35
+(1),
+335e341.
+http://dx.doi.org/10.1016/
+j.bios.2012.03.012.
+Kealesitse, B., Kabama, I.O., 2012. Exploring the inuence of quality and safety on
+consumers¡¯ food purchase decisions in Botswana. Int. J. Bus. Adm. 3 (2), 90.
+Kiani, S., Minaei, S., Ghasemi-Varnamkhasti, M., 2016. Fusion of articial senses as a
+robust approach to food quality assessment. J. Food Eng. 171, 230e239. http://
+dx.doi.org/10.1016/j.jfoodeng.2015.10.007.
+Kim, H.-W., Choi, J.-H., Choi, Y.-S., Kim, H.-Y., Lee, M.-L., Hwang, K.-E., Song, D.-H.,
+Lee, J.-W., Kim, C.-J., 2014. Effects of kimchi and smoking on quality charac-
+teristics and shelf life of cooked sausages prepared with irradiated pork. Meat
+Sci. 96 (1), 548e553. http://dx.doi.org/10.1016/j.meatsci.2013.08.023.
+Kim, T.H., Lee, S.H., Lee, J., Song, H.S., Oh, E.H., Park, T.H., Hong, S., 2008. Single-
+carbon-atomic-resolution detection of odorant molecules using a human ol-
+factory receptor-based bioelectronic nose. Adv. Mater. 21 (1), 91e94. http://
+dx.doi.org/10.1002/adma.200801435.
+Kodogiannis, V.S., 2016. A rapid detection of meat spoilage using an electronic nose
+and fuzzy-wavelet systems. In: SAI Intelligent System Conference (IntelliSys),
+London, UK.
+Krutz, G.W., Gibson, H.G., Cassens, D.L., Zhang, M., 2000. Colour vision in forest and
+wood engineering. Landwards 55 (1), 2e9.
+Kuncheva, L.I., 2004. Combining Pattern Classiers: Methods And Algorithms. John
+Wiley and Sons. http://dx.doi.org/10.1002/9781118914564.
+Larsen, A.B.L., Hviid, M.S., Jorgensen, M.E., Larsen, R., Dahl, A.L., 2014. Vision-based
+method for tracking meat cuts in slaughterhouses. Meat Sci. 96 (1), 366e372.
+http://dx.doi.org/10.1016/j.meatsci.2013.07.023.
+Laureati, M., Buratti, S., Giovanelli, G., Corazzin, M., Lo Fiego, D.P., Pagliarini, E., 2014.
+Characterization and differentiation of Italian Parma, San Daniele and Toscano
+dry-cured hams: a multi-disciplinary approach. Meat Sci. 96 (1), 288e294.
+http://dx.doi.org/10.1016/j.meatsci.2013.07.014.
+Lee, D.-J., Xiong, G., Lane, R.M., Zhang, D., 2012a. An efcient shape analysis method
+for shrimp quality evaluation. In: 12th International Conference on Control,
+Automation, Robotics and Vision (ICARCV), Guangzhou, China. http://
+dx.doi.org/10.1109/ICARCV.2012.6485271.
+Lee, S.H., Kwon, O.S., Song, H.S., Park, S.J., Sung, J.H., Jang, J., Park, T.H., 2012b.
+Mimicking the human smell sensing mechanism with an articial nose plat-
+form.
+Biomaterials
+33
+(6),
+1722e1729.
+http://dx.doi.org/10.1016/
+j.biomaterials.2011.11.044.
+Lee, S.H., Jin, H.J., Song, H.S., Hong, S., Park, T.H., 2012c. Bioelectronic nose with high
+sensitivity and selectivity using chemically functionalized carbon nanotube
+combined with human olfactory receptor. J. Biotechnol. 157 (4), 467e472.
+http://dx.doi.org/10.1016/j.jbiotec.2011.09.011.
+Li, L., Yu, Y., Yang, J., Yang, R., Dong, G., Jin, T., 2015. Voltammetric electronic tongue
+for the qualitative analysis of milk adulterated with urea combined with multi-
+way data analysis. Int. J. Electrochem. Sci. 10 (7), 5970e5980.
+Li, M., Wang, H., Sun, L., Zhao, G., Huang, X., 2016. Application of electronic nose for
+measuring total volatile basic nitrogen and total viable counts in packaged pork
+during refrigerated storage. J. Food Sci. 81 (4), 906e912. http://dx.doi.org/
+10.1111/1750-3841.13238.
+Liu, P., Tu, K., 2012. Prediction of TVB-N content in eggs based on electronic nose.
+Food Control. 23 (1), 177e183. http://dx.doi.org/10.1016/j.foodcont.2011.07.006.
+Li, S., Ma, C., Liu, Z., Gong, G., Xu, Z., Xu, A., Hua, B., 2014. Flavor analysis of stirred
+yoghurt with cheddar cheese adding into milk. Food Sci. Technol. Res. 20 (5),
+939e946. http://dx.doi.org/10.3136/fstr.20.939.
+Li, Y., Dhakal, S., Peng, Y., 2012. A machine vision system for identication of micro-
+crack in egg shell. J. Food Eng. 109 (1), 127e134. http://dx.doi.org/10.1016/
+j.jfoodeng.2011.09.024.
+Liu, H., Sun, J., Liu, L., Zhang, H., 2009. Feature selection with dynamic mutual in-
+formation. Pattern Recognit. 42 (7), 1330e1339. http://dx.doi.org/10.1016/
+j.patcog.2008.10.028.
+Lorenzen, P.C., Walte, H.-G., Bosse, B., 2013. Development of a method for butter
+type differentiation by electronic nose technology. Sensors Actuators B 181,
+690e693. http://dx.doi.org/10.1016/j.snb.2013.01.034.
+Lout, A., Coradeschi, S., Mani, G.K., Shankar, P., Balaguru Rayappan, J.B., 2015.
+Electronic noses for food quality: a review. J. Food Eng. 144, 103e111. http://
+dx.doi.org/10.1016/j.jfoodeng.2014.07.019.
+Ma, J., Sun, D.-W., Qu, J.-H., Liu, D., Pu, H., Gao, W.-H., Zeng, X.-A., 2016. Applications
+of computer vision for assessing quality of agri-food: a review of recent
+research advances. Crit. Rev. Food Sci. Nutr. 56 (1), 113e127. http://dx.doi.org/
+10.1080/10408398.2013.873885.
+Ma, J., Sun, D.-W., Pu, H., 2017. Model improvement for predicting moisture content
+(MC) in pork longissimus dorsi muscles under diverse processing conditions by
+hyperspectral
+imaging.
+J. Food Eng. 196, 65e72. http://dx.doi.org/10.1016/
+j.jfoodeng.2016.10.016.
+Maamor, H.N., Rashid, F.N.A., Zakaria, N.Z.I., Zakaria, A., Kamarudin, L.M.,
+Jaafar, M.N., Shakaff, A.Y., Subari, N., Yusuf, N., Ismail, S.W.M., Adnan, K.N.A.K.,
+2014. Bio-inspired taste assessment of pure and adulterated honey using multi-
+sensing technique.
+In: 2nd International Conference on Electronic Design
+(ICED), Penang, Malaysia. http://dx.doi.org/10.1109/ICED.2014.7015812.
+Marsili, R.T., 1999. SPME-MS-MVA as an electronic nose for the study of off-avours
+in milk.
+J. Agric. Food Chem. 47 (2), 648e654. http://dx.doi.org/10.1021/
+jf9807925.
+Martinez, A.M., Kak, A.C., 2001. PCA versus LDA. IEEE Trans. Pattern Anal. Mach.
+Intell. 23 (2), 228e233.
+
+Masnan, M.J., Mahat, N.I., Zakaria, A., Shakaff, A.Y.M., Adom, A.H., Sa¡¯ad, F.S.A., 2012.
+Enhancing classication performance of multisensory data trough extraction
+and selection of features. Procedia Chem. 6, 132e140. http://dx.doi.org/10.1016/
+j.proche.2012.10.139.
+Mitchell, H.B., 2007. Multi-sensor Data Fusion - an Introduction, rst ed. Springer-
+Verlag, Berlin Heidelberg, pp. 3e13. http://dx.doi.org/10.1007/978-3-540-
+71559-7.
+Mohareb, F., Papadopoulou, O., Panagou, E., Nychas, G.-J., Bessant, C., 2016.
+Ensemble-based support vector machine classiers as an efcient tool for
+quality assessment of beef llets from electronic nose data. Anal. Methods 8,
+3711e3721. http://dx.doi.org/10.1039/C6AY00147E.
+Mortensen, A.K., Lisouski, P., Ahrendt, P., 2016. Weight prediction of broiler chickens
+using 3D computer vision. Comput. Electron. Agric. 123, 319e326. http://
+dx.doi.org/10.1016/j.compag.2016.03.011.
+Nagle, H.T., Gutierrez-Osuna, R., Schiffman, S.S., 2002. The how and why of elec-
+tronic noses. IEEE Spectr. 35 (9), 22e31. http://dx.doi.org/10.1109/6.715180.
+Nakamoto, H., Nishikubo, D., Kobayashi, F., Kojima, F., 2015. Development of food
+texture sensor using two magnetic sensing elements. In: IEEE Symposium Se-
+ries on Computational Intelligence (SSCI), Cape Town, South Africa. http://
+dx.doi.org/10.1109/SSCI.2015.27.
+Nateghi, L., Roohinejad, S., Totosaus, A., Mirhosseini, H., Shuhaimi, M.,
+Meimandipour, A., Omidizadeh, A., Manap, Y.A., 2012. Optimization of textural
+properties and formulation of reduced fat Cheddar cheeses containing fat re-
+placers. J. Food, Agric. Environ. 10 (2), 59e63.
+Neely, K., Taylor, C., Prosser, O., Hamlyn, P.F., 2001. Assessment of cooked alpaca and
+llama meats from the statistical analysis of data collected using an ¡®electronic
+nose¡¯. Meat Sci. 58 (1), 53e58. http://dx.doi.org/10.1016/S0309-1740(00)00130-
+3.
+Nielsen, S., 2010. Food Analysis, fourth ed. Springer US. http://dx.doi.org/10.1007/
+978-1-4419-1478-1.
+Nurjuliana, M., Che Man, Y.B., Mat Hashim, D., Mohamed, A.K.S., 2011. Rapid iden-
+tication of pork for halal authentication using the electronic nose and gas
+chromatography mass spectrometer with headspace analyzer. Meat Sci. 88 (4),
+638e644. http://dx.doi.org/10.1016/j.meatsci.2011.02.022.
+Olafsson, R., Martinsdottir, E., Olafsdottir, G., Sigfusson, P.I., Gardner, J.W., 1992.
+Monitoring of sh freshness using tin oxide sensors. Sensors Sens. Syst. Elec-
+tron. Nose 212, 257e272. http://dx.doi.org/10.1007/978-94-015-7985-8_16.
+Omid, M., Soltani, M., Dehrouyeh, M.H., Mohtasebi, S.S., Ahmadi, H., 2013. An expert
+egg grading system based on machine vision and articial intelligence tech-
+niques.
+J.
+Food
+Eng.
+118
+(1),
+70e77.
+http://dx.doi.org/10.1016/
+j.jfoodeng.2013.03.019.
+Ottavian, M., Fasolato, L., Serva, L., Facco, P., Barolo, M., 2014. Data fusion for food
+authentication: fresh/frozen-thawed discrimination in west african goatsh
+(Pseudupeneus prayensis) llets. Food Bioprocess Technol. 7 (4), 1025e1036.
+http://dx.doi.org/10.1007/s11947-013-1157-x.
+Pan, L.-Q., Zhan, G., Tu, K., Tu, S., Liu, P., 2011. Eggshell crack detection based on
+computer vision and acoustic response by means of back-propagation articial
+neural network. Eur. Food Res. Technol. 233, 457e463. http://dx.doi.org/
+10.1007/s00217-011-1530-9.
+Papadopoulou, O.S., Panagou, E.Z., Mohareb, F.R., Nychas, G.-J.E., 2013. Sensory and
+microbiological quality assessment of beef llets using a portable electronic
+nose in tandem with support vector machine analysis. Food Res. Int. 50 (1),
+241e249. http://dx.doi.org/10.1016/j.foodres.2012.10.020.
+Park, B., Chen, Y.R., Nguyen, M., Hwang, H., 1996. Characterising multispectral im-
+ages of tumorous, bruised, skin-torn, and wholesome poultry carcasses. Trans.
+Am. Soc. Agric. Eng. 39 (5), 1933e1941.
+Park, S.J., Kwon, O.S., Lee, S.H., Song, H.S., Park, T.H., Jang, J., 2012a. Ultrasensitive
+exible graphene based eld-effect transistor (FET)-type bioelectronic nose.
+Nano Lett. 12 (10), 5082e5090. http://dx.doi.org/10.1021/nl301714x.
+Park, K., Lim, J.H., Jin, H.J., Namgung, S., Lee, S.H., Park, T.H., Hong, S., 2012b.
+A bioelectronic sensor based on canine olfactory nanovesicleecarbon nanotube
+hybrid structures for the fast assessment of food quality. Analyst 137 (14),
+3249e3254. http://dx.doi.org/10.1039/C2AN16274A.
+Peris, M., Escuder-Gilabert, L., 2013. On-line monitoring of food fermentation pro-
+cesses using electronic noses and electronic tongues: a review. Anal. Chim. Acta
+804 (4), 29e36. http://dx.doi.org/10.1016/j.aca.2013.09.048.
+Persaud, K., Dodd, G., 1982. Analysis of discrimination mechanisms in the
+mammalian olfactory system using a model nose. Nature 299, 352e355. http://
+dx.doi.org/10.1038/299352a0.
+Piana, M.L., Persano Oddo, L., Bentabol, A., Bruneau, E., Bogdanov, S., Guyot
+Declerck, C., 2004. Sensory analysis applied to honey: state of the art. Apido-
+logie 35, 26e37. http://dx.doi.org/10.1051/apido:2004048.
+Poonnoy, P., Chum-in, T., 2012. Estimation of sushi shrimp weight using image
+analysis technique and non-linear regression models. In: International Con-
+ference of Agricultural Engineering (CIGR-AGENG), Valencia, Spain.
+Poonnoy, P., Yodkeaw, P., Sriwai, A., Umongkol, P., Intamoon, S., 2014. Classication
+of boiled shrimp¡¯s shape using image analysis and articial neural network
+model.
+J. Food Process Eng. 37 (3), 257e263. http://dx.doi.org/10.1111/
+jfpe.12081.
+Raschka, S., 2014. Linear Discriminant Analysis. http://sebastianraschka.com/
+Articles/2014_python_lda.html.
+Rock, F., Barsan, N., Weimar, U., 2008. Electronic nose: current status and future
+trends. Chem. Rev. 108 (2), 705e725. http://dx.doi.org/10.1021/cr068121q.
+Rodriguez-Mendez, M.L., Arrieta, A.A., Parra, V., Bernal, A., Vegas, A., Villanueva, S.,
+Gutierrez-Osuna, R., de Saja, J.A., 2004. Fusion of three sensory modalities for
+
+74
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+the multimodal characterization of red wines. IEEE Sensors J. 4 (3), 348e354.
+http://dx.doi.org/10.1109/JSEN.2004.824236.
+Rodriguez-Mendez, M.L., Apetrei, C., de Saja, J.A., 2008. Evaluation of the poly-
+phenolic content of extra virgin olive oils using an array of voltammetric sen-
+sors. Electrochim. Acta 53 (20), 5867e5872. http://dx.doi.org/10.1016/
+j.electacta.2008.04.006.
+Ruiz-Rico, M., Fuentes, A., Masot, R., Alcaniz, M., Fernandez-Segovia, I., Barat, J.M.,
+2013. Use of the voltammetric tongue in fresh cod (Gadus morhua) quality
+assessment.
+Innovative Food Sci. Emerg. Technol. 18, 256e263. http://
+dx.doi.org/10.1016/j.ifset.2012.12.010.
+Santonico, M., Sudano, A., Pennazza, G., Accoto, D., Grasso, S., Genova, F., Finazzi
+Agro, A., Parente, F.R., Ferri, G., D¡¯Amico, A., 2015. A sensorial platform for
+mozzarella cheese characterization and authentication. In: XVIII AISEM Annual
+Conference, Trento, Italy. http://dx.doi.org/10.1109/AISEM.2015.7066777.
+Sberveglieri, V., Nunez Carmona, E., Zappa, D., Nocetti, M., Pulvirenti, A., 2015. MOX
+NanoWire gas sensors array to detect the authenticity of grated Parmigiano-
+Reggiano cheese. In: 15th International Symposium on Olfaction and Elec-
+tronic Nose (ISOEN), Dijon, France.
+Schaller, E., Bosset, J.O., Escher, F., 1998. ¡°Electronic noses¡± and their application to
+food. LWT e Food Sci. Technol. 31 (4), 305e316. http://dx.doi.org/10.1006/
+fstl.1998.0376.
+Shaee, S., Minaei, S., Moghaddam-Charkari, N., Barzegar, M., 2014. Honey char-
+acterization using computer vision system and articial neural networks. Food
+Chem. 159, 143e150. http://dx.doi.org/10.1016/j.foodchem.2014.02.136.
+Sliwinska, M., Wisniewska, P., Dymerski, T., Namiesnik, J., Wardenki, W., 2014. Food
+analysis using articial senses. J. Agric. Food Chem. 62 (7), 1423e1448. http://
+dx.doi.org/10.1021/jf403215y.
+Smyth, H., Cozzolino, D., 2013. Instrumental methods (spectroscopy, electronic
+nose, and tongue) as tools to predict taste and aroma in beverages: advantages
+and limitations. Chem. Rev. 113 (3), 1429e1440. http://dx.doi.org/10.1021/
+cr300076c.
+Soltani, M., Omid, M., Alimardani, R., 2014. Egg volume prediction using machine
+vision technique based on pappus theorem and articial neural network. J. Food
+Sci. Technol. 52 (5), 3065e3071. http://dx.doi.org/10.1007/s13197-014-1350-6.
+Song, S., Yuan, L., Zhang, X., Hayat, K., Chen, H., Liu, F., Xiao, Z., Niu, Y., 2013. Rapid
+measuring and modelling avour quality changes of oxidised chicken fat by
+electronic nose proles through the partial least squares regression analysis.
+Food
+Chem.
+141
+(4),
+4278e4288.
+http://dx.doi.org/10.1016/
+j.foodchem.2013.07.009.
+Son, M., Lee, J.Y., Ko, H.J., Park, T.H., 2017. Bioelectronic nose: an emerging tool for
+odour standardization. Trends Biotechnol. 35 (4), 301e307. http://dx.doi.org/
+10.1016/j.tibtech.2016.12.007.
+Sonka, M., Hlavac, V., Boyle, R., 1993. Image Processing, Analysis and Machine
+Vision, rst ed. Springer, US, pp. 1e12. http://dx.doi.org/10.1007/978-1-4899-
+3216-7.
+Subari, N., Saleh, J.M., Shakaff, A.Y.M., Zakaria, A., 2012. A hybrid sensing approach
+for pure and adulterated honey classication. Sensors 12 (10), 14022e14040.
+http://dx.doi.org/10.3390/s121014022.
+Subari, N., Saleh, J.M., Shakaff, A.Y.M., 2014. Fusion technique for honey purity
+estimation using articial neural network. In: 2d International Conference on
+Advances in Intelligent Systems in Bioinformatics, Chem-informatics, Business
+Intelligence. Social Media and Cybernetics (IntelSys), Jakarta, Indonesia.
+Sun, D.-W., 2000. Inspecting pizza topping percentage and distribution by a com-
+puter vision method. J. Food Eng. 44 (4), 245e249. http://dx.doi.org/10.1016/
+S0260-8774(00)00024-8.
+Sun, H.-M., Wang, J.-Z., Zhang, C.-H., Li, X., Xu, X., Dong, X.-B., Hu, L., Li, C.-H., 2014.
+Changes of avour compounds of hydrolyzed chicken bone extracts during
+Maillard reaction. J. Food Sci. 79 (12), 2415e2426. http://dx.doi.org/10.1111/
+1750-3841.12689.
+Sun, X., Chen, K., Berg, E.P., Magolski, J.D., 2011. Predicting fresh beef colour grade
+using machine vision imagine and support vector machine (SVM) analysis.
+J. Animal Veterinary Adv. 10 (12), 1504e1511. http://dx.doi.org/10.3923/
+javaa.2011.1504.1511.
+Sun, X., Young, J., Liu, J.H., Bachmeier, L., Somers, R.M., Chen, K.J., Newman, D., 2016.
+Prediction of pork color attributes using computer vision system. Meat Sci. 113,
+62e64. http://dx.doi.org/10.1016/j.meatsci.2015.11.009.
+Tahara, Y., Nakashi, K., Ji, K., Ikeda, A., Toko, K., 2013. Development of a portable
+taste sensor with a lipid/polymer membrane. Sensors 13 (1), 1076e1084. http://
+dx.doi.org/10.3390/s130101076.
+Tang, X., Sun, X., Wu, V.C.H., Xie, J., Pan, Y., Zhao, Y., Malakar, P.K., 2013. Predicting
+shelf-life of chilled pork sold in China. Food Control. 32 (1), 334e340. http://
+dx.doi.org/10.1016/j.foodcont.2012.12.010.
+Tarbell, K.A., Reid, J.F., 1991. A computer vision system for characterising corn
+growth and development. Trans. Am. Soc. Agric. Eng. 34 (5), 2245e2249.
+Tian, X., Wang, J., Cui, S., 2013. Analysis of pork adulteration in minced mutton using
+electronic nose of metal oxide sensors. J. Food Eng. 119 (4), 744e749. http://
+dx.doi.org/10.1016/j.jfoodeng.2013.07.004.
+Tian, X.-Y., Cai, Q., Zhang, Y.-M., 2012. Rapid classication of hairtail sh and pork
+freshness using an electronic nose based on the PCA method. Sensors 12 (1),
+260e277. http://dx.doi.org/10.3390/s120100260.
+Timmermans, A.J.M., 1998. Computer vision system for on-line sorting of pot plants
+based on learning techniques. Acta Hortic. 421, 91e98. http://dx.doi.org/
+10.17660/ActaHortic.1998.421.8.
+Toko, K., Tahara, Y., Habara, M., Kobayashi, Y., Ikezaki, H., 2016. Taste sensor: elec-
+tronic tongue with global selectivity. In: Nakamoto, T. (Ed.), Essentials of
+
+Machine Olfaction and Taste. Wiley, pp. 87e174.
+Ulloa, P.A., Guerra, R., Cavaco, A.M., da Costa, A.M.R., Figuera, A.C., Brigas, A.F., 2013.
+Determination of the botanical origin of honey by sensor fusion of impedance
+e-tongue and optical spectroscopy. Comput. Electron. Agric. 94, 1e11. http://
+dx.doi.org/10.1016/j.compag.2013.03.001.
+Vestergaard, J.S., Martens, M., Turkki, P., 2007. Application of an electronic nose
+system for prediction of sensory quality changes of a meat product (pizza
+topping) during storage. LWT e Food Sci. Technol. 40 (6), 1095e1101. http://
+dx.doi.org/10.1016/j.lwt.2006.06.008.
+Visser, F.R., Taylor, M., 1998. Improved performance of the Aromascan A32S Elec-
+tronic Nose and its potential for detecting aroma differences in diary products.
+J.
+Sens.
+Stud.
+13
+(1),
+95e120.
+http://dx.doi.org/10.1111/j.1745-
+459X.1998.tb00077.x.
+Wadehra, A., Patil, P.S., 2016. Application of electronic tongue in food processing.
+Anal. Methods 8 (3), 474e480. http://dx.doi.org/10.1039/c5ay02724a.
+Wang, D., Wang, X., Liu, T., Liu, Y., 2012. Prediction of total viable counts on chilled
+pork using an electronic nose combined with support vector machine. Meat Sci.
+90 (2), 373e377. http://dx.doi.org/10.1016/j.meatsci.2011.07.025.
+Wang, Q., Jin, G., Ma, M., Wang, N., Liu, C., He, L., 2014. Discriminating eggs from
+different poultry species by fatty acids and volatiles proling: comparison of
+SPME-GC/MS, electronic nose, and principal component analysis method. Eur. J.
+Lipid Sci. Technol. 116 (8), 1044e1053. http://dx.doi.org/10.1002/ejlt.201400016.
+Wei, Z., Wang, J., 2011. Detection of antibiotic residues in bovine milk by a vol-
+tammetric electronic tongue system. Anal. Chim. Acta 694 (1e2), 46e56. http://
+dx.doi.org/10.1016/j.aca.2011.02.053.
+Wei, Z., Wang, J., Zhang, X., 2013a. Monitoring of quality and storage time of un-
+sealed pasteurized milk by voltammetric electronic tongue. Electrochim. Acta
+88, 231e239. http://dx.doi.org/10.1016/j.electacta.2012.10.042.
+Wei, Z., Wang, J., Jin, W., 2013b. Evaluation of varieties of set yogurts and their
+physical properties using a voltammetric electronic tongue based on various
+potential waveforms. Sensors Actuators B 177, 684e694. http://dx.doi.org/
+10.1016/j.snb.2012.11.056.
+Wei, Z., Wang, J., 2014. Tracing oral and geographical origins of honeys by
+potentiometric and voltammetric electronic tongue. Comput. Electron. Agric.
+108, 112e122. http://dx.doi.org/10.1016/j.compag.2014.07.014.
+Wei, Z., Zhang, W., Wang, Y., Wang, J., 2017. Monitoring the fermentation, post-
+ripeness and storage processes of set yogurt using voltammetric electronic
+tongue.
+J.
+Food
+Eng.
+203,
+41e52.
+http://dx.doi.org/10.1016/
+j.jfoodeng.2017.01.022.
+Wilson, A.D., Baietto, M., 2009. Applications and advances in electronic-nose
+technology. Sensors 9 (7), 5099e5148. http://dx.doi.org/10.3390/s90705099.
+Wilson, A.D., Oberle, C.S., Oberle, D.F., 2013. Detection of off-avor in catsh using a
+conducting polymer electronic-nose technology. Sensors 13 (12), 15968e15984.
+http://dx.doi.org/10.3390/s131215968.
+Winquist, F., Hornsten, E.G., Sundgren, H., Lundstrom, I., 1993. Performance of an
+electronic nose for quality estimation of ground meat. Meas. Sci. Technol. 4 (12),
+1493e1500. http://dx.doi.org/10.1088/0957-0233/4/12/029.
+Winquist, F., Wide, P., Lundstrom, I., 1997. An electronic tongue based on voltam-
+metry. Anal. Chim. Acta 357 (1e2), 21e31. http://dx.doi.org/10.1016/S0003-
+2670(97)00498-4.
+Wu, D., Sun, D.-W., 2013. Colour measurements by computer vision for food quality
+control - a review. Trends Food Sci. Technol. 29 (1), 5e20. http://dx.doi.org/
+10.1016/j.tifs.2012.08.004.
+Xiao, Z., Wu, M., Niu, Y., Chen, F., Zhang, X., Zhu, J., Song, S., Zhu, G., 2015. Contri-
+bution of chicken base addition to aroma characteristics of Maillard reaction
+products based on gas chromatography-mass spectrometry, electronic nose,
+and statistical analysis. Food Sci. Biotechnol. 24 (2), 411e419. http://dx.doi.org/
+10.1007/s10068-015-0054-7.
+Xiong, Z., Sun, D.-W., Sun, Pu, H., Xie, A., Han, Z., Luo, M., 2015a. Non-destructive
+prediction of thiobarbituric acid reactive substances (TBARS) value for freshness
+evaluation of chicken meat using hyperspectral imaging. Food Chem. 179,
+175e181. http://dx.doi.org/10.1016/j.foodchem.2015.01.116.
+Xiong, Z., Sun, D.-W., Xie, A., Han, Z., Wang, L., 2015b. Potential of hyperspectral
+imaging for rapid prediction of hydroxyproline content in chicken meat. Food
+Chem. 175, 417e422. http://dx.doi.org/10.1016/j.foodchem.2014.11.161.
+Xiong, Z., Sun, D.-W., Xie, A., Pu, H., Han, Z., Luo, M., 2015c. Quantitative determi-
+nation of total pigments in red meats using hyperspectral imaging and multi-
+variate
+analysis.
+Food Chem. 178, 339e345. http://dx.doi.org/10.1016/
+j.foodchem.2015.01.071.
+Yoon, H., Lee, S.H., Kwon, O.S., Song, H.S., Oh, E.H., Park, T.H., Jang, J., 2009. Poly-
+pyrrole nanotubes conjugated with human olfactory receptors: high-
+performance transducers for FET-type bioelectronic noses. Angew. Chem. 48
+(15), 2755e2758. http://dx.doi.org/10.1002/anie.200805171.
+Yu, Y., Zhao, H., Yang, R., Dong, G., Li, L., Yang, J., Jin, T., Zhang, W., Liu, Y., 2015. Pure
+milk brands classication by means of a voltammetric electronic tongue and
+multivariate analysis. Int. J. Electrochem. Sci. 10 (5), 4381e4392.
+Zakaria, A., Shakaff, A.Y., Masnan, M.J., Ahmad, M.N., Adom, A.H., Jaafar, M.N.,
+Ghani, S.A., Abdullah, A.H., Kamarudin, L.M., Subari, N., Fikri, N.A., 2011.
+A biomimetic sensor for the classication of honeys of different oral origin and
+the detection of adulteration. Sensors 11 (8), 7799e7822. http://dx.doi.org/
+10.3390/s110807799.
+Zhang, M., Wang, X., Liu, Y., Xu, X., Zhou, G., 2012. Species discrimination among
+three kinds of puffer sh using an electronic nose combined with olfactory
+sensory evaluation. Sensors 12 (9), 12562e12571. http://dx.doi.org/10.3390/
+s120912562.
+
+A.R. Di Rosa et al. / Journal of Food Engineering 210 (2017) 62e75
+
+75
+
+Zhang, X., Zhang, Y., Meng, Q., Ren, L., 2015. Evaluation of beef by electronic tongue
+system TS-5000Z: avour assessment, recognition and chemical compositions
+according to its correlation with avour. PLoS ONE 10 (9). http://dx.doi.org/
+10.1371/journal.pone.0137807.
+
+Zou, Y., Wan, H., Zhang, X., Ha, D., Wang, P., 2015. Electronic nose and electronic
+tongue. In: Wang, P., Liu, Q., Wu, C., Hsia, K.J. (Eds.), Bioinspired Smell and Taste
+Sensors. Springer, Netherlands, pp. 19e44. http://dx.doi.org/10.1007/978-94-
+017-7333-1.
+

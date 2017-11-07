@@ -1,0 +1,2485 @@
+Robust Bayesian compressed sensing with outliers 
+
+R
+
+Qian Wan 
+a , Huiping Duan 
+b , Jun Fang 
+
+a , c , 
+
+, Hongbin Li 
+c , Zhengli Xing 
+
+d 
+
+
+
+a National Key Laboratory on Communications, University of Electronic Science and Technology of China, Chengdu 611731, China 
+b School of Electronic Engineering, University of Electronic Science and Technology of China, Chengdu 611731, China 
+c Department of Electrical and Computer Engineering, Stevens Institute of Technology, Hoboken, NJ 07030, USA 
+d China Academy of Engineering Physics, Mianyang 621900, China 
+
+article
+
+info
+
+Article history: 
+Received 18 February 2017 
+Revised 27 April 2017 
+Accepted 13 May 2017 
+Available online 15 May 2017 
+
+Keywords: 
+Robust Bayesian compressed sensing 
+Variational Bayesian inference 
+Outlier detection 
+
+abstract 
+
+We consider the problem of robust compressed sensing where the objective is to recover a high- 
+dimensional sparse signal from compressed measurements partially corrupted by outliers. A new sparse 
+Bayesian learning method is developed for this purpose. The basic idea of the proposed method is to 
+identify the outliers and exclude them from sparse signal recovery. To automatically identify the outliers, 
+we employ a set of binary indicator variables to indicate which observations are outliers. These indica- 
+tor variables are assigned a beta-Bernoulli hierarchical prior such that their values are conned to be 
+binary. In addition, a Gaussian-inverse Gamma prior is imposed on the sparse signal to promote sparsity. 
+Based on this hierarchical prior model, we develop a variational Bayesian method to estimate the indica- 
+tor variables as well as the sparse signal. Simulation results show that the proposed method achieves a 
+substantial performance improvement over existing robust compressed sensing techniques. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Compressed sensing, a new paradigm for data acquisition and 
+reconstruction, has drawn much attention over the past few years 
+[1¨C3] . The main purpose of compressed sensing is to recover 
+a high-dimensional sparse signal from a low-dimensional linear 
+measurement vector. In practice, measurements are inevitably con- 
+taminated by noise due to hardware imperfections, quantization 
+errors, or transmission errors. Most existing studies (e.g. [4¨C6] ) as- 
+sume that measurements are corrupted with noise that is evenly 
+distributed across the observations, such as independent and iden- 
+tically distributed (i.i.d.) Gaussian, thermal, or quantization noise. 
+This assumption is valid for many cases. Nevertheless, for some 
+scenarios, measurements may be corrupted by outliers that are sig- 
+nicantly different from their nominal values. For example, during 
+the data acquisition process, outliers can be caused by sensor fail- 
+ures or calibration errors [7,8] , and it is usually unknown which 
+measurements have been corrupted. Outliers can also arise as a 
+result of signal clipping/saturation or impulse noise [9,10] . Con- 
+ventional compressed sensing techniques may incur severe per- 
+formance degradation in the presence of outliers. To address this 
+issue, in previous works (e.g. [7¨C10] ), outliers are modeled as a 
+sparse error vector, and the observed data are expressed as 
+
+=
+
++
+
++
+
+R
+
+R
+
+y 
+
+¡Ê
+
+¡Ê
+
+ s 
+
+ w 
+
+ Ax 
+
+(1) 
+M¡ÁN is the sampling matrix with M 
+(cid:4) N , x denotes 
+where A 
+an N -dimensional sparse vector with only K nonzero coecients, 
+(cid:4) M nonzero en- 
+s 
+M denotes the outlier vector consisting of T 
+tries with arbitrary amplitudes, and w denotes the additive mul- 
+tivariate Gaussian noise with zero mean and covariance matrix 
+¦Ã ) I . The above model can be formulated as a conventional com- 
+(1/ 
+pressed sensing problem as 
+
+(cid:2)
+
+(cid:3)(cid:4)
+
+(cid:5)
+
+x 
+s 
+
+=
+
+y 
+
+A 
+
+I 
+
++
+
+(cid:2)
+
++
+
+ Bu 
+
+ w 
+
+(2) 
+
+ w 
+
+Ecient compressed sensing algorithms can then be employed to 
+estimate the sparse signal as well as the outliers. Recovery guaran- 
+tees of x and e were also analyzed in [7¨C10] . 
+The rationale behind the above approach is to detect and com- 
+pensate for these outliers simultaneously. In this paper, we de- 
+velop a new approach which automatically identies and excludes 
+the outliers from sparse signal recovery. To our best knowledge, 
+this identify-and-reject approach is originally introduced for ro- 
+bust compressed sensing. It was brought to our attention that a 
+similar idea of excluding the impulsive samples from the adaptive 
+lter is used in [11] . Although it may seem preferable to com- 
+
+Q. Wan et al. / Signal Processing 140 (2017) 104¨C109 
+
+105 
+
+pensate rather than simply reject outliers, inaccurate estimation 
+of the compensation (i.e. outlier vector) could result in a destruc- 
+tive effect on sparse signal recovery, particularly when the number 
+of measurements is limited. In this case, identifying and rejecting 
+outliers could be a more sensible strategy. Also, to see the potential 
+of the identify-and-reject approach, consider an ideal case where 
+all outlier-corrupted measurements are correctly identied and re- 
+moved, in which case the problem is simplied as 
+
+y 
+
+=
+
+ A x 
+
++
+
+ w 
+
+(3) 
+¡ÁN is obtained by removing the outlier-corrupted 
+where A 
+rows from A . Based on compressed sensing theories [12] , it can 
+be veried that, in order to attain a same recovery probability, 
+the data model (3) requires a smaller number of measurements 
+than that needed by (2) . This result shows that the identify-and- 
+reject approach has the potential to outperform the compensa- 
+tion approach, particularly when outliers can be perfectly or near- 
+perfectly identied. 
+Motivated by the identify-and-reject idea, we develop a 
+Bayesian framework for robust compressed sensing, in which a set 
+of binary indicator variables are employed to indicate which obser- 
+vations are outliers. These variables are assigned a beta-Bernoulli 
+hierarchical prior such that their values are conned to be binary. 
+Also, a Gaussian inverse-Gamma prior is placed on the sparse sig- 
+nal to promote sparsity. A variational Bayesian method is devel- 
+oped to nd the approximate posterior distributions of the in- 
+dicators, the sparse signal and other latent variables. Note that 
+Bayesian methods, as an important class of compressed sensing 
+techniques, have received signicant attention over the past few 
+years, e.g. [13¨C15] . 
+The rest of this paper is organized as follows. In Section 2 , we 
+introduce our proposed hierarchical prior model for robust com- 
+pressed sensing. An variational Bayesian method is developed in 
+Section 3 to learn the indicator hyper-parameters as well as the 
+sparse signal. Simulation results are provided in Section 4 , followed 
+by the concluding remarks in Section 5 . 
+
+¡Ê
+
+R
+
+(MT 
+)
+
+2. Hierarchical prior model 
+
+We develop a Bayesian framework which employs a set of indi- 
+cator variables z 
+ { z m } to indicate which observation is an outlier, 
+i.e. z m 
+ 1 indicates that y m is a normal observation; otherwise y m 
+is an outlier. More precisely, we can write 
+
+¨¢
+
+=
+
+y m 
+
+=
+
+(cid:6)
+
+a 
+a 
+
+r 
+m 
+r 
+m 
+
+x 
+x 
+
++
++
+
+ w m 
+ w m 
+
+z m 
+
+=
+=
+
+ 1 
+ 0 
+
++
+
+ s m z m 
+
+(4) 
+
+where a 
+denotes the m th row of A , s m and w m are the m th en- 
+try of s and w , respectively. The probability of the observed data 
+conditional on these indicator variables can be expressed as 
+
+r 
+m 
+
+p(y|
+
+ x 
+
+,
+
+ z,
+
+¦Ã )
+
+=
+
+M (cid:7)
+m 
+=1 
+
+(N
+
+(y m 
+
+|
+
+ a 
+
+r 
+m 
+
+x 
+
+,
+
+ 1 
+
+/¦Ã ))
+
+z m 
+
+(5) 
+
+From (5) , we can see that if the indicator variable z m is set to zero, 
+then the factorization term 
+x 
+/¦Ã ))
+z m is equal to one, 
+which implies that the observation y m is excluded from the proba- 
+bility calculation. Eq. (5) can also be deemed as a likelihood func- 
+tion of x . It is therefore natural to discard those outliers and only 
+keep the normal observations. Here 
+(x 
+¦Ò 2 )
+ denotes a Gaussian 
+¦Ì and variance 
+¦Ò 2 . To infer the indicator 
+distribution with mean 
+variables, a beta-Bernoulli hierarchical prior [16,17] is placed on z , 
+i.e. each component of z is assumed to be drawn from a Bernoulli 
+distribution parameterized by 
+
+(N
+
+(y m 
+
+|
+
+ a 
+
+r 
+m 
+
+,
+
+ 1 
+
+N
+
+|
+
+¦Ì,
+
+¦Ð m 
+¦Ðm 
+
+p(z m 
+
+|
+
+¦Ðm 
+
+)
+
+=
+
+ Bernoulli 
+
+(z m 
+
+|
+
+)
+
+=
+
+¦Ð z m 
+
+m 
+
+(1 
+
+ ¦Ðm 
+)
+
+z m 
+1 
+
+ m 
+
+(6) 
+
+Fig. 1. Graphical model for robust Bayesian compressed sensing. 
+
+and 
+¦Ð m follows a beta distribution 
+p(¦Ðm 
+)
+(e,
+ f )
+ Beta 
+
+=
+
+
+
+ m 
+
+(7) 
+
+where Beta( e, f ) denotes the beta distribution, and e and f are pa- 
+rameters characterizing the beta distribution. Note that the beta- 
+Bernoulli prior assumes the random variables { z m } are mutually 
+independent, and so are the random variables { 
+¦Ð m }. 
+To encourage a sparse solution, a Gaussian-inverse Gamma hi- 
+erarchical prior, which has been widely used in sparse Bayesian 
+learning (e.g. [18¨C21] ), is employed. Specically, in the rst layer, x 
+is assigned a Gaussian prior distribution 
+
+p(x 
+
+|
+
+¦Á)
+
+=
+
+N (cid:7)
+=1 
+n 
+¦Án 
+
+p(x n 
+
+|
+
+¦Án 
+
+)
+
+(8) 
+
+where p(x n 
+ and 
+¦Á n } are non-negative hy- 
+perparameters controlling the sparsity of the signal x . The second 
+layer species Gamma distributions as hyperpriors over the preci- 
+sion parameters { 
+¦Á n }, i.e. 
+
+|
+
+)
+
+=
+
+N
+
+(x n 
+
+|
+
+ 0 
+
+,
+
+¦Á1 
+)
+
+n 
+
+,
+
+¦Á¨¢
+
+ { 
+
+p(¦Á)
+
+=
+
+N (cid:7)
+n 
+=1 
+
+Gamma 
+(¦Án 
+
+|
+
+ a,
+
+ b)
+
+=
+
+N (cid:7)
+n 
+=1 
+
+ (a 
+)
+
+1 b 
+1 
+a ¦Á a 
+n 
+
+e 
+
+b¦Án 
+
+(9) 
+
+where Gamma( 
+¦Á n | a, b ) denotes the Gamma distribution, 
+ (a 
+)
+t dt is the Gamma function, and the parameters a and b 
+t 
+10 ) in order to provide non- 
+are set to small values (e.g. a 
+ 10 
+¦Á n }. Also, 
+informative (over a logarithmic scale) hyperpriors over { 
+to estimate the noise variance, we place a Gamma hyperprior over 
+¦Ã , i.e. 
+
+=
+
+(cid:8)
+
+ ¡Þ
+
+0 
+
+1 e 
+a 
+
+=
+
+ b 
+
+=
+
+p(¦Ã )
+
+=
+
+ Gamma 
+
+(¦Ã |
+
+ c,
+
+ d )
+
+=
+
+ (c )
+
+1 d 
+c ¦Ã c1 e 
+d¦Ã
+
+(10) 
+
+where the parameters c and d are set to be small, e.g. c 
+10 . The graphical model of the proposed hierarchical prior is 
+10 
+shown in Fig. 1 . 
+
+=
+
+ d 
+
+=
+
+3. Variational Bayesian inference 
+
+Based on the hierarchical prior model, we now develop a vari- 
+ational Bayesian method [22] for robust compressed sensing. Let 
+¦Ð , 
+¦Á, 
+¦Ã } denote the hidden variables in our hierarchical 
+¦È | y ), 
+model. Our objective is to nd the posterior distribution p ( 
+which is usually computationally intractable. To circumvent this 
+diculty, observe that the marginal probability of the observed 
+data can be decomposed into two terms 
+ln p(y )
+(q 
+)
+(q 
+ p)
+ KL 
+
+¦È¨¢
+
+ { z , x , 
+
+=
+
+ L 
+
++
+
+||
+
+(11) 
+
+where 
+
+L 
+(q 
+)
+
+=
+
+(cid:9)
+
+(¦È )
+q 
+
+p(y,
+ ln 
+q 
+(¦È )
+
+¦È )
+
+d¦È
+
+(12) 
+
+and 
+
+KL 
+(q 
+
+||
+
+ p)
+
+=
+
+
+
+(cid:9)
+
+(¦È )
+q 
+
+ ln 
+
+p(¦È |
+
+ y )
+(¦È )
+q 
+where q ( 
+¦È ) is any probability density function, KL( q || p ) is the 
+Kullback¨CLeibler divergence between p ( 
+¦È | y ) and q ( 
+¦È ). Since KL( q || p ) 
+
+d¦È
+
+(13) 
+
+106 
+
+Q. Wan et al. / Signal Processing 140 (2017) 104¨C109 
+
+¡Ý 0, it follows that L ( q ) is a rigorous lower bound on ln p ( y ). More- 
+¦È ). 
+over, notice that the left hand side of (11) is independent of q ( 
+Therefore maximizing L ( q ) is equivalent to minimizing KL( q || p ), and 
+thus the posterior distribution p ( 
+¦È | y ) can be approximated by q ( 
+¦È ) 
+through maximizing L ( q ). Specically, we could assume some spe- 
+cic parameterized functional form for q ( 
+¦È ) and then maximize 
+L ( q ) with respect to the parameters of the distribution. A partic- 
+¦È ) that has been widely used with great success is 
+ular form of q ( 
+¦È [22] . For our 
+the factorized form over the component variables in 
+case, the factorized form of q ( 
+¦È ) can be written as 
+ q ¦Á (¦Á)
+ q ¦Ð (¦Ð )
+
+(¦È )
+q 
+
+=
+
+ q z 
+
+(z )
+
+ q x 
+
+(x 
+)
+
+ q ¦Ã (¦Ã )
+
+(14) 
+
+We can compute the posterior distribution approximation by nd- 
+ing q ( 
+¦È ) of the factorized form that maximizes the lower bound 
+L ( q ). The maximization can be conducted in an alternating fashion 
+for each latent variable, which leads to [22] 
+
+ln q x 
+
+(x 
+)
+ln q ¦Á (¦Á)
+ln q ¦Ã (¦Ã )
+(z )
+ln q ¦Ð (¦Ð )
+
+=
+=
+=
+=
+=
+
+(cid:8)
+(cid:8)
+(cid:8)
+(cid:8)
+(cid:8)
+
+ ln p(y,
+ ln p(y,
+ ln p(y,
+ ln p(y,
+ ln p(y,
+
+¦È )
+
+(cid:9)
+(cid:9)
+(cid:9)
+(cid:9)
+(cid:9)
+
+ q ¦Á (¦Á)
+
+ q ¦Ã (¦Ã )
+
+ q z 
+
+(z )
+
+ q ¦Ð (¦Ð )
+
++
++
++
++
++
+
+ constant 
+
+¦È )
+
+ q x 
+
+(x 
+)
+ q ¦Ã (¦Ã )
+
+ q z 
+
+(z )
+
+ q ¦Ð (¦Ð )
+
+ constant 
+
+¦È )
+¦È )
+
+ q x 
+
+(x 
+)
+ q ¦Á (¦Á)
+
+ q z 
+
+(z )
+
+ q ¦Ð (¦Ð )
+
+ constant 
+
+ln q z 
+
+ q x 
+
+(x 
+)
+ q ¦Á (¦Á)
+
+ q ¦Ã (¦Ã )
+
+ q ¦Ð (¦Ð )
+
+ constant 
+
+¦È )
+
+ q x 
+
+(x 
+)
+ q ¦Á (¦Á)
+
+ q ¦Ã (¦Ã )
+
+ q z 
+
+(z )
+
+ constant 
+
+(15) 
+ ¡¤ denotes an expectation with respect to the distributions 
+where 
+specied in the subscript. More details of the Bayesian inference 
+are provided below. 
+
+(cid:8)¡¤(cid:9)
+
+1) Update of q x ( x ): We rst consider the calculation of q x ( x ). 
+Keeping those terms that are dependent on x , we have 
+ ln p(y|
+
+ln q x 
+
+(x 
+)
+
+¡Ø
+
+(cid:8)
+
+ x 
+
+,
+
+ z,
+
+¦Ã )
+
++
+
+ ln p(x 
+ a 
+2 
+
+|
+
+¦Á)
+
+(cid:9)
+
+ q ¦Á (¦Á)
+N (cid:10)
+ q ¦Ã (¦Ã )
+
+ q z 
+
+(z )
+
+¡Ø
+
+ M (cid:10)
+
+=1 
+m 
+
+(cid:8)
+
+¦Ã z m 
+(y m 
+
+r 
+m 
+
+x 
+)
+
+2 (cid:9)
+
+ 1 
+2 
+ Ax 
+(y 
+)
+ 1 
+x 
+2 
+
+n 
+
+(cid:8)
+
+¦Án x 
+2 
+n 
+
+(cid:9)
+
+=
+
+ (cid:8)
+
+¦Ã (cid:9)
+
+ Ax 
+(y 
+)
+2 
+
+T D z 
+
+T D ¦Á x 
+
+(16) 
+
+where 
+
+D z 
+
+(cid:2)
+
+ diag 
+
+((cid:8)
+
+ z(cid:9)
+ and 
+ denote the expectation of z and 
+¦Á, respectively. It 
+is easy to show that q ( x ) follows a Gaussian distribution with 
+its mean and covariance matrix given respectively by 
+
+)
+
+,
+
+ D ¦Á (cid:2)
+
+ diag 
+
+((cid:8)
+
+¦Á(cid:9)
+
+)
+
+(17) 
+
+(cid:8)
+
+ z 
+
+(cid:9)
+
+(cid:8)
+
+¦Á(cid:9)
+
+¦Ìx 
+
+=
+
+(cid:8)
+¦Ã (cid:9)
+(cid:11)(cid:8) 
+¦Ã (cid:9)
+
+x A 
+T D z y 
+
+(18) 
+
+x 
+
+=
+
+ A 
+
+T D z A 
+
++
+
+ D ¦Á
+
+(cid:12)1 
+
+(19) 
+
+2) Update of q ¦Á ( 
+¦Á): Keeping only the terms that depend on 
+¦Á, the 
+variational optimization of q ¦Á ( 
+¦Á) yields 
+ ln p(¦Á|
+ln q ¦Á (¦Á)
+ b)
+ (0 
+
+¡Ø
+
+(cid:8)
+
+ ln p(x 
+
+|
+
+¦Á)
+
++
+
+ a,
+
+(cid:9)
+
+ q x 
+
+(x 
+)
+
+=
+
+N (cid:10)
+n 
+=1 
+N (cid:7)
+=1 
+n 
+
+(a 
+
++
+
+ 0 
+
+.
+
+ 5)
+
+ ln 
+
+¦Án 
+
+.
+
+ 5 
+
+(cid:13)
+
+x 
+
+2 
+n 
+
+(cid:14)
+
++
+
+ b)
+
+¦Án 
+
+(20) 
+
+¦Á) therefore follows a Gamma distribution 
+The posterior q ¦Á ( 
+
+q ¦Á (¦Á)
+
+=
+
+Gamma 
+(¦Án 
+
+|
+
+  a 
+
+,
+
+ b n 
+
+)
+
+(21) 
+
+in which  a and 
+ b n are given respectively as 
+
+ a 
+
+=
+=
+
+ a 
+
++
++
+
+ 0 
+ 5 
+
+.
+
+ b n 
+
+ b 
+
+ 0 
+ 5 
+
+.
+
+(cid:8)
+
+ x 
+
+2 
+n 
+
+(cid:9)
+
+3) Update of q ¦Ã ( 
+¦Ã ): The variational approximation of q ¦Ã ( 
+¦Ã ) can 
+be obtained as: 
+ ln p(y|
+ ln p(¦Ã |
+ln q ¦Ã (¦Ã )
+
+¡Ø
+
+(cid:8)
+
+ x 
+
+,
+
+ z,
+
+¦Ã )
+
++
+
+ c,
+
+ d )
+
+(cid:9)
+(cid:9)(cid:8)
+
+ q x 
+
+(x 
+)
+
+ q z 
+
+(z )
+
+¡Ø
+
+M (cid:10)
+m 
+=1 
+
+(cid:11)
+
+0 
+ 1)
+(c 
+
+.
+
+ 5 
+
+(cid:8)
+
+ z m 
+
+(cid:9)
+
+ ln 
+
+¦Ã  0 
+¦Ã  d¦Ã
+ 1)
+
+.
+
+ 5 
+
+¦Ã (cid:8)
+
+ z m 
+
+(y m 
+
+ a 
+
+r 
+m 
+
+x 
+)
+
+2 (cid:9)
+
+(cid:12)
+
++
+
+ ln 
+
+=
+
+(c 
+
++
+
+ 0 
+ 5 
+
+.
+
+M (cid:10)
+m 
+=1 
+
+(cid:8)
+(cid:9)
+
+ z m 
+
+(cid:9)
+
+¦Ã  (d 
+ ln 
+
++
+
+ 0 
+ 5 
+
+.
+
+(cid:8)
+
+ Ax 
+(y 
+)
+
+T 
+
+D z 
+
+ Ax 
+(y 
+)
+Clearly, the posterior q ¦Ã ( 
+¦Ã ) obeys a Gamma distribution 
+
+)
+
+¦Ã
+
+(22) 
+
+q ¦Ã (¦Ã )
+
+=
+
+ Gamma 
+
+(¦Ã |
+
+  c 
+
+,
+
+ d 
+)
+
+(23) 
+
+where  c and 
+ d are given respectively as 
+
+ c 
+
+=
+
+ c 
+
++
+
+ 0 
+ 5 
+
+.
+
+M (cid:10)
+m 
+=1 
+
+(cid:8)
+
+ z m 
+
+(cid:9)
+
+(24) 
+
+ d 
+
+=
+
+ d 
+
++
+
+ 0 
+ 5 
+
+.
+
+(cid:8)
+
+ Ax 
+(y 
+)
+
+T D z 
+
+ Ax 
+(y 
+)
+
+(cid:9)
+
+ q x 
+
+(x 
+)
+
+(25) 
+
+in which 
+ Ax 
+ Ax 
+(y 
+)
+(y 
+)
+ A¦Ìx 
+ A¦Ìx 
+(y 
+)
+(y 
+4) Update of q z ( z ): The posterior approximation of q z ( z ) yields 
+ ln p(y|
+ ln p(z|
+ a 
+¦Ã (y m 
+
+(cid:8)
+
+T D z 
+T D z 
+
+(cid:9)
+
+ q x 
+
+(x 
+)
+
+=
+
+) +
+
+ trace 
+(A 
+
+T D z A 
+x 
+
+)
+
+ln q z 
+
+(z )
+
+¡Ø
+
+(cid:8)
+
+ x 
+
+,
+
+ z,
+
+¦Ã )
+
++
+
+¦Ð )
+
+(cid:9)
+
+ q x 
+
+(x 
+)
+ q ¦Ã (¦Ã )
+2 +
+
+ q ¦Ð (¦Ð )
+
+¡Ø
+
+M (cid:10)
+m 
+=1 
+
+(cid:8)
+
+ z m 
+
+(cid:11)
+
+0 
+
+.
+
+ 5 
+
+r 
+m 
+
+x 
+)
+
+ ln 
+
+¦Ðm 
+
+(cid:12)
+
++
+
+(1 
+
+ z m 
+
+)
+
+ ln 
+(1 
+
+ ¦Ðm 
+)
+
+(cid:9)
+
+(26) 
+
+Clearly, z m still follows a Bernoulli distribution with its proba- 
+bility given by 
+
+P 
+
+(z m 
+
+=
+
+ 1)
+
+=
+
+ Ce 
+
+(cid:8)
+
+ ln 
+
+¦Ðm 
+
+(cid:9)
+
+ e 
+
+ ¦Ã (cid:8)
+
+a 
+2 (cid:9)
+(y m 
+r m 
+)
+x 
+2 
+
+(27) 
+
+P 
+
+(z m 
+
+=
+
+ 0)
+
+=
+
+ Ce 
+
+(cid:8)
+
+¦Ðm 
+ ln 
+(1 
+)
+
+(cid:9)
+
+(28) 
+
+where C is a normalizing constant such that P 
+0)
+ and 
+ a 
+ ln 
+
+(z m 
+
+=
+
+ 1)
+
++
+
+ P 
+
+(z m 
+
+=
+
+=
+
+ 1 
+
+,
+
+(cid:8)
+
+(y m 
+
+2 (cid:9)
+r 
+m 
+¦Ðm 
+
+x 
+)
+
+=
+=
+=
+
+(y m 
+
+ a 
+ (e 
+ (1 
+
+r 
+¦Ìx 
+m 
+
+)
+  (e 
+  (e 
+)
+
+2 +
+
+ a 
+
+r 
+x a 
+r 
+T 
+m 
+m 
+
+(cid:8)
+
+(cid:9)
+(cid:9)
+
++
++
+
+(cid:8)
+
+ z m 
+ f 
+
+(cid:9)
+ (cid:8)
+
+)
+
++
+
+ f 
+
++
++
+
+ 1)
+
+(cid:8)
+
+ ln 
+(1 
+
+ ¦Ðm 
+)
+
+ z m 
+
+(cid:9)
+
+ f 
+
++
+
+ 1)
+
+(29) 
+¡¤) 
+ ( 
+The last two equalities can also be found in [17] , in which 
+represents the digamma function. 
+5) Update of q ¦Ð ( 
+¦Ð): The posterior approximation of q ¦Ð ( 
+¦Ð) can be 
+calculated as 
+ ln p(z|
+ ln p(¦Ð|
+ln q ¦Ð (¦Ð )
+
+¡Ø
+
+(cid:8)
+
+¦Ð )
+
++
+
+ e,
+
+ f )
+
+(cid:9)
+
+ q z 
+
+(z )
+
+¡Ø
+
+M (cid:10)
+m 
+=1 
+M (cid:10)
+=1 
+m 
+
+(cid:8)
+
+ z m ln 
+¦Ðm 
+
++
+
+(1 
+
+ z m 
+
+)
+
+ ln 
+(1 
+
+ ¦Ðm 
+)
+
++
+
+ 1)
+(e 
+
+ ln 
+
+¦Ðm 
+
++
+
+ 1)
+( f 
+
+ ¦Ðm 
+ ln 
+(1 
+)
+ 1)
+
+(cid:9)
+
+=
+
+(cid:8)
+
+(z m 
+
++
+
+ e 
+
+ ln 
+
+¦Ðm 
+
++
+
+( f 
+
+ z m 
+
+)
+
+ ln 
+(1 
+
+ ¦Ðm 
+)
+
+(cid:9)
+
+(30) 
+¦Ð) follows a Beta distribution, 
+It can be easily veried that q ¦Ð ( 
+i.e. 
+
+q ¦Ð (¦Ð )
+
+=
+
+(cid:7)
+
+m 
+
+p(¦Ðm 
+)
+
+=
+
+(cid:7)
+
+m 
+
+Beta 
+
+((cid:8)
+
+ z m 
+
+(cid:9)
+
++
+
+ e,
+
+ 1 
+
++
+
+ f 
+
+ (cid:8)
+
+ z m 
+
+(cid:9)
+
+)
+
+(31) 
+
+Q. Wan et al. / Signal Processing 140 (2017) 104¨C109 
+
+107 
+
+In summary, the variational Bayesian inference involves updates 
+of the approximate posterior distributions for hidden variables x , 
+¦Á, z , 
+¦Ð , and 
+¦Ã in an alternating fashion. Some of the expectations 
+and moments used during the update are summarized as 
+
+(cid:8)
+
+¦Án 
+
+(cid:9)
+
+=
+
+ a 
+
+ b n 
+
+(32) 
+
+(cid:8)
+
+¦Ã (cid:9)
+
+=
+
+ c 
+ d 
+
+(33) 
+
+(cid:8)
+
+ x 
+
+2 
+n 
+
+(cid:9)
+
+=
+
+(cid:8)
+
+ x n 
+
+(cid:9)
+
+2 +
+
+x 
+
+(n,
+
+ n 
+
+)
+
+(34) 
+
+(cid:8)
+
+ z m 
+
+(cid:9)
+
+=
+
+P 
+ 1)
+ 0)
+P 
+x ( n, n ) denotes the n th diagonal element of 
+where 
+
+(z m 
+
+=
++
+
+ 1)
+
+(z m 
+
+=
+
+ P 
+
+(z m 
+
+=
+
+(35) 
+
+x . 
+
+Remark. We discuss the computational complexity of our pro- 
+posed method and the compensation approach. The main com- 
+putational complexity of our proposed method involves comput- 
+¡Á N matrix (cf. (19) ), which has the com- 
+ing an inverse of an N 
+putational complexity of order O ( N 
+3 ). For the compensation-based 
+((M 
+method (2) , it has a computational complexity of order O 
+N )
+ . Therefore, our proposed approach has an advantage over the 
+compensation-based method in terms of computational complex- 
+ity. 
+
++
+
+3 )
+
+For clarity, we summarize our algorithm as follows. 
+
+BP-RBCS Algorithm 
+
+Input : Observed data y,
+ measurement matrix A 
+¦Ã and parameter a,
+1 . Given initial estimates 
+2 . At iteration t 
+Update the estimate  x 
+ according to (18) ; 
+¦Á and 
+¦Ã according 
+Update the hyperparameters 
+to (32) and (33) , respectively; 
+Update the indicators z according to (35) . 
+   x 
+3 . Continue the above iteration until 
+tolerance value. 
+Output : Recovered signal  x 
+
+¦Á,
+
+ b,
+ c,
+ d,
+
+ e and f
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+ : 
+
+(t )
+
+(cid:11)
+
+  x 
+
+(t+1)
+
+(t )
+
+ (cid:11)
+
+ 2 
+
+¡Ü  ,
+ where 
+ is a prescribed 
+
+(t )
+
+ . 
+
+4. Simulation results 
+
+We now carry out experiments to illustrate the performance of 
+our proposed method which is referred to as the beta-Bernoulli 
+prior model-based robust Bayesian compressed sensing method 
+1 . As discussed earlier, another robust compressed sens- 
+(BP-RBCS) 
+ing approach is compensation-based and can be formulated as 
+a conventional compressed sensing problem (2) . For comparison, 
+the sparse Bayesian learning method [18,23] is employed to solve 
+(2) , and this method is referred to as the compensation-based ro- 
+2 al- 
+bust Bayesian compressed sensing method (C-RBCS). The SL0 
+gorithm which has demonstrated superior performance is also in- 
+cluded and employed to solve (2) in our experiments. Also, we 
+consider an ¡°ideal¡± method which assumes the knowledge of the 
+locations of the outliers. The outliers are then removed and the 
+sparse Bayeisan learning method is employed to recover the sparse 
+signal. This ideal method is referred to as RBCS-ideal, and serves as 
+a benchmark for the performance of the BP-RBCS and C-RBCS. Note 
+that both C-RBCS and RBCS-ideal use the sparse Bayesian learning 
+method for sparse signal recovery. The parameters { a, b, c, d } of the 
+sparse Bayesian learning method are set to a 
+ 10 
+Our proposed method involves the parameters { a, b, c, d, e, f }. The 
+
+=
+
+ b 
+
+=
+
+ c 
+
+=
+
+ d 
+
+=
+
+10 . 
+
+1 Codes are available at http://www.junfang- uestc.net/codes/RBCS.rar . 
+2 Codes are available at http://ee.sharif.edu/ 
+SLzero/ . 
+
+
+
+10 . The beta-Bernoulli 
+rst four are also set to a 
+ 10 
+ e 
+parameters { e, f } are set to e 
+ 7 and f 
+ 3 since we 
+expect that the number of outliers is usually small relative to the 
+total number of measurements. Our simulation results suggest that 
+stable recovery is ensured as long as e is set to a value in the range 
+[0.5, 1]. 
+We rst examine the performance of respective algorithms for 
+M¡ÁN with i.i.d Gaussian en- 
+random measurement matrices A 
+tries. The K nonzero entries of the sparse signal x 
+N are drawn 
+(0 
+ 1)
+from a Gaussian distribution 
+ . We consider a noiseless case. 
+Suppose that T out of M measurements are corrupted by outliers. 
+For those corrupted measurements { y m }, their values are chosen 
+10 
+uniformly from [ 
+ 10] . Fig. 2 depicts the success rates of dif- 
+ferent methods vs. the number of measurements and the num- 
+ber of outliers, respectively, where we set N 
+ 64 
+ 10 in 
+Fig. 2 (a), and M 
+ 25 
+ 64 in Fig. 2 (b). The success rate 
+is computed as the ratio of the number of successful trials to the 
+total number of independent runs. A trial is considered successful 
+if the normalized reconstruction error of the sparse signal x is no 
+6 . Results are averaged over 10 
+greater than 10 
+3 independent runs. 
+From Fig. 2 , we see that our proposed BP-RBCS presents a clear 
+performance advantage over the C-RBCS and the SL0. 
+Next, we consider the problem of direction-of-arrival (DOA) es- 
+timation where K narrowband far-eld sources impinge on a uni- 
+form linear array of M sensors from different directions. The re- 
+ceived signal can be expressed as 
+
+=
+
+ b 
+
+=
+=
+
+ c 
+ 0 
+
+=
+
+ d 
+
+=
+
+.
+
+=
+
+ 1 
+
+=
+
+ 0 
+
+.
+
+¡Ê
+
+R
+
+¡Ê
+
+R
+
+N
+
+,
+
+,
+
+=
+
+,
+
+ K 
+
+=
+
+ 2 
+ T 
+
+,
+
+=
+
+=
+
+,
+
+ K 
+
+=
+
+ 2 
+ N 
+
+,
+
+=
+
+y 
+
+=
+
+ Ax 
+
++
+
+ w 
+
+where w denotes i.i.d. Gaussian observation noise with zero mean 
+M¡ÁN is an overcomplete dictionary con- 
+and variance 1/ 
+¦Ã , A 
+¦È n }, with the ( m, n )th 
+structed by evenly-spaced angular points { 
+ exp {
+2 j¦Ð (m 
+ 1)
+ D/¦Ë}
+(¦Èn 
+)
+entry of A given by a m,n 
+ sin 
+ in which 
+D denotes the distance between two adjacent sensors, 
+¦Ë represents 
+¦È n } are evenly-spaced 
+the wavelength of the source signal, and { 
+grid points in the interval [ 
+ 2] . The signal x contains K 
+nonzero entries that are independently drawn from a unit circle. 
+The values of measurements corrupted with outliers are chosen 
+10 
+uniformly from [ 
+ 10] . The SL0 method is not included in or- 
+der to better show the visual difference between the proposed 
+BP-RBCS and the C-RBCS. We rst consider a noiseless case, i.e. 
+1 
+ 0 . Fig. 3 depicts the success rates of different methods vs. 
+the number of measurements and the number of outliers, respec- 
+tively, where we set N 
+ 64 
+ 7 in Fig. 3 (a), and M 
+25 
+ 64 in Fig. 3 (b). From Fig. 3 , we see that our pro- 
+posed BP-RBCS achieves a substantial performance improvement 
+over the C-RBCS. This result corroborates our claim that rejecting 
+outliers is a better strategy than compensating for outliers, par- 
+ticularly when the number of measurements is limited. Next, we 
+consider a noisy case with 1 
+ 01 . Fig. 4 plots the normalized 
+mean square errors (NMSEs) of different methods vs. the number 
+of measurements and the number of outliers, respectively, we set 
+N 
+ 64 
+ 7 in Fig. 4 (a), and M 
+ 25 
+ 64 in Fig. 
+4 (b). The 95% condence intervals for the NMSEs are also shown 
+in Fig. 4 , where the vertical line segments represent the con- 
+dence intervals surrounding the means. This result, again, demon- 
+strates the superiority of our proposed method over the C-RBCS. 
+We show in Table 1 the average computing time of the BP-RBCS 
+and the C-RBCS, respectively, where we set K 
+ 7 . We see 
+that our proposed BP-RBCS is more computationally ecient than 
+the compensation-based method. 
+
+¡Ê
+
+C
+
+=
+
+,
+
+¦Ð /
+
+ 2 
+
+,
+
+¦Ð /
+
+,
+
+/¦Ã =
+
+=
+
+,
+
+ K 
+
+=
+
+ 3 
+ T 
+
+,
+
+=
+
+=
+
+,
+
+ K 
+
+=
+
+ 3 
+ N 
+
+,
+
+=
+
+/¦Ã =
+
+ 0 
+
+.
+
+=
+
+,
+
+ K 
+
+=
+
+ 3 
+ T 
+
+,
+
+=
+
+=
+
+,
+
+ K 
+
+=
+
+ 3 
+ N 
+
+,
+
+=
+
+=
+
+ 3 
+ T 
+
+,
+
+=
+
+5. Conclusions 
+
+We proposed a new Bayesian method for robust compressed 
+sensing. The rationale behind the proposed method is to iden- 
+tify the outliers and exclude them from sparse signal recovery. To 
+
+108 
+
+Q. Wan et al. / Signal Processing 140 (2017) 104¨C109 
+
+Fig. 2. (a) Success rates of respective algorithms vs. M ; (b). Success rates of respective algorithms vs. T . 
+
+Fig. 3. DOA estimation (a) Success rates of respective algorithms vs. M ; (b). Success rates of respective algorithms vs. T . 
+
+Fig. 4. DOA estimation (a) NMSEs of respective algorithms vs. M ; (b). NMSEs of respective algorithms vs. T . 
+
+Q. Wan et al. / Signal Processing 140 (2017) 104¨C109 
+
+109 
+
+Standard deviation 
+
+¦Ò =
+
+ 0 
+
+Runtime(s) 
+
+Table 1 
+Average computing time of algorithms BP-RBCS and C-RBCS. 
+¡Á N 
+Algorithm M 
+¡Á 64 
+25 
+¡Á 64 
+45 
+¡Á 64 
+25 
+¡Á 64 
+45 
+¡Á 64 
+25 
+¡Á 64 
+45 
+¡Á 64 
+25 
+¡Á 64 
+45 
+
+C-RBCS 
+C-RBCS 
+BP-RBCS 
+BP-RBCS 
+
+C-RBCS 
+C-RBCS 
+BP-RBCS 
+BP-RBCS 
+
+0.39 
+0.21 
+0.18 
+0.09 
+
+1.56 
+2.32 
+1.23 
+1.39 
+
+¦Ò =
+
+.
+
+ 0 
+ 1 
+
+this objective, a set of indicator variables were employed to indi- 
+cate which observations are outliers. A beta-Bernoulli prior is as- 
+signed to these indicator variables. A variational Bayesian inference 
+method was developed to nd the approximate posterior distri- 
+butions of the latent variables. Simulation results show that our 
+proposed method achieves a substantial performance improvement 
+over the compensation-based robust compressed sensing method. 
+
+References 
+
+[1] S.S. Chen , D.L. Donoho , M.A. Saunders , Atomic decomposition by basis pursuit, 
+SIAM J. Sci. Comput. 20 (1) (1998) 33¨C61 . 
+[2] E. Cand¨¦s , T. Tao , Decoding by linear programming, IEEE Trans. Inf. Theory (12) 
+(2005) 4203¨C4215 . 
+[3] D.L. Donoho , Compressive sensing, IEEE Trans. Inf. Theory 52 (2006) 
+1289¨C1306 . 
+[4] E. Candes , The restricted isometry property and its implications for compres- 
+sive sensing, Compte Rendus de l¡¯Academie des Sciences, Paris, Serie I 346 
+(2008) 589¨C592 . 
+[5] M.J. Wainwright , Information-theoretic limits on sparsity recovery in the 
+high-dimensional and noisy setting, IEEE Trans. Inf. Theory 55 (12) (2009) 
+5728¨C5741 . 
+[6] T. Wimalajeewa , P.K. Varshney , Performance bounds for sparsity pattern recov- 
+ery with quantized noisy random projections, IEEE J. Sel. Topics Signal Process. 
+6 (1) (2012) 43¨C57 . 
+
+[7] R.G.B. Jason , N. Laska , M.A. Davenport , Exact signal recovery from sparsely cor- 
+rupted measurements through the pursuit of justice, in: The 43rd Asilomar 
+Conference on Signals, Systems and Computers, 2009 . Pacic Grove, California, 
+USA 
+[8] R.C.K. Mitra , A. Veeraraghavan , Analysis of sparse regularization based robust 
+regression approaches, IEEE Trans. Signal Process. (5) (2013) 1249¨C1257 . 
+[9] R.E. Carrillo , K.E. Barner , T.C. Aysal , Robust sampling and reconstruction meth- 
+ods for sparse signals in the presence of impulsive noise, IEEE J. Sel. Topics 
+Signal Process. (2) (2010) 392¨C408 . 
+[10] C. Studer , P. Kuppinger , G. Pope , H. Bolcskei , Recovery of sparsely corrupted 
+signals, IEEE Trans. Inf. Theory (5) (2012) 3115¨C3130 . 
+[11] H. Zayyani , Y. Attar , An oracle normalized least mean square (nlms) and a 
+simple Bayesian detection nlms algorithm robust to impulse noise, Majlesi J. 
+Electr. Eng. 10 (3) (2016) 27 . 
+[12] E. Cand¨¨s , M.B. Wakin , An introduction to compressive sensing, IEEE Signal 
+Process. Mag. 25 (2) (2008) 21¨C30 . 
+[13] H. Zayyani , M. Babaie-Zadeh , C. Jutten , An iterative bayesian algorithm for 
+sparse component analysis in presence of noise, IEEE Trans. Signal Process. 57 
+(11) (2009) 4378¨C4390 . 
+[14] D.P. Wipf , B.D. Rao , Sparse Bayesian learning for basis selection, IEEE Trans. 
+Signal Process. 52 (8) (2004) 2153¨C2164 . 
+[15] H. Zayyani , M. Babaie-Zadeh , C. Jutten , Bayesian pursuit algorithm for sparse 
+representation, in: Acoustics, Speech and Signal Processing, 2009. ICASSP 2009. 
+IEEE International Conference on, IEEE, 2009, pp. 1549¨C1552 . 
+[16] L. He , L. Carin , Exploiting structure in wavelet-based Bayesian compressive 
+sensing, IEEE Trans. Signal Process. 57 (9) (2009) 3488¨C3497 . 
+[17] J. Paisley , L. Carin , Nonparametric factor analysis with Beta process priors, in: 
+26th Annual International Conference on Machine Learning, Montreal, Canada, 
+2009, pp. 14¨C18 . 
+[18] S. Ji , Y. Xue , L. Carin , Bayesian compressive sensing, IEEE Trans. Signal Process. 
+56 (6) (2008) 2346¨C2356 . 
+[19] Z. Zhang , B.D. Rao , Extension of SBL algorithms for the recovery of block sparse 
+signals with intra-block correlation, IEEE Trans. Signal Process. 61 (8) (2013) 
+2009¨C2015 . 
+[20] Z. Yang , L. Xie , C. Zhang , Off-grid direction of arrival estimation using sparse 
+Bayesian inference, IEEE Trans. Signal Process. 61 (1) (2013) 38¨C42 . 
+[21] J. Fang , Y. Shen , H. Li , P. Wang , Pattern-coupled sparse Bayesian learning for 
+recovery of block-sparse signals, IEEE Trans. Signal Process. (2) (2015) 360¨C372 . 
+[22] D.G. Tzikas , A.C. Likas , N.P. Galatsanos , The variational approximation for 
+Bayesian inference, IEEE Signal Process. Mag. (2008) 131¨C146 . 
+[23] M. Tipping , Sparse Bayesian learning and the relevance vector machine, J. 
+Mach. Learn. Res. 1 (2001) 211¨C244 . 
+

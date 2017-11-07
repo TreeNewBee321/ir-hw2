@@ -1,0 +1,11518 @@
+A mismatched membership function approach to sampled-data  stabilization for T-S fuzzy systems with time-varying delayed signals 
+ 
+a School of Electrical Engineering and Electronic Information, Key Laboratory of Fluid and Power Machinery of the Ministry of Education, Xihua University, 
+Chengdu 610036, China 
+b School of Mathematical Sciences, University of Electronic Science and Technology of China, Chengdu, Sichuan 611731, PR China 
+c School of Science, Hubei University for Nationalities, Enshi, Hubei 4450 0 0, PR China 
+d Faculty of Computing and Information Technology, King Abdulaziz University, Jeddah, Saudi Arabia 
+
+article
+
+info
+
+Article history: 
+Received 23 February 2017 
+Revised 2 May 2017 
+Accepted 16 May 2017 
+Available online 17 May 2017 
+
+Keywords: 
+Time-varying delay 
+T-S fuzzy system 
+Sampled-data 
+Stability analysis 
+Lyapunov每Krasovskii function 
+
+abstract 
+
+This paper is concerned with the issue of sampled-data stabilization for T-S fuzzy systems with time- 
+varying delays, where the mismatched membership function (MMF) approach is proposed. The superior- 
+ity of the proposed method lies that delay interval is split into exible terminals, and newly Lyapunov每
+Krasovskii function (LKF) is constructed. By employing the Wirtinger inequality and extended Jensen in- 
+equality, some sucient conditions of the sampled-data control for T-S fuzzy systems are established, 
+which are eciently solved by using standard available numerical packages. Finally, the superiority of 
+achieved result is illustrated by the truck-trailer model. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+In recent years, T-S fuzzy systems are introduced to describe 
+the nonlinear systems in the form of IF-THEN rules, which have 
+been proved to be ecient approaches because of its approxima- 
+tion properties and received extensively interest. It is noted that 
+the nonlinear dynamic systems can be described by T-S fuzzy 
+model and recast in linear matrix inequalities (LMIs), the issue of 
+stability analysis for T-S fuzzy system has been extensively studied 
+[1每6] and references therein. 
+The time delay is frequently encountered in the dynamical sys- 
+tems and it brings the instability and performance degradation of 
+T-S fuzzy systems. Up to now, there exists two type of results 
+subject to time delay: delay-independent stability [7] and delay- 
+dependent ones [8每10] . It is noted that the delay-dependent re- 
+search achievements make full use of the delay information, which 
+obtain less conservative results and achieve lager upper bound of 
+delay. Moreover, the T-S fuzzy system experienced are frequently 
+time-varying delays. The fundamental objective of delay-dependent 
+stability conditions are to accomplish the upper bounds of time- 
+varying delays. Recently, the problem of stability analysis and con- 
+trol synthesis is the crucial feature in T-S fuzzy systems with time- 
+varying delay, which has gained signicance attention and many 
+important results has been reported [11每20] , [35每37] . It can be seen 
+from [11每20] that, to achieve less conservative stability conditions, 
+various techniques have been introduced for T-S fuzzy systems, to 
+mention a few, the Jensen＊s inequality [13] , free-weighting matrix 
+approach [14,34] , Leibniz每Newton method [15] and so on. How- 
+ever, these approaches suffer a common shortcoming, for example, 
+with the increase of the number of subintervals, which leads to the 
+increasing of complexity of computing. 
+On the other hand, in sampled-data control systems, it is impor- 
+tant to choose a proper sampling interval when designing suitable 
+controllers. Over the past few years, the stability analysis and con- 
+troller synthesis issues of sampled-data control systems have at- 
+tracted much attention because of its widely applications [21每28] , 
+and several fruitful results have been presented for the sampled- 
+data control systems combined with LKFs. However, it should be 
+pointed out that in the existing literature, the problem of sampled- 
+data stabilization for T-S fuzzy systems with time-varying delays 
+has not been considered in the literature, and remains as a topic 
+for further investigation. 
+Motivated by the above discussion, in this paper, the issue of 
+sampled-data stabilization for T-S fuzzy systems with time-varying 
+delays is investigated. The main contributions of this paper are 
+summarized as follows. 
+米i 
+=1 
+i 
+
+(i) The novel LKF involving triple integrals and tunable parame- 
+ter is proposed, which contains the full information of sam- 
+pling pattern and exible time-varying delay intervals, and a 
+new set of sucient criteria are developed. 
+(ii) The mismatched membership functions are introduced to 
+eliminate the conservatism in a more reasonable way. 
+(iii) Some novel cross terms of time delay are introduced and the 
+less conservative results are achieved. 
+(iv) The proposed fuzzy sampled-data controller is designed and 
+truck-trailer system is employed to illustrate the superiority 
+of proposed approach. 
+
+dimensional Euclidean space. X 
+≡ 0 
+Notation: R 
+n denotes the n 
+(respectively, X 
+ 0) means that the matrix X is a real symmetric 
+positive semidenite matrix the(respectively, positive denite). Su- 
+1 and T denote the inverse and transpose, respectively. 
+perscripts 
+The notation 
+is used for the transposed element in symmetric 
+ X }
+ X . diag{
+positions. Sym { X } is dened as Sym 
+ denotes 
+a diagonal matrix. 
+
+>
+
+
+
+{
+
+=
+
+ X 
+
+T +
+
+.
+
+.
+
+.
+
+}
+
+2. Preliminaries 
+
+Consider an T-S fuzzy system with time-varying delays. The i th 
+rule of the T-S fuzzy system is expressed in the following IF-THEN 
+form 
+Rule i : 
+If 
+( t ) is W 
+Then 
+
+牟
+
+1 
+
+i 
+1 
+
+and, 
+
+.
+
+.
+
+.
+
+,
+
+ and 
+牟 g ( t ) is W 
+
+i 
+g 
+
+,
+
+步 x 
+(t )
+x 
+(t )
+
+=
+=
+
+ A i x 
+
+(t )
+耳 (t )
+
++
+﹋
+
+ A di x 
+
+ 而 (t ))
+(t 
+ max 
+(而M 
+ r is the number of If-Then rules; x 
+(t )
+n u stands for state and input vector, respec- 
+ r; j 
+tively; W 
+ g)
+ represents the fuzzy sets; 
+(t )( j 
+ g)
+牟 (t )
+ means the premise variables. Denote 
+牟 ( t ) is independent on x ( t ) nor u ( t ). 
+耳 ( t ) is 
+[ 
+(t )
+(t )] 
+ and 
+the initial condition of the system state; 
+而 ( t ) and h denotes the 
+state delay and the sample period, respectively, which satises the 
+following condition: 
+
++
+
+ B i u 
+
+(t )
+
+,
+
+,
+
+ t 
+
+ [ 
+
+,
+
+ h 
+
+)
+
+,
+
+ 0] 
+
+(1) 
+
+where i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+ r,
+
+﹋
+
+R
+
+n x and u 
+i 
+j 
+
+(t )
+(i 
+
+﹋
+
+R
+
+=
+
+ 1 
+ 2 
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+牟
+
+j 
+牟1 
+
+=
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+=
+
+,
+
+. . .
+
+,
+
+牟g 
+
+T ,
+
+0 
+
+≒ 而m 
+≒ 而 (t )
+
+≒ 而M 
+
+,
+
+而
+
+d 
+
+≒ 步 
+而 (t )
+ r )
+
+≒ 而D 
+
+(2) 
+
+and A i 
+(i 
+ble dimensions. 
+With the help the method of centroid for defuzzication, the 
+T-S fuzzy system (1) can be inferred as 
+
+, A di 
+, B i 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ are constant matrices with compati- 
+
+步 x 
+(t )
+
+=
+
+r (cid:2)
+米i 
+=1 
+i 
+
+(牟 (t ))[ A i x 
+(t )
+
++
+
+ A di x 
+
+ 而 (t ))
+(t 
+
++
+
+ B i u 
+
+(t )] 
+
+(3) 
+
+where 
+(t ))
+
+米
+
+i 
+
+(牟 (t ))
+ is the membership value of 
+( t ) in W 
+. It is easily seen 
+ r}
+牟 ( t )) satises the following properties 
+( 
+
+=
+
+h i 
+=1 
+h i 
+i 
+
+(牟 (t ))
+(牟 (t ))
+
+(cid:3)
+
+ r 
+
+,
+
+ h i 
+
+(牟 (t ))
+牟
+
+=
+
+(cid:4)
+
+ g 
+
+j=1 
+i 
+j 
+
+W 
+
+i 
+j 
+
+(牟
+
+j 
+
+(t ))
+
+and 
+
+W 
+that 
+
+i 
+j 
+
+(牟
+
+j 
+
+j 
+
+
+
+ i 
+
+﹋
+
+{
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+,
+
+米
+
+i 
+
+米i 
+
+(牟 (t ))
+
+≡ 0 
+
+,
+
+r (cid:2)
+米i 
+=1 
+i 
+
+(牟 (t ))
+
+=
+
+ 1 
+
+Similar to the T-S fuzzy system described in (1) , the fuzzy 
+sampled-data controller can be transformed into: 
+Rule I : 
+If 
+) is W 
+Then 
+
+牟
+
+( t k 
+1 
+
+i 
+1 
+
+and, 
+
+.
+
+.
+
+.
+
+,
+
+ and 
+
+牟 g ( t k 
+
+) is W 
+
+i 
+g 
+
+,
+
+u i 
+
+(t )
+
+=
+
+ K i x 
+
+(t k 
+
+)
+
+,
+
+ t k 
+
+≒ t 
+(i 
+ r )
+where K i 
+ denotes the controller gains to be esti- 
+mated; t k 
+is the sampling instant satises 0 
+) means the state vector of subsystem at the instant t k 
+, which 
+is a piecewise constant function. 
+
+<
+
+ t k 
+
++1 
+
+(4) 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+<
+
+ t 1 
+
+<
+
+ t 2 
+
+<
+
+﹞ ﹞ ﹞ <
+
+ t k 
+
+.
+
+.
+
+.
+
+ ; 
+
+x ( t k 
+
+The defuzzied output of controller (4) is deduced as 
+≒ t 
+
+u 
+(t )
+
+=
+
+(牟 (t k 
+))
+
+ K i x 
+
+(t k 
+
+)
+
+,
+
+ t k 
+
+<
+
+ t k 
+
++1 
+
+(5) 
+
+≒ t 
+Denote the sampling interval d (t )
+for t k 
+. It 
+≒ d (t )
+≒ h,
+follows from (5) that 0 
+ where h is the 
+known bound of sampling instants. Furthermore, it is easily to ob- 
+tain that 
+步 d 
+(t )
+. The system (5) can be rewritten as 
+≒ t 
+
+=
+
+ t 
+
+ t k 
+ t k 
++1 
+
+<
+
+ t k 
+
++1 
+
+<
+
+ t k 
+
+=
+
+ 1 
+ t 
+
+,
+
+=
+
+ t d 
+
+u 
+(t )
+
+=
+
+r (cid:2)
+米i 
+i 
+=1 
+r (cid:2)
+r (cid:2)
+米i 
+=1 
+j=1 
+℅ [ A i x 
+i 
+
+(牟 (t k 
+))
+
+ K i x 
+
+ d (t ))
+(t 
+
+,
+
+ t k 
+
+<
+
+ t k 
+
++1 
+
+(6) 
+
+Combining (3) with (6) yields the following closed-loop 
+sampled-data fuzzy system (CLSDFS) 
+
+步 x 
+(t )
+
+=
+
+(牟 (t ))
+
+米 j 
+
+(牟 (t k 
+))
+ 而 (t ))
+(t 
+
+(t )
+
++
+
+ A di x 
+
++
+
+ B i K j x 
+
+ d (t ))
+(t 
+
+(7) 
+
+Lemma 2.1. [29] For any t 
+ the inequality Q (x,
+holds, if the functions 
+( x ( t )) and 
+
+﹋
+
+ [ t k 
+ t k 
+ x k 
+ r 
+
+,
+
++1 
+=1 
+j=1 
+i 
+( x ( t k 
+
+)
+
+,
+
+ and symmetric matrices Q i j 
+(x 
+(t ))
+(x 
+))
+)) satisfying 
+
+﹋
+
+R
+
+n 
+
+℅n ,
+
+)
+
+=
+
+(cid:3)
+
+(cid:3)
+
+ r 
+
+肋
+
+ i 
+
+肋
+
+ j 
+
+(t k 
+
+ Q i j 
+
+<
+
+ 0 
+
+肋
+
+ i 
+
+肋
+
+ i 
+
+|
+
+肋
+
+ i 
+
+(x 
+(t ))
+
+ 肋
+
+ i 
+
+(x 
+
+(t k 
+
+))
+
+|≒ 汛i 
+
+,
+
+ i 
+
+﹋
+
+S
+
+for given scalars 
+
+汛
+
+i 
+
+>
+
+ 0 and matrices R ij 
+ such that 
+
+>
+
+ 0, N ij 
+
+>
+
+ 0, U i j 
+
+=
+
+ U 
+
+T 
+i j 
+
+,
+
+U i 
+( j+
+ r )
+
+=
+
+ U 
+
+( j+
+T 
+ r )
+≒ U i j 
+r (cid:2)
+W i j 
+ W ji 
+ 2 W i j 
+汛s 
+Q i j 
+=1 
+s 
+
+ i 
+
+,
+
+
+
+ i,
+
+ j 
+
+﹋
+
+S
+
++
+
++
+
+ U ji 
+
++
+
+(W 
+
++
+
+is 
+
++
+
+ W 
+
++
+
+s j 
+
+)
+
+≒ U i 
+( j+
+
+ r )
+
++
+
+ U ( j+
+
+ r )
+
+ i 
+
+(cid:5)
+
+Y 11 Y 12 
+Y 11 
+
+
+
+(cid:6)
+
+<
+
+ 0 
+
+where 
+
+W i j 
+
+=
+
+ R i j 
+ N i j 
+U 11 
+
+,
+
+ W 
+
++
+
+i j 
+
+=
+
+ R i j 
+
++
+
+ N i j 
+
+Y 11 
+
+=
+
+
+ 
+
+.
+
+.
+
+.
+
+ U 1 r 
+
+. . . 
+
+. . . 
+
+. . . 
+
+U r1 
+
+.
+
+.
+
+.
+
+ U rr 
+
+
+ 
+
+ ,
+
+ Y 12 
+
+=
+
+
+ 
+
+U 1(r+1)
+
+.
+
+.
+
+.
+
+ U 1(2 r )
+
+. . . 
+
+. . . 
+
+. . . 
+
+U r 
++1)
+(r 
+
+.
+
+.
+
+.
+
+ U r 
+
+(2 r 
+)
+
+
+ 
+
+Lemma 2.2. [30] Let a l 
+ 0(l 
+m . One has 
+longs to an open subset 
+ of R 
+
+>
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n 
+
+)
+
+ : R 
+
+m (cid:8)↙
+
+ R 
+
+,
+
+ which be- 
+
+D
+
+min 
+
+(a i 
+
+|
+
+ a i 
+
+>
+
+ 0 
+
+,
+
+(cid:3)
+
+a i 
+i 
+
+=1)
+
+(cid:2)
+
+i 
+
+1 
+
+s i 
+a i 
+
+(t )
+
+=
+
+(cid:2)
+
+i 
+
+s i 
+
+(t )
+
++
+
+ max 
+
+b i, j (t )
+
+(cid:2)
+
+i 
+
+=
+
+ j 
+
+b i, j (t )
+
+subject to 
+
+{
+
+ b i, j : 
+
+R
+
+m (cid:8)↙
+
+R
+
+,
+
+ b j,i 
+
+(t )
+
+(cid:2)
+
+ b i, j (t )
+
+,
+
+(cid:5)
+
+s i 
+b j,i 
+(t )
+
+(t )
+
+b i, j (t )
+s j 
+
+(t )
+
+(cid:6)
+
+≡ 0 
+
+}
+
+汕 ] 
+Lemma 2.3. [31] Denote x is a differentiable function: [ 
+For symmetric matrices 
+ 0 and 
+ the following inequal- 
+ity holds: 
+
+汐 ,
+
+↙
+
+R
+
+n . 
+
+R
+
+>
+
+N
+
+ i 
+
+﹋
+
+R
+
+4 n 
+
+℅n ,
+
+
+
+(cid:11)
+
+ 汕
+
+汐
+
+步 x 
+
+T (s 
+
+)
+
+ R 步 x 
+
+(s 
+)
+
+ ds 
+
+≒ 
+
+T  ,
+
+where 
+
+ =
+
+(汕  汐 )
+
+(cid:12)
+
+N
+
+ 1 
+
+R
++
+=
+
+1 N
+
+T 
+1 
+2 
+
++
+
+1 
+3 
+
+N
+N
+
+ 2 
+
+R
+
+1 N
+
+T 
+2 
+
++
+
+1 
+5 
+
+N
+
+ 3 
+
+R
+
+1 N
+
+T 
+3 
+
+(cid:13)
+
++
+
+ Sym 
+
+{N
+
+ 1 
+
+1 
+2 
+
+N
+
+ 2 
+ e 1 
+
++
+
+ 3 
+
+3 
+ 2 e 3 
+
+}
+
+1 
+
+=
+
+ e 1 
+
+ e 2 
+
++
+
+ e 2 
+
+3 
+
+=
+
+ e 1 
+
+ e 2 
+ 6 e 3 
+
++
+
+ 6 e 4 
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+163 
+
+
+
+=
+
+(cid:5)
+
+T (汕 )
+x 
+
+ x 
+
+T (汐 )
+
+1 
+
+汕  汐
+
+(cid:11)
+
+ 汕
+
+汐
+
+x 
+
+T (s 
+
+)
+
+ ds 
+
+2 
+
+(汕  汐 )
+
+2 
+
+(cid:11)
+
+ 汕
+
+汐
+
+(cid:11)
+
+ s 
+
+汐
+
+x 
+
+T (u 
+
+)
+
+ d ud s ] 
+
+T 
+
+(cid:6)
+
+.
+
+Lemma 2.4. [32] If there exist matrices 
+0 
+ one has 
+
+Z
+
+ i, j 
+
+﹋
+
+R
+
+3 n 
+
+℅3 n (i,
+
+ j 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+ 3)
+
+>
+
+,
+
+
+
+(cid:11) t 
+污 (t 
+t 
+)
+
+步 z 
+
+T (s 
+
+)
+
+Z
+
+ 33 步 z 
+
+(s 
+)
+
+ ds 
+
+≒
+
+(cid:11) t 
+污 (t 
+t 
+)
+
+w 
+T (t )
+ 污 (t ))
+
+  w 
+(t )
+
+ ds,
+
+where 
+
+w 
+(t )
+
+=
+
+(cid:14)
+(cid:17)
+
+z 
+T (t )
+
+z 
+
+T (t 
+
+步 z 
+
+T (s 
+
+)
+
+(cid:15)
+
+and 
+
+ =
+
+(cid:16)
+
+ Z 11 
+
+Z 12 
+Z 22 
+
+Z 13 
+Z 23 
+
+
+
+
+
+
+0 
+
+Lemma 2.5. [33] For given scalars m and n with m 
+0 
+ for any differentiable function x in [ m,
+ m 
+(n 
+)
+2 
+
+<
+
+ n , matrix 
+
+Y
+
+>
+
+,
+
+ n ] 
+
+↙
+
+R
+
+n : 
+
+2 
+
+(cid:11)
+(cid:11)
+
+ n 
+
+m 
+
+(cid:11)
+
+ n 
+
+牟
+
+步 x 
+
+(cid:2)
+
+ (s 
+)
+
+Y
+
+ 步 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
+≡
+
+(cid:18)(cid:11)
+
+ n 
+
+m 
+
+ n 
+
+牟
+
+步 x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:19)(cid:2)
+
+ Y
+
+(cid:18)(cid:11)
+
+ n 
+
+m 
+
+(cid:11)
+
+ n 
+
+牟
+
+步 x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:19)
+
++
+
+ 2(cid:2)
+
+
+
+Y
+
+where 
+
+(s 
+)
+Lemma 2.6. [33] For given matrix Y 
+≒ (t 2 
+ ds 
+
+=
+
+ (cid:20)
+
+ n 
+
+m 
+
+(cid:20)
+
+ n 
+
+牟 步 x 
+
+ d sd 
+
+牟 +
+
+m 
+3 
+n 
+
+(cid:20)
+
+ n 
+
+m 
+
+(cid:20)
+
+ n 
+
+牟
+
+(cid:20)
+
+ n 
+
+步 x 
+(v 
+)
+ d v d sd 
+牟 . 
+v 
+ 0 and vector 
+肋( s ), one has 
+
+>
+
+(cid:11)
+
+ t 2 
+
+t 1 
+
+肋
+
+T (s 
+
+)
+
+ Y 
+
+肋 (s 
+)
+
+ t 1 
+
+)
+
+缶 T (t )
+
+ F 
+
+1 F 
+T Y 
+
+缶 (t )
+
++
+
+ 2 
+
+缶 T (t )
+
+ F 
+
+T 
+
+(cid:11)
+
+ t 2 
+
+t 1 
+
+肋 (s 
+)
+
+ ds 
+
+缶 ( t ) denotes the vector and matrix F means matrix with 
+where vector 
+compatible dimension. 
+
+3. Main results 
+
+The notations are dened as 
+
+汎 (t )
+
+=
+
+(cid:5)
+
+x 
+
+(cid:2)
+
+ (t )
+
+ x 
+
+T (t 
+
+ 而 (t ))
+
+ x 
+
+(cid:2)
+
+ (t 
+
+ 而m 
+(t ))
+
+ x 
+
+T (t 
+
+ 而M 
+(t ))
+
+x 
+
+T (t 
+
+ d (t ))
+
+ 步 x 
+
+T (t )
+
+1 
+而 (t )
+
+(cid:11)
+
+ t 
+
+而 (t 
+t 
+)
+
+x 
+
+T (
+
+ s 
+
+)
+
+ ds 
+
+℅
+
+1 
+ 而 (t )
+
+而M 
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+(t )
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+
+T (s 
+
+)
+
+ ds 
+
+1 
+
+而 (t )
+
+ 而m 
+(t )
+
+℅
+
+(cid:11)
+
+ t 
+
+x 
+
+T (s 
+
+)
+
+ ds 
+
+1 
+(而 (t ))
+
+2 
+
+(cid:11)
+
+ 0 
+
+而 (t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T d sd 
+
+牟
+
+℅
+
+1 
+
+(而 (t )
+
+ 而m 
+(t ))
+
+2 
+
+(cid:11)
+(cid:11)
+
+ 而m 
+
+(t )
+而 (t )
+ 而 (t )
+而M 
+(t )
+
+(cid:11)
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ d sd 
+
+牟
+
+℅
+
+1 
+ 而 (t ))
+ 而 (t ))
+
+(而M 
+(t )
+
+2 
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+聿1 
+
+(t )
+
+=
+
+(cid:5)
+
+x 
+T (t )
+
+ x 
+
+T (t 
+
+1 
+而 (t )
+
+(cid:11)
+
+ t 
+
+而 (t 
+t 
+)
+
+x 
+
+T (s 
+
+)
+
+ ds 
+
+2 
+(而 (t ))
+ 而 (t ))
+
+2 
+
+(cid:11)
+
+ 0 
+
+而 (t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+聿2 
+
+(t )
+
+=
+
+(cid:5)
+
+x 
+
+T (t 
+
+ x 
+
+T (t 
+
+ 而M 
+(t ))
+
+1 
+ 而 (t )
+2 
+ 而 (t ))
+
+而M 
+
+(t )
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+ 而 (t )
+而M 
+(t )
+
+x 
+
+T (s 
+
+)
+
+ ds 
+
+(而M 
+(t )
+
+2 
+
+(cid:11)
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+聿3 
+
+(t )
+
+=
+
+(cid:5)
+
+x 
+
+T (t 
+
+ 而m 
+(t ))
+
+ x 
+
+T (t 
+
+ 而 (t ))
+
+1 
+
+而 (t )
+
+ 而m 
+(t )
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+x 
+
+T (s 
+
+)
+
+ ds 
+
+2 
+
+(而 (t )
+
+ 而m 
+(t ))
+
+2 
+
+(cid:11)
+
+ 而m 
+
+(t )
+而 (t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+聿4 
+
+(t )
+
+=
+
+(cid:5)
+
+x 
+
+T (t 
+
+ 而 (t ))
+
+ x 
+
+T (t 
+
+ 而M 
+(t ))
+
+1 
+ 而 (t )
+2 
+ 而 (t ))
+
+而M 
+
+(t )
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+ 而 (t )
+而M 
+(t )
+
+x 
+
+T (s 
+
+)
+
+ ds 
+
+(而M 
+(t )
+
+2 
+
+(cid:11)
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+Theorem 3.1. For given scalar h 
+metric matrices P 
+(s 
+ 0, W 
+(l 
+ 3)
+ such that 
+≡ 0 
+
+>
+
+ 0, 
+
+而 m 
+
+≒ 而 M , if there exist sym- 
+ 4)
+ and matrices 
+; n 
+ 3)
+
+>
+>
+
+ 0, Q s 
+ 0, X l 
+ mn 
+ mn 
+
+>
+
+ 0 
+ 0 
+
+=
+
+ 1 
+ 2 
+ 1 
+ 2 
+
+,
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ R 1 
+
+>
+
+ 0, R 2 
+
+>
+
+ 0, S 1 
+
+>
+
+ 0, S 2 
+
+>
+,
+
+>
+,
+
+=
+L
+
+,
+
+ 3)
+(m 
+
+M
+
+ l 
+
+,
+
+N
+
+ l 
+
+,
+>
+
+K
+
+ l 
+ 0 
+
+,
+,
+
+L
+
+ l 
+
+(l 
+
+=
+
+ 1 
+ 2 
+ 0 
+
+,
+
+,
+
+I
+
+,
+
+J
+
+K
+
+ mn 
+
+,
+
+ mn 
+
+=
+
+ 1 
+ 2 
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+,
+
+  W 1 i j 
+
+ U 1 i j 
+
+>
+
+,
+
+  Y 1 i j 
+
+,
+
+(cid:5)
+(cid:5)
+
+R 1 Y 1 
+R 1 
+
+
+
+(cid:6)
+(cid:6)
+
+(8) 
+
+R 2 Y 2 
+R 2 
+
+
+
+≡ 0 
+
+(9) 
+
+ W l i j 
+
++
+
+≒  U l i j 
+  W l ji 
+r (cid:2)
+汛s 
+=1 
+s 
+
++
+
+  U l ji 
+
+,
+
+ l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 8 
+
+,
+
+ i,
+
+ j 
+
+﹋
+
+S
+
+(10) 
+
+
+
+ 2  W l i j 
+l i j 
+
++
+
+(
+
+  W 
+
++
+
+l is 
+
++
+
+  W 
+
++
+
+l s j 
+
+)
+
+≒  U l i 
+( j+
+
+ r )
+
++
+
+  U l ( j+
+
+ r )
+
+ i 
+
+,
+
+l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 8 
+
+,
+
+ i,
+
+ j 
+
+﹋
+
+S
+
+(11) 
+
+(cid:5)
+
+ Y l11 
+
+ Y l12 
+ Y l11 
+
+
+
+(cid:6)
+
+<
+
+ 0 
+ l 
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 8 
+
+(12) 
+
+where 
+
+ W l i j 
+
+=
+
+  R l i j 
+  N l i j 
+
+,
+
+  W 
+
++
+
+l i j 
+
+=
+
+  R l i j 
+
++
+
+  N l i j 
+
+,
+
+ l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 8 
+
+ Y l11 
+
+=
+
+
+ 
+
+ 
+
+ U l11 
+
+.
+
+.
+
+.
+
+ U l1 r 
+
+. . . 
+
+. . . 
+
+. . . 
+
+ U l r1 
+
+.
+
+.
+
+.
+
+ U l rr 
+
+
+ 
+
+ ,
+
+ l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 8 
+
+ Y l12 
+
+=
+
+ U l1(r+1)
+
+.
+
+.
+
+.
+
+ U l1(2 r )
+
+. . . 
+
+. . . 
+
+. . . 
+
+ U l r 
++1)
+(r 
+
+.
+
+.
+
+.
+
+ U l r 
+(2 r 
+)
+
+
+ 
+
+ ,
+
+ l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 8 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+1 i j 
+2 i j 
+3 i j 
+4 i j 
+5 i j 
+6 i j 
+7 i j 
+8 i j 
+
+=
+=
+=
+=
+=
+=
+=
+=
+
+i j 
+i j 
+i j 
+i j 
+i j 
+i j 
+i j 
+i j 
+
+(而 (t )
+(而 (t )
+(而 (t )
+(而 (t )
+(而 (t )
+(而 (t )
+(而 (t )
+(而 (t )
+
+,
+,
+,
+,
+,
+,
+,
+,
+
+ 步 
+ 步 
+ 步 
+ 步 
+ 步 
+ 步 
+ 步 
+ 步 
+
+而 (t )
+而 (t )
+而 (t )
+而 (t )
+而 (t )
+而 (t )
+而 (t )
+而 (t )
+
+,
+,
+,
+,
+,
+,
+,
+,
+
+ d (t ))
+ d (t ))
+ d (t ))
+ d (t ))
+ d (t ))
+ d (t ))
+ d (t ))
+ d (t ))
+
+|
+|
+|
+|
+|
+|
+|
+|
+
+ 而 (t )=
+ 而 (t )=
+ 而 (t )=
+ 而 (t )=
+ 而 (t )=
+ 而 (t )=
+ 而 (t )=
+ 而 (t )=
+
+而m 
+而m 
+而m 
+而m 
+而M 
+而M 
+而M 
+而M 
+
+,
+
+ 步 
+
+而 (t )=
+而 (t )=
+而 (t )=
+而 (t )=
+而 (t )=
+而 (t )=
+而 (t )=
+而 (t )=
+
+而
+
+d 
+
+,d (t )=0 
+,d (t )=
+,d (t )=0 
+,d (t )=
+,d (t )=0 
+,d (t )=
+,d (t )=0 
+,d (t )=
+
+,
+
+ 步 
+
+而
+
+d 
+而D 
+而D 
+
+ h 
+
+,
+
+ 步 
+
+,
+
+ 步 
+
+ h 
+
+,
+
+ 步 
+
+而
+
+d 
+
+,
+
+ 步 
+
+而
+
+d 
+而D 
+而D 
+
+ h 
+
+,
+
+ 步 
+
+,
+
+ 步 
+
+ h 
+
+
+
+l i j 
+
+(而 (t )
+
+,
+
+ 步 
+
+而 (t )
+
+,
+
+ d (t ))
+
+=
+
+(cid:16)
+
+ i j 
+
+
+
+(cid:25)
+
+d (t )
+0 
+
+ Y 
+
+
+
+
+
+
+
+X 1 
+
+(cid:17)
+
+,
+
+164 
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+i j 
+
+(而 (t )
+
+,
+
+ 步 
+
+而 (t )
+
+,
+
+ d (t ))
+
+=
+
+ e 6 P e 
+
+T 
+1 
+2 
+而M 
+
++
+
+ e 1 P e 
+ 步 
+
+T 
+6 
+
++
+
+1 
+
+(而 (t )
+ d (t ))
+(而M 
+(t )
+
+,
+
+ 步 
+
+而 (t )
+ d (t ))
+(而 (t )
+而 (t )
+ 而m 
+(t ))
+
+,
+
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+
+(而 (t )
+(t )
+ Sym 
+
+,
+
+而 (t )
+
+,
+
++
+
+3 
+
+,
+
+ 步 
+
+,
+
+ d (t ))
+
+ e 6 S 1 e 
+
+T 
+6 
+1 
+1 
+
++
++
+M
++
+N
+
+ e 6 S 2 e 
+
+T 
+6 
+
+{M
+{N
+
+ 1 
+
+ 2 
+
+2 
+2 
+1 
+1 
+
++
+M
++
+N
++
+G
++
+H
++
+
+ 3 
+
+3 
+3 
+2 
+2 
+
+}
+
+ Sym 
+(1 
+(1 
+
+ 1 
+
+ 2 
+
+ 3 
+
+}
+
+ 汐 步 
+而 (t ))
+ 汐 步 
+而 (t ))
+(而 (t )
+(而 (t )
+ 而 (t ))
+((而M 
+(t )
+ 而 (t ))
+((而M 
+(t )
+ 而 (t ))
+((而M 
+(t )
+ 汐 步 
+(1 
+而 (t 
+))
+((而 (t 
+)
+((而 (t )
+ 而m 
+(t ))
+ 而m 
+((而 (t )
+(t ))
+ 汐 步 
+而 (t 
+))
+((而M 
+(t 
+)
+ 而 (t ))
+((而M 
+(t )
+ 而 (t ))
+((而M 
+(t )
+ d (t ))
+(h 
+ 羽 2 
+
+ Sym 
+
+{G
+{H
+
+ 1 
+
+ 2 
+
++
+G
++
+H
+
+ 3 
+
+3 
+3 
+
+}
+
+ Sym 
+
+ 1 
+
+ 2 
+ 2 e 1 
+
+ 3 
+
+}
+
+(cid:14)
+(cid:14)
+
+e 1 
+
+I
+I
+
+ 11 
+
++
+I
+ I
+
+T 
+13 
+
++
+I
+ I
+J
+J
+J
+
+ 13 
+
+)
+
+ e 
+
+T 
+1 
+
+(而 (t )
+
+I
+
+ 12 
+
+ I
+
+ 13 
+
++ I
+
+T 
+23 
+
+)
+
+ e 
+
+T 
+2 
+
+ e 2 
+
+ 22 
+
+ 23 
+
+T 
+23 
+
+)
+
+ e 
+
+T 
+2 
+
+(cid:15)
+
+e 2 
+
+ 11 
+
++
+J
+ J
+ J
+
+T 
+13 
+
++
+J
++
+J
+ J
+K
++
+K
+ K
+L
++
+L
+ L
++
+
+ 13 
+
+)
+
+ e 
+
+T 
+2 
+
+ 2 e 2 
+
+ 12 
+
+ 13 
+
+T 
+23 
+T 
+23 
+
+)
+
+ e 
+
+T 
+4 
+T 
+4 
+
+ e 4 
+
+ 22 
+
+ 23 
+
+)
+
+ e 
+
+(cid:15)
+
+(cid:14)
+
+e 3 
+
+ 而m 
+(t ))
+
+ 11 
+
++
+
+K
+
+T 
+13 
+
++
+
+K
+
+ 13 
+
+)
+
+ e 
+
+T 
+3 
+
+ 2 e 3 
+
+K
+K
+
+ 12 
+
+ K
+ K
+
+ 13 
+
+T 
+23 
+T 
+23 
+
+)
+
+ e 
+
+T 
+2 
+T 
+2 
+
+ e 2 
+
+ 22 
+
+ 23 
+
+)
+
+ e 
+
+(cid:15)
+
+(1 
+
+(cid:14)
+
+e 2 
+
+ 而 (t ))
+
+ 11 
+
++
+
+L
+
+T 
+13 
+
++
+
+L
+
+ 13 
+
+)
+
+ e 
+
+T 
+2 
+
+ 2 e 2 
+
+L
+L
++
+
+ 12 
+
+ L
+ L
+
+ 13 
+
+T 
+23 
+T 
+23 
+
+)
+
+ e 
+
+T 
+4 
+T 
+4 
+
+ e 4 
+
+ 22 
+
+ 23 
+ e 5 
+(e 1 
+ e 5 
+ e 5 
+(e 1 
+(e 1 
+ A i e 
+T 
+ A di e 
+2 
+6 
+1 
+2 
+ B i G j e 
+M 1 
+5 
+
+)
+
+ e 
+
+(cid:15)
+
+ e 6 X 1 e 
+
+T 
+6 
+
+ 2 Y 
+
+)
+
+ 2 d (t ))
+((d k 
+
+ e 5 X 2 e 
+
+T 
+5 
+
+ h 
+
+2 e 6 X 3 e 
+T 
+6 
+
+4 
+
+)
+
+ X 3 
+
+)
+
+T 
+
+ 2(e 1 M 
+T 
+1 
+
++
+
+ e 6 M 
+ 2 e 6 
+
+)(e 
+
+(cid:2)
+
+(cid:2)
+
++
+
+(cid:2)
+
+)
+
+ 2 e 1 B i G j e 
+
+(cid:2)
+
+5 
+
++
+
+(cid:2)
+
+,
+
+ M 2 
+
+=
+
+ =
+
+ [1 
+
+2 
+
+3 
+
+4 ] 
+
+ =
+
+ diag 
+
+{
+
+1 
+
+2 
+
+3 
+
+4 
+
+}
+
+1 
+2 
+
+=
+=
+
+ [ 
+
+(cid:25)
+(cid:25)
+(cid:25)
+(cid:25)
+(cid:25)
+(cid:25)
+(cid:25)
+(cid:25)
+(cid:25)
+
+ 而 (t )
+
+1 
+
+M
+
+ 1 
+
+(cid:25)
+
+ 而 (t )
+
+1 
+ 而M 
+
+M
+
+ 2 
+
+(cid:25)
+
+ 而 (t )
+ 而 (t )
+
+1 
+1 
+
+M
+N
+
+ 3 ] 
+
+ [ 
+
+ 而M 
+ 而M 
+
+(t )
+
+ 而 (t )
+ 而 (t )
+(t )
+ 汐 步 
+ 而m 
+而 (t 
+))(而 (t 
+)
+(t ))
+ 汐 步 
+ 而m 
+而 (t 
+))(而 (t 
+)
+(t ))
+ 汐 步 
+ 而m 
+而 (t 
+))(而 (t 
+)
+(t ))
+ 汐 步 
+ 而 (t ))
+而 (t 
+))(而M 
+(t 
+)
+ 汐 步 
+ 而 (t ))
+而 (t 
+))(而M 
+(t 
+)
+ 汐 步 
+ 而 (t ))
+而 (t 
+))(而M 
+(t 
+)
+
+1 
+1 
+
+N
+N
+
+ 1 
+
+(cid:25)
+
+(t )
+
+ 2 
+
+ 3 ] 
+
+3 
+
+=
+
+ [ 
+
+(1 
+
+1 
+1 
+1 
+
+L
+L
+
+ 1 
+
+(1 
+
+ 2 
+
+(1 
+
+L
+K
+K
+K
+
+ 3 ] 
+
+4 
+
+=
+
+ [ 
+
+(1 
+
+1 
+1 
+1 
+
+ 1 
+
+(1 
+
+ 2 
+
+(1 
+
+ 3 ] 
+
+i 
+1 
+
+=
+
+ diag 
+(而 (t )
+而 (t )
+
+{
+
+ R 1 3 R 1 5 R 1 
+
+}
+
+(i 
+
+=
++
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ 4)
+ (1 
+ 步 
+而 (t ))
+)
+
+,
+
+ 步 
+
+,
+
+ d (t ))
+
+=
+
+ e 1 
+
+(Q 1 
+
+ Q 2 
+
++
+
+ Q 4 
+
+)
+而 (t ))[ e 3 
+
+ e 
+
+T 
+1 
+ Q 4 
+(Q 3 
+
+ e 2 Q 2 e 
+
+T 
+ e 4 Q 3 e 
+2 
+T 
+T 
+3 
+4 
+
++
+
+(1 
+
+ 汐 步 
+
+ e 
+
+] 
+
+2 
+
+(而 (t )
+
+,
+
+ 步 
+
+而 (t )
+(t )
+ 汐 步 
+而 (t )
+(t )
+
+,
+
+ d (t ))
+(而M 
+(t )
+
+=
+
+ e 1 [ 
+
+而M 
+
+ R 1 
+
++
+
+ 而m 
+(t ))
+ 而 (t ))
+(而M 
+(t )
+
+ R 2 ] e 
+
+T 
+1 
+
+ 1 
+
+而M 
+R 1 Y 1 
+R 1 
+
+[ 
+而 (t )
+
+ e 7 
+
+ e 8 ] 
+
+℅
+
+(cid:5)
+
+
+
+(cid:6)
+
+[ 
+而 (t )
+
+ e 7 
+
+(而M 
+(t )
+
+ 而 (t ))
+
+ e 8 ] 
+
+T 
+
+
+
+ 汐 步 
+1 
+而 (t )
+ 汐 )(而M 
+ 而m 
+(1 
+)
+℅ [(而 (t )
+ 而m 
+(t ))
+℅ [(而 (t )
+ 而m 
+(t ))
+
+ e 9 
+
+(而M 
+(t )
+
+ 而 (t ))
+ 而 (t ))
+
+ e 8 ] 
+
+(cid:5)
+
+R 2 Y 2 
+R 2 
+
+
+
+(cid:6)
+
+ e 9 
+
+(而M 
+(t )
+
+ e 8 ] 
+
+T 
+
+3 
+
+(而 (t )
+
+,
+
+ 步 
+
+而 (t )
+
+,
+
+ d (t ))
+
+=
+
+(而M 
+(t )
+
+ 而m 
+(t ))
+
+2 
+e 6 W e 
+T 
+6 
+
+2 
+
++
+
+1 
+
++
+
+2 
+
+耳1 
+耳3 
+
+=
+=
+
+(cid:14)
+(cid:14)
+
+e 1 
+
+e 2 
+
+e 7 2 e 10 
+
+(cid:15)
+(cid:15)
+
+耳2 
+耳4 
+
+=
+=
+
+(cid:14)
+(cid:14)
+
+e 2 
+
+e 4 
+
+e 8 2 e 12 
+
+(cid:15)
+(cid:15)
+
+e 3 
+
+e 2 
+
+e 9 2 e 11 
+
+e 2 
+
+e 4 
+
+e 8 2 e 12 
+
+1 
+
+=
+
+(1 
+
+ 汐 步 
+而 (t ))
+
+(cid:26)
+
+  2(e 1 
+
+ e 8 
+
+)
+
+ W 
+
+ e 8 
+(e 1 
+ e 8 
+e 1 
+ e 9 
+(e 1 
+ e 9 
+e 1 
+
+)
+
+T 
+
+ 4 
+
+(cid:12)
+
+ 1 
+2 
+
+ e 8 
+e 1 
+
++
+
+ 3 e 12 
+ e 9 
+
+(cid:13)
+
+W 
+
+(cid:12)
+
+ 1 
+2 
+
++
+
+(cid:13)T 
+ 3 e 12 
+(cid:13)T 
+ 3 e 11 
+
+(cid:27)
+
+2 
+
+=
+
+(1 
+
+ 汐 步 
+而 (t ))
+
+(cid:26)
+
+  2(e 1 
+
+)
+
+ W 
+
+)
+
+T 
+
+ 4 
+
+(cid:12)
+
+ 1 
+2 
+
+ e 9 
+e 1 
+
++
+
+ 3 e 11 
+
+(cid:13)
+
+W 
+
+(cid:12)
+
+ 1 
+2 
+
++
+
+(cid:27)
+
+而m 
+
+(t )
+
+=
+
+汐而 (t )
+
++
+
+(1 
+
+ 汐 )
+
+而m 
+
+,
+
+而M 
+
+(t )
+
+=
+
+汐而 (t )
+
++
+
+(1 
+
+ 汐 )
+
+而M 
+
+Then, the CLSDFS (7) is asymptotically stable. Furthermore, the 
+fuzzy sampled-data controller is given by 
+
+K j 
+
+=
+
+ G j M 
+
+(cid:2)
+
+1 
+7 (cid:2)
+V i 
+=1 
+i 
+
+Proof. Construct the following LKF: 
+
+V 
+(t )
+
+=
+
+(t )
+
+(13) 
+
+where 
+
+V 1 
+
+(t )
+
+=
+
+ x 
+
+T (t 
+
+)
+
+ P x 
+
+(t 
+)
+
+V 2 
+
+(t )
+
+=
+
+(cid:11)
+
+ t 
+
+T (s 
+d (t 
+)
+t 
+而m 
+(t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+
+)
+
+ Q 1 x 
+
+(s 
+)
+
+ ds 
+
++
+
+(cid:11)
+
+ t 
+
+而 (t 
+t 
+)
+
+x 
+
+T (s 
+
+)
+
+ Q 2 x 
+
+(s 
+)
+
+ ds 
+
++
+
+(cid:11)
+
+ t 
+
+x 
+
+T (s 
+
+)
+
+ Q 3 x 
+
+(s 
+)
+
+ ds 
+
++
+
+(cid:11)
+
+ t 
+
+而m 
+t 
+(t 
+)
+
+x 
+
+T (s 
+
+)
+
+ Q 4 x 
+
+(s 
+)
+
+ ds 
+
+V 3 
+
+(t )
+
+=
+
+(cid:11)
+
+ 0 
+
+而M 
+(t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ R 1 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
++
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+
+T (s 
+
+)
+
+ R 2 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
+V 4 
+
+(t )
+
+=
+
+(cid:11)
+
+ 0 
+
+而M 
+(t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+步 x 
+
+T (s 
+
+)
+
+ S 1 步 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
++
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+
+(cid:11)
+(cid:11)
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+步 x 
+
+T (s 
+
+)
+
+ S 2 步 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
+V 5 
+
+(t )
+
+=
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+
+(cid:11)
+
+ 0 
+
+牟
+
+ t 
+
+t+
+
+竹
+
+步 x 
+
+T (s 
+
+)
+
+ W 步 x 
+
+(s 
+)
+
+ d sd 
+竹d 
+
+牟
+
+V 6 
+
+(t )
+
+=
+
+ t 
+(h 
+
++
+
+ t k 
+
+)
+ t )(t 
+
+ t 
+
+t k 
+
+步 x 
+
+T (s 
+ t k 
+
+)
+
+ X 1 步 x 
+
+(s 
+)
+
+ ds 
+
++
+
+(t k 
++1 
+
+)
+
+ x 
+
+T (t k 
+
+)
+
+ X 2 x 
+
+(t k 
+
+)
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+165 
+
+V 7 
+
+(t )
+
+=
+
+ h 
+
+2 
+
+(cid:11)
+
+ t 
+
+t k 
+
+步 x 
+
+T (s 
+
+)
+
+ X 3 步 x 
+
+(s 
+)
+
+ ds 
+
+ 羽 2 
+
+4 
+
+(cid:11)
+
+ t 
+
+t k 
+
+(x 
+(s 
+)
+
+ x 
+
+(t k 
+
+))
+
+T X 3 
+
+(x 
+(s 
+)
+
+ x 
+
+(t k 
+
+))
+
+ ds 
+
+(﹞)
+Let L 
+ be the weak-innitesimal operator of { x ( t ), t 
+then obtain 
+
+≡ 0}. we 
+
+L V 
+(t )
+
+=
+
+7 (cid:2)
+L V i 
+=1 
+i 
+
+(t )
+
+(14) 
+
+where 
+
+L V 1 
+
+(t )
+
+=
+
+ 2 x 
+
+T (t 
+
+)
+
+ P 步 x 
+
+(t 
+)
+
+=
+
+汎 T (t )(e 6 P e 
+
+T 
+1 
+
++
+
+ e 1 P e 
+
+T 
+6 
+
+)
+
+汎 (t )
+
+(15) 
+
+L V 2 
+
+(t )
+
+=
+
+ x 
+
+ (1 
+ 步 d 
+T (t )
+(t )
+(t ))
+ (1 
+ 步 
+T (t )
+(t )
+而 (t ))
+ 汐 步 
+ 而m 
+(1 
+而 (t ))
+(t ))
+ (1 
+ 汐 步 
+ 而M 
+而 (t ))
+(t ))
+ (1 
+ 汐 步 
+T (t )
+(t )
+而 (t ))
+ 而m 
+ 而m 
+(t ))
+(t 
+(t ))
+T (t )
+(t )
+T (t )
+(t )
+ (1 
+ 步 
+ 而 (t ))
+而 (t ))
+ 汐 步 
+ 而m 
+(1 
+而 (t ))
+(t ))
+ (1 
+ 汐 步 
+ 而M 
+而 (t ))
+(t ))
+ (1 
+ 汐 步 
+T (t )
+(t )
+而 (t ))
+ 而m 
+(t ))
+(t 
+ 而m 
+(t ))
+汎 T (t )1 
+(而 (t )
+而 (t )
+ d (t ))
+
+ Q 1 x 
+ Q 2 x 
+
+ x 
+
+T (t 
+T (t 
+
+ d (t ))
+ 而 (t ))
+ 而m 
+(t 
+(t ))
+ 而M 
+(t 
+(t ))
+
+ Q 1 x 
+ Q 2 x 
+
+ d (t ))
+(t 
+ 而 (t ))
+(t 
+
++
++
+
+ x 
+
+ x 
+
+ x 
+
+T (t 
+T (t 
+
+ Q 3 x 
+ Q 3 x 
+ x 
+
+ x 
+
++
+
+ x 
+
+ Q 4 x 
+ Q 4 x 
+ Q 1 x 
+
+T (t 
+
+=
+
+ x 
+
++
+
+ x 
+
+ Q 2 x 
+
+ x 
+
+T (t 
+T (t 
+T (t 
+
+ Q 2 x 
+ Q 3 x 
+ Q 3 x 
+ x 
+
+ 而 (t ))
+(t 
+ 而m 
+(t 
+(t ))
+ 而M 
+(t 
+(t ))
+
++
+
+ x 
+
+ x 
+
++
+
+ x 
+
+ Q 4 x 
+ Q 4 x 
+
+T (t 
+
+=
+
+,
+
+ 步 
+
+,
+
+汎 (t )
+
+(16) 
+
+L V 3 
+
+(t )
+
+=
+
+而M 
+
+(t )
+ (1 
+ 汐 步 
+而 (t ))
+
+ x 
+
+T (t )
+
+ R 1 x 
+
+(t )
+
++
+
+(而M 
+(t )
+
+ 而m 
+(t ))
+)
+
+ x 
+
+T (t )
+
+ R 2 x 
+
+(t )
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而M 
+t 
+(t 
+)
+而m 
+(t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+
+T (s 
+
+ R 1 x 
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+ t 
+
+x 
+
+T (s 
+
+)
+
+ R 2 x 
+
+(s 
+)
+
+ ds 
+
+(17) 
+
+By using Lemma 2.2 , we have 
+
+
+
+(cid:11)
+
+ t 
+
+(cid:11) t 
+而M 
+t 
+(t 
+)
+而 (t 
+)
+t 
+
+x 
+
+T (s 
+
+)
+
+ R 1 x 
+
+(s 
+)
+
+ ds 
+
+=
+
+
+
+x 
+
+T (s 
+
+)
+
+ R 1 x 
+
+(s 
+)
+
+ ds 
+
+
+
+(cid:11) t 
+而 (t 
+(cid:6)T 
+)
+而M 
+t 
+(t 
+)
+
+x 
+
+T (s 
+
+)
+
+ R 1 x 
+
+(s 
+)
+
+ ds 
+
+≒  1 
+
+而M 
+
+(t )
+
+(cid:5) (cid:20)
+
+ t 
+
+而 (t 
+t 
+而 (t 
+)
+而M 
+)
+(t 
+)
+t 
+
+x 
+(s 
+)
+ ds 
+x 
+(s 
+)
+
+(cid:20)
+
+ t 
+
+ ds 
+
+(cid:5)
+
+R 1 Y 1 
+R 1 
+
+
+
+(cid:6)(cid:5) (cid:20)
+
+ t 
+
+而 (t 
+t 
+而 (t 
+)
+而M 
+)
+(t 
+)
+t 
+
+x 
+(s 
+)
+ ds 
+x 
+(s 
+)
+
+(cid:20)
+
+ t 
+
+ ds 
+
+(cid:6)
+
+(18) 
+
+Similarly, one has 
+
+
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而M 
+(t 
+)
+t 
+
+x 
+
+T (s 
+
+)
+
+ R 2 x 
+
+(s 
+)
+
+ ds 
+
+=
+
+
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+
+T (s 
+
+)
+
+ R 2 x 
+
+(s 
+)
+
+ ds 
+
+
+
+ t 
+
+x 
+
+T (s 
+
+)
+
+ R 2 x 
+
+(s 
+)
+
+ ds 
+
+≒ 
+
+1 
+
+而M 
+
+(t )
+
+ 而m 
+(t )
+
+(cid:5)(cid:20)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+而 (t 
+)
+)
+而M 
+t 
+(t 
+)
+而m 
+(t 
+)
+而 (t 
+)
+t 
+而 (t 
+而M 
+)
+t 
+(t 
+)
+
+x 
+(s 
+)
+x 
+(s 
+)
+ ds 
+
+ ds 
+
+(cid:20)
+
+ t 
+
+(cid:6)T 
+
+℅
+
+(cid:5)
+
+R 2 Y 2 
+R 2 
+
+
+
+(cid:6)(cid:5)(cid:20)
+
+ t 
+
+x 
+(s 
+)
+x 
+(s 
+)
+ ds 
+
+ ds 
+
+(cid:20)
+
+ t 
+
+(cid:6)
+
+(19) 
+
+L V 3 
+
+(t )
+
+=
+
+而M 
+
+(t )
+
+ x 
+
+T (t )
+
+ R 1 x 
+
+(t )
+
++
+
+(而M 
+(t )
+
+ 而m 
+(t ))
+
+ x 
+
+T (t )
+
+ R 2 x 
+
+(t )
+
+ (1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而M 
+t 
+(t 
+)
+而m 
+(t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+
+T (s 
+
+)
+
+ R 1 x 
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+≒ 而M 
+(t )
+ 汐 步 
+ (1 
+而 (t ))
+(t )
+
+ t 
+
+x 
+
+T (s 
+
+)
+ 而m 
+(t ))
+x 
+(s 
+)
+ ds 
+(s 
+)
+x 
+ 汐 步 
+ (1 
+而 (t ))
+ 而m 
+(t )
+(t )
+
+ R 2 x 
+
+(s 
+)
+
+ ds 
+
+ x 
+
+T (t )
+
+ R 1 x 
+
+(t )
+
++
+
+(而M 
+(t )
+
+ x 
+
+T (t )
+
+ R 2 x 
+
+(t )
+
+而M 
+
+(cid:16)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+ t 
+
+ ds 
+
+(cid:17)
+
+ T (cid:5)
+
+R 1 Y 1 
+R 1 
+而m 
+而 (t 
+(t 
+)
+)
+t 
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+
+
+(cid:6)
+
+℅
+
+(cid:16)
+(cid:5)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(s 
+)
+ ds 
+(s 
+)
+x 
+
+ t 
+
+ ds 
+
+(cid:17)
+
+而M 
+
+(cid:16)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+x 
+(s 
+)
+(s 
+)
+x 
+
+ ds 
+
+ t 
+
+ ds 
+
+(cid:17)
+
+ T 
+
+℅
+
+R 2 Y 2 
+R 2 
+
+
+
+(cid:6)(cid:16)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(s 
+)
+(s 
+)
+x 
+
+ ds 
+
+ t 
+
+ ds 
+
+(cid:17)
+
+=
+
+而M 
+
+(t )
+ 汐 步 
+ (1 
+而 (t ))
+(t )
+
+ x 
+
+T (t )
+
+ R 1 x 
+
+(t )
+
++
+
+(而M 
+(t )
+
+ 而m 
+(t ))
+x 
+(s 
+)
+ ds 
+x 
+(s 
+)
+
+ x 
+
+T (t )
+
+ R 2 x 
+
+(t )
+
+而M 
+
+(cid:16)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+ t 
+
+ ds 
+
+(cid:17)
+
+ T (cid:5)
+
+R 1 Y 1 
+R 1 
+
+
+
+(cid:6)
+
+℅
+
+(cid:16)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(s 
+)
+ ds 
+(s 
+)
+x 
+
+ t 
+
+ ds 
+
+(cid:17)
+
+
+
+ 汐 步 
+(1 
+而 (t ))
+ 汐 )(而M 
+ 而m 
+(1 
+)
+
+(cid:16)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(s 
+)
+(s 
+)
+x 
+
+ ds 
+
+ t 
+
+ ds 
+
+(cid:17)
+
+ T (cid:5)
+
+R 2 Y 2 
+R 2 
+
+
+
+(cid:6)
+
+℅
+
+(cid:16)
+
+ (cid:20)
+(cid:20)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(s 
+)
+(s 
+)
+x 
+
+ ds 
+
+ t 
+
+ ds 
+
+(cid:17)
+
+=
+
+汎 T (t )2 
+(而 (t )
+
+,
+
+ 步 
+
+而 (t )
+
+,
+
+ d (t ))
+
+汎 (t )
+
+(20) 
+
+L V 4 
+
+(t )
+
+=
+
+而M 
+
+(t )
+ (1 
+ 汐 步 
+而 (t ))
+
+ 步 x 
+
+T (t )
+
+ S 1 步 x 
+
+(t )
+
++
+
+(而M 
+(t )
+
+ 而m 
+(t ))
+)
+
+ 步 x 
+
+T (t )
+
+ S 2 步 x 
+
+(t )
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而M 
+t 
+(t 
+)
+而m 
+(t 
+)
+而M 
+t 
+(t 
+)
+
+步 x 
+
+T (s 
+
+ S 1 步 x 
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+ t 
+
+步 x 
+
+T (s 
+(cid:11) t 
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+)
+ 而m 
+(t ))
+
+ S 2 步 x 
+
+(s 
+)
+
+ ds 
+
+=
+
+(cid:11) t 
+而M 
+而 (t 
+t 
+)
+
+(t )
+
+ 步 x 
+
+T (t )
+
+ S 1 步 x 
+
+(t )
+
++
+
+(而M 
+(t )
+
+ 步 x 
+
+T (t )
+
+ S 2 步 x 
+
+(t )
+
+
+
+步 x 
+
+T (s 
+
+)
+
+ S 1 步 x 
+
+(s 
+)
+
+ ds 
+
+
+
+步 x 
+
+T (s 
+
+)
+
+ S 1 步 x 
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+步 x 
+
+T (s 
+
+)
+
+ S 2 步 x 
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+≒ 而M 步 x 
+T (t )
+
+ t 
+
+步 x 
+
+T (s 
+
+)
+ 而m 
+(而M 
+)
+
+ S 2 步 x 
+
+(s 
+)
+
+ ds 
+
+ S 1 步 x 
+
+(t )
+
++
+
+ 步 x 
+
+T (t 
+
+)
+
+ S 2 步 x 
+
+(t 
+)
+
+
+
+(cid:11)
+(cid:11)
+(cid:11)
+(cid:11)
+
+ t 
+
+而 (t 
+t 
+)
+
+步 x 
+
+T (s 
+
+)
+
+{
+
+ S 1 
+
+ I
+
+ 33 
+
+}
+
+ 步 x 
+
+(s 
+)
+
+ ds 
+
+
+
+ t 
+
+而 (t 
+t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+步 x 
+
+T (s 
+
+)
+
+I
+
+ 33 步 x 
+
+(s 
+)
+
+ ds 
+
+
+
+ t 
+
+步 x 
+
+T (s 
+
+)
+
+{
+
+ S 1 
+
+ J
+
+ 33 
+
+}
+
+ 步 x 
+
+(s 
+)
+
+ ds 
+
+
+
+ t 
+
+步 x 
+
+T (s 
+
+)
+
+J
+
+ 33 步 x 
+而m 
+(t 
+)
+而 (t 
+)
+t 
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+(cid:11)
+
+ t 
+
+步 x 
+
+T (s 
+
+)
+
+{
+
+ S 2 
+
+ K
+
+ 33 
+
+}
+
+ 步 x 
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+ t 
+
+步 x 
+
+T (s 
+
+)
+
+K
+
+ 33 步 x 
+
+(s 
+)
+
+ ds 
+
+166 
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+而 (t 
+)
+而M 
+(t 
+)
+t 
+2 
+
+步 x 
+
+T (s 
+
+)
+
+{
+
+ S 2 
+
+ L
+
+ 33 
+
+}
+
+ 步 x 
+
+(s 
+)
+
+ ds 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+ t 
+
+步 x 
+
+T (s 
+
+)
+
+L
+
+ 33 步 x 
+
+(s 
+)
+ ds 
+≡ 0 
+≡ 0 
+≡ 0 
+ it follows from Lemma 2.3 that 
+
+(21) 
+≡ 0 
+
+Let 
+and 
+
+1 
+
+=
+ L
+
+ S 1 
+
+ I
+
+ 33 
+
+,
+
+=
+
+ S 1 
+
+ J
+
+ 33 
+
+,
+
+3 
+
+=
+
+ S 2 
+
+ K
+
+ 33 
+
+,
+
+4 
+
+=
+
+ S 2 
+
+ 33 
+
+,
+
+
+
+(cid:11)
+
+ t 
+
+而 (t 
+t 
+)
+
+步 x 
+
+T (s 
+
+)1 步 x 
+(s 
+)
+
+ ds 
+
+≒ 聿 (cid:2)
+
+1 
+
+(t )
+
+(cid:5)
+
+而 (t )
+
+M
+
+ 1 
+
+ 1 
+
+1 
+
+M
+
+(cid:2)
+
+1 
+
++
+
+而 (t )
+3 
+
+M
+
+ 2 
+
+ 1 
+
+1 
+
+M
+
+(cid:2)
+
+2 
+
++
+
+而 (t )
+5 
+
+M
+
+ 3 
+
+ 1 
+
+1 
+
+M
+
+(cid:2)
+
+3 
+
++
+
+ Sym 
+
+{M
+
+ 1 
+
+1 
+
++
+
+M
+
+ 2 
+
+2 
+
++
+
+M
+
+ 3 
+
+3 
+
+}
+
+(cid:6)
+
+聿1 
+
+(t )
+
+=
+
+汎 T (t )
+
+(cid:28)
+
+耳1 
+
+(cid:5)
+
+而 (t )
+
+M
+
+ 1 
+
+ 1 
+
+1 
+
+M
+
+(cid:2)
+
+1 
+
++
+
+而 (t )
+3 
+
+M
+
+ 2 
+
+ 1 
+
+1 
+
+M
+
+(cid:2)
+
+2 
+
++
+
+而 (t )
+5 
+
+M
+
+ 3 
+
+ 1 
+
+1 
+
+M
+
+(cid:2)
+
+3 
+
+(cid:6)
+
+T 
+耳 T 
+1 
+
++
+
+ Sym 
+
+{M
+
+ 1 
+
+1 
+
++
+
+M
+
+ 2 
+
+2 
+
++
+
+M
+
+ 3 
+
+3 
+
+}
+
+(cid:29)
+
+汎 (t )
+
+(22) 
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+步 x 
+
+T (s 
+
+)2 步 x 
+(s 
+)
+
+ ds 
+
+≒ 聿 (cid:2)
+
+2 
+
+(t )
+
+(cid:5)
+
+ 而 (t ))
+(而M 
+(t )
+ 而 (t ))
+(而M 
+(t )
+5 
+(而M 
+(t )
+ 而 (t ))
+3 
+
+N
+
+ 1 
+
+ 1 
+
+2 
+
+N
+
+(cid:2)
+
+1 
+
++
+
+(而M 
+(t )
+
+ 而 (t ))
+3 
+
+N
+
+ 2 
+
+ 1 
+
+2 
+
+N
+
+(cid:2)
+
+2 
+
++
+
+N
+
+ 3 
+
+ 1 
+ 而 (t ))
+
+2 
+
+N
+
+(cid:2)
+
+3 
+
++
+
+ Sym 
+ 1 
+
+{N
+
+ 1 
+
+1 
+
++
+
+N
+
+ 2 
+
+2 
+
++
+
+N
+
+ 3 
+
+3 
+
+}
+
+(cid:6)
+
+聿2 
+
+(t )
+
+=
+
+汎 T (t )
+
+(cid:30)
+
+耳2 
+
+(cid:14)
+
+N
+
+ 1 
+
+2 
+
+N
+
+(cid:2)
+
+1 
+
++
++
+
+(而M 
+(t )
+
+N
+N
+
+ 2 
+
+ 1 
+
+2 
+
+N
+N
+
+(cid:2)
+
+2 
+
++
+
+(而M 
+(t )
+
+ 而 (t ))
+5 
+
+N
+
+ 3 
+
+ 1 
+
+2 
+
+N
+
+(cid:2)
+
+3 
+
+(cid:6)
+
+T 
+耳 T 
+2 
+
+ Sym 
+(1 
+ 汐 步 
+而 (t ))
+
+{N
+
+ 1 
+
+1 
+
++
+
+ 2 
+
+2 
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
++
+
+ 3 
+
+3 
+
+}
+
+ }
+
+汎 (t )
+
+(cid:11)
+
+ t 
+
+步 x 
+
+T (s 
+
+)3 步 x 
+(s 
+)
+
+ ds 
+
+≒ (1 
+ 汐 步 
+而 (t 
+))
+ 而m 
+(而 (t )
+(t ))
+
+聿 (cid:2)
+
+3 
+
+(t 
+)
+
+(cid:26)
+
+(而 (t 
+)
+
+ 而m 
+(t ))
+(而 (t )
+
+G
+
+ 1 
+
+ 1 
+ 而m 
+(t ))
+
+3 
+
+G
+
+(cid:2)
+
+1 
+
++
+
+3 
+
+G
+
+ 2 
+
+ 1 
+
+3 
+
+G
+
+(cid:2)
+
+2 
+
++
+
+5 
+
+G
+
+ 3 
+
+ 1 
+
+3 
+
+G
+
+(cid:2)
+
+3 
+
++
+
+ Sym 
+
+{G
+
+ 1 
+
+1 
+
++
+
+G
+
+ 2 
+
+2 
+
++
+
+G
+
+ 3 
+
+3 
+
+}
+
+(cid:27)
+
+聿3 
+
+(t )
+
+(23) 
+
+=
+
+ 汐 步 
+(1 
+而 (t 
+))
+汎 T (t 
+)
+ 而m 
+(而 (t )
+(t ))
+
+(cid:30)
+
+耳3 
+
+(cid:14)
+
+(而 (t 
+)
+ 1 
+
+ 而m 
+ 1 
+(t ))
+ 而m 
+(而 (t )
+(t ))
+
+G
+
+ 1 
+
+3 
+
+G
+G
+
+(cid:2)
+
+1 
+
++
++
+
+3 
+
+G
+
+ 2 
+
+3 
+
+G
+G
+
+(cid:2)
+
+2 
+3 
+
++
+
+5 
+
+ 3 
+
+ 1 
+
+3 
+
+G
+
+(cid:2)
+
+3 
+
+(cid:15)
+
+T 耳 T 
+3 
+
+ Sym 
+
+{G
+
+ 1 
+
+1 
+
++
+
+G
+
+ 2 
+
+2 
+
++
+
+ 3 
+
+}
+
+(cid:31)
+
+汎 (t )
+
+(24) 
+
+(1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+步 x 
+
+T (s 
+
+)4 步 x 
+(s 
+)
+ 而 (t ))
+(而M 
+(t )
+
+ ds 
+
+≒ (1 
+ 汐 步 
+而 (t 
+))
+ 而 (t ))
+(而M 
+(t )
+3 
+
+聿 (cid:2)
+
+4 
+
+(t 
+)
+
+(cid:26)
+
+(而M 
+(t 
+)
+
+H
+
+ 1 
+
+ 1 
+ 而 (t ))
+5 
+
+4 
+
+H
+
+(cid:2)
+
+1 
+
++
+
+H
+
+ 2 
+
+ 1 
+
+4 
+
+H
+
+(cid:2)
+
+2 
+
++
+
+H
+
+ 3 
+
+ 1 
+
+4 
+
+H
+
+(cid:2)
+
+3 
+
++
+=
+
+ Sym 
+
+{H
+
+ 1 
+
+1 
+
++
+
+H
+
+ 2 
+
+2 
+
++
+
+H
+
+ 3 
+
+3 
+
+}
+
+(cid:27)
+
+聿4 
+
+(t )
+ 而 (t ))
+
+(1 
+
+ 汐 步 
+而 (t 
+))
+
+汎 T (t 
+)
+
+(cid:30)
+
+耳4 
+
+(cid:14)
+
+(而M 
+(t 
+)
+
+H
+
+ 1 
+
+ 1 
+
+4 
+
+H
+
+(cid:2)
+
+1 
+
++
++
+
+(而M 
+(t )
+
+ 而 (t ))
+3 
+
+H
+H
+
+ 2 
+
+ 1 
+
+4 
+
+H
+H
+
+(cid:2)
+
+2 
+
++
+
+(而M 
+(t )
+
+ 而 (t ))
+5 
+
+H
+
+ 3 
+
+ 1 
+
+4 
+
+H
+
+(cid:2)
+
+3 
+
+(cid:6)
+
+T 耳 T 
+4 
+
+ Sym 
+
+{H
+
+ 1 
+
+1 
+
++
+
+ 2 
+
+2 
+
++
+
+ 3 
+
+3 
+
+}
+
+ }
+
+汎 (t )
+
+(25) 
+
+According to Lemma 2.4 , 
+
+
+
+(cid:11)
+
+ t 
+
+而 (t 
+(cid:11) t 
+t 
+)
+而 (t 
+t 
+)
+
+步 x 
+
+T (s 
+
+)
+
+I
+
+ 33 步 x 
+
+(s 
+)
+
+ ds 
+
+≒
+
+(cid:16)
+(cid:14)
+
+x 
+(t )
+ 而 (t ))
+x 
+(t 
+步 x 
+(s 
+)
+(而 (t )
+(而 (t )
+
+(cid:17)
+
+ T 
+
+(cid:16)
+
+ I
+
+
++
+I
+ I
+
+ 11 
+
+I
+I
+
+
+ 12 
+
+I
+I
+
+ 13 
+
+ 22 
+
+ 23 
+
+0 
+(而 (t )
+汎 (t )
+
+(cid:17)
+
+(cid:16)
+
+x 
+(t )
+ 而 (t ))
+x 
+(t 
+步 x 
+(s 
+)
+
+(cid:17)
+
+ds 
+
+=
++
+
+汎 T (t )
+
+e 1 
+
+I
+
+ 11 
+
++
+I
+
+I
+
+T 
+13 
+
+ 13 
+
+)
+
+ e 
+
+T 
+1 
+
++
+
+ 2 e 1 
+
+I
+
+ 12 
+
+ I
+
+ 13 
+
+I
+
+T 
+23 
+
+)
+
+ e 
+
+T 
+2 
+
++
+
+ e 2 
+
+ 22 
+
+ 23 
+
+ I
+
+T 
+23 
+
+)
+
+ e 
+
+T 
+2 
+
+(cid:15)
+
+(26) 
+
+Similarly, one has 
+
+
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+步 x 
+
+T (s 
+
+)
+
+J
+
+ 33 步 x 
+
+(s 
+)
+ ds 
+ 而 (t ))
+(t 
+ 而M 
+x 
+(t 
+(t ))
+步 x 
+(s 
+)
+ 而 (t ))
+)
+
+≒
+
+ t 
+
+(cid:16)
+
+ x 
+
+(cid:17)
+
+ T 
+
+(cid:16)
+
+ J
+
+
+
+ 11 
+
+J
+J
+
+
+ 12 
+
+J
+J
+
+ 13 
+
+ 22 
+
+ 23 
+
+0 
+
+(cid:17)
+
+(cid:16)
+
+ x 
+
+ 而 (t ))
+(t 
+ 而M 
+x 
+(t 
+(t ))
+步 x 
+(s 
+)
+
+(cid:17)
+
+ds 
+
+=
+
+汎 T (t )
+ 而 (t ))
+((而M 
+(t )
+
+(cid:14)
+
+e 2 
+
+((而M 
+(t )
+
+J
+
+ 11 
+
++
+
+J
+
+T 
+13 
+
++
+
+J
+
+ 13 
+
+)
+
+ e 
+
+T 
+2 
+
++
+
+ 2 e 2 
+
+((而M 
+(t )
+
+J
+
+ 12 
+
+ J
+
+ 13 
+
++ J
+
+T 
+23 
+ D 22 
+
+ e 
+
+T 
+4 
+
++
+
+ e 4 
+
+ 而 (t ))
+
+ J
+
+ 23 
+
+ J
+
+T 
+23 
+
+)
+
+ e 
+
+T 
+4 
+
+(cid:15)
+
+汎 (t )
+
+(27) 
+
+(1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+步 x 
+
+T (s 
+
+)
+
+K
+
+ 33 步 x 
+
+(s 
+)
+ 而m 
+(t 
+(t ))
+ 而 (t ))
+x 
+(t 
+步 x 
+(s 
+)
+
+ ds 
+
+(28) 
+
+≒ (1 
+ 汐 步 
+而 (t ))
+ 而m 
+(t 
+(t ))
+ 而 (t ))
+x 
+(t 
+步 x 
+(s 
+)
+ 汐 步 
+而 (t 
+))
+汎 T (t 
+)
+ 而m 
+((而 (t )
+(t ))
+ 而m 
+((而 (t )
+(t ))
+
+(cid:11)
+
+ t 
+
+(cid:16)
+
+ x 
+
+(cid:17)
+
+ T 
+
+(cid:16)
+
+ K
+
+
+
+ 11 
+
+K
+K
+
+
+ 12 
+
+K
+K
+
+ 13 
+
+ 22 
+
+ 23 
+
+0 
+
+(cid:17)
+
+℅
+
+(cid:16)
+
+ x 
+
+(cid:17)
+
+ds 
+
+=
++
++
+
+(1 
+
+(cid:14)
+
+e 3 
+
+((而 (t 
+)
+
+ 而m 
+(t ))
+
+K
+
+ 11 
+
++
+
+K
+
+T 
+13 
+
++
+
+K
+
+ 13 
+
+)
+
+ e 
+
+T 
+3 
+
+ 2 e 3 
+
+K
+K
+
+ 12 
+
+ K
+ K
+
+ 13 
+
++
+K
+ K
+
+T 
+23 
+T 
+23 
+
+)
+
+ e 
+
+T 
+2 
+T 
+2 
+
+ e 2 
+
+ 22 
+
+ 23 
+
+)
+
+ e 
+
+(cid:15)
+
+汎 (t )
+
+(28) 
+
+(1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+步 x 
+
+T (s 
+
+)
+
+L
+
+ 33 步 x 
+
+(s 
+)
+ ds 
+ 而 (t ))
+(t 
+ 而M 
+x 
+(t 
+(t ))
+步 x 
+(s 
+)
+
+(29) 
+
+≒ (1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+
+ t 
+
+(cid:16)
+
+ x 
+
+(cid:17)
+
+ T 
+
+(cid:16)
+
+ L
+
+
+
+ 11 
+
+L
+L
+
+
+ 12 
+
+L
+L
+
+ 13 
+
+ 22 
+
+ 23 
+
+0 
+
+(cid:17)
+
+℅
+
+(cid:16)
+
+ x 
+
+ 而 (t ))
+(t 
+ 而M 
+x 
+(t 
+(t ))
+步 x 
+(s 
+)
+ 汐 步 
+而 (t 
+))
+汎 T (t 
+)
+ 而 (t ))
+((而M 
+(t )
+ 而 (t ))
+((而M 
+(t )
+
+(cid:17)
+
+ds 
+
+=
++
++
+
+(1 
+
+(cid:14)
+
+e 2 
+
+((而M 
+(t 
+)
+
+ 而 (t ))
+)
+
+L
+
+ 11 
+
++
+
+L
+
+T 
+13 
+
++
+
+L
+
+ 13 
+
+)
+
+ e 
+
+T 
+2 
+
+ 2 e 2 
+
+L
+L
+
+ 12 
+
+ L
+ L
+
+ 13 
+
++
+L
+ L
+
+T 
+23 
+T 
+23 
+
+ e 
+
+T 
+4 
+T 
+4 
+
+ e 4 
+
+ 22 
+
+ 23 
+
+)
+
+ e 
+
+(cid:15)
+
+汎 (t )
+
+(29) 
+
+By using Lemma 2.5 , we get 
+
+L V 5 
+
+(t )
+
+=
+
+(而M 
+(t )
+
+ 而m 
+(t ))
+
+2 
+
+2 
+
+步 x 
+T (t )
+
+ W 步 x 
+
+(t )
+
+ (1 
+ 汐 步 
+而 (t ))
+ 而m 
+(t ))
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+2 
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+步 x 
+
+T (s 
+
+)
+
+ W 步 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
+=
+
+(而M 
+(t )
+
+2 
+
+步 x 
+T (t )
+
+ W 步 x 
+
+(t )
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+167 
+
+ (1 
+ 汐 步 
+而 (t ))
+
+(cid:11)
+(cid:11)
+
+ 而 (t )
+而M 
+(t )
+(t )
+而 (t )
+2 
+
+(cid:11)
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+步 x 
+
+T (s 
+
+)
+
+ W 步 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
+(30) 
+
+ (1 
+ 汐 步 
+而 (t ))
+ 而m 
+(t ))
+
+ 而m 
+
+ t 
+
+t+
+
+牟
+
+步 x 
+
+T (s 
+
+)
+
+ W 步 x 
+
+(s 
+)
+
+ d sd 
+
+牟
+
+≒ (而M 
+(t )
+2 
+ (1 
+ 汐 步 
+而 (t 
+))
+
+步 x 
+T (t )
+
+ W 步 x 
+
+(t )
+
+2 
+ 而 (t ))
+ 而 (t ))
+(而M 
+(t )
+ 而 (t )
+2 
+
+(而M 
+(t 
+)
+
+2 
+
+((而M 
+(t 
+)
+[ 
+
+ 而 (t 
+)))
+
+ x 
+
+(t 
+)
+
+
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(s 
+)
+
+ ds 
+
+(cid:6)
+
+T 
+
+W 
+
+(cid:5)
+
+
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+而m 
+(t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(s 
+)
+
+ ds 
+
+(cid:6)
+
+
+
+4 
+ 而 (t ))
+
+(而M 
+(t )
+
+2 
+
+(cid:5)
+
+ 而M 
+(t )
+
+x 
+(t )
+
+
+
+ t 
+
+x 
+(s 
+)
+
+ ds 
+
++
+
+3 
+ 而 (t )
+(t )
+ 而 (t )
+ 而M 
+(t )
+2 
+
+而M 
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+W 
+
+(cid:5)
+
+x 
+(t )
+
+
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而M 
+(t 
+)
+t 
+
+x 
+(s 
+)
+
+ ds 
+
++
+
+3 
+ 而 (t )
+2 
+
+而M 
+
+(t )
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+
+
+(而 (t )
+
+ 而m 
+(t ))
+
+2 
+
+(而 (t )
+[ 
+
+ 而m 
+(t ))
+
+ x 
+
+(t )
+
+
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+(cid:11) t 
+而 (t 
+)
+t 
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+x 
+(s 
+)
+
+ ds 
+
+(cid:6)
+(cid:6)
+(cid:5)
+
+T 
+
+W [ 
+(而 (t )
+
+ 而m 
+(t ))
+
+ x 
+
+(t )
+
+
+
+x 
+(s 
+)
+
+ ds 
+
+
+
+4 
+
+(而 (t )
+
+ 而m 
+(t ))
+
+2 
+
+ (而 (t )
+
+ 而m 
+(t ))
+
+2 
+
+x 
+(t )
+
+
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+x 
+(s 
+)
+
+ ds 
+
+(30) 
+
++
+
+3 
+
+ 而m 
+而 (t )
+(t )
+ 而m 
+ (而 (t )
+(t ))
+
+(cid:11)
+
+ 而m 
+
+(t )
+而 (t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+W 
+
+(cid:5)
+
+2 
+
+x 
+(t )
+
+
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+x 
+(s 
+)
+
+ ds 
+
++
+
+3 
+
+而 (t )
+(而M 
+(t )
+
+ 而m 
+(t )
+ 而m 
+(t ))
+
+(cid:11)
+
+ 而m 
+
+(t )
+而 (t )
+2 
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)!
+
+=
+
+2 
+
+步 x 
+T (t )
+
+ W 步 x 
+
+(t )
+
+ (1 
+ 汐 步 
+而 (t ))
+
+"
+
+2 
+
+(cid:5)
+(cid:5)
+(cid:5)
+
+x 
+(t )
+
+
+
+1 
+ 而 (t )
+
+而M 
+
+(t )
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
+(cid:6)
+(cid:6)
+
+T 
+
+℅ W 
+
+x 
+(t )
+
+
+
+1 
+ 而 (t )
+1 
+ 而 (t )
+
+而M 
+
+(t )
+
+(cid:11)
+
+ t 
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
+ 4 
+
+ 1 
+(t )
+x 
+2 
+
+
+
+而M 
+
+(t )
+
+(cid:11)
+
+ t 
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
++
+
+3 
+ 而 (t ))
+
+(而M 
+(t )
+ 1 
+(t )
+x 
+2 
+
+2 
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+W 
+
+(cid:5)
+
+
+
+1 
+ 而 (t )
+
+而M 
+
+(t )
+
+(cid:11)
+
+ t 
+
+而 (t 
+)
+而M 
+t 
+(t 
+)
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
++
+
+3 
+ 而 (t ))
+
+(而M 
+(t )
+
+2 
+
+(cid:11)
+
+ 而m 
+
+(t )
+
+而M 
+(t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+ 2 
+
+(cid:5)
+(cid:5)
+(cid:5)
+
+x 
+(t )
+
+
+
+1 
+
+而 (t )
+
+ 而m 
+(t )
+
+(cid:11)
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而m 
+(t 
+)
+而 (t 
+t 
+)
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
+(cid:6)
+(cid:6)
+
+T 
+
+℅W 
+
+x 
+(t )
+
+
+
+1 
+
+而 (t )
+
+ 而m 
+(t )
+
+ t 
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
+ 4 
+
+ 1 
+(t )
+x 
+2 
+
+
+
+1 
+
+而 (t )
+
+ 而m 
+(t )
+
+(cid:11)
+
+ t 
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
++
+
+3 
+
+(而 (t )
+ 1 
+(t )
+x 
+2 
+
+ 而m 
+(t ))
+
+2 
+
+(cid:11)
+
+ 而m 
+
+(t )
+而 (t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)
+
+T 
+
+W 
+
+(cid:5)
+
+
+
+1 
+
+而 (t )
+
+ 而m 
+(t )
+
+(cid:11)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+x 
+(
+
+ s 
+
+)
+
+ ds 
+
++
+
+3 
+
+ 而m 
+(而 (t )
+(t ))
+汎 T (t )3 
+(而 (t )
+而 (t )
+
+2 
+
+(cid:11)
+
+ 而m 
+
+(t )
+而 (t )
+
+(cid:11)
+
+ t 
+
+t+
+
+牟
+
+x 
+(s 
+)
+
+ d sd 
+
+牟
+
+(cid:6)!
+
+=
+
+,
+
+ 步 
+
+,
+
+ d (t ))
+
+汎 (t )
+
+(30) 
+
+Applying Lemma 2.6 , we have 
+ d (t 
+(h 
+))
+)
+ 2 d (t ))
+≒ (h 
+ d (t 
+))
+)
+
+L V 6 
+
+(t )
+
+=
+
+ 步 x 
+
+T (t 
+
+ X 1 步 x 
+
+(t 
+)
+ d (t ))
+(t 
+)
+ d (t 
+)
+
+
+
+(cid:11)
+
+ t 
+
+d (t 
+t 
+)
+
+步 x 
+)
+(s 
+)
+ d (t ))
+(t 
+汎 T (t 
+)
+F 
+汎 (t 
+)
+
+T (s 
+
+ X 1 步 x 
+
+ ds 
+
++
+
+(d k 
+
+ x 
+
+T (t 
+
+ X 2 x 
+
+ 步 x 
+
+T (t 
+
+ X 1 步 x 
+
++
+
+ Y X 
+
+1 
+1 
+
++
++
+
+ 2 
+
+汎 T (t )
+ 2 d (t ))
+((d 
+ d (t ))
+汎 T (t )(h 
+汎 T (t )
+
+ Y 
+
+(cid:11)
+
+ t 
+
+d (t 
+t 
+)
+T (t 
+
+步 x 
+(
+
+ s 
+
+)
+ ds 
+ d (t ))
+ d (t ))
+(t 
+汎 (t )
+ d (t )
+汎 T (t )
+F 
+汎 (t )
+ 2 d (t ))
+汎 (t )
+((d 
+汎 T (t )
+
+ x 
+
+ X 2 x 
+
+=
+
+ e 6 X 1 e 
+
+T 
+6 
+
++
+
+ Y X 
+
+1 
+1 
+
++
+
+ 2 
+
+ Y 
+
+ e 5 
+(e 1 
+
+)
+
++
+
+ e 5 X 2 e 
+
+T 
+5 
+
+汎 (t )
+(31) 
+
+L V 7 
+
+(t )
+
+=
+
+ h 
+
+2 步 x 
+
+T (t )
+
+ X 3 步 x 
+
+(t )
+
+ 羽 2 
+
+4 
+
+(x 
+(t )
+
+ x 
+
+(t k 
+
+))
+
+T X 3 
+
+(x 
+(t )
+
+ x 
+
+(t k 
+
+))
+
+=
+
+ h 
+
+2 步 x 
+
+T (t )
+(t )
+ x 
+ d (t )))
+(t 
+汎 (t )
+
+ X 3 步 x 
+
+ 羽 2 
+
+4 
+(x 
+(t )
+ 羽 2 
+
+(x 
+(t )
+ x 
+ d (t )))
+(t 
+汎 T (t )(e 1 
+
+T X 3 
+
+=
+
+ h 
+
+2 汎 T e 6 X 3 e 
+T 
+6 
+
+4 
+
+ e 5 
+
+)
+
+ X 3 
+
+ e 5 
+(e 1 
+
+)
+
+T 汎 (t )
+
+(32) 
+
+By introducing the relaxation matrix M 1 
+and M 2 
+ble dimension, one has the following zero equation 
+ A 
+
+with compati- 
+
+(x 
+
+T M 
+T 
+1 
+
++
+
+ 步 x 
+
+T (t )
+)(
+(t )
+ d (t )))
+(t 
+
+ M 
+
+T 
+2 
+
+ 步 x 
+
+i x 
+
+(t )
+
++
+
+ A di x 
+
+ 而 (t ))
+(t 
+
++
+
+ B i K j x 
+
+=
+
+ 0 
+
+(33) 
+
+Combing (13)每(33) gives 
+
+L V 
+(t )
+
+≒ r (cid:2)
+
+r (cid:2)
+米i 
+=1 
+j=1 
+i 
+
+(牟 (t 
+))
+
+米 j 
+
+(牟
+
+k 
+
+)
+
+汎 T 
+
+l i j 
+
+(而 (t 
+)
+
+,
+
+ 步 
+
+而 (t 
+)
+
+,
+
+ d (t 
+))
+
+汎 (t 
+)
+
+(34) 
+
+where 
+
+
+
+l i j 
+
+(而 (t )
+
+,
+
+ 步 
+
+而 (t )
+
+,
+
+ d (t ))
+
+=
+
+
+
+l i j 
+
+(而 (t )
+而 (t )
+ d (t ))
+1 (cid:2)
+ d (t )
+
+,
+
+ 步 
+
+,
+
++
+
+ +
+
+ Y X 
+
+1 
+1 
+
+Y 
+
+(cid:2)
+
+If 
+the LMIs 
+Lemma 2.1 that 
+
+(8)每(12) are 
+
+feasible, 
+
+it 
+
+follows 
+
+from 
+
+L V 
+(t )
+
+<
+
+ 0 
+
+.
+
+(35) 
+
+which implies the CLSDFS (7) is asymptotically stable. This com- 
+pletes the proof. 
+
+(cid:3)
+
+168 
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+Remark 1. Newly mode-dependent LKF is proposed with the aid 
+of the tunable parameter, which makes full use of exible delay 
+intervals, and some novel stability criteria can be achieved. 
+
+Remark 2. Notice that in this paper, the mismatched membership 
+functions (MMFs) 
+( z ( t )) and 
+)) are introduced to obtain the 
+less conservative results. It should be pointed out that, MMFs in 
+Lemma 2.1 are introduced to tackle with the fuzzy systems with 
+grades of membership. The relationship of 
+( z ( t )) and 
+)) are 
+neglected in the existing literature [2,3,13,14] . 
+
+肋
+
+ i 
+
+肋
+
+ i 
+
+( z ( t k 
+
+肋
+
+ i 
+
+肋
+
+ i 
+
+( z ( t k 
+
+Remark 3. Inspired by Wang et al. [35] , a new LKF has been pro- 
+posed with the aid of a variable parameter 
+汐 in the proof of 
+Theorem 3.1 . Different from the existing results in [9,14,15] , the 
+maximum and minimum bound of time delay is estimated as 
+ 汐 )
+ 汐 )
+(t )
+汐而 (t )
+(1 
+而M and 
+(t )
+汐而 (t )
+(1 
+而m . Some 
+ 汐 步 
+ 汐 )(而M 
+ 而m 
+ 而 (t )
+而 (t )
+(1 
+)
+(t )
+novel cross terms 1 
+ 而m 
+ and 
+而 (t )
+(t )
+ are introduced to gives less conservative criteria. 
+
+而M 
+
+=
+
++
+
+而m 
+
+=
+
++
+
+,
+
+,
+
+而M 
+
+而 ( t ) satises 步 
+而 (t )
+Remark 4. The time delay 
+ compared with 
+[14,17] , the constraint 
+ 1 is eliminated in the time-derivative 
+of the proposed LKF, that is, the established stability condition in 
+this paper is less conservative than those presented in [14,17] . 
+
+≒ 而D 
+
+,
+
+而 D 
+
+<
+
+Remark 5. It is worth pointing out that Lemma 2.3 reveals the 
+relationship among mode-dependent terms 
+步 x 
+ (s 
+)
+步 x 
+(s 
+)
+ ds,
+ 而M 
+ 而m 
+(t 
+(t ))
+(t 
+(t ))
+(
+)
+x 
+x 
+x 
+(s 
+)
+牟 and 
+ d sd 
+duces less conservative results. 
+
+(cid:20)
+
+ t 
+
+而m 
+(t 
+)
+t 
+(t 
+)
+
+而
+
+M 
+
+(cid:2)
+
+ S 2 
+
+,
+
+,
+
+(cid:20)
+(cid:20)
+
+ t 
+
+而 (t 
+)
+t 
+(t 
+)
+牟 x 
+
+而
+t+
+
+M 
+
+x 
+(
+(s 
+)
+
+ s 
+
+)
+
+ ds,
+
+(cid:20)
+
+ t 
+
+而m 
+(t 
+)
+而 (t 
+t 
+)
+
+ s 
+
+ ds,
+
+(cid:20)
+
+ 而m 
+
+(t )
+而 (t )
+
+(cid:20)
+
+ t 
+
+t+
+
+牟 x 
+
+(cid:20)
+
+ 而 (t )
+(t )
+
+而
+
+M 
+
+ t 
+
+ d sd 
+
+牟 ,
+
+ which may in- 
+
+Corollary 3.1. For a given scalar h 
+ 0, if there exist symmetric ma- 
+trices P 
+(l 
+ 3)
+ and matrices Y 1 
+, 
+; n 
+(l 
+(m 
+ 3)
+
+>
+
+>
+,
+
+ 0, X l 
+
+>
+
+ 0 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+,
+
+, Y 2 
+
+M
+
+ l 
+
+,
+
+N
+
+ l 
+
+,
+>
+
+K
+
+ l 
+ 0 
+
+,
+,
+
+L
+
+ l 
+
+=
+
+ 1 
+ 2 
+ 0 
+
+,
+
+ 3)
+ such that 
+≡ 0 
+
+,
+
+I
+
+ mn 
+
+,
+
+J
+
+ mn 
+
+,
+
+K
+
+ mn 
+
+L
+
+ mn 
+
+=
+
+ 1 
+ 2 
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+,
+
+  W 1 i j 
+
+ U 1 i j 
+
+>
+
+,
+
+  Y 1 i j 
+
+,
+
+(cid:5)
+(cid:5)
+
+R 1 Y 1 
+R 1 
+
+
+
+(cid:6)
+(cid:6)
+
+(36) 
+
+R 2 Y 2 
+R 2 
+
+
+
+≡ 0 
+
+(37) 
+
+W l i j 
+
++
+
+≒ U l i j 
+ W l ji 
+r (cid:2)
+汛s 
+=1 
+s 
+ W l ( j+
+
++
+
+ U l ji 
+
+,
+
+ l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+ i,
+
+ j 
+
+﹋
+
+S
+
+(38) 
+
+
+
+ 2 W l i j 
+l i j 
+≒ W l i 
+( j+
+
++
+
+(
+ W 
+
++
+
+l is 
+
++
+
+ W 
+
++
+
+l s j 
+
+)
+
+ r )
+
++
+
+ r )
+
+ l 
+ i 
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+ i,
+
+ j 
+
+﹋
+
+S
+
+(39) 
+
+(cid:5)
+
+Y l11 
+
+Y l12 
+Y l11 
+
+
+
+(cid:6)
+
+<
+
+ 0 
+ l 
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+(40) 
+
+where 
+
+W l i j 
+
+=
+
+ R l i j 
+ N l i j 
+
+,
+
+ W 
+
++
+
+l i j 
+
+=
+
+ R l i j 
+
++
+
+ N l i j 
+
+,
+
+ l 
+
+=
+
+ 1 
+ 2 
+
+,
+
+Y l11 
+
+=
+
+
+ 
+
+ 
+
+U l11 
+
+.
+
+.
+
+.
+
+U l1 r 
+
+. . . 
+
+. . . 
+
+. . . 
+
+U l r1 
+U l1(r+1)
+
+.
+
+.
+
+.
+
+U l rr 
+U l1(2 r )
+
+
+ 
+
+ (l 
+
+=
+
+ 1 
+
+,
+
+ 2)
+
+,
+
+Y l12 
+
+=
+
+.
+
+.
+
+.
+
+. . . 
+
+. . . 
+
+. . . 
+
+U l r 
++1)
+(r 
+
+.
+
+.
+
+.
+
+U l r 
+(2 r 
+)
+
+
+ 
+
+ (l 
+
+=
+
+ 1 
+
+,
+
+ 2)
+
+(cid:28)
+
+1 i j 
+2 i j 
+
+=
+=
+
+i j 
+i j 
+
+(而 (t )
+(而 (t )
+
+,
+,
+
+ 步 
+ 步 
+
+而 (t )
+而 (t )
+
+,
+,
+
+ d (t ))
+ d (t ))
+
+|
+|
+
+ d (t )=0 
+ d (t )=
+
+ h 
+
+
+
+l i j 
+
+(d (t ))
+
+=
+
+(cid:5)
+
+i j 
+
+(cid:25)
+
+d (t )
+
+ Y 
+
+
+
+X 1 
+
+(cid:6)
+
+i j 
+
+(d (t ))
+
+=
+
+ e 6 P e 
+
+T 
+1 
+
++
+
+ e 1 P e 
+
+T 
+6 
+
++
+
+ e 1 Q 1 e 
+
+(cid:2)
+
+1 
+
++
++
+
+ d (t ))
+(h 
+ 2 d (t ))
+((d k 
+
+ e 6 X 1 e 
+ e 5 X 2 e 
+
+T 
+6 
+
++
+
+ 2 Y 
+
+ e 5 
+(e 1 
+2 e 6 X 3 e 
+T 
+6 
+
+)
+
+T 
+5 
+ e 5 
+(e 1 
+T 
+ A i e 
+1 
+
++
+
+ h 
+
+ 羽 2 
+
+4 
+
+ e 5 
+(e 1 
+
+)
+
+ X 3 
+
+)
+
++
+
+(e 1 M 
+T 
+1 
+
++
+
+ e 6 M 
+
+T 
+2 
+
+)(e 
+
+(cid:2)
+
+6 
+
+(cid:2)
+
++
+
+ A di e 
+2 
+
+(cid:2)
+
++
+
+ B i K j e 
+
+(cid:2)
+
+5 
+
+)
+
+,
+
+4. Illustrative example 
+
+Example 1. In this example, a truck-trailer system (TTS) is consid- 
+ered, which is an extremely common industrial process subject to 
+sampled-data control 
+a 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+步 x 1 
+
+(t )
+(t )
+(t )
+sin 
++(1 
+ a 
+)(v t 
+
+=
+=
+=
+
+v t 
+x 1 
+
+Lt 0 
+
+(t )
+(t )
+
+ (1 
+ a 
+)
+ a 
+(1 
+)
+(t )
+(v t 
+)
+))
+
+ t d 
+v t 
+x 1 
+ t d 
+
+Lt 0 
+
+(t 
+(t 
+(t )
+
+)
+
++
+
+v t 
+
+lt 0 
+
+u 
+(t )
+
+步 x 2 
+
+ a 
+
+v t 
+x 1 
+(x 2 
+
+Lt 0 
+
++
+
+v t 
+x 1 
+
+Lt 0 
+
+)
+
+步 x 3 
+
+v t 
+
+Lt 0 
+
++
+
+ a 
+
+/
+
+ 2 L 
+
+)
+
+ x 1 
+
+/
+
+ 2 L 
+
+ x 1 
+
+(t 
+
+ t d 
+
+where x 
+(t )
+(t )
+(t )
+(t )] 
+羽 /
+3 
+(t )
+羽 /
+ 2] 
+(t )
+ 3] 
+(t )
+ 2] 
+2 
+ 0 
+(t )
+(0)
+(0)
+(0)] 
+ 2] 
+ [0 
+ 2 1] . The above non- 
+linear TTS can be modeled as T-S fuzzy system by imposing: 
+Plant rule 1: 
+ a 
+牟 (t )
+(1 
+)(v t 
+IF 
+about 0, 
+THEN 
+
+=
+
+ [ x 1 
+ [ 
+ [ x 1 
+
+ x 2 
+ 2 
+ x 2 
+
+ x 3 
+
+(cid:2)
+
+ ,
+
+ l 
+ 步 x 1 
+ x 3 
+
+=
+﹋
+=
+
+ 2 
+ 8 
+ L 
+ [ 
+
+.
+
+,
+
+=
+
+ v 
+ 5 
+ 5 
+ x 2 
+
+.
+
+,
+
+=
+﹋
+
+1 
+
+.
+
+ 0 
+ t 
+ 2 
+
+,
+
+=
+
+ 2 
+ 0 
+
+.
+
+,
+,
+
+t 0 
+步 x 2 
+
+=
+
+ 0 
+ 5 . x 1 
+ [ 
+
+.
+
+﹋
+
+,
+
+,
+
+,
+
+,
+
+ [ 
+
+羽 /
+
+,
+
+羽 /
+
+﹋
+
+,
+
+,
+
+.
+
+ 5 
+
+.
+
+=
+
+ x 2 
+
+(t )
+
++
+
+ a 
+
+(v t 
+
+/
+
+ 2 L 
+
+)
+
+ x 1 
+
+(t )
+
++
+
+/
+
+ 2 L 
+
+)
+
+ x 1 
+
+(t 
+
+ t d 
+
+)
+
+is 
+
+步 x 
+(t )
+
+=
+
+ A 1 x 
+
+(t )
+
++
+
+ A 1 d x 
+
+(t 
+
+ t d 
+
+)
+
++
+
+ B 1 u 
+
+(t )
+
+,
+
+Plant rule 2: 
+IF 
+牟 (t )
+羽 ,
+about 
+羽 or 
+THEN 
+
+=
+
+ x 2 
+
+(t )
+
++
+
+ a 
+
+(v t 
+
+/
+
+ 2 L 
+
+)
+
+ x 1 
+
+(t )
+
++
+
+ a 
+(1 
+)(v t 
+
+/
+
+ 2 L 
+
+)
+
+ x 1 
+
+(t 
+
+ t d 
+
+)
+
+is 
+
+步 x 
+(t )
+
+=
+
+ A 2 x 
+
+(t )
+
++
+
+ A 2 d x 
+
+(t 
+
+ t d 
+
+)
+
++
+
+ B 2 u 
+
+(t )
+
+where 
+
+A 1 
+
+=
+
+
+ 
+ 
+
+ 
+
+ 
+ 
+(cid:16)
+
+ v t 
+v t 
+
+Lt 0 
+
+0 
+
+0 
+
+Lt 0 
+2 
+2 t 
+2 Lt 0 
+
+0 
+
+0 
+
+v 
+
+v t 
+
+t 0 
+
+0 
+
+
+ 
+ 
+
+,
+
+ A d1 
+
+=
+
+
+ 
+ 
+
+(1 
+ a 
+)
+ a 
+(1 
+)
+ a 
+(1 
+)
+v 
+
+v t 
+
+Lt 0 
+
+0 0 
+
+v t 
+
+Lt 0 
+2 
+2 t 
+2 Lt 0 
+
+0 0 
+
+0 0 
+
+
+ 
+ 
+
+,
+
+B 1 
+
+=
+
+v t 
+lt 
+
+0 
+
+0 
+
+
+ 
+
+ ,
+
+A 2 
+
+=
+
+ v t 
+v t 
+
+Lt 0 
+
+0 
+
+0 
+
+Lt 0 
+2 
+2 t 
+2 Lt 0 
+
+0 
+
+0 
+
+dv 
+
+dv t 
+
+t 0 
+
+0 
+
+
+ 
+ 
+
+,
+
+ A d2 
+
+=
+
+
+ 
+ 
+
+(1 
+ a 
+)
+ a 
+(1 
+)
+ a 
+(1 
+)
+
+v t 
+
+Lt 0 
+
+0 0 
+
+v t 
+
+Lt 0 
+2 
+2 t 
+2 Lt 0 
+
+0 0 
+
+dv 
+
+0 0 
+
+
+ 
+ 
+
+,
+
+B 2 
+
+=
+
+ v t 
+lt 
+
+0 
+0 
+
+(cid:17)
+
+,
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+169 
+
+Table 1 
+The maximum bound of h max . 
+
+Method 
+
+而M 
+
+=
+
+ 0 
+ 5 
+
+.
+
+而M 
+
+=
+
+ 2 
+
+[11] 
+Theorem 3.1 
+
+0.374 
+0.389 
+
+0.251 
+0.260 
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+3
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+Fig. 1. State response of x 1 . 
+
+0.2
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+0.15
+
+0.1
+
+0.05
+
+0
+
+0.05
+
+0.1
+
+0.15
+
+Fig. 2. State response of x 2 . 
+
+setting d 
+
+=
+
+ 0 
+ 1 t 0 
+
+.
+
+/羽 and limiting function 
+
+竹1 
+
+(牟 (t ))
+
+=
+
+(cid:12)
+
+1 
+
+
+
+1 
+(3(牟 (t )
+1 
+ exp 
+1 
+(3(牟 (t )
+ exp 
+ 竹1 
+(牟 (t ))
+
++
+
+ 0 
+
+.
+
+ 5 
+
+羽 ))
+
+(cid:13)
+
+℅
+
+(cid:12)
+
+1 
+(牟 (t ))
+
++
+
++
+
+ 0 
+ 5 
+
+.
+
+羽 ))
+
+(cid:13)
+
+竹2 
+
+=
+
+ 1 
+
+.
+
+而 ( t ) satisfying 
+We suppose that time delay 
+ Table 1 
+而 M . It is clear 
+depicts the maximum bound h max with different 
+that the proposed method can provide larger upper bounds than 
+the method in [11] , which means that our result can achieves bet- 
+ter performance and less conservativeness than the existing litera- 
+ture. 
+In the simulation, state trajectory for each state of TTS are given 
+in Figs. 1 每3 . As shown in Figs. 1 每3 , it is clear that with the aid of 
+sampled-data control, the closed-loop TTS is asymptotically stable. 
+
+而
+
+d 
+
+=
+
+而D 
+
+=
+
+ 0 
+
+,
+
+1.4
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0.2
+
+Time t
+
+a
+h
+$
+
+\
+
+{
+t
+
+x
+
+}
+
+$
+
+)
+t
+(
+
+Fig. 3. State response of x 3 . 
+
+5. Conclusions 
+
+In this paper, the problem of sampled-data stabilization for T- 
+S fuzzy systems with time-varying delays has been studied. The 
+mismatched membership functions are introduced to eliminate the 
+conservatism in a more reasonable way, and the less conservative 
+results are achieved. Both free-matrix-based and novel LKF involv- 
+ing triple integrals is employed to reduce the conservativeness of 
+proposed method. Finally, a TTS is employed to verify the effective- 
+ness of the proposed methodology. It is worth noting that in the 
+future, it is of signicance to investigate the sampled-data fuzzy 
+control for multi-agent systems. 
+
+Acknowledgments 
+
+This work was supported by the Chunhui Plan Project of Min- 
+istry of Education (Z2015114), the Project of Education Department 
+of Sichuan Province ( 15ZA0142 ), the Key Laboratory of uid and 
+power machinery of the Ministry of Education, the National Natu- 
+ral Science Foundation of China (NSFC: 11626093 ) and the Natural 
+Science Foundation of Hubei Province of China ( 2016CFB211 ). 
+
+References 
+
+[1] D. Yue , E.G. Tian , Y.J. Zhang , C. Peng , New approach on robust delay-dependent 
+h ﹢
+ control for uncertain T-S fuzzy systems with interval time-varying delay, 
+IEEE Trans. Syst. Man Cybern. Part B 39 (2) (2009) 503每516 . 
+[2] C. Peng , Q.L. Han , D. Yue , E. Tian , Sampled-data robust h ﹢
+ control for T-S fuzzy 
+systems with time delay and uncertainties, Fuzzy Sets Syst. 179 (2011) 20每33 . 
+[3] D. Zhang, H.Y. Song, L. Yu, Robust fuzzy-model-based ltering for nonlin- 
+ear cyber-physical systems with multiple stochastic incomplete measurements, 
+IEEE Trans. Syst. Man Cybern.: Syst. (2016), doi: 10.1109/TSMC.2016.2551200 . 
+[4] X. Su , L. Wu , P. Shi , C.L.P. Chen , Model approximation for fuzzy switched 
+systems with stochastic perturbation, IEEE Trans. Fuzzy Syst. 23 (5) (2015) 
+1458每1473 . 
+[5] X. Su , P. Shi , L. Wu , M.V. Basin , Reliable ltering with strict dissipativity for T-S 
+fuzzy time-delay systems, IEEE Trans. Cybern. 44 (12) (2014) 2470每2483 . 
+[6] L. Wu , X. Yang , H. Lam , Dissipativity analysis and synthesis for discrete-time 
+T-S fuzzy stochastic systems with time-varying delay, IEEE Trans. Fuzzy Syst. 
+22 (2) (2014) 380每394 . 
+[7] X. Xie , D. Yue , X. Zhu , Further studies on control synthesis of discrete-time T-S 
+fuzzy systems via useful matrix equalities, IEEE Trans. Fuzzy Syst 22 (4) (2014) 
+1026每1031 . 
+[8] H.N. Wu , H.X. Li , New approach to delay-dependent stability analysis and sta- 
+bilization for continuous-time fuzzy systems with time-varying delay, IEEE 
+Trans. Fuzzy Syst. 15 (3) (2007) 4 82每4 93 . 
+[9] H.B. Zeng , J.H. Park , J.W. Xia , S.P. Xiao , Improved delay-dependent stability cri- 
+teria for T-S fuzzy systems with time-varying delay, Appl. Math. Comput. 235 
+(2014) 492每501 . 
+
+170 
+
+B. Wang et al. / Signal Processing 140 (2017) 161每170 
+
+[10] D. Zhang, P. Shi, W. Zhang, L. Yu, Energy-ecient distributed ltering in sen- 
+sor networks: a unied switched system approach, IEEE Trans. Cybern. (2016), 
+doi: 10.1109/TCYB.2016.2553043 . 
+[11] H.K. Lam , F.H. Leung , Sampled-data fuzzy controller for time-delay nonlinear 
+systems: fuzzy-model-based LMI approach, IEEE Trans. Systems Man Cybern. 
+Part B: Cybern. 37 (3) (2007) 617每629 . 
+[12] D. Zhang , P. Shi , Q.G. Wang , L. Yu , Analysis and synthesis of networked con- 
+trol systems: a survey of recent advances and challenges, ISA Trans. 66 (2016) 
+376每392 . 
+[13] H. Gao , X. Liu , J. Lam , Stability analysis and stabilization for discrete-time fuzzy 
+systems with time-varying delay, IEEE Trans. Syst. Man, Cybern. B Cybern. 39 
+(2) (2009) 306每317 . 
+[14] Z. Zhang , C. Lin , B. Chen , New stability and stabilization conditions for T-S 
+fuzzy systems with time delay, Fuzzy Sets and Syst. 263 (2015) 82每91 . 
+[15] Z. Feng, W. Zheng, Improved stability condition for Takagi-Sugeno fuzzy sys- 
+tems with time-varying delay, IEEE Trans. Cybern. (2016), doi: 10.1109/TCYB. 
+2016.2523544 . 
+[16] J. Cheng, J.H. Park, L. Zhang, Y. Zhu, An asynchronous operation approach 
+to event-triggered control for fuzzy Markovian jump systems with general 
+switching policies, IEEE Trans. Fuzzy Syst. (2016a), doi: 10.1109/TFUZZ.2016. 
+2633325 . 
+[17] J. Cheng , J.H. Park , H. Wang , Event-triggered h ﹢
+ control for T-S fuzzy nonlin- 
+ear systems and its application to truck-trailer system, ISA Trans. 65 (2016b) 
+62每71 . 
+[18] C. Peng , D. Yue , Y.C. Tian , New approach on robust delay-dependent h ﹢
+ control 
+for uncertain T-S fuzzy systems with interval time-varying delay, IEEE Trans. 
+Fuzzy Syst. 17 (4) (2009) 890每900 . 
+[19] S. He , F. Liu , Finite-time h ﹢
+ fuzzy control of nonlinear jump systems with time 
+delays via dynamic observer-based state feedback, IEEE Trans. Fuzzy Syst. 20 
+(4) (2012) 605每614 . 
+[20] M. Wang, J. Qiu, M. Chadli, M. Wang, A switched system approach to exponen- 
+tial stabilization of sampled-data t-s fuzzy systems with packet dropouts, IEEE 
+Trans. Cybern. (2015), doi: 10.1109/TCYB.2015.2498522 . 
+[21] M.S. Ali , S. Saravanan , J. Cao , Finite-time boundedness, l 2 -gain analysis and 
+control of Markovian jump switched neural networks with additive time-vary- 
+ing delays, Nonlinear Anal.: Hybrid Syst. 23 (2017) 27每43 . 
+[22] J. Cheng , J.H. Park , H.R. Karimi , X. Zhao , Static output feedback control of non- 
+homogeneous Markovian jump systems with asynchronous time delays, Inf. 
+Sci. 399 (2017) 219每238 . 
+[23] M.S. Ali , M.E. Rani , Passivity analysis of uncertain stochastic neural networks 
+with time-varying delays and Markovian jumping parameters, Netw.: Comput. 
+Neural Syst. 26 (3每4) (2015) 73每96 . 
+
+[24] K. Zhang , B. Jiang , V. Cocquempot , Fuzzy unknown input observer-based ro- 
+bust fault estimation design for discrete-time fuzzy systems, Signal Process. 
+128 (2016) 40每47 . 
+[25] S. Santra , R. Sakthivel , Y. Shi , K. Mathiyalagan , Dissipative sampled-data con- 
+troller design for singular networked cascade control systems, J Frankl Inst. 
+353 (14) (2016) 3386每3406 . 
+[26] R. Sakthivel , S. Selvi , K. Mathiyalagan , P. Shi , Reliable mixed h ﹢
+ and passiv- 
+ity-based control for fuzzy Markovian switching systems with probabilistic 
+time delays and actuator failures, IEEE Trans. Cybern. 45 (2015) 2720每2731 . 
+[27] X. Ge , Q. Han , X. Jiang , Sampled-data h ﹢
+ ltering of Takagi-Sugeno fuzzy 
+systems with interval time-varying delays, J Frankl. Inst. 351 (5) (2014) 
+2515每2542 . 
+[28] J. Wen , F. Liu , S.K. Nguang , Sampled-data predictive control for uncertain jump 
+systems with partly unknown jump rates and time-varying delay, J. Frankl. 
+Inst. 349 (1) (2012) 305每322 . 
+[29] Z. Wang , H. Wu , On fuzzy sampled-data control of chaotic systems via a 
+time-dependent Lyapunov function approach, IEEE Trans. Cybern. 45 (4) (2015) 
+819每829 . 
+[30] P.G. Park , J.W. Ko , C. Jeong , Reciprocally convex approach to stability of systems 
+with time-varying delays, Automatica 47 (2011) 235每238 . 
+[31] H. Zeng , Y. He , M. Wu , J. She , New results on stability analysis for systems with 
+discrete distributed delay, Automatica 60 (2015) 189每192 . 
+[32] P. Liu , New results on delay-range-dependent stability analysis for interval 
+time-varying delay systems with non-linear perturbations, ISA Trans. 57 (2015) 
+93每100 . 
+[33] M.J. Park , O.M. Kwon , J.H. Park , S.M. Lee , E.J. Cha , Stability of time-delay sys- 
+tems via Wirtinger-based double integral inequality, Automatica 55 (2015) 
+204每208 . 
+[34] J. Cheng , J.H. Park , Y. Liu , Z. Liu , L. Tang , Finite-time H ﹢
+ fuzzy control of non- 
+linear Markovian jump delayed systems with partly uncertain transition de- 
+scriptions, Fuzzy Sets Syst. 314 (2017) 99每115 . 
+[35] Z. Wang, S. Ding, Q. Shan, H. Zhang, Stability of recurrent neural networks 
+with time-varying delay via exible terminal method, IEEE Trans. Neural Netw. 
+Learn. Syst. (2016a), doi: 10.1109/TNNLS.2016.2578309 . 
+[36] J. Wang, H. Zhang, Z. Wang, Z. Liu, Sampled-data synchronization of Marko- 
+vian coupled neural networks with mode delays based on mode-dependent 
+LKF, IEEE Trans. Neural Netw. Learn. Syst. (2016b), doi: 10.1109/TNNLS.2016. 
+2599263 . 
+[37] R. Sakthivel , K. Boomipalagan , M. Ki , M. Muslim , Sampled-data reliable sta- 
+bilization of T-S fuzzy systems and its application, Complexity 21 (2016) 
+518每529 . 
+

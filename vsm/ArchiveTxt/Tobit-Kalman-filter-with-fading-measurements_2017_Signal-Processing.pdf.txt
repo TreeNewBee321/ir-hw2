@@ -1,0 +1,7358 @@
+Tobit Kalman lter with fading measurements 
+
+R
+
+Hang Geng 
+a , Zidong Wang 
+
+b , c , 
+
+, Yan Liang 
+d , Yuhua Cheng 
+a , Fuad E. Alsaadi 
+
+e 
+
+a School of Automation Engineering, University of Electronic Science and Technology of China, Chengdu 611731, China 
+b College of Electrical Engineering and Automation, Shandong University of Science and Technology, Qingdao 266590, China 
+c Department of Computer Science, Brunel University London, Uxbridge, Middlesex, UB8 3PH, United Kingdom 
+d School of Automation, Northwestern Polytechnical University, Xi¡¯an 710129, China 
+e Faculty of Engineering, King Abdulaziz University, Jeddah 21589, Saudi Arabia 
+
+article
+
+info
+
+Article history: 
+Received 25 October 2016 
+Revised 29 March 2017 
+Accepted 19 April 2017 
+Available online 4 May 2017 
+
+Keywords: 
+Censored measurements 
+Fading channel 
+Kalman lter 
+Time delay 
+Tobit measurement model 
+
+abstract
+
+This paper is concerned with the Tobit Kalman ltering problem for a class of discrete time-varying sys- 
+tems with both censored and fading measurements. The censored measurements are described by the 
+Tobit measurement model and the fading measurements are characterized by the L th-order Rice fading 
+channel model capable of accounting for not only the packet dropout but also the communication phe- 
+nomenon. The measurement fading occurs in a random way where the fading probabilities are regulated 
+by a set of mutually independent Gaussian random variables. By resorting to the state augmentation tech- 
+nique and the orthogonality projection principle, the Tobit Kalman lter (TKF) is designed in the pres- 
+ence of fading measurements. In the course of lter design, several state-augmentation-induced terms 
+are introduced, all of which can be calculated recursively or off-line. A numerical example concerning 
+the estimation of ballistic roll rates is provided to illustrate the usefulness of the proposed lter. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+
+1. Introduction 
+
+1.1. Motivation 
+
+The past decades have witnessed the widespread applications 
+of the ltering techniques in areas such as maneuvering target 
+tracking, inertial navigation, global position system (GPS) posi- 
+tioning, and so forth [1¨C7] . Among a variety of lters designed 
+under different circumstances, the Kalman lter (KF) has proven 
+to be the most popular one. It is generally recognized that the KF 
+is optimal in the sense of minimum mean-squared error (MMSE) 
+under the assumption that the systems are linear and the noises 
+are Gaussian. This assumption is, unfortunately, not always true 
+in practice due to the fact that the nonlinearity, which serves as 
+an important factor contributing to the complexities of the system 
+modeling, exists in almost all the practical systems. In networked 
+control systems, a typical kind of nonlinearities (e.g. censoring, 
+fading, quantization and saturation) are unavoidable in the system 
+
+R
+
+ This work was supported in part by the Royal Society of the UK, the Research 
+Fund for the Taishan Scholar Project of Shandong Province of China, National Nat- 
+ural Science Foundation of China under Grant 61329301 , and the Alexander von 
+Humboldt Foundation of Germany. 
+measurements due mainly to the sudden environment changes, 
+intermittent transmission congestions, random failures and repairs 
+of components. In particular, censored and fading measurements 
+are arguably two of the most frequently encountered measurement 
+nonlinearities in engineering practice. The measurement nonlin- 
+earities, if not properly handled, could cause severe performance 
+degradation of the traditional KF. To deal with this issue, many 
+alternative ltering schemes have been reported, e.g., the extended 
+Kalman ltering (EKF) [8] the unscented Kalman ltering (UKF) 
+approaches [9,10] , and the Tobit Kalman ltering method [11] . 
+Investigating the literature concerning censored measurements, 
+fading measurements and Kalman ltering, we can nd that: (1) 
+the TKF has gained increasing research attention due primarily to 
+its capability of suitably processing censored measurements as well 
+as its recursive/concise structure; (2) in networked systems, the 
+channel fading modeled as fading/degrading measurements in both 
+the amplitude and the phase is unavoidable because of the mul- 
+tipath propagation/shadowing caused by the hinder of obstacles; 
+(3) the L th-order Rice fading model, as compared with the ana- 
+log erasure channel model and the Rayleigh channel model, has 
+a conciser yet simpler structure and is suitable for simultaneously 
+representing the channel fadings, packet dropouts and communica- 
+tion delays. As such, a seemingly natural question is that, when the 
+measurement transmission is subject to both censoring and fading, 
+can we design a lter to achieve the optimal estimate of the sys- 
+tem? Nevertheless, this appears to be a non-trivial question for the 
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+61 
+
+following two reasons: (1) it is unclear which method should be 
+chosen to deal with the time-delays coupled in the L th-order Rice 
+fading model; (2) it is pretty hard to establish a modied Tobit 
+regression model which can not only correctly handle the time- 
+delay and fading phenomena but also help design the subsequent 
+lter design in a recursive form. This motivates us to conduct the 
+present research. 
+
+1.2. Contribution 
+
+In this paper, we consider the Tobit Kalman ltering problem 
+with both censored and fading measurements. Due to the existence 
+of time delays in the fading measurements, the system is rst aug- 
+mented in order to eliminate the effect of time delays. Then, the 
+Tobit regression model in [11] is modied by taking into account 
+the fading of the measurements. Based on the modied model and 
+the augmented system, a modied optimal lter in the minimum 
+mean-squared error sense (MMSE) is designed with its lter pa- 
+rameters explicitly characterized by the fading coecients. Finally, 
+the lter for the original system is obtained from the obtained 
+modied optimal lter via some matrix manipulations. 
+The main contributions of this paper are highlighted as follows: 
+(i) to the best of the authors¡¯ knowledge, the effort made in this paper 
+represents one of the rst few attempts to deal with the ltering prob- 
+lem of linear discrete time-varying systems with both censored and 
+fading measurements (which are two important types of measurement 
+nonlinearities in networked control systems); (ii) compared with the 
+TKF initiated in [11] , several new terms arise in the lter design which 
+are an expected reection of the consideration of the fading measure- 
+ments; and (iii) the lter presented here is of a recursive nature and 
+is suitable for online applications. 
+
+1.3. Related work 
+
+Censored measurements arise prevalently in a variety of appli- 
+cations such as biological modeling [12] , economics [13¨C15] , com- 
+puter vision tracking [16] and distributed detection [17,18] . The oc- 
+currence of the censored measurements is mainly due to the fact 
+that the measurements from sensors are often saturated as a result 
+of dynamic changes or interferences [19] . Although receiving lit- 
+tle attention in the ltering eld, the regression of censored mea- 
+surements has been extensively studied in the elds of reliability 
+and econometrics. The Tobit model for censored measurements has 
+been put forward by economist James Tobin in 1958 for accurately 
+modeling household expenditure [15] . In [15] , censored measure- 
+ments taking the form of saturations, limits of detection and the 
+occlusion regions are known as Tobit type 1 censoring, which can 
+be described as a piecewise-linear transform of the output variable 
+with a zero slope in the censored region. 
+The Tobit model has been intensively investigated in eco- 
+nomics, but the corresponding Kalman ltering problem has not 
+drawn much research attention until recently. The main dicult 
+for designing a Kalman lter for censored measurements is that 
+the measurement noise is non-Gaussian near the censoring region. 
+Hence, the adoption of the standard Kalman lter will result in a 
+biased state estimate due to the assumption that the measurement 
+noise is zero mean Gaussian. To solve this problem, great attempts 
+have been made in the literature, see [11,20] and the references 
+therein. In [21] , the KF was rst adopted to handle censored mea- 
+surements modeled by the Tobit measurement model, where the 
+censored measurements were assumed to be independent of the 
+true states and thus measurements in the censored region were 
+regarded as missing. Nevertheless, it is often the case that the cen- 
+sored measurements described by the Tobit measurement depend 
+heavily on the true states [11,22] , and simply treating the censored 
+
+measurements as missing ones may result in biased estimates. In 
+[23] , the censored and uncensored measurements were tackled 
+separately using the iterative maximum likelihood method and 
+all the past measurements were required in the algorithm imple- 
+mentation. In [11] , the so-called Tobit Kalman lter (TKF) was, for 
+the rst time, developed to track the target states using censored 
+measurements and the developed TKF was further applied to the 
+case of two-side censoring [24] . In [19] , the TKF was applied to 
+the positioning of mobile vehicles via signals received from a 
+number of antennas. In [22] , the performance of the TKF was 
+compared with those of EKF and UKF, and it was demonstrated 
+that the TKF achieves more reliable and accurate state estimates 
+for systems with censored measurements. In [20] , the TKF with 
+time-correlated multiplicative measurement noise was designed. 
+On another research frontier, with the rapid development of the 
+wireless communication technology, sensors are more inclined to 
+be connected via wireless or shared links, and the resulting net- 
+worked systems has therefore attracted an ever-increasing research 
+interest. A lot of work has been done on the networked-induced 
+phenomena, e.g., packet dropouts, time delays, sensor saturations 
+and quantization effects. However, the channel fading, as one of 
+the most important networked-induced phenomena, has received 
+relatively less attention despite its signicant importance in wire- 
+less communications [25] . Generally speaking, when signals travel 
+along the wireless links, they are susceptible to reection, refrac- 
+tion and diffraction which are caused by the obstacles that hinder 
+the propagation of the signals. In this case, signals are subject to 
+the multiple paths phenomenon [26,27] leading to the occurrence 
+of fading signals. Many models have been established to describe 
+the signal variation in both the amplitude and phase in the chan- 
+nel fading phenomenon, for instance, the analog erasure channel 
+model, the Rayleigh channel model and the L th-order Rice fad- 
+ing channel model [28,29] . Based on these models, the problems 
+of lter/controller design, stability analysis, simulator and emula- 
+tor synthesis have been investigated in the literature. 
+In the past few years, a number of lter design approaches 
+have been proposed for systems with fading measurements, see 
+e.g. Kalman ltering [30] , H ¡Þ
+ ltering [31,32] and fuzzy lter- 
+ing [33] . In [34] , the linear-quadratic-Gaussian control problem 
+over multiple erasure channels was studied. In [30] and [35] , the 
+nite-horizon H ¡Þ
+ control for discrete time-varying nonlinear sys- 
+tems and the H ¡Þ
+ output feedback-control for discrete-time fuzzy 
+systems were, respectively, solved by adopting the L th-order Rice 
+fading model. The mean-squared stabilization problem for sys- 
+tems with various kinds of fading channel models was compre- 
+hensively investigated in [36] and [37] . For discrete-time multiple- 
+input multiple-output systems, the problems of emulator design 
+and simulator modeling over Rayleigh fading channels were tack- 
+led in [38] and [39] , respectively. It should be noted that the L 
+th-order Rice fading model gives an intuitive description of differ- 
+ent networked-induced phenomena including the channel fading, 
+packet dropout and communication delay. 
+The rest of the paper is organized as follows. In Section 2 , the 
+problem under consideration is formulated. In Section 3 , the To- 
+bit regression model is modied, based on which the optimal TKF 
+with fading measurements is designed. In Section 4 , a numeri- 
+cal example about estimating the ballistic roll rates is provided to 
+show the usefulness of our lter, and some conclusions are drawn 
+in Section 5 . 
+
+R
+
+Notation The notation used here is fairly standard except where 
+otherwise stated. 
+n denotes the n -dimensional Euclidean space. 
+trices with proper dimensions. The superscripts ¡°1 ¡± and ¡°T ¡± rep- 
+¡°I ¡± and ¡°0¡± respectively, represent identity matrices and zero ma- 
+resent inverse and transpose operations, respectively. A 
+represent the ( i, j )th sub-block and the i th row of matrix or 
+
+i, j and A 
+i 
+
+62 
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+variable A , respectively. y 1: k 
+stands for all the measurements up 
+to time instant k . 
+ and 
+ will, respectively, mean expecta- 
+tion of x and expectation of x conditional on y . diag{ X m } stands for 
+a block-diagonal matrix with matrices X m 
+(m 
+ M )
+ on the 
+diagonal. var{ x } denotes the variance of x . 
+
+E
+
+{
+
+ x 
+
+}
+
+E
+
+{
+
+ x 
+ y 
+
+|
+
+}
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+2. Problem formulation 
+
+Consider the linear discrete time-varying system with fading 
+measurements described by the L th-order Rice fading model (see 
+[30,32,33,40] ) as follows: 
+
+x k 
++1 
+
+=
+
+ A k x k 
+
++
+
+ B k 
+
+¦Ø
+
+ k 
+
+,
+
+(1) 
+
+y 
+
+
+
+k 
+
+=
+
+(cid:3)
+
+ k (cid:2)
+
+=0 
+s 
+
+
+
+ k 
+
+(s 
+)
+
+ C k 
+
+s x k 
+s 
+
++
+
+¦Ô
+
+k 
+
+,
+
+(2) 
+
+where x k 
+n y are, respectively, the state vector and 
+the uncensored measurement vector. A k 
+¡Án x are known time-varying matrices with appropriate di- 
+ and 
+mensions. 
+ and 
+n y are zero-mean and white Gaus- 
+sian noises with covariances Q k 
+and R k 
+, respectively. 
+ min 
+where L is the order of the L th-order Rice fading channel and 
+k stands for the time instant. 
+(s 
+)
+(s 
+)
+ are the 
+channel coecients. 
+We are now in the position to introduce the Tobit measurement 
+model (see [10,11,22] ) as follows : 
+
+¡Ê
+
+R
+
+n x and y 
+k 
+
+
+
+¡Ê
+
+R
+
+¡Ê
+
+R
+
+n x 
+
+¡Án x ,
+
+ B k 
+
+¡Ê
+
+R
+
+n x 
+
+¡Án ¦Ø
+
+C k 
+
+¡Ê
+
+R
+
+n y 
+
+¦Ø
+
+ k 
+
+¡Ê
+
+R
+
+n ¦Ø
+
+¦Ô
+
+k 
+
+¡Ê
+
+R
+
+(cid:3)
+
+ k 
+
+=
+
+{
+
+ L,
+
+ k 
+
+}
+
+
+
+ k 
+
+¡Ê
+
+R
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+(cid:3)
+
+ k 
+
+y k 
+
+=
+
+(cid:3)
+
+y 
+
+
+
+k 
+
+,
+
+ y 
+
+
+
+
+k 
+
+>
+
+I ,
+¡Ü I ,
+
+I ,
+
+y 
+
+k 
+
+(3) 
+
+where y k 
+n y is the censored measurement vector and 
+n y is the threshold vector, and 
+[ 
+1 
+)
+ is the constant threshold of y 
+. Depending on 
+whether y k 
+is censored or not, it is assumed that (3) can be trans- 
+formed into the following form: 
+
+¡Ê
+2 ¡¤ ¡¤ ¡¤ I
+¡¤ ¡¤ ¡¤ ,
+
+R
+
+I
+
+=
+=
+
+I
+
+1 I
+
+n y ] 
+
+T ¡Ê
+
+R
+
+I
+
+m (m 
+
+,
+
+ 2 
+
+,
+
+ n y 
+
+m 
+k 
+
+y k 
+
+=
+
+
+
+k y 
+k 
+
+
+
++
+
+(I 
+
+ 
+
+k 
+
+)
+
+I ,
+
+(4) 
+
+where 
+ diag 
+ and 
+(m 
+ are 
+Bernoulli random variables which regulate the censoring phenom- 
+ena of y 
+(m 
+)
+ with the following probability distri- 
+bution: 
+
+
+
+k 
+
+=
+
+{
+
+¦Ã 1 
+k 
+
+,
+
+¦Ã 2 
+k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+¦Ã n y 
+
+k 
+
+}
+
+¦Ã m 
+k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+)
+
+m 
+k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+Prob 
+
+{
+
+¦Ã m 
+k 
+
+=
+
+ 1 
+
+}
+
+=
+
+ ¦Ã m 
+k 
+
+,
+
+ Prob 
+
+{
+
+¦Ã m 
+k 
+
+=
+
+ 0 
+
+}
+
+=
+
+ 1 
+
+ ¦Ã m 
+where ¦Ã m 
+(m 
+ are known non-negative constants. It 
+is assumed that all the random variables 
+(m 
+)
+ are 
+mutually independent, and are also uncorrelated with the fading 
+coecients and other noise signals. 
+
+k 
+
+,
+
+(5) 
+
+k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+)
+
+¦Ã m 
+k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+Assumption 1. The initial state x 0 
+has the mean x 0 and covariance 
+, and x 0 
+, 
+( s ), 
+and 
+are mutually independent. 
+
+P 0 
+
+
+
+k 
+
+¦Ø
+
+ k 
+
+¦Ô
+
+k 
+
+
+(s 
+)
+Assumption 2. The channel coecients 
+(s 
+)
+(s 
+)
+ where 
+(s 
+)(m 
+uncorrelated Gaussian random variables in m and k and are also 
+uncorrelated with other noise signals. The random variable 
+(s 
+)
+which regulates the fading phenomenon of the m th element of y k 
+, 
+ 
+ 
+has the mean 
+(s 
+)
+ and variances 
+(s 
+)
+ where 
+(s 
+)
+ and 
+(s 
+)
+are known. 
+
+ k 
+
+=
+=
+
+ diag 
+
+{
+
+
+
+1 
+k 
+
+(s 
+)
+)
+
+,
+
+
+
+2 
+k 
+ are n y 
+
+(s 
+)
+
+,
+
+.
+
+.
+
+.
+
+,
+
+
+
+n y 
+
+k 
+
+}
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+(cid:3)
+
+ k 
+
+
+
+m 
+k 
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+
+
+m 
+k 
+
+,
+
+
+
+m 
+k 
+
+m 
+k 
+
+
+
+m 
+k 
+
+m 
+k 
+
+Remark 1. As is well known, network-induced phenomena 
+(e.g. communication delays, packet dropouts, quantization effects, 
+sensor saturations) are ubiquitous due to the widespread appli- 
+cations of the networked control systems. However, the channel 
+fading caused by the multipath propagation of the signal has not 
+been given full consideration despite its practical signicance in 
+networked communications. To deal with the measurement fad- 
+ing, models such as the analog erasure channel model, the Rayleigh 
+
+channel model and the L th-order Rice fading channel model have 
+been established [36] . It is worth mentioning that the L th-order 
+Rice fading model given by (2) is one of the most frequently used 
+ones in areas of signal processing and remote control. With such a 
+model, a few phenomenon of imperfect transmission including the 
+channel fading and the time delay could be easily incorporated. As 
+such, the L th-order Rice fading model is adopted in this paper for 
+the lter design. 
+
+Remark 2. The KF has become widely used in tracking and esti- 
+mation. The KF is optimal in the sense of minimum mean-squared 
+error when the systems are linear and the noises are Gaussian. 
+However, in many estimation application areas, sensors are subject 
+to a specic type of measurement nonlinearities called censoring 
+or censored measurements because of saturated sensors, limited 
+detection effects and image frame effects. In this case, the direct 
+use of the KF would probably result in biased estimates because 
+(1) the measurement noise is correlated with the state value in 
+the censored region; and (2) the measurement noise distribution 
+becomes censored Gaussian (instead of Gaussian), which violates 
+the assumption of the Gaussian noise in the KF. Therefore, the KF 
+should be modied to cater for the censored measurements. In ad- 
+dition, it is worth pointing out that, as two important forms of 
+measurement nonlinearities, the censored measurements and fad- 
+ing measurements have not been considered simultaneously in the 
+framework of the KF, and our main motivation is to shorten such 
+a gap. 
+
+Remark 3. As described in (5) , the random variables 
+(m 
+)
+1 
+ are utilized to characterize the censoring phenom- 
+ena of y 
+(m 
+)
+ . According to (4) , if no censoring oc- 
+(y 
+)
+curs for y 
+ i.e., 
+ the measurement output is y 
+which implies that the output measurement is the same as the la- 
+tent measurement. If the censoring phenomena occur for y 
+ i.e., 
+ the measurement output is y 
+ which implies that 
+the threshold is assigned to the output measurement. Here, the 
+censoring probabilities ¦Ã m 
+(m 
+)
+ are assumed to be 
+known a priori via some statistical experiments. Alternatively, ¦Ã m 
+can also approximated by (see [11] ): 
+
+¦Ã m 
+k 
+
+=
+
+,
+
+ 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+m 
+k 
+m 
+k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+,
+
+ n y 
+ 1 
+
+,
+
+¦Ã m 
+k 
+
+=
+
+m 
+k 
+
+=
+
+
+
+k 
+
+m ,
+
+m 
+k 
+
+,
+
+¦Ã m 
+k 
+
+=
+
+ 0 
+
+,
+
+m 
+k 
+
+=
+
+I
+
+m ,
+
+k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+k 
+
+¦Ã m 
+
+k 
+
+¡Ö 
+
+(cid:4)
+
+  ¦Ëm 
+1 
+k 
+m,m 
+k 
+
+|
+
+ k 
+
+ I
+
+m 
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+,
+
+(6) 
+
+where 
+(s 
+)
+(m 
+(b 
+ and R 
+are, respectively, the ( m, a )th, ( a, b )th and ( m, m )th elements 
+(s 
+)
+of 
+and R k 
+;  x 
+is the b th element of  x k 
+¡¤) is the cumula- 
+which is the one-step prediction of x k 
+; and 
+( 
+tive distribution function of the random variable ¡°¡¤¡± which obeys 
+the standard normal distribution. 
+
+ ¦Ëm 
+1 
+k 
+
+|
+
+ k 
+
+=
+
+(cid:7)
+
+ (cid:3)
+
+ k 
+
+=0 
+s 
+
+(cid:7)
+
+ n y 
+
+=1 
+a 
+
+(cid:7)
+
+ n x 
+
+b=1 
+
+
+
+m,a 
+k 
+a,b 
+s 
+k 
+
+ C 
+
+a,b 
+s 
+k 
+
+ x 
+
+b 
+s 
+k 
+
+|
+
+ k 
+
+s 
+1 
+
+,
+
+
+
+m,a 
+k 
+
+(s 
+)
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+ a 
+
+,
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+)
+
+,
+
+ C 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n x 
+
+)
+
+m,m 
+k 
+
+
+
+ k 
+
+,
+
+ C k 
+
+s 
+
+b 
+s 
+k 
+
+|
+
+ k 
+
+s 
+1 
+
+s 
+
+|
+
+ k 
+
+s 
+1 
+
+s 
+
+Remark 4. Nowadays, because of the advanced microprocessor 
+technology and the fact that microprocessors can provide greater 
+accuracy and computing power than analog computers, digital l- 
+tering methods have been more widely utilized than the classi- 
+cal analog ltering methods. This means that for modern lter- 
+ing applications, the discrete-time lter would be more preferable. 
+However, a thorough study of optimal ltering must include the 
+continuous-time lter. Therefore, parallel to the discrete-time sys- 
+tem (1)¨C(2) and (4), the continuous-time system is formulated as 
+
+dx t 
+
+dt 
+
+=
+
+ A t x t 
+
++
+
+ B t 
+
+¦Ø
+
+ t 
+
+,
+
+y 
+
+
+
+t 
+
+=
+=
+
+(cid:8)
+
+ (cid:3)
+
+ t 
+
+0 
+t y 
+t 
+
+
+
+ t 
+
+(s 
+)
+
+ C ts x ts ds 
+
++
+
+¦Ôt 
+
+,
+
+y t 
+
+
+
++
+
+ t 
+(I 
+)
+
+I ,
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+63 
+
+t ( s ) and Y t are the continuous- 
+where x t , y 
+time counterparts of x k 
+, y 
+, 
+, 
+, 
+( s ) and Y k 
+. 
+Based on the above continuous-time system, it would be interest- 
+ing to design a continuous-time TKF to cope with censored and 
+fading measurements, meanwhile examine the impacts from the 
+censoring and fading phenomena on the design of the lter in the 
+near future. 
+
+
+
+t 
+
+,
+
+ y t , 
+
+¦Ø
+
+ t , 
+
+¦Ôt 
+
+,
+
+(cid:3)
+
+ t , A t , B t , C t , 
+ y k 
+
+
+
+k 
+
+,
+
+¦Ø
+
+ k 
+
+¦Ô
+
+k 
+
+,
+
+(cid:3)
+
+ k 
+
+, A k 
+, B k 
+, C k 
+
+
+
+k 
+
+The objective of this paper is to design the optimal TKF for 
+the discrete time-varying system (1) ¨C(4) with censored and fading 
+measurements. 
+
+3. Main results 
+
+In this section, we aim to establish a unied framework to solve 
+the addressed Tobit Kalman ltering problem in the simultaneous 
+presence of censored and fading measurements. The lter design 
+procedure is along the similar line in [11] with two main differ- 
+ences: (1) a modied Tobit regression model resulting from the 
+fading measurements; and (2) additional computations of the gain 
+matrix and the covariance matrix, where the additional computa- 
+tions include the augmentation of the delayed states, calculations 
+with respect to the augmented state and calculation of the ex- 
+pected values of the channel coecients. 
+Rewrite system (1) ¨C(4) in the following compact form: 
+
+¦Î
+
++1 
+k 
+
+=
+
+A
+C
+
+ k 
+
+¦Î
+
+k 
+
++
++
++
+
+B
+
+ k 
+
+¦Ø
+
+ k 
+
+,
+
+(7) 
+
+y 
+
+
+
+k 
+
+=
+
+¦È
+
+k 
+
+ k 
+
+¦Î
+
+k 
+
+¦Ô
+
+k 
+
+,
+
+(8) 
+
+y k 
+
+=
+=
+
+(cid:3)
+
+¦È
+
+k 
+
+C
+
+ k 
+
+¦Î
+
+k 
+
+¦Ô
+
+k 
+
+,
+
+¦È
+¦È
+
+k 
+
+C
+C
+
+ k 
+
+¦Î
+¦Î
+
+k 
+
++
++
+ 
+
+¦Ô
+¦Ô
+
+k 
+
+>
+
+I ,
+¡Ü I ,
+I ,
+
+I ,
+
+k 
+
+ k 
+
+k 
+
+k 
+
+(9) 
+
+y k 
+
+
+
+k 
+
+(¦È
+
+k 
+
+C
+
+ k 
+
+¦Î
+
+k 
+
++
+
+¦Ô
+
+k 
+
+)
+
++
+
+(I 
+
+k 
+
+)
+
+(10) 
+
+where 
+
+¦Î
+¦È
+
+k 
+
+=
+=
+=
+
+ col 
+(0)
+ diag 
+
+{
+
+ x k 
+ x k 
+
+,
+
+1 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ x k 
+
+(cid:3)
+
+ k 
+
+}
+
+,
+
+k 
+
+ [ 
+
+
+
+ k 
+
+
+
+ k 
+ C k 
+ C k 
+
+(1)
+
+¡¤ ¡¤ ¡¤ 
+¡¤ ¡¤ ¡¤ ,
+¡¤ ¡¤ ¡¤
+¡¤ ¡¤ ¡¤
+
+ k 
+
+((cid:3)
+
+ k 
+
+)
+
+ ] 
+
+,
+
+C
+
+ k 
+
+{
+
+,
+
+1 
+
+,
+
+ C k 
+
+(cid:3)
+
+ k 
+
+}
+
+,
+
+A
+
+ k 
+
+=
+
+
+ 
+ 
+ 
+
+A k 
+
+0 
+0 
+. . . 
+
+0 
+0 
+. . . 
+0 
+
+I 
+. . . 
+0 
+
+. . . 
+I 
+
+¡¤ ¡¤ ¡¤
+
+
+ 
+ 
+ 
+
+,
+
+B
+
+ k 
+
+=
+
+
+ 
+ 
+ 
+
+B k 
+
+0 
+. . . 
+0 
+
+
+ 
+ 
+ 
+
+.
+
+Thorough the above augmentation, the system with time delays in 
+(1) ¨C(4) is transformed into the one in (7) ¨C(10) without time de- 
+lays. 
+
+Remark 5. In fact, many ecient approaches have been presented 
+in the literature concerning the time delay phenomenon in the 
+past two decades, such as the augmentation technique [41,42] , the 
+bounding technique [43] , the descriptor system method [44] , the 
+slack matrix variables technique [45] and the delay-fractioning ap- 
+proach [46] . Generally speaking, the conservatism and complexity 
+of the algorithm should be considered when handling the time 
+delay phenomenon. That is to say, there should be a trade-off be- 
+tween the conservatism and the complexity of the proposed algo- 
+rithm. Here, the conservatism means that the proposed algorithm 
+should provide a maximal allowable delay; and the complexity 
+means that the algorithm includes as few decision variables as 
+possible while achieving the same maximal allowable delay. In 
+this paper, to remove the time delay effect, the augmentation 
+technique as shown in (7) ¨C (10) is chosen to benet the following 
+lter design at the cost of some extra computational cost. 
+
+Denote y 
+and 
+elements of y k 
+and 
+
+m 
+k 
+
+I
+I ,
+
+m (m 
+¦È m,¦Á
+k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ n y 
+
+)
+ respectively, as the m th 
+¦Á )th 
+((cid:3)
+ 1))
+as the ( m, 
+
+,
+
+(¦Á=
+
+ 1 
+ 2 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ n y 
+
+ k 
+
++
+
+element of 
+, 
+ment of 
+ and R 
+
+¦È
+
+k 
+
+C
+
+¦Á ,¦Â
+k 
+m,m 
++1)
+k 
+((cid:3)
+¦È m,¦Á
+¦Â =1 
+k 
+
+as the ( 
+¦Á , 
+¦Â )th 
+as the ( m, m )th element of R 
+
+(¦Â =
+
+ 1 
+ 2 
+
+,
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ n x 
+
+((cid:3)
+
+ k 
+
++
+
+ 1))
+. Let 
+
+ ele- 
+
+C
+
+ k 
+
+,
+
+m,m 
+k 
+
+¦Ö m 
+k 
+
+=
+
+(cid:7)
+
+ n y 
+
++1)
+((cid:3)
+¦Á=1 
+
+ k 
+
+(cid:7)
+
+ n x 
+
+ k 
+
+C
+
+¦Á ,¦Â
+k 
+
+¦Î ¦Â
+
+k 
+
+. To facilitate the subsequent lter 
+
+design, the Tobit regression in [11] is rst modied to encompass 
+the fading measurements as shown in the following lemma. 
+
+Lemma 1. The mathematical expectation and variance of y 
+)
+1 
+ are derived as follows: 
+
+m 
+k 
+
+(m 
+
+=
+
+,
+
+ 2 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+ n y 
+
+E
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+|
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+(cid:16)
+
+=
+
+
+
+(cid:4)
+
+¦Ö m 
+k 
+
+ I
+
+m 
+
+(cid:5)
+(cid:4)
+(cid:5)
+(cid:17)
+
+R 
+
+m,m 
+k 
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:6)
+
+(cid:17)
+(cid:6)
+(cid:4)
+(cid:5)
+(cid:6)
+
+¦Ö m 
+k 
+
++
+
+(cid:18)
+
+R 
+
+m,m 
+k 
+
+¦Ë
+
+(cid:4)
+
+ I
+
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+(cid:19)
+
++
+
+
+
+ I
+
+R 
+
+I
+
+m ,
+
+(11) 
+
+Var 
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+|
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+(cid:16)
+
+=
+
+ R 
+
+m,m 
+k 
+
+1 
+
+ 
+
+ I
+
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+R 
+
+(cid:6)
+
+(cid:19)
+
+,
+
+(12) 
+
+where 
+
+
+
+(cid:4)
+
+ I
+
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+=
+
+¦Ë
+
+(cid:4)
+(cid:17)
+(cid:20)
+
+ I
+
+m  ¦Ö m 
+k 
+m,m 
+k 
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:5)
+(cid:4)
+
+R 
+
+¡Á
+
+¦Ë
+
+ I
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+ I
+
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:5)
+
+R 
+
+(cid:19)
+
+,
+
+(13) 
+
+¦Ë
+
+(cid:4)
+
+ I
+
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+=
+
+¦Õ
+
+I
+
+k ¡Ì
+m ¦Ö m 
+m,m 
+k ¡Ì
+k 
+m ¦Ö m 
+m,m 
+k 
+
+R 
+
+(cid:21)
+
+1 
+
+ 
+
+(cid:20)
+
+I
+
+R 
+
+(cid:21) ,
+
+(14) 
+
+with the probability density function (pdf) and the cumulative distri- 
+bution function (cdf) of the Gaussian random variable y 
+given by the 
+following equations: 
+
+m 
+k 
+
+¦Õ
+
+(cid:4)
+(cid:4)
+
+y 
+
+m 
+k 
+
+ ¦Ö m 
+
+k 
+m,m 
+k 
+
+(cid:5)
+(cid:5)
+
+R 
+
+(cid:6)
+(cid:6)
+
+=
+
+1 ¡Ì
+2 
+
+¦Ð
+
+e 
+1 (cid:5)
+2 
+¦Ð R 
+
+ (
+
+¦Ö m 
+m 
+y 
+k 
+k 
+m,m 
+2 R 
+k 
+
+)
+
+2 
+
+,
+
+(15) 
+
+
+
+y 
+
+m 
+k 
+
+ ¦Ö m 
+
+k 
+m,m 
+k 
+
+R 
+
+=
+
+(cid:8)
+
+ y 
+
+m 
+k 
+
+¡Þ
+
+m,m 
+k 
+
+e 
+
+ (
+
+¦Ö m 
+m 
+z 
+k 
+k 
+m,m 
+2 R 
+k 
+
+)
+
+2 
+
+d z 
+
+m 
+k 
+
+.
+
+(16) 
+
+Proof. See Appendix A . 
+
+(cid:2)
+
+Remark 6. Equations (11) ¨C(12) in Lemma 1 give the expressions of 
+the mathematic expectation and variance of the censored and fad- 
+ing measurement y 
+. Compared with the expectation and variance 
+expressions in [11] where only the censoring phenomenon is con- 
+sidered, it can be observed that, due to the introduction of the fad- 
+ing measurements, the term 
+C 
+x 
+(in the case that y k 
+is a 
+vector instead of a scalar) in [11] is replaced by the term 
+which 
+characterizes the effect of the fading measurements. If the fading 
+phenomenon is not taken into account, (2) becomes y 
+. 
+Then, the term 
+reduces to 
+C 
+x 
+ resulting in the degra- 
+dation of (11) and (12) to (8) and (11) in [11] , respectively. 
+
+m 
+k 
+
+(cid:7)
+
+ n x 
+
+=1 
+n 
+
+m,n 
+k 
+
+n 
+k 
+
+¦Ö m 
+k 
+
+
+
+k 
+
+=
+
+ C k 
+
+x k 
+
++
+
+¦Ô
+
+k 
+
+¦Ö m 
+k 
+
+(cid:7)
+
+ n x 
+
+=1 
+n 
+
+m,n 
+k 
+
+n 
+k 
+
+,
+
+Remark 7. Using (11) ¨C(16) , the Tobit model in [11] with only cen- 
+sored measurements has been extended to the one subjecting to 
+both censored and fading measurements as shown in (4) . Note that 
+the extra fading measurements result in (1) the replacement of 
+C 
+x 
+by 
+in all the equations relative to the measure- 
+ment y 
+; and (2) several new terms that further complicate the 
+lter design. 
+
+(cid:7)
+
+ n x 
+
+=0 
+n 
+
+m,n 
+k 
+m 
+k 
+
+n 
+k 
+
+¦Ö m 
+k 
+
+Let 
+with its ( m, 
+((cid:3)
+
+k 
+
+=
+
+E
+
+{
+
+
+
+k 
+
+}
+
+=
+
+ diag 
+¦Á )th element being 
+ 1))
+(s 
+)
+ where 
+ diag 
+ ¦Î
+
+{
+
+ ¦Ã 1 
+ ¦Ã 2 
+k 
+k 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ ¦Ã n y 
+
+k 
+
+}
+
+,
+
+¦È
+
+k 
+¦È m,¦Á
+k 
+1 
+k 
+
+=
+
+ [ 
+
+
+
+(0)
+(m 
+(s 
+)
+
+
+
+(1)
+
+¡¤ ¡¤ ¡¤
+
+
+
+((cid:3)
+
+ k 
+
+)] 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+,
+
+¦Á =
+
+1 
+
+,
+
+ 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ n y 
+
+ k 
+
++
+
+
+
+ k 
+
+=
+
+{
+
+
+
+,
+
+
+
+2 
+k 
+
+(s 
+)
+(¦Â =
+¦Â th 
+
+,
+
+. . .
+
+,
+
+
+
+n y 
+
+k 
+
+(s 
+)
+
+}
+
+,
+
+s 
+
+=
+
+ 1 
+
+,
+
+¡¤ ¡¤ ¡¤ ,
+
+(cid:3)
+
+ k 
+
+,
+
+ and 
+
+k 
+
+|
+
+ k 
+
+1 
+
+=
+
+E
+
+{
+
+¦Î
+
+ y 1: k 
+1 
+k 
+
+|
+
+}
+
+ with its 
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+64 
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+n x 
+
+((cid:3)
+
+ k 
+
++
+=
+
+ 1))
+
+ element being 
+ ¦Î
+
+ ¦Î ¦Â
+
+k 
+
+|
+
+ k 
+
+1 
+ y 1: k 
+k 
+1 
+1 
+ ¦Î T 
+1 
+k 
+T 
+k 
+1 
++1)
+((cid:3)
+¦Á=1 
+
+. Denote  x k 
+
+|
+
+ k 
+ x k 
+
+1 
+ y 1: k 
+
+=
+
+E
+
+{
+}
+
+ x k 
+
+|
+
+ y 1: k 
+1 
+1 
+
+}
+
+,
+
+ y k 
+
+|
+
+ k 
+
+1 
+
+E
+
+{
+
+ y k 
+  x k 
+ k 
+
+|
+
+ y 1: k 
+1 
+1 
+
+}
+
+,
+
+  x k 
+k 
+1 
+
+|
+
+ k 
+
+=
+
+E
+
+{
+
+¦Î
+
+|
+
+}
+
+,
+
+  x k 
+ k 
+ y k 
+ P k 
+ k 
+
+|
+
+=
+
+E
+
+{
+
+|
+
+,
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+=
+
+¦Î
+
+k 
+ x k 
+
+  ¦Î
+
+k 
+
+|
+
+ k 
+ x k 
+
+1 
+  x k 
+ ¦Î T 
+k 
+k 
+
+,
+
+|
+
+=
+P
+
+ x k 
+
+|
+
+ k 
+
+1 
+
+,
+
+  y k 
+ k 
+
+|
+
+=
+
+  y k 
+1 
+1 
+
+|
+
+ k 
+
+,
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+  x k 
+ k 
+  y k 
+ k 
+
+=
+
+¦Î
+
+k 
+k 
+1 
+T 
+1 
+k 
+1 
+T 
+1 
+k 
+1 
+k 
+¦Á ,¦Â
+k 
+
+  ¦Î
+
+|
+
+ k 
+
+,
+
+|
+|
+
+ k 
+
+=
+=
+
+|
+
+ k 
+
+,
+
+ k 
+ k 
+ P k 
+ k 
+
+|
+
+=
+=
+
+E
+
+{
+{
+
+ ¦Î
+
+k 
+
+|
+|
+
+ k 
+
+|
+
+ k 
+
+}
+
+,
+
+|
+
+=
+=
+C
+
+E
+
+{
+{
+
+|
+
+ x 
+
+|
+
+ k 
+
+}
+}
+
+,
+
+P
+
+ k 
+ k 
+
+E
+
+{
+
+ ¦Î
+
+|
+
+ k 
+
+|
+
+ k 
+
+}
+
+,
+
+|
+
+E
+
+  x k 
+ k 
+
+ x 
+
+|
+
+ k 
+
+}
+
+,
+
+
+
+ y k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+E
+
+|
+
+ y 
+
+|
+
+ k 
+
+and 
+
+
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+=
+
+E
+
+{
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+
+ y 
+
+T 
+k 
+
+|
+
+ k 
+ n y 
+
+}
+
+ . Let  
+
+¦Ö
+
+1 
+k 
++1)
+((cid:3)
+¦Â =1 
+
+|
+
+ k 
+
+=
+
+¦È
+
+k 
+¦È m,¦Á
+k 
+
+ k 
+
+ ¦Î
+
+|
+
+ k 
+
+with its 
+ ¦Î ¦Â
+
+m th element being  
+
+¦Ö m 
+1 
+k 
+
+|
+
+ k 
+
+=
+
+(cid:7)
+
+ k 
+
+(cid:7)
+
+ n x 
+
+ k 
+
+C
+
+k 
+
+|
+
+ k 
+
+1 
+
+. 
+
+Based on Lemma 1 , the optimal TKF with fading measurements 
+can be obtained as follows. 
+
+Theorem 1. The optimal TKF for the augmented system (7) ¨C(10) is 
+given by 
+
+ ¦Î
+
+k 
+
+|
+|
+
+ k 
+
+1 
+
+=
+=
+
+A
+A
+
+ k 
+
+1 
+
+ ¦Î
+
+1 
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+(17) 
+
+P
+
+ k 
+ k 
+
+1 
+
+ k 
+
+1 
+
+P
++
+
+ k 
+
+1 
+
+|
+
+ k 
+
+1 
+T 
+1 
+k 
+  y k 
+(y k 
+
+A
+
++
+
+B
+
+ k 
+
+1 Q k 
+1 
+
+B
+
+T 
+1 
+k 
+
+,
+
+(18) 
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+=
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+
+ K k 
+
+|
+
+ k 
+
+1 
+
+)
+
+,
+
+(19) 
+
+P
+
+ k 
+ k 
+
+|
+
+=
+
+P
+
+ k 
+ k 
+
+|
+
+1 
+
+ 
+
+  ¦Î
+k 
+
+k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+ 1 
+|
+
+ y k 
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+¡Á  T 
+|
+
+ ¦Î
+
+k 
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+,
+
+(20) 
+
+ ¦Î
+ ¦Î
+where 
+is the one-step prediction of 
+is the estimate of 
+, 
+is the one-step prediction error covariance matrix, and 
+is the estimation error covariance matrix. The one-step measurement 
+prediction in (19) is given by 
+  
+
+1 
+k 
+1 
+
+|
+
+ k 
+
+¦Î
+
+1 
+k 
+
+,
+
+k 
+
+|
+
+ k 
+
+¦Î
+
+k 
+
+P
+
+ k 
+ k 
+
+|
+
+P
+
+ k 
+ k 
+
+|
+
+ y k 
+
+|
+
+ k 
+
+1 
+
+=
+
+ 
+
+k 
+
+(cid:17)
+
+ 
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+
++
+
+¦Ë
+
+(cid:4)
+(cid:22)
+
+ I
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+(cid:4)
+
+(cid:6)
+
+R
+
+ k 
+
+(cid:19)
+(cid:6)
+
++
+
+ 
+(I 
+
+k 
+
+)
+
+I ,
+
+(21) 
+
+where 
+  
+
+¦Ë
+
+(cid:4)
+
+ I
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+
+(cid:6)
+
+=
+
+ diag 
+
+¦Ë
+
+ I
+
+m   
+¦Ö m 
+1 
+k 
+m,m 
+k 
+
+|
+
+ k 
+
+(cid:5)
+
+R 
+
+(cid:23)
+
+,
+
+(22) 
+
+R
+
+ k 
+
+=
+
+ col 
+. The gain matrix K k 
+
+{
+
+(cid:18)
+
+R 
+
+1 
+k 
+
+,
+
+ 1 
+
+,
+
+(cid:18)
+
+R 
+
+1 
+k 
+
+,
+
+ 1 
+
+,
+
+...
+,
+
+(cid:18)
+
+R 
+
+n y 
+k 
+
+,n y 
+
+}
+
+,
+
+ and 
+
+(cid:18)
+
+R 
+
+m,m 
+k 
+
+is the ( m, m ) th element of 
+
+R k 
+
+in (19) has the following form: 
+
+K k 
+
+=
+
+  ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+ 1 
+|
+
+ y k 
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+,
+
+(23) 
+
+where 
+
+  ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+=
+
+P
+
+ k 
+ k 
+
+|
+
+1 
+
+(
+
+ 
+
+k 
+
+¦È
+
+k 
+
+C
+
+ k 
+
+)
+
+T ,
+
+(24) 
+
+  y k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+=
+
+ 
+
+k 
+
+¦È
+
+k 
+
+C
+
+ k 
+
+P
+
+ k 
+ k 
+
+|
+
+1 
+
+(
+
+ 
+  
+
+k 
+
+¦È
+
+k 
+
+C
+
+ k 
+
+)
+
+T 
+
++
+
+ R k 
+
+(cid:17)
+
+I 
+
+ 
+
+(cid:4)
+(cid:22)
+
+ I
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+m   
+¦Ö m 
+1 
+k 
+m,m 
+k 
+
+(cid:5)
+(cid:5)
+
+(cid:6)
+
+(cid:19)
+
+,
+
+(25) 
+
+
+
+(cid:4)
+
+ I
+
+  
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+
+(cid:6)
+
+=
+
+ diag 
+
+
+
+(cid:4)
+
+ I
+
+|
+
+ k 
+
+R 
+
+(cid:6)
+
+(cid:23)
+
+.
+
+(26) 
+
+Proof. See Appendix B . 
+
+(cid:2)
+
+Remark 8. Comparing the TKF in [11] with the established lter 
+in Theorem 1 , there are two main differences. The rst difference 
+is that the term C k 
+in [11] (which is the product of the 
+measurement matrix C k 
+and the one-step state prediction  x k 
+) 
+ ¦Î
+is replaced by a new term  
+which is now the 
+product of the mean of the channel coecient, the augmented 
+measurement matrix and the predicted value of the augmented 
+state. The second difference is the appearance of 
+in the cal- 
+culations of  y k 
+and K k 
+. The rst difference is caused by the 
+time-delay effect while the second difference stems from the 
+fading channel phenomenon. 
+
+ x k 
+
+|
+
+ k 
+
+1 
+
+|
+
+ k 
+
+1 
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+
+=
+
+¦È
+
+k 
+
+C
+
+ k 
+
+k 
+
+|
+
+ k 
+
+1 
+
+¦È
+
+k 
+
+|
+
+ k 
+
+1 
+
+Table 1 
+Implementation procedure of the proposed ltering algorithm. 
+
+Input: x 0 and P 0 
+Output:  x k 
+for k 
+ do 
+Compute the predicted parameter 
+ ¦Î
+1 by (17) ¨C(18) ; 
+matrix 
+Compute the predicted state estimate  x k 
+1 by (27) ¨C(28) ; 
+covariance matrix P k 
+Compute the predicted measurement  y k 
+1 by (21) ; 
+Compute the parameter 
+by (24) ; 
+|
+|
+Compute the parameter   y k 
+|
+|
+by (25) ; 
+Compute the gain matrix K k by (23) ; 
+Compute the updated parameter 
+ ¦Î
+ k and its error covariance 
+ k by (19) ¨C(20) ; 
+Compute the updated state estimate  x k 
+ k and its error covariance 
+P k | k by (29) ¨C(30) ; 
+Return  x k 
+end 
+
+|
+
+ k and P k | k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+k 
+
+|
+
+ k 
+
+1 and its error covariance 
+
+P
+
+ k 
+ k 
+
+|
+
+|
+
+ k 
+
+1 and its error 
+
+|
+
+ k 
+
+|
+
+ k 
+
+  ¦Î
+
+1 
+ y k 
+1 
+k 
+1 
+1 
+ y k 
+
+ k 
+
+ k 
+
+ k 
+
+ k 
+
+k 
+
+|
+
+P
+
+ k 
+
+|
+
+|
+
+|
+
+ k and P k | k . 
+
+Theorem 2. Based on the lter given in Theorem 1 for the augmented 
+system (7) ¨C(10) , the optimal TKF for the original system (1) ¨C(4) with 
+both censored and fading measurements is as follows: 
+
+ x k 
+
+|
+
+ k 
+
+1 
+
+=
+=
+
+  ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+(27) 
+
+P k 
+
+|
+
+ k 
+
+1 
+
+P
+
+ k 
+ k 
+
+|
+
+1 
+
+ T ,
+
+(28) 
+
+ x k 
+
+|
+
+ k 
+
+=
+
+  ¦Î
+
+k 
+
+|
+
+ k 
+
+,
+
+(29) 
+
+P k 
+
+|
+
+ k 
+
+=
+
+P
+
+ k 
+ k 
+
+|
+
+ T ,
+
+(30) 
+
+where 
+
+ =
+
+(cid:24)
+
+I 0 
+
+¡¤ ¡¤ ¡¤
+
+0 
+
+(cid:25)
+
+(cid:26)(cid:27)
+
+(cid:29)
+(cid:28)
+
+(cid:3)
+
+ k 
+
+blocks 
+
+.
+
+Proof. Noticing the relationship between system (1) ¨C(4) and sys- 
+tem (7) ¨C(10) , we can easily obtain the result in Theorem 2 on the 
+basis of Theorem 1 . 
+
+(cid:2)
+
+Combing Lemma 1 and Theorems 1 ¨C2 , we have accomplished 
+the design of the optimal TKF with both censored measurements 
+and fading measurements. Table 1 demonstrates the implementa- 
+tion procedure of the proposed ltering algorithm. 
+
+Remark 9. According to Lemma 1 and Theorems 1 ¨C2 , a recursive 
+ltering scheme is established to solve the novel ltering prob- 
+lem for the discrete time-varying systems suffering simultaneously 
+from censored measurements and fading measurements. System 
+(1) ¨C(4) under consideration is comprehensive that covers two im- 
+portant measurement nonlinearities, i.e., censored and fading mea- 
+surements, which are often encountered in engineering applica- 
+tions including target tracking and networked control. The two 
+measurement nonlinearities are dealt with in a unied yet effective 
+framework. Compared with the work in [11] , several new terms 
+have emerged in the lter design and these terms explicitly reect 
+the effect of the fading channel phenomenon. To be specic, the 
+term 
+in Lemma 1 and the term 
+in Theorem 1 character- 
+
+¦È m,¦Á
+k 
+
+¦È
+
+k 
+
+ize the effect of the channel fading. The term 
+terms 
+ ¦Î
+ ¦Î
+in Theorem 1 and the term 
+Theorem 2 characterize the time delay effect. The term  
+
+¦Î ¦Â
+
+k 
+
+in Lemma 1 , the 
+ in 
+in 
+
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+k 
+
+|
+
+ k 
+
+,
+
+P
+
+ k 
+ k 
+
+|
+
+1 
+
+,
+
+P
+
+ k 
+ k 
+
+|
+
+¦Ö m 
+1 
+k 
+
+|
+
+ k 
+
+Theorem 1 characterize the effects of both the time-delay and the 
+channel fading. 
+
+Remark 10. It can be seen from Lemma 1 and Theorems 1 ¨C2 that 
+when implementing the presented Tobit Kalman ltering algorithm 
+with fading measurements, the computation complexity mainly in- 
+volves the matrix multiplication and the matrix inversion. In the 
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+65 
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+Time (k)
+
+60
+
+70
+
+80
+
+90
+
+100
+
+20
+
+0
+
+20
+
+(
+1
+x
+
+k
+
+)
+
+d
+n
+a
+
+t
+i
+
+s
+
+s
+e
+
+i
+t
+
+m
+
+a
+
+i
+t
+
+n
+o
+
+True state
+TKF
+TKFFM
+
+20
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+Time (k)
+
+60
+
+70
+
+80
+
+90
+
+100
+
+10
+
+0
+
+10
+
+20
+
+30
+
+(
+2
+x
+
+k
+
+)
+
+d
+n
+a
+
+t
+i
+
+s
+
+s
+e
+
+i
+t
+
+m
+
+a
+
+i
+t
+
+n
+o
+
+True state
+TKF
+TKFFM
+
+Fig. 1. True values of the rst and second dimensions of the state and their esti- 
+mates. 
+
+matrix multiplication, the multiplication of matrices with dimen- 
+sions n x 
+((cid:3)
+ 1)
+((cid:3)
+ 1)
+ needs to be calculated, where n x is 
+the dimension of the system state; 
+ min 
+ where L is the or- 
+der of the L th-order Rice fading channel; and k stands for the time 
+instant. As to the matrix inversion, the inverse of matrices with di- 
+¡Á n y needs to be calculated, where n y is the dimen- 
+mensions n y 
+sion of the measurement. Hence, the proposed ltering algorithm 
+has the computational complexity of O [(n x 
+((cid:3)
+ 1))
+)
+3 ] . Gen- 
+¡Ý 1 and therefore our proposed algorithm has 
+erally, we have 
+more computation burden than the Tobit Kalman ltering algo- 
+rithm in [11] which has the computational complexity of O [(n x 
+)
+)
+3 ] . It can be apparently seen that the extra computation bur- 
+den in our algorithm is caused by the fading measurements. 
+
+ k 
+
++
+
+¡Á n x 
+
+ k 
+
++
+
+(cid:3)
+
+ k 
+
+=
+
+{
+
+ L,
+
+ k 
+
+}
+
+ k 
+
++
+
+3 +
+
+(n y 
+
+(cid:3)
+
+ k 
+
+3 +
+
+(n y 
+
+4. Illustrative example 
+
+In this section, we will employ an oscillator example (modied 
+from [11,47] ) and a radar tracking example to demonstrate the ef- 
+fectiveness of the proposed ltering algorithm. Let RMS1 denote 
+the root mean-squared error (RMSE) for the estimation of x 
+ i.e., 
+
+1 
+k 
+
+,
+
+RMSE1 
+
+=
+
+(cid:18)
+
+(1 
+/M )
+
+(cid:7)
+
+ M 
+
+j=1 
+
+(x 
+
+1( j )
+k 
+
+  x 
+
+1( j )
+k 
+
+|
+
+ k 
+
+)
+
+2 , where M is the number of simula- 
+
+tion tests. Similarly, RMSE2 is the RMSE for the estimation of x 
+
+2 
+k 
+
+,
+
+i.e., RMSE2 
+
+=
+
+(cid:18)
+
+(1 
+/M )
+
+(cid:7)
+
+ M 
+
+j=1 
+
+(x 
+
+2( j )
+k 
+
+  x 
+
+2( j )
+k 
+
+|
+
+ k 
+
+)
+
+2 . 
+
+4.1. Oscillator example 
+
+Consider the following class of discrete time-varying systems 
+given by (1) ¨C(4) with parameters: 
+ sin 
+(w 
+)
+(w 
+)
+cos 
+
+A k 
+
+=
+
+(cid:24)
+(cid:30)
+
+cos 
+(w 
+)
+(w 
+)
+sin 
+
+(cid:29)
+
+,
+
+ B k 
+
+=
+
+ I 2 
+ w 
+
+,
+
+=
+
+ 0 
+
+.
+
+ 052 
+
+¦Ð ,
+
+C 
+
+=
+=
+=
+=
+
+1 0 
+
+(cid:31)
+
+,
+
+x 0 
+
+=
+=
+
+(cid:30)
+
+5 0 
+
+(cid:31)
+
+T ,
+
+ P 0 
+
+=
+=
+I
+=
+=
+
+ I 2 
+
+,
+
+
+
+(0)
+ 
+(1)
+
+ 0 
+
+.
+
+ 95 
+
+,
+
+
+
+(1)
+ 
+(2)
+ 0 025 
+ 0 025 
+
+ 0 
+
+.
+
+ 75 
+
+,
+
+
+
+(2)
+ 0049 
+
+ 0 
+
+.
+
+ 85 
+
+,
+
+ 
+(0)
+
+=
+
+ 0 
+
+.
+
+ 0081 
+
+,
+
+ 0 
+
+.
+
+ 0064 
+
+,
+
+=
+
+ 0 
+
+.
+
+,
+
+ 0 
+
+,
+
+Q k 
+
+ diag 
+
+{
+
+ 0 
+
+.
+
+,
+
+ 0 
+
+.
+
+}
+
+,
+
+ R k 
+
+ 1 
+ L 
+
+,
+
+=
+
+ 2 
+
+,
+
+where L 
+ 2 is the order of the Rice fading channel model. The 
+censoring probability 
+can be calculated according to (6) . 
+The presented oscillator example considers the estimation of bal- 
+listic roll rates from fading and censored magnetometer data. The 
+simulation shows a robust tracking ability with a known model 
+and unknown disturbance that enters the system through 
+. 
+Fig. 1 illustrates the true values of the states and the estimates 
+given by the TKF in [11] and our proposed TKF with fading mea- 
+
+=
+
+k 
+
+=
+
+ ¦Ã 1 
+k 
+
+¦Ø
+
+ k 
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+Time (k)
+
+60
+
+70
+
+80
+
+90
+
+100
+
+5
+
+10
+
+15
+
+20
+
+R
+
+M
+
+E
+S
+
+o
+
+f
+
+(
+1
+x
+
+k
+
+)
+
+TKF
+TKFFM
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+Time (k)
+
+60
+
+70
+
+80
+
+90
+
+100
+
+5
+
+10
+
+15
+
+20
+
+R
+
+M
+
+E
+S
+
+o
+
+f
+
+(
+2
+x
+
+k
+
+)
+
+TKF
+TKFFM
+
+Fig. 2. Method comparison with [11] in RMSE1 and RMSE2. 
+
+surements which is named TKF-FM. Fig. 2 shows the comparison 
+of the RMSE curves between the TKF and the TKF-FM after 10 0 0 
+times of Monte Carlo simulations. From Fig. 1 we can observe that, 
+when the measurements are subject to both censoring and fading, 
+our proposed TKF-FM is able to track the true values of the system 
+states while the TKF leads to signicant deviations from the true 
+state values. It can be seen from Fig. 2 that the RMSE of our TKF- 
+FM is always smaller than that of the TKF, which is simply due to 
+the fact that the fading measurements are properly handled in our 
+TKF-FM while they are not addressed in the TKF. 
+
+4.2. Radar tracking example 
+
+Consider the radar tracking example with the following param- 
+eters: 
+
+A k 
+
+=
+
+
+ 
+ 
+ 
+ 
+ 
+(cid:24)
+(cid:30)
+
+1 T 
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+
+0 
+1 
+
+0 0 
+0 0 
+
+0 
+0 
+0 
+0 
+1 
+
+
+
+ 1 0 0 
+
+0 
+0 
+0 
+
+1 T 
+0 1 
+0 0 
+
+
+
+ 2 
+
+
+ 
+ 
+ 
+ 
+ 
+
+,
+
+C k 
+
+=
+=
+=
+=
+
+1 0 0 0 0 0 
+0 0 0 0 0 1 
+
+(cid:29)
+
+,
+
+B k 
+
+ I 6 
+ Q k 
+
+,
+
+=
+
+ 0 
+
+.
+
+ 25 
+
+,
+
+ R k 
+
+=
+
+ diag 
+
+{
+
+ 10 0 
+
+,
+
+ 0 
+
+.
+
+ 0 01 
+
+}
+
+,
+
+x 0 
+
+100 4 0 1 0 
+ 001 0 
+
+.
+
+(cid:31)
+(cid:30)
+
+T ,
+
+P 0 
+
+ diag 
+
+{
+
+ 100 
+ 10 
+ 10 
+
+,
+
+,
+
+,
+
+ 1 
+ 1 
+ 1 
+
+,
+
+,
+
+}
+
+,
+
+I
+
+=
+
+100 1 
+ 01 
+
+.
+
+(cid:31)
+
+T ,
+
+where x k 
+¨B 
+] is the target state; r k 
+and ¨B r k 
+are, 
+respectively, the range and range rate of the target at time k; 
+and ¨B 
+are, respectively, the bearing and bearing rate of the target 
+at time k ; 
+ 4 and 
+ 5 are the maneuvering correlated 
+process noises; T 
+ 1 s is the sampling period. The remaining pa- 
+rameters are the same as those in the previous example. 
+The performance comparison between the Tobit Kalman l- 
+ter (TKF) and the proposed Tobit Kalman lter with fading mea- 
+surements (TKF-FM) has been made in RMSE after 10 0 0 times of 
+Monte Carlo simulations. Fig. 3 illustrates the RMSE curves ob- 
+tained by the two algorithms. Form Fig. 3 we nd that the RMSE 
+of our TKF-FM is always smaller than that of TKF, which indicates 
+the superiority of the proposed ltering algorithm in handling cen- 
+sored and fading measurements. This is because that our TKF-FM 
+is capable of tackling the censoring and channel fading phenomena 
+at the same time, while the TKF can not deal with fading measure- 
+ments. 
+
+=
+
+ [ r k 
+
+¨B r k 
+
+u 1 
+
+,k 
+
+¦Ç
+
+k 
+
+¦Ç
+
+k 
+
+u 2 
+
+,k 
+
+¦Ç
+
+k 
+
+¦Ç
+
+k 
+
+
+
+ 1 
+
+=
+
+ 0 
+
+.
+
+
+
+ 2 
+
+=
+
+ 0 
+
+.
+
+=
+
+66 
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+Time (k)
+
+60
+
+70
+
+80
+
+90
+
+100
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+R
+
+M
+
+E
+S
+
+o
+
+f
+
+(
+1
+x
+
+k
+
+)
+
+TKF
+TFKFFM
+
+Fig. 3. Method comparison with [11] in RMSE1. 
+
+Theoretically, as time goes on, the RMSE of the TKF in 
+Fig. 3 should degrade to a certain value beyond zero because that 
+the TKF is unable to cope with the fading measurements. As to our 
+TKF-FM, the RMSE should degrade to zero with the increase of k 
+since the proposed TKF-FM can properly deal with the fading phe- 
+nomenon. Nevertheless, this is often not true due to the fact that 
+part of the measurement information is lost because of the fad- 
+ing phenomenon, which makes it dicult to recover the true state 
+from the obtained fading measurements. This results in the situ- 
+ation that there is a small deviation between the obtained state 
+estimate and the true state, and hence the RMSE of our TKF-FM in 
+Fig. 3 can not degrade to zero as time goes on. goes on. 
+
+5. Conclusion 
+
+In this paper, we have investigated the recursive ltering prob- 
+lem for discrete time-varying systems in the coexistence of two 
+important measurement nonlinearities, namely, censored and fad- 
+ing measurements. The fading measurements have been addressed 
+under the assumption that the fading coecients obey Gaussian 
+distributions. The Gaussian distributions can be changed to other 
+distributions, e.g., the uniform distribution on the interval [ 
+, 
+] 
+¡Ü 1. The adopted L th-order Rice fading model 
+where 0 
+not only covers the channel fading but also the time delay phe- 
+nomena. The two phenomena have been carefully handled by in- 
+troducing the expected values of the channel coecients and the 
+augmented states in the lter design, which have led to additional 
+computations in the calculations of the lter gain matrix and the 
+estimation error covariance. Fortunately, these additional compu- 
+tations are recursive or can be performed off-line. Accordingly, the 
+designed lter is suitable for online applications. Finally, the effec- 
+tiveness of the proposed lter has been illustrated by a numerical 
+example. 
+In addition, related topics for further research work can be 
+listed as follows. 
+
+¦Á
+
+k 
+
+¦Â
+
+k 
+
+¡Ü ¦Á
+
+k 
+
+<
+
+¦Â
+
+k 
+
+ The Tobit Kalman estimation and ltering problem for linear 
+systems with multiple network-induced phenomena, for exam- 
+ple, packet dropouts, signal quantization, sensor saturations, 
+and randomly occurring incomplete information. 
+ The Tobit Kalman estimation and ltering problem for nonlin- 
+ear systems, especially when there are multiple types of non- 
+linearities in the system. 
+ The Tobit Kalman estimation and ltering problem for sys- 
+tems under different communication protocols, for instance, the 
+round-robin protocol and the try-once-discard protocol. 
+
+Appendix A. Proof of Lemma 1 
+
+Proof. According to (4) , the probability distribution of y 
+normally distributed noise v 
+1 (cid:5)
+is as follows: 
+R 
+
+m 
+k 
+
+with a 
+
+m 
+k 
+
+f (y 
+
+m 
+k 
+
+|
+
+ x k 
+
+)
+
+=
+
+m,m 
+k 
+
+¦Õ
+
+(cid:4)
+
+y 
+
+m 
+k 
+
+ ¦Ö m 
+
+k 
+m,m 
+k 
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+u 
+(y 
+
+m 
+k 
+
+ I
+
+m )
+
++
+
+¦Ä (I
+
+m y 
+m 
+k 
+
+)
+
+(cid:4)
+
+ I
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+,
+
+(31) 
+
+where 
+
+¦Õ (
+
+¦Ö m 
+m 
+y 
+k 
+k 
+m,m 
+R 
+k 
+
+(cid:18)
+
+)
+
+ and 
+
+(
+
+I
+
+m ¦Ö m 
+k 
+m,m 
+R 
+k 
+
+(cid:18)
+
+)
+
+ are given by (15) ¨C(16) , u 
+(y 
+
+m 
+k 
+
+ I
+
+m )
+
+ is 
+
+the unit step function, and 
+ is the Dirac delta function. 
+Based on (31) , we have the mathematical expectation and variance 
+of y 
+as follows: 
+
+¦Ä (I
+
+m y 
+m 
+k 
+
+)
+
+m 
+k 
+
+E
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+|
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+(cid:16)
+
+=
+
+ Prob 
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+>
+
+I
+=
+
+m |
+m |
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+(cid:16)
+
+E
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+|
+
+ y 
+
+m 
+k 
+
+>
+
+I
+=
+
+m ,
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+m,m 
+k 
+
+(cid:16)
+
++
+
+ Prob 
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+I
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+}
+
+E
+
+{
+
+ y 
+
+m 
+k 
+
+|
+
+ y 
+
+m 
+k 
+
+I
+
+m ,
+
+ x k 
+ R 
+
+,
+
+(cid:16)
+
+.
+
+(32) 
+
+From (32) , we know that, to compute 
+ we need to 
+calculate the probabilities and expected values in (32) . 
+
+E
+
+{
+
+ y 
+
+m 
+k 
+m |
+m,m 
+k 
+m >
+m |
+¦Ô m 
+m  ¦Ö m 
+k 
+k 
+
+|
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+}
+
+,
+
+Prob 
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+>
+
+I
+
+m |
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+(cid:16)
+
+=
+=
+=
+=
+
+ Prob 
+
+(cid:15)
+
+y 
+(y 
+
+m 
+k 
+
+>
+
+I
+
+ x k 
+ R 
+
+,
+
+(cid:16)
+
+ Prob 
+
+{
+{
+{
+
+
+
+k 
+¦Ö m 
+k 
+¦Ô m 
+k 
+
+)
+
+I
+
+m |
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+}
+
+ Prob 
+
++
+
+>
+
+I
+
+ x k 
+ R 
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+m,m 
+k 
+
+}
+}
+
+ Prob 
+
+>
+
+I
+
+|
+
+,
+
+=
+
+
+
+(cid:4)
+
+¦Ö m 
+k 
+
+ I
+
+m 
+
+(cid:5)
+
+R 
+
+m,m 
+k 
+
+(cid:6)
+
+.
+
+(33) 
+
+Hence, we can easily obtain that 
+1 (cid:5)
+R 
+
+E
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+|
+
+ y 
+
+m 
+k 
+
+>
+
+I
+
+m ,
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+(cid:16)
+
+=
+
+m,m 
+k 
+
+(cid:8)
+
+ +
+
+¡Þ
+
+I
+
+m 
+
+z 
+
+m 
+k 
+
+
+
+(cid:20)
+
+z 
+
+k ¡Ì
+m 
+k 
+m,m 
+k 
+k ¡Ì
+m ¦Ö m 
+m,m 
+k 
+
+¦Ö m 
+R 
+
+(cid:21)
+
+1 
+
+ 
+
+(cid:20)
+
+I
+
+R 
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:21) d z 
+
+m 
+k 
+
+=
+
+¦Ö m 
+k 
+
++
+
+(cid:18)
+
+R 
+
+m,m 
+k 
+
+¦Ë
+
+(cid:4)
+
+ I
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+,
+
+(34) 
+
+where 
+
+¦Ë(
+
+I
+
+m ¦Ö m 
+k 
+m,m 
+R 
+k 
+
+(cid:18)
+
+)
+
+ is given by (14) . Similar to (33) ¨C(34) , we can ob- 
+
+tain 
+
+Prob 
+
+{
+
+ y 
+
+m 
+k 
+
+=
+
+I
+
+m |
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+}
+
+=
+
+
+
+(cid:4)
+
+ I
+
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+,
+
+(35) 
+
+E
+
+{
+
+ y 
+
+m 
+k 
+
+|
+
+ y 
+
+m 
+k 
+
+=
+
+I
+
+m ,
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+}
+
+=
+
+I
+
+m .
+
+(36) 
+
+Putting (33) ¨C(36) into (32) results in (11) . It follows easily from 
+(31) that Var 
+ and hence we have 
+
+{
+
+ y 
+
+m 
+k 
+
+|
+
+ x k 
+ y 
+
+,
+
+m 
+k 
+
+<
+
+I
+
+m ,
+
+ R 
+
+m,m 
+k 
+
+}
+
+=
+
+ 0 
+
+,
+
+Var 
+
+(cid:15)
+
+y 
+
+m 
+k 
+
+|
+
+ x k 
+ R 
+
+,
+
+m,m 
+k 
+
+(cid:16)
+
+=
+=
+
+ Var 
+
+(cid:15)
+(cid:15)
+(cid:17)
+
+y 
+
+m 
+k 
+2 |
+
+|
+
+ x k 
+ y 
+
+,
+
+m 
+k 
+
+>
+
+I
+
+m ,
+
+ R 
+
+m,m 
+k 
+m,m 
+k 
+
+(cid:16)
+(cid:16)
+(cid:16)!
+(cid:19)
+
+E
+
+(cid:15)
+
+(y 
+
+m 
+k 
+
+)
+
+ y 
+
+m 
+k 
+
+>
+
+I
+I
+ I
+
+m ,
+
+ x k 
+ R 
+
+,
+
+
+
+E
+
+y 
+
+m 
+k 
+
+|
+
+ y 
+
+m 
+k 
+
+>
+
+m ,
+m,m 
+k 
+m  ¦Ö m 
+k 
+m,m 
+k 
+
+ x k 
+ R 
+
+,
+
+2 
+
+=
+
+ R 
+
+m,m 
+k 
+
+1 
+
+ 
+
+(cid:4)
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+,
+
+which is exactly the same as (12) , where 
+
+ (
+
+I
+
+m ¦Ö m 
+k 
+m,m 
+R 
+k 
+
+(cid:18)
+
+)
+
+ is given by (13) . 
+
+The proof is now complete. 
+
+(cid:2)
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+67 
+
+Appendix B. Proof of Theorem 1 
+
+ ¦Î
+ ¦Î
+Proof. From the denition of 
+and 
+ we can 
+directly have (17) ¨C (20) by applying the orthogonality projection 
+principle in [4 8,4 9] to system (7) ¨C(10) with the corresponding gain 
+matrix given by (23) . According to (11) , we have 
+
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+k 
+
+|
+
+ k 
+
+,
+
+P
+
+ k 
+ k 
+
+|
+
+1 
+
+P
+
+ k 
+ k 
+
+|
+
+,
+
+ y 
+
+m 
+1 
+k 
+
+|
+
+ k 
+
+=
+
+ ¦Ã m 
+k 
+
+(cid:24)
+
+ 
+ ¦Ã m 
+(1 
+)
+Noting that y k 
+(21) from (37) , where 
+
+¦Ö m 
+1 
+k 
+
+|
+
+ k 
+
++
+
+(cid:18)
+
+R 
+
+m,m 
+k 
+
+¦Ë
+
+(cid:4)
+
+ I
+
+m   
+¦Ö m 
+1 
+k 
+m,m 
+k 
+
+|
+
+ k 
+
+(cid:5)
+
+R 
+
+(cid:6)
+
+ (cid:29)
+
++
+
+k 
+
+I
+
+m .
+
+(37) 
+
+=
+
+ diag 
+
+{
+
+ y 
+
+1 
+k 
+
+,
+
+ y 
+
+2 
+k 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ y 
+
+n y 
+
+k 
+
+}
+
+,
+
+ we certainly have 
+
+¦Ë(
+
+I  
+1 ¡Ì
+
+¦Ö
+
+k 
+R k 
+
+|
+
+ k 
+
+)
+
+ is given by (22) . Subtracting 
+
+(21) from (10) leads to 
+
+ y k 
+
+|
+
+ k 
+
+1 
+
+=
+
+
+
+k 
+
+¦È
+
+k 
+
+C
+
+ k 
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+
++
+
+
+
+k 
+
+(cid:4)
+
+¦Ô
+
+k 
+
+ ¦Ë
+
+(cid:4)
+
+ I
+
+  
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+
+(cid:6)
+
+R
+
+ k 
+
+(cid:6)
+
+.
+
+(38) 
+
+Substituting (38) into the denitions of 
+
+
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+and 
+
+
+
+ y k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+,
+
+ we have 
+
+  ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+=
+
+E
+
+(cid:15)
+(cid:22)
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+
+ y 
+
+T 
+k 
+
+|
+
+ k 
+
+1 
+
+(cid:16)
+
+=
+
+E
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+
+(cid:4)
+
+
+
+k 
+
+¦È
+
+k 
+
+C
+
+ k 
+
+ ¦Î
+
+k 
+
+|
+
+ k 
+
+1 
+
++
+
+
+
+k 
+
+(cid:4)
+
+¦Ô
+
+k 
+
+ ¦Ë
+
+(cid:4)
+!
+(cid:16)
+
+ I
+
+  
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+
+(cid:6)
+
+R
+
+ k 
+
+(cid:6)
+(cid:6)
+
+T 
+
+(cid:23)
+
+=
+
+P
+
+ k 
+ k 
+
+|
+
+1 
+
+
+
+k 
+
+¦È
+
+k 
+
+C
+
+ k 
+
+T ,
+
+which is exactly the same as (24) , and 
+
+  y k 
+
+|
+
+ k 
+
+1 
+ y k 
+
+|
+
+ k 
+
+1 
+
+=
+=
+
+E
+
+(cid:15)
+
+ y k 
+
+|
+
+ k 
+
+1 
+
+ y 
+
+T 
+1 
+k 
+1 
+
+|
+
+ k 
+
+ 
+
+k 
+
+¦È
+
+k 
+
+C
+
+ k 
+
+P
+
+ k 
+ k 
+
+|
+
+
+
+k 
+
+¦È
+
+k 
+
+C
+ I
+
+ k 
+
+!
+(cid:5)
+(cid:6)
+
+T 
+
++
+
+E
+
+(cid:3)
+(cid:4)
+
+
+
+k 
+
+(cid:4)
+
+¦Ô
+
+k 
+
+ ¦Ë
+
+(cid:4)
+
+  
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:6)
+(cid:6)
+
+R
+
+ k 
+
+(cid:6)
+"
+
+¡Á
+
+¦Ô
+
+k 
+
+ ¦Ë
+
+(cid:4)
+
+ I
+
+  
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+
+R
+
+ k 
+
+ T 
+
+ T 
+k 
+
+.
+
+(39) 
+
+For simplicity of the deduction, we assume that cov 
+for m 
+ n y . The generalization of the result to the 
+case where cov 
+ 0 for m 
+ t is straightforward but will 
+bring notational burdens. Recalling the denition of the variance 
+and noting (12) , we have 
+  
+
+{
+
+ y 
+
+m 
+k 
+
+,
+
+ y 
+
+t 
+k 
+
+}
+
+=
+
+ 0 
+
+=
+
+ t , m,
+
+ t 
+
+=
+
+ 1 
+ 2 
+ y 
+ y 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+{
+
+m 
+k 
+
+,
+
+t 
+k 
+
+}
+
+=
+
+=
+
+of y k 
+
+E
+
+(cid:3)
+
+
+ Var {
+ diag 
+
+k 
+
+(cid:4)
+
+¦Ô
+
+k 
+
+ ¦Ë
+
+(cid:4)
+
+ I
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+
+(cid:6)
+
+R
+
+ k 
+
+(cid:6)
+(cid:4)
+
+¦Ô
+
+k 
+
+ ¦Ë
+
+(cid:4)
+
+ I
+
+  
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+1 
+R k 
+
+(cid:5)
+
+(cid:6)
+
+R
+
+ k 
+
+(cid:6)
+
+ T 
+
+ T 
+k 
+
+"
+
+=
+=
+
+ y k 
+
+|
+
+ x k 
+ R k 
+ y 
+ x k 
+ R 
+
+,
+
+}
+|
+
+{
+
+ Var 
+
+{
+
+1 
+k 
+
+,
+
+1 
+k 
+1 
+R k 
+
+,
+
+ 1 
+
+}
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ Var 
+
+{
+
+ y 
+
+n y 
+
+k 
+
+|
+
+ x k 
+ R 
+
+,
+
+n y 
+,n y 
+
+k 
+
+}}
+
+=
+
+ R k 
+
+(cid:17)
+
+I 
+
+ 
+
+(cid:4)
+
+ I
+
+  
+
+¦Ö
+
+k 
+
+|
+
+ k 
+
+(cid:5)
+
+(cid:6)
+
+(cid:19)
+
+,
+
+(40) 
+
+where the second equality holds from the fact that cov 
+
+{
+
+ y 
+
+m 
+k 
+
+,
+
+ y 
+
+t 
+k 
+
+}
+
+=
+
+ 0 
+
+for m 
+
+=
+
+ t and 
+
+ (
+
+I  
+1 ¡Ì
+
+¦Ö
+
+k 
+R k 
+
+|
+
+ k 
+
+)
+
+ is given by (26) . Substituting (40) into 
+
+(39) , we have (25) . The proof is now complete. 
+
+(cid:2)
+
+References 
+
+[1] R. Caballero-Aguila , A. Hermoso-Carazo , J. Linares-Perez , Fusion estimation us- 
+ing measured outputs with random parameter matrices subject to random de- 
+lays and packet dropouts, Signal Process. 127 (2016) 12¨C23 . 
+
+[2] M. Basin , S. Elvira-Ceja , E. Sanchez , Mean-square h ¡Þ
+ ltering for stochastic sys- 
+tems: application to a 2DOF helicopter, Signal Process. 92 (3) (2012) 801¨C806 . 
+[3] X. Li , S. Sun , h ¡Þ
+ Filtering for multiple channel systems with varying delays, 
+consecutive packet losses and randomly occurred nonlinearities, Signal Pro- 
+cess. 104 (2012) 109¨C121 . 
+[4] Y. Zhang , P. Shi , S.K. Nguang , H.R. Karimi , Observer-based nite-time fuzzy h ¡Þ
+control for discrete-time systems with stochastic jumps and time-delays, Sig- 
+nal Process. 97 (2014) 252¨C261 . 
+[5] G. Zhou , L. Wu , J. Xie , W. Deng , T. Quan , Constant turn model for stati- 
+cally fused converted measurement kalman lters, Signal Process. 108 (2015) 
+400¨C411 . 
+[6] Y. Song , G. Wei , G. Yang , Distributed h ¡Þ
+ ltering for a class of sensor networks 
+with uncertain rates of packet losses, Signal Process. 104 (2014) 143¨C151 . 
+[7] H. Wang , P. Shi , J. Zhang , Event-triggered fuzzy ltering for a class of nonlinear 
+networked control systems, Signal Process. 113 (2015) 159¨C168 . 
+[8] S. Kluge , K. Reif , M. Brokate , Stochastic stability of the extended kalman l- 
+ter with intermittent observations, IEEE Trans. Autom. Control 55 (2) (2010) 
+514¨C518 . 
+[9] S. Julier , J. Uhlmann , Unscented ltering and nonlinear estimation, Proc. IEEE 
+92 (3) (2004) 401¨C422 . 
+[10] L. Li , Y. Xia , UKF-Based nonlinear ltering over sensor networks with wireless 
+fading channel, Inf. Sci. 316 (2015) 132¨C147 . 
+[11] B. Allik , C. Miller , M.J. Piovoso , R. Zurakowski , The Tobit Kalman lter: an es- 
+timator for censored measurements, IEEE Trans. Control Syst. Technol. 24 (1) 
+(2016) 365¨C371 . 
+[12] J. Buckley , I. James , Linear regression with censored data, Biometrika 66 (3) 
+(1979) 429¨C436 . 
+[13] T. Amemiya , Regression analysis when the dependent variable is truncated 
+normal, Econometrica 41 (6) (1973) 997¨C1016 . 
+[14] R. Carson , Y. Sun , The tobit model with a non-zero threshold, Econometrics J. 
+10 (3) (2007) 488¨C502 . 
+[15] J. Tobin , Estimation of relationships for limited dependent variables, Econo- 
+metrica 26 (1) (1958) 24¨C36 . 
+[16] A. Assa , F. Janabi-Shari, A robust vision-based sensor fusion approach for re- 
+al-time pose estimation, IEEE Trans. Cybern. 44 (2) (2014) 217¨C227 . 
+[17] C. Rago , P. Willett , Y. Bar-Shalom , Censoring sensors: a low-communica- 
+tion-rate scheme for distributed detection, IEEE Trans. Aerosp. Electron.Syst. 
+32 (1) (1996) 554¨C568 . 
+[18] S. Appadwedula , V.V. Veeravalli , D.L. Jones , Decentralized detection with cen- 
+soring sensors, IEEE Trans. Signal Process. 56 (4) (2008) 1362¨C1373 . 
+[19] C. Miller , B. Allik , M. Piovoso , R. Zurakowski , Estimation of mobile vehicle 
+range & position using the tobit kalman lter, in: Proceedings of the IEEE Con- 
+ference on Decision and Control, Los Angeles, California, USA, December, 2014, 
+pp. 50 01¨C50 07 . 
+[20] W. Li , Y. Jia , Tobit kalman lter with time-correlated multiplicative measure- 
+ment noise, IET Control Theory Appl. 11 (1) (2017) 122¨C128 . 
+[21] B. Ibarz-Gabard¨®s , P.J. Zuria , A kalman lter with censored data, in: IEEE In- 
+ternational Workshop on Intelligent Signal Processing, Faro, Portugal, Septem- 
+ber, 2005, pp. 74¨C79 . 
+[22] B. Allik , C. Miller , M.J. Piovoso , R. Zurakowski , Nonlinear estimators for cen- 
+sored data: a comparison of the EKF, the UKF and the tobit kalman lter, in: 
+Proceedings of the American Control Conference , Chicago, IL, USA, July, 2015, 
+pp. 5146¨C5151 . 
+[23] J. Hampshire , J. Strohbehn , Tobit maximum-likelihood estimation for stochastic 
+time series affected by receiver saturation, IEEE Trans. Inf. Theory 38 (2) (1992) 
+457¨C469 . 
+[24] B. Allik , C. Miller , M.J. Piovoso , R. Zurakowski , Estimation of saturated data us- 
+ing the tobit kalman lter, in: Proceedings of the American Control Conference, 
+Portland, Oregon, USA, June, 2014, pp. 4151¨C4156 . 
+[25] Y. Mosto, R.M. Murray , To drop or not to drop: design principles for kalman 
+ltering over wireless fading channels, IEEE Trans. Autom. Control 54 (2) 
+(2010) 376¨C381 . 
+[26] H. Geng , Y. Liang , F. Yang , L. Xu , Q. Pan , Joint estimation of target state and 
+ionospheric height bias in over-the-horizon radar target tracking, IET Radar, 
+Sonar Navig. 10 (7) (2016) 1153¨C1167 . 
+[27] H. Geng , Y. Liang , X. Zhang , The linear minimum mean square error observer 
+for multi-rate sensor fusion with missing measurements, IET Control Theory 
+Appl. 8 (14) (2014) 175¨C183 . 
+[28] E. Bigllieri , J. Proakis , S. Shamai , Fading channels: information-theoretic and 
+communications aspects, IEEE Trans. Inf. Theory 44 (2619¨C2686) (1998) . 
+[29] R. Berry , R. Gallager , Communication over fading channels with delay con- 
+straints, IEEE Trans. Inf. Theory 48 (5) (2002) 1135¨C1149 . 
+[30] D. Ding , Z. Wang , J. Lam , B. Shen , Finite-horizon h ¡Þ
+ control for discrete time¨C
+varying systems with randomly occurring nonlinearities and fading measure- 
+ments, IEEE Trans. Autom. Control 60 (9) (2015a) 2488¨C2493 . 
+[31] D. Ding , Z. Wang , B. Shen , H. Dong , Envelope-constrained h ¡Þ
+ ltering with 
+fading measurements and randomly occurring nonlinearities: the nite hori- 
+zon case, Automatica 55 (2015b) 37¨C45 . 
+[32] H. Dong , Z. Wang , S.X. Ding , H. Gao , On h ¡Þ
+ estimation of randomly occurring 
+faults for a class of nonlinear time-varying systems with fading channels, IEEE 
+Trans. Autom. Control 61 (2) (2016) 479¨C484 . 
+[33] S. Zhang , Z. Wang , D. Ding , H. Shu , Fuzzy ltering with randomly occurring pa- 
+rameter uncertainties, interval delays, and channel fadings, IEEE Trans. Cybern. 
+44 (3) (2014) 406¨C417 . 
+
+68 
+
+H. Geng et al. / Signal Processing 140 (2017) 60¨C68 
+
+[34] E. Garone , B. Sinopoli , A. Goldsmith , A. Casavola , LQG control for MIMO sys- 
+tems over multiple erasure channels with perfect acknowledgment, IEEE Trans. 
+Autom. Control 57 (2) (2012) 450¨C456 . 
+[35] S. Zhang , Z. Wang , D. Ding , H. Shu , Fuzzy control with randomly occurring 
+innite distributed delays and channel fadings, IEEE Trans. Fuzzy Syst. 22 (1) 
+(2014) 189¨C200 . 
+[36] N. Elia , Remote stabilization over fading channels, Syst. Control Lett. 54 (2005) 
+237¨C249 . 
+[37] N. Xiao , L. Xie , L. Qiu , L, feedback stabilization of discrete-time networked 
+systems over fading channels, IEEE Trans. Autom. Control 57 (9) (2012) 
+2176¨C2189 . 
+[38] F. Ren , Y. Zheng , A novel emulator for discrete-time MIMO triply selective fad- 
+ing channels, IEEE Trans. Circuits Syst. I 57 (9) (2010) 2542¨C2551 . 
+[39] A. Alimohammad , B.F. Cockburn , Modeling and hardware implementation as- 
+pects of fading channel simulators, IEEE Trans. Veh. Technol. 57 (4) (2008) 
+2055¨C2069 . 
+[40] J. Hu , Z. Wang , H. Gao , Recursive ltering with random parameter matrices, 
+multiple fading measurements and correlated noises, Automatica 49 (2013) 
+3440¨C3448 . 
+[41] J. Zhang , L. Ma , Y. Liu , Passivity analysis for discrete-time neural networks with 
+mixed time-delays and randomly occurring quantization effects, Neurocom- 
+puting 216 (2016) 657¨C665 . 
+
+[42] Q. Li , B. Shen , Y. Liu , F.E. Alsaadi , Event-triggered h ¡Þ
+ state estimation for dis- 
+crete-time stochastic genetic regulatory networks with markovian jumping pa- 
+rameters and time-varying delays, Neurocomputing 174 (2016) 912¨C920 . 
+[43] Y.S. Moon , P. Park , W.H. Kwon , Y.S. Lee , Delay-dependent robust stabilization 
+of uncertain state-delayed systems, Int. J. Control 74 (14) (2001) 1447¨C1455 . 
+[44] E. Fridman , U. Shaked , A descriptor system approach h ¡Þ
+ control of linear 
+time-delay systems, IEEE Trans. Autom. Control 47 (2) (2002) 253¨C270 . 
+[45] M. Wu , Y. He , J. She , G. Liu , Delay-dependent criteria for robustst ability of 
+time-varying delay systems, Automatica 40 (8) (2004) 1435¨C1439 . 
+[46] J. Hu , Z. Wang , H. Gao , L.K. Stergioulas , Robust sliding mode control for discrete 
+stochastic systems with mixed time-delays, randomly occurring uncertainties 
+and randomly occurring nonlinearities, IEEE Trans. Ind. Electron. 59 (7) (2012) 
+3008¨C3015 . 
+[47] B. Allik , M. ILG , R. Zurakowski , Ballistic roll estimation using EKF frequency 
+tracking and adaptive noise cancellation, IEEE Trans. Aerosp. Electron.Syst. 49 
+(4) (2013) 2546¨C2553 . 
+[48] B.D.O. Anderson , J.B. Moore , Optimal Filtering, Prentie-hall, Inc., Englewood 
+Cliffs, N. J., 1979 . 
+[49] S. Haykin , Adaptive Filter Theory, Prentice-Hall, New Jersey, NJ, USA, 2002 . 
+

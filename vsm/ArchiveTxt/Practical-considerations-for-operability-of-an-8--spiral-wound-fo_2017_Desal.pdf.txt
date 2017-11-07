@@ -1,0 +1,1018 @@
+Practical considerations for operability of an 8∪ spiral wound forward osmosis module: Hydrodynamics, fouling behaviour and cleaning strategy
+
+Jungeun Kim a,1, Gaetan Blandin c,1, Sherub Phuntsho a, Arne Verliefde d, Pierre Le-Clech b,, Hokyong Shon a,
+
+a School of Civil and Environmental Engineering, University of Technology, Sydney, Post Box 129, Broadway, NSW 2007, Australia
+b UNESCO Centre for Membrane Science and Technology, School of Chemical Engineering, The University of New South Wales, Australia
+c LEQUIA, Institute of the environment, University of Girona, Campus Montilivi, Girona, Spain
+d Ghent University, Faculty of Bioscience Engineering, Department of Applied Analytical and Physical Chemistry, Particle and Interfacial Technology Group (PaInT), Gent, Belgium
+
+H I G H L I G H T S
+
+ An 8∪ commercial spiral wound CTA and TFC FO modules were investigated.
+ TFC module showed much higher permeability and selectivity in FO and PAO modes.
+ Draw ow rate in the CTA modules must be operated at least 5 times lower than feed ow rate.
+ In practice, feed pressure could be considered as an indicator of fouling occurrence.
+ The combination of osmotic backwash and physical cleaning is effective for cleaning CTA and TFC modules.
+
+article
+
+info
+
+
+
+Article history:
+Received 10 June 2016
+Received in revised form 1 November 2016
+Accepted 4 November 2016
+Available online 21 November 2016
+
+Keywords:
+Spiral wound module
+Forward osmosis
+Pressure-drop
+Pressure assisted osmosis
+Organic fouling
+Osmotic backwash
+
+
+abstract
+
+A better understanding of large spiral wound forward osmosis (SW FO) module operation is needed to provide
+practical insight for a full-scale FO practical implementation desalination plant. Therefore, this study investigated
+two different 8∪ SW FO modules (i.e. cellulose tri acetate, CTA and thin lm composite, TFC) in terms of hydrody-
+namics, operating pressure, water and solute uxes, fouling behaviour and cleaning strategy. For both modules, a
+signicantly lower ow rate was required in the draw channel than in the feed channel due to important pres-
+sure-drop in the draw channel and was a particularly critical operating challenge in the CTA module when
+permeate spacers are used. Under FO and pressure assisted osmosis (PAO, up to 2.5 bar) operations, the TFC mod-
+ule featured higher water ux and lower reverse salt ux than the CTA module. For both modules, fouling tests
+demonstrated that feed inlet pressure was more sensitive to foulant deposition than the ux, thus conrming
+that FO fouling deposition occurs in the feed channel rather than on the membrane surface. Osmotic backwash
+combined with physical cleaning used in this study conrmed to be effective and adapted to large-scale FO
+module operation.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+The most commonly used desalination technologies are generally
+pressure-based membrane processes such as reverse osmosis (RO)
+and nanoltration (NF). However, the wider development of these pro-
+cesses is often limited due to high membrane fouling and scaling pro-
+pensity and high energy consumption, resulting in operation and
+maintenance costs [1每3]. As a potentially more sustainable alternative,
+the use of forward osmosis (FO) has been recently put forward and ex-
+tensively investigated. In FO, the driving force is an osmotic pressure
+gradient, allowing water to naturally ow from a low chemical potential
+feed solution (FS) to a concentrated high chemical potential draw solu-
+tion (DS) through a semipermeable membrane [4,5]. Although direct
+cost comparison of FO with conventional NF and RO systems remains
+a challenging task, several studies have demonstrated that desalination
+by FO could lead to lower energy consumption, reduced fouling propen-
+sity and higher cleaning efciency [5每7].
+Recent interest in FO applications has been particularly driven by the
+performance improvement offered by the latest generation of FO mem-
+branes. The improvements include higher water permeability, greater
+selectivity and rejection, smoother active layer surface allowing lower
+fouling propensity, and quite importantly, a specically adapted porous
+support layer offering low internal concentration polarization (ICP) yet
+still appropriate mechanical support for practical operation [4,5]. The
+rst commercially available and specically tailored FO membranes,
+based on cellulose triacetate (CTA), were developed by Hydration Tech-
+nology Innovations (HTI, Albany, OR), and have been examined in vari-
+ous applications by numerous research groups [8每13]. More recently,
+thin lm composite (TFC) FO membranes were designed with a poly-
+amide selective layer, and these feature higher water ux and better sol-
+ute rejection compared to CTA membranes [14每17]. In addition, TFC
+membranes were found to be more pH stable and were more resistant
+to hydrolysis and biological degradation [17每19]. In contrast, previous
+studies have reported that TFC membranes showed higher fouling ten-
+dency than CTA membranes due to the increased surface roughness [17,
+18,20,21]. As such opportunities to increase ux with commercially
+available membrane exists, but long-term fouling studies are required.
+An optimised FO module design is expected to feature high membrane
+packing density, lower concentration polarization (i.e., high mass trans-
+fer coefcient) and high water permeation [22]. Performance of several
+commercial FO membranes (i.e., Porifera and Toyobo) has been widely
+reported in the literature on small membrane samples but information
+regarding module design is still limited since most commercial FO
+membrane modules are still under development. Only the performance
+of SW FO modules developed by HTI has been reported for a variety of
+feed and draw spacers (ne, medium and corrugated spacer) [12]
+while detailed information on other suppliers module congurations
+are not available. This clearly indicates that CTA and TFC membrane
+modules were the most mature and developed membranes during the
+time of this FO study. In this regard, most studies so far were conducted
+using small at sheet membrane coupons which are not always repre-
+sentative of behaviour in full-scale modules. Therefore, a better under-
+standing of FO behaviour in larger modules is needed to provide more
+practical insight for full-scale FO operation.
+A large-scale spiral wound (SW) FO module typically requires four
+ports: two inlets and two outlets for both the FS and DS. In SW FO mod-
+ules, the FS circulates in the feed channel between the rolled layers, and
+the DS ows through the central tube into the inner side of the mem-
+brane envelop [23]. Therefore, ow patterns and ow resistance in the
+feed and draw channels can be different and affected by specic module
+design. In particular, a more detailed study linking operating conditions
+(ow rates, inlet pressures) to resulting performances (water ux, re-
+verse salt ux, fouling and cleaning efciency) of SW FO modules will
+provide important insights in the operability of current SW FO modules
+on full-scale.
+Very limited pilot-scale FO studies using SW FO modules currently
+exist in literature [23每25]. However, these pilot studies are of crucial im-
+portance for further FO development since the operation of SW modules
+in industrial plants is affected by several factors such as the number of
+membrane leaves, feed and draw channel height, spacers that affect
+mass transfer and pressure loss, but also fouling potential [26]. To the
+best of the author's knowledge, so far only two studies have been re-
+ported in literature using 4040 SW (4∪ in diameter and 40∪ in length)
+[24] and 8040 SW (8040, 8∪ inch in diameter and 40∪ in length) [23]
+HTI CTA FO modules. Those studies mainly focused on the optimisation
+of a large-scale SW FO module [24] and of a newly proposed fertiliser
+drawn forward osmosis process for a specic application [23,27]. How-
+ever, the susceptibility of SW FO modules to membrane fouling during
+the long-term FO operation has not been considered in those studies,
+which could consequently exacerbate the performance of in full-scale
+FO stand-alone or hybrid process. Although membrane fouling on the
+feed side in FO happens less and is easily removed by simple physical
+cleaning [3,28,29], the effect of osmotic backwash seems to be unclear.
+Some studies have reported that the osmotic backwash could lead to
+an adverse effect on the driving force due to the accumulation of the re-
+versed solutes within the fouling layer [29每31]. Nevertheless, the specif-
+ic combination of osmotic backwash with subsequent physical cleaning
+
+could be more effective to restore a signicant portion of water produc-
+tivity after fouling occurred [32]. Thus, there is a critical need to control
+operating conditions and assess performances of SW FO modules more
+systematically including fouling behaviour and cleaning strategies for
+sustainable FO operation.
+As an alternative to FO, a new FO-derived concept called pressure
+assisted osmosis (PAO) has recently been developed. PAO is aimed at in-
+creased water production compared to FO for more favourable econom-
+ics for further commercialization [32每36]. In PAO, hydraulic pressure is
+applied on the feed side of the membrane to enhance the water ux
+through the synergistic effects of hydraulic pressure and osmotic pres-
+sure [32每36]. Overall, it has been demonstrated that by increasing the
+applied pressure, the water ux was signicantly improved despite
+higher ICP. Even more than for FO, the role of a spacer in the PAO process
+is important to prevent the deformation and damage of the membrane
+caused by the applied hydraulic pressure on the feed side of the mem-
+brane [34,36,37]. This reinforces the need to evaluate the impact of hy-
+draulic pressure on the module-scale FO and PAO operations.
+Accordingly, there is a clear need for a detailed assessment of the im-
+pact of hydrodynamic conditions on pressure behaviour of an SW FO
+module (i.e. build-up in draw stream and drop along feed line). This
+study therefore systematically studied the performances of two com-
+mercial SW FO modules (CTA from HTI and TFC from Toray Industries
+Inc.). An assessment of the water ux and reverse salt ux behaviours
+as a function of operating conditions in both FO and PAO operation
+was conducted to evaluate the performance of both modules compared
+to lab-scale experiments. Fouling studies were performed with a mix-
+ture of model organic foulants was then used to evaluate the fouling be-
+haviour and cleaning strategies for the modules operated in a seawater
+dilution application. To our best knowledge, this is the rst study ad-
+dressing the practical operations of commercially available 8∪ SW FO
+modules and providing a comparative assessment of long-term fouling
+behaviour in large-scale FO process. Therefore, the results reported in
+this study can be useful for further investigation of the fouling control
+by chemical cleaning and/or pre-treatment in full-scale FO operation.
+
+2. Material and methods
+
+2.1. Spiral wound FO membrane module
+
+Two different 8∪ SW FO modules were used (Table 1): one CTA mod-
+ule manufactured by HTI and one TFC polyamide module manufactured
+by Toray Industries, Korea. In both modules, the rejection layer of the
+membrane faces the FS and the porous support layer of the membrane
+faces to the DS. Feed and permeate spacers were present to keep the
+membrane leaves apart [23,24].
+As presented in Table 1, the CTA module had a corrugated feed spac-
+er made of 2.5 mm polystyrene chevron and an effective membrane
+area of 9 m2 with six membrane leaves. The TFC module had a feed spac-
+er made of a 1.19 mm diamond type polypropylene mesh and an effec-
+tive membrane area of 15 m2 with ten membrane leaves. In addition,
+both modules had different permeate spacers: the CTA module had
+three tricot spacers, while the TFC module featured a draw channel con-
+taining one diamond type spacer wedged in between two tricot type
+spacers. If a net spacer is used inside of the envelope in the SW FO mod-
+ule and the DS side is pressurized, the feed ow channel may be blocked
+by membrane deformation. Accordingly, a tricot fabric spacer is used in-
+side the envelope like a permeate carrier of an SW RO module and pre-
+vents the membrane deformation and this structure has been already
+utilised for pressure-retarded osmosis application [38]. Water perme-
+ability (A) for both FO modules was measured in RO mode in a pilot-
+scale FO unit (tap water - conductivity 240 ㊣ 20 米m/cm - in the feed
+and draw sides). The tests were conducted at increasing feed pressures
+(in intervals of 0.5 bar up to 2.5 bar). ACTA and ATFC were found to be
+1.6 ㊣ 0.2 and 8.9 ㊣ 0.14 Lm 2 h 1 bar 1, respectively. Additional in-
+formation on the properties of the CTA and TFC FO membranes such
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+251
+
+as water and salt permeability (A and B values), feed rejection (R),
+structural parameter (S) and membrane total thickness are all provided
+in the Table S2 in the Supplementary Information.
+
+2.2. Feed and draw solutions
+
+A draw solution at a concentration of 35 g/L of Red Sea salt (RSS)
+from Red Sea Inc. with an equivalent osmotic pressure of 24.7 bar was
+prepared and used in all experiments [32,33]. RSS composition is de-
+scribed in Table S1 in the Supplementary Information. Humic acid and
+alginate were chosen as model organic foulants, while calcium (as calci-
+um chloride, CaCl2) was added to further enhance fouling. Model organ-
+ic foulants used in this study have been known as major organic
+components in wastewater and have extensively been used to study
+in fouling behaviour in FO process [32,39,40]. In fouling experiments,
+the FS was prepared by mixing the following chemicals to tap water:
+1.2 g/L RSS, 0.22 g/L CaCl2 (Ajax Finechem Pty Ltd., Tarend point,
+Australia), 0.2 g/L humic acid sodium salt (Aldrich, Milwaukee, WIS)
+and 0.2 g/L alginic acid sodium salt (Sigma Aldrich Co., St Louis, MO).
+The total organic carbon (TOC) concentration of the feed was 94 mg/L.
+Before and after the fouling experiments, baseline experiments were
+conducted using tap water and 35 g/L RSS as FS and DS, respectively.
+
+2.3. Pilot-scale system and experimental procedure
+
+As shown in Fig. 1, a pilot-scale FO system was used for the experi-
+ments. Details about the design and control of the pilot-scale FO system
+are provided in our previous study [23]. Flow meters, pressure gauges
+and electrical conductivity (EC) meters were installed at both the inlet
+and outlet points of the module and connected to a computer for online
+data recording and monitoring. Although the feed and draw ow rates
+were varied between 17 and 100 L/min and between 4 and 15 L/min, re-
+spectively, the cross-ow velocity of each module shows difference due
+to their different module designs. The converted feed and draw cross-
+ow velocities for both are presented in Table 2.
+The impact of feed and draw ow rates on pressure-drop were suc-
+cessively evaluated. For this evaluation, 500 L of FS and DS were pre-
+pared with tap water, and each experiment was carried out at a xed
+draw ow rate, while the feed ow rate was varied and vice versa. De-
+tails of the experiment conditions are summarized in Table 2.
+PAO operation was also tested to assess the effect of the hydraulic
+pressure in the feed channel. Feed pressure was changed by adjusting
+
+the back pressure valve for xed feed and draw ow rates. The maxi-
+mum operating pressure used in this study was 2.5 bar as feed inlet
+pressure. The PAO experiments were performed with 200 L of 35 g/L
+RSS as DS and 500 L of tap water as FS. The feed and draw ow rates
+were constant and xed based on the optimised conditions dened in
+the initial SW FO module experiments.
+Water uxes (Jw, Lm 2 h 1) were calculated by using the following
+formula:
+Jw  Change in DS volume L 
+  忖t hr
+Am m2
+
+
+
+
+
+
+
+
+
+where Am is the effective membrane surface area (m2) and 忖t is the op-
+eration time (hr). In addition, the recovery rate (%) during the operation
+in FO and PAO modes was dened as
+
+Recovery rate  Permeated volume PV; L
+Initial FS volume L 
+
+
+
+
+
+ 100
+
+When tap water was used as FS in FO and PAO modes, the change in
+FS salt concentration (and thus reverse salt ux) was determined based
+on conductivity measurements (using a multimeter CP-500 L, ISTEK,
+Korea) [6]. The concentration change in the feed solution at the begin-
+ning and end of each experiment was measured. The measured value
+was used to calculate the specic reverse solute ux (SRSF), which is de-
+ned as a ratio of reverse salt ux (Js, gm 2 h 1) and water ux (Jw,
+Lm 2 h 1) [34,41]. SRSF (Js/Jw, g/L) was then calculated using the fol-
+lowing formula:
+
+
+
+
+
+SRSF  1
+Jw
+
+C f V f  Ci Vi
+Am 忖t
+
+where Ci and Cf are the initial and nal feed solute concentration (g/L),
+and Vi and Vf are the initial and nal volume of the feed water (L). When
+DI water was used as FS, the RSF/SRSF was determined by measuring
+the increased electrical conductivity of the FS between the start and
+end of each batch experiment. The electrical conductivity was then con-
+verted into mass concentration using calibration curve for the RSS con-
+centration versus conductivity as shown in Fig. S1 in the Supplementary
+Information.
+
+Fig. 1. Schematic diagram of the pilot-scale FO experimental set up and illustration of 8040 spiral wound FO modules: CS CTA and MS TFC (CS: corrugated feed spacer and MS: medium
+diamond shape feed spacer).
+
+252
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+2.4. Fouling cycles and cleaning experimental procedure
+
+Fouling behaviour was evaluated in FO operation (no hydraulic pres-
+sure added, i.e. back pressure valve opened) for both modules. All ex-
+periments were conducted with 200 L of 35 g/L RSS as DS and 500 L
+mixed fouling solution (as described in Section 2.2) as FS. After 400 L
+of water permeated (i.e. after 80% recovery feed water reached), the
+test was stopped and new feed and draw solutions were prepared and
+a new fouling cycle was initiated (without cleaning in-between cycles).
+Fouling runs were repeated for three cycles in total, before cleaning took
+place. Operation time for the CTA module was much longer than for the
+TFC module due to its low water permeability (since similar permeation
+volumes were aimed at).
+Osmotic backwashing was conducted after the three fouling cycles,
+using 200 L of 35 g/L RSS as cleaning DS (replacing the feed water)
+and tap water as cleaning feed solution (replacing the DS) for 60 min
+to remove the fouling layer from the membrane surface at the same
+feed and draw ow rates of 40 and 10 L/min, respectively for both mod-
+ules (cross-ow velocities for each module are shown in Table 1). After
+the osmotic backwash, physical cleaning at 100 L/min of feed ow rate
+(0.44 and 0.91 m/s for CTA and TFC modules, respectively) was per-
+formed for 5 min using tap water to ush the dislodged foulants from
+the feed channel [32]. During the physical cleaning, samples of the
+feed side (used as draw side during the backwashing) were collected
+every 1 min (100 L ushing), and analysed using a total organic carbon
+(TOC) analyser (SGE Anatoc TOC II Analyser). Before each fouling run, as
+well as before and after cleaning, the baseline ux was measured by op-
+eration with tap water as FS and 35 g/L as DS for 30 min to assess the
+
+inuence of fouling on membrane permeability and inlet pressure
+(and pressure-drop) in the feed channel.
+
+3. Results and discussion
+
+3.1. Impact of operating conditions on module hydrodynamics
+
+3.1.1. Impact of feed and draw ow rates on pressure-drop (without
+permeation)
+It should be noted that the ow rate range is much lower in the draw
+channel, as recommended in [23,24]. Results for the CTA module
+(Fig. 2(a)) indicate that the effect of feed ow rate increase on the pres-
+sure-drop was moderate (at constant draw cross-ow velocity of
+0.04 m/s). When the feed cross-ow velocity was increased from 0.08
+to 0.44 m/s, the feed inlet pressure was increased from 0.17 to
+0.27 bar. In addition, as shown in Fig. 2(b), when the draw cross-ow
+velocity was increased from 0.03 to 0.05 m/s (much lower range than
+for feed stream), the draw inlet pressure was more linearly increased
+from 0.39 to 0.74 bar. This demonstrates that much higher ow resis-
+tance occurs in the draw channel of the CTA module, which is mainly
+due to the use of dense and thick draw tricot spacers with lower
+cross-ow velocities in both sides of the module (Table 1) [42].
+When the feed cross-ow velocity was increased from 0.16 to
+0.91 m/s in the TFC module (Fig. 2(c)), the feed inlet pressure was in-
+creased from 0.22 to 0.39 bar. Specically, under much higher feed
+cross-ow velocity of 0.91 m/s (Table 1), the feed inlet pressure with
+the TFC module is slightly higher (0.39 bar) than that with the CTA mod-
+ule (0.27 bar), which corroborates with the fact that the spacer used in
+
+Fig. 2. Effect of feed and draw cross-ow velocities on pressure build-up in CTA (a and b) and TFC (c and d) modules. Tap water was used as FS and DS.
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+253
+
+Table 1
+Specications of two spiral wound forward osmosis membrane modules employed in this study.
+
+Parameter
+
+Water permeability (A),
+Lm 2 h 1 bar 1
+Effective membrane area, m2
+Number of leaves in the assembly
+Feed spacer thickness, mm
+Feed spacer type
+aImage of feed spacer
+
+CTA (HTI)
+
+1.6 ㊣ 0.2
+
+9
+6
+2.5
+Corrugated polystyrene
+n.a.
+
+TFC (Toray)
+
+8.9 ㊣ 0.1
+
+15
+10
+1.19
+Diamond polypropylene
+
+Draw spacer type
+aImage of draw spacer
+
+Tricot (dense/rigid)
+
+Tricot (exible)/diamond
+
+a Microscope measurement (5MP USB 2.0 Digital Microscope) and the spacers obtained from the SW FO module autopsy.
+
+the feed channel of the TFC module is thinner (1.19 mm) with higher
+packing density leading to lower feed channel height (0.00258 mm for
+TFC and 0.00394 mm for CTA), resulting in higher feed inlet pressure
+[26,43,44]. Pressure-drop in the draw channel of the TFC module was
+not only lower but also much less sensitive to ow rate variation than
+in the CTA module, mainly due to the presence of one layer of diamond
+spacer with much lower resistance in the draw channel (Fig. 2(d)).
+As such, it is clear that spacer design is of crucial importance for pres-
+sure-drop in the SW FO module. The tested CTA module with a corru-
+gated spacer in the feed channel does allow a very low pressure drop
+in the feed channel, but this comes at the cost of a low packing density.
+Most likely, this is only justiable economically if feed waters with a
+very high load of foulants and potential clogging problems is treated.
+In that aspect, the diamond spacer used in the TFC module appears to
+be a better compromise that allows for higher packing densities at mod-
+erate pressure drop. The permeate spacers used in the CTA module re-
+sulted in a very large pressure drop, even at low ow rate.
+Combinations of tricot permeate spacers to support the membrane
+and limit deformation and a diamond spacer to limit pressure-drop
+(as in the TFC module) allows using higher draw ow rates.
+
+3.1.2. Impact of feed and draw channel pressurisation on pressure-drop
+In these experiments, the system was operated by adjusting the feed
+inlet pressure using the back pressure valve of the feed side. Fig. 3 shows
+the impact of the feed inlet pressure on the feed and draw channel inlet
+and outlet pressures for both modules. For both modules (Fig. 3(a) and
+(b)), the draw inlet pressure was increased when pressure was applied
+
+on the feed side. Interestingly, both modules have very distinct behav-
+iour with regards to this ※pressure transfer.§ For the CTA module, the
+draw inlet pressure increase is already maximal at lower hydraulic pres-
+sures (1 bar), and remains constant even when further increasing the
+feed pressure (up to 2.5 bar). This appears to indicate that the
+pressurisation of the draw side in the CTA module is more likely a con-
+sequence of draw channel pressurisation on the tricot type support on
+the draw side. At higher pressures, further reduction of the channel is
+not possible as the tricot support could not be more compacted. For
+the TFC module, a more linear increase in the draw inlet pressure was
+observed with increasing feed pressure (Fig. 3(b)). Here, it could thus
+be hypothesized that the diamond type spacer is less supportive and al-
+lows for more channel reduction [33,45]. To identify the reason behind
+the increases in draw pressure for both modules, RO tests with the mod-
+ules were compared to tests in FO mode (using tap water as FS and DS).
+
+3.2. Relative contribution of hydraulic pressure to permeation ux
+
+FO and PAO tests were carried out using CTA and TFC modules
+(Fig. 4), and now with tap water as FS, and 35 g/L RSS as DS. The
+water uxes in FO and PAO modes with the TFC module were signi-
+cantly higher than that with the CTA module. For example, in FO
+mode (no hydraulic pressure applied), the ux with the TFC module
+was around 16.6 Lm 2 h 1, while the ux with the CTA module was
+around 5.4 Lm 2 h 1. The higher performance of the TFC membranes
+compared to CTA membranes corroborates ndings from literature
+[16,46].
+
+Table 2
+Experimental conditions for module hydrodynamic tests.
+
+Module
+
+CTA
+
+TFC
+
+Test no.
+
+Test 1
+Test 2
+Test 3
+Test 4
+
+Feed cross-ow velocity, m/s (L/min)
+0.08每0.44 (17每100)
+0.18 (40)
+0.16每0.91 (17每100)
+0.37 (40)
+
+Draw cross-ow velocity, m/s (L/min)
+
+FS and DS
+
+0.04 (10)
+0.02每0.07 (4每15)
+0.09 (10)
+0.04每0.14 (4每15)
+
+Tap water of 500 L
+
+254
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+In PAO mode (Fig. 4), as expected, the water ux improved with in-
+creasing applied pressures. For the CTA module, the ux increase with
+applied pressure was moderate, i.e., from 6.72 to 7.3 Lm 2 h 1 (at
+2.5 bars of applied pressure) and remained much lower than the uxes
+obtained with the TFC module. For the TFC module, the impact of the ap-
+plied pressure on the water ux was signicant, already at low applied
+pressure (ux increased from 19 to 24.5 Lm 2 h 1 at 1 and 2.5 bar, re-
+spectively). This conrms that the TFC membranes not only has higher
+permeation ux in FO mode, but is also are more responsive to the
+use of hydraulic pressure (PAO mode) due to its higher water perme-
+ability. Although additional energy is required to pressurise the feed so-
+lution in PAO, the signicant increase in performance could lead to
+additional cost savings, in particular by a reduction of the number of
+membrane modules required [47].
+Table 3 shows the comparison of the specic reverse salt ux (SRSF)
+behaviour for FO and PAO modes using the two different SW FO mod-
+ules. Compared to the CTA module, the TFC module had much lower
+SRSF, and thus not only had a higher ux but also a higher selectivity
+than the CTA module. As expected from the previous lab experiments,
+the results show a signicant decrease in the SRSF for both modules
+with increasing applied pressure. For example, the SRSF were 1.22 and
+0.37 g/L for CTA and TFC, respectively in FO mode, and decreased
+down to 0.64 and 0.10 g/L for CTA and TFC, respectively in PAO mode
+with a feed inlet pressure of 2.5 bar [33,34,36]. This corroborates previ-
+ous ndings that reverse transport of the draw solutes through the
+membranes is signicantly decreased by the enhanced water perme-
+ation. The effect of hydraulic pressure on the RSF for the TFC is even
+more propounded compared to the CTA, due to the higher water perme-
+ability of the TFC. Also, the CTA module could have the risk of irrevers-
+ible fouling on the support layer caused by more solute diffusing from
+DS into FS in which the enhanced salt accumulation on the feed side
+of the CTA module and is mainly promoted by the reverse diffusion of
+Na+ [48,49]. Such reverse solute ux through the FO membranes can
+have signicant economic impact on the FO process. Draw solute leak-
+ages through SRSF in the FO process is one of the major contributors
+to draw solute replenishment cost in a continuous closed-loop congu-
+ration [50]. A recent study conducted by Phuntsho et al. [51] has pointed
+out that accumulation of draw solutes in the feed brine would be one of
+the signicant environmental challenges for brine disposal, especially
+for FO membranes with lower reverse ux selectivity. This indicates
+that, CTA with lower reverse ux selectivity (as shown in Table 3)
+would result in much higher accumulation of draw solutes in the feed
+bine thus leading to higher draw replenishment and brine treatment
+costs. These studies clearly show that the TFC FO membrane with
+much higher reverse ux selectivity than CTA FO membrane would be
+more benecial for FO hybrid systems.
+
+3.3. Fouling behaviour in SW FO modules and impact on hydraulic
+performance
+
+The water ux as a function of permeate volume is presented in
+Fig. 5(a) and (c) while permeate volume and recovery rate as a function
+of operation time is shown in Fig. 5(b) and (d). During each batch, ux
+decreased signicantly with time (and increasing recovery) due to a
+combination of the osmotic dilution of the DS and potentially fouling.
+
+Only when comparing initial permeation uxes for batches, occurrence
+of fouling can be individually assessed. No signicant initial permeation
+ux decline with batches was observed for neither of the tested mod-
+ules, even after three batches of operation without cleaning in between.
+As such, despite the relative long time of operation, especially for the
+CTA module, and the high load of foulant used, a faster ux decline
+was noticed at early stages of operation but between fouling experi-
+ments the ux decline was relatively small (Fig. 5(a)). For the TFC mod-
+ule (Fig. 5(b)), fouling was limited, although a higher impact of fouling
+was initially expected due to the higher roughness of the membrane
+sand the higher permeation ow compared to the CTA [1,52]. Such little
+ux decline for TFC module shows that the fouling happening in the SW
+FO module is clearly different from the results reported in existing liter-
+ature, which was conducted using small FO membrane coupons [21,53,
+54]. This study seems to suggest that the membrane surface properties
+play a less dominant role in SW FO module fouling.
+Nevertheless, there was the steep decrease of the initial water ux
+was observed with CTA module, and the initial recovery rate between
+the CTA and TFC modules was signicantly different (recovery rate of
+10% and 2% for CTA and TFC modules, respectively), resulting in the
+huge difference of operation time for CTA and TFC modules (i.e. 20
+times higher). This was more likely because of two reasons; the impact
+of ECP on the membrane surface of the CTA module mainly due to
+higher RSF (discussed in Section 3.2) and that the CTA module used in
+this study has been operating several times before we conducted the
+fouling experiments, thus it could already have a fouling layer on the
+membrane surface to some extent even though the ux was almost
+fully restored after hydraulic cleaning [51]. More specically, it was ob-
+served that the recovery rate of the CTA module after 10 h operation
+was around 1% with water ux of lower than 1 Lm 2 h 1 and thus
+there was no meaning to operate CTA module longer than 10 h
+(Fig. 5(a)). From this aspect, CTA and TFC module conguration in a
+full-scale FO desalination plant cannot be the same and it is dependent
+on the performance of FO membrane modules. Thus, it is more preferred
+that CTA modules should be paralleled in a full-scale FO desalination
+plant.
+To get further insight in the behaviour of the SW FO modules during
+the fouling (as no real decrease in water permeability was noticed over
+the bathes), feed inlet pressure was compared before and after the foul-
+ing experiments. Fig. 6 compares the feed inlet pressure during fouling
+experiments with the feed pressure using pure water as feed before
+and after the third batch of fouling. As shown in Fig. 6, as soon as the
+foulant mixture was used as FS, a much higher feed inlet pressure was
+observed in the module, due to higher viscosity resulting in an increase
+ow resistance and pressure-drop along the membrane channel on the
+feed side. This feed pressure increase most likely indicates foulant depo-
+sition, although no decrease in permeation ux was noticed. This would
+indicate that fouling occurs more in the channel spacers rather than on
+the membrane surface. Most likely, the foulants accumulated in dead
+zone of the feed spacer, and consequently, the cross-ow velocity and
+the required pressure increased in the feed channel. Despite the fact
+that no decrease in membrane water permeability is seen, the increased
+pressure-drop in the feed channel is of course unwanted. Increased
+pressure drops lead to higher energy consumption for the pump to
+maintain the water circulation [26]. As such, controlling fouling in the
+
+Table 3
+Comparison of specic reverse salt ux (SRSF, Js/Jw) behaviour in pilot-scale FO and PAO processes using two different SW FO modules: CTA and TFC.
+
+CTA module
+
+TFC module
+
+Operation mode
+
+Jw, CTA (Lm 2 h 1)
+
+Js, CTA (gm 2 h 1)
+
+Js/Jw (g/L)
+
+Jw, TFC (Lm 2 h 1)
+
+Js, TFC (gm 2 h 1)
+
+Js/Jw (g/L)
+
+FO
+PAO
+
+1 bar
+2 bar
+2.5 bar
+
+5.4
+6.7
+7.1
+7.3
+
+6.58
+6.12
+5.47
+4.66
+
+1.22
+0.91
+0.77
+0.64
+
+16.6
+19.0
+23.6
+24.5
+
+6.1
+4.1
+2.6
+2.5
+
+0.37
+0.22
+0.11
+0.10
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+255
+
+Fig. 3. Impact of feed inlet pressure on the feed and draw channel pressurisation with (a) CTA and (b) TFC modules. Feed cross-ow velocity was constant at 0.18 m/s for CTA and 0.37 m/s
+for TFC, while the draw ow cross-ow velocities for CTA and TFC modules were 0.04 and 0.09 m/s, respectively. Tap water was used as FS and DS.
+
+feed channel, and avoiding unwanted pressure-drop will be a key pa-
+rameter for real-life FO operation, especially on challenging feed
+streams. By comparing feed pressure (with tap water as FS) before
+and after fouling experiments, it is clear that for the TFC module, pres-
+sure-drop increased much more than for the CTA one (i.e. 1 and
+0.25 bar, respectively). As discussed earlier, the corrugated spacer
+used in the CTA module leads to an increased channel thickness with
+lower initial pressure-drop and most likely less sensitivity to fouling de-
+position with much longer operation time. In addition, since the CTA
+module has shown lower cross-ow velocity of around 0.18 m/s com-
+pared to the TFC module (0.37 m/s) corresponding to the ow rate of
+40 L/min, thus showing that mass transfer coefcient of TFC module
+(3.04 ℅ 10 5 m/s)
+is higher
+than that of CTA module
+(2.40 ℅ 10 5 m/s). Consequently, the loose fouling layer in the
+corrugated spacer can be ushed to some extent or changed by hydro-
+dynamics due to its spacer geometry (Fig. 6).
+
+3.4. Fouling reversibility by osmotic backwash
+
+As discussed in Section 3.3, no signicant impact of fouling was ob-
+served on permeation ux, indicating that fouling occurs more in the
+spacers rather than on the membrane surface in the SW FO modules.
+Therefore, it is unclear whether osmotic backwashing will have a clear
+effect on fouling remediation. To assess this, not only the water
+
+Fig. 4. Comparison of ux behaviour in pilot-scale FO and PAO processes using two
+different SW FO modules. Experimental conditions: feed ow rate: 0.18 and 0.37 m/s for
+CTA and TFC, respectively, draw ow rate: 0.04 m/s for CTA and 0.09 m/s for TFC, and
+applied pressure in PAO: 1, 2 and 2.5 bar, 35 g/L RSS as DS and tap water as FS.
+
+permeability was monitored, but also the potential recovery of the pres-
+sure-drop in the feed channel. The cleaning strategy consisted in a com-
+bination of osmotic backwash followed by feed channel water ushing
+at high cross ow velocity (Section 2.4). During the osmotic backwash,
+the feed pressure drop remained relatively constant for the CTA module,
+but was observed to decrease slightly for the TFC module (see Fig. 7(a)).
+This indicates that the osmotic backwashing could be efcient to recov-
+er materials accumulated in the feed channel during operation, espe-
+cially for TFC membrane module. Besides, as shown in Fig. 7(a),
+signicant reverse ux difference between CTA and TFC modules was
+observed during the osmotic backwash. For instance, the reverse
+water permeation in the TFC module (average of 14.5 Lm 2 h 1) was
+much higher than that in the CTA module (average of 2.8 Lm 2 h 1), in-
+dicating that reverse ux assisted dissociation and dislodging of the
+foulant layer from the membrane surface could be more pronounced
+in the TFC FO membrane modules. The results in Fig. 7(b) therefore
+have conrmed that the feed inlet pressure was dramatically decreased
+after osmotic backwashing and ushing the feed channel under the
+highest cross ow velocity for each module, i.e. from 1.4 to 0.8 and
+from 0.35 to 0.25 for TFC and CTA modules, respectively. Still, the feed
+pressure was not restored to its original level for the clean module,
+thus indicating that almost full recovery was achieved or modication
+of the pressure balance in the module happened.
+In order to compare the efciency of the cleaning and estimate re-
+quired durations for both modules, TOC concentrations ushed out of
+the module after each minute (i.e. 100 L) are presented in Fig. 7(c).
+The results indicate that a very high load of foulants is removed in the
+early stage of physical cleaning and after 3 min (300 L), the TOC level
+returns to that of the incoming tap water and no more foulants are
+ushed out the module. As such, it is clear that for the foulants used in
+this study, only a very short period of physical cleaning is required
+after osmotic backwash. Consequently, the combination of osmotic
+backwash and physical cleaning has proven to be an efcient cleaning
+strategy for the SW FO modules.
+
+4. Conclusions
+
+This study presented practical considerations of SW FO modules
+with different membrane properties (CTA and TFC). The evaluation of
+two modules was conducted to establish hydrodynamic conditions
+under different feed and draw ow rates. In addition, the performances
+of two SW FO modules under different operation modes (FO and PAO
+modes) were compared. Finally, the effectiveness of the combined
+
+256
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+(a)-CTA
+
+(b)-CTA
+
+(c)-TFC
+
+(d)-TFC
+
+Fig. 5. Effect of organic foulant in feed solution on FO fouling of CTA (a and b) and TFC (c and d) modules. (a) and (c) water ux (Jw) as a function of permeate volume (L); (b) and (d)
+permeate volume (L) and recovery rate (R) as a function of operation time. Fouling experiments were conducted using 35 g/L RSS as DS and feed fouling solution prepared by addition
+of 1.2 g/L RSS, 0.22 g/L CaCl2, 0.2 g/L alginate, 0.2 g/L humic acid.
+
+osmotic backwash and physical cleaning on the ux recovery was eval-
+uated. The following conclusions are drawn:
+
+ The draw side of the CTA module was more sensitive to ow rate due
+to the use of permeate spacers thick tricot creating more resistance to
+the ux. The operation of the draw side of the TFC module is less re-
+strictive thanks to a mesh spacer but then less mechanical support is
+provided to the feed stream in the module. Also, pressure transfer
+from the feed to the draw channel was observed in PAO operation
+due to the potential compaction and narrowing of the draw channel.
+ Novel TFC membranes allow for higher permeation ux and is more
+responsive to hydraulic pressure (PAO)
+ In PAO mode, enhanced water permeation caused by the additional
+hydraulic pressure on the feed side of the TFC module led to less RSF
+which is benecial for process efciency and potentially to limit
+(RSF enhanced) fouling propensity.
+ Fouling tests demonstrated that fouling occurs even when only limit-
+ed impact on permeation is observed. Pressure-drop can be an impor-
+tant indicator of fouling occurrence for practical SW FO operation.
+ The combination of osmotic backwash and physical cleaning con-
+rmed to be very efcient and easy to implement on a module scale.
+Nevertheless, it has to be acknowledged that further studies of effec-
+tive cleaning strategies for FO process including chemical cleaning
+have to be conducted for improvement of techno-economic assess-
+ment of FO by evaluating organic removal efciency and feed inlet
+pressure recovery.
+
+Fig. 6. Feed inlet pressure change with CTA and TFC modules. Fouling experiments were
+conducted using 35 g/L RSS as DS and feed fouling solution prepared by addition of
+1.2 g/L RSS, 0.22 g/L CaCl2, 0.2 g/L alginate, 0.2 g/L humic acid.
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+257
+
+Although this study demonstrated that the application of PAO oper-
+ation enables to enhance the water ux and to limit the RSF in both SW
+FO modules, further studies on the comprehensive assessment of the
+PAO process including long-term operations are required. This can
+help to dene optimal design for FO and PAO processes to prevent the
+pressure and energy losses caused by fouling in the system.
+
+Acknowledgements
+
+The authors acknowledge the nancial support of the National Centre
+of Excellence in Desalination Australia, which is funded by the Australian
+Government through the National Urban Water and Desalination Plan.
+This research was also supported by a grant (code 16IFIP-B088091-03)
+from Industrial Facilities & Infrastructure Research Program funded by
+Ministry of Land, Infrastructure and Transport of Korean Government.
+The research leading to these results has received funding from the People
+Programme (Marie Curie Actions) of the European Union Seventh
+Framework Programme (FP7/2007-2013) under REA grant agreement
+n～ 600388 (TECNIOspring programme), and from the Agency for Business
+Competitiveness of the Government of Catalonia, ACCI. Finally, the
+authors thank Hydration Technology Innovations and Toray chemical
+Korea Inc. for the 8040 FO membrane modules they provided.
+
+Appendix A. Supplementary data
+
+Supplementary data to this article can be found online at http://dx.
+doi.org/10.1016/j.desal.2016.11.004.
+
+References
+
+[1] Q. She, R. Wang, A.G. Fane, C.Y. Tang, Membrane fouling in osmotically driven mem-
+brane processes: a review, J. Membr. Sci. 499 (2016) 201每233.
+[2] S. Phuntsho, F. Lot, S. Hong, D.L. Shaffer, M. Elimelech, H.K. Shon, Membrane scaling
+and ux decline during fertiliser-drawn forward osmosis desalination of brackish
+groundwater, Water Res. 57 (2014) 172每182.
+[3] S. Lee, C. Boo, M. Elimelech, S. Hong, Comparison of fouling behavior in forward os-
+mosis (FO) and reverse osmosis (RO), J. Membr. Sci. 365 (1每2) (2010) 34每39.
+[4] S. Zhao, L. Zou, C.Y. Tang, D. Mulcahy, Recent developments in forward osmosis: op-
+portunities and challenges, J. Membr. Sci. 396 (2012) 1每21.
+[5] T. Cath, A. Childress, M. Elimelech, Forward osmosis: principles, applications, and re-
+cent developments, J. Membr. Sci. 281 (1每2) (2006) 70每87.
+[6] S. Phuntsho, H.K. Shon, S. Hong, S. Lee, S. Vigneswaran, A novel low energy fertilizer
+driven forward osmosis desalination for direct fertigation: evaluating the perfor-
+mance of fertilizer draw solutions, J. Membr. Sci. 375 (1每2) (2011) 172每181.
+[7] J.R. McCutcheon, R.L. McGinnis, M. Elimelech, A novel ammonia-carbon dioxide for-
+ward (direct) osmosis desalination process, Desalination 174 (1) (2005) 1每11.
+[8] Phuntsho, S., A novel fertiliser drawn forward osmosis desalination for fertigation.
+(Doctoral Dissertation) 2012.
+[9] J.R. McCutcheon, R.L. McGinnis, M. Elimelech, Desalination by ammonia-carbon di-
+oxide forward osmosis: inuence of draw and feed solution concentrations on pro-
+cess performance, J. Membr. Sci. 278 (1每2) (2006) 114每123.
+[10] C.H. Tan, H.Y. Ng, A novel hybrid forward osmosis-nanoltration (FO-NF) process
+for seawater desalination: draw solution selection and system conguration,
+Desalin. Water Treat. 13 (1每3) (2010) 356每361.
+[11] A. Alturki, J. McDonald, S.J. Khan, F.I. Hai, W.E. Price, L.D. Nghiem, Performance of a
+novel osmotic membrane bioreactor (OMBR) system: ux stability and removal of
+trace organics, Bioresour. Technol. 113 (2012) 201每206.
+[12] G. Blandin, A. Verliefde, J. Comas, I. Rodriguez-Roda, P. Le-Clech, Efciently combin-
+ing water reuse and desalination through forward osmosis〞reverse osmosis (FO-
+RO) hybrids: a critical review, Membranes 6 (3) (2016) 37.
+[13] Y. Kim, L. Chekli, W.-G. Shim, S. Phuntsho, S. Li, N. Ghaffour, T. Leiknes, H.K. Shon, Se-
+lection of suitable fertilizer draw solute for a novel fertilizer-drawn forward osmo-
+sis每anaerobic membrane bioreactor hybrid system, Bioresour. Technol. 210 (2016)
+26每34.
+[14] R. Wang, L. Shi, C.Y. Tang, S. Chou, C. Qiu, A.G. Fane, Characterization of novel for-
+ward osmosis hollow ber membranes, J. Membr. Sci. 355 (1每2) (2010) 158每167.
+[15] J. Wei, C. Qiu, C.Y. Tang, R. Wang, A.G. Fane, Synthesis and characterization of at-
+sheet thin lm composite forward osmosis membranes, J. Membr. Sci. 372 (1每2)
+(2011) 292每302.
+[16] N.Y. Yip, A. Tiraferri, W.A. Phillip, J.D. Schiffman, M. Elimelech, High performance
+thin-lm composite forward osmosis membrane, Environ. Sci. Technol. 44 (10)
+(2010) 3812每3818.
+[17] Y. Gu, Y.-N. Wang, J. Wei, C.Y. Tang, Organic fouling of thin-lm composite polyam-
+ide and cellulose triacetate forward osmosis membranes by oppositely charged
+macromolecules, Water Res. 47 (5) (2013) 1867每1874.
+
+Fig. 7. (a) Variation of reverse water ux and feed pressure drop with osmotic backwash
+operation time, (b) effect of osmotic backwash and physical cleaning on the feed inlet
+pressure recovery and (c) total organic carbon (TOC, mg/L) concentration as a function
+of the water volume ushed (L). Physical cleaning with maximum feed cross-ow
+velocity of 0.44 and 0.91 m/s for CTA and TFC, respectively was performed for 5 min
+using tap water. The TOC of the feed was around 94 mg/L.
+
+258
+
+J. Kim et al. / Desalination 404 (2017) 249每258
+
+[18] Z. Wang, J. Tang, C. Zhu, Y. Dong, Q. Wang, Z. Wu, Chemical cleaning protocols for
+thin lm composite (TFC) polyamide forward osmosis membranes used for munic-
+ipal wastewater treatment, J. Membr. Sci. 475 (2015) 184每192.
+[19] G.M. Geise, H.S. Lee, D.J. Miller, B.D. Freeman, J.E. McGrath, D.R. Paul, Water purica-
+tion by membranes: the role of polymer science, J. Polym. Sci. B Polym. Phys. 48 (15)
+(2010) 1685每1718.
+[20] X. Zhu, M. Elimelech, Colloidal fouling of reverse osmosis membranes: measure-
+ments and fouling mechanisms, Environ. Sci. Technol. 31 (12) (1997) 3654每3662.
+[21] E.M. Vrijenhoek, S. Hong, M. Elimelech, Inuence of membrane surface properties
+on initial rate of colloidal fouling of reverse osmosis and nanoltration membranes,
+J. Membr. Sci. 188 (1) (2001) 115每128.
+[22] K. Lutchmiah, A.R.D. Verliefde, K. Roest, L.C. Rietveld, E.R. Cornelissen, Forward os-
+mosis for application in wastewater treatment: a review, Water Res. 58 (2014)
+179每197.
+[23] J.E. Kim, S. Phuntsho, F. Lot, H.K. Shon, Investigation of pilot-scale 8040 FO mem-
+brane module under different operating conditions for brackish water desalination,
+Desalin. Water Treat. 53 (10) (2014) 2782每2791.
+[24] Y.C. Kim, S.J. Park, Experimental study of a 4040 spiral-wound forward-osmosis
+membrane module, Environ. Sci. Technol. 45 (18) (2011) 7737每7745.
+[25] R.L. McGinnis, N.T. Hancock, M.S. Nowosielski-Slepowron, G.D. McGurgan, Pilot
+demonstration of the NH3/CO2 forward osmosis desalination process on high salin-
+ity brines, Desalination 312 (2012) 67每74.
+[26] J. Schwinge, P.R. Neal, D.E. Wiley, D.F. Fletcher, A.G. Fane, Spiral wound modules and
+spacers: review and analysis, J. Membr. Sci. 242 (1每2) (2004) 129每153.
+[27] S. Phuntsho, H. Shon, S. Hong, S. Lee, S. Vigneswaran, J. Kandasamy, Fertiliser drawn
+forward osmosis desalination: the concept, performance and limitations for
+fertigation, Rev. Environ. Sci. Biotechnol. 11 (2) (2012) 147每168.
+[28] N.T. Hancock, P. Xu, M.J. Roby, J.D. Gomez, T.Y. Cath, Towards direct potable reuse
+with forward osmosis: technical assessment of long-term process performance at
+the pilot scale, J. Membr. Sci. 445 (2013) 34每46.
+[29] R. Valladares Linares, Z. Li, V. Yangali-Quintanilla, Q. Li, G. Amy, Cleaning protocol for
+a FO membrane fouled in wastewater reuse, Desalin. Water Treat. 51 (25每27)
+(2013) 4821每4824.
+[30] R. Valladares Linares, Z. Li, M. Abu-Ghdaib, C.-H. Wei, G. Amy, J.S. Vrouwenvelder,
+Water harvesting from municipal wastewater via osmotic gradient: an evaluation
+of process performance, J. Membr. Sci. 447 (2013) 50每56.
+[31] E. Arkhangelsky, F. Wicaksana, S. Chou, A.A. Al-Rabiah, S.M. Al-Zahrani, R. Wang, Ef-
+fects of scaling and cleaning on the performance of forward osmosis hollow ber
+membranes, J. Membr. Sci. 415每416 (2012) 101每108.
+[32] G. Blandin, A.R. Verliefde, P. Le-Clech, Pressure enhanced fouling and adapted anti-
+fouling strategy in pressure assisted osmosis (PAO), J. Membr. Sci. 493 (2015)
+557每567.
+[33] G. Blandin, A.R.D. Verliefde, C.Y. Tang, A.E. Childress , P. Le-Clech, Validation of
+assisted forward osmosis (AFO) process: impact of hydraulic pressure, J. Membr.
+Sci. 447 (2013) 1每11.
+[34] S. Sahebi, S. Phuntsho, J.E. Kim, S. Hong, H.K. Shon, Pressure assisted fertiliser drawn
+osmosis process to enhance nal dilution of the fertiliser draw solution beyond os-
+motic equilibrium, J. Membr. Sci. 481 (2015) 63每72.
+[35] K. Lutchmiah, D.J.H. Harmsen, B.A. Wols, L.C. Rietveld, Q. Jianjun, E.R. Cornelissen,
+Continuous and discontinuous pressure assisted osmosis (PAO), J. Membr. Sci. 476
+(2015) 182每193.
+
+[36] Y. Oh, S. Lee, M. Elimelech, S. Lee, S. Hong, Effect of hydraulic pressure and mem-
+brane orientation on water ux and reverse solute ux in pressure assisted osmosis,
+J. Membr. Sci. 465 (2014) 159每166.
+[37] J. Duan, E. Litwiller, I. Pinnau, Solution-diffusion with defects model for pressure-
+assisted forward osmosis, J. Membr. Sci. 470 (2014) 323每333.
+[38] Y.C. Kim, Y. Kim, D. Oh, K.H. Lee, Experimental investigation of a spiral-wound pres-
+sure-retarded osmosis membrane module for osmotic power generation, Environ.
+Sci. Technol. 47 (6) (2013) 2966每2973.
+[39] C. Boo, M. Elimelech, S. Hong, Fouling control in a forward osmosis process integrat-
+ing seawater desalination and wastewater reclamation, J. Membr. Sci. 444 (2013)
+148每156.
+[40] W.S. Ang, S. Lee, M. Elimelech, Chemical and physical aspects of cleaning of organic-
+fouled reverse osmosis membranes, J. Membr. Sci. 272 (1) (2006) 198每210.
+[41] W.A. Phillip, J.S. Yong, M. Elimelech, Reverse draw solute permeation in forward os-
+mosis: modeling and experiments, Environ. Sci. Technol. 44 (13) (2010)
+5170每5176.
+[42] A. Cipollina, G. Micale, Sustainable Energy from Salinity Gradients, Woodhead Pub-
+lishing, 2016.
+[43] M. Shakaib, S. Hasani, M. Mahmood, Study on the effects of spacer geometry in
+membrane feed channels using three-dimensional computational ow modeling,
+J. Membr. Sci. 297 (1) (2007) 74每89.
+[44] M. Park, J.H. Kim, Numerical analysis of spacer impacts on forward osmosis mem-
+brane process using concentration polarization index, J. Membr. Sci. 427 (2013)
+10每20.
+[45] Y.C. Kim, M. Elimelech, Adverse impact of feed channel spacers on the performance
+of pressure retarded osmosis, Environ. Sci. Technol. 46 (8) (2012) 4673每4681.
+[46] B.D. Coday, D.M. Heil, P. Xu, T.Y. Cath, Effects of transmembrane hydraulic pressure
+on performance of forward osmosis membranes, Environ. Sci. Technol. 47 (5)
+(2013) 2386每2393.
+[47] G. Blandin, A.R. Verliefde, C.Y. Tang, P. Le-Clech, Opportunities to reach economic
+sustainability in forward osmosis每reverse osmosis hybrids for seawater desalina-
+tion, Desalination 363 (2015) 26每36.
+[48] M. Xie, L.D. Nghiem, W.E. Price, M. Elimelech, Impact of humic acid fouling on mem-
+brane performance and transport of pharmaceutically active compounds in forward
+osmosis, Water Res. 47 (13) (2013) 4567每4575.
+[49] B. Mi, M. Elimelech, Chemical and physical aspects of organic fouling of forward os-
+mosis membranes, J. Membr. Sci. 320 (1每2) (2008) 292每302.
+[50] A. Achilli, T.Y. Cath, A.E. Childress, Selection of inorganic-based draw solutions for
+forward osmosis applications, J. Membr. Sci. 364 (1) (2010) 233每241.
+[51] S. Phuntsho, J.E. Kim, M.A.H. Johir, S. Hong, Z. Li, N. Ghaffour, T. Leiknes, H.K. Shon,
+Fertiliser drawn forward osmosis process: pilot-scale desalination of mine impaired
+water for fertigation, J. Membr. Sci. 508 (2016) 22每31.
+[52] G. Blandin, H. Vervoort, P. Le-Clech, A.R.D. Verliefde, Fouling and cleaning of high
+permeability forward osmosis membranes, J. Water Process. Eng. 9 (2016) 161每169.
+[53] B. Mi, M. Elimelech, Organic fouling of forward osmosis membranes: fouling revers-
+ibility and cleaning without chemical reagents, J. Membr. Sci. 348 (1) (2010)
+337每345.
+[54] C.Y. Tang, Q.S. Fu, C.S. Criddle, J.O. Leckie, Effect of ux (transmembrane pressure)
+and membrane properties on fouling and rejection of reverse osmosis and
+nanoltration membranes treating peruorooctane sulfonate containing wastewa-
+ter, Environ. Sci. Technol. 41 (6) (2007) 2008每2014.
+

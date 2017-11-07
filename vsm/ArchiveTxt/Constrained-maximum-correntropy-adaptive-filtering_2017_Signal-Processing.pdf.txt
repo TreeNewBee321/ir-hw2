@@ -1,0 +1,5698 @@
+Constrained maximum correntropy adaptive ltering 
+
+Siyuan Peng 
+a , Badong Chen 
+
+b , 
+
+, Lei Sun 
+c , Wee Ser 
+a , Zhiping Lin 
+
+a 
+
+a School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore 639798, Singapore 
+b Institute of Articial Intelligence and Robotics, Xi＊an Jiaotong University, Xi＊an 710049, China 
+c School of Information and Electronics, Beijing Institute of Technology, Beijing 10 0 081, China 
+
+article 
+
+info
+
+Article history: 
+Received 8 February 2017 
+Revised 5 May 2017 
+Accepted 6 May 2017 
+Available online 16 May 2017 
+
+Keywords: 
+Constrained adaptive ltering 
+Maximum correntropy criterion 
+Non-Gaussian signal processing 
+Convergence analysis 
+
+
+abstract
+
+Constrained adaptive ltering algorithms have been extensively studied in many applications. Most ex- 
+isting constrained adaptive ltering algorithms are developed under the mean square error (MSE) cri- 
+terion, which is an ideal optimality criterion under Gaussian noises. This assumption however fails to 
+model the behavior of non-Gaussian noises found in practice. Motivated by the robustness and simplicity 
+of maximum correntropy criterion (MCC) for non-Gaussian impulsive noises, this paper proposes a new 
+adaptive ltering algorithm called constrained maximum correntropy criterion (CMCC). Specically, CMCC 
+incorporates a linear constraint into a MCC lter to solve a constrained optimization problem explicitly. 
+The proposed adaptive ltering algorithm is easy to implement, has low computational complexity, and 
+can signicantly outperform those MSE based constrained adaptive algorithms in heavy-tailed impulsive 
+noises. Additionally, the mean square convergence behaviors are studied under energy conservation rela- 
+tion, and a sucient condition to ensure the mean square convergence and the steady-state mean square 
+deviation (MSD) of the CMCC algorithm are obtained. Simulation results conrm the theoretical predic- 
+tions under both Gaussian and non-Gaussian noises, and demonstrate the excellent performance of the 
+novel algorithm by comparing it with other conventional methods. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Constrained adaptive ltering algorithms have been success- 
+fully applied in domains of signal processing and communications, 
+such as system identication, blind interference suppression, ar- 
+ray signal processing, and spectral analysis [1,2] . The main ad- 
+vantage of constrained adaptive lters is that they have an error- 
+correcting feature that can prevent the accumulation of errors 
+(e.g., the quantization errors in a digital implementation). As a 
+well-known linearly-constrained adaptive ltering algorithm, the 
+constrained least mean square (CLMS) [3] is a simple stochastic- 
+gradient based adaptive algorithm, originally conceived as an adap- 
+tive solution to a linearly-constrained minimum-variance (LCMV) 
+ltering problem in antenna array processing [4] . Although the 
+CLMS is simple and computationally ecient, it obviously suf- 
+fer from low convergence speed especially when the input signal 
+is correlated. In order to improve the convergence rate, the con- 
+strained recursive least squares (CRLS) algorithm was derived in [5] , 
+at the cost of higher computational complexity. Some improve- 
+ments of the CRLS can be found in [6,7] . Several constrained ane 
+projection (CAP) algorithms were also developed [8,9] . 
+Most of the existing constrained adaptive ltering algorithms 
+have been developed based on the common mean square error 
+(MSE) criterion due to its attractive features, such as mathematical 
+tractability, computational simplicity and optimality under Gaus- 
+sian assumption [10] . However, Gaussian assumption does not al- 
+ways hold in real-world environments, even though it is justied 
+for many natural noises. When the signals are disturbed by non- 
+Gaussian noises, the MSE based algorithms may perform poorly or 
+encounter the instability problem [11,12] . From a statistical view- 
+point, the MSE is insucient to capture all possible information in 
+non-Gaussian signals. In practical situations, non-Gaussian noises 
+are frequently encountered. For example, some sources of non- 
+Gaussian impulsive noises are ill synchronization in digital record- 
+ing, motor ignition noise in internal combustion engines, and light- 
+ing spikes in natural phenomena [13,14] . 
+To deal with the non-Gaussian noise problem (which usually 
+causes large outliers), maximum correntropy criterion (MCC) has 
+been successfully applied to replace the traditional MSE criterion 
+due to its simplicity and robustness [11,12,15每19] . As a nonlinear 
+and local similarity measure directly related to the probability of 
+how similar two random variables are in the bisector neighbor- 
+hood of the joint space controlled by the kernel bandwidth, cor- 
+rentropy is insensitive to large outliers, and is frequently used as a 
+powerful method to handle non-Gaussian impulsive noises in vari- 
+ous applications of engineering. For instance, Singh et al. [20] and 
+Zhao et al. [16] utilized the correntropy as a cost function to de- 
+velop robust adaptive ltering algorithm for signal processing, and 
+Chen et al. extended the original correntropy by using the gen- 
+eralized Gaussian density (GGD) function as the kernel, and pro- 
+posed a generalized correntropy for robust adaptive ltering [21] . 
+He et al. presented a MCC-based rotationally invariant principal 
+component analysis (PCA) algorithm for image processing [22] , and 
+also incorporated the correntropy induced metric (CIM) into MCC 
+to develop an effective sparse representation algorithm for robust 
+face recognition [23] . Bessa et al. adopted MCC to train neural net- 
+works for wind prediction in power system [24] . Hasanbelliu et al. 
+utilized information theoretic measures (entropy and correntropy) 
+to develop two algorithms that can deal with both rigid and non- 
+rigid point set registration with different computational complex- 
+ities and accuracies [25] . However, constrained adaptive ltering 
+based on MCC has not been studied yet in the literature. 
+In this work, a constrained maximum correntropy criterion 
+(CMCC) adaptive ltering algorithm is proposed for signal process- 
+ing especially in presence of heavy-tailed impulsive noises. The 
+main contributions in this paper are summarized as follows: 
+ First, we develop the CMCC adaptive ltering algorithm by in- 
+corporating a linear constraint into the MCC to solve a con- 
+strained optimization problem explicitly. The computational 
+complexity analysis is also presented. 
+ Second, based on the energy conservation relation [26每28] , we 
+analyze the mean square convergence behaviors of the pro- 
+posed algorithm, and present particularly a sucient condition 
+to guarantee the mean square convergence and the steady-state 
+mean square deviation (MSD) in the cases of Gaussian and non- 
+Gaussian noises. 
+ Finally, we conrm the validity of theoretical expectations ex- 
+perimentally, and illustrate the desirable performance (e.g., 
+lower MSD) of CMCC by comparing it with other methods in 
+linear-phase system identication and beamforming applica- 
+tion. 
+
+The rest of the paper is organized as follows. In Section 2 , after 
+briey reviewing the MCC, we develop the CMCC algorithm and 
+analyze the computational complexity. In Section 3 , we study the 
+mean square convergence of the proposed algorithm. Simulation 
+results are then presented in Section 4 . Finally, Section 5 gives the 
+conclusion. 
+Notation: In this paper, capital boldface letters, small boldface 
+letters, and normal font are respectively used to denote matri- 
+ces, vectors, and scalars, e.g., C 
+ and e . All vectors are col- 
+umn vectors, and the time instant for vectors and scalars is placed 
+as a subscript, for example, w n 
+ and e n . In addition, the notation 
+T w stands for the squared Euclidean norm of a vector 
+w 
+ and accordingly, the weighted squared Euclidean norm can be 
+written as 
+T w . Other notations will be given in the 
+rest of the paper if necessary. 
+
+,
+
+ w 
+
+,
+
+,
+
+ 3)
+
+ w 
+
+ 3)
+
+2 =
+
+ w 
+
+,
+
+ 3)
+
+ w 
+
+ 3)
+
+2 
+
+=
+
+ w 
+
+2. CMCC Algorithm 
+
+2.1. Maximum correntropy criterion 
+
+As a similarity measure between two random variables X and Y , 
+correntropy is dened by [12,18,20,21] 
+
+V 
+(X ,
+
+ Y 
+
+)
+
+=
+
+ E [ 
+
+百 (
+
+ X ,
+ Y )
+ x,
+ y )
+(x,
+(1) 
+﹞] denotes the expectation operator, 
+﹞, 
+﹞) is a shift- 
+百 ( 
+where E [ 
+invariant Mercer kernel , and F XY ( x, y ) stands for the joint distribu- 
+tion function of ( X, Y ). It takes the advantage of a kernel trick that 
+
+ ] 
+
+=
+
+ 2)
+
+百 (
+
+ dF XY 
+
+ y 
+
+)
+
+Fig. 1. MCC cost function in the joint space ( 
+
+考 =
+
+ 1 
+
+.
+
+ 0 ). 
+
+nonlinearly maps the input space to a higher dimensional feature 
+space. In the present work, without mentioning otherwise, the ker- 
+﹞, 
+﹞) is the Gaussian kernel, given by 
+百 ( 
+nel function of correntropy 
+ y 
+ y 
+1 ﹟
+ (x 
+)
+百考 (x 
+)
+2 
+2 
+
+=
+
+羽 考
+
+exp 
+
+ 3)
+
+2 
+
+考 2 
+
+ 4)
+
+(2) 
+
+where 
+ 0 is the kernel bandwidth parameter. In most practical 
+situations, the join distribution F XY ( x, y ) is usually unknown, and 
+only a nite number of data samples 
+)
+are available. In 
+these cases, the correntropy can be estimated by 
+
+考 >
+
+{
+
+(x n 
+
+,
+
+ y n 
+
+}
+
+N 
+=1 
+n 
+
+ V N,考 =
+
+1 
+N 
+
+N  5)
+ y n 
+百考 (x n 
+=1 
+n 
+
+)
+
+(3) 
+
+where 
+ is the estimator. Under the maximum correntropy crite- 
+rion (MCC), an adaptive lter will be trained by maximizing the 
+correntropy between the desired response and lter output, for- 
+mulated by 
+
+(
+
+  
+
+﹞)
+
+max 
+
+w 
+
+J MCC 
+
+=
+
+1 
+N 
+
+N  5)
+百考 (e n 
+=1 
+n 
+
+)
+
+(4) 
+
+where e n is the error between the desired response and lter out- 
+put, and w stands for the lter weight vector. Fig. 1 shows the MCC 
+ y 
+百考 (x 
+)
+cost function 
+ in the joint space of x and y . As one can 
+see clearly, the MCC is a local similarity measure, whose value is 
+heavily decided by the kernel function along the line x 
+ y . Fur- 
+thermore, from a view of geometric meaning, we can divide the 
+space in three regions, namely Euclidean region, transition region 
+and rectication region. The MCC behaves like 2-norm distance in 
+the Euclidean region, similarly like a 1-norm distance in the tran- 
+sition region and eventually approaches a zero-norm in the recti- 
+cation region, which also interprets the robustness of correntropy 
+for outliers [12,18] . 
+
+=
+
+2.2. CMCC algorithm 
+
+Consider a linear unknown system, with an M -dimensional 
+T that needs to be estimated. 
+weight vector w 
+] 
+The measured output d n of the unknown system at instant n is as- 
+sumed to be 
+
+ =
+
+ [ w 
+
+
+
+1 
+
+,
+
+ w 
+
+
+
+2 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ w 
+
+
+
+M 
+
+d n 
+
+=
+
+ y 
+
+
+
+n 
+
++
+
+耒n 
+
+=
+
+ w 
+
+T x n 
+
++
+
+耒n 
+
+(5) 
+T x n denotes the actual output of the un- 
+where y 
+﹞] 
+known system, with [ 
+T being the transpose operator, 
+T is the input vector, and 
+耒n stands 
+
+
+
+n 
+
+=
+
+ w 
+
+x n 
+
+=
+
+ [ x 1 
+
+,n 
+
+,
+
+ x 2 
+
+,n 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ x M,n ] 
+
+118 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+Table 1 
+Computational complexity of CMCC, CLMS, 
+CAP and CRLS. 
+
+Algorithm 
+
+Computational Complexity 
+
+CMCC 
+CLMS 
+CAP 
+CRLS 
+
+2 M 
+2 M 
+2 M 
+7 M 
+
+2 +
+2 +
+2 +
+2 +
+
+ 5 M 
+ 5 M 
+
++
++
++
+
+ 1 
+ 1 
+ M 
+ 9 K 
+
++
+
+g 
+
+(2 L 
+(6 K 
+
+ 3)
+
++
++
+
+ 1 
+ M 
+
+2 +
+
+ 5)
+
++
+
+ 3 K
+
+for an interference or measurement noise. Suppose that the es- 
+timator is another M -dimensional linear lter, with an adaptive 
+weight vector w n . Then the instantaneous prediction error at 
+instant n is 
+
+e n 
+
+=
+
+ d n 
+
+ y n 
+
+=
+
+ d n 
+
+ w 
+where y n 
+x n denotes the output of the adaptive lter. For 
+a constrained adaptive lter, a linear constraint will be imposed 
+upon the lter weight vector as 
+
+T 
+1 
+x n 
+n 
+
+(6) 
+
+=
+
+ w 
+
+T 
+1 
+n 
+
+C 
+
+T w 
+
+=
+
+ f 
+
+(7) 
+℅ K constraint matrix, and f is a vector containing 
+where C is an M 
+K constraint values. The CLMS algorithm is derived by solving the 
+following optimization problem [3,27,29,30] : 
+ w 
+
+min 
+E 
+
+w 
+
+ 6)
+  7)
+ 10)
+
+d n 
+
+T 
+1 
+x n 
+n 
+
+ 8)
+
+2 
+
+ 9)
+
+subject to C 
+
+T w 
+
+=
+
+ f 
+
+(8) 
+
+leading to the following weight update equation: 
+ w 
+灰 (d n 
+where 
+灰 is the step-size parameter, P 
+℅ M identity matrix, and q 
+being an M 
+In this work, we use the MCC instead of MSE to develop a con- 
+strained adaptive ltering algorithm. Similar to (8), we propose the 
+following CMCC optimization problem 
+ w 
+
+w n 
+
+=
+
+ P 
+
+w n 
+1 
+
++
+
+T 
+1 
+x n 
+n 
+
+)
+
+ x n 
+
+ 11)
+
++
+
+ q 
+
+(9) 
+
+=
+=
+
+ I M 
+ C 
+ C 
+
+ C 
+(
+(
+)
+
+ C 
+
+1 C 
+T C 
+T with I M 
+1 f . 
+
+)
+
+T C 
+
+max 
+E 
+
+w 
+
+ 10)
+
+百考
+
+ 7)
+
+d n 
+
+T 
+1 
+x n 
+n 
+
+ 8) 11)
+
+subject to C 
+
+T w 
+
+=
+
+ f 
+
+(10) 
+
+and accordingly, by dening the Lagrange function, the CMCC cost 
+
+J CMCC is 
+
+J C MC C 
+
+=
+
+ E 
+
+ 10)
+
+百考
+
+ 7)
+
+d n 
+
+ w 
+ f 
+C 
+(11) 
+℅ 1 Lagrange multiplier vector. A stochastic- 
+where 
+缶n is a K 
+gradient based algorithm can thus be derived as (see 
+Appendix A for a detailed derivation) 
+ w 
+灰g(e n 
+)(d n 
+where g ( e n ) is a nonlinear function of e n , given by 
+ e 
+2 
+
+T 
+1 
+x n 
+n 
+
+ 8) 11)
+
++
+
+缶 T 
+n 
+
+ 7)
+
+T w n 
+1 
+
+ 8)
+
+w n 
+
+=
+
+ P 
+
+ 10)
+
+w n 
+1 
+
++
+
+T 
+1 
+x n 
+n 
+
+)
+
+ x n 
+
+ 11)
+
++
+
+ q 
+
+(12) 
+
+g(e n 
+)
+
+=
+
+ exp 
+
+ 3)
+
+2 
+n 
+考 2 
+
+ 4)
+
+(13) 
+
+The above algorithm is referred to as the CMCC algorithm. It 
+should be noted that, when 
+ , we have g ( e n ) 
+ 1, which im- 
+plies that the CMCC algorithm is approximately equal to the CLMS 
+algorithm. 
+
+考 ↙
+
+﹢
+
+↙
+
+2.3. Computational complexity 
+
+The computational complexity of the proposed CMCC algorithm 
+and other constrained adaptive algorithms (e.g., CLMS, CAP and 
+CRLS), in terms of the total number of required additions and mul- 
+tiplications at each iteration, are shown in Table 1 , where 
+ g is a 
+constant associated with the complexity of the nonlinear function 
+g ( e n ). Obviously, the computational complexity of these algorithms 
+2 ). Since 
+ g is usually not expensive, it can be seen that the 
+is O ( M 
+proposed algorithm has lower computational cost than CRLS due to 
+
+calculating the covariance matrix of the input vector per iteration 
+for CRLS, also has lower computational cost than CAP (especially 
+when the sliding window length L is large). Generally speaking, the 
+computational complexity of CMCC is almost the same as that of 
+the CLMS. 
+
+3. Convergence analysis 
+
+3.1. Assumptations 
+
+In this section, we analyze the mean square convergence behav- 
+iors of the proposed CMCC algorithm. First, we give the following 
+assumptions: 
+1) The input sequence {
+ is a independent, identically, dis- 
+tributed (i.i.d) multivariate Gaussian, with zero-mean and the 
+positive-denite covariance matrix of the input sequence R 
+2) The noise {
+] . 
+ is zero-mean, i.i.d, and independent of any other 
+signals in the system. 
+3) The lter is long enough such that the a priori error e 
+dened later, is zero-mean Gaussian. 
+4) The error nonlinearity g ( e n ) is asymptotically uncorrelated with 
+2 at steady-state. 
+
+ x n 
+
+}
+
+=
+
+E [ x n x 
+T 
+n 
+
+耒n 
+
+}
+
+a 
+n 
+
+,
+
+ to be 
+
+ 3)
+
+ x n 
+
+ 3)
+
+The independence assumptions 1) and 2) are very popular and 
+have been frequently used in the literature for performance analy- 
+sis of most adaptive algorithm [10,27,31,32] . When the lter is long 
+enough, assumption 3) is reasonable in practical by central limit 
+theorem, and also remains valid in the whole stage of adaptation. 
+Assumption 4) will become realistic and valid especially when the 
+weight vector get longer (see [26每28,33] for more detailed expla- 
+nation about assumptions 3) and 4)). 
+
+3.2. Optimal solution 
+
+℅ 1 
+Setting 
+ 0 M℅1 (Here 0 M℅1 denotes the M 
+zero vector), one can derive the optimal weight vector w opt under 
+the CMCC optimization problem as follows: 
+ w 
+g(e n 
+)(d n 
+E 
+ E 
+g(e n 
+)
+
+ J C MC C 
+
+
+
+ w 
+
+|
+
+ w 
+
+=
+
+ w n 
+
+1 
+
+=
+
+ 10)
+
+T 
+x n 
+opt 
+
+)
+
+ x n 
+
+ 11)
+
++
+
+ C 
+
+缶n 
+
+=
+
+ 0 M℅1 
+
+ 10)
+
+ x n x 
+
+T 
+n 
+
+ 11)
+
+w opt 
+缶n 
+1 
+g 
+
+= E [ g(e n 
+)
+
+ d n w n ] 
+
++
+
+ C 
+
+缶n 
+
+
+
+
+ R g w opt 
+
+=
+
+ p g 
+
++
++
+
+ C 
+
+ w opt 
+
+=
+
+ R 
+
+1 
+p g 
+g 
+
+ R 
+
+C 
+
+缶n 
+
+(14) 
+
+where R g 
+g(e n 
+)
+denotes a weighted autocorrelation ma- 
+)
+trix of the input vector, and p g 
+ d n x n ] is a weighted cross- 
+correlation vector between the measured output and the input 
+vector. Since 
+
+=
+
+ E 
+
+ 10)
+
+ x n x 
+
+T 
+n 
+
+ 11)
+
+=
+
+ E [ g(e n 
+
+C 
+
+T w opt 
+T 
+
+=
+
+ f 
+
+
+
+ C 
+
+ 10)
+
+R 
+
+1 
+p g 
+g 
+1 
+T R 
+g 
+
++
+
+ R 
+
+1 
+g 
+
+C 
+
+缶n 
+
+ 11)
+
+=
+
+ f 
+
+ 缶n 
+
+=
+
+ 10)
+
+C 
+
+C 
+
+ 11)1 
+
+ 7)
+ 10)
+
+ C 
+f 
+one can rewrite (14) as 
+
+1 
+T R 
+p g 
+g 
+
+ 8)
+ 7)
+
+(15) 
+
+w opt 
+
+=
+
+ R 
+
+1 
+p g 
+g 
+
++
+
+ R 
+
+1 
+g 
+
+C 
+
+C 
+
+1 
+T R 
+g 
+
+C 
+
+ 11)1 
+
+ C 
+f 
+Under the assumptions 1) and 2), we derive by using (5) 
+
+1 
+T R 
+p g 
+g 
+
+ 8)
+
+(16) 
+
+T x n 
+d n 
+ g(e n 
+
+=
+
+
+
+
+ w 
+
++
+
+耒n 
+ g(e n 
+
+)
+
+ d n x 
+ R g w 
+
+T 
+n 
+
+=
+
+)
+
+ w 
+
+T x n x 
+T 
+n 
+
++
+
+耒n g(e n 
+
+)
+
+ x 
+
+T 
+n 
+
+ p g 
+
+=
+ =
+
+
+
+ w 
+
+ R 
+
+1 
+p g 
+g 
+
+(17) 
+
+Therefore, combining (16) and (17) , we obtain 
+ C 
+f 
+
+w opt 
+
+=
+
+ w 
+
+ +
+
+ R 
+
+1 
+g 
+
+C 
+
+ 7)
+
+C 
+
+1 
+T R 
+g 
+
+C 
+
+ 8)1 
+
+ 7)
+
+T w 
+
+  8)
+
+(18) 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+119 
+
+Remark. Since the weighting in R g and p g 
+is an exponential Gaus- 
+sian function of the error, which directly relies on the weight vec- 
+tor w through the error (see (6) ), the above optimal solution is 
+not a closed-form solution, and actually, is a xed-point equation 
+[21] . Furthermore, the optimal weight vector in (18) is close to the 
+optimal lter coecient vector of the CLMS algorithm as 
+(hence g ( e n ) 
+ 1) [27] . 
+
+考 ↙
+
+﹢
+
+↙
+
+3.3. Energy conservation relation 
+
+To derive the energy conservation relation of the error quanti- 
+ties, we rst introduce the following two useful error measures: 
+
+ w n 
+
+=
+
+ w n 
+
+ w opt 
+
+(19) 
+
+e 
+
+a 
+n 
+
+=
+
+ (
+
+ w 
+
+  w n 
+)
+where  w n denotes the weight error vector, and e 
+ori error. Indeed, we also dene 
+
+T x n 
+
+(20) 
+
+a 
+n 
+
+stands for a pri- 
+
+汍
+
+ w 
+
+=
+
+ w 
+
+  w opt 
+
+(21) 
+
+Substituting (5), (19) and (21) into (12) yields 
+ w 
+灰g(e n 
+)(d n 
+ 灰g(e n 
+)
+灰g(e n 
+)
+
+ w n 
+
+=
+=
+
+ P 
+
+ 10)
+ 10)
+
+w n 
+1 
+
++
+
+T 
+1 
+x n 
+n 
+1 
+ w n 
+
+)
+
+ x n 
+
+ 11)
+
++
+
+ q 
+
+ w opt 
+耒n P x n 
+ w opt 
+ P w opt 
+ 0 M℅1 
+1 
+ w n 
+
+ P 
+
+I M 
+
+ x n x 
+
+T 
+n 
+
+ 11)
+
++
+
+灰g(e n 
+)
+
++
+
+ P x n x 
+
+T 
+n 
+ w opt 
+Due to P w opt 
+
+汍
+
+ w 
+
++
+
++
+
+ q 
+
+(22) 
+
++
+
+ q 
+
+=
+
+,
+
+ we can rewrite (22) as 
+
+ w n 
+
+=
+
+ P 
+
+ 10)
+
+I M 
+
+ 灰g(e n 
+)
+
+ x n x 
+
+T 
+n 
+
+ 11)
+
++
+
+灰g(e n 
+)
+
+耒n P x n 
+
++
+
+灰g(e n 
+)
+
+ P x n x 
+
+T 
+n 
+
+汍
+
+ w 
+
+(23) 
+
+Note that matrix P is idempotent, namely P 
+2 and P 
+T . Mul- 
+tiplying both sides of (23) by P and after some straightforward ma- 
+trix manipulations, we can obtain 
+
+=
+
+ P 
+
+=
+
+ P 
+
+P  w n 
+
+=
+
+  w n 
+
+(24) 
+
+Combining (23) and (24) , we have 
+ 灰g(e n 
+)
+ 灰g(e n 
+)
+
+ w n 
+
+=
+=
+
+ P  w n 
+
+1 
+
+ P x n x 
+
+T 
+ w n 
+1 
+n 
+1 
+ w n 
+
++
++
+
+灰g(e n 
+)
+灰g(e n 
+)
+
+耒n P x n 
+耒n P x n 
+
++
++
+
+灰g(e n 
+)
+灰g(e n 
+)
+
+ P x n x 
+
+T 
+n 
+
+汍
+
+ w 
+
+ 7)
+
+I M 
+
+ P x n x 
+
+T 
+n 
+
+P 
+
+ 8)
+
+ P x n x 
+
+T 
+n 
+
+汍
+
+ w 
+
+(25) 
+
+Under assumptions 1), 2) and 3), taking the expectations of the 
+squared Euclidean norms of both sides of (25) leads to the follow- 
+ing energy conservation relation: 
+
+E 
+
+ 10) 3)  w n 
+
+ 3)
+
+ 10) 3)  w n 
+2 
+1 
+2 
+H 
+ 10) 3)  w n 
+灰2 E 
+2 (e n 
+
+ 11)
+
+=
+
+ E 
+
+ 3)
+
+ 11)
+
++
+
+灰2 E 
+
+ 10)
+ 10)
+
+g 
+
+2 (e n 
+T 
+T 
+x n x 
+P x n x 
+n 
+n 
+
+)
+
+ 11)
+
+E 
+
+ 10)
+
+耒 2 
+n 
+汍 w 
+
+ 11)
+
+E 
+
+ 10)
+
+x 
+
+T 
+P x n 
+n 
+
+ 11)
+
++
+
+ 10)
+
+g 
+
+)
+
+ 11)
+
+汍 
+
+T 
+w 
+
+E 
+
+ 11)
+
+(26) 
+
+where E 
+n , and 
+
+ 3)
+
+2 
+
+ 11)
+
+is called the weight error power (WEP) at iteration 
+
+H 
+
+=
+
+ I M 
+
+ 2 
+灰E [ g(e n 
+)
+
+ ] P R P 
+
++
+
+灰2 E 
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+P E [ x n x 
+T 
+P x n x 
+T 
+n 
+n 
+
+] P 
+
+3.4. Mean square stability 
+
+Since P 
+
+=
+
+ P 
+
+2 ,
+
+ we derive 
+ t r {
+ P R P }
+ t r {
+x 
+﹞} stands for the trace operator , and 
+where tr { 
+to the Isserlis＊ theorem [34] for Gaussian vectors 
+we have 
+
+E 
+
+ 10)
+
+x 
+
+T 
+P x n 
+n 
+
+ 11)
+
+=
+
+ E 
+
+ 10)
+
+T 
+P P x n 
+n 
+
+ 11)
+
+=
+
+=
+
+ }
+
+(27) 
+
+ =
+
+ P R P . According 
+, 
+, 
+and 
+, 
+
+
+
+ 1 
+
+
+
+ 2 
+
+
+
+ 3 
+
+
+
+ 4 
+
+E 
+
+ 10)
+
+h 1 h 
+
+T 
+2 
+
+h 3 h 
+
+T 
+4 
+
+ 11)
+
+=
+
+ E 
+
+ 10)
+
+h 1 h 
+℅ E 
+
+T 
+2 
+
+ 11)
+
+E 
+
+ 10)
+ 11)
+
+h 3 h 
++ E 
+
+T 
+4 
+
+ 11)
+ 10)
+
++
+
+ E 
+
+ 10)
+ 11)
+
+h 1 h 
+
+T 
+3 
+
+ 11)
+
+ 10)
+
+h 2 h 
+
+T 
+4 
+
+h 1 h 
+
+T 
+4 
+
+E 
+
+ 10)
+
+h 
+
+T 
+h 3 
+2 
+
+ 11)
+
+(28) 
+
+With h 1 
+
+=
+
+ x n 
+
+,
+
+ h 2 
+
+=
+
+ x n 
+
+,
+
+ h 3 
+
+=
+
+ P x n and h 4 
+T 
+P x n 
+n 
+
+=
+
+ x n 
+
+,
+
+ we obtain 
+
+E 
+
+ 10)
+
+x n x 
+T 
+P x n x 
+T 
+n 
+n 
+ 10) 3)  w n 
+
+ 11)
+
+=
+=
+
+ R P R 
+
++
++
+
+ R P R 
+
++
+
+ E 
+
+ 10)
+
+x 
+
+ 11)
+
+R 
+
+ 2 R P R 
+
+ t r {
+ Substituting (27) and (29) into (26) , we get 
+t r {
+
+ }
+
+ R 
+
+(29) 
+
+Since P R 
+
+汍
+
+ w 
+
+=
+
+ 10) 3)  w n 
+ 0 M℅1 
+1 
+
+,
+
+E 
+
+ 3)
+
+2 
+
+ 11)
+
+=
+
+ E 
+
+ 3)
+
+2 
+H 
+
+ 11)
+
++
+
+灰2 E 
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+ }
+
+ 7)
+
+汍 
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+ E 
+
+ 10)
+
+耒 2 
+n 
+
+ 11) 8)
+
+(30) 
+
+and 
+
+H 
+
+=
+
+ I M 
+
+ 2 
+(t r {
+灰E [ g(e n 
+)
+ K )
+Let 
+(
+ be the eigenvalues of the matrix Y. A suf- 
+cient condition for the mean square stability can be obtained as 
+[3,27,35] 
+t r {
+ 2 
+灰E [ g(e n 
+)
+)
+ K 
+After some simple manipulations, we have 
+2 E [ g(e n 
+)
+ t r {
+[ 2 
+where 
+竹max denotes the largest eigenvalue of the matrix Y. Due 
+≡ E [ g 
+to E [ g ( e n )] 
+ 0, one can obtain a stronger condition to 
+guarantee the mean square stability: 
+2 
+ t r {
+Remark. Since we only derive (32) and (33) under the steady-state 
+assumption, we cannot solve the problem of how to select the best 
+step-size for a specic application. However, the condition provides 
+a possible range for choosing a step-size for CMCC algorithm. Sim- 
+ilar analysis were derived in several literatures [36] . 
+
+ ] P R P 
+
++
+
+灰2 E 
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+ }
+
+ P R P 
+
++
+
+ 2 P R P R P 
+
+)
+
+竹
+
+i 
+
+ i 
+
+=
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ M 
+
+ 12) 12)1 
+
+ ] 
+
+竹i 
+
++
+=
+
+灰2 E 
+
+ 10)
+
+g 
+
+2 (e n 
+
+ 11)
+
+ }
+
+竹i 
+
++
+
+ 2 
+
+灰2 E 
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+竹2 
+i 
+
+ 12) 12) <
+
+ 1 
+
+i 
+
+ 1 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ M 
+
+(31) 
+
+0 
+
+<
+
+灰 <
+
+ ] 
+ ] E [ g 
+
+竹max 
+
++
+
+ }
+
+2 (e n 
+
+)
+
+ ] 
+
+(32) 
+
+2 ( e n )] 
+
+>
+
+0 
+
+<
+
+灰 ≒
+
+2 
+
+竹max 
+
++
+
+ }
+
+(33) 
+
+3.5. Steady-state mean square deviation (MSD) 
+
+Before processing, we dene the steady-state MSD (a perfor- 
+mance measure) as follows: 
+
+S 
+
+=
+
+ lim 
+E 
+
+n 
+
+↙﹢
+
+ 10) 3)  w n 
+
+ 3)
+
+2 
+
+ 11)
+
+(34) 
+
+Assume that T is an arbitrary symmetric nonnegative denite ma- 
+trix. Under assumptions 1), 2) and 3), one can derive the following 
+relation by taking the expectations of the squared -weighted Eu- 
+clidean norms of both sides of (25) : 
+
+E 
+
+ 10) 3)  w n 
+
+ 3)
+
+2 
+T 
+
+ 11)
+
+=
+
+ E 
+
+ 10) 3)  w n 
+1 
+U 
+2 
+灰2 E 
+2 (e n 
+
+ 3)
+
+ 11)
+
++
+
+灰2 E 
+
+ 10)
+ 10)
+
+g 
+
+2 (e n 
+T 
+T 
+x n x 
+P T P x n x 
+n 
+n 
+
+)
+
+ 11)
+
+E 
+
+ 10)
+
+耒 2 
+n 
+
+ 11)
+
+E 
+
+ 10)
+
+x 
+
+T 
+P T P x n 
+n 
+汍 w 
+
+ 11)
+
++
+
+ 10)
+
+g 
+
+)
+
+ 11)
+
+汍 
+
+T 
+w 
+
+E 
+
+ 11)
+ 8) 11)
+
+(35) 
+
+in which 
+
+U 
+
+=
+=
+
+ E 
+
+ 10) 7)
+
+I M 
+
+ 灰g(e n 
+)
+ 灰E [ g(e n 
+)
+g 
+)
+E 
+
+ x n x 
+
+T 
+n 
+
+ 8)
+
+ 灰g(e n 
+P T P 
+)
+ 灰E [ g(e n 
+)
+
+ 7)
+
+I M 
+
+ x n x 
+
+T 
+n 
+
+ P T P 
+
+ ] R P T P 
+
+ ] P T P R 
+
++
+
+灰2 E 
+
+ 10)
+ 11)
+
+2 (e n 
+
+ 11)
+
+ 10)
+
+x n x 
+T 
+P T P x n x 
+T 
+n 
+n 
+
+ 11)
+
+(36) 
+
+In the same way as for (27) and (29) , we derive 
+ t r {
+
+E 
+
+ 10)
+ 10)
+
+x 
+
+T 
+P T P x n 
+n 
+
+=
+
+ T 
+
+ }
+
+(37) 
+
+E 
+
+x n x 
+T 
+P T P x n x 
+T 
+n 
+n 
+
+ 11)
+
+=
+
+ t r {
+Thus we can rewrite (36) as 
+ 灰E [ g(e n 
+)
+ ] R )
+ P T P (
+t r {
+g 
+)
+℅ R P T P R 
+ 灰2 E 
+From [37] , some useful properties can be obtained, that is, 
+
+ T 
+
+ }
+
+ R 
+
++
+
+ 2 R P T P R 
+
+(38) 
+
+U 
+
+=
+
+ (
+
+ I M 
+
+ I M 
+
+ 灰E [ g(e n 
+)
+g 
+
+ ] R )
+)
+
++
+
+灰2 E 
+
+ 10)
+
+2 (e n 
+
+ 11)
+
+ T 
+
+ }
+
+ R 
+
++
+
+ 2 
+
+灰2 E 
+
+ 10)
+
+2 (e n 
+
+ 11)
+
+2 [ g(e n 
+
+)
+
+ ] R P T P R 
+
+(39) 
+
+120 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+vec 
+
+{
+
+ BCD 
+
+}
+
+=
+
+ 7)
+
+D 
+vec 
+ C }
+ vec {
+ B }
+t r 
+B 
+ vec 
+where vec {
+ denotes the vectorization operator, 
+ 2) stands for the 
+Kronecker product. With the vectorization and the above proper- 
+ties, we have 
+vec {
+ U }
+where 
+
+T  2) B 
+
+ 8)
+
+{
+
+ C 
+
+}
+
+ and 
+
+ 13)
+
+T C 
+
+ 14)
+
+=
+
+T {
+
+﹞}
+
+=
+
+ F t 
+
+(40) 
+
+F 
+
+=
+
+ (
+
+ I M 
+
+ 灰E [ g(e n 
+ 灰E [ g(e n 
+)
+ ] R )
+)
+)
+(
+ 2) R P )
+℅ vec {
+ R }
+g 
+ vec {
+g 
+ 灰2 E 
+ vec {
+ T }
+and t 
+ . Combining (37), (38) and (40) , we can rewrite 
+(35) as 
+
+ P 
+
+ 2) (
+
+ I M 
+
+ ] R )
+)
+
+ P 
+
++
+
+ 2 
+
+灰2 E 
+
+ 10)
+
+2 (e n 
+
+ 11)
+
+ R P 
+
++
+
+灰2 E 
+2 [ g(e n 
+
+ 10)
+
+2 (e n 
+
+ 11)
+
+ }
+
+)
+
+ ] (
+
+ R P 
+
+ 2) R P )
+
+=
+
+E 
+
+ 10) 3)  w n 
+2 
+t 
+ 10) 3)  w n 
+
+ 3)
+
+ 11)
+
+=
+
+ E 
+
+ 10) 3)  w n 
+1 
+T 
+w 
+
+ 3)
+
+2 
+灰2 E 
+Ft 
+耒 2 
+ 10) 3)  w n 
+n 
+1 
+灰2 E 
+
+ 11)
+
++
+
+ 10)
+ 11) 8)
+
+g 
+
+2 (e n 
+T {
+
+)
+
+ 11)
+
+℅
+
+ 7)
+
+汍 
+
+R 
+
+汍
+
+ w 
+
++
+
+ E 
+
+ 10)
+
+vec 
+
+ }
+
+ t 
+
+(41) 
+
+Assume that the lter is stable and achieves the steady-state, i.e. 
+lim 
+E 
+ lim 
+E 
+. By using (41) , we have 
+
+n 
+
+↙﹢
+
+ 3)
+
+2 
+
+ 11)
+
+=
+
+n 
+
+↙﹢
+
+ 3)
+
+2 
+
+ 11)
+
+lim 
+E 
+
+n 
+
+↙﹢
+
+ 6)
+
+  3)
+
+  w n 
+
+ 3)
+
+2 (
+
+ I M 
+
+2 
+
+F )
+
+ t 
+
+ 9)
+
+ =
+
+ lim 
+
+n 
+
+↙﹢
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+℅
+
+ 7)
+
+汍 
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+ E 
+
+ 10)
+
+耒 2 
+n 
+
+ 11) 8)
+
+vec 
+ 8)1 vec 
+ F 
+
+T {
+
+ }
+
+ t 
+
+(42) 
+
+Therefore, by selecting an appropriate t 
+can obtain 
+
+=
+
+ 7)
+
+I M 
+
+2 
+
+{
+
+ I M 
+
+}
+
+,
+
+ we 
+
+S 
+
+=
+
+灰2 
+
+ 7)
+
+汍 
+
+T 
+w 
+
+R 
+℅ lim 
+(
+
+汍
+
+ w 
+
++
+
+ E 
+
+ 10)
+
+耒 2 
+n 
+
+ 11) 8)
+
+vec 
+ F )
+1 vec 
+
+T {
+
+ }
+}
+
+n 
+
+↙﹢
+
+ I M 
+
+2 
+
+{
+
+ I M 
+
+ E 
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+  8)
+
+(43) 
+
+Based on assumption 3), we can rewrite (18) as following: 
+ C 
+f 
+
+w opt 
+
+=
+
+ w 
+
+ +
+
+ R 
+
+1 C 
+
+ 7)
+
+C 
+
+1 C 
+T R 
+
+ 8)1 
+
+ 7)
+
+T w 
+
+(44) 
+
+and accordingly 
+
+汍
+
+ w 
+
+=
+
+ R 
+
+1 C 
+
+ 7)
+
+C 
+
+1 C 
+T R 
+
+ 8)1 
+
+ 7)
+
+C 
+
+T w 
+
+  f 
+
+ 8)
+
+(45) 
+
+In order to obtain the theoretical value of the steady-state 
+MSD, we also need to evaluate the values of lim 
+E [ g(e n 
+)
+ ] and 
+
+n 
+
+↙﹢
+
+lim 
+E 
+
+n 
+
+↙﹢
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+. We consider two cases below: 
+
+耒n is zero-mean Gaussian distributed with variance 
+1. If 
+then 
+
+考 2 耒 ,
+
+lim 
+E [ g(e n 
+)
+
+n 
+
+↙﹢
+
+ ] 
+
+＞
+
+考
+
+ 15)
+ 15)
+ 8)
+
+ 考 2 +
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+考 2 耒
+
+(46) 
+
+lim 
+E 
+
+n 
+
+↙﹢
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+＞
+
+考
+
+ 考 2 +
+
+ 2 
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+ 2 
+
+考 2 耒
+
+(47) 
+
+Thus 
+
+S 
+
+＞灰2 
+
+ 7)
+
+汍 
+
+T 
+w 
+
+R 
+℅ vec 
+
+汍
+
+ w 
+
++
+
+考 2 耒
+
+vec 
+
+T {
+
+ }
+
+ (
+
+ I M 
+
+2 
+
+ F )
+
+1 
+
+{
+
+ I M 
+
+}
+
+考
+
+ 15)
+ 16)
+
+ 考 2 +
+
+ 2 
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+ 2 
+
+考 2 耒
+
+(48) 
+
+2. If 
+耒n is non-Gaussian, then by Taylor expansion we have 
+＞ E 
+
+lim 
+E [ g(e n 
+)
+
+n 
+
+↙﹢
+
+ ] 
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+2 
+ 1 
+
+ 4) 17)
+ 4)
+
++
+
+1 
+2 
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
+℅ E 
+
+ 16) 3)
+
+耒 2 
+n 
+考 4 
+
+考 2 
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+2 
+
+ 4) 17)
+
+(49) 
+
+lim 
+E 
+
+n 
+
+↙﹢
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+＞ E 
+
+ 16)
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+ 4) 17)
+
++
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
+℅ E 
+
+ 16) 3)
+
+2 
+
+耒 2 
+n 
+考 4 
+
+ 1 
+
+考 2 
+
+ 4)
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+ 4) 17)
+
+(50) 
+
+It follows that 
+
+S 
+
+＞ 灰2 
+
+ 7)
+ 3)
+ 16)
+ 16) 3)
+
+汍 
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+ E 
+
+ 10)
+
+耒 2 
+n 
+
+ 11) 8)
+ 4) 17)
+ 4)
+
+vec 
+
+T {
+
+ }
+
+ (
+
+ I M 
+
+2 
+
+ F )
+1 vec 
+
+{
+
+ I M 
+
+}
+
+℅
+
+E 
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
++
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w E 
+
+℅
+
+2 
+
+耒 2 
+n 
+考 4 
+
+ 1 
+
+考 2 
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+ 4) 17) 4)
+
+(51) 
+
+Remark. It is worth noting that (48) and (51) have been derived 
+＞ w opt at the steady state. In addi- 
+by using the approximation w n 
+tion, the theoretical value for non-Gaussian noise case has been 
+耒n and 
+derived by taking the Taylor expansion of g ( e n ) around 
+omitting the higher-order terms. If the noise power is very large, 
+the approximation is not accurate and hence, the derived values 
+at steady state may deviate seriously from the actual results. The 
+detailed derivations for (46) to (51) can be found in Appendix B . 
+
+4. Simulation results 
+
+In this section, we present simulation results to conrm the 
+theoretical conclusions drawn in the previous section, and illus- 
+trate the superior performance of the proposed CMCC algorithm 
+compared with the traditional CLMS algorithm [3] , CAP algorithm 
+[8] and CRLS algorithm [5] in non-Gaussian noise. The selection of 
+kernel bandwidth is also discussed in the end. 
+
+4.1. Non-Gaussian noise models 
+
+Generally speaking, the non-Gaussian noise distributions can 
+be divided into two categories: light-tailed (e.g., binary, uniform, 
+etc.) and heavy-tailed (e.g., Laplace, Cauchy, mixed Gaussian, alpha- 
+stable, etc.) distributions [16,26,28,33,38,39] . In the following ex- 
+periments, six common non-Gaussian noise models including bi- 
+nary noise, uniform noise, Laplace noise, Cauchy noise, mixed 
+Gaussian noise, and alpha-stable noise, are selected for perfor- 
+mance evaluation. Descriptions of these non-Gaussian noises are 
+as following: 
+
+1. Binary noise model: Standard binary noise [26] takes the val- 
+1 
+ues of either 
+P r{
+ P r{
+ 1 or 
+1 
+ with probability mass function 
+2. Uniform noise model: The uniform noise is distributed over 
+1 
+[ 
+ 1] 
+ whose PDF takes the form [28] : 
+1 
+
+耒 =
+耒 =
+
+耒 =
+=
+
+,
+
+耒 =
+
+ 1 
+
+}
+
+=
+
+}
+
+ 0 
+ 5 . 
+
+.
+
+,
+
+,
+
+p(耒 )
+
+=
+
+ 18)
+
+1 
+2 
+
+≒ 耒 ≒ 1 
+
+,
+
+0 
+
+.
+otherwise 
+
+(52) 
+
+3. Laplace noise model: The Laplace noise is distributed with 
+probability density function (PDF) [33] : 
+
+p(耒 )
+
+=
+
+1 
+exp 
+2 
+4. Cauchy noise model: The PDF of the Cauchy noise is [33] 
+
+|
+
+耒 |
+
+(53) 
+
+p(耒 )
+
+=
+
+1 
+羽 (1 
+
++
+
+耒 2 )
+
+(54) 
+
+5. Mixed Gaussian noise model: The mixed Gaussian noise model 
+is given by [16] : 
+(1 
+
+ 牟 )
+
+N
+
+ 7)
+
+竹1 
+
+,
+
+耒 2 
+1 
+
+ 8)
+
++
+
+牟 N
+
+ 7)
+
+竹2 
+
+,
+
+耒 2 
+2 
+
+ 8)
+
+(55) 
+
+where 
+
+N
+
+ 7)
+
+竹
+
+i 
+
+,
+
+耒 2 
+i 
+
+ 8)
+
+(i 
+with mean values 
+
+=
+
+ 1 
+
+,
+
+ 2)
+and variances 
+
+ denote the Gaussian distributions 
+牟 is the mixture 
+
+竹
+
+i 
+
+耒 2 
+i 
+
+,
+
+ and 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+121 
+
+灰: (a) Gaussian noise ( 
+Fig. 2. Theoretical and simulated steady-state MSDs with different step-sizes 
+noise ( 
+ 33 ); (d) Laplace noise ( 
+ 0 ). 
+
+考 =
+
+ 8 
+ 0 
+
+.
+
+,
+
+考 2 耒 =
+
+ 0 
+
+.
+
+ 81 ); (b) Binary noise ( 
+
+考 =
+
+ 2 
+ 0 
+
+.
+
+,
+
+考 2 耒 =
+
+ 1 
+
+.
+
+ 0 ); (c) Uniform 
+
+考 =
+
+ 8 
+ 0 
+
+.
+
+,
+
+考 2 耒 =
+
+ 0 
+
+.
+
+考 =
+
+ 1 
+ 0 
+
+.
+
+,
+
+考 2 耒 =
+
+ 1 
+
+.
+
+coecient. Usually one can set 
+牟 to a small value and 
+to represent the impulsive noises (or large outliers). There- 
+fore, we dene the mixed Gaussian noise parameter vector as 
+. 
+6. Alpha-stable noise model: The characteristic function of the 
+alpha-stable noise is dened as [38,39] : 
+ exp {
+ t |
+
+耒 2 
+2 
+
+ 11) 耒 2 
+
+1 
+
+V mix 
+
+=
+
+ 7)
+
+竹1 
+
+,
+
+竹2 
+
+,
+
+耒 2 
+1 
+
+,
+
+耒 2 
+2 
+
+,
+
+牟
+
+ 8)
+
+肉 (t )
+
+=
+
+ j汛t 
+
+ 污 |
+
+汐
+
+[ 1 
+
++
+
+ j汕 sgn 
+(t )
+
+ S(t ,
+
+汐 )
+
+ ] 
+
+}
+
+(56) 
+
+in which 
+
+S(t ,
+
+汐 )
+
+=
+
+ 18)
+
+tan 
+(
+羽 log 
+
+汐羽
+2 
+
+ t |
+)
+
+if 
+if 
+
+汐  12)
+=
+汐 =
+
+ 1 
+ 1 
+
+2 
+
+|
+
+(57) 
+
+From (56) , one can observe that a stable distribution is com- 
+pletely determined by four parameters: 1) the characteristic 
+汐 ; 2) the symmetry parameter 
+汕 ; 3) the dispersion pa- 
+factor 
+污 ; 4) the location parameter 
+汛 . So we dene the alpha- 
+rameter 
+stable noise parameter vector as V al pha 
+(汐 ,
+
+=
+
+汕 ,
+
+污 ,
+
+汛 )
+
+ . 
+
+It is worth mentioning that, in the case of 
+ the alpha- 
+stable distribution coincides with the Gaussian distribution, while 
+ 0 is the same as the Cauchy distribution. 
+
+汐 =
+
+ 2 
+
+,
+
+汐 =
+
+ 1 
+
+,
+
+汛 =
+
+4.2. Validation of steady-state MSD 
+
+In this experiment, we show the values of the theoretical and 
+simulated steady-state MSDs of the CMCC in a linear channel with 
+weight vector 
+(M 
+ 7)
+0 
+0 
+ 040 
+ 094 
+
+=
+
+w 
+
+ =
+
+ [0 
+ 332 
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+ 0 
+
+.
+
+ 717 
+
+,
+
+0 
+ 652 
+
+.
+
+,
+
+0 
+ 072 
+
+.
+
+,
+
+ 0 
+
+.
+
+ 580] 
+
+T 
+
+(58) 
+
+Assume that K 
+trix R is positive-denite with t r {
+ C is full-rank, and the input covariance ma- 
+ R }
+ M [6] . The input vectors are 
+zero-mean multrivate Gaussian, and the disturbance noises con- 
+sidered include Gaussian noise, binary noise, uniform noise and 
+Laplace noise. Fig. 2 shows the theoretical and simulated steady- 
+state MSDs with different step-sizes, and Fig. 3 presents the theo- 
+retical and simulated steady-state MSDs with different noise vari- 
+
+=
+
+ 3 
+
+,
+
+=
+
+122 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+考 2 耒 : (a) Gaussian noise ( 
+Fig. 3. Theoretical and simulated steady-state MSDs with noise variance 
+( 
+ 08 
+ 0 ); (d) Laplace noise ( 
+ 01 
+ 8 ). 
+
+考 =
+
+考 =
+
+灰 =
+
+灰 =
+
+ 6 
+
+ 0 
+
+ 0 
+
+ 0 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+.
+
+灰 =
+
+考 =
+
+ 0 
+
+ 01 
+
+,
+
+.
+
+.
+
+ 8 
+
+ 0 ); (b) Binary noise ( 
+
+灰 =
+
+ 0 
+
+ 01 
+
+,
+
+.
+
+考 =
+
+.
+
+ 6 
+
+ 0 ); (c) Uniform noise 
+
+ances. If not mentioned otherwise, simulation results are aver- 
+aged over 500 independent Monte Carlo runs, and in each simu- 
+lation, 50 0 0 iterations are run to ensure the algorithms to reach 
+the steady state, and the steady-state MSDs are obtained as aver- 
+ages over the last 200 iterations. Evidently, the steady-state MSDs 
+are increasing with the step-size and noise variances increasing. In 
+addition, the steady-state MSDs obtained from simulations match 
+well with those theoretical results (computed by (48) for Gaussian 
+noise and (51) for Non-Gaussian noise). 
+
+4.3. Linear system identication 
+
+We consider a linear system identication problem where the 
+length of the adaptive lter is equal to that of the unknown sys- 
+tem impulse response. Assume that the weight vector w 
+of the 
+unknown system, the constraint parameters C and f 
+ the input vec- 
+tors, and the input covariance matrix R are the same as the pre- 
+vious experiment. In the simulations below, without mentioning 
+
+
+
+,
+
+.
+
+=
+
+ 2 
+ 0 . 
+
+考 =
+
+otherwise, the sliding data length for CAP is set to 4, and the for- 
+getting factor for CRLS is set to 0.998. The kernel bandwidth for 
+CMCC is 
+First, we illustrate the performance of the proposed CMCC com- 
+pared with CLMS, CAP and CRLS in four noise distributions. Sim- 
+ulation results are shown in Fig. 4 . In the simulation, the mixed 
+ (
+ 05 )
+Gaussian noise parameters are set at V mix 
+ 01 
+ 100 
+the alpha-stable noise parameters are set as V al pha 
+(1 
+ 0)
+the laplace noise is zero-mean with standard deviation 5, and the 
+cauchy noise is reduced to 
+. The step-sizes are chosen such that 
+all the algorithms have almost the same initial convergence speed. 
+As one can see clearly, the CMCC algorithm signicantly outper- 
+forms other algorithms in terms of stability, and achieves much 
+lower steady-state MSD. 
+考 will 
+Second, we demonstrate how the kernel bandwidth 
+inuence the convergence performance of CMCC. Fig. 5 shows 
+考 , where the 
+the convergence curves of CMCC with different 
+mixed Gaussian noise is chosen for measurement noise and 
+
+ 0 
+ 5 
+ 0 
+ 0 
+ 4 
+
+ 0 
+ 0 
+ 0 
+
+1 
+10 
+
+=
+
+,
+.
+
+,
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+123 
+
+Fig. 4. Convergence curves of CLMS, CAP, CRLS and CMCC in different noises: (a) Mixed Gaussian noise; (b) Alpha-stable noise; (c) Laplace noise; (d) Cauchy noise. 
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+,
+
+ 0 
+
+ 0 
+
+ 0 
+
+ 0 
+
+ 0 
+
+ 0 
+
+ 0 
+
+ 2 
+
+灰 =
+
+考 =
+
+考 =
+
+考 =
+
+考 =
+
+ 5 
+ 2 
+ 0 
+ 8 
+ 0 
+
+the noise parameters are the same as the previous simulation. 
+The step-sizes are set at 
+ 06 
+ 012 
+ 01 
+ 01 
+ 01 for 
+0 
+ 16 
+ 32 
+ 0 respectively. Obviously, the kernel band- 
+width has signicant inuence on the convergence behavior. In 
+this example, the proposed algorithm achieves the lowest steady- 
+state MSD when 
+ 0 . If the kernel bandwidth is too larger (e.g., 
+ 32 
+ 0 ) or too small (e.g., 
+ 5 ), the convergence performance 
+of CMCC will become poor. We provide some useful properties 
+later for kernel bandwidth selection in practical applications. 
+Third, we investigate the stability problem of the CMCC in dif- 
+ferent step-sizes. Fig. 6 illustrates the convergence performance 
+with different step-sizes. The noise is still the mixed Gaussian 
+noise with same parameters. Simulation results show that when 
+灰 ≡ 0.5), the CMCC will be di- 
+the step-size is very large (such as 
+vergent, which conrms the validity of the theoretical analysis of 
+mean square stability in Section 3 . Additionally, in this simulation, 
+we calculate the value of 
+(by (33) ) to 0.278, not larger 
+
+2 
+ t r {
+
++
+
+ }
+
+2 
+
+竹max 
+
+than 0.4, which also illustrates the effectiveness of (33) . 
+
+4.4. Beamforming application 
+
+=
+
+In this scenario, we consider a uniform linear array consist- 
+ing of M 
+ 7 omnidirectional sensors with an element spacing of 
+half wavelength. We also assume that there are four users. Among 
+them, the signal of one user is of interest, and is presumed to ar- 
+rive at the direction-of-arrival (DOA) of 
+ while the other 
+25 
+three signals are considered as interferers with DOAs of 
+ 30 
+ 60 
+ respectively. We choose the constraint matrix 
+] with J being a reversal matrix of size (an iden- 
+
+=
+=
+
+ 3 
+ 0 
+
+=
+
+=
+
+=
+
+ ,
+
+ ,
+
+ ,
+
+ ,
+
+ 0 
+
+C 
+
+
+
+
+
+
+
+
+
+ 1 
+
+ 2 
+
+ d 
+
+,
+
+,
+
+ [ I M1 
+2 
+
+J M1 
+2 
+
+=
+
+=
+
+tity matrix with all rows in reversed order), and the response vec- 
+tor f 
+ 0 [6,8] . The measurement noise 
+耒n is the additive non- 
+Gaussian noise, and the measured output of the unknown system 
+is set to d n 
+耒n . In the following simulations, the signal-to-noise 
+ratio (SNR) is set to 0 dB, and the interference-to-noise ratio (INR) 
+is set to 10 dB. The sliding data length for CAP is set to 4, and the 
+forgetting factor for CRLS is set to 0.999. The kernel bandwidth 
+is set at 20. 
+
+考
+
+124 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+Fig. 5. Convergence curves of CMCC with different 
+考 . 
+
+Fig. 7. Convergence curves of CLMS, CAP, CRLS and CMCC. 
+
+Fig. 6. Convergence curves of CMCC with different 
+灰 . 
+
+,
+
+.
+
+,
+
+ 2 
+ 0 
+ 1 
+ 4 
+
+,
+
+,
+
+.
+
+=
+
+are set at V al pha 
+
+The convergence curves of CLMS, CAP, CRLS and CMCC in alpha- 
+stable noise are illustrated in Fig. 7 , and accordingly, the beampat- 
+terns of different methods are given in Fig. 8 . The noise parameters 
+(1 
+ 0)
+ and other parameters are chosen 
+such that all algorithms have almost the same initial convergence 
+rate. As one can see that the proposed algorithm performs best in 
+all scenarios in term of MSD and beampattern shape. Furthermore, 
+it has similar performance to the optimal beamformer after con- 
+vergence. 
+Fig. 9 shows the steady-state MSDs of CLMS, CAP, CRLS and 
+(0 
+ 6)
+CMCC with different 
+ and different 
+(1 
+ 9)
+ in 3-D space. Other parameters are 
+the same as in the previous simulation for all algorithms. As ex- 
+pected, the proposed algorithm can achieve much better steady- 
+state performance than CLMS, CAP and CRLS in all cases. 
+
+ 2 
+ 1 
+ 4 
+ 1 
+ 6 
+ 1 
+ 7 
+ 1 
+ 8 
+ 1 
+
+ 6 
+ 0 
+ 8 
+ 1 
+ 0 
+ 1 
+ 2 
+ 1 
+ 4 
+ 1 
+
+污 =
+
+汐 =
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+,
+
+.
+
+.
+
+Fig. 8. Beampatterns of CLMS, CAP, CRLS and CMCC. 
+
+propriate kernel bandwidth can provide an effective mechanism to 
+eliminate the effect of outliers and noise. 
+According to the previous studies, some useful tricks for kernel 
+bandwidth selection are as follows [12,17每19] : 
+
+考 should be used so that high 
+1. If the data are plentiful, a small 
+precision can be achieved; however, the kernel bandwidth must 
+be selected to make a compromise between estimation e- 
+ciency and outlier rejection if the data are small. 
+2. As 
+考 increases, the contribution of the higher-order moments 
+decays faster, and the second-order moment plays a key role. 
+考 is frequently appropriate for Gaussian 
+Therefore, a large 
+noises, while a small 
+考 is usually adapt to non-Gaussian im- 
+pulsive noises. 
+3. For a given noise environment, there is a relatively large range 
+考 that provides nearly optimal performance. 
+of 
+
+4.5. Parameter selection 
+
+考 is an important free parameter in 
+The kernel bandwidth 
+CMCC since it controls all robust properties of correntropy. An ap- 
+
+Currently, Silverman＊s rule, one of the most widely used meth- 
+ods in kernel density estimation, is often used to estimate 
+考 . How- 
+ever, the limitation is that this method cannot obtain the best pos- 
+sible value. Therefore, in a practical application, 
+考 is manually se- 
+lected or optimized by scanning the performance. 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+125 
+
+Fig. 9. Steady-state MSDs of CLMS, CAP, CRLS and CMCC in 3-D space. 
+
+5. Conclusion 
+
+In this paper, we have developed the constrained maximum 
+correntropy criterion (CMCC) adaptive ltering algorithm by incor- 
+porating a linear constraint into the maximum correntropy crite- 
+rion. We also studied the mean square convergence performance 
+including the mean square stability and the steady-state mean 
+square deviation of the proposed algorithm. Simulation results 
+have conrmed the theoretical conclusions and shown that the 
+new algorithm can signicantly outperform the traditional meth- 
+odes when the noise is of heavy-tailed non-Gaussian distribution. 
+
+Acknowledgments 
+
+This work was supported by 973 Program (No. 2015CB351703) 
+and National Natural Science Foundation of China (No. 61372152 ). 
+
+Appendix A. Derivation of (12) 
+
+Based on (11) , we can easily derive the following instantaneous 
+weight update equation 
+
+w n 
+
+=
+=
+
+ w n 
+
+1 
+
++
++
+
+灰
+
+ J C MC C 
+
+
+
+ w 
+
+|
+
+ w 
+
+=
+
+ w n 
+
+1 
+
+ w n 
+
+1 
+
+灰g(e n 
+)
+
+ 7)
+
+d n 
+
+ w 
+
+T 
+1 
+x n 
+n 
+
+ 8)
+
+x n 
+
++
+
+灰C 
+
+缶n 
+
+(A.1) 
+
+Due to 
+
+f 
+
+=
+
+ C 
+
+T w n 
+
+=
+
+ C 
+
+T 
+
+ 10)
+ 10)
+
+w n 
+1 
+
++
+
+灰C 
+
+缶n 
+
++
+
+灰g(e n 
+)
+
+ 7)
+
+d n 
+
+ w 
+
+T 
+1 
+x n 
+n 
+
+ 8)
+
+x n 
+
+ 11)
+ 11)
+
+(A.2) 
+
+we have 
+
+缶n 
+
+=
+
+1 
+(
+
+灰
+
+ C 
+
+T C 
+
+)
+
+1 
+
+ C 
+f 
+
+T w n 
+1 
+
+ 灰g(e n 
+)
+
+ 7)
+
+d n 
+
+ w 
+
+T 
+1 
+x n 
+n 
+
+ 8)
+
+C 
+
+T x n 
+
+(A.3) 
+
+Substituting (A.3) into (A.1) , and after some simple vector manip- 
+ulations, we derive 
+ w 
+灰g(e n 
+)(d n 
+which is the CMCC algorithm. 
+
+w n 
+
+=
+
+ P 
+
+ 10)
+
+w n 
+1 
+
++
+
+T 
+1 
+x n 
+n 
+
+)
+
+ x n 
+
+ 11)
+
++
+
+ q 
+
+(A.4) 
+
+ (51) 
+Appendix B. Derivation of (46) 
+
+Here we consider two cases below: 
+
+1. Gaussian noise case 
+Since e n 
+ in this case e n is also zero-mean Gaussian. 
+Let 
+be the variance of the error e n . Then we have 
+(e 
+
+=
+
+ e 
+
+a 
+n 
+
++
+
+耒n 
+
+,
+
+考 2 
+e 
+
+考 2 
+e 
+
+=
+
+ E 
+
+ 10)
+
+a 
+n 
+
+)
+
+2 
+
+ 11)
+
++
+
+考 2 耒
+
+(B.1) 
+
+＞ w opt at the steady- 
+Using (21) and the approximation w n 
+state, we obtain 
+
+e 
+
+a 
+n 
+
+＞ (
+
+ w 
+
+  w opt 
+
+)
+
+T x n 
+
+=
+
+汍
+
+T 
+x n 
+w 
+
+(B.2) 
+
+Therefore 
+
+考 2 
+e 
+
+＞ 汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+考 2 耒
+
+(B.3) 
+
+It follows that 
+
+lim 
+E [ g(e n 
+)
+
+n 
+
+↙﹢
+
+ ] 
+
+=
+
+ lim 
+
+n 
+
+↙﹢
+
+1 ﹟
+2 
+
+羽 考e 
+
+﹢
+
+  2)
+
+﹢
+
+exp 
+
+ 3)
+
+ e 
+2 
+
+2 
+n 
+考 2 
+
+ 4)
+
+exp 
+
+ 3)
+
+ e 
+2 
+
+2 
+n 
+考 2 
+e 
+
+ 4)
+
+de n 
+
+=
+
+考 15)
+
+ 考 2 +
+
+考 2 
+e 
+
+＞
+
+考
+
+ 15)
+
+ 考 2 +
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+考 2 耒
+
+(B.4) 
+
+lim 
+E 
+
+n 
+
+↙﹢
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+=
+
+ lim 
+
+n 
+
+↙﹢
+
+1 ﹟
+2 
+
+羽 考e 
+
+﹢
+
+  2)
+
+﹢
+
+exp 
+
+ 3)
+
+ e 
+
+2 
+n 
+考 2 
+
+ 4)
+
+exp 
+
+ 3)
+
+ e 
+2 
+
+2 
+n 
+考 2 
+e 
+
+ 4)
+
+de n 
+
+=
+
+考 15)
+ 8)
+ 15)
+
+ 考 2 +
+
+ 2 
+
+考 2 
+e 
+
+＞
+
+考
+
+ 15)
+
+ 考 2 +
+
+ 2 
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+ 2 
+
+考 2 耒
+
+(B.5) 
+
+Substituting (B.4) and (B.5) into (43) , we obtain 
+
+S 
+
+＞灰2 
+
+ 7)
+
+汍 
+
+T 
+w 
+
+R 
+℅ vec 
+
+汍
+
+ w 
+
++
+
+考 2 耒
+
+vec 
+
+T {
+
+ }
+
+ (
+考
+
+ I M 
+
+2 
+
+ F )
+
+1 
+
+{
+
+ I M 
+
+}
+
+ 考 2 +
+
+ 2 
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
++
+
+ 2 
+
+考 2 耒
+
+(B.6) 
+
+2. Non-Gaussian noise case 
+Taking the Taylor expansion of g ( e n ) with respect to e 
+ we have 
+
+a 
+n 
+
+around 
+
+耒n 
+
+,
+
+g(e n 
+)
+
+=
+
+ g(e 
+
+a 
+n 
+
++
+
+耒n 
+
+)
+
+=
+
+ g(耒n 
+)
+
++
+
+ g 
+
+ 14)
+
+ (耒n 
+
+)
+
+ e 
+
+a 
+n 
+
++
+
+1 
+g 
+2 
+
+ 14) 14)
+
+ (耒n 
+
+)(e 
+
+a 
+n 
+
+)
+
+2 +
+
+ o 
+
+ 7)
+
+(e 
+
+a 
+n 
+
+)
+
+2 
+
+ 8)
+
+(B.7) 
+
+where 
+
+g(耒n 
+)
+
+=
+
+ exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+2 
+
+ 4)
+
+(B.8) 
+
+g 
+
+ 14)
+
+ (耒n 
+
+)
+
+=
+
+ 耒n 
+
+考 2 
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+2 
+
+ 4)
+
+(B.9) 
+
+g 
+
+ 14) 14)
+
+ (耒n 
+
+)
+
+=
+
+(
+
+耒 2 
+n 
+考 4 
+
+ 1 
+
+考 2 
+
+)
+
+ exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+2 
+
+ 4)
+
+(B.10) 
+
+Thus 
+
+E [ g(e n 
+)
+
+ ] 
+
+＞E [ g(耒n 
+)
+
+ ] 
+
++
+
+1 
+E 
+2 
+
+ 10)
+ 4) 17)
+ 4)
+
+g 
+
+ 14) 14)
+
+ (耒n 
+
+)
+
+ 11)
+
+E 
+
+ 10)
+
+(e 
+
+a 
+n 
+
+)
+
+2 
+
+ 11)
+
+=
+
+ E 
+
+ 16)
+
+exp 
+
+ 3)
+ 16) 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+2 
+ 1 
+
++
+
+1 
+2 
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w 
+
+℅ E 
+
+耒 2 
+n 
+考 4 
+
+考 2 
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+2 
+
+ 4) 17)
+
+(B.11) 
+
+E 
+
+ 10)
+
+g 
+
+2 (e n 
+
+)
+
+ 11)
+
+＞ E 
+
+ 10)
+ 16)
+
+g(耒 2 
+)
+
+n 
+
+ 11)
+ 3)
+
++
+
+ E 
+
+ 10)
+ 4) 17)
+
+(e 
+
+a 
+n 
+
+)
+
+2 
+
+ 11)
+
+E 
+
+ 10)
+
+g(耒n 
+)
+
+ g 
+
+ 14) 14)
+
+ (耒n 
+
+)
+
++
+
+ g 
+
+ 14)
+
+ 2 (耒n 
+
+))
+
+ 11)
+
+=
+
+ E 
+
+exp 
+
+ 耒 2 
+
+n 
+考 2 
+
++
+
+汍
+
+T 
+w 
+
+R 
+
+汍
+
+ w E 
+
+ 16) 3)
+
+2 
+
+耒 2 
+n 
+考 4 
+
+ 1 
+
+考 2 
+
+ 4)
+
+exp 
+
+ 3)
+
+ 耒 2 
+
+n 
+考 2 
+
+ 4) 17)
+
+(B.12) 
+
+Substituting (B.11) and (B.12) into (43) yields 
+
+S. Peng et al. / Signal Processing 140 (2017) 116每126 
+
+T {
+
+ }
+
+ (
+
+ F )
+1 vec 
+
+{
+
+ I M 
+
+2 
+
+vec 
+
+exp 
+
+ 耒 2 
+
+n 
+考 2 
+
+ 4)
+
++
+
+汍
+
+ 3)
+
+汍
+
+T 
+w 
+
+R 
+
+ w E 
+
+ 4) 17) 4)
+
+2 
+
+耒 2 
+n 
+考 4 
+
+ 1 
+
+考 2 
+
+exp 
+
+ 耒 2 
+
+n 
+考 2 
+
+}
+
+ I M 
+
+(B.13) 
+
+126 
+
+＞ 灰2 
+
+S 
+
+ 10)
+
+ 11) 8)
+ 4) 17)
+
+汍
+
+T 
+w 
+
+R 
+
+ w 
+
+ E 
+
+耒 2 
+n 
+
++
+
+ 3)
+
+汍 
+
+ 7)
+ 3)
+ 16)
+ 16) 3)
+
+E 
+
+℅
+
+℅
+
+References 
+
+[1] M. de Campos , S. Werner , J. Apolinrio Jr. , Constrained Adaptive Filters, Springer 
+Berlin Heidelberg, 2004 . 
+[2] Y. Li , C. Zhang , S. Wang , Low-complexity non-uniform penalized ane projec- 
+tion algorithm for sparse system identication, Circuits Syst. Signal Process. 35 
+(5) (2016) 1611每1624 . 
+[3] O. Frost , An algorithm for linearly constrained adaptive array processing, Proc. 
+IEEE 60 (8) (1972) 926每935 . 
+[4] H. Van Trees , Detection, Estimation, and Modulation Theory Part IV: Optimum 
+Array Processing, John Wiley & Sons, 2004 . 
+[5] L. Resende , J. Romano , M. Bellanger , A fast least squares algorithm for lin- 
+early constrained adaptive ltering, IEEE Trans. Signal Process. 44 (5) (1996) 
+1168每1174 . 
+[6] R. Arablouei , K. Dogancay , Reduced-complexity constrained recursive least- 
+-squares adaptive ltering algorithm, IEEE Trans. Signal Process. 60 (12) (2012) 
+6687每6692 . 
+[7] R. Arablouei , K. Dogancay , Linearly-constrained recursive total least-squares al- 
+gorithm, IEEE Signal Process. Lett. 19 (12) (2012) 821每824 . 
+[8] S. Werner , J. Apolinrio Jr. , M. de Campos , P.S.R. Diniz , Low-complexity con- 
+strained ane-projection algorithms, IEEE Trans. Signal Process. 53 (12) (2005) 
+4545每4555 . 
+[9] K. Lee , Y. Baek , Y. Park , Nonlinear acoustic echo cancellation using a nonlin- 
+ear postprocessor with a linearly constrained ane projection algorithm, IEEE 
+Trans. Circuits Syst. II Exp. Briefs 62 (9) (2015) 881每885 . 
+[10] A. Sayed , Fundamentals of Adaptive Filtering, John Wiley & Sons, 2003 . 
+[11] B. Chen , Y. Zhu , J. Hu , J. Principe , System parameter identication: information 
+criteria and algorithms, Newnes (2013) . 
+[12] J. Principe , Information Theoretic Learning: Renyi＊s Entropy and Kernel Per- 
+spectives, Springer, New York, NY, USA, 2010 . 
+[13] K. Plataniotis , D. Androutsos , A. Venetsanopoulos , Nonlinear ltering of non每
+gaussian noise, J. Intell. Rob. Syst. 19 (2) (1997) 207每231 . 
+[14] B. Weng , K. Barner , Nonlinear system identication in impulsive environments, 
+IEEE Trans. Signal Process 53 (7) (2005) 2588每2594 . 
+[15] D. Haddad , M. Petraglia , A. Petraglia , A unied approach for sparsity-aware 
+and maximum correntropy adaptive lters, 2016 24th Eur. Signal Process. Conf. 
+(EUSIPCO) (2016) 170每174 . 
+[16] S. Zhao , B. Chen , J. Principe , Kernel adaptive ltering with maximum corren- 
+tropy criterion, in Proc. Int. Joint Conf. Neural Netw. (IJCNN) (2011) 2012每2017 . 
+[17] X. Zhang , K. Li , Z. Wu , Y. Fu , H. Zhao , B. Chen , Convex regularized recursive 
+maximum correntropy algorithm, Signal Process. 129 (2016) 12每16 . 
+[18] W. Liu , P. Pokharel , J. Principe , Correntropy: properties and applications in 
+non-gaussian signal processing, IEEE Trans. Signal Processing 55 (11) (2007) 
+5286每5298 . 
+
+[19] L. Shi , Y. Lin , Convex combination of adaptive lters under the maximum cor- 
+rentropy criterion in impulsive interference, IEEE Signal Process. Lett. 21 (11) 
+(2014) 1385每1388 . 
+[20] A. Singh , J. Principe , Using correntropy as a cost function in linear adaptive 
+lters, in Proc. Int. Joint Conf. Neural Netw. (IJCNN) (2009) 2950每2955 . 
+[21] B. Chen , L. Xing , H. Zhao , N. Zheng , J. Principe , Generalized correntropy for 
+robust adaptive ltering, IEEE Trans. Signal Process. 64 (13) (2016) 3376每3387 . 
+[22] R. He , B. Hu , W. Zheng , X. Kong , Robust principal component analysis based 
+on maximum correntropy criterion, IEEE Trans. Image Process. 20 (6) (2011) 
+1485每1494 . 
+[23] R. He , W. Zheng , B. Hu , Maximum correntropy criterion for robust face recog- 
+nition, IEEE Trans. Pattern Anal. Mach. Intell. 33 (8) (2011) 1561每1576 . 
+[24] R. Bessa , V. Miranda , J. Gama , Entropy and correntropy against minimum 
+square error in oine and online three-day ahead wind power forecasting, 
+IEEE Trans. Power Syst. 24 (4) (2009) 1657每1666 . 
+[25] E. Hasanbelliu , L. Giraldo , J. Principe , Information theoretic shape matching, 
+IEEE Trans. Pattern Anal. Mach. Intell. 36 (12) (2014) 2436每2451 . 
+[26] B. Chen , Y. Zhu , J. Hu , Mean-square convergence analysis of ADALINE training 
+with minimum error entropy criterion, IEEE Trans. Neural Netw. 21 (7) (2010) 
+1168每1179 . 
+[27] R. Arablouei , K. Dogancay , On the mean-square performance of the constrained 
+LMS algorithm, Signal Process. 117 (2015) 192每197 . 
+[28] T. Al-Naffouri , A. Sayed , Adaptive lters with error nonlinearities: mean-square 
+analysis and optimum design, EURASIP J. Appl. Signal Process. 4 (2001) 
+192每205 . 
+[29] R. Arablouei , K. Dogancay , Linearly-constrained line-search algorithm for adap- 
+tive ltering, Electron. Lett. 48 (19) (2012) 1208每1209 . 
+[30] Y. Li , Y. Wang , T. Jiang , Sparse-aware set-membership nlms algorithms and 
+their application for sparse channel estimation and echo cancelation, Int. J. 
+Electron. Commun. 70 (2016) 895每902 . 
+[31] R. Arablouei , K. Dogancay , Performance analysis of linear-equality-constrained 
+least squares estimation, IEEE Trans. Signal Process. 63 (14) (2015) 3802每3809 . 
+[32] H. Lee , S. Yim , W. Song , z 
+2 -proportionate diffusion LMS algorithm with mean 
+square performance analysis, Signal Process. 131 (2017) 154每160 . 
+[33] B. Chen , L. Xing , J. Liang , N. Zheng , J. Principe , Steady-state mean-square error 
+analysis for adaptive ltering under the maximum correntropy criterion, IEEE 
+Signal Process. Lett. 21 (7) (2014) 880每884 . 
+[34] L. Isserlis , On a formula for the product-moment coecient of any order of a 
+normal frequency distribution in any number of variables, Biometrika 12 (1/2) 
+(1918) 134每139 . 
+[35] Y. Li , Y. Wang , T. Jiang , Norm-adaption penalized least mean square/fourth al- 
+gorithm for sparse channel estimation, Signal Process. 128 (2016) 243每251 . 
+[36] B. Lin , R. He , X. Wang , B. Wang , The steady-state mean-square error analy- 
+sis for least mean p -order algorithm, IEEE Signal Process. Lett. 16 (3) (2009) 
+176每179 . 
+[37] K. Abadir , J. Magnus , Matrix Algebra, NY: Cambridge University Press, 2005 . 
+[38] J. Zhang , T. Qiu , A. Song , H. Tang , A novel correntropy based DOA estimation al- 
+gorithm in impulsive noise environments, Signal Process. 104 (2014) 346每357 . 
+[39] Z. Wu , S. Peng , B. Chen , H. Zhao , Robust hammerstein adaptive ltering under 
+maximum correntropy criterion, Entropy 117 (10) (2015) 7149每7166 . 
+

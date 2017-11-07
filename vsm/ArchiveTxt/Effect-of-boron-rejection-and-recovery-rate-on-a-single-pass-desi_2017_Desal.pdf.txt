@@ -1,0 +1,812 @@
+Effect of boron rejection and recovery rate on a single-pass design of SWRO using hybrid membrane inter-stage design (HID) concept
+
+Doseon Han, Moonhyun Hwang, In S. Kim 
+
+Global Desalination Research Center (GDRC), School of Earth Sciences and Environmental Engineering, Gwangju Institute of Science and Technology (GIST), 123 Cheomdangwagi-ro, Buk-gu,
+Gwangju 61005, Republic of Korea
+
+H I G H L I G H T S
+
+ The performance of pressure vessel could be optimized with applying HID.
+ The most inuenced design factor on boron rejection was feed water temperature.
+ The design using high ux membranes on tail position is preferred since it doesn't exceed recovery rate limit.
+ Application of HID can save up to 0.41 kWh/m3 of SEC on SWRO process.
+
+article
+
+info
+
+Article history:
+Received 23 May 2016
+Received in revised form 13 September 2016
+Accepted 5 November 2016
+Available online 18 November 2016
+
+
+abstract
+
+Seawater reverse osmosis (SWRO) has been applied as a desalination method to provide potable water to regions
+under the stress of water shortages and is more effective than other desalination processes. However, specic en-
+ergy consumption (SEC) must be considered in SWRO process design because of its energy intensive features. Hy-
+brid membrane inter-stage design (HID) was examined to enhance the SEC efciency of the reverse osmosis
+process. The additional removal of boron may improve the water quality by adding a second pass. However,
+this additional factor may increase costs. This study investigated a potential HID that satises water quality stan-
+dards with single pass SWRO only. The element conguration for the HID was evaluated by changes in SEC, salt
+rejection, and boron rejection under general seawater quality conditions. Case studies were also conducted to es-
+timate the energy efciency of the HID under three feed conditions: high concentration and high temperature
+(Case 1); low concentration and high temperature (Case 2); and low concentration and low temperature (Case
+3). The results showed HID application can save up to 0.41 kWh/m3 of SEC. Temperature is a more important de-
+sign factor than recovery rate for HID application.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Reverse osmosis (RO) technology has recently dominated the desa-
+lination market because it has the least expensive unit cost for the pro-
+duction of water [1,2]. Despite the low unit cost, RO technology involves
+a more energy intensive process for the treatment of seawater or saline
+water than other conventional fresh water resources [3,4]. Accordingly,
+the main purpose of seawater reverse osmosis (SWRO) research is the
+reduction of energy consumption. Major improvements in SWRO ener-
+gy efciency over the last few decades have included the development
+of thin-lm composite membranes and energy recovery devices [2,5每
+10]. In addition, SWRO system design improvements from a membrane
+module to an RO train have further enhanced SWRO energy efciency
+[11每14]. The RO module conguration in pressure vessels (PVs) has
+been a focus of SWRO design research recently. It is common for the
+ux of the rst element position to be relatively higher than the tail
+side position elements in a SWRO PV because of the higher osmotic
+pressure at the tail position element from the gradual recovery of feed
+water. An internally staged design (ISD) concept was developed as a
+novel RO module congurat ion in a PV by Dow Chem ica l (PCT/
+US05/06224) to solve these unbalanced ux problems [15]. Two or
+more membrane types were used in the same PV for the ISD , in
+which higher productivity membranes were located in other posi-
+tions than the rst and second position. This ISD not only enhanced
+total productivity of the PV unit but also reduced the fouling poten-
+tial of the front position elements. Molina et al. showed the cost sav-
+ing by retrotting the conventional pressure vessel des ign to ISD
+with fouling factors and feed temperature changes . However , this
+study was conducted w ith 2nd pass SWRO process . It means that
+there were no concerns about permeate water qua lity due to the
+presence of 2nd pass [16每18].
+The hybrid membrane inter-stage design (HID) uses commercial
+SWRO membranes from three different manufacturers. This concept
+has been used without limiting the element position and manufacturer.
+Penete et al. extended the ISD concept which applies only Dow Chemi-
+cal membrane elements to the HID concept, applying membrane mod-
+ules in every membrane manufacturer. They showed the performance
+comparison and retrotting strategy for canary island SWRO plants.
+These two reports mentioned that ISD and HID can reduce total cost
+and energy consumptions. [19].
+The RO process must be optimized according to diverse design fac-
+tors such as feed water quality, operating conditions, regional drinking
+water standards, and plant management [20每26]. Boron is one of the
+key design factors in the SWRO process owing to its low removal rate
+compared with other ions. The average boron concentration in seawater
+is 4.8 mg/L, and it exists as boric acid and borate ions in seawater [27,
+28]:
+
+B OH
+
+
+
+3
+
+ H2OB OH
+
+4
+
+  H
+
+ ; pKa  9:2 at pH 7 and 25 ～C:
+
+Bor ic ac id is a major component of the boron mo lecu lar form
+w ith in a low pH range . Bor ic ac id ex ists in an uncharged form in
+aqueous so lut ion; thus , hydrated boron mo lecu les are relat ive ly
+lower than other ion species in seawater . Therefore , conventional
+SWRO membranes remove less boron (approx imate ly 70%) than
+other anions and cat ions [29] . However , the borate ion form is
+completely hydrated and charged in feed solut ions in a high pH
+range and causes a high rejection rate in the SWRO membrane pro-
+cess ow ing to s ize exc lus ion and repu ls ion phenomena . A lthough
+the Wor ld Health Organization rev ised the boron concentrat ion
+l imit to 2 .4 mg/L in 2012 [30] , the European Un ion ma inta ins a
+boron limit of 1.0 mg/L for potable water [31] because of the risk it
+presents to crops [32每34]. Therefore, a process should be designed
+that results in boron concentrations of 1 mg/L or lower to provide
+seawater desalination to various countries.
+High boron removal rates have been achieved mainly through the
+use of add itiona l processes , ion exchange (IX) , and a second pass
+with pH adjustment. These post-treatment processes incur addition-
+al capital and operating costs between 0.04 $/m3 and 0 .1 $/m3 [29,
+35]. Researchers have attempted to adjust boron levels with only a
+single pass and no post-treatment to avoid these additional costs .
+Their results indicated SWRO membrane boron removal ability was
+enhanced and satised the water quality criteria using single-pass
+SWRO systems with various operat ing conditions and membrane
+types. The pH control was the main issue for the single-pass SWRO
+system both with and without a chemical dosage because of the rela-
+tionship between scaling problems and boron removal [36每39] .
+However , ISD research has not yet evaluated boron removal and
+has instead focused on energy efciency through the application of
+high-ux membranes.
+The main objective of this study is to develop novel approach of
+SWRO vessel design by using the HID on the optimal single-pass de-
+sign and suitable operating conditions of commercial SWRO mem-
+branes to meet 1 mg B/L water with commerc ia l membrane
+elements. Inter-staged technique was utilized not only to solve un-
+balanced ux distribution problem, the main focus of previous HID
+studies, but also to enhance the process performance. In this study,
+higher ux membrane element was located not only in the front po-
+sition but also in the tail position to extend HID concept for optimiz-
+ing SWRO vessel des ign . Performance of H ID were evaluated by
+commercial SWRO system model tool provided by the manufacturer.
+Membrane congurations were evaluated by comparing three fac-
+tors: permeate total dissolved solids (TDS) , boron concentration ,
+and the SEC on a single-pass SWRO system. Then, three case studies
+were conducted to estimate the energy efciency of the HID under
+three feed condit ions: high concentration and high temperature
+(Case 1) , low concentrat ion and high temperature (Case 2) , and
+low concentration and low temperature (Case 3).
+
+2. Materials and method
+
+2.1. Pressure vessel design & operating condition
+
+ROSA9 , the comme rc ia l s imu la t ion program by Dow Wa ter &
+Process Solutions, was used to evaluate HID performance. Computa-
+t iona l assessment o f membrane per fo rmance was per fo rmed on
+commercial 8-inch membranes made by Dow. ROSA9 provides the
+ISD analysis . Three types of RO membrane were selected based on
+the ir features : h igh-re ject ion membrane (SW30XHR-400 i) , stan-
+dard membrane (SW30HRLE-400 i) , and h igh-ux membrane
+(SW30ULE-400 i) . The spec ica t ions o f se lec ted e lemen ts are in
+Table 1.
+Tab le 2 shows the membrane congurations in the simulation .
+The PV composed of seven (3 + 4 element conguration) elements
+to estimate the boron removal ab i l ity of a single pass . The reason
+3 + 4 congurat ion was chosen is that ha lf of permeate was pro-
+duced on front 3 position elements. So, permeate TDS concentration
+was controlled by each of membrane types respectively on 3 + 4 (el-
+ement) design. Accordingly, 3 + 4 (element) design was used in this
+study. Single pass could consist of single stage or 2 stages, but there
+wou ld be too many congurations of 2 stage array (e .g . 2:1; 3:2;
+4:2, etc.). Recent commercial membrane performance has been rap-
+idly improved, so sufcient recovery rates are obtained in the single
+stage. Also, single stage was used for the simple analysis of perfor-
+mance of HID.
+Operating ow rate was set at 10 m3/h, and pump efciency was as-
+sumed to be 80%. Optimal recovery rates of each membrane congura-
+tion were calculated by comparing the SEC. Fig. 1 shows a schematic
+diagram of the 7-element PV design with the conventional design and
+the HID. The conventional design used one membrane type, and the
+HID used two membrane types in the PV. The front position was located
+in the direction of feed water inow. The tail position was located in the
+direction of concentrated water emission.
+
+2.2. Feed water quality
+
+Feed quality in this study was separated according to two condi-
+tions, general feed condition and various real feed quality data. Three
+factors were used rst to obtain general information regarding the
+performance of each membrane conguration PV design under gen-
+eral seawater feed condition: SEC, TDS, and boron concentration of
+permeate water . The analysis was conducted at a recovery rate of
+45% at 20 ～C . The feed water was assumed to ow into the SWRO
+PV after the convent iona l pre-treatment process (SD I b 5) . The
+ionic composition of the feed water was referred to as the ※seawater§
+composition reported by M. J. Atkinson et al. [40]. The feed TDS value
+was 35,000 mg salt/L; the boron concentration was 4.53 mg boron/L;
+and the pH was 8.2.
+Three locations where the SWRO process is mainly used were select-
+ed to nd the optimal PV design. Table 3 shows the feed water quality of
+the three target locations in the study (Case 1, Case 2, and Case 3). The
+feed seawater has a high temperature and high TDS value in Case 1, a
+low TDS and high temperature in Case 2, and a low temperature and
+general feed quality in Case 3. Although these three cases cannot
+
+Table 1
+Specications of selected RO membranes (32,000 ppm NaCl, 800 psi, 25 ～C).
+
+Membrane
+
+Flow (GPD
+(m3/d))
+
+Salt rejection
+(%)
+
+Boron rejection
+(%)
+
+Type
+
+SW30XHR-400i
+
+6000 (22.7)
+
+99.82
+
+SW30HRLE-400i 7500 (28.4)
+SW30ULE-400i
+11,000 (41.6)
+
+99.8
+99.7
+
+93
+
+92
+89
+
+High
+rejection
+Standard
+High ux
+
+D. Han et al. / Desalination 404 (2017) 215每223
+
+217
+
+Table 2
+Membrane conguration of conventional and HID PV designs.
+
+Conguration
+
+Membrane element
+
+XHR
+HRLE
+ULE
+HID 1
+HID 2
+HID 3
+HID 4
+HID 5
+HID 6
+
+SW30XHR-400i
+SW30HRLE-400i
+SW30ULE-400i
+(SW30XHR-400i) 3 + (SW30HRLE-400i) 4
+(SW30XHR-400i) 3 + (SW30ULE-400i) 4
+(SW30HRLE-400i) 3 + (SW30XHR-400i) 4
+(SW30HRLE-400i) 3 + (SW30ULE-400i) 4
+(SW30ULE-400i) 3 + (SW30XHR-400i) 4
+(SW30ULE-400i) 3 + (SW30HRLE-400i) 4
+
+describe all possible feed qualities, we expect the advantages of HID can
+be estimated from these three cases results.
+
+3. Results and discussion
+
+3.1. Tradeoff relation of HID PV
+
+Many different parameters such as the ow rate of feed, TDS rejec-
+tion, operational pressure, ux, and fouling potential should be consid-
+ered in an SWRO process design. The RO membrane performance was
+tested under standard conditions (20 ～C, 32,000 mg/L). However, com-
+mercial SWRO plant designs operated with a PV unit containing six or
+more membrane elements evaluate performance not by each mem-
+brane element but for the overall PV unit. Although the RO membranes
+in this PV unit were developed for high permeate ux with high salt re-
+jection for high efciency, their performance is generally a tradeoff be-
+tween salt rejection ability and water permeability. Therefore, the PV
+designs with one type of RO membrane must focus on either salt rejec-
+tion or permeate ux. Conversely, both high rejection membranes and
+high permeate ux membranes are used in the HID; thus, the design
+range of the PV is more exible. Fig. 2 shows the relationship between
+SEC and rejection of salt and boron. These data were obtained under
+one PV condition without an energy recovery device (ERD) to evaluate
+only the performance of the membrane conguration of a PV with an
+average ux of 17.3 LMH and total active area of 260.12 m2.
+Fig. 2 shows the performance and linear relationship in the PV, ex-
+cept for the XHR and HID 6 congurations. The highest salt and boron
+rejections are in the XHR (99.77% and 91%, respectively) conguration
+and the lowest rejections are in the ULE conguration (99.31% and 78%).
+The HID 6 conguration has a slightly less than linear relationship
+owing to the high-ux membranes (SW30ULE-400i) in the front posi-
+tion of the PV. Despite the same front conguration, HID 5 has high
+SEC and rejection. Although HID 2 and HID 4 exhibit a similar relation-
+ship to HID 6 and HID 5, they have lower rejection rates for salt and
+boron than HID 5 and HID 6, respectively. This indicates that the module
+conguration of the tail position has more of an effect on water quality
+and the front membrane conguration in the PV has more of an impact
+on ux. Therefore, module conguration can be designed optionally to
+
+control water quality level or energy reduction depending on feed
+water quality. The two types of module conguration in the PV in this
+study were xed to three versus four to recover 50% of the total ux
+by the front modules. However, if a three or more type module cong-
+uration is applied, this exibility is expected to be superior.
+Fig. 3 shows the design range in RO conguration under the condi-
+tions of 20 ～C, salt 35,000 ppm, and 45% recovery rate to maintain
+water quality below the 1 mg/L boron concentration. Allowable boron
+concentration indicates the limit of feed boron concentration when de-
+signing an SWRO process for certain operating conditions. The differ-
+ence of design capacity indicates the difference of allowable boron
+feed concentration among the pressure vessel designs. The difference
+of design capacity 1 is 2.96 B mg/L between XHR (11.05 B mg/L) and
+HRLE (8.09 B mg/L). The difference of design capacity 2 is 3.47 B mg/L
+between HRLE (8.09 B mg/L) and ULE (4.62 B mg/L). When we apply
+the HID concept, there are 8 different design capacities in between
+XHR and ULE. The difference of design capacity 1 can be composed of
+3 different design capacities (XHR to HID3, HID3 to HID1 and HID1 to
+HRLE). Therefore, the differences of allowable feed boron concentration
+are decreased to 1.61 mg/L, 0.38 mg/L and 0.97 mg/L. As seen in Fig. 3, if
+the PV is designed with only one type of RO module, it may be inefcient
+and difcult to satisfy the required quality beyond its optimum feed
+boron concentration range. HID can effectively redeem this narrow
+the difference of design capacity by the relationship between rejection
+rate and SEC. Figs. 2 and 3 show that when the HID technique is applied
+to a SWRO PV design, a new HID can also be designed according to salt
+and boron rejection.
+
+3.2. Symmetric HID design
+
+There are symmetric designs among the HID pressure designs (i.e.,
+HID 1 and HID 3, HID 2 and HID 5, and HID 4 and HID 6). Symmetric de-
+sign refers to the same membrane conguration used in a different po-
+sition. For example, HID 1 and HID 3 consist of the SW30XHR-400i (high
+rejection membrane) and SW30HRLE-400i (standard membrane)
+models. In the HID 1 design, the high rejection membrane was posi-
+tioned on the front side of the vessel. However, high rejection mem-
+branes were positioned on the tail side of the vessel in the HID 2
+design. All the symmetric designs show that HID 3, HID 5, and HID 6
+possessing high-ux membranes on the front side have higher salt re-
+jection rate and lower SEC (Fig. 2).
+Fig. 4 shows the recovery rate of each element as a function of total
+recovery rate. The commercial membrane element has its own limit re-
+covery rate (13%) and design ux. The limit recovery rates and maxi-
+mum permeate ux are determined by the fouling tendency of feed
+seawater, which was Silt Density Index (SDI) value, used b 5 (conven-
+tional pretreatment of open intake). The maximum design recovery
+rate of the PV is just 40% for general feed conditions (TDS 35000 mg/L,
+temperature 20 ～C, and pH 8.2) when higher ux membrane elements
+are located in the front position. This maximum design recovery rate
+is because of exceeding the recovery rate limit or maximum design
+
+Fig. 1. Schematic diagram of the single-pass SWRO vessel (a) conventional design and (b) HID.
+
+218
+
+D. Han et al. / Desalination 404 (2017) 215每223
+
+Table 3
+Target location feed quality data.
+
+Location
+
+Case 1
+Case 2
+Case 3
+
+Feed TDS (mg/L)
+
+Temperature (～C)
+
+40,200
+33,000
+37,100
+
+28
+32
+20
+
+pH
+
+8.1
+7.9
+7.5
+
+Boron concentration (mg/L)
+
+Reference
+
+5
+4.2
+5.5
+
+[38]
+[41]
+[19]
+
+ux by N 40% of the recovery rate. However, when higher ux mem-
+brane elements are located in the tail position, the maximum design re-
+covery rate is 50%. Maximum design recovery rates could be determined
+by feed water quality (e.g., TDS and temperature). Nevertheless, when a
+higher ux membrane is located in the tail position, the design recovery
+rate range is relatively large. The best location for high-ux membranes
+is in the tail position to design a high recovery rate.
+The advantage of an ISD is the elimination of unbalanced ux distri-
+bution problems. An unbalanced ux distribution causes a relatively
+high ux in the front position elements; thus, their ux easily exceeds
+the ux limit and recovery rate that may be the initial point of fouling.
+HID 6 has an unbalanced ux distribution at 30% recovery and is consid-
+erably more severe than HID 4. The HID 4 permeate ow rate of the rst
+front position element (13.25 m3/d) is 2.11 times higher than that posi-
+tioned on the last tail (6.27 m3/d). HID 6 permeate ow rates of the rst
+front position element (19.1 m3/d) are 4.26 times higher than those po-
+sitioned on the last tail (4.48 m3/d). HID 4 permeate ow rates of the
+rst front position element (24.18 m3/d) at 50% recovery are 3.04
+times higher than those positioned on the last tail (7.95 m3/d). HID 6
+permeate ow rates of the rst front position element (34.1 m3/d) are
+5.76 times higher than those positioned on the last tail (5.91 m3/d).
+Broad design range and low fouling result when higher ux membranes
+are located on tail position elements instead of front position elements.
+
+3.3. Case study
+
+3.3.1. Optimal recovery rate
+Fig. 5 shows the optimal recovery rate with SEC at Case 1, Case 2 and
+Case 3. In the Case 1, the XHR, HRLE, HID 1, and HID 2 PV designs can op-
+erate at the optimal recovery rate (45%). However, ULE, HID 3, HID 4,
+HID 5, and HID 6 cannot operate at this level owing to the design guide-
+lines for maximum element recovery rate and recommended element
+permeate ow which were suggested by the membrane manufacturer.
+Average ux is 13.46, 15.38, and 17.3 LMH at 35%, 40%, and 45% recovery
+rates, respectively. The highest SEC value is 6.6 kWh/m3 at the XHR de-
+sign 30% recovery rate, and the lowest SEC value is 5.19 kWh/m3 at the
+ULE design 40% recovery rate.
+Also, the designs which were operated on optimal recovery rate
+(50%) were XHR, HID1, and HID 2 in the Case 2. The highest SEC value
+is 5.44 kWh/m3 at the XHR design 30% recovery rate, and the lowest
+SEC value is 4.25 kWh/m3 at the ULE design 40% recovery rate. Allow-
+able recovery rates of XHR and HID 3 are higher than those of Case 1.
+In the Case 3, optimal recovery rates were changed by each PV design.
+The optimal recovery rates were 50%, HRLE, HID1, HID 2, and HID 4,
+and 45% XHR. The highest SEC value is 6.42 kWh/m3 at the XHR 30% de-
+sign recovery rate, and the lowest SEC value is 4.86 kWh/m3 at the ULE
+design 40% recovery rate. Front design (higher ux membrane located
+on front position) showed high performance on the result Section 3.2.
+However, Fig. 5 indicated that recovery rate ranges of these front design
+which were HID 3, HID 5 and HID 6 was limited on high temperature
+feed conditions (Case 1 and Case 2).
+
+3.3.2. TDS and boron rejection
+Fig. 6 shows the permeate TDS and boron concentration by compar-
+ing SEC at each possible recovery rate. Although XHR, HRLE, HID 1, HID
+3, and HID 5 can satisfy the TDS standard concentration over an entire
+range of recovery rates on Case 1 feed condition, the ULE PV design
+
+cannot. Moreover, the HID 4 and HID 6 designs can operate at only
+45% (permeate TDS 394.45 mg/L) and 35% (permeate TDS 389.39 mg/
+L). The HID 2 design can operate from 40% (permeate TDS 384.79 mg/
+L) to 50% (permeate TDS 360.72 mg/L). While XHR and HID 3 can satisfy
+the boron standard concentration for water products on an entire range
+of recovery rates, ULE, HID 2, HID 4, HID 5, and HID 6 PV designs cannot.
+Furthermore, the HID 1 design can operate except at 30% (permeate
+boron concentration 1.00 mg/L), and the HRLE design can operate
+from 40% (permeate boron concentration 0.98 mg/L) to 45% (permeate
+boron concentration 0.95 mg/L). The limiting factor is the permeate
+boron concentration for an SWRO single-pass plant in the Case 1. Opti-
+mal PV design is the HRLE at 45% recovery rate. The lowest SEC is
+5.52 kWh/m3 without ERD.
+Similar results were shown on Case 2. This TDS value was relatively
+less than that of Case 1, but temperature was high (32 ～C). However, the
+optimal design results by permeate TDS equal to Case 1, even if TDS
+value was totally different.
+The operating conditions of the HID 4 and HID 6 designs are only 45%
+(permeate TDS 396.71 mg/L) and 35% (permeate TDS 392.25 mg/L), re-
+spectively. The HID 2 design can operate from 40% (permeate TDS
+387.22 mg/L) to 50% (permeate TDS 362.52 mg/L). Also, Case 2 design
+limiting factor for PV optimization was permeate boron concentration.
+Optimal PV design is HID 1 at 50% recovery rate. The SEC is 4.30 kWh/
+m3.
+In Case 3, overall PV design can operate on all recovery rates ranges.
+TDS values are not a limiting factor in the single-pass SWRO process
+owing to the low temperature of the feed water. XHR, HRLE, HID 1,
+and HID 3 have no limiting operating recovery rates for boron stan-
+dards. Moreover, HID 4 and HID 6 designs can operate at 40% (permeate
+boron concentration 0.99 mg/L) and 50% (permeate boron concentra-
+tion 0.98 mg/L). The HID 2 design can operate from 40% (permeate
+boron concentration 0.98 mg/L) to 50% (permeate boron concentration
+1.02 mg/L) and the HID 5 design can operate, except at 30% (permeate
+boron concentration 1.00 mg/L). So, optimal PV design is HID 1 at 50%
+recovery rate. The SEC is 4.30 kWh/m3 without ERD under an optimal
+pressure vessel condition.
+
+3.4. Analysis of case study
+
+Case 1 and Case 2's TDS concentrations are completely different
+(40,200 mg/L and 33,000 mg/L), but optimal PV design is the same for
+a permeate 400 mg/L TDS concentration. Optimal PV design for TDS is
+signicantly related to the temperature rather than the concentration
+of the feed. However, a high TDS value in Case 1 causes high osmotic
+pressure at the tail of the PV and increases the operational pressure in
+all vessels. Although the optimal PV design in Case 2 is the same as
+the Case 1n case for permeate TDS concentration, SEC is apparently dif-
+ferent owing to TDS concentration.
+Maximum recovery rate of a PV is affected by feed TDS, temperature,
+and front position membrane type. Low TDS, high-ux membrane, and
+high temperature in Case 2 cause high permeate ux of membrane ele-
+ments on the front position of HID 5, HID 6, and ULE. Maximum recov-
+ery rates of membrane elements in the front position are limited as seen
+for HID 6 in Fig. 4. Therefore, they can operate, even in the smallest
+range. In contrast, maximum recovery rates for Case 3 are determined
+only by the recovery rate limitation of front position membrane type
+owing to the low temperature and general TDS values. Increased
+
+D. Han et al. / Desalination 404 (2017) 215每223
+
+219
+
+Fig. 2. Comparison of rejection rates for (a) TDS and (b) boron with SEC on a single-pass PV without an ERD. The LR, MR and HR are abbreviation of low rejection, medium rejection and
+high rejection respectively for simply visualizing rejection rate level. Also, HE, ME and LE indicate high energy consumption, medium energy consumption and low energy consumption.
+
+temperature in feed increases ux and TDS concentration in permeate.
+Thus, in Case 1 and Case 2, portions of the HID PVs cannot be applied
+to control TDS values below 400 mg/L.
+In the single-train design, the most important parameter is boron
+concentration. The range of HID is limited beyond that for controlling
+the TDS concentration to keep the boron concentration below 1 mg/L.
+The boron concentration in permeate is more sensitive to feed temper-
+ature as it is similar in all three cases. Therefore, SW30XHR-400i is nec-
+essary for boron control at 32 ～C (Case 2), which is the highest
+temperature in this study, despite a lower boron concentration than in
+Case 1. HRLE in the Case 1 could satisfy 1 mg/L of the boron concentra-
+tion. In contrast, SW30ULE-400i in the Case 3 could be applied to HID in
+the PV owing to the low temperature. These results indicate that a com-
+bination of high-ux membranes in HID is thoroughly dependent on
+feed temperature to control TDS or boron concentration.
+Tab le 4 shows the opt ima l HID in each respect ive case and the
+importance of HID. The HRLE (45%) design was selected as the opti-
+mal PV design for the feed quality in Case 1 because the high 28 ～C
+temperature b locks the app l icat ion o f the SW30ULE-400 i in H ID .
+The h ighes t ux membrane used a t
+th is
+tempera ture is
+SW30HRLE-400i.
+When the HID technique is not considered , the XHR (50%) and
+HRLE (50%) des igns were se lec ted in Case 2 and the Case 3 ,
+
+Fig. 3. The design boron concentration range in RO conguration (20 ～C, salt 35,000 ppm,
+and 45% recovery rate).
+
+respectively. In contrast, the optimal PV designs when the HID tech-
+nique is applied are the HID 1 (50%) and HID 4 (50%) designs in Case
+2 and the Case 3.
+SEC of HID 1 (50%) and XHR (50%) are 4.74 kWh/m3 and 4.57 kWh/
+m3, respectively, and SEC of HID 4 (50%) and HRLE (50%) are 4.99 kWh/
+m3 and 5.40 kWh/m3, respectively. When applying the HID technique,
+0.17 and 0.41 kWh/m3 are reduced with same recovery rate and same
+feed qualities. Consequently, the HID technique can optimize PV design
+more specically for various feed qualities.
+
+3.5. Critical design factors of HID
+
+Many design factors inuence HID design. The salt rejection rates of
+HID are determined by temperature and recovery rate. Temperature
+causes changes in salt ux on the membrane. Average ux of PV is de-
+termined by recovery rates and thus the total rejection also changes. It
+has been mentioned that permeate boron concentration is a vital crite-
+rion for HID design according to previous results. Therefore, the allow-
+able boron concentration of feed water was investigated to determine
+the critical design factor for HID. Fig. 7 shows the allowable feed boron
+concentration for each PV design. Each membrane type has a different
+change in allowable feed boron concentration depending on tempera-
+ture and recovery rate. HID results indicate that boron rejection is signif-
+icantly affected by membrane type. HID 2, HID 4, HID 5, and HID 6 used a
+SW30ULE-400i membrane. However, HID 1 and HID 3 did not use the
+SW30ULE-400i membrane.
+The ULE design does not signicantly change with temperature
+and recovery rate . HID 2 , HID 4 , HID 5 , and HID 6 also follow their
+compos ition membrane types , wh ich are ULE membranes . A l low-
+ab le feed boron concentration changes with temperature and re-
+covery rate in the same membrane conguration. Temperature has
+a greater difference than the recovery rates of both the conventional
+design and HID between these two design factors . The highest a l-
+lowab le feed boron concent ra t ion o f XHR dec reases by 19 .74%
+from 11 .51 mg /L (20 ～C) to 6 .82 mg /L (30 ～C) a t a 50% recovery
+rate by temperature change but by 39 .20% from 11 .51 mg/L (50%)
+to 9 .24 mg/L (30%) a t a temperature o f 30 ～C by recovery rate
+change. XHR results show that temperature has more inuence on
+allowable boron feed concentration than recovery rate.
+HID also has the same results with conventional design. The highest
+allowable feed boron concentration of HID 3 decreased by 19.32% from
+9.89 mg/L (50% recovery rate) to 7.98 mg/L (30% recovery rate) at a
+temperature of 20 ～C and by 38.46% from 9.89 mg/L (20 ～C) to
+4.91 mg/L (30 ～C) at 50% recovery rate by temperature change. High
+temperatures narrow the range of allowable feed boron concentration.
+
+220
+
+D. Han et al. / Desalination 404 (2017) 215每223
+
+Fig. 4. Comparison of element recovery rate of (a) HID 4 and (b) HID 6 as a function of recovery rate.
+
+However, low temperature and high recovery rate expand the range of al-
+lowable feed boron concentration. This indicates that there are no signif-
+icant performance differences among the HID and conventional designs
+at high temperature ranges. Accordingly, HID could be used more effec-
+tively at low temperature ranges, because results Section 3.1 already
+
+shows that the advantage of HID redeem the difference of design capacity
+to satisfy the required quality by the relationship between rejection rate
+and SEC. If the differences of design capacity are narrowed, HID design
+will show less benet of tailoring the process performance with a margin-
+al difference comparing to the conventional design.
+
+Fig. 5. Optimal recovery rate of each PV design by SEC at (a) Case 1, (b) Case 2 and (c) Case 3.
+
+D. Han et al. / Desalination 404 (2017) 215每223
+
+221
+
+Fig. 6. The performance of each PV design by permeate boron concentration, TDS concentration, SEC and characteristic recovery rates for (a) Case 1, (b) Case 2 and (c) Case 3 without ERD.
+(Numbers at each symbol indicate the recovery rates).
+
+4. Conclusions
+
+This work reports the optimal combination of RO membranes in PVs
+with various feed qualities using three distinguished commercial mem-
+branes: high-rejection, standard, and high-ux. This study investigated
+the module conguration and determined the effect of element position
+
+in PV. The tail position showed more effect on water quality but the
+front membrane conguration in the PV inuenced more impact on
+ux. This means the position of high-ux membranes in the PV may de-
+termine permeate quality and SEC. Therefore, module conguration can
+be designed to control water quality level or energy reduction depend-
+ing on feed water concentration and temperature.
+
+222
+
+D. Han et al. / Desalination 404 (2017) 215每223
+
+Table 4
+Membrane conguration of conventional and HID PV designs.
+
+Optimal PV design without HID
+(operating recovery)
+
+Optimal PV design with HID
+(operating recovery)
+
+Reduction of SEC (kWh/m3)
+
+HRLE (45%)
+HID 1 (50%)
+HID 4 (50%)
+
+References
+
+每
+0.17
+0.41
+
+[1] L.F. Greenlee, D.F. Lawler, B.D. Freeman, B. Marrot, P. Moulin, Reverse osmosis desa-
+lination: water sources, technology, and today's challenges, Water Res. 43 (2009)
+2317每2348.
+[2] B. Peate, L. Garc赤a-Rodr赤guez, Current trends and future prospects in the design of
+seawater reverse osmosis desalination technology, Desalination 284 (2012) 1每8.
+[3] R. Semiat, Energy issues in desalination processes, Environ. Sci. Technol. 42 (2008)
+8193每8201.
+[4] W.A.P.M. Elimelech, The future of seawater desalination energy, technology, and the
+environment, Science 333 (2011) 712每717.
+[5] R.J. Petersen, J.E. Cadotte, R.E. Larson, E.E. Erickson, A new thin-lm composite sea-
+water reverse osmosis membrane, Desalination 32 (1980) 25每31.
+[6] R.J. Petersen, Composite reverse osmosis and nanoltration membranes, J. Membr.
+Sci. 83 (1993) 81每150.
+[7] A.F. Ismail, M. Padaki, N. Hilal, T. Matsuura, W.J. Lau, Thin lm composite membrane
+〞 recent development and future potential, Desalination 356 (2015) 140每148.
+[8] R.L. Stover, Seawater reverse osmosis with isobaric energy recovery devices, Desali-
+nation 203 (2007) 168每175.
+[9] N. Ghaffour, T.M. Missimer, G.L. Amy, Technical review and evaluation of the eco-
+nomics of water desalination: current and future challenges for better water supply
+sustainability, Desalination 309 (2013) 197每207.
+[10] S.-J. Kim, J. Lee, H.-W. Yu, I.S. Kim, Study on mass production of aquaporinZ for bio-
+mimetic water purication membrane, Desalin. Water Treat. 51 (2013) 6370每6377.
+[11] A. Zhu, P.D. Christodes, Y. Cohen, Minimization of energy consumption for a two-
+pass membrane desalination: effect of energy recovery, membrane rejection and
+retentate recycling, J. Membr. Sci. 339 (2009) 126每137.
+[12] M. Li, Reducing specic energy consumption in reverse osmosis (RO) water desali-
+nation: an analysis from rst principles, Desalination 276 (2011) 128每135.
+[13] K.H. Mistry, R.K. McGovern, G.P. Thiel, E.K. Summers, S.M. Zubair, J.H. Lienhard V, En-
+tropy generation analysis of desalination technologies, Entropy 13 (2011) (1829每
+1864).
+[14] M. Li, Energy consumption in spiral-wound seawater reverse osmosis at the ther-
+modynamic limit, Ind. Eng. Chem. Res. 53 (2014) 3293每3299.
+[15] W.I.P. Organization, Apparatus for Treating Solutions of High Osmotic Strength, Pat-
+ent Application Number PCT/US2005/006224, 2005.
+[16] V.G. Molina, M. Busch, P. Sehn, Cost savings by novel seawater reverse osmosis ele-
+ments and design concepts, Desalin. Water Treat. 7 (2009) 160每177.
+[17] H. Winters, Twenty-years-experience-in-seawater-reverse-osmosis-and-how-
+chemicals-in-pretreatment-affect-fouling-of-membranes, Desalination 110 (1997)
+93每96.
+[18] S.-J. Kim, B.S. Oh, H.-W. Yu, L.H. Kim, C.-M. Kim, E.-T. Yang, M.S. Shin, A. Jang, M.H.
+Hwang, I.S. Kim, Foulant characterization and distribution in spiral wound reverse os-
+mosis membranes from different pressure vessels, Desalination 370 (2015) 44每52.
+[19] B. Peate, L. Garc赤a-Rodr赤guez, Reverse osmosis hybrid membrane inter-stage de-
+sign: a comparative performance assessment, Desalination 281 (2011) 354每363.
+[20] F. Vince, F. Marechal, E. Aoustin, P. Br谷ant, Multi-objective optimization of RO desa-
+lination plants, Desalination 222 (2008) 96每118.
+[21] Y. Saif, A. Almansoori, Synthesis of reverse osmosis desalination network under
+boron specications, Desalination 371 (2015) 26每36.
+[22] S. Lin, M. Elimelech, Staged reverse osmosis operation: congurations, energy ef-
+ciency, and application potential, Desalination 366 (2015) 9每14.
+[23] Y. Lu, Y. Hu, D. Xu, L. Wu, Optimum design of reverse osmosis seawater desalination
+system considering membrane cleaning and replacing, J. Membr. Sci. 282 (2006) 7每13.
+[24] Y. Du, L. Xie, Y. Liu, S. Zhang, Y. Xu, Optimization of reverse osmosis networks with
+split partial second pass design, Desalination 365 (2015) 365每380.
+[25] S.Y. Alnouri, P. Linke, Optimal seawater reverse osmosis network design considering
+product water boron specications, Desalination 345 (2014) 112每127.
+[26] A. Jiang, L.T. Biegler, J. Wang, W. Cheng, Q. Ding, S. Jiangzhou, Optimal operations for
+large-scale seawater reverse osmosis networks, J. Membr. Sci. 476 (2015) 508每524.
+[27] N. Hilal, G.J. Kim, C. Somereld, Boron removal from saline water: a comprehensive
+review, Desalination 273 (2011) 23每35.
+[28] E. G邦ler, C. Kaya, N. Kabay, M. Arda, Boron removal from seawater: state-of-the-art
+review, Desalination 356 (2015) 85每93.
+[29] E. Guler, D. Ozakdag, M. Arda, M. Yuksel, N. Kabay, Effect of temperature on seawa-
+ter desalination-water quality analyses for desalinated seawater for its use as drink-
+ing and irrigation water, Environ. Geochem. Health 32 (2010) 335每339.
+[30] WHO, Guidelines for Drinking-water Quality, fourth ed. World Health Organization,
+2011 (978 92 4 154815 1).
+[31] European Union Council Directive 9883EC, of 3 November 1998 on the Quality of
+Water Intended for Human Consumption(98/83/EC) 1998.
+[32] L. Melnyk, V. Goncharuk, I. Butnyk, E. Tsapiuk, Boron removal from natural and
+wastewaters using combined sorption/membrane process , Desalination 185
+(2005) 147每157.
+
+Case location
+
+Case 1
+Case 2
+Case 3
+
+HRLE (45%)
+XHR (50%)
+HRLE (50%)
+
+HID can partially supplement the range designed by a single RO
+membrane type. RO membrane types and positions in the PV affected
+the performance in this study. Optimal design of RO membrane cong-
+uration in the PV is greatly changed depending on the design parame-
+ters, particularly temperature. This is considered important in single-
+pass train design where the control of boron concentration is more
+sensitive to the feed temperature than other parameters. The use of
+high-ux membrane limits permeate quality by feed temperature.
+However, HID could be used to optimize PV design in more detail
+with various feed qualities.
+
+Acknowledgements
+
+This research was supported by a grant (16IFIP-B089908-03) from
+the Plant Research Program funded by the Ministry of Land Infrastruc-
+ture and Transport of the Korean government.
+
+Fig. 7. Comparison of allowable feed boron concentration in design (A) conventional and
+(B) HID.
+
+D. Han et al. / Desalination 404 (2017) 215每223
+
+223
+
+[33] N. Kabay, . Yilmaz, M. Bryjak, M. Y邦ksel, Removal of boron from aqueous solutions
+by a hybrid ion exchange每membrane process, Desalination 198 (2006) 158每165.
+[34] N. Kabay, I. Ylmaz, S. Yamac, S. Samatya, M. Yuksel, U. Yuksel, M. Arda, M. Salam, T.
+Iwanaga, K. Hirowatari, Removal and recovery of boron from geothermal wastewa-
+ter by selective ion exchange resins. I. Laboratory tests, React. Funct. Polym. 60
+(2004) 163每170.
+[35] M.F. Chill車n Arias, L. Valero i Bru, D. Prats Rico, P. Var車 Galva, Approximate cost of
+the elimination of boron in desalinated water by reverse osmosis and ion exchange
+resins, Desalination 273 (2011) 421每427.
+[36] M.B.J. Redondo, J. De Witte, Boron removal from seawater using FILMTEC high re-
+jection SWRO membranes, Desalination 156 (2003) 229每238.
+[37] H. Koseoglu, N. Kabay, M. Y邦ksel, S. Sarp, . Arar, M. Kitis, Boron removal from sea-
+water using high rejection SWRO membranes 〞 impact of pH, feed concentration,
+pressure, and cross-ow velocity, Desalination 227 (2008) 253每263.
+
+[38] C. Dominguez-Tagle, V.J. Romero-Ternero, A.M. Delgado-Torres, Boron removal ef-
+ciency in small seawater reverse osmosis systems, Desalination 265 (2011) 43每48.
+[39] B. Andrews, B. Dav谷, P. L車pez-Serrano, S.-P. Tsai, R. Frank, M. Wilf, E. Koutsakos, Ef-
+fective scale control for seawater RO operating with high feed water pH and tem-
+perature, Desalination 220 (2008) 295每304.
+[40] M.J.B. Atkinson, C, Elemental composition of commercial seasalts, J. Aquaric. Aquat.
+Sci. 8 (1998) 39每43.
+[41] J.D.N. Voutchkov, Pilot Testing Alternative Pretreatment Systems for Seawater Desa-
+lination in Carlsbad, International Desalination Association, IDAWC/DB09-309,
+Dubai, UAE, November 7每12, 2009.
+

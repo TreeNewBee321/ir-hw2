@@ -1,0 +1,2764 @@
+A study on optimal schedule of membrane cleaning and replacement for spiral-wound SWRO system
+
+Aipeng Jiang , Haokun Wang, Yinghui Lin, Wen Cheng, Jian Wang
+
+School of Automation, Hangzhou Dianzi University, Hangzhou, Zhejiang 310018, China
+
+H I G H L I G H T S
+ Optimal schedule of membrane cleaning
+and replacement of SWRO system was
+studied.
+ The optimization problem was formu-
+lated with detailed RO model consider-
+ing membrane.
+ A new solution method was proposed
+and compared with traditional method.
+ Better optimal schedule and computing
+performance were demonstrated by
+case study.
+ Inuence of feed temperature and feed
+concentration was analyzed.
+
+article
+
+info
+
+Article history:
+Received 8 May 2016
+Received in revised form 21 October 2016
+Accepted 12 November 2016
+Available online 22 November 2016
+
+Keywords:
+SWRO
+Membrane fouling
+Cleaning and replacement
+Optimization
+Schedule
+
+abstract
+
+In this work, the optimal schedule of membrane cleaning and replacement of spiral-wound SWRO (seawater re-
+verse osmosis) system was studied and analyzed under different feed conditions. Firstly, the spiral-wound RO
+process model described by differential and algebraic equations was established with the consideration of mem-
+brane fouling. Then the optimization problem was formulated to minimize the daily cost of the SWRO system,
+and a new method by which the optimization problem was transformed as an NLP problem was proposed to
+solve the problem effectively and quickly. The method was used for SWRO case study and was compared with
+the traditional method in the form of MINLP. Computing results demonstrate that the proposed method has
+the advantages of efciency and stability. Moreover, it can get schedule of membrane cleaning and replacement
+with lower operational cost as well as give more detailed information of membrane channel. Lastly, inuence of
+feed temperature and feed concentration of seawater was analyzed with the new method. Computing results
+show the stability of the new method and lead to new proles of optimal operational variables and performance
+when feed temperature and salt concentration change, which are quite different from those in designed
+conditions.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+The world is suffering the serious freshwater shortage crisis because
+of the growth in the world's population, the development of
+industrialization and climate change [1每2]. Desalination is one of the
+most feasible ways to obtain freshwater, especially in the coastal regions
+and islands. And as one of the most promising desalination technology,
+seawater reverse osmosis (SWRO) increased its market shares recently
+[3每6]. In the past decades, Researchers made great efforts to reduce the
+energy cost through many kinds of approach, such as improving the
+performance of membranes, building more accurate models, designing
+more economical ow sheet and optimizing the operation of the system
+[7每12]. The new high rejection and high ow membranes were permit-
+ted operating at high pressures (up to 80每90 bar), and a higher efcient
+energy recovery device PX (pressure exchanger) was used to reduce the
+SEC (specic energy consumption). All these advances have made the
+RO process achieve higher water recovery with lower capital and oper-
+ational cost.
+But as a technique of high energy consumption, optimizing the oper-
+ation of RO desalination for further energy saving is still very attractive.
+As the key part of SWRO desalination, the performance of membrane
+modules has major inuence on the energy cost and production quality.
+Membrane fouling and scaling are major factors affecting the perfor-
+mance of membrane modules. Thus the membrane should be cleaned
+for regeneration frequently to recover the performance and be replaced
+when it is not good enough for reuse.
+Modeling of membrane fouling process and suitable schedule of
+membrane cleaning and replacing is quite important to SWRO process.
+Lee et al. [13] discovered that the gel layer over the membrane surface is
+the primary cause of the pollution. Then Wu et al. [14] established a
+mathematical model to simulate the membrane pollution, and veried
+its accuracy with real data. Peiris et al. [15] realized real-time prediction
+of the critical parameters in the model with the Extended Kalman Filter.
+Based on the reverse osmosis non-equilibrium thermodynamic charac-
+ter, Ma et al. [16] discussed and improved the common membrane ux
+model from the pollution layer resistance and concentration polariza-
+tion. See and Vassiliadis [17] mainly researched the cleaning timing of
+the two stage RO system based on El-Halwagi et al.'s [18] studies on sys-
+tem design of RO system. Hoek et al. [19每20] build up a new model to
+describe the fouling behavior of full-scale RO process according to the
+combined effects of incomplete membrane cleaning and physical mem-
+brane compaction which lead to irreversible fouling. Considering the
+signicant effect of membrane fouling on the performance of RO sys-
+tem, Zhu and See et al. [21每22] studied optimal conguration and
+schedule of RO process with the decay of membrane permeability
+caused by membrane fouling. And Lu et al. [23每24] proposed a new
+membrane cleaning and replacement strategy considering both the op-
+timal design and the optimal operation to reduce the total cost, and for-
+mulated the cleaning problem as a mixed-integer nonlinear
+programming (MINLP) problem. But in his method the membrane re-
+placing time is xed, what could be obtained is the optimal membrane
+cleaning time. And with so many binary variables, solution of the MINLP
+problem often causes time-consuming and even solving failure.
+In this paper, following the research efforts mentioned above, and
+based on accurate founded model of RO process considering membrane
+fouling equations, the optimal scheduling of membrane cleaning and re-
+placement was studied. A new strategy with continuous variables to de-
+note membrane cleaning and replacing interval and with NLP
+(nonlinear programming) problem formulated by simultaneous meth-
+od was proposed. And then the optimal scheduling of membrane
+
+cleaning and replacement changes along operational parameters such
+as feed temperature and feed salinity were discussed.
+
+2. Optimization problem formulation considering membrane
+fouling
+
+2.1. Modeling of the RO process
+
+The full-scale ow chart of one stage SWRO system can be seen in
+Fig. 1 [25]. As can be seen, after pre-treatment of intake, occulation
+and ltration, the seawater was driven into RO membrane modules
+with high pressure. After the reverse osmosis process, the seawater
+was separated into freshwater with low salinity and brine. Then the
+freshwater goes into the product pool for further treatment before it
+gets to the terminal users. Meanwhile, the brine with high pressure is
+sent to energy recovery device to recycle pressure before discharged
+into oceans.
+Based on solution每diffusion model and lm theory, and according to
+the scheme of feed channel in RO membrane module shown in Fig. 2,
+more accurate membrane transport equations of steady-state in the
+form of distributed parameters can be derived.
+For the RO membrane, the overall uid and solute mass balance
+equations are:
+Q p  Q f Q r
+Q f C f  Q r C r  Q p C p
+
+1
+2
+
+Q p  nlW
+
+ZL
+
+0
+
+Jvdz
+
+3
+
+Here subscripts f, r, and p refer to the feed, reject (brine) and perme-
+ate (product) streams. Q and C refer to the owrate and salt concentra-
+tion, respectively. The local water ux and salt ux can be calculated
+from the Kimura每Sourirajan solution-diffusion mass transport relations.
+nl, W and L denote the number of leaf, the width and length of the RO
+module, respectively. The solution每diffusion model is assumed to be
+valid for the transport of solvent and solute through the membrane. Ac-
+cording to this model, solvent ux Jv and solute ux Js through mem-
+brane are expressed by the following equations
+Jv  Aw P f PdPp忖羽
+Js  Bs CmC b
+
+4
+5
+
+
+
+ 
+
+
+
+
+
+Let
+P b  P f Pd
+
+6
+
+Acid Chlorine
+
+Anti-scalant
+
+Sodium
+
+bisulfite
+
+Post
+
+treatment
+
+RO module
+
+Product
+
+water
+
+Seawater
+
+Intake
+
+Flocculator
+
+Multi-Media
+
+Cartridge
+
+Filter
+
+Filter
+
+HPP
+
+BP
+
+Storage tank
+
+ERD
+
+Brine
+
+Intake
+
+Pretreatment
+
+RO membrane
+
+Post-treatment
+
+Fig. 1. Flow sheet of full-scale SWRO process.
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+261
+
+fQ
+
+fVfC
+
+W
+
+L
+
+dz
+
+bPbQ
+
+bC bV
+mC
+
+sph
+
+pQ
+
+pC
+
+Fig. 2. Scheme of the feed channel in spiral wound module.
+
+rQ
+
+rVrC
+
+ 
+
+And
+忖P  P bPp
+
+
+
+;
+
+Then
+Jv  Aw 忖P忖羽
+
+
+
+
+
+V is axial velocity in feed channel, and satises
+
+dV
+  2Jv
+dz
+z  0; V  V f  Q f
+; z  L; V  V r  Q r
+neWhsp
+neWhsp
+
+hsp
+
+7
+
+8
+
+15
+
+where Aw is the solvent transport parameter, Pf is the feed pressure and
+Pd is the pressure drop along feed channel, Pb is the pressure along the
+feed channel of spiral-wound module, Pp is the pressure of permeate
+side, which general assumed as environment pressure. 忖 羽 is the pres-
+sure loss of osmosis pressure. Bs is the solute transport parameter, Cm
+and Csp are solute concentration at the membrane surface on the feed
+side and solute concentration on the permeate side, respectively. And
+Cr is the value of Cb at the end of channel, which means Cr = Cb(L).
+The osmotic pressure is nearly linearly related to concentration by
+the equation
+忖羽  RT CmC p
+
+9
+
+ 
+
+
+
+Here R is the gas law constant. Solution of the above equations re-
+quires knowledge of the RO process specication and parameters as
+well as the solute concentration of Cm at the membrane wall, which is
+quite different from the bulk concentration Cb due to the CP (concentra-
+tion polarization) phenomenon. Through steady-state material balance
+around the boundary layer and CP theory, the following simple expres-
+sion is developed:
+  CmC p
+C bC p
+
+ 
+
+ exp
+
+10
+
+Jv
+kc
+
+The bulk concentration Cb and solvent transports Jv vary along the
+membrane channel. The computation of the mass transfer coefcient
+kc is as follows [26]:
+
+Sh  kc de
+
+DAB
+
+ 0:065Re0:875 Sc0:25
+
+11
+
+According to Fig. 2, the pressure loss along the RO channel can be for-
+mulated as [27]:
+
+hsp is height of the feed spacer channel.
+The bulk concentration Cb varies along the membrane channel, and
+can be given as:
+
+ 
+
+
+
+dC b
+ 2Jv
+C bC p
+C b  C f ; z  L;
+dz
+hspV
+C b  C r :
+
+;
+
+z  0;
+
+16
+
+From the solution of above equations, Qp and Cp at given operational
+conditions and specication of membrane can be obtained, and from
+which the water recovery rate WR and specic energy consumption
+SEC can be calculated by the equations:
+WR  Q p =Q f
+SEC  P f Q f =汍pP r Q r 汍pf
+
+17
+18
+
+=Q p :
+
+ 
+
+
+
+Salt rejection coefcient can also be obtained by the follow equation:
+SR  C f C p
+=C f  100%
+
+19
+
+ 
+
+
+
+Here 汍p and 汍pf denote the mechanical efciency and energy recov-
+ery efciency, respectively.
+Parameters Aw and Bs are two very important performance factors of
+membrane module, which are quite sensitive with operational temper-
+ature, membrane fouling and related factors. Based on experimental
+and semi-mechanism research, membrane solvent and solute transport
+performance equations considering fouling can be expressed as [23]:
+Aw  Aw0  FA  MFA  e 汐1
+Bs  Bs0  FB  MFB  e 汕1
+
+汐 2 P f P d
+
+20
+
+21
+
+T273
+273
+
+T273
+273
+
+
+
+
+
+
+
+
+
+
+
+
+老
+
+ 竹
+
+dPd
+V 2
+dz
+de
+2
+竹  6:23K 竹 Re0:3
+
+where Aw0 and Bs0 are intrinsic transport parameter in standard condi-
+tion, 汐1, 汐2 and 汕1 are constant parameters for transport. T represents
+operational temperature with unit of kelvin degree. MFA and MFB are
+membrane performance coefcient, which can be calculated by the fol-
+low equations:
+
+12
+
+13
+
+K竹 is the empirical parameter. Since the pressure along the RO Pb= -
+Pf  Pd, so
+
+MFA  e tq =忙1
+
+
+
+
+
+dPb
+dz
+z  0; P b  P f
+
+;
+
+老
+
+ 竹
+
+  dPd
+V 2
+dz
+de
+2
+z  L; P b  P r
+
+14
+
+
+
+
+
+MFB  e t q =忙2
+F A  1at
+
+22
+
+23
+24
+
+262
+
+F B  1  bt
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+25
+
+as constraints. The formulated optimization problem is shown in the
+following equation:
+
+Here FA and FB stand for irreversible degradation coefcient of
+membrane performance owning to the incomplete cleaning. 忙1 and 忙2
+represent time constants of performance degradation. a and b are the
+decay coefcient of Aw and Bs, t is the operational time, and tq means
+membrane operation time during each cleaning interval.
+
+Min
+
+Q f ;P f ;T ;Ncl;Xmr
+
+1
+Xmr
+
+ZXmr
+
+OC dt
+
+0
+
+33
+
+2.2. Formulation of the optimization problem
+
+Based on owsheet of SWRO process, the operational cost of the
+SWRO system mainly consists of: 1) the operating energy cost of the
+RO process (OCEN). 2) The energy cost of seawater intake and pre-treat-
+ment (OCIP). 3) The cost of chemicals (OCCH) including acid, scale inhib-
+itor, occulants and other additives. 4) The cost of membrane replacing
+(OCME), which can be evaluated according to the design and operating
+conditions. 5) Maintenance cost (OCMN), which comprises the mainte-
+nance fee of conventional equipment (OCMNCON) and membrane mod-
+ule cleaning fee (OCMNCL). 6) Labor cost (OCLB). Generally, labor cost
+can be calculated as constant value with xed SWRO plant, and the
+maintenance fee of conventional equipment is the same. Other costs
+can be calculated as follows [27]:
+OC CH  F UCH Q f  0:0225Q f
+OC IP  P in  Q f  P elc =灰
+ PLF
+OCME  PriME  MOD  汎 re=365
+OC EN  P f Q f =灰
+P r Q r 灰
+OCMNCL  Ncl  OCOT  OC PC
+
+=Xmr
+
+pX
+
+hp
+
+
+
+hp
+
+26
+27
+28
+29
+30
+31
+
+OCMN  OCMNCON  OCMNCL
+
+Here Ncl and Xmr denote the number of membrane cleaning time
+before replacement and the membrane replacement time, respectively.
+And OCOT OCPC denotes membrane cleaning fees.
+The operational cost of the system is as follows:
+OC  OC IP  OC EN  OCME  OCMN  OC LB  OC CH
+
+32
+
+To minimize the total cost of SWRO process when considering the
+membrane cleaning and replacement cost, we take the daily cost of
+the system within a membrane replacement period as the objective
+function, and take the RO process model and operational cost equations
+
+2.2.1. Constraints
+RO process Eqs. (1)每(25)
+Operational cost Eqs. (26)每(32)
+
+2.2.2. Initial value and boundaries
+
+z  0; V  V f  Q f
+neWhsp
+
+; C b  C f ; P b  P f
+
+z  L; V  V r  Q r
+neWhsp
+
+P f ≒ P f ; max ; V f ≒ V f ; max ; C sp ≒ Cmax
+
+; C b  C r ; P b  P r
+
+3. Solution of the optimization problem
+
+The optimization problem includes differential equations and
+strongly nonlinear algebraic equations, and the time for membrane
+cleaning and replacement schedule is quite long, it is of great difculty
+to get the accurate solution in direct way. To simplify the problem, re-
+searchers intend to use simplied lumped-parameter method to replace
+the differential equations of Eqs. (14)每(16) and used average values to
+express Qb, Cb, Pb and so on [23,28]. This method would lose the detailed
+state information of RO feed channel and sometime would cause viola-
+tion of the ※thermodynamic restriction§ [29]. This can bring wrong solu-
+tion results and gives us wrong guidance in practice.
+Since Ncl and Xmr are variables to obtain, and the integration Eq.
+(33) need to be d iscret ized for numer ica l comput ing . Lu assumes
+that the time horizon t of membrane replacing is xed as ve years,
+and then it is part itioned into n equal t ime periods of 忖T . At the
+end o f each 忖T , membrane c leaning condit ion was checked . This
+method can be ca l led as Isochrona l D iscretizat ion Method (IDM) ,
+and more deta i ls can be seen in F ig . 3 . Here t1 , t2 , t3＃ , t i , s ign ify
+each time period after membrane c leaning , respectively . The sub-
+scr ipts x and y denote the start and the end o f each membrane
+c lean ing t ime , respect ive ly . Membrane c lean ing is assumed to be
+performed at the beginning of each period, and can be described by
+the dec ision variable Zm . When no clean ing is required, the binary
+
+0
+
+Xcl(0)
+
+1, xt
+
+T
+
+2 T
+
+3 T
+
+4 T
+
+5 T
+
+6 T
+
+7 T
+
+(n-1) T n T
+
+Xcl(1)
+
+2 , xt
+1, yt
+
+Xcl(2)
+
+Xcl(i-1)
+
+Xcl(i)
+
+Xmr
+
+3, xt
+2 , yt
+
+,i xt
+i
+1,
+
+t
+
+y
+
+,i yt
+
+t
+
+t
+
+0
+
+T
+
+2 T
+
+(j-1) T j T
+
+xt
+
+2 ,
+
+0
+
+Tcl
+
+0
+
+xt
+
+3,
+2 , yt
+
+Fig. 3. Schematic diagram of Isochronal Discretization Method.
+
+variable Zm takes the value of 0, otherwise, it takes 1. Since the dura-
+tion of cleaning action is a few hours, the downtime can be neglected
+compared to the time interval of 忖T . The operation day can be de-
+scribed by the following equations [17]:
+忖T  n忖T  t
+
+X
+
+i
+
+X
+
+j
+
+34
+
+t i;x  1Zm
+t i;y  t i;x  j  忖T
+
+
+
+t i1;y
+
+35
+36
+
+In fact, the above method can only get the membrane cleaning inter-
+vals, which are integer variables, and with those binary variables of Zm,
+the optimization problem was formulated as Mixed Integer Nonlinear
+Programming (MINLP), which is quite hard to solve and is of low com-
+puting efciency.
+In our method, we assume that the optimal life span of membrane
+module is a continuous variable named Xmr, and the optimal mem-
+brane cleaning number is Ncl during the time. Then during the time
+hor izon o f Xmr , the cleaning time points along t ime zone are
+
+Xcl(1), Xcl(2), ＃Xcl(Ncl), as shown in Fig. 4. They are continuous var-
+iables satisfying:
+Xcl i  1
+NXcl i  i  1; 2; ＃; Ncl1
+
+
+
+
+
+
+
+37
+
+忖Tcl i   Xcl i  1
+
+
+
+Xcl i i  1; 2; ＃ Ncl1
+
+
+
+
+
+38
+
+忖Tcl Ncl
+
+
+
+  XmrXcl Ncl
+
+
+
+
+
+39
+
+Based on the above method, the objective function to minimize the
+operational cost considering the membrane cleaning and replacing
+can be formulated as the following form:
+
+Min
+
+P f ;Q f ;Xcl;Xmr ;Ncl
+ZXcl 1 
+
+F obj  1
+Xmr
+
+ZXmr
+
+ZXcl i1
+0
+
+OC dt 
+
+1
+Xmr
+
+0
+
+OC dt 
+
+XNcl1
+i1
+
+
+
+Xcl i 
+
+OC dt 
+
+ZXmr
+
+Xcl Ncl
+
+
+
+
+
+OC dt
+
+2
+64
+
+3
+75
+
+40
+
+Xcl(0)
+
+Xcl(2)
+
+Xcl(1)
+
+Xcl(Ncl-1)
+
+Xcl(Ncl)
+
+0
+
+t
+
+'(1)
+
+Tcl
+
+Xmr
+
+Fig. 4. Schematic diagram of our new method.
+
+Table 1
+Default conditions of feed ow.
+
+Feed condition
+
+Cf (kg/m3)
+T (K)
+Feed PH
+Density 老 (kg/m3)
+米 viscosity (kg/m/s)
+
+30
+298
+5每8
+1000
+1.02e 6
+
+Table 2
+Process parameters of the SWRO system.
+
+Property
+
+Value
+
+Effective membrane area
+Effective membrane leaf length
+Effective membrane leaf width
+Number of membrane leafs
+Feed cross-section area
+
+35 m2
+0.88 m
+0.69 m
+29
+0.0147 m2
+
+Feed spacer
+Height
+Porosity
+Mesh length
+Equivalent diameter
+
+0.737 mm
+0.90
+2.7 mm
+0.935 mm
+
+Operation limits
+Maximum feed velocity
+Minimum feed velocity
+Maximum permeate salinity
+Maximum feed pressure
+
+0.7 m/s
+0.068 m/s
+1.2 kg/m3
+82 bar
+
+Table 3
+Number of variables with IDM.
+
+忖T
+
+Ngrid
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+60
+30
+24
+20
+
+6612
+13,212
+16,512
+19,812
+
+13,062
+26,112
+32,637
+39,162
+
+19,512
+39,012
+48,762
+58,512
+
+25,962
+51,912
+66,887
+77,862
+
+32,412
+64,812
+81,012
+97,212
+
+38,862
+77,712
+97,137
+116,562
+
+Table 5
+Optimal objective value with IDM.
+
+忖T
+
+Ngrid
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+60
+30
+24
+20
+
+3.376
+Invalid
+3.3656
+3.3576
+
+3.3669
+3.3658
+3.3654
+3.3568
+
+3.364
+3.3624
+3.3578
+Invalid
+
+3.362
+Invalid
+Invalid
+Invalid
+
+3.364
+Invalid
+Invalid
+Invalid
+
+3.3643
+Invalid
+Invalid
+Invalid
+
+Table 4
+Iteration number of IDM.
+
+忖T
+
+Ngrid
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+60
+30
+24
+20
+
+23,173
+35,046
+60,316
+43,322
+
+46,344
+144,024
+126,614
+148,365
+
+70,799
+176,776
+171,138
+Overrun
+
+90,747
+Overrun
+Overrun
+Overrun
+
+116,822
+Overrun
+Overrun
+Overrun
+
+142,826
+Overrun
+Overrun
+Overrun
+
+263
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+To compute all the integral items, each membrane cleaning interval
+was divided into Ngrid parts, and was calculated as follow form:
+
+ZXcl i1
+
+
+
+Xcl i 
+
+OC dt  Xcl i  1
+Xcl i 
+Ngrid
+
+
+
+XNgrid
+k1
+
+OC k
+
+41
+
+To avoid the difculty of the differential Eqs. (12)每(15), simulta-
+neous method with nite element collocation was used to discretize
+all the state variables and control variables. Monomial basis representa-
+tion for the differential proles was used, which is popular for the
+Runge每Kutta discretization [30]:
+
+w z   wi1  hi
+
+XK
+
+q1
+
+次q
+
+zzi1
+hi
+
+
+
+
+
+dw
+
+dzi;q
+
+42
+
+Here, wi  1 is the value of the differential variable at the beginning of
+element i, hi is the length of element i, dw/dzi,q denotes the value of its
+rst derivative in element i at the collocation point q, and 次q is a polyno-
+mial of order K, which satises:
+次q 0   0
+q  1:::; K
+
+43
+
+次0
+
+q
+
+考 r
+
+  汛q;r
+
+q  1:::; K
+
+44
+
+where 考r is the rth collocation point in each element. The continuity of
+the differential prole is enforced by:
+
+wi  wi1  hi
+
+XK
+
+q1
+
+次q 1  dw
+
+dzi;q
+
+45
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+0
+
+1
+
+Check point
+
+C
+
+l
+
+a
+e
+p
+o
+g
+n
+n
+a
+e
+
+i
+
+r
+
+i
+t
+
+n
+o
+
+Ng ird=5
+
+Fig. 5. Optimal cleaning schedule obtained by IDM.
+
+0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30
+Check point
+
+0.4
+
+0.45
+
+0.5
+
+0.55
+
+0.6
+
+W
+
+R
+
+Fig. 6. Water recovery of IDM.
+
+0
+
+3
+
+6
+
+9
+
+12 15 18 21 24 27 30
+Check point
+
+3
+
+3.5
+
+4
+
+4.5
+
+C
+E
+S
+
+(
+
+K
+
+W
+
+﹞
+
+n
+o
+T
+h
+
+/
+
+)
+
+Fig. 7. SEC of IDM.
+
+0
+
+3
+
+6
+
+9
+
+12 15 18 21 24 27 30
+Check point
+
+97
+
+98
+
+99
+
+100
+
+S
+
+R
+
+(
+
+%
+
+)
+
+Fig. 8. Salt rejection ratio of IDM.
+
+Table 6
+Number of variables with the proposed method.
+
+Ncl
+
+Ngrid
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+5
+16
+30
+50
+
+1082
+3436
+6432
+10,712
+
+2132
+6796
+12,732
+21,212
+
+3182
+10,156
+19,032
+31,712
+
+4232
+13,516
+25,332
+42,212
+
+5282
+16,876
+32,686
+52,712
+
+6332
+20,236
+37,932
+63,212
+
+Table 7
+Iterations with the proposed method.
+
+Ncl
+
+Ngrid
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+5
+16
+30
+50
+
+69
+55
+82
+84
+
+66
+53
+71
+87
+
+65
+63
+66
+87
+
+54
+56
+101
+120
+
+51
+67
+82
+90
+
+60
+52
+85
+77
+
+Table 8
+Optimal objective value with the proposed method.
+
+Ncl
+
+Ngrid
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+5
+16
+30
+50
+
+3.3012
+3.1584
+3.2079
+3.3111
+
+3.1930
+3.1443
+3.1967
+3.3033
+
+3.2825
+3.1396
+3.1930
+3.3008
+
+3.2802
+3.1371
+3.1911
+3.2995
+
+3.2789
+3.1357
+3.1948
+3.2987
+
+3.2780
+3.1347
+3.1892
+3.2982
+
+264
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+In addition the algebraic proles are approximated using a Lagrange
+basis representation, which takes the form:
+
+y z  
+
+XK
+
+q1
+
+肉q
+
+zzi1
+hi
+
+
+
+
+
+yi;q
+
+46
+
+where yi,q represent the values of the algebraic variables in element i at
+collocation point q, z is the value that satises zi  1 ≒ z ≒ zi, and 朵q is the
+Lagrange polynomial of degree K.
+Since Xcl(1), Xcl(2), ＃Xcl(Ncl) and Xmr are the continuous variables
+to be optimized, and all the variables of RO process are continuous alge-
+braic variables with above transform, the optimization problem was
+
+transformed into NLP problem with xed value of the integer variable
+Ncl. Since the optimal value of Ncl is generally in the range of 10 to 40,
+we can solve the NLP problem with several different Ncl values and
+get the last value with Lagrange interpolation.
+
+4. Case study
+
+A single-stage SWRO system, identical to the ow chart in Fig. 1 was
+studied to demonstrate the new method and the inuence of tempera-
+ture and feed concentration on the optimal schedule. The SWRO system
+is located in Zhejiang province of China and is a part of LiuHeng desali-
+nation plant with the daily production capacity of 104 t of permeate
+
+5
+
+10
+
+15
+
+20
+25
+Value of Nc l
+
+30
+
+35
+
+40
+
+3
+
+3.1
+
+3.2
+
+3.3
+
+3.4
+
+3.5
+
+O
+
+e
+b
+
+j
+
+c
+
+t
+
+i
+
+v
+
+e
+
+(
+
+0
+1
+
+4
+
+N
+C
+
+Y
+
+)
+
+Fig. 9. Optimal objective value along with Ncl.
+
+0
+
+400
+
+800
+
+1200 1600 2000 2400 2800
+
+0
+
+1
+
+Time (Day )
+
+C
+
+l
+
+g
+n
+n
+a
+e
+
+i
+
+e
+p
+o
+
+r
+
+a
+
+t
+
+i
+
+n
+o
+
+IDM
+
+new method
+
+Fig. 10. Membrane cleaning schedule with different methods.
+
+0
+
+3
+
+6
+9
+12
+15
+Cleaning t ime point
+
+18
+
+21
+
+0.48
+
+0.5
+
+0.52
+
+0.54
+
+0.56
+
+W
+
+R
+
+Fig. 11. Water recovery with the new method.
+
+0
+
+400
+
+800
+
+1200 1600 2000 2400 2800
+Time (day )
+
+2.2
+
+2.4
+
+2.6
+
+2.8
+
+3
+
+3.2
+
+C
+E
+S
+
+(
+
+K
+
+W
+
+﹞
+
+n
+o
+T
+h
+
+/
+
+)
+
+Fig. 12. SEC value with the new method.
+
+0
+
+3
+
+6
+9
+12
+15
+Cleaning t ime point
+
+18
+
+21
+
+97
+
+97.5
+
+98
+
+S
+
+R
+
+(
+
+%
+
+)
+
+Fig. 13. Salt rejection ratio with the new method.
+
+0
+
+2
+
+4
+Membrane length (m)
+
+6
+
+8
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+C
+
+p
+
+(
+
+k
+
+g
+
+/
+
+m
+
+3
+
+)
+
+Fig. 14. Prole of Cp along the membrane channel.
+
+265
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+water. The temperature of seawater for desalination generally ranges
+from 15 to 32 ～C. SW30HR-3XX membrane modules are used for salt
+removal.
+The nally formulated NLP problem was programmed in the
+GAMS24.0 [31] modeling environment which runs on an Inter(R)
+Pentium(R) CPU G2030 3 GHz with 4 GB Memory. IPOPT [32] were
+used for the solution, and the computing results were compared with
+the Isochronal Discretization Method.
+Table 1 gives the default conditions of the feed ow. Table 2 shows
+the process parameters and the operational conditions of the SWRO
+system.
+
+4.1. Comparison of different solution methods
+
+The proposed method was compared with the IDM which can be
+shown in literature [23], and in IDM the membrane replacement time
+was set as 5 years. 忖T was taken as 60, 30, 24 and 20 days, and there
+will be 30, 60, 75 and 90 points to check the membrane fouling condi-
+tions and to determine whether it is necessary to execute cleaning oper-
+ation at the beginning of each period. Ngrid was also set as 5, 10, ＃, 30.
+Since BARRON and LINGO were not as effective as DICOPT to solve
+the problem, DICOPT was selected as solver. Solution information
+under different 忖T and Ngrid can be seen from Tables 3每5. They give
+
+2400
+18
+
+20
+
+22
+
+24
+26
+Temperature (～C)
+
+28
+
+30
+
+32
+
+2600
+
+2800
+
+3000
+
+3200
+
+3400
+
+M
+
+e
+
+m
+
+b
+
+r
+
+e
+n
+a
+
+i
+l
+
+f
+
+e
+
+(
+
+a
+d
+
+y
+
+)
+
+Fig. 15. Prole of membrane replacing time vs. temperature.
+
+0
+
+2
+
+4
+
+6
+
+8 10 12 14 16 18 20 22 24
+
+100
+
+120
+
+140
+
+160
+
+Cleaning t ime point
+
+C
+
+l
+
+g
+n
+n
+a
+e
+
+i
+
+i
+
+n
+
+t
+
+e
+
+r
+
+v
+
+a
+
+l
+
+(
+
+a
+d
+
+y
+
+)
+
+T=20～C
+T=24～C
+T=28～C
+
+Fig. 16. Prole of feed temperature vs cleaning time point.
+
+2.9
+18
+
+20
+
+22
+
+24
+26
+Temperature (～C)
+
+28
+
+30
+
+32
+
+3
+
+3.1
+
+3.2
+
+3.3
+
+O
+
+p
+
+t
+
+i
+
+m
+
+a
+
+l
+
+c
+
+o
+
+s
+
+t
+
+(
+
+0
+1
+
+4
+
+N
+C
+
+Y
+
+)
+
+Fig. 17. Prole of optimal cost vs feed temperature.
+
+0
+
+400
+
+800 1200 1600 2000 2400 2800
+
+9
+
+9.5
+
+10
+
+10.5
+
+11
+
+Time (Day )
+
+Q
+
+f
+
+(
+
+m
+
+3
+
+/
+
+h
+
+)
+
+T=24～C
+T=20～C
+T=28～C
+
+Fig. 18. Prole of Qf along with time.
+
+0
+
+400
+
+800
+
+1200 1600 2000 2400 2800
+
+45
+
+50
+
+55
+
+60
+
+65
+
+70
+
+Time (Day )
+
+P
+
+f
+
+(
+
+a
+b
+
+)
+r
+
+T=20～C
+T=24～C
+T=28～C
+
+Fig. 19. Prole of Pf along with time.
+
+0
+
+400
+
+800 1200 1600 2000 2400 2800
+
+95
+
+96
+
+97
+
+98
+
+99
+
+100
+
+Time (Day )
+
+S
+
+R
+
+(
+
+%
+
+)
+
+T=20～C
+T=24～C
+T=28～C
+
+Fig. 20. Prole of SR along with membrane life time.
+
+266
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+the number of variables, iterations and objective values with IDM meth-
+od (Table 4).
+As can be seen, when 忖T is set as 60 days, the optimal solution of the
+system can be found whatever Ngrid is. But if it is set as 30, 24 or 20, only
+quite few cases the problem can be successfully solved. Too many itera-
+tions and too much time needed for the solution caused the solution
+failure. It also can be seen from Table 5 that, different value of 忖T and
+Ngrid will also cause minor differences. When 忖T is set as 60 days and
+membrane cleaning conditions would be checked 30 times, computing
+results give the optimal cleaning schedule and key performance index,
+which can be seen from Fig. 5, Fig. 6, Fig. 7 and Fig. 8. Fig. 5 shows
+whether to cleaning the membrane modules at different check point
+with different Ngrid values. Fig. 6 to Fig. 8 shows the water recovery
+ratio (WR), SEC and Salt rejection (SR) along the time. From these g-
+ures we can see the performance decreases along the time before the
+next membrane cleaning, resulting energy cost increase. Once the
+membrane is cleaned, the water recovery improves and the SEC de-
+creases correspondingly. As to the salt rejection ratio, it has a slight var-
+iation during the periods, but keeps higher than 99%.
+In our proposed method, membrane replacement time Xmr and
+membrane cleaning time are continuous variables. With the Ngrid is
+also set as 5, 10, ＃, 30, and membrane cleaning number Ncl is xed
+with different values. The optimization problem can be solved efcient-
+ly in each case. Computing results and information were listed in Tables
+6每8.
+From Table 6 it can be found, with the increase of Ncl and Ngrid, the
+scale of the formulated problem with proposed method increase great-
+ly. But in all the listed cases, the problem was quickly and successfully
+solved in decade's iterations. With different values of Ncl, the value of
+objective function changes, this means that there exists the optimal
+number of membrane cleaning times. If we increase the value of Ncl
+
+one by one to solve the optimization problem, we can get the prole
+of the objective value shown in Fig. 9. From which we can get the opti-
+mal value of Ncl and the minimized objective value. Compared with
+Table 5, we also can found that the objective value of our proposed
+method is quite lower than that of IDM. This shows that our method is
+better than IDM in optimal schedule results as well as in solution
+difculty.
+Fig. 10 gives the optimal membrane cleaning schedule with the two
+methods. Figs. 11每13 shows the proles of water recovery, SEC and salt
+rejection along time or membrane cleaning time point. From which we
+can nd that before the next membrane cleaning, the water recovery,
+SEC and salt rejection increase gradually, they are quite different from
+those obtained with IDM. Since with our method, more detailed state
+information can be obtained, we can get the change of Cb, Cp, Vb, Pb
+and etc. along the membrane feed channel, this will be helpful to under-
+stand the RO process. Fig. 14 shows the salt concentration of permeate
+water along the membrane channel.
+
+4.2. Inuence of temperature on the optimal results
+
+Lu and Hu [23] studied membrane cleaning strategy under the de-
+fault design conditions, but since the operational conditions frequently
+deviate from default conditions and have important impact on optimal
+schedule results. So these inuences were analyzed here.
+Figs. 15每18 shows the optimal membrane cleaning and replacement
+schedule, and the optimal operational cost change along with feed tem-
+perature from 18 ～C to 32 ～C. As can be seen from the Fig. 15 and Fig. 16,
+membrane replacement time and membrane cleaning time point in-
+crease signicantly when feed temperature increases, and the number
+of membrane cleaning is different. These results show that with
+
+0
+
+400
+
+800 1200 1600 2000 2400 2800
+
+0.05
+
+0.1
+
+0.15
+
+Time (Day )
+
+C
+
+p
+
+(
+
+K
+
+g
+
+/
+
+m
+
+3
+
+)
+
+T=20～C
+T=24～C
+T=28～C
+
+Fig. 21. Prole of Cp along with time.
+
+2700
+26
+
+28
+
+30
+
+32
+
+34
+
+36
+
+2710
+
+2720
+
+2730
+
+2740
+
+2750
+
+Cf (kg/m
+
+3
+
+)
+
+M
+
+e
+
+m
+
+b
+
+r
+
+e
+n
+a
+
+i
+l
+
+f
+
+e
+
+(
+
+a
+d
+
+y
+
+)
+
+Fig. 22. Prole of membrane life vs feed concentration.
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10 12 14 16 18 20
+
+110
+
+120
+
+130
+
+140
+
+150
+
+Cleaning t ime point
+
+C
+
+l
+
+g
+n
+n
+a
+e
+
+i
+
+i
+
+n
+
+t
+
+e
+
+r
+
+v
+
+a
+
+l
+
+(
+
+D
+
+a
+
+y
+
+)
+
+Cf=26
+
+Cf=30
+
+Cf=34
+
+Fig. 23. Prole of cleaning interval vs cleaning time point.
+
+2.9
+26
+
+28
+
+30
+
+32
+
+34
+
+36
+
+3
+
+3.1
+
+3.2
+
+3.3
+
+Cf (kg/m
+
+3
+
+)
+
+O
+
+e
+b
+
+j
+
+c
+
+t
+
+i
+
+v
+
+e
+
+(
+
+0
+1
+
+4
+
+N
+C
+
+Y
+
+)
+
+Fig. 24. Prole of optimal objective with different Cf.
+
+267
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+268
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+4
+
+3.5
+
+3
+
+2.5
+
+)
+
+n
+o
+T
+h
+
+/
+
+.
+
+W
+
+K
+
+(
+
+C
+E
+S
+
+2
+
+0
+
+Cf=26
+
+Cf=30
+
+Cf=34
+
+400
+
+800
+
+1200 1600 2000 2400 2800
+
+Time (day )
+
+Fig. 25. Prole of SEC along the time with different Cf.
+
+different feed temperature, membrane cleaning and replacement
+should be scheduled differently to reduce the total operational cost.
+The change of operational cost along with the feed temperature can
+be seen from Fig. 17. It can be found that the optimal operational cost re-
+duces signicantly as the feed temperature increase. This because that
+osmosis pressure is lower when feed temperature is higher, and to fulll
+the output permeate requirement the feed pressure and feed owrate is
+higher. Fig. 18 and Fig. 19 are the results with optimal objective value in
+different feed temperature, and they are consistent with the above ex-
+planation. Since state variables can be obtained through the solution
+of the optimization problem, we also can get the prole of salt rejection
+and so on. Fig. 20 and Fig. 21 show the optimal prole of Cp and SR along
+the time with different feed temperature.
+
+4.3. Inuence of feed salinity on the optimal results
+
+If the feed seawater has different concentration of salinity, the opti-
+mal schedule of membrane cleaning and replacement as well as the op-
+erational cost will also change. Solution of the optimization problem
+with different feed salinity leads to the proles of Figs. 2222每25.
+From Fig. 22 and Fig. 23, it can be seen that the change of membrane
+replacement time and membrane cleaning time points is relatively
+small. When feed concentration increases from 26 kg/m3 to 36 kg/m3,
+the total membrane cleaning number is the same, and the time interval
+of two cleaning time point reduces slightly. But since the osmosis pres-
+sure increase quickly as the feed concentration increase from 26 kg/m3
+to 36 kg/m3, much higher driven pressure would be needed, which will
+cause the SEC and operational cost increase signicantly. Fig. 24 and Fig.
+25 show the increase of daily operational cost and energy cost per cubic
+meter permeate water, which is consistent with the theoretical analysis.
+With the established SWRO process model considering membrane
+fouling and the proposed solution method, other factors such as mem-
+brane transport parameter, membrane fouling parameter and the
+fares for membrane maintenance can also be analyzed and can give
+more meaningful results.
+
+5. Conclusion
+
+Since membrane fouling affects the operational cost and the quality
+of freshwater, it is quite important to optimize the schedule of mem-
+brane cleaning and replacement, especially when the SWRO system
+isn't operated in the default design conditions.
+In this work, optimal schedule of membrane cleaning and replace-
+ment to minimize the daily operational cost was studied. With the con-
+sideration of membrane fouling, the detailed RO process model
+described by differential and algebraic equations was established, and
+with operational cost equations the optimization problem was formu-
+lated. To solve the problem effectively, a new method which can trans-
+form the problem into NLP was proposed. The new method was also
+
+compared through SWRO case study with traditional strategy called Iso-
+chronal Discretization Method, which was formulated as MINLP prob-
+lem and the membrane replacement time was set as constant value.
+Computing results demonstrate that: the new proposed method can
+solve the problem more effective and efciently. Moreover, the new
+method can get better optimal schedule of membrane cleaning and re-
+placement, and can give more detailed information of RO process in
+membrane channel.
+With the new solution method, inuence of feed temperature and
+feed concentration of seawater was analyzed. Computing results show
+that: feed temperature has signicant inuence on optimal schedule
+of membrane cleaning and replacement as well as on the optimal oper-
+ational cost. So under different feed temperature, different schedule
+should be obtained to reduce the operational cost. Feed concentration
+has quite small inuence on optimal schedule of membrane cleaning
+and replacement, but has quite big inuence on the optimal operational
+cost. Other factors such as membrane price and membrane fouling pa-
+rameters can also be analyzed with the established optimization
+problem.
+
+Acknowledgments
+
+This work was supported by: National Natural Science foundation of
+China (No. 61374142; 61375078), Natural Science Foundation of Zhe-
+jiang (LY16F030006). The authors declare no competing nancial
+interest.
+
+Bs0
+
+Cb
+Cf
+Cm
+Cp
+Cr
+
+Csp
+
+Aw0
+
+b
+Bs
+
+FA
+FB
+Jv
+Js
+L
+MFA
+MFB
+MOD
+Ncl
+nl
+
+Appendix A. Nomenclature
+a
+decay level of water permeability
+Aw
+membrane water permeability (m﹞s 1 ﹞Pa 1)
+intrinsic membrane water permeability (m﹞s 1﹞Pa 1)
+decay level of TDS permeability
+membrane TDS permeability (m/s)
+intrinsic membrane TDS permeability (m/s)
+bulk concentration along feed channel (kg/m3)
+feed salt concentration (kg/m3)
+salt concentration of membrane surface (kg/m3)
+permeate concentration of RO unit (kg/m3)
+brine concentration (kg/m3)
+permeate concentration of permeate side (kg/m3)
+irreversible degradation coefcient of Aw
+irreversible degradation coefcient of Bs
+solvent ux (kg/m2﹞s)
+solute ux (kg/m2﹞s)
+length of the RO channel (m)
+membrane performance coefcient of Aw
+membrane performance coefcient of Bs
+number of membrane module
+cleaning frequency
+number of leaf in RO module
+number of pressure vessel
+OC
+operational cost of whole process
+OCEN
+energy cost of RO process
+OCBP
+energy cost of boost pump
+OCCH
+cost for chemicals
+OCIP
+energy cost for intake and pretreatment
+cost for membrane replacement
+OCME
+cost for system maintenance
+OCMN
+OCMNCON cost for conventional equ maintenance
+OCMNCL cost for membrane module cleaning
+OCOT
+membrane cleaning cost for chemicals
+OCPC
+membrane cleaning cost for other
+Pb
+pressure along feed channel (bar)
+electricity price
+pressure drop along RO spiral wound module (bar)
+feed pressure (bar)
+
+npv
+
+Pelc
+
+Pd
+Pf
+
+A. Jiang et al. / Desalination 404 (2017) 259每269
+
+269
+
+Pri
+
+Pp
+Pr
+
+pressure in permeate side (bar)
+brine pressure (bar)
+membrane price
+PLF
+load coefcient
+Qf
+feed owrate (m3/h)
+Qp
+permeate owrate (m3/h)
+Qr
+brine owrate (m3/h)
+WR
+water recovery ratio
+SR
+salt rejection coefcient (%)
+SEC
+specic energy consumption (kw﹞h/m3)
+t
+operation time of membrane module (day)
+tq
+membrane operation time after last cleaning
+T
+feed(operational) temperature (K)
+Vb
+axial velocity of bulk ow (m/s)
+Vf
+axial velocity of feed ow (m/s)
+Vr
+axial velocity of brine ow (m/s)
+width of the RO module (m)
+W
+membrane cleaning time
+Xcl
+Xmr
+membrane replacing time
+Greek symbols
+
+汐1, 汐2, 汕1 constant parameters
+忖 羽
+pressure loss of osmosis pressure (bar)
+忖T
+time of each schedule period
+忖 Tcl
+membrane use time since last cleaning
+density of permeate water (kg/m3)
+friction factor
+membrane performance decay constants
+membrane replacing rate
+mechanical efciency of high pressure pump
+energy recovery efciency
+Subscripts
+
+老
+竹
+忙1 , 忙2
+
+汎re
+
+汍p
+
+汍pf
+
+b
+f
+m
+p
+r
+
+bulk
+module feed channel
+membrane surface
+permeate side
+brine side
+
+References
+
+[1] M.A. Shannon, et al., Science and technology for water purication in the coming de-
+cades, Nature 452 (7185) (2008) 301每310.
+[2] S. Gray, S.R.M. Duke, A. Rahardianto, Y. Cohen, Seawater Use and Desalination Tech-
+nology, Academic Press, Oxford, 2011 73每109.
+[3] H. Ettouney, H. El-Dessouky, R. Faibish, P. Gowin, Evaluating the economics of desa-
+lination, Chem. Eng. Prog. 98 (12) (2002) 32每39.
+[4] D. Akgul, M. Cakmakci, N. Kayaalp, I. Koyuncu, Cost analysis of seawater desalination
+with reverse osmosis in Turkey, Desalination 220 (1每3) (2008) 123每131.
+[5] A. D. Khawaji, I. K. Kutubkhanah, J-M. Wie, Advances in seawater desalination tech-
+nologies, Desalination 221(1每3) (2008) 47每69
+[6] F. Maskan, D.E. Wiley, L.P.M. Johnston, et al., Optimal design of reverse osmosis
+module networks, AICHE J. 46 (5) (2000) 946每954.
+[7] M. Wilf, K. Klinko, Optimization of seawater RO systems design, Desalination 138
+(1每3) (2001) 299每306.
+
+[8] C.S. Slter, C.A. Brooks, Development of a simulation model predicting performance
+of reverse osmosis batch systems, Sep. Sci. Technol. 27 (1992) 1361每1388.
+[9] C. Fritzmann, J. Lwenberg, T. Wintgens, T. Melin, State-of-the-art of reverse osmosis
+desalination, Desalination 216 (2007) 1每76.
+[10] K. Sassi, I.M. Mujtaba, Simulation and optimization of full scale reverse osmosis de-
+salination plant, Computer Aided Chemical Engineering 28 (2010) 895每900.
+[11] A. Zhu, P.D. Christodes, Y. Cohen, Energy consumption optimization of RO mem-
+brane desalination subject to feed salinity uctuation, Proceeding of IFAC Interna-
+tional Symposium on Advanced Control of Chemical Processes, Istanbul, Turkey,
+2009.
+[12] A. Scrivani, Energy management and DSM techniques for a PV-diesel powered sea
+water reverse osmosis desalination plant in Ginostra, Sicily, Desalination 183 (1每
+3) (2005) 63每72.
+[13] S. Lee, W.S. Ang, M. Elimelech, Fouling of reverse osmosis membranes by hydrophil-
+ic organic matter: implications for water reuse, Desalination 187 (2006) 313每321.
+[14] J. Wu, C. He, Y. Zhang, Modeling membrane fouling in a submerged membrane bio-
+reactor by considering the role of solid, colloidal and soluble components, J. Membr.
+Sci. 397-398 (16) (2012) 102每111.
+[15] R.H. Peiris, H. Budman, C. Moresoli, R.L. Legge, Fouling control and optimization of a
+drinking water membrane ltration process with real-time model parameter adap-
+tion using uorescence and permeate ux measurement, J. Process Control 23
+(2013) 70每77.
+[16] R. Ma, P. Zhang, W. Sun, G. Nie, W. Li, Improvement of reverse osmosis membrane
+fouling prediction model, Environmental Protection of Chemical Industry 32 (2)
+(2012) 133每136.
+[17] H.J. See, V.S. Vassiliadis, D.I. Wilson, Optimisation of membrane regeneration sched-
+uling in reverse osmosis networks for seawater desalination, Desalination 125
+(1999) 37每54.
+[18] M.M. El-Halwagi, Synthesis of reverse osmosis networks for waste reduction, AICHE
+J. 38 (1992) 1185每1198.
+[19] E.M.V. Hoek, E. Menachem, Cake-enhanced concentration polarization: a new foul-
+ing mechanism for salt-rejecting membranes, Environ. Sci. Technol. 37 (24) (2003)
+5581每5589.
+[20] E.M.V. Hoek, J. Allred, T. Knoell, et al., Modeling the effects of fouling on full-scale re-
+verse osmosis processes, J. Membr. Sci. 314 (s 1每2) (2008) 33每49.
+[21] M. Zhu, M. El-Halwagi, M. Al-Ahmad, Optimal design and scheduling of exible re-
+verse osmosis networks, J. Membr. Sci. 129 (1997) 161每174.
+[22] H. See, D.I. Wilson, V. Vassiliadis, G. Parks, Design of reverse osmosis (RO) water
+treatment networks subject to fouling, Water Sci. Technol. 49 (2) (2004) 263每270.
+[23] Y.Y. Lu, Y.D. Hu, D.M. Xu, L.Y. Wu, Optimum design of reverse osmosis seawater de-
+salination system considering membrane cleaning and replacing, J. Membr. Sci. 282
+(1每2) (2006) 7每13.
+[24] Y.Y. Lu, Y.D. Hu, X.L. Zhang, L.Y. Wu, Q.Z. Liu, Optimum design of reverse osmosis
+system under different feed concentration and product specication, J. Membr.
+Sci. 287 (2) (2007) 219每229.
+[25] A. Jiang, L.T. Bieggler, J. Wang, et al., Optimal operations for large-scale seawater re-
+verse osmosis networks, J. Membr. Sci. 476 (2015) 508每524.
+[26] G. Shock, A. Miquel, Mass transfer and pressure loss in spiral wound modules, Desa-
+lination 64 (1987) 339每347.
+[27] A. Jiang, J. Wang, L.T. Biegler, W. Cheng, C. Xing, S. Jiangzhou, Operational cost opti-
+mization of a full-scale SWRO system under multi-parameter variable conditions,
+Desalination 355 (2015) 124每140.
+[28] A. Abbas, Simulation and analysis of an industrial water desalination plant, Chem.
+Eng. Process. 44 (2005) 999每1004.
+[29] A. Zhu, P.D. Christodes, Y. Cohen, Effect of thermodynamic restriction on energy
+cost optimization of RO membrane water desalination, Ind. Eng. Chem. Res. 48
+(13) (2009) 6010每6021.
+[30] L.T. Biegler, Nonlinear Programming: Concepts, Algorithms and Applications to
+Chemical Processes, Society for Industrial and Applied Mathematics (Cambridge
+University Press), Pittsburgh, PA, 2010.
+[31] GAMS Development Corporation, https//:www.gams.com.
+[32] A. Waechter, An Interior Point Algorithm for Large-scale Nonlinear Optimization
+With Applications in Process EngineeringPhD Thesis Carnegie Mellon University,
+USA, 2002.
+

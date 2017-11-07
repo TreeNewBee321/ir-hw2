@@ -1,0 +1,2556 @@
+Thermodynamic analysis of brine management methods: Zero-discharge desalination and salinity-gradient power production
+
+Hyung Won Chung, Kishor G. Nayar, Jaichander Swaminathan, Karim M. Chehayeb, John H. Lienhard V*
+
+Rohsenow Kendall Heat Transfer Laboratory, Department of Mechanical Engineering, Massachusetts Institute of Technology, Cambridge, MA 02139-4307, USA
+
+H I G H L I G H T S
+
+ ZDD and salinity-gradient energy were studied as brine management technologies.
+ Minimum exergy for crystallization is below brine concentration for feed salinity <100 g/kg.
+ A reversible ※blackbox§ salinity-gradient power generation system was analyzed.
+ Second Law eciencies of crystallizer and brine concentrator were calculated.
+ PRO system coupled with desalination can save about 0.42 kW h/m3 .
+
+article
+
+info
+
+
+Article history:
+Received 8 August 2016
+Received in revised form 8 November 2016
+Accepted 8 November 2016
+Available online 23 November 2016
+
+Keywords:
+Brine management
+Zero-discharge desalination
+Zero-liquid discharge
+ZLD
+PRO
+Salt production
+
+abstract
+
+Growing desalination capacity worldwide has made management of discharge brines an increasingly urgent
+environmental challenge. An important step in understanding how to choose between different brine man-
+agement processes is to study the energetics of these processes. In this paper, we analyze two different
+ways of managing highly saline brines. The rst method is complete separation with production of salts
+(i.e., zero-discharge desalination or ZDD). Thermodynamic limits of the ZDD process were calculated. This
+result was applied to the state-of-the-art industrial ZDD process to quantify how close these systems are
+to the thermodynamic limit, and to compare the energy consumption of the brine concentration step to
+the crystallization step. We conclude that the brine concentration step has more potential for improvement
+compared to the crystallization step. The second brine management method considered is salinity-gradient
+power generation through pressure-retarded osmosis (PRO), which utilizes the brine＊s high concentration
+to produce useful work while reducing its concentration by mixing the brine with a lower salinity stream
+in a controlled manner. We model the PRO system coupled with a desalination system using a detailed
+numerical optimization, which resulted in about 0.42 kW h/m3 of energy saving.
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Desalination produces a concentrated brine which has to be dis-
+charged back to the environment. Brine management has become a
+challenging task due to large increases in desalination capacity. In
+2015, global desalination capacity reached 87 Mm3 /day, of which 51
+Mm3 /day is seawater desalination. Figure 1 shows the growth of the
+global desalination capacity over recent years [1每6].
+Seawater desalination has a recovery of roughly 50% [7], produc-
+ing nearly equal ows of brine and product. Recovery varies greatly
+for the desalination of different feed waters, which makes it hard
+to estimate the volume of brine discharge knowing only the treated
+water production rate. As a conservative estimate, over 50 Mm3
+of brine is discharged everyday. This large and growing quantity
+of brine should be managed with care in order to avoid harmful
+environmental effects.
+One method of mitigating the environmental concerns from
+brine discharge is by avoiding discharge all together through the
+usage of zero-discharge desalination (ZDD) designs, which should
+be differentiated from zero-liquid discharge (ZLD) because ZDD does
+not even discharge salt. Near-ZDD designs have been implemented
+commercially for producing salt from seawater [8,9]. Economi-
+cally feasible ZDD system designs for seawater desalination have
+also been proposed [10]. ZDD and ZLD systems broadly use two
+steps/sub-systems: a brine concentration step that concentrates the
+feed stream to near saturation conditions, and a crystallization step
+g
+
+q
+
+J
+k
+M
+MR
+
+Roman symbols
+a
+Activity
+A
+Membrane permeability, L/m2 h bar
+Am
+Membrane area, m2
+B
+Solute permeability coecient, L/m2 h
+D
+Diffusion coecient, m2 /s
+E
+Energy transfer per volume, kW h/m3
+Friction factor
+f
+g
+Specic Gibbs energy, J/kg K
+Partial molar Gibbs energy, J/mol K
+Flux, L/m2 h
+Mass transfer coecient, m/s
+Molar mass, g/mol
+Mass ow rate recovery ratio of draw and feed streams
+Mass ow rate, kg/s
+Molar ow rate, mol/s
+Specic heat transfer, kJ/kg
+Heat transfer, kW
+Pressure, bar
+Reynolds number
+Recovery ratio
+Salinity, g/kg
+Structural parameter, lm
+Schmidt number
+Sherwood number
+Temperature,  C
+Velocity, m/s
+Work transfer, kW
+Specic work transfer, kJ/kg
+
+P
+Re
+RR
+s
+S
+Sc
+Sh
+T
+v
+
+步m
+步N
+步Q
+
+步W
+
+w
+
+gII
+gcomp
+
+Greek symbols
+Second Law eciency
+Compressor eciency
+Exergy ow rate, kW
+Osmotic pressure, bar
+Terminal temperature difference, K
+
+步N
+
+P
+
+DTTTD
+
+Subscripts
+0
+bc
+crys
+b
+d
+desal
+power
+f
+H
+p
+in
+m
+net
+
+out
+s
+sat
+sw
+
+Ambient state
+Brine concentration
+Crystallization
+Brine stream
+Draw stream
+Desalination
+Power production
+Feed stream
+Heat source
+Pure water
+Energy input to the system
+Membrane surface
+Net osmotic driving force (osmotic pressure-hydraulic
+pressure)
+Energy output of the system
+Salt
+Saturation
+Seawater stream
+
+Superscripts
+least
+Thermodynamic least work of separation
+max
+Thermodynamic maximum work of mixing
+MVC
+Mechanical vapor compression system
+rev
+Reversible system
+sat
+Saturated state
+
+120 
+
+80 
+
+40 
+
+0 
+
+Pure water 
+Wastewater 
+River water 
+Brackish water 
+Seawater 
+75
+66
+65
+
+85
+
+87
+
+81
+
+2010 
+
+2011 
+
+2012 
+
+2013 
+
+2014 
+
+2015 
+
+Fig. 1. Global desalination capacity based on the feed water type [1每6].
+
+where saturated brine is completely crystallized. Several technology
+options exist for the brine concentration and crystallization steps.
+For the brine concentration step, the technologies that have been
+deployed industrially include: electrodialysis (ED) [8,9], mechanical
+vapor compression systems (MVC) [11每13], and solar evaporation
+ponds [11,14]. In Japan, electrodialysis (ED) has been used exten-
+sively for concentrating brine for salt production [8]. In such systems,
+incoming seawater feed is split into diluate and concentrate streams.
+The feed in the concentrate stream is typically concentrated from
+35 g/kg to 200 g/kg while the diluate is diluted to slightly less than
+35 g/kg and discharged back into the sea. ED systems are appropri-
+ate when partial desalination is an option [15]. For complete brine
+concentration producing pure product water, MVC systems are pri-
+marily used. The crystallization step in ZDD and ZLD is typically
+achieved through multi-effect evaporators [11] or solar evaporation
+ponds [11,14]. Apart from the above processes, newer processes such
+as SAL-PROC also exist where brine is sequentially crystallized using
+both evaporation and chemical processing [16]. More recently, mem-
+brane distillation (MD) has emerged as an alternative technology for
+an integrated brine concentration and crystallization process due to
+its ability to handle highly concentrated feed water [17每21].
+Another method of handling brine discharge is to utilize the
+brine＊s exergy to produce power while lowering its salinity. This
+is done by using salinity-gradient power production technologies.
+Among these technologies, pressure-retarded osmosis (PRO) is
+believed to be the most promising technology because of its higher
+energy density [22,23] although efforts to improve technologies
+such as reverse electrodialysis (RED) are continuing [24,25]. In
+PRO, two ow streams at different salinities are introduced into a
+module where a semi-permeable membrane selectively rejects salt
+molecules. The more concentrated stream is commonly referred to
+as the draw stream and the less concentrated one as feed. Because
+of the chemical potential difference, osmosis occurs and water is
+drawn from the feed to the draw side. The draw stream is pressur-
+ized before being sent into the module which retards the osmosis
+(hence the name pressure-retarded osmosis). The applied pressure
+difference is smaller than the osmotic pressure difference so that
+osmosis is allowed to occur. The draw stream leaving the module is
+run through a turbine to produce power. The power produced by the
+system is net positive because the ow rate of the draw is higher at
+the outlet due to osmosis.
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+293
+
+Some researchers have studied coupling PRO to a desalination
+system [26,27], but their analyses were limited to the salinity range
+of seawater reverse osmosis (SWRO) (brine salinity of about 70 g/kg).
+Prante et al. [28] considered a wide range of salinities, but their PRO
+model was set up in parallel ow conguration, which is always less
+ecient than the counterow conguration [29], and the analysis
+used an average ux, which results in an inaccurate representation
+of the variations actually found in a module每scale system.
+
+1.1. Objective
+
+In this paper, we study the thermodynamic limits of the two types
+of processes outlined above, and their corresponding subsystems in
+order to understand how far current systems are from these lim-
+its and to guide attempts to improve these systems. While energy
+considerations alone are not sucient to guide the choice between
+different systems, understanding the energetics of the different brine
+management processes is essential in understanding their operation.
+Although the two brine management technologies produce different
+outputs, the underlying physics are so similar that they warrant tan-
+dem treatment. One process involves separation of salt and water
+whereas the other mixes salt and water in a controlled manner, and
+both can be analyzed with the same thermodynamic principles.
+We rst approach ZDD brine management method from a purely
+thermodynamic perspective. While several researchers have pro-
+posed ZDD-like systems for producing both water and salt from
+seawater and while several commercial plants have been built, a
+study outlining the thermodynamic limits on the work required for
+producing salt and water from seawater in a ZDD process is miss-
+ing in the literature. ZDD is typically achieved using a series of
+sub-processes and technologies such as reverse osmosis (RO), ED,
+mechanical vapor compression (MVC) systems, multi-effect evapo-
+rators and crystallizers. An understanding of the performance limits
+of ZDD informs process designers and researchers on where current
+ZDD processes and sub-processes stand in terms of eciency as well
+as the potential for improvement. To address these issues, a detailed
+analysis of the thermodynamic minimum work required for con-
+centrating brine up to the saturation limit and the minimum work
+for subsequent crystallization for salt production are presented. In
+addition, we calculate the Second Law eciency values of the state-
+of-the-art technologies used in industrial ZDD process to compare
+relative magnitude of energy input required for brine concentration
+and crystallization step.
+For the salinity-gradient power generation method, we have
+performed an analysis from fundamental thermodynamic laws to
+understand the energetics of the coupling process. Based on this
+fundamental understanding, we expand our study to a practical
+power generation system using pressure-retarded osmosis (PRO)
+and quantify the energetic saving of adding PRO. We use nonlin-
+ear optimization to determine the best operating conditions, which
+results in general results (i.e., not restricted to a particular choice of
+operating conditions).
+
+2. Blackbox systems
+
+2.1. Salt production and zero-discharge desalination
+
+In this section we present an analysis of the thermodynamic
+minimum work required for brine concentration as well as salt pro-
+duction. Figure 2 shows a blackbox diagram of a brine concentrator
+at a salinity sf and mass ow rate 步mf . The brine concentrator pro-
+as well as a crystallizer. Feed enters the black box brine concentrator
+duces a pure product water stream with a mass ow rate 步mp, bc and a
+saturated brine stream with a mass ow rate 步mb . The saturated brine
+pure salt and pure product water stream of mass ow rates, 步mp, crys
+stream enters the black box crystallizer where it is separated into a
+
+Blackbox
+brine 
+concentrator
+
+Blackbox 
+crystalizer
+
+Fig. 2. Flow diagram of reversible, blackbox brine concentration system and
+crystallizer.
+
+as 步W least
+bc
+
+and 步ms . In our analysis, the blackbox brine concentrator and blackbox
+crystallizer are work driven systems. Under reversible conditions,
+the work required would be the ＆least work＊ thermodynamically pos-
+sible, which for brine concentration and crystallization we designate
+and 步W least
+crys , respectively. Thus, the least work for brine con-
+centration is the least work for concentrating from a given feed
+salinity up to saturation, while the least work for crystallization is the
+least work for taking a saturated solution up to complete separation
+of water and salt [30].
+To calculate the least work, the First and Second Laws of ther-
+modynamics were applied to each blackbox. The resulting equations
+were then combined to express the least work required by each
+black box as a function of the specic Gibbs energy of the incoming
+and outgoing streams. For a reversible process, the entropy gener-
+ation is zero. Thus, we get the thermodynamic least work required
+for brine concentration and crystallization given by Eqs. (1) and (2)
+under the assumption that the inlet and outlet streams have the
+same temperature and pressure.
+
+步W least
+bc = 步mp,bc gp,bc + 步mb gb  步mf gf
+
+步W least
+crys = 步mp,crys gp,crys + 步ms gs  步mb gb
+
+(1)
+
+(2)
+
+where g is the specic Gibbs energy. The detailed derivation of Eq.
+(1) can be found in Mistry et al. [31]. Equation (2) was obtained by
+following the same methodology outlined by Mistry et al. [31]. Both
+Eqs. (1) and (2) have been derived previously on a per mole basis by
+Van der Haam [32].
+As can be seen, the nal expressions for least work in Eqs. (1)
+and (2) are functions of the mass ow rates and the specic Gibbs
+energies (on a per mass basis) of streams entering and leaving the
+blackbox. The specic Gibbs energy of the feed, product and brine
+solution streams (on a per mass basis) are calculated using the activ-
+ity coecients of the sodium chloride and pure water components
+(on a per mole basis). The activity coecients were obtained from an
+implementation by Thiel et al. [30,33] of Pitzer＊s equations modeling
+the thermodynamics of aqueous electrolyte solutions [34每39]. Thiel
+et al. [30] found that aqueous NaCl serves as a reasonable surrogate
+for the property estimation in certain high salinity waters.
+In Chapter 2 of his thesis, Van der Haam [32] had described the
+derivation of the least work of crystallization. Here, the methodology
+is presented in a simplied manner. Additionally, to the best of our
+knowledge, the detailed results described here related to the least
+work of crystallization, have not been published. For these reasons,
+we have described below how the least work of crystallization was
+evaluated along with a detailed analysis and discussion of results for
+the least work for brine concentration and crystallization for varying
+feed inlet salinities.
+Equation (2) can be expressed on a molar basis as:
+gb
+
+步W least
+crys = 步Np, crys gp,crys + 步Ns gs + 步Nb
+
+(3)
+
+294
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+where g is the partial molar Gibbs energy of each stream and 步N refers
+to molar ow rate of each stream. The three streams are identied by
+the subscripts: ＆p, crys＊ for the product water leaving the crystallizer,
+＆b＊ for the brine stream entering the crystallizer and ＆s＊ for the salt
+stream leaving the crystallizer. The expression for least work of crys-
+tallization can be further expressed as a function of the molar ow
+rates of sodium chloride and water in the brine stream as:
+
+步W least
+crys = 步NH2O,b ( gH2O,p,crys  gH2O,b ) + 步NNaCl,b ( gNaCl,s  gNaCl,b )
+
+(4)
+where 步NH2O,b and 步NNaCl,b are given by, 步NH2O,b = 步mp /(MH2O ) and
+步NNaCl,b = 步ms /(MNaCl ). The molar masses of pure water (MH2O ) and
+tively. gH2O,p,crys and gH2O,b are the partial molar Gibbs energies of
+sodium chloride (MNaCl ) are 18.02 g/mol and 58.44 g/mol respec-
+pure water in the product and brine streams while gNaCl,s and gNaCl,b
+are the partial molar Gibbs energies of sodium chloride in the solid
+salt and aqueous brine streams.
+From thermodynamic principles, at saturation, sodium chloride in
+the solid hydrous form is in equilibrium with the sodium chloride in
+the saturated solution. Thus, the partial molar Gibbs energies of solid
+sodium chloride and of sodium chloride in its saturated solution are
+equal:
+
+gNaCl,s = gNaCl,sat
+
+(5)
+
+(cid:2)
+
+(cid:2)
+
+Now, Eq. (4), can be expressed as function of the activities of sodium
+chloride and water in the three streams as:
+
+步W least
+crys = RT
+
+步NH2O,b ln
+
+aH2O,p,crys
+aH2O,b
+
++ 步NNaCl,b ln
+
+aNaCl,sat
+aNaCl,b
+
+(6)
+
+(cid:3)
+
+where, R is the universal gas constant given by 8.3145 J/mol K, T is
+the temperature in kelvin, which in this case is 298 K, and a refers to
+the activities of the components in a stream. For the crystallizer, the
+incoming brine is assumed to be saturated, thus the equation further
+simplies as:
+
+aH2O,p,crys
+aH2O,sat
+
+步W least
+crys = RT
+
+步NH2O,sat ln
+
+(7)
+Expressing 步NH2O,sat as a function of the feed mass ow rate ( 步mf ) and
+feed salinity (sf ) into the brine concentrator, we get:
+步mf sf RT
+1000
+
+步W least
+crys =
+
+aH2O,p
+aH2O,sat
+
+ 1
+
+MH2O
+
+1000
+
+ssat
+
+(8)
+
+(cid:2)
+
+(cid:5)
+
+(cid:3)
+
+ln
+
+(cid:4)
+
+1
+
+(cid:3)
+
+(cid:2)
+
+(cid:3)
+
+Similarly, the above analysis can be applied to the combined con-
+trol volumes of both the black box brine concentrator and black
+box crystallizer to obtain an expression for the total least work. The
+expression is similar to that given by Eq. (6):
+
+步W least
+total = 步W least
+bc + 步W least
+crys = RT
+
+步NH2O,f ln
+
+aH2O,p
+aH2O,f
+
++ 步NNaCl,f ln
+
+aNaCl,sat
+aNaCl,f
+
+(9)
+
+where, aH2O,p represents the activity of water in the pure product
+water, the value of which is the same in the product water streams
+from both the brine concentrator and crystallizer. The activities in
+the above equations were obtained as previously mentioned from an
+implementation of Pitzer＊s equations by Thiel et al. [30,33].
+
+2.1.1. Results
+Figure 3 shows the results for the least work required to con-
+centrate 1 kg/s of feed to saturation and then completely crystallize
+it for varying feed salinities. Least work is normalized by the mass
+
+]
+
+g
+
+/
+
+k
+J
+k
+
+[
+
+d
+e
+e
+
+f
+
+r
+
+e
+p
+
+t
+
+u
+p
+n
+
+i
+
+y
+
+r
+
+g
+e
+n
+
+E
+
+30 
+
+25 
+
+20 
+
+15 
+
+10 
+
+5 
+
+0 
+0 
+
+Total
+
+Crystallization
+
+Brine concentration
+
+50 
+
+100 
+
+150 
+
+200 
+
+250 
+
+Feed salinity [g/kg] 
+
+Fig. 3. Least work per unit feed for brine concentration, crystallization and total
+energy consumption of ZDD at varying feed salinities.
+
+ow rate of the feed into the brine concentrator ( 步mf ). Alternatively,
+the least work could be normalized by either the mass of the salt
+produced or by that of the water produced, depending typically on
+what is the desired substance. For the purpose of brine management,
+normalizing using the feed mass ow rates is appropriate because
+one of the main aims of brine management is to reduce the mass of
+an incoming feed stream. The total least work required in general
+increases with the feed salinity, but as the feed becomes saturated,
+the total least work required decreases marginally. This trend results
+from competing effects in the least work of completely crystallizing
+saturated brine and the least work for concentrating brine to satura-
+tion. As feed salinity increases, the salt content for a xed total feed
+mass increases proportionately, resulting in a corresponding linear
+increase in the least work for crystallization. The linear relationship
+of least work of crystallization with feed salinity can be inferred
+as well from Eq. (8). For brine concentration, as the feed salinity
+increases, two effects compete: the energy required to remove an
+incremental amount of water increases while the absolute amount of
+water needed to be removed to achieve saturation decreases. The for-
+mer effect dominates initially up to feed salinities around 120 g/kg,
+while for higher salinities the latter effect dominates.
+For comparison, the ratio of the least work for concentrating feed
+until saturation to the total least work for complete separation is
+shown in Fig. 4. At a feed salinity of 100 g/kg, brine concentration
+contributes 50% of the total least work. This can also be seen in Fig. 3,
+where at a feed salinity of 100 g/kg, the least work for brine concen-
+tration and least work for crystallization cross over. It is evident from
+both of these gures that the least work for brine concentration until
+saturation and the least work for complete crystallization thereafter
+are comparable in the desalination range of feed salinities (35 g/kg to
+120 g/kg), after which the least work of crystallization is dominant.
+To put the least work values in perspective, we calculated them
+at a specic feed salinity. For a feed salinity of 35 g/kg, the least work
+for brine concentration until saturation is 6.94 kJ/kg-feed while the
+least work for complete crystallization is 3.81 kJ/kg-feed. Thus, brine
+concentration contributes to 64.5% of the total least work. Figure 5
+shows the percentage of water mass remaining as 35 g/kg feed is
+concentrated until saturation. At saturation, approximately 90% of
+the original water mass has been removed through brine concentra-
+tion. Crystallization separates the remaining 10% of original water
+mass. The last step of removing 10% of the original water mass
+requires 35.5% of the total least work. Thus, under ideal operating
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+295
+
+0% 
+0 
+
+20% 
+
+40% 
+
+60% 
+
+80% 
+
+100% 
+
+50
+
+100 
+
+150 
+
+200 
+
+250 
+
+P
+
+e
+
+r
+
+c
+
+o
+e
+g
+a
+n
+e
+
+t
+
+f
+
+b
+
+r
+
+i
+
+e
+n
+
+c
+
+n
+o
+
+c
+
+n
+e
+
+t
+
+r
+
+a
+
+t
+
+i
+
+n
+o
+
+Feed salinity [g/kg]
+
+Fig. 4. Percentage of brine concentration energy consumption in total ZDD process
+energy consumption.
+
+conditions, crystallization is a more work intensive step than brine
+concentration when viewed from a perspective of volume or mass
+reduction. However, crystallization is typically a thermally driven
+process. Because least work of crystallization represented here is the
+exergetic values, thermal energy input for crystallization has to be
+converted to its exergy so that it can be clearly compared with the
+performance limits of brine concentration.
+For the benet of readers in the desalination industry, the results
+for least work from Fig. 3 relevant to the salinity range for seawa-
+ter desalination operation (35 g/kg to 120 g/kg feed salinities) were
+represented separately in Fig. 6. The gure further highlights that for
+typical operating conditions, the least work for brine concentration
+until saturation and the least work for crystallization thereafter are
+comparable in magnitude.
+
+2.2. Power production from salinity gradients
+
+In this section, we analyze salinity-gradient power production
+as a means of brine management. Thermodynamically, energy is
+required to separate salt from water. By reversing the process, energy
+
+0% 
+0 
+
+20% 
+
+40% 
+
+60% 
+
+80% 
+
+100% 
+
+50 
+
+100 
+150 
+Salinity [g/kg]
+
+200 
+
+250
+
+P
+
+e
+
+r
+
+c
+
+o
+e
+g
+a
+n
+e
+
+t
+
+f
+
+r
+
+e
+
+m
+
+g
+n
+n
+a
+
+i
+
+i
+
+w
+
+e
+a
+
+t
+
+r
+
+m
+
+a
+
+s
+s
+
+Initial salinity: 35 g/kg
+
+Fig. 5. Percentage of remaining water mass as a solution is concentrated from an
+initial salinity of 35 g/kg up to saturation.
+
+0 
+30 
+
+5 
+
+10 
+
+15 
+
+20 
+
+25 
+
+30 
+
+60 
+
+90 
+
+120 
+
+Feed salinity [g/kg]
+
+E
+
+g
+e
+n
+
+r
+
+y
+
+i
+
+u
+p
+n
+
+t
+
+e
+p
+
+r
+
+f
+
+d
+e
+e
+
+[
+
+k
+J
+k
+
+/
+
+g
+
+]
+
+Total
+
+Brine concentration
+
+Crystallization
+
+Fig. 6. Least work per unit feed for brine concentration, crystallization and total
+energy consumption of ZDD in the salinity range relevant for seawater desalination.
+
+can be generated when salt and water are mixed. Figure 7 shows
+two reversible, blackbox systems: one separating seawater into pure
+water and brine (denoted here as 步mp and 步md,in , respectively), and
+the other one mixing the brine and pure water streams. A reversible
+desalination system requires the thermodynamic minimum amount
+aration [30,40]. In this paper, the least work is denoted by 步W least
+of energy input, which is sometimes referred to as least work of sep-
+.
+The reversible mixer generates the maximum amount of energy
+by mixing the streams at the given salinities because there is no
+entropy generation and associated lost work [41]. By virtue of being
+reversible systems, the least work ( 步W least
+) is exactly the same as that
+of energy produced from mixing ( 步W max
+Using the system conguration outlined in Fig. 7, generating more
+energy from mixing than the least work violates the Second Law of
+an appropriate salinity and ow rate, 步mf,in , is used for energy gen-
+thermodynamics. However, if a different relatively purer stream at
+eration, more energy can be generated than the separation energy
+without violating the Second Law. We show this using a purely
+thermodynamic construct. Fig. 8 shows a schematic diagram of this
+process.
+The system outlined in Fig. 8 consists of the same two blackbox
+systems: one for desalination and another for power production. As
+these systems are analyzed by the control-volume method, what is
+happening inside the blackbox is not relevant. The First and Second
+Laws of thermodynamics can be applied to each system. Following
+the same approach as in Section 2 to combine the First and Sec-
+ond Law equations results in Eqs. (10) and (11) for desalination and
+power production systems, respectively:
+
+in
+
+in
+out ).
+
+步W least
+in = 步mp gp + 步md,in gd,in  步msw gsw
+
+(10)
+
+Black box
+desalination 
+system
+
+Black box 
+mixer
+
+Fig. 7. Flow diagram of reversible, blackbox desalination system and mixer.
+
+296
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+Black box
+desalination 
+system
+
+Black box 
+mixer
+
+Fig. 8. Flow diagram of reversible, blackbox desalination system and a mixer utilizing
+an independent ow stream ( 步mf,in ).
+
+步W max
+out = 步md,in gd,in  步md,out gd,out + 步mf,in gf,in  步mf,out gf,out
+
+(11)
+
+Equations (10) and (11) depend on the magnitude of the mass
+ow rates. Working with normalized quantities circumvents this
+dependence. To normalize the equations, we dene three dimension-
+less variables:
+
+RRdesal √ 步mp步msw
+RRpower √ 步md,out  步md,in
+步mf,in
+
+MR √ 步md,in
+
+步mf,in
+
+步mf,in  步mf,out
+步mf,in
+
+=
+
+(12)
+
+(13)
+
+(14)
+
+where RRdesal and RRpower are the recovery ratios of the desalination
+and power generation (mixer) systems, respectively. They are ratios
+of the permeation ow rate to the feed ow rate. MR species the
+ow rate ratio of the two streams in the mixer. Using the denitions
+of these dimensionless variables, Eqs. (10) and (11) can be recast into
+following forms by dividing both sides by 步mp :
+
+(16)
+
+in
+
+wleast
+in
+
+in = wleast
+in
+
+MR
+where w refers to specic work values (i.e., normalized by 步mp ). Both
+and wmax
+out have dimensions of energy per unit mass of prod-
+uct water. A commonly used dimension for the specic energy is
+energy per unit volume of product water. Thus, wleast
+and wmax
+out are
+multiplied by the pure water density (qp ) to convert the dimen-
+sions (Eleast
+in qp ). The resulting specic energy variables are
+designated as Eleast
+and Emax
+out expressed in kW h/m3 .
+Figure 9 shows specic, least energy of desalination (Eleast
+) and
+maximum energy production (Emax
+out ) as a function of MR. Seawater
+properties are used to model the seawater and brine [42]. For this
+specic case, salinities were chosen to represent a typical seawa-
+70g/kg. Also purer 步mf,in stream has salinity (sf,in ) of 1 g/kg.
+ter reverse osmosis (SWRO) system; that is, ssw = 35g/kg, sd,in =
+More energy can be produced than required for the desalination
+the denition of MR (Eq. (14)), 步mf,in has to be larger than 步md,in . This
+energy consumption when MR is smaller than about 0.8. Recalling
+trend can be understood with the aid of exergy. When MR is lowered,
+步mf,in is effectively increased, which corresponds to an increase in the
+exergy input to the system. Therefore, more work can be generated.
+The ow rate and salinity of this stream are completely indepen-
+dent of the desalination system because changing either one does
+
+in
+
+(cid:3)
+
+(cid:2)
+
+1  RRdesal
+RRdesal
+
+wleast
+
+in = gp +
+
+(cid:2)
+
+wmax
+out =
+
+(cid:3) (cid:4)
+
+1  RRdesal
+gd,in 
+RRdesal
+1  RRpower
+
+(cid:2)
+
+(cid:3)
+
+gf,out
+
+
+
+gd,in 
+
+1
+
+RRdesal
+
+gsw
+
+(15)
+
+(cid:3)
+
+RRpower + MR
+MR
+
+(cid:2)
+(cid:5)
+
+gd,out +
+
+1
+MR
+
+gf,in
+
+]
+3
+
+m
+
+/
+
+h
+
+W
+
+k
+
+[
+
+y
+
+r
+
+g
+e
+n
+
+E
+
+4 
+
+3 
+
+2 
+
+1 
+
+0 
+0 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+1
+
+MR
+
+Fig. 9. Least work of desalination (Eleast
+) and the maximum energy generated from
+mixing (Emax
+out ) per volume of pure water produced from desalination. For MR below
+about 0.8, more energy is generated by the mixing stage than is required for the desali-
+nation stage. In this plot, ssw = 35g/kg, sd,in = 70g/kg, sf,in = 1g/kg, RRdesal = 0.5,
+and RRpower = 0.9 are used.
+
+in
+
+not affect the desalination process. This additional degree of free-
+dom enables more energy to be generated than the least work input
+without violating the Second Law of thermodynamics.
+
+3. Process-specic implementations
+
+3.1. Zero-discharge desalination
+
+In this section, we analyze a representative state-of-the-art real
+world implementation of zero-discharge desalination (ZDD) system,
+which consists of brine concentration and crystallization steps.
+To quantify how close the practical systems are to the thermody-
+namic limit, we calculated their Second Law eciencies. The Second
+Law eciency for a chemical separation system is dened as the ratio
+of the least exergy of separation to the exergy input to the system:
+
+gII √ least exergy of separation
+exergy input
+
+(17)
+
+( 步W least
+in
+
+The least exergy of separation is equal to the least work of separation
+) which is a function of the salinities of the process streams
+irrespective of the type of energy input [31]. For the separation pro-
+cesses of brine concentration and crystallization, the least work was
+given in Eqs. (1) and (2), respectively for which the inlet and outlet
+streams are assumed to have the same temperatures, T0 . The exergy
+input to the system depends on the denition of the system and its
+control volume. Following the approach of [31], the First and Sec-
+ond Laws of thermodynamics can be applied to the system shown in
+Fig. 10.
+
+步mf hf  步mb hb  步mp hp + 步QH  步Q0 + 步Win = 0
+步QH
+步Q0
+步mf sf  步mb sb  步mp sp +
++ 步Win + 步Sgen = 0
+(19)
+TH
+T0
+where 步Win is the net rate of work transfer into the system, T0 is the
+temperature of the environment, TH is the temperature of the source
+
+(18)
+
+
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+297
+
+Heat source
+
+Separator
+
+Fig. 10. A control volume for a separator powered by work and/or heat input.
+
+from which the heat transfer 步Q in into the system occurs. Note that
+the control volume is treated as being suciently large that the pro-
+cess streams (i.e., feed, pure water, brine or salt) all enter and leave
+at the dead state temperature (T0 ) and pressure (P0 ), which requires
+heat transfer to the environment, ( 步Q0 ). (For discussion of the control
+system boundary, see [40], Section 2.1.) For the system in Fig. 10, 步Q0
+ing 步Q0 and substituting the specic Gibbs energy, Eqs. (18) and (19)
+crosses the system boundary (or control surface) at T0 . By eliminat-
+can be combined and rearranged into:
+步Win + 步QH
+
+= 步mp gp + 步mb gb  步mf gf + T0
+
+步Sgen
+
+(20)
+
+(cid:2)
+
+(cid:3)
+
+1  T0
+TH
+
+TH
+
+TH
+
+(cid:7)
+
+(cid:6)
+
+(cid:6)
+
+(cid:7)
+
+The left-hand side of Eq. (20) is the exergy input into the sys-
+tem required for the desired separation of the process streams into
+the specied salinities at the dead state temperature and pressure.
+The second term, 步QH
+1  T0
+, is the exergetic value of 步QH . The scalar
+1  T0
+multiplier
+is the Carnot eciency (less than unity), which
+accounts for the fact that a heat input has a lower exergetic value
+than a work input. The conversion of heat to its exergetic value is
+conceptually achieved by operating a reversible heat engine between
+the heat source at TH and heat sink at T0 . The heat engine converts 步QH
+reversibly into work with a magnitude equal to the exergetic value
+of the heat input.
+Substituting the least work and the left-hand side of Eq. (20) into
+Eq. (17) results in a denition of Second Law eciency of separation
+system which takes energy inputs in the form of work and/or heat.
+
+Now that we have the denition of Second Law eciency, we
+can evaluate specic technologies for brine concentration and crys-
+tallization. Seawater feed is rst concentrated from 35 g/kg to sat-
+uration using a single-effect mechanical vapor compression (MVC)
+system followed by crystallization using a 6-effect thermal evap-
+orator. For the brine concentration step, a two-effect MVC system
+was also studied. The technologies that we chose are to the best of
+our knowledge, the most frequently used and state-of-the-art tech-
+nologies in the industry. While MVC systems can be operated with
+greater than two effects, systems with greater than two effects are
+not common.
+Figure 11 shows the schematic diagram of both systems and their
+control volumes (dashed box). To be consistent with the control vol-
+ume analysis in Fig. 10, all the streams in Fig. 11 enter and leave
+at dead state temperature and pressure. As a result, when the brine
+stream leaves the control volume on the left-hand side and reenters
+the control volume on the right-hand side, the temperature is T0 .
+This is also consistent with the multi-effect evaporator data obtained
+from [11] which has streams entering at a temperature of T0 . In prac-
+tice, the stream leaving the regenerator of the MVC system does not
+need to be cooled all the way to T0 before reentering the crystallizer.
+But this cooling is small compared to the heat input ( 步Qin ) in any case.
+
+3.1.1. Mechanical vapor compression brine concentration
+The work and heat transfer rates required for the MVC system
+and the evaporator were obtained from modeling work and from the
+literature, respectively. An existing model for MVC [43] was used to
+calculate the work required to concentrate seawater from 35 g/kg
+to saturation using a single-effect MVC system. The model itself is
+based on an earlier work by El-Dessouky [44]. Properties for aqueous
+sodium chloride were obtained from an implementation of Pitzer＊s
+equations [37]. Parameters used for modeling as well as the results
+are given in Table 1. The eciency of the compressor (gcomp ) was set
+to 70% and the evaporator temperature (Tevap ) was set to 346 K. The
+terminal temperature difference (DTTTD ) in the evaporator and the
+pre-heaters was 3 K. The brine and the product water streams were
+assumed to leave the pre-heater at the same temperature [44]. The
+streams were found to leave the pre-heaters around 15 K above the
+environment temperature T0 . In stand-alone MVC systems, typically,
+the exergy within these streams are not extracted, and heat transfer
+to the environment is allowed so that the streams eventually reach
+a temperature T0 . This corresponds to the heat transfer rate of 步Q0 ,
+
+gII =
+
+步Win + 步Qin
+
+步W least
+in
+
+(cid:6)
+
+1  T0
+
+TH
+
+(cid:7)
+
+(21)
+
+Compressor
+
+Heat source
+
+Second Law eciency ranges from 0 to 1; completely reversible
+systems have a Second Law eciency equal to unity. A low Second
+Law eciency indicates that there is a high potential to improve the
+system, in other words, to effect greater separation with the same
+energy inputs.
+For an actual work-driven brine concentrator and thermal-energy
+driven crystallizer, the Second Law eciency would be, respectively:
+
+gII,bc =
+
+步W least
+bc步Wbc
+
+gII,crys =
+
+(cid:6)
+
+步W least
+步Qcrys
+crys
+
+1  T0
+
+TH
+
+(cid:7)
+
+(22)
+
+(23)
+
+Evaporator Regenerators
+
+Brine concentration
+
+Multi-effect 
+Evaporator
+
+Crystallization
+
+Fig. 11. Mechanical vapor compression (MVC) system for brine concentration and
+thermal multi-effect evaporator for crystallization and their control volumes. The
+control volumes are suciently large that all streams enter and leave at dead state
+temperature and pressure. The multi-effect evaporator is shown as blackbox because
+we use literature data instead of modeling it.
+
+298
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+crys )
+
+Sedivy [11] as well as the outputs. Sedivy had reported the ther-
+mal energy input to the system qcrys and the temperature at which
+the input is occurring (TH ). The Second Law eciency of the thermal
+evaporator crystallizer was calculated using Eq. (23). From the pro-
+cedure outlined in Section 2, the least work for crystallization (wleast
+was found to be 29.2 kJ/kg. The calculated Second Law eciency of
+the thermal evaporator was 24.4%. The data in the literature did not
+report electric work required for pumping and other peripheral oper-
+ation. Compared to the exergy of the thermal input, the parasitic
+power requirements were assumed to be negligible. This assumption
+is consistent with models for thermal desalination systems in the
+literature [40].
+The heat source temperature used in this study is 453 K. Because
+multi-effect evaporator＊s highest temperature is typically main-
+tained at 343 K, a temperature difference of 110 K is driving the heat
+transfer from which the multi-effect evaporator system receives the
+heat input. This generates signicant amount of entropy, reducing
+the Second Law eciency.
+Figure 12 shows a hypothetical scenario where the heat source
+temperature is varied while the same quantity of heat input is
+used. The Second Law eciency of the multi-effect evaporator sys-
+tem increases from 24.4% to 41.4% as the heat source temperature
+decreases from 453 K to 373 K. Therefore, when low grade thermal
+energy is available (e.g., low pressure steam), it is thermodynami-
+cally much more favorable to utilize it. Smaller temperature differ-
+ence entails larger heat exchanger area in order to maintain the same
+quantity of heat transfer. For the crystallization process, corrosion
+resistant metal alloys and metals such as titanium are used for heat
+exchange surfaces. Titanium in particular has been operationally
+found to be a very reliable material, resistant to corrosion and ero-
+sion at both high salinities and temperatures [45,46]. However, such
+materials are expensive, and increasing the heat exchanger area may
+signicantly increase the capital cost. Therefore, an economic opti-
+mum should be used to decide the optimal temperature of the heat
+source. Another way to look at this conclusion is that using cheaper
+material that is resistant to corrosion and erosion has the potential
+to increase the Second Law eciency by lowering the top tempera-
+ture through an increase of heat exchanger area, and we believe that
+identifying a cheaper material is worth further research.
+A comparison of the nal calculated Second Law eciencies of the
+MVC brine concentrators and the multi-effect evaporator crystallizer
+is shown in Fig. 13. The least ecient system was the single-effect
+MVC brine concentrator with a Second Law eciency of 8.5%. The
+two-effect MVC system was marginally better with an eciency of
+
+Table 1
+MVC model parameters and results.
+
+MVC parameters
+
+Unit
+
+Value
+
+步mf
+sf
+sb
+
+gcomp
+Tevap
+DTTTD
+wleast
+bc
+
+wbc
+gII
+
+Inputs
+
+kg/s
+g/kg
+g/kg
+
+K
+K
+kJ/kg
+
+Outputs
+
+kJ/kg
+
+1
+35
+250
+70%
+346
+3
+6.7
+
+1-Effect
+78.8
+8.5%
+
+2-Effect
+57.3
+11.6%
+
+depicted in Fig. 11. The actual work required to operate the single-
+effect MVC system per feed mass ow rate was 78.8 kJ/kg while the
+least work was 6.7 kJ/kg leading to a Second Law eciency of 8.5%.
+The Second Law eciency value of 8.5% obtained here also corre-
+sponds approximately to the eciency values reported by Thiel et
+al. [30].
+MVC brine concentration systems are also deployed in ※forward
+feed multiple effect§ congurations where the thermal energy
+obtained from condensation of product water in one effect is used
+to evaporate feed and generate vapor to be condensed in a sub-
+sequent effect. To ascertain the performance improvement from
+adding effects, a two-effect forward feed MVC system was also mod-
+eled. The model combined elements from the single-effect MVC
+system model described previously with a multi-effect distillation
+system model developed earlier by El-Dessouky [44]. The input con-
+ditions, constraints and assumptions used in the two-effect model
+were identical to those used in the single-effect model. To make a fair
+comparison, the evaporator in the rst effect of the two-effect system
+was maintained at a temperature of 346 K, the same as the evap-
+orator temperature in the one-effect system. The two-effect model
+was validated against the results published by Thiel et al. [30]. Thiel
+et al. found that the Second Law eciency of a two-effect MVC
+system for concentrating produced water brine from 150 g/kg to
+260 g/kg was around 30%. The model developed here gave approx-
+imately the same eciency under those conditions. The validated
+two-effect MVC model was then used to calculate the work required
+to concentrate seawater from 35 g/kg to saturation. The results are
+shown in Table 1. The actual work required to operate the two-effect
+MVC system per feed mass ow rate was 57.3 kJ/kg while the least
+work was 6.7 kJ/kg leading to a Second Law eciency of 11.6%.
+
+3.1.2. Multi-effect thermal evaporator crystallizer
+Performance data for a 6-effect thermal evaporator that com-
+pletely separates saturated solution into pure salt and water was
+obtained from Sedivy [11]. Table 2 summarizes the data from
+
+Table 2
+Thermal evaporator parameters and results.
+
+Evaporator parameters
+
+Unit
+
+Value
+
+步mf
+sb
+
+TH
+T0
+
+qcrys
+
+wleast
+crys
+
+gII
+
+Inputs
+kg/s
+g/kg
+kJ/kg
+K
+K
+kJ/kg
+
+Outputs
+
+1
+250
+351 [11]
+453 [11]
+298
+29.2
+
+24.4%
+
+Fig. 12. Second Law eciency as a function of the heat source temperature.
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+299
+
+thermodynamic framework to a practical energy generation sys-
+tem. One of the most promising systems to harness salinity-gradient
+power is pressure-retarded osmosis (PRO). A schematic diagram of
+PRO coupled with a desalination system is shown in Fig. 14.
+We use the same blackbox system for desalination because we
+want the results to be as general as possible without being con-
+strained to a particular desalination technology. However, in this
+section we will not assume the blackbox desalination system in
+Fig. 14 to be reversible; instead, we apply a value representative
+of state of the art SWRO systems. We do this to avoid combin-
+ing a reversible input with an irreversible output. Finite difference
+method was used to numerically model the PRO system in coun-
+terow conguration. By using the nite difference method, the
+transport equations reduce to differences instead of the original par-
+tial differential equations for the energy and mass balances. The
+PRO module is divided into a number of computational cells, which
+have to be solved simultaneously. These nonlinear equations were
+solved using Engineering Equation Solver (EES), which is a simulta-
+neous equation solver based on Newton＊s method [47]. The modeling
+approach follows Chung et al. [48] and is summarized here.
+At a high level, the ultimate goal of the PRO model is the calcu-
+lation of the power production. The local reverse salt ux and the
+water ux at any axial location (x) can be calculated using Eqs. (24)
+and (25), respectively [48]:
+pd,m (x)  pf,m (x)  [Pd (x)  Pf (x)]
+Jp (x) =A
+Jsalt (x) =Bq [sd,m (x)  sf,m (x)]
+
+(24)
+
+(25)
+
+(cid:8)
+
+(cid:9)
+
+where A is the membrane permeability, B is the solute permeability
+coecient, J is the ux, sd,m , Pd and Pf are hydraulic pressures of the
+feed and draw streams, q is the density of water, and p is the osmotic
+pressure, and sf,m are the salinities at the membrane surface on the
+draw and feed sides. These salinity values account for the concentra-
+tion polarization as shown in Eqs. (26) and (27), respectively [49]:
+ Jp
+1  exp
+ Jp
+qk
+qk
+
+sd,m = sd,b exp
+
+(cid:3)(cid:5)
+
+(26)
+
+(cid:3)
+
+(cid:4)
+
+sf,m = sf,b exp
+
+(27)
+
+(cid:2)
+(cid:2)
+
+Jp S
+qD
+
+ B (sd,m  sf,m )
+ B (sd,m  sf,m )
+
+(cid:4)
+
+Jp
+
+(cid:3)
+
+Jp
+
+(cid:2)
+(cid:3)
+
+(cid:5)
+
+ 1
+
+(cid:2)
+
+Jp S
+qD
+
+exp
+
+where S, k and D are the structural parameter, the mass transfer
+coecient, and the diffusion coecient of NaCl in water. The mass
+transfer coecient and the pressure drop in the ow channel can be
+calculated using the correlations by Schock and Miquel [50] as shown
+in Eqs. (28) and (29):
+
+Sh = 0.065 Re0.875 Sc0.25
+
+f = 6.23 Re
+
+0.3
+
+(28)
+
+(29)
+
+y
+c
+
+n
+e
+
+i
+
+c
+
+i
+
+f
+f
+
+e
+
+w
+
+a
+L
+
+d
+n
+o
+
+c
+
+e
+
+S
+
+24.4% 
+
+25% 
+
+20% 
+
+15% 
+
+11.6% 
+
+10% 
+
+8.5% 
+
+5% 
+
+0% 
+
+MVC
+1-effect
+
+MVC
+2-effect
+
+Multi-effect 
+evaporator 
+
+Fig. 13. Second Law eciency of single-effect and two-effect mechanical vapor
+compression (MVC) brine concentrators and of a multi-effect evaporator (6-effect).
+
+11.6%, while the six-effect thermal evaporator performed more than
+twice as well with an eciency of 24.4%. The previous discussion
+highlighted how the eciency of the crystallizer could be increased
+further by increasing the heat transfer area and reducing the tem-
+perature at which heat is being transferred to the crystallizer. The
+analysis makes it clear that research efforts on improving the energy
+eciency of zero-discharge desalination should focus on the ※brine
+concentration§ step rather than the ※crystallization§ step given the
+much more signicant room for improvement in the former.
+
+3.1.3. Eciency gains from adding more effects to an MVC system
+A natural question that follows from the above analysis is: could
+increasing the number of effects in an MVC system make brine con-
+centration as ecient as crystallization? We focused our analysis
+on single-effect and two-effect MVC systems because to the best
+of our knowledge they are the most deployed congurations glob-
+ally. However, MVC systems with greater than two ※forward feed§
+effects also exist. Our analysis of single-effect and two-effect MVC
+systems showed that adding any more effects would improve the
+eciency only incrementally. To conrm this, the two-effect model
+we made was extended to three effects keeping all other condi-
+tions the same. We found that for a three-effect system, the Second
+Law eciency was 12.9%, corresponding to a 1.3% increase in e-
+ciency as compared to the two-effect system. In comparison, moving
+from a one-effect to a two-effect system had increased the Second
+Lw eciency by 3.1%. Our model revealed interesting conceptual
+insights that explained the decreasing returns per effect. With addi-
+tional effects, the mass ow rate of vapor through the compressor
+reduced proportionately. However, the compression ratio across the
+compressor increased to account for the evaporator terminal tem-
+perature difference and boiling point elevation contribution of each
+additional effect. The overall effect was that the compressor work
+reduced only marginally with each additional effect. Extending the
+trend seen in Second Law eciency values with the number of
+effects, we estimated that the Second Law eciency of a six-effect
+MVC system would be around 14%, far lower than the 24% seen for a
+six-effect thermal crystallizer.
+
+3.2. Pressure-retarded osmosis
+
+In Section 2.2 we have seen that it is possible to generate more
+energy than what is needed for desalination. We can apply the same
+
+Fig. 14. Schematic diagram of PRO coupled with a desalination system. PX refers to a
+pressure exchanger.
+
+300
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+The power production from the turbine-generator assembly is:
+步WPRO =
+步mp
+
+[Pd (L)  Po ]
+
+q
+
+(30)
+
+where Pd (L) is the hydraulic pressure of the draw stream at the
+draw exit and Po is the pressure of ambient state assuming the tur-
+bine discharge pressure is the same as the ambient pressure. In the
+PRO literature, the expression 步WPRO = JAmDP is commonly used to
+calculated the power production, where Am is the total membrane
+area [22,23,51]. However, this expression only applies for a zero-
+dimensional system where axial variation of the pressure and the
+osmotic driving force is negligible. For a module scale system, only
+the pressure at the end of the draw channel (i.e., Pd (L)) is relevant for
+power production.
+In specifying the operating conditions, a functional form (dimen-
+sional) of the power production equation is useful. 步WPRO (the depen-
+dent variable) is a function of 6 variables: the minimum water ux
+(Jmin ), the hydraulic pressure of the draw stream (Pd ), the ow rate
+ratio (MR) and the velocity (v) of either stream [48]:
+步WPRO = f (sd,in , sf,in , Jmin , v, Pd , MR)
+
+(31)
+
+In this study, the feed salinity (sf,in ) is xed at 1 g/kg, and the
+draw salinity (sd,in ) is the independent variable (i.e., plotted as an
+abscissa). Specifying the velocity of one steam (either draw or feed) is
+sucient because the other stream＊s velocity is determined by mass
+balance. The output power strongly depends on the choice of oper-
+ating conditions. In order to generate general results, a wide range
+of operating conditions should be considered. One possible solution
+is using multi-variable optimization. In this paper, 3 variables (Pd , v
+and MR) were chosen such that the power input (Ep ) is minimized.
+Jmin was not used in the optimization because Ep is minimized as
+Jmin approaches zero, which is clearly not economical as it implies
+innite membrane area. Instead, several values of Jmin were used to
+model practical systems. In addition, we included Jmin = 0 L/m2 h
+as a limiting case. For optimization, the conjugate gradient method
+was used [47]. Figure 15 summarizes the computational ow of the
+combined PRO and desalination system.
+Because the available seawater properties correlations [42] have
+a maximum salinity level of 120 g/kg, we chose aqueous NaCl prop-
+erties based on Pitzer＊s equations [37] to accurately model the effect
+of salinity on the osmotic driving force.
+Since we are interested in a PRO system coupled with desali-
+nation, the metric of interest should quantify the energetic benet
+of adding PRO to the desalination system. The net energy input to
+the coupled system normalized by the pure water production from
+desalination represents the energy savings. However, in order to
+avoid directly comparing the irreversible energy output from PRO
+
+to the reversible energy input to the desalination system we need
+to estimate the energy input to the desalination system. The state-
+of-the-art seawater reverse osmosis (SWRO) systems have energy
+consumptions about 3每4 kW h/m3 (normalized by pure water pro-
+duced) of which about 1 kW h/m3 is used for pretreatment [52]. This
+corresponds to a Second Law eciency value of about 30% [40,53]. In
+general, the Second Law eciency of an RO system depends on the
+feed salinity in a nontrivial manner. Second Law eciency increases
+with feed salinity up to about 200 g/kg then decreases with further
+increase in feed salinity, as discussed by Thiel et al. [30]. According to
+Eq. (21), the energy input to the desalination system can be approxi-
+mated as Ein = Eleast
+in /gII . Then the net energy input to the integrated
+desalination and PRO system is given by Eq. (32).
+
+Enet √ Ein  Ep
+
+(32)
+
+pure water production (i.e., Ep √ 步WPRO q/ 步mp ). The net energy is nor-
+where Ep is the PRO power normalized by the volume of desalination
+malized by the pure water production ( 步mp ) because 步mp is the nal
+product of the entire system. This normalization is useful because we
+can directly compare Enet to the desalination energy consumption.
+Figure 16 shows the net energy consumption without PRO and
+with PRO for three levels of Jmin . AsJ min increases, the system size
+decreases. In terms of economics, the whole cost of the system has
+to be minimized, which means that both capital cost and energetic
+cost should be accounted for. Energetic cost is minimized as Jmin
+approaches zero whereas capital cost is minimized as Jmin is max-
+imized. Therefore, an economic optimum exists at an intermediate
+value of Jmin . Because PRO is not a well-established technology, it is
+hard to determine what value of Jmin corresponds to an economic
+optimum. If we infer from a representative reverse osmosis (RO)
+average ux 14 L/m2 h [52], the practical Jmin value may lie between
+10 and 20 L/m2 h. Along with the Jmin values of 10 and 20 L/m2 h,
+Fig. 16 also shows the 0 L/m2 h case. We used a ux of 0.001 L/m2 h
+to approximate 0 L/m2 h in our numerical models.
+For the case with Jmin = 10 L/m2 h, energy saving by adding the
+PRO unit is uniform over a wide range of salinities. For example,
+0.42 and 0.43 kW h/m3 of energy saving are possible with the Jmin =
+10 L/m2 system for 70 and 260 g/kg draw salinity, respectively. This
+corresponds to 6 and 11% of the desalination energy input (Ein ). For
+the Jmin = 0 L/m2 h case, more energy saving is possible when the
+draw salinity is lower. The opposite trend is observed for Jmin =
+20 L/m2 h case. This is because PRO power increases more with draw
+salinity when the minimum ux is higher.
+For all the cases, energy saving is not signicant, as shown in
+Fig. 16. PRO＊s energy saving is not very sensitive to the minimum
+ux. In particular, when the draw salinity is high, the net energy
+consumption tends to converge. This trend suggests that large min-
+imum ux values can be used without signicant energetic penalty.
+
+Salt flux (Eq. 9)
+
+Feed
+
+Draw
+
+Water flux (Eq. 8)
+
+No
+
+Is         min?
+
+Yes
+
+End
+
+-
+
++
+
+Inputs
+
+Models
+
+Optimization Outputs
+
+Iteration
+
+Finish
+
+Black box 
+desalination 
+system
+
+Fig. 15. Flowchart of the computational model.
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+301
+
+8 
+
+6 
+
+4 
+
+2 
+
+Energy consumption without PRO
+
+Energy consumption with PRO
+
+]
+3
+
+m
+
+/
+
+h
+
+W
+
+k
+
+[
+
+y
+
+r
+
+g
+e
+n
+e
+
+c
+
+i
+
+f
+
+i
+
+c
+
+e
+p
+
+S
+
+0 
+50 
+
+100 
+
+150 
+
+200 
+
+250 
+
+Draw inlet salinity [g/kg]
+
+Fig. 16. Specic energy consumption for desalination system without coupled PRO
+and with PRO.
+
+Because capital expenditure (CapEx) is the dominant cost factor for
+PRO [48], increasing the minimum ux (or decreasing the system
+size) can be an effective way to reduce the overall cost. Ultimately,
+the savings from operating expenditure (OpEx) in the form of energy
+reduction should be compared to the additional CapEx of the PRO
+unit to determine the economic viability of coupling PRO to a desali-
+nation system.
+
+3.2.1. Osmotic driving force
+Because the energy saving from the PRO unit is not signicant
+(6每11% of the desalination energy), one natural way to increase the
+energy saving is by increasing the system size of the PRO unit, which
+reduces the overall driving force within the system, which in turn
+reduces the irreversibilities. For this study, increasing the system
+size is equivalent to decreasing the minimum ux, Jmin . As shown in
+Fig. 16, when Jmin is reduced from 10 to 0 L/m2 h, the energy saving is
+only slightly increased. This indicates that the membrane area is not
+utilized in an effective manner. In other words, the osmotic driving
+force within the PRO module is not well-distributed.
+Figure 17 visualizes the osmotic driving force with Jmin = 0 L/m2 h
+and Jmin = 10 L/m2 h. The osmotic driving force is the difference
+between the net osmotic pressures which are dened as Pnet = PP
+for each stream. The osmotic pressure at the membrane surface is
+used to correctly quantify the driving force. When Jmin is 10 L/m2
+h, the osmotic driving force is relatively uniformly distributed, and
+further increase in the system size only perturbs this distribution.
+Therefore, the marginal return of increasing the system size is small.
+As a result, the combined PRO-desalination system does not produce
+net energy even with Jmin = 0 L/m2 h unlike the reversible blackbox
+mixer in Fig. 8. The PRO system is an irreversible system, and it has
+a large membrane area, which results in zero driving force only at
+one end of the PRO system. However, zero driving force at one loca-
+tion does not imply that the system is reversible because osmosis
+occurs through a nite osmotic pressure difference throughout the
+system, which generates entropy. A completely reversible system
+is one in which the driving force is everywhere zero. The driving
+force in this case is the difference between the net osmotic pres-
+sures (i.e., Pnet,d  Pnet,f = (Pd,m  Pd )  (P f,m  Pf )). The hydraulic
+pressure on both sides is relatively constant assuming that viscous
+losses are small compared to the osmotic pressure, which varies
+along the length of the system due to variation in the salinities of
+the streams. In order to cancel the driving force everywhere in the
+system, the hydraulic pressure difference has to continuously equal
+
+the osmotic pressure difference. The PRO system that was modeled
+raises the pressure of the draw solution only once before it enters
+the module (hence the single-pressure operation), which is why the
+driving force is nite throughout the system except at one end of
+the module (for the case of Jmin = 0 L/m2 h) as shown in Fig. 17a.
+Because each data point in Fig. 16 is a result of optimization,
+changing the operating conditions will not result in a decrease in
+the net energy input. This suggests that the single-pressure oper-
+ation, which is by far the most widely studied conguration, does
+not have much potential to save signicant energy from a desali-
+nation plant (limited to about 0.42 kW h/m3 ). In PRO literature, not
+many researchers have considered module-scale operation. Most of
+the studies use coupon-scale system where the osmotic driving force
+is virtually uniform inside the system [22,23,51]. Few researchers
+studied the variation of the osmotic driving force of a module-scale
+system. For example, Banchik et al. developed the concept of mass
+transfer unit (MTU) to properly represent the difference between
+coupon and module-scale systems [29,54]. This is why the limita-
+tion of single stage operation resulting from its poor distribution of
+driving force has not been stressed. Different congurations such
+as multistaging or batch operation can distribute the osmotic driv-
+ing force more effectively over the PRO module. Therefore, these
+congurations may have potential to increase the energy saving.
+
+4. Conclusions
+
+Two distinctly different ways of managing desalination brine are
+analyzed from an energetic perspective: zero-discharge desalination
+(ZDD) with salt production and electricity generation utilizing the
+exergy of the brine. Thermodynamic minimum energy required for
+ZDD process was calculated. In particular, energy required for brine
+concentration stage was compared to that required for crystalliza-
+tion to identify which stage has greater potential for improvement.
+State-of-the-art technologies for brine concentration and crystalliza-
+tion were analyzed using the concept of Second Law eciency.
+For energy generation, we applied the First and Second Laws
+of thermodynamics to reversible, blackbox systems. Then the same
+analysis was applied to a practical salinity-gradient system, PRO. A
+detailed numerical model for the PRO was used along with a non-
+linear optimization to determine the optimal operating conditions.
+The energy saving by adding a PRO unit to a desalination system was
+quantied.
+Our primary results are as follows:
+
+Blackbox (reversible) systems
+ The least work required for concentrating a feed until satura-
+tion and then for completely crystallizing saturated brine was
+ For feed water salinities near that of seawater, the magnitudes
+obtained for feed salinities 0每260 g/kg.
+of the least work for brine concentration and crystallization are
+similar even though the volume reduction achieved in the crys-
+tallization step is around an order of magnitude smaller than
+ Absolute energy required for brine concentration until satura-
+that achieved in the brine concentration step.
+tion and that required for complete crystallization thereafter,
+are comparable in order of magnitude for feed salinities up to
+120 g/kg.
+ Reversible systems can generate more energy from mixing the
+desalination brine with an independent stream at low salinity
+and high ow rate, than the energy required for desalination.
+
+Process-specic implementations
+ State-of-the-art crystallizers were found to be more ecient
+than state-of-the-art brine concentrators. While a 6-effect
+thermal evaporator had a Second Law eciency of 24.4%, a
+
+302
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+r
+
+e
+u
+s
+s
+e
+p
+c
+
+r
+
+i
+t
+
+o
+
+m
+
+s
+o
+
+t
+
+e
+n
+d
+e
+z
+
+i
+l
+
+a
+
+m
+
+r
+
+o
+
+N
+
+0.5 
+
+0.4 
+
+0.3 
+
+0.2 
+
+0.1 
+
+0 
+
+0 
+
+0.2 
+0.4 
+0.6 
+0.8 
+Normalized module position x
+(a) J min = 0 L/m2 -hr
+
+1 
+
+r
+
+e
+u
+s
+s
+e
+p
+c
+
+r
+
+i
+t
+
+o
+
+m
+
+s
+o
+
+t
+
+e
+n
+d
+e
+z
+
+i
+l
+
+a
+
+m
+
+r
+
+o
+
+N
+
+0.6 
+
+0.5 
+
+0.4 
+
+0.3 
+
+0.2 
+
+0.1 
+
+0 
+
+0 
+
+0.2 
+0.4 
+0.6 
+0.8 
+Normalized module position x
+(b) J min = 10 L/m 2 -hr
+
+1
+
+Fig. 17. Normalized net osmotic pressure as a function of normalized module position. The osmotic driving force is normalized by the maximum osmotic pressure difference (i.e.,
+DPmax = Pd,in  P f,in ). The module position is normalized by the length of the module. The difference between the two lines is the osmotic driving force.
+
+conventional single-effect MVC brine concentrator had an e-
+ciency of only 8.5% while a two-effect MVC brine concentrator
+ Research efforts around zero-discharge desalination should
+was marginally better with an eciency of 11.6%.
+focus on improving brine concentration rather than crystalliza-
+tion as the former has a larger room for improvement.
+ Energy savings achieved by adding a PRO unit (with single-
+ A PRO system using an independent dilute stream and coupled
+pressure operation) to a desalination system are not signicant.
+with a desalination system cannot produce net positive energy,
+in contrast to the reversible blackbox mixer because of inherent
+irreversibilities associated with a nite osmotic driving force.
+ The single-pressure operation of PRO has an ineffectively dis-
+tributed osmotic driving force over the module. Different con-
+gurations such as multistaging or batch operation may have
+potential because they distribute the osmotic pressure in a
+more effective way.
+
+With a proper understanding of the energetic aspects of zero-
+discharge brine management and salinity-gradient power production,
+the natural next step is an economic analysis because economic via-
+bility will ultimately determine the adoption of any technology. In
+addition to the traditional costs associated with these technologies,
+location-dependent factors, such as the prices of energy, salt, and
+water, should be taken into account. Low energy prices, and high prices
+of salt and water will push for the adoption of ZDD, and the opposite
+will favor the adoption of salinity-gradient power generation.
+
+Acknowledgments
+
+The authors would like to thank Kuwait Foundation for the
+Advancement Sciences (KFAS) for their nancial support through
+Project No. P31475EC01.
+
+References
+
+[1] IDA Desalination Yearbook 2015每2016, Media Analytics Ltd. 2015.
+[2] IDA Desalination Yearbook 2014每2015, Media Analytics Ltd. 2014.
+[3] IDA Desalination Yearbook 2013每2014, Media Analytics Ltd. 2013.
+[4] IDA Desalination Yearbook 2012每2013, Media Analytics Ltd. 2012.
+[5] IDA Desalination Yearbook 2011每2012, Media Analytics Ltd. 2011.
+[6] IDA Desalination Yearbook 2010每2011, Media Analytics Ltd. 2010.
+[7] Voutchkov, M. Wilf, L. Awerbuch, C. Bartels, M. Mickley, G. PearcNikolay, The
+Guidebook to Membrane Desalination Technology: Reverse Osmosis, Nanol-
+tration and Hybrid Systems Process, Design, Applications and Economics,
+Balaban Publishers. 2011.
+[8] H. Strathmann, Electrodialysis, a mature technology with a multitude of new
+applications, Desalination 264 (3) (2010) 268每288. http://dx.doi.org/10.1016/
+j.desal.2010.04.069. http://dx.doi.org/10.1016/j.desal.2010.04.069.
+
+[9] Y. Kobuchi, Y. Terada, Y. Tani, The rst salt plant in the Middle East using
+electrodialysis and ion exchange membranes, Sixth Int. Symp. Salt ll (1983)
+541每555.
+[10] T.A. Davis, Zero discharge seawater desalination: integrating the production of
+freshwater, salt, magnesium, and bromine, Bureau of Reclamation, US Depart-
+ment of Interior, 2006.
+[11] V.M. Sedivy, Environmental balance of salt production speaks in favour of solar
+saltworks, Global NEST J. 11 (1) (2009) 41每48.
+[12] B. Ericsson, B. Hallmans, Treatment of saline wastewater for zero discharge at
+the Debiensko coal mines in Poland, Desalination 105 (1每2) (1996) 115每123.
+http://dx.doi.org/10.1016/0011- 9164(96)00065- 3.
+[13] IDE Technologies,
+IDE-Tech MVC Brochure, 2016, http://www.ide- tech.
+com/wp- content/uploads/2013/09/Mechanical- Vapour- Compression-MVC-
+Brochure.pdf.
+[14] A. Ravizky, N. Nadav, Salt production by the evaporation of SWRO brine in Eilat:
+a success story, Desalination 205 (1每3) (2007) 374每379. http://dx.doi.org/10.
+1016/j.desal.2006.03.559.
+[15] R.K. McGovern, S.M. Zubair,
+J.H. Lienhard, V, The cost effectiveness of
+electrodialysis for diverse salinity applications, Desalination 348 (2014) 57每
+65.
+http://www.sciencedirect.com/science/article/pii/S0011916414003312.
+http://dx.doi.org/10.1016/j.desal.2014.06.010.
+[16] M. Ahmed, A. Arakel, D. Hoey, M.R. Thumarukudy, M.F.a. Goosen, M. Al-
+Haddabi, A. Al-Belushi, Feasibility of salt production from inland RO desalina-
+tion plant reject brine: a case study, Desalination 158 (1每3) (2003) 109每117.
+http://dx.doi.org/10.1016/S0011- 9164(03)00441- 7.
+[17] C.M. Tun, A.G. Fane, J.T. Matheickal, R. Sheikholeslami, Membrane distillation
+crystallization of concentrated salts每ux and crystal formation, J. Membr. Sci.
+257 (1每2) (2005) 144每155. membrane Contactors. http://www.sciencedirect.
+com/science/article/pii/S0376738804008361.
+http://dx.doi.org/10.1016/j.
+memsci.2004.09.051.
+[18] R. Creusen, J. van Medevoort, M. Roelands, A. van Renesse van Duivenbode, J.H.
+Hanemaaijer, R. van Leerdam, Integrated membrane distillation-crystallization:
+process design and cost estimations for seawater treatment and uxes of
+single salt solutions, Desalination 323 (2013) 8每16. membrane Distillation and
+related Membrane Systems. http://www.sciencedirect.com/science/article/pii/
+S0011916413000763. http://dx.doi.org/10.1016/j.desal.2013.02.013.
+[19] F. Edwie, T.-S. Chung, Development of simultaneous membrane distillation-
+crystallization (SMDC) technology for treatment of saturated brine, Chem.
+Eng. Sci. 98 (2013) 160每172. http://www.sciencedirect.com/science/article/
+pii/S0009250913003291. http://dx.doi.org/10.1016/j.ces.2013.05.008.
+[20] G. Chen, Y. Lu, W.B. Krantz, R. Wang, A.G. Fane, Optimization of operating
+conditions for a continuous membrane distillation crystallization process with
+zero salty water discharge, J. Membr. Sci. 450 (2014) 1每11. http://www.
+sciencedirect.com/science/article/pii/S0376738813007011. http://dx.doi.org/
+10.1016/j.memsci.2013.08.034.
+[21] S. Meng, Y. Ye, J. Mansouri, V. Chen, Crystallization behavior of salts dur-
+ing membrane distillation with hydrophobic and superhydrophobic cap-
+illary membranes,
+J. Membr. Sci. 473 (2015) 165每176.
+http://www.
+sciencedirect.com/science/article/pii/S0376738814007170. http://dx.doi.org/
+10.1016/j.memsci.2014.09.024.
+[22] G.Z. Ramon, B.J. Feinberg, E.M.V. Hoek, Membrane-based production of salinity-
+gradient power, Energy Environ. Sci. 4 (2011) 4423每4434. http://dx.doi.org/10.
+1039/C1EE01913A. http://dx.doi.org/10.1039/C1EE01913A.
+[23] J.W. Post, J. Veerman, H.V. Hamelers, G.J. Euverink, S.J. Metz, K. Nymei-
+jer, C.J. Buisman, Salinity-gradient power: evaluation of pressure-retarded
+osmosis and reverse electrodialysis, J. Membr. Sci. 288 (1每2) (2007) 218每
+230. http://www.sciencedirect.com/science/article/pii/S0376738806007575.
+http://dx.doi.org/10.1016/j.memsci.2006.11.018.
+[24] A.M. Weiner, R.K. McGovern, J.H. Lienhard, V, A new reverse electrodialysis
+design strategy which signicantly reduces the levelized cost of electricity, J.
+
+H. Chung et al. / Desalination 404 (2017) 291每303
+
+303
+
+Membr. Sci. 493 (2015) 605每614. http://www.sciencedirect.com/science/article/
+pii/S0376738815004962. http://dx.doi.org/10.1016/j.memsci.2015.05.058.
+[25] A.M. Weiner, R.K. McGovern, J.H. Lienhard, V, Increasing the power den-
+sity and reducing the levelized cost of electricity of a reverse electrodialysis
+stack through blending, Desalination 369 (2015) 140每148.
+http://www.
+sciencedirect.com/science/article/pii/S0011916415002842. http://dx.doi.org/
+10.1016/j.desal.2015.04.031.
+[26] X. Song, Z. Liu, D.D. Sun, Energy recovery from concentrated seawater brine
+by thin-lm nanober composite pressure retarded osmosis membranes with
+high power density, Energy Environ. Sci. 6 (2013) 1199每1210. http://dx.doi.
+org/10.1039/C3EE23349A. http://dx.doi.org/10.1039/C3EE23349A.
+[27] K. Saito, M. Irie, S. Zaitsu, H. Sakai, H. Hayashi, A. Tanioka, Power generation
+with salinity gradient by pressure retarded osmosis using concentrated brine
+from SWRO system and treated sewage as pure water, Desalin. Water Treat.
+41 (1每3) (2012) 114每121. http://dx.doi.org/10.1080/19443994.2012.664696.
+http://dx.doi.org/10.1080/19443994.2012.664696.
+[28] J.L. Prante,
+J.A. Ruskowitz, A.E. Childress, A. Achilli, RO-PRO desalina-
+tion: an integrated low-energy approach to seawater desalination, Appl.
+Energy 120 (2014) 104每114. http://www.sciencedirect.com/science/article/
+pii/S0306261914000324. http://dx.doi.org/10.1016/j.apenergy.2014.01.013.
+[29] L.D. Banchik, M.H. Sharqawy, J.H. Lienhard, V, Limits of power produc-
+tion due to nite membrane area in pressure retarded osmosis, J. Membr.
+Sci. 468 (2014) 81每89.
+http://www.sciencedirect.com/science/article/pii/
+S037673881400386X. http://dx.doi.org/10.1016/j.memsci.2014.05.021.
+[30] G.P. Thiel, E.W. Tow, L.D. Banchik, H.W. Chung, J.H. Lienhard, V, Energy
+consumption in desalinating produced water from shale oil and gas extrac-
+tion, Desalination 366 (2015) 94每112. http://www.sciencedirect.com/science/
+article/pii/S0011916414006857. http://dx.doi.org/10.1016/j.desal.2014.12.038.
+[31] K.H. Mistry, J.H. Lienhard, V, Effect of nonideal solution behavior on desali-
+nation of a sodium chloride solution and comparison to seawater, Journal of
+Energy Resources Technology 135 (4) (2013) 042003. http://energyresources.
+asmedigitalcollection.asme.org/article.aspx?doi=10.1115/1.4024544. http://
+dx.doi.org/10.1115/1.4024544.
+[32] F. Van der Ham, Eutectic Freeze Crystallization (Ph.D. thesis), Techni-
+cal University Delft, 1999. arXiv:1011.1669v3. http://dx.doi.org/10.1017/
+CBO9781107415324.004.
+[33] G.P. Thiel, J.H. Lienhard, V, Treating produced water from hydraulic fracturing:
+composition effects on scale formation and desalination system selection, Desali-
+nation 346 (2014) 54每69. http://www.sciencedirect.com/science/article/pii/
+S0011916414002574. http://dx.doi.org/10.1016/j.desal.2014.05.001.
+[34] K.S. Pitzer, Thermodynamics of electrolytes. I. Theoretical basis and general
+equations, J. Phys. Chem. 77 (2) (1973) 268每277. http://dx.doi.org/10.1021/
+j100621a026. http://dx.doi.org/10.1021/j100621a026.
+[35] K.S. Pitzer,
+J.J. Kim, Thermodynamics of electrolytes.
+IV. Activity and
+osmotic coecients for mixed electrolytes,
+J. Am. Chem. Soc. 96 (18)
+(1974) 5701每5707. http://dx.doi.org/10.1021/ja00825a004. http://dx.doi.org/
+10.1021/ja00825a004.
+[36] D.J. Bradley, K.S. Pitzer, Thermodynamics of electrolytes. 12. Dielectric proper-
+ties of water and Debye-H邦ckel parameters to 350  C and 1 kbar, J. Phys. Chem.
+83 (12) (1979) 1599每1603.
+[37] K.S. Pitzer, J.C. Peiper, R.H. Busey, Thermodynamic properties of aqueous
+sodium chloride solutions, J. Phys. Chem. Ref. Data 13 (1) (1984) 1每102. http://
+scitation.aip.org/content/aip/journal/jpcrd/13/1/10.1063/1.555709. http://dx.
+doi.org/10.1063/1.555709.
+[38] K.S. Pitzer, A thermodynamic model for aqueous solutions of liquid-like
+density, Rev. Mineral. Geochem. 17 (1987) 97每142.
+
+[39] J.F. Zemaitis, D.M. Clark, M. Rafal, N.C. Scrivner, Handbook of Aqueous Elec-
+trolyte Thermodynamics, Wiley-AIChE. 1986.
+[40] K.H. Mistry, R.K. McGovern, G.P. Thiel, E.K. Summers, S.M. Zubair, J.H. Lienhard,
+V, Entropy generation analysis of desalination technologies, Entropy 13 (10)
+(2011) 1829每1864. http://www.mdpi.com/1099- 4300/13/10/1829. http://dx.
+doi.org/10.3390/e13101829.
+[41] S.A. Klein, G.F. Nellis, Thermodynamics, Cambridge University Press. 2011.
+[42] K.G. Nayar, M.H. Sharqawy, L.D. Banchik, J.H. Lienhard, V, Thermophysical
+properties of seawater: a review and new correlations that include pressure
+dependence, Desalination 387 (2016) 1每24. http://web.mit.edu/seawater/.
+http://dx.doi.org/10.1016/j.desal.2016.02.024.
+[43] J. Swaminathan, K.G. Nayar, J.H. Lienhard, V, Mechanical vapor compression每
+membrane distillation hybrids for
+reduced specic energy consump-
+tion, Desalin. Water Treat. 57 (55) (2016) 26507每26517.
+http://www.
+tandfonline.com/doi/full/10.1080/19443994.2016.1168579. http://dx.doi.org/
+10.1080/19443994.2016.1168579.
+[44] H.T. El-Dessouky, H.M. Ettouney, Fundamentals of Salt Water Desalination,
+Elsevier, Amsterdam, 2002.
+[45] A. Morris, The use of titanium tubes in MSF desalination plants, Desali-
+nation 31 (1) (1979) 387. http://www.sciencedirect.com/science/article/pii/
+S0011916400885392. http://dx.doi.org/10.1016/S0011- 9164(00)88539- 2.
+[46] J. Green, B. Gamson, W. Westerbaan, Experience with desalination plants
+containing titanium heat exchange tubing, Desalination 22 (1) (1977) 359每
+368. http://www.sciencedirect.com/science/article/pii/S0011916400883915.
+http://dx.doi.org/10.1016/S0011- 9164(00)88391- 5.
+[47] S.A. Klein, Engineering Equation Solver.
+[48] H.W. Chung, L.D. Banchik, J. Swaminathan, J.H. Lienhard V, On the present and
+future economic viability of stand-alone pressure-retarded osmosis, Desalina-
+tion (under review).
+[49] N.Y. Yip, A. Tiraferri, W.A. Phillip, J.D. Schiffman, L.A. Hoover, Y.C. Kim, M.
+Elimelech, Thin-lm composite pressure retarded osmosis membranes for sus-
+tainable power generation from salinity gradients, Environ. Sci. Technol. 45
+(10) (2011) 4360每4369. http://dx.doi.org/10.1021/es104325z. http://dx.doi.
+org/10.1021/es104325z.
+[50] G. Schock, A. Miquel, Mass transfer and pressure loss in spiral wound modules,
+Desalination 64 (1987) 339每352. http://www.sciencedirect.com/science/article/
+pii/001191648790107X. http://dx.doi.org/10.1016/0011- 9164(87)90107- X.
+[51] A. Achilli, T.Y. Cath, A.E. Childress, Power generation with pressure retarded
+osmosis: an experimental and theoretical
+investigation,
+J. Membr. Sci.
+343 (1每2) (2009) 42每52. http://www.sciencedirect.com/science/article/pii/
+S0376738809005134. http://dx.doi.org/10.1016/j.memsci.2009.07.006.
+[52] C. Fritzmann, J. Lwenberg, T. Wintgens, T. Melin, State-of-the-art of reverse
+osmosis desalination, Desalination 216 (1每3) (2007) 1每76.
+http://www.
+sciencedirect.com/science/article/pii/S0011916407004250. http://dx.doi.org/
+10.1016/j.desal.2006.12.009.
+[53] E.W. Tow, R.K. McGovern,
+J.H. Lienhard,
+V, Raising forward osmosis
+brine concentration eciency through ow rate optimization, Desalina-
+tion 366 (2015) 71每79.
+http://www.sciencedirect.com/science/article/pii/
+S0011916414005578. http://dx.doi.org/10.1016/j.desal.2014.10.034.
+[54] M.H. Sharqawy, L.D. Banchik, J.H. Lienhard, V, Effectiveness-mass transfer
+units (e  MTU) model of an ideal pressure retarded osmosis membrane mass
+exchanger, J. Membr. Sci. 445 (2013) 211每219. http://www.sciencedirect.com/
+science/article/pii/S0376738813005206. http://dx.doi.org/10.1016/j.memsci.
+2013.06.027.
+

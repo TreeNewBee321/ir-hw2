@@ -1,0 +1,5601 @@
+Effect of noise and harmonics on sine-wave frequency estimation by interpolated DFT algorithms based on few observed cycles 
+
+Daniel Belega 
+
+, Dario Petri 
+
+
+
+a , 
+
+b 
+
+a Department of Measurements and Optical Electronics, Politehnica University of Timi s oara, Bv. V. Prvan, Nr. 2, 300223, Timi s oara, Romania 
+b Department of Industrial Engineering, University of Trento, Via Sommarive, 14-38100, Trento, Italy 
+
+article
+
+info
+
+
+
+Article history: 
+Received 2 November 2016 
+Revised 5 April 2017 
+Accepted 21 May 2017 
+Available online 22 May 2017 
+
+Keywords: 
+Discrete Fourier Transform (DFT) 
+Error analysis 
+Interpolation 
+Sine-wave frequency estimation 
+Statistical analysis 
+Windowing 
+
+abstract
+
+In this paper the performances of two state-of-the-art Interpolated Discrete Fourier Transform (IpDFT) 
+algorithms are analyzed when sine-wave frequency must be estimated over short observation intervals. 
+The rst estimator, called enhanced IpDFT (e-IpDFT) algorithm, exploits a two-point interpolation and 
+compensates the detrimental contribution of the fundamental image component on the estimated fre- 
+quency by using an iterative procedure. The second estimator, called IpDFT-EIF algorithm, eliminates that 
+contribution by using a three-point interpolation. Both algorithms reduce the spectral leakage due to 
+time-domain truncation by weighting the acquired signal by a Maximum Sidelobe Decay (MSD) window. 
+The analysis is performed in the case of ideal, noisy, and noisy and harmonically distorted sine-waves. 
+Theoretical expressions for the estimation Mean Square Errors (MSEs) due to noise and harmonics are 
+derived and veried through simulations and experiments. The performed analysis allows the selection 
+of the best frequency estimator for given signal-to-noise-ratio, harmonic content, and number of acquired 
+cycles. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Sine-waves are used in many applications such as commu- 
+nications, instrumentation, power systems, sonar, and vibration 
+analysis. Either time-domain and frequency-domain approaches 
+have been proposed for accurate measurement of their parame- 
+ters [1] . Since frequency-domain methods exhibit both good ac- 
+curacy and low computational burden, they are often preferred to 
+time-domain methods, especially when dealing with real-time ap- 
+plications. One of the most widely adopted frequency-domain ap- 
+proaches is the so-called Interpolated Discrete Fourier Transform 
+(IpDFT) procedure. Indeed, it provides accurate estimates and it 
+is simple to implement [2¨C11] . To reduce the detrimental contri- 
+bution on the estimated parameters due to spectral interference 
+from narrow band disturbances like harmonics or spurious tones, 
+the IpDFT procedure weights the analyzed signal by a suitable win- 
+dow function. Cosine class windows are often employed since they 
+are simple to generate and their spectrum can be expressed in 
+closed form. In particular, Maximum Sidelobe Decay (MSD) win- 
+dows [6,12] are often adopted since the related IpDFT sine-wave 
+parameter estimates are expressed by simple analytical relation- 
+ships [2,5,6] . Moreover, they exhibit the highest sidelobe decay 
+rate among all the cosine windows with a given number of terms, 
+thus ensuring very good spectral leakage suppression capabilities 
+[12] . Using the IpDFT procedure, at rst the sine-wave frequency 
+is estimated by interpolating the two discrete spectrum samples 
+with the largest magnitude [4] . Then, the sine-wave amplitude and 
+phase are determined exploiting the estimated frequency value. As 
+a result, frequency estimation accuracy affects any estimated pa- 
+rameters. One of the main drawbacks of the IpDFT procedure is 
+that a minimum number of sine-wave cycles (usually at least 3 or 
+4 cycles, depending on the adopted window) needs to be analyzed. 
+Indeed, if very few sine-wave cycles are observed, as occurs for in- 
+stance when monitoring power grids [8] , frequency estimates are 
+heavily affected by the interference from both the fundamental im- 
+age component and harmonics. An enhanced two-point IpDFT al- 
+gorithm that exhibits a high rejection to the spectral interference 
+from the image component has been proposed in [8] . This algo- 
+rithm, called e-IpDFT frequency estimator in the following, is sim- 
+ilar to the one proposed in [9] , but the contribution of the funda- 
+mental image component on the spectrum samples is removed by 
+using an iterative procedure. It is worth noticing that the accuracy 
+of the e-IpDFT frequency estimator can be improved by using a 
+more accurate phase spectrum model than the one adopted in the 
+literature. Therefore, a modied e-IpDFT algorithm based on such 
+a model will be considered in the following. 
+Another approach to achieve the same goal exploits multipoint 
+frequency-domain interpolation [13¨C19] . In particular, a three- 
+point IpDFT algorithm which totally Eliminates the contribution 
+of the spectral Image of the Fundamental component (called in 
+the following IpDFT-EIF frequency estimator) has been proposed 
+in [16] and then recently extended to sine-waves affected by dc- 
+offset [19] . That algorithm provides accurate sine-wave amplitude 
+and phase estimates [17] , and outperforms the multi-point IpDFT 
+algorithms based on nite differences of the interpolation points 
+[14,15] . 
+Due to their capability of suppressing the detrimental contribu- 
+tion of the fundamental image component, the e-IpDFT and IpDFT- 
+EIF procedures are expected to provide accurate frequency esti- 
+mates when only very few signal cycles are observed. However, in 
+practice the acquired signal is usually affected by harmonics and 
+wideband noise. Unfortunately, to the best of the authors¡¯ knowl- 
+edge, the contribution of such disturbances to the e-IpDFT and 
+IpDFT-EIF frequency estimator accuracies has not been yet ana- 
+lyzed in the scientic literature. To this aim analytical expressions 
+for the Mean Square Errors (MSEs) of the returned frequency es- 
+timators are derived in this paper and then veried through both 
+simulation and experimental results. 
+The performed analysis allows the determination of the min- 
+imum number of sine-wave cycles required to ensure a speci- 
+ed IpDFT frequency estimation accuracy. It also enables a rational 
+choice of the best IpDFT frequency estimator for a given applica- 
+tion. 
+The remaining of the paper is organized as follows. In 
+Section 2 the expressions for the MSEs of the e-IpDFT and IpDFT- 
+EIF estimators due to both wideband noise and harmonics are de- 
+rived. The sensitivity to harmonics and noise of the e-IpDFT and 
+IpDFT-EIF frequency estimator MSEs are analyzed in Section 3 . 
+The e-IpDFT and IpDFT-EIF estimator accuracies are also compared 
+through both computer simulations and experimental results in 
+Section 4 . Finally, Section 5 presents some conclusions. 
+
+2. MSEs of the e-IpDFT and the IpDFT-EIF frequency estimators 
+
+2.1. Theoretical background 
+
+Let us consider the following noisy signal: 
+
+y 
+(m 
+)
+
+=
+
+ x 
+
+(m 
+)
+
++
+
+ e 
+
+(m 
+)
+
+=
+
+K (cid:2)
+=1 
+k 
+
+A k sin 
+
+(cid:3)
+
+2 
+¦Ð k 
+
+f in 
+f s 
+
+m 
+
++
+
+¦Õ
+
+k 
+
+(cid:4)
+
++
+
+ e 
+
+(m 
+)
+
+,
+
+m 
+
+=
+
+ 0 
+ 1 
+ 2 
+
+,
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ M 
+
+ 1 
+where x ( 
+) is the harmonically distorted sine-wave, composed by 
+the fundamental component (associated to k 
+ 1) and K ¨C1 harmon- 
+) is an additive white Gaussian noise with zero mean and 
+ics, e ( 
+variance 
+¦Ò 2 , and M is the number of acquired samples. In (1) A k 
+, 
+/ f s , and 
+are the amplitude, the normalized frequency, and 
+the initial phase of the k th harmonic, where f in 
+is the frequency 
+of the continuous-time signal and f s is the sampling rate. The nor- 
+malized signal frequency can be expressed as: 
+
+(1) 
+
+=
+
+kf in 
+
+¦Õ
+
+k 
+
+f in 
+f s 
+
+=
+
+¦Í
+
+M 
+
+=
+
+l 
+M 
+¦Ä is the number of acquired cycles, in which l is the 
+where 
+0.5, 0.5) is the inter-bin frequency 
+rounded value of 
+¦Í and 
+location. It is worth noticing that non-coherent sampling (i.e. 
+0) often occurs in practice. In (1) K is assumed smaller than 0.5 M/ 
+in order to avoid aliasing. 
+Observe also that (1) assumes that possible DC offset compo- 
+nent has been removed. 
+To reduce spectral leakage, the samples (1) are weighted by a 
+) [20] . The Discrete Time Fourier Transform 
+suitable window w ( 
+
++
+
+¦Ä
+
+,
+
+(2) 
+
+¦Í =
+
+ l 
+
++
+
+¦Ä ¡Ê
+
+ [ 
+
+¦Ä (cid:4)
+
+=
+
+¦Í
+
+(DTFT) of the windowed signal y w ( m ) 
+¨C 1 can be expressed as: 
+
+=
+
+ y ( m ) 
+
+w ( m ), m 
+
+=
+
+ 0, 1,¡­, M 
+
+Y w 
+
+(l 
+
++
+
+ r )
+
+=
+
+ Y w 
+
+(r )
+
+=
+
+ X w 
+
+(r )
+
++
+
+ E w 
+
+(r )
+
+=
+
+K (cid:2)
+A k 
+=1 
+k 
+
+2 j 
+
+(cid:5)
+
+W 
+(l 
+
++
+
+ r 
+
+ k¦Í )
+
+ e 
+
+¦Õ
+j 
+
+k  W 
+
+(l 
+
++
+
+ r 
+
++
+
+ k¦Í )
+
+ e 
+
+ j 
+¦Õ
+
+k 
+
+(cid:6)
+
++
+
+ E w 
+
+(r )
+
+,
+
+¡Ü l 
+0 
+
++
+
+ r 
+
+<
+
+ M 
+
+(3) 
+
+where X w ( 
+is the DFT of the weighted harmonically distorted 
+sine-wave x w ( m ) 
+is the DFT of the weighted 
+w ( m ), and W ( 
+) is the DTFT of the 
+wideband noise e w ( m ) 
+1, 
+). In (3) r is an integer, which can take the values 
+window w ( 
+0, or 1 when using the e-IpDFT or the IpDFT-EIF algorithms. 
+Moreover, the second term in the square brackets in (3) is re- 
+lated to the image of the k th spectral line. 
+The IpDFT-EIF and the e-IpDFT algorithms have been proposed 
+for the H -term MSD window, which is expressed by [12] : 
+
+) 
+
+=
+
+ x ( m ) 
+
+w ( m ), E w ( 
+) 
+
+=
+
+ e ( m ) 
+
+w (
+
+ m )
+
+=
+
+H1 (cid:2)
+=0 
+h 
+
+(1)
+
+h a h cos 
+
+(cid:3)
+
+¦Ð h 
+2 
+m 
+M 
+
+(cid:4)
+
+,
+
+ m 
+
+=
+
+ 0 
+ 1 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ M 
+
+ 1 
+
+(4) 
+
+in which [6] : a 0 
+ 1 
+ q 
+1 
+ where C 
+ [( p 
+)
+ ! q !] 
+ The two-term MSD 
+window is also known as the Hann window [12] . 
+When M 
+ 1 and | 
+¦Ë| 
+ M , the DTFT of the H -term MSD win- 
+dow can be approximated by [6] : 
+(cid:9) e 
+
+=
+
+ C 
+
+H1 
+2 H2 
+q 
+p 
+
+/
+
+ 2 
+ p ! 
+
+2 H2 and a h 
+
+=
+
+ C 
+
+Hh 
+1 
+2 H2 
+
+/
+
+ 2 
+
+2 H3 ,
+
+ h 
+
+=
+
+,
+
+ 2 
+
+,
+
+.
+
+.
+
+.
+
+,
+
+ H 
+
+,
+
+=
+
+/
+
+.
+
+>>
+
+<<
+
+W (
+
+¦Ë)
+
+=
+
+M sin (
+2 
+
+¦Ð ¦Ë)
+
+2 H2 ¦Ð ¦Ë
+
+(
+
+ 2 H 
+
+ 2 )
+
+ ! 
+
+H1 (cid:7)
+=1 
+h 
+
+(cid:8)
+
+h 
+
+2  ¦Ë2 
+
+ j¦Ð ¦Ë ,
+
+ for |
+
+¦Ë|
+
+<<
+
+ M 
+
+(5) 
+
+In the following, the number of acquired signal cycles estimated 
+by the e-IpDFT and the IpDFT-EIF algorithms will be denoted as 
+ ¦Ä2 p and  
+ 
+, respectively. 
+
+¦Í2 p 
+
+=
+
+ l 
+
++
+
+¦Í3 p 
+
+=
+
+ l 
+
++
+
+ ¦Ä3 p 
+
+2.2. MSE of the e-IpDFT frequency estimator 
+
+The e-IpDFT algorithm estimates the sine-wave frequency us- 
+ing a two-step procedure. In the rst step, called coarse-search, 
+the spectrum peak location is determined by means of a maximum 
+search procedure applied to the periodogram of the weighted sig- 
+nal y w ( 
+). When the frequency Signal-to-Noise Ratio is higher than 
+about 17 dB the probability of correct bin selection is very high [5] . 
+The second step, called ne-search, returns the inter-bin frequency 
+ ¦Ä2 p . It interpolates two weighted DFT samples using the 
+location 
+iterative procedure proposed in [8] and described in Table 1 using 
+a pseudo-code. 
+In steps 3 and 7, the function sign( z ) represents the sign of its 
+1 when z 
+¡Ý 0), 
+argument z (i.e. it is equal to 
+ 0 and 1 when z 
+and 
+
+<
+
+W 0 
+
+(
+
+¦Ë)
+
+=
+
+H1 (cid:2)
+=0 
+h 
+
+(
+
+1 )
+
+h 0 
+
+.
+
+ 5 a h 
+
+(cid:10)
+
+e 
+(
+sin 
+
+ j 
+¦Ð
+M 
+
+¦Ð
+M 
+
+h 
+
+¦Ë  h )
+
++
+
+e 
+(
+
+j 
+
+¦Ð
+M 
+
+h 
+
+sin 
+
+¦Ð
+M 
+
+¦Ë +
+
+ h )
+
+(cid:11)
+
+.
+
+(6) 
+
+It is worth noticing that the above phase estimator is more ac- 
+curate than that used in the classical IpDFT algorithm, in which the 
+ 1)
+(  ¦Ä )
+approximation M/
+(M 
+ 1 is used and the term angl e 
+is neglected [5] . 
+The e-IpDFT frequency estimation error can be expressed as: 
+
+=
+
+{
+
+ W 0 
+
+}
+
+¦Í2 p 
+
+=
+
+  
+
+¦Í2 p 
+
+ ¦Í =
+
+¦Í
+
+2 p, h 
+
++
+
+¦Í2 p, n 
+
+,
+
+(7) 
+
+where 
+¦Í
+and 
+¦Í
+represent the frequency estimation er- 
+rors due to harmonics and wideband noise, respectively. Both error 
+components 
+¦Í
+and 
+¦Í
+can be modeled as statistically in- 
+dependent random variables [7,15] since they are due to different 
+
+2 p, h 
+
+2 p, n 
+
+2 p, h 
+
+2 p, n 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+209 
+
+Table 1 
+Iterative procedure implementing the e-IpDFT frequency estimator. 
+
+Step 1: i: 
+Step 2: estimate the inter-bin frequency location 
+by the IpDFT algorithm [ 2 , 5 , 6 ] 
+Step 3: estimate the sine-wave amplitude and phase by the IpDFT algorithm [ 6 ] 
+ ¦Ð M1 
+ angl e 
+(  ¦Ä (0)
+ A 
+sign 
+(
+)
+
+=
+
+ 0 
+
+ ¦Ä (0)
+2 p 
+
+(0)
+1 
+
+=
+
+ 2 
+
+|
+
+ Y w 
+
+(0)
+ ¦Ä (0)
+2 p 
+
+|
+
+|
+
+ W (
+
+)
+
+|
+
+and 
+
+ ¦Õ (0)
+1 
+
+=
+
+ angl e 
+
+{
+
+ Y w 
+
+(0)
+
+}
+
+M 
+
+ ¦Ä (0)
+2 p 
+
+ ¦Ð
+
+2 
+
+ ¦Ä (0)
+2 p 
+
+{
+
+ W 0 
+
+2 p 
+
+)
+
+}
+
+,
+
+Step 4: i: 
+Step 5:compute the ratio: 
+
+=
+
+ i 
+
++
+
+ 1 
+
+1)
+¦Â (i 
+
+ =
+=
+
+|
+
+ Y w 
+
+(s 
+)
+
++
++
+
+1)
+(i 
+ A 
+1 
+1)
+2 j 
+(i 
+ A 
+1 
+2 j 
+
+W (2 l+
+W (2 l1+
+)
+1) | 
+ 0 if |Y w( 
+ |Y w(1) | and s 
+
+ s 
+
++
+
+1)
+ ¦Ä (i 
+2 p 
+
+)
+
+ e 
+
+1 |
+1)
+ j 
+ ¦Õ (i 
+1 |
+1)
+ j 
+ ¦Õ (i 
+
+|
+
+ Y w 
+
+1)
+(s 
+
+ s 
+
++
+
+1)
+ ¦Ä (i 
+2 p 
+
+ e 
+
+,
+
+where s 
+Step 6: determine the inter-bin frequency estimate [ 6 ]: 
+
+>
+
+=
+
+ 1 if |Y w(1) | 
+
+>
+
+ |Y w( 
+1) | 
+
+ ¦Ä (i 
+)
+2 p 
+
+=
+
+(H 
+
+1+
+
+ s 
+
+)
+
+1)
+¦Â (i 
+1)
+¦Â (i 
+
+ H 
+ +1 
+
++
+
+ s 
+
+Step 7: determine the sine-wave amplitude and phase estimates: 
+
+ A 
+
+(i 
+)
+1 
+
+=
+
+ Y w 
+ 2 
+
+|
+
+(0)
+
++
+
+1)
+(i 
+ A 
+1 
+2 j 
+
+W (2 l+
+ W (
+)
+
+ ¦Ä (i 
+)
+2 p 
+ ¦Ä (i 
+)
+2 p 
+
+)
+
+ e 
+
+1 |
+1)
+ j 
+ ¦Õ (i 
+
+|
+
+|
+
+and 
+
+ ¦Õ (i 
+)
+1 
+
+=
+ ¦Ð
+
+ angl e 
+W 
+(2 l 
+)
+ angl e 
+(  ¦Ä (i 
+sign (
+Step 8: repeat Steps 4¨C7 a predened number I of iterations. 
+
+{
+
+ Y w 
+
+(0)
+1)
+ ¦Ä (i 
+2 p 
+
++
+
+ A 
+2 j 
+
+1)
+(i 
+1 
+
++
+
+ j 
+ ¦Ä (i 
+)
+2 p 
+1)
+2 p 
+
+ e 
+
+1 }
+ ¦Õ (i 
+1)
+
+ ¦Ð M1 
+
+M 
+
+1)
+ ¦Ä (i 
+2 p 
+
+2 
+
+)
+
+{
+
+ W 0 
+
+)
+
+}
+
+,
+
+physical phenomena. Thus, the MSE of the estimator  
+¦Í2 p is given 
+by: 
+
+MSE [  
+
+¦Í2 p ] 
+
+=
+
+ E [2 ¦Í2 p 
+
+] 
+
+=
+
+ E [2 ¦Í
+
+2 p, h 
+
+] 
+
++
+
+ E [2 ¦Í2 p, n 
+
+] 
+
+,
+
+(8) 
+
+] represents the expectation operator. 
+where E[ 
+Assuming that the contribution of the spectral image compo- 
+nent on the e-IpDFT frequency estimator is negligible, following 
+the same procedure adopted in [7] we obtain: 
+
+¦Í
+
+2 p, h 
+
+=
+
+(1)
+ 1)
+(k 
+¡Á cos 
+ 1)
+¦Ð ¦Ä +
+((k 
+ 1)
+ ¦Õ1 , s 
+in which 
+ (k 
+| 
+while s 
+| 
+|, and W ( 
+¦Ë) is given by (5) . 
+Since in practice sampling is incoherent, the initial phases of 
+the fundamental component and harmonics vary randomly in sub- 
+sequent observation intervals. Thus, they can be modeled as inde- 
+pendent uniformly distributed random variables. This implies that 
+ 1)
+the factors c k 
+ cos 
+(¦Õ
+¦Ð (k 
+ 2, 3,¡­, K exhibit a U- 
+shaped probability density function (pdf) with zero mean [21] , i.e. 
+
+s ¦Í
+
+K (cid:2)
+=2 
+k 
+
+A k 
+A 1 
+
+H 
+
++
++
+
+(1)
+(1)
+
+s ¦Ä
+s H 
+
+¦Á
+
+k 
+
+|
+|
+
+ W 
+ W 
+
+(¦Á
+)
+(¦Ä )
+
+k 
+
+ |
+ |
+
+¦Õ
+
+k 
+
+)
+
+,
+
+(9) 
+
+¦Á
+
+k 
+ 1 if | Y w (1) 
+
+=
+
+ l 
+
++
+
+ k¦Ä , 
+
+¦Õ
+
+k 
+
+=
+
+ ¦Õ
+
+k 
+
+=
+
+ 0 if | Y w ( 
+1) 
+
+>
+
+ | Y w (1) 
+
+| 
+
+=
+
+>
+
+ | Y w ( 
+
+1) 
+
+=
+
+k 
+
++
+
+¦Ä )
+
+ , k 
+
+=
+
+E [ c k ] 
+
+=
+
+(¦Õ
+ E [ cos 
+
+k 
+
++
+
+ 1)
+¦Ð (k 
+
+¦Ä )] 
+
+=
+
+ 0 
+
+.
+
+(10) 
+
+Moreover, since the phases are independent it follows that: 
+
+E [ c k c l ] 
+
+=
+
+(¦Õ
+ E [ cos 
+
+k 
+
++
+
+ 1)
+¦Ð (k 
+
+¦Ä )
+
+(¦Õ
+ cos 
+
+l 
+
++
+
+ 1)
+¦Ð (l 
+
+¦Ä )] 
+
+=
+
+ 0 
+
+.
+
+(11) 
+
+Conversely when k 
+
+=
+
+ l we have: 
+
+E [ c 
+
+2 
+k 
+
+] 
+
+=
+
+ 0 
+ 5 
+
+.
+
++
+
+ 0 
+
+.
+
+ 5 E [ cos 
+(2¦Õ
+
+k 
+
++
+
+ 2 
+
+ 1)
+¦Ð (k 
+
+¦Ä )] 
+
+=
+
+ 0 
+ 5 
+
+.
+
+.
+
+(12) 
+
+Using (11) and (12) , from (9) we easily obtain: 
+
+E [2 ¦Í
+
+2 p, h 
+
+] 
+
+=
+
+ 0 
+ 5 
+
+.
+
+K (cid:2)
+¦Í 2 
+¦Ñ 2 
+=2 
+2 p 
+k 
+
+(k 
+)
+
+,
+
+(13) 
+
+where 
+
+¦Ñ2 p 
+
+(k 
+)
+
+=
+
+ 1)
+(k 
+
+A k 
+A 1 
+
+H 
+
++
++
+
+(1)
+(1)
+
+s ¦Ä
+s H 
+
+¦Á
+
+k 
+
+|
+|
+
+ W 
+ W 
+
+(¦Á
+)
+(¦Ä )
+
+k 
+
+ |
+ |
+
+,
+
+(14) 
+
+¦Í , represents 
+whose envelope, which is a decreasing function of 
+the maximum contribution of the k th harmonic to the estimated 
+frequency. 
+
+Conversely, E [2 
+
+¦Í
+2 p, n 
+
+] is expressed by [6,7] : 
+
+E [2 ¦Í2 p, n 
+
+] 
+
+=
+
+¦Ò 2 
+ 
+
+¦Í2 p 
+
+=
+
+(H 
+
+ |
+
+¦Ä |
+
+ 3)(
+¦Ä 2  |
+)
+2 [2(4 H 
+(2 H 
+ 1)
+
+¦Ä |
+
+)
+
++
+
+ 2 H 
+
+2  1] 
+
+3 
+
+¡Á ENBW 
+2 (¦Ä )
+S L 
+
+1 
+¡¤ SNR 
+M 
+
+,
+
+(15) 
+
+(2 
+¦Ò 2 )
+where SNR 
+ is the Signal-to-Noise Ratio, while the win- 
+dow Scalloping Loss SL and Equivalent Noise BandWidth ENBW 
+[6,20] are given by ( A .21 ) and ( A .22 ) reported in the Appendix, re- 
+spectively. 
+From (15) it follows that the accuracy of the estimator  
+¦Í , M , and SNR increases and H decreases. 
+creases as 
+By replacing (13) and (15) into (8) we nally achieve: 
+
+=
+
+ A 
+
+2 
+1 
+
+/
+
+¦Í2 p in- 
+
+MSE [  
+
+¦Í2 p ] 
+
+=
+
+ 0 
+ 5 
+
+.
+
+K (cid:2)
+¦Í 2 
+¦Ñ 2 
+=2 
+2 p 
+k 
+
+(k 
+)
+
++
+
+(H 
+
+ |
+
+¦Ä |
+
+ 3)(
+¦Ä 2  |
+)
+2 [2(4 H 
+(2 H 
+ 1)
+
+¦Ä |
+
+)
+
++
+
+ 2 H 
+
+2  1] 
+
+3 
+
+¡Á ENBW 
+2 (¦Ä )
+S L 
+
+1 
+¡¤ SNR 
+M 
+Expression (16) shows that the sensitivity of the frequency es- 
+timator MSE to the normalized power of the k th harmonic, i.e. 
+(k 
+)
+(k 
+)
+to A 
+. Conversely, the estimator 
+MSE sensitivity to the SNR related to the wideband noise compo- 
+/SNR . The values and the behaviors of such 
+
+.
+
+(16) 
+
+2 
+k 
+
+/A 
+
+2 
+1 
+
+is c 2 p,h 
+
+=
+
+ 0 
+ 5 
+
+.
+
+¦Í 2 ¦Ñ 2 
+2 p 
+
+ |
+
+ A k 
+
+=
+
+ A 1 
+
+nent is c 2 p,n 
+
+=
+
+¦Ò 2 
+
+¦Í
+ 
+
+2 p 
+
+sensitivities will be analyzed in Section 3 . 
+
+2.3. MSE of the IpDFT-EIF frequency estimator 
+
+The IpDFT-EIF algorithm estimates the number of acquired sig- 
+¦Í by [16] : 
+nal cycles 
+Re {
+where Re{ 
+} denotes the real operator, 
+ 1)[ 
+ l )
+(2 H 
+(H 
+(H 
+ l )
+
+ 
+
+¦Í3 p 
+
+=
+
+(cid:12)
+
+1 
+
+/
+
+2 
+
+}
+
+,
+
+(17) 
+
+1 
+
+=
+
+2 Y w 
+(1)
+
++
+
+ 2(
+
+ H 
+
+2  l 
+
+2  H )
+
+ Y w 
+
+(0)
+
++
+
++
+
+2 Y w 
+(1)
+
+ ] 
+
+,
+
+(18a) 
+
+and 
+
+2 
+
+=
+
+ 1)(
+(2 H 
+
+ Y w 
+
+(1)
+
+ 2 Y w 
+(0)
+
++
+
+ Y w 
+
+(1)
+
+)
+
+.
+
+(18b) 
+
+210 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+After some calculations, from ( 18a ) and ( 18b ) it follows that: 
+2 l )
+(H 
+H 
+
+ 
+
+¦Í3 p 
+
+=
+
+(cid:13)
+
+l 
+
+2 +
+
+ Re 
+
+(cid:14)
+
+ Y w 
+
+(1)
+(1)
+Y w 
+
++
+
+1)
+ 2(H 
+
+ Y w 
+ Y w 
+
+(0)
+
++
+
+(H 
+
++
+
+ 2 l )
+
+ Y w 
+
+(1)
+
+2 Y w 
+(0)
+
++
+
+(1)
+
+(cid:15)
+
+.
+
+(19) 
+
+Similarly to the e-IpDFT estimator, the frequency estimation er- 
+ror can be expressed as: 
+
+¦Í3 p 
+
+=
+
+  
+
+¦Í3 p 
+
+ ¦Í =
+
+¦Í
+
+3 p, h 
+
++
+
+¦Í3 p, n 
+
+,
+
+(20) 
+
+where 
+¦Í
+and 
+¦Í
+are the frequency estimation errors due to 
+harmonics and wideband noise, respectively. Thus we can write: 
+
+3 p, h 
+
+3 p, n 
+
+MSE 
+
+(cid:5)
+
+ 
+
+¦Í3 p 
+
+(cid:6)
+
+=
+
+ E 
+
+(cid:5)
+
+2 ¦Í3 p 
+
+(cid:6)
+
+=
+
+ E 
+
+(cid:5)
+
+2 ¦Í
+
+3 p,
+
+ h 
+
+(cid:6)
+
++
+
+ E 
+
+(cid:5)
+
+2 ¦Í3 p,
+
+ n 
+
+(cid:6)
+
+.
+
+(21) 
+
+In (21) , using a similar derivation as in Section 2.2 , we have (see 
+( A.9 ) in the Appendix): 
+
+E [2 ¦Í
+
+3 p, h 
+
+] 
+
+=
+
+ 0 
+ 5 
+
+.
+
+K (cid:2)
+¦Í 2 
+¦Ñ 2 
+=2 
+3 p 
+k 
+
+(k 
+)
+
+,
+
+(22) 
+
+in which: 
+
+¦Ñ3 p 
+
+(k 
+)
+
+=
+
+k 
+
+2  1 
+2  ¦Ä 2 
+A k 
+A 1 
+¦Á 2 
+2 
+k 
+
+2 
+
+H 
+
+ H 
+¦Í , represents 
+whose envelope, which is a decreasing function of 
+the maximum contribution of the k th harmonic to the estimated 
+frequency. 
+Moreover (see ( A.20 ) in the Appendix): 
+
+|
+|
+
+ W 
+ W 
+
+(¦Á
+)
+(¦Ä )
+
+k 
+
+ |
+ |
+
+,
+
+(23) 
+
+E [2 ¦Í3 p, n 
+
+] 
+
+=
+=
+
+¦Ò 2 
+ 
+
+¦Í3 p 
+
+(
+
+ H 
+
+2  ¦Ä 2 )
+2 
+2 (2 H 
+3 (H 
+2 H 
+
+8 H 
+
+1)
+ 2)
+¦Ä (¦Ä +
+
+2 ¦Í 2 
+
+{
+
+ [ H 
+
+2 +
+2 +
+2 H 
+¦Ã1 
+
+¦Ä (¦Ä +
+
+ 2 l )] 
+
+2 +
+
+ 2[ H 
+
+ ¦Ä (¦Ä +
+
+ 2 l )] 
+
+2 
+
++
+
+ 2 H 
+
++
+
+ 4 l 
+
+ 4[ H 
+
+2  ¦Ä (¦Ä +
+2  (¦Ä +
+
+ 2 l )] 
+ 2 l )
+2 ](
+
+¡Á [ H 
+¡Á ENBW 
+S L 
+2 (¦Ä )
+
++
+
+ 2 l )] 
+1 
+¡¤ SNR 
+M 
+In (24) 
+and 
+represent the correlation coecients be- 
+tween two DFT spectral samples located one bin or two bins apart, 
+respectively [6,22¨C24] . They are given by ( A .16 ) and ( A .18 ) reported 
+in the Appendix. Also, (24) shows that the accuracy of the estima- 
+¦Í3 p increases as 
+¦Í , M , and SNR increases, as already observed 
+tor  
+in [18] . It also increases as H decreases. 
+By replacing (22) and (24) into (21) we nally achieve: 
+
++
+
+ [ H 
+
+ H 
+
+2  ¦Ä 2 )
+
+¦Ã2 
+
+}
+
+,
+
+(24) 
+
+¦Ã
+
+1 
+
+¦Ã
+
+2 
+
+MSE [  
+
+¦Í3 p ] 
+
+=
+
+ 0 
+ 5 
+
+.
+
+K (cid:2)
+¦Í 2 
+¦Ñ 2 
+3 p 
+=2 
+k 
+2 +
+2 +
+2 H 
+
+(k 
+)
+
++
+
+(
+
+ H 
+
+2  ¦Ä 2 )
+2 
+2 (2 H 
+
+8 H 
+¦Ä (¦Ä +2 l )] 
+2  ¦Ä (¦Ä +
+ 4[ H 
+
+ 1)
+ ¦Ä (¦Ä +
+
+2 ¦Í 2 
+
+¡Á {
+
+ [ H 
+
+2 +
+
+ 2[ H 
+ 2 l )][ H 
+
+ 2 l )] 
+
+2 +
+
+ 2 H 
+
+3 (H 
+¦Ã1 
+
+2)
+ 2 l )] 
+¡¤ SNR 
+1 
+M 
+
++
++
+
+ 4 l 
+
+2  H 
+¦Ã2 
+
++
+
+¦Ä (¦Ä +
+
+ [ H 
+
+2  (¦Ä +
+
+ 2 l )
+2 ](
+
+ H 
+
+2  ¦Ä 2 )
+
+}
+
+ENBW 
+2 (¦Ä )
+S L 
+
+.
+
+(25) 
+
+It is worth noticing that, when l 
+ H , substituting 
+and 
+with (A.16 ) and ( A.18 ), respectively, (24) returns the variance of the 
+frequency estimator provided by the three-point IpDFT algorithm, 
+which is [15] : 
+
+>>
+
+¦Ã
+
+1 
+
+¦Ã
+
+2 
+
+E [2 ¦Í3 p, n 
+
+] 
+
+= 
+
+¦Ò 2 
+ 
+
+¦Í3 p 
+
+= 
+
+(
+
+ H 
+
+2  ¦Ä 2 )
+2 
+3 (2 H 
+
+2 H 
+¡Á ENBW 
+2 (¦Ä )
+S L 
+
+ 1)
+1 
+¡¤ SNR 
+M 
+Expression (26) shows that, when the contribution of the fun- 
+damental image component is negligible (i.e. when l 
+ H ), the 
+
+3 
+
+ 3)
+(4 H 
+
+ 1)
+ [(4 H 
+
+¦Ä 2 +
+
+ H 
+
+2 ] 
+
+.
+
+(26) 
+
+>>
+
+IpDFT-EIF estimator has almost the same accuracy as the three- 
+point IpDFT frequency estimator. Conversely, when that contribu- 
+tion is relevant, the IpDFT-EIF frequency estimator outperforms the 
+classical three-point IpDFT frequency estimator. 
+Moreover, from (25) it follows that the sensitivity of the fre- 
+quency estimator MSE to the normalized power of the k th har- 
+monic A 
+(k 
+)
+(k 
+)
+. Conversely, the esti- 
+mator MSE sensitivity to the SNR due to wideband noise compo- 
+/SNR . The behaviors of such sensitivities will 
+
+2 
+k 
+
+/A 
+
+2 
+1 
+
+is c 3 p,h 
+
+=
+
+ 0 
+ 5 
+
+.
+
+¦Í 2 ¦Ñ 2 
+3 p 
+
+ |
+
+ A k 
+
+=
+
+ A 1 
+
+nent is c 3 p,n 
+
+=
+
+¦Ò 2 
+
+¦Í
+ 
+
+3 p 
+
+be analyzed in Section 3 . 
+
+3. Sensitivity to harmonics and noise of the IpDFT frequency 
+estimator MSEs 
+
+According to (14) and (23) , the ratio c 2 p , h 
+( k ) between 
+the sensitivities of the e-IpDFT and the IpDFT-EIF frequency esti- 
+mator MSEs to the normalized power of the k th harmonic is ex- 
+pressed by: 
+
+( k )/ c 3 p , h 
+(cid:11)2 
++1 H 
+s 
+s 
+
+c 2 p,h 
+c 3 p,h 
+
+(k 
+)
+(k 
+)
+
+=
+
+¦Ñ 2 
+2 p 
+¦Ñ 2 
+3 p 
+
+(k 
+)
+(k 
+)
+
+=
+
+(cid:10)
+
+2 
+k 
+
++
+
+ 1 
+
+¦Á
+
+k 
+
++
++
+
+(1)
+(1)
+
+H 
+
++1 ¦Ä
+
+.
+
+(27) 
+
+Fig. 1 shows the above ratio for k 
+ 2, 3, and 4 as a function 
+of the number of acquired signal cycles 
+¦Í when the two-term 
+( Fig. 1 (a)) and the three-term ( Fig. 1 (b)) MSD windows are used. 
+The number of acquired signal cycles 
+¦Í takes values in the range 
+[1.51, 6) cycles with a step of 1/20. It is worth noticing that at least 
+1.5 cycles are considered because leakage suppression capabilities 
+¦Í , as it will 
+of the IpDFT-EIF algorithm prevails for lower values of 
+be shown in the next section. Observe also that a ratio smaller 
+than one means that the e-IpDFT frequency estimator is less sen- 
+sitive to the considered harmonic than the IpDFT-EIF estimator. 
+Fig. 1 shows that both frequency estimators provide accuracies 
+close to each other when the fractional frequency 
+¦Ä is positive (i.e. 
+in the intervals l 
+ 0.5, with l integer), although the IpDFT- 
+EIF estimator outperforms the e-IpDFT estimator. Conversely, when 
+¦Ä is negative, the IpDFT-EIF frequency estimator is highly sensitive 
+to harmonics, especially to the 2nd and the 3rd order ones. More- 
+over, the ratio c 2 p , h 
+( k ) decreases as H increases. 
+Fig. 2 shows the squares of the maximum contributions to the 
+(k 
+)
+(k 
+)
+estimated frequency due to the k th harmonic 
+ and 
+k 
+ 2 and 3, when assuming A k 
+, as a function of the number 
+¦Í . The two-term ( Fig. 2 (a)) and the three-term 
+of observed cycles 
+( Fig. 2 (b)) MSD windows are used. 
+As it can be seen, when the sine-wave is affected by a 2nd har- 
+monic the e-IpDFT estimator outperforms the IpDFT-EIF estimator 
+when 
+ 1 cycles, except when 2 
+ 2.5 cycles for H 
+ 2, and 
+when 2 
+ 2.5 cycles or 3 
+ 3.5 cycles for H 
+ 3, where the 
+considered estimator accuracies are close to each other. For the re- 
+maining values of 
+¦Í , the e-IpDFT estimator provides better accu- 
+0.5 
+racy in the intervals l 
+ 0.5 
+ 1, l integer (i.e. 
+ 0), 
+while the IpDFT-EIF estimator is more accurate when l 
+ 0.5 
+(i.e. 0 
+ 0.5). Conversely, when considering the contribution of 
+a 3rd harmonic the IpDFT-EIF and the e-IpDFT estimators have al- 
+most the same accuracy for both H 
+ 2 and H 
+ 3, except when 
+ H were the e-IpDFT estimator performs better. Moreover, es- 
+timators errors of both algorithms are signicant when very few 
+cycles are observed, especially when the signal is affected by a 2nd 
+harmonic, even though errors quickly decrease as 
+¦Í increases. 
+When the contribution of wideband noise to the estimation er- 
+ror dominates the effect of harmonics, (15) and (24) provide the 
+following expression for the ratio between the sensitivities to noise 
+c 2 p , n and c 3 p , n of the e-IpDFT and the IpDFT-EIF frequency estima- 
+
+=
+
+<
+
+¦Í <
+
+ l 
+
++
+
+( k )/ c 3 p , h 
+
+¦Ñ 2 
+2 p 
+
+¦Ñ 2 
+3 p 
+
+ , 
+
+=
+
+= A 1 
+
+¦Í <
+
+ H 
+
++
+
+<
+
+¦Í <
+
+=
+
+<
+
+¦Í <
+
+<
+
+¦Í <
+
+=
+
++
+
+<
+
+¦Í <
+
+ l 
+
++
+
+<
+
+¦Ä <
+
+<
+
+¦Í <
+
+ l 
+
++
+
+<
+
+¦Ä <
+
+=
+
+=
+
+¦Í <
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+211 
+
+Fig. 1. The ratio (27) between the MSE sensitivities of the e-IpDFT and the IpDFT-EIF frequency estimators when the sine-wave is affected only by the k th harmonic, k 
+3, and 4, versus 
+¦Í . Two-term (a) and three-term (b) MSD windows. 
+
+=
+
+ 2, 
+
+Fig. 2. Square of the maximum contributions of the k th harmonic 
+(k 
+)
+ and 
+¦Í when A k 
+versus 
+ 2, 3. Two-term (a) and three-term (b) MSD windows. 
+
+= A 1 , k 
+
+¦Ñ 2 
+2 p 
+
+=
+
+¦Ñ 2 
+3 p 
+
+(k 
+)
+ on the frequency estimates returned by the e-IpDFT and the IpDFT-EIF algorithms 
+
+=
+
+ 2 and 3. In addition, in Fig. 3 (b) the ratio (29) is also 
+
+for both H 
+reported. 
+As expected, Fig. 3 shows that the IpDFT-EIF algorithm has a 
+higher sensitivity to wideband noise than the e-IpDFT frequency 
+estimator (i.e. the ratio (28) is smaller than one), except when 
+¦Ä is 
+sampling is quasi-coherent (i.e. the fractional bin deviation 
+close to 0). Indeed, the sensitivity of IpDFT frequency estimators to 
+wideband noise increases as the number of interpolation points in- 
+creases [15] . Fig. 3 also shows that the MSE sensitivity ratio slightly 
+¦Í (Fig. 3 (a)), 
+decreases as H increases. Moreover, for small values of 
+the maximum values of the sensitivity ratio slightly increases as 
+increases, while it remains almost constant for 
+ 8. In addition, 
+for the values of 
+¦Í considered in Fig. 3 (b), (28) and (29) return al- 
+most the same results, i.e. the sensitivity ratio is almost indepen- 
+dent of l . 
+
+¦Í >
+
+¦Í
+
+tor MSEs, respectively: 
+
+=
+
+c 2 p,n 
+c 3 p,n 
+
+E [2 ¦Í2 p, n 
+E [2 ¦Í3 p, n 
+
+] 
+
+] 
+
+= 
+
+¦Í2 p 
+
+¦Ò 2 
+ 
+¦Ò 2 
+ 
+
+¦Í3 p 
+
+= 
+
+2 ¦Í 2 
+
+ 3)(
+8 H 
+2(4 H 
+ 1 
+2 H 
+(H 
+
++
+
+¦Ä 2  |
+
+¦Ä |
+¦Ä |
+
+)
+
+|
+
+2 
+
++
+
+)
+
+2  1 
+
+ 2 H 
+
+¡Á {
+
++
++
+
+ [ H 
+
+2 +
+2 +
+2 H 
+
+2 +
+
+¦Ä (¦Ä +
+2  ¦Ä (¦Ä +
+
+ 2 l )] 
+
+ 4 [ H 
+
+ 4 l 
+
+2  (¦Ä +
+
+ [ H 
+
+ 2 l )
+
+2 ] 
+
+(
+
+2  ¦Ä 2 )
+
+ H 
+
+ 2 [ H 
+
+ 2 l )] [ H 
+
+2  ¦Ä (¦Ä +
+
+2  H 
+¦Ã2 
+
+1 .
+
+}
+
+2 +
+
+ 2 l )] 
+
++
+
+¦Ä (¦Ä +
+
+ 2 H 
+
+3 (H 
+¦Ã1 
+
+ 2 l )] 
+
+ 2)
+
+(28) 
+
+Usually that situation occurs when the number of observed cy- 
+cles 
+¦Í is much greater than the window order H . In that case 
+E [2 ¦Í
+] is given by (26) , and (28) becomes: 
+
+3 p, n 
+
+=
+
+c 2 p,n 
+c 3 p,n 
+
+] 
+
+¦Í2 p 
+
+=
+
+=
+
+¦Ò 2 
+ 
+¦Ò 2 
+ 
+
+E [2 ¦Í2 p, n 
+E [2 ¦Í3 p, n 
+
+2 H 
+] 
+(H 
+ 3)(
+¦Ä 2  |
+¡Á 2(4 H 
+)
+ 3)
+ 1)
+(4 H 
+ [(4 H 
+
++
++
+
+¦Ä |
+
+¦Í3 p 
+
+|
+
+3 
+
+¦Ä |
+
+¦Ä 2 +
+
+ 2 H 
+ H 
+
+)
+
+2 
+2  1 
+2 ] 
+
+.
+
+Fig. 3 shows the ratio (28) as a function of the number of ob- 
+served cycles 
+¦Í in the range [3, 9) ( Fig. 3 (a)) and [31, 37) ( Fig. 3 (b)), 
+
+In this section the accuracies of the e-IpDFT and the IpDTFT- 
+EIF frequency estimators are compared to each other through both 
+
+(29) 
+
+4. Computer simulations and experimental results 
+
+212 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+¦Í in the range [3, 9) cycles (a) and [31, 37) cycles (b). Both 
+Fig. 3. Ratio (28) between the MSE sensitivities of the e-IpDFT and the IpDFT-EIF due to wideband noise versus 
+two-term ( H 
+ 2) (a) and three-term ( H 
+ 3) (b) MSD windows are considered. In gure (b) the values returned by (29) are also reported. 
+
+=
+
+=
+
+<
+
+¦Í <
+
+As it can be seen, the best accuracy is ensured by the IpDFT- 
+EIF frequency estimator. When 0.5 
+ 1.5 cycles the e-IpDFT fre- 
+quency estimator exhibits poor accuracy. Conversely, the IpDFT-EIF 
+algorithm provides very accurate estimates also when observing 
+less than one cycle. Indeed, when such a low number of cycles 
+is observed, sine-wave amplitude and phase estimates involved in 
+the e-IpDFT algorithm are quite inaccurate due to strong interfer- 
+ence from the fundamental image component. The e-IpDFT and 
+the IpDFT-EIF estimators provide a comparable accuracy when at 
+least about 5 cycles are observed. Observe also that the MSE of 
+the IpDFT-EIF estimator essentially depends only on the fractional 
+part of the number of observed cycles 
+¦Ä . This occurs because the 
+IpDFT-EIF algorithm completely removes the effect of the funda- 
+mental image component and the residual error is due only to the 
+approximated relationship (5) . Conversely, the MSE of the e-IpDFT 
+frequency estimator decreases as 
+¦Í increases since the related im- 
+age component rejection capability depends on the accuracies of 
+the other estimated sine-wave parameters, which increases as the 
+number of observed signal cycles increases. 
+
+=
+
+=
+
+¦Ð 2 M 
+
+SNR ) and (- c 3 p , n 
+
+4.1.2. Noisy sine-waves 
+Fig. 5 shows the MSEs of the considered frequency estimators 
+returned by both theory ( eqs. (15) and (24) ) and simulations. It 
+is worth noticing that, under the considered testing conditions, 
+SNR ), 
+(15) and (24) returns the expressions (- c 2 p , n 
+that is they are proportional to the sensitivity to noise of the e- 
+IpDFT and the IpDFT-EIF frequency estimator MSEs, respectively. 
+They are reported as a function of the number of acquired cycles 
+¦Í when SNR 
+ 30 dB ( Fig. 5 (a)) and SNR 
+ 60 dB ( Fig. 5 (b)). The re- 
+lated single tone CRLB for unbiased estimators, equal to 
+(¦Ò 2 ¦Í )
+¡¤ SNR 
+(
+)
+3 
+ [5] , is also reported for comparison. The simulation 
+conditions are the same as in Fig. 4 , except that the signal is cor- 
+rupted by wideband noise. 
+When 0.5 
+ 1.5 cycles, the IpDFT-EIF estimator returns good 
+results while the e-IpDFT estimator exhibits very poor accuracy. 
+That behavior is not explained by theoretical results. Indeed, as 
+Fig. 4 shows, when considering very short intervals, the results 
+returned by the e-IpDFT algorithm are strongly affected by the 
+residual contribution of the image component. Conversely, when 
+ 1.5 cycles and SNR 
+ 30 dB or 
+ 2 cycles and SNR 
+ 60 dB, 
+both estimators exhibit a very good agreement between theoret- 
+ical and simulation results. That behavior occurs because the con- 
+
+= 
+
+¦Í >
+
+<
+
+¦Í <
+
+/
+
+¦Í >
+
+ CR 
+
+=
+
+=
+
+Fig. 4. MSE of the frequency estimates returned by the e-IpDFT and the IpDFT-EIF 
+algorithms based on the Hann window versus 
+¦Í . Ideal sine-waves. 
+
+computer simulations and experimental results. Only two itera- 
+tions are considered (i.e. I 
+ 2 in Table 1 ) in the e-IpDFT algorithm 
+since they suce to almost reach the asymptotic accuracy. The 
+Hann window has been employed in all estimators. 
+
+=
+
+4.1. Simulation results 
+
+=
+=
+
+Simulation runs with M 
+ 512 samples were considered. The 
+sine-wave amplitude was A 1 
+ 1, while the number of acquired sig- 
+¦Í was varied in the range (0.5, 6) cycles. For each vary- 
+nal cycles 
+ing parameter, 10 0 0 runs were generated by choosing at random 
+the phases of each signal component. In the following the accura- 
+cies ensured by the considered frequency estimators are compared 
+in the case of pure, noisy, and noisy and harmonically distorted 
+sine-waves. 
+
+4.1.1. Pure sine-waves 
+Fig. 4 shows the MSE of the e-IpDFT and the IpDFT-EIF fre- 
+quency estimators as a function of the number of acquired signal 
+¦Í in the range [0.51, 6) cycles with a step of 0.05 cycles. The 
+cycles 
+input signal is an ideal sine-wave. 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+213 
+
+¦Í . Noisy sine-waves 
+Fig. 5. MSE of the frequency estimates returned by the e-IpDFTand the IpDFT-EIF algorithms based on the Hann window and the theoretical CRLB versus 
+with SNR 
+ 30 dB (a) and SNR 
+ 60 dB (b). Values returned by (15) and (24) , and simulation results are reported. 
+
+=
+
+=
+
+Fig. 6. MSE of the frequency estimates returned by the e-IpDFT and the IpDFT-EIF algorithms based on the Hann window and the theoretical CRLB versus SNR . Noisy 
+sine-waves with 
+ 1.6 cycles (a) and 
+ 2.3 cycles (b). Values returned by (15) and (24) , and simulation results are reported. 
+
+¦Í =
+
+¦Í =
+
+¦Í2 p ] 
+
+¦Í3 p ] for 
+
+tribution due to wideband noise largely prevails over the effect 
+of the fundamental image component. In these situations, as ex- 
+pected from theory, the e-IpDFT algorithm outperforms the IpDFT- 
+EIF algorithm, except in quasi-coherent sampling conditions. Also, 
+it can be seen that when 
+ 1.5 cycles the maxima of MSE [  
+0.5. More- 
+are reached for 
+ 0, while those of MSE [  
+over, it can observed that the MSEs of all the considered frequency 
+estimators are greater than the CRLB due to windowing [6,15] . 
+Fig. 6 shows the MSEs of the considered frequency estima- 
+tors returned by theory ( eqs. (15) and (24) ) and simulations as a 
+function of SNR when 
+ 1.6 cycles ( Fig. 6 (a)) and 
+ 2.3 cycles 
+( Fig. 6 (b)). The related CRLBs for unbiased estimators are also re- 
+ported for comparison. The SNR was varied in the range [0, 100] 
+dB with a step of 5 dB. 
+As it can be observed the IpDFT-EIF frequency estimator does 
+not suffer from the interference due to the fundamental image 
+¦Í and SNR . When 
+component for all the considered values of 
+ 1.6 cycles the e-IpDFT frequency estimator outperforms the 
+¡Ý 65 dB it 
+IpDFT-EIF algorithm when SNR 
+ 55 dB, while for SNR 
+is heavily affected by the residual effect of the fundamental image 
+
+¦Í =
+
+¦Í =
+
+¦Í =
+
+¦Í >
+
+¦Ä =
+
+¦Ä =
+
+<
+
+¦Í =
+
+component. Conversely, when 
+ 2.3 cycles the above detrimental 
+effect is negligible in the whole range of considered SNR values. 
+Moreover, the MSEs of both frequency estimators are close to each 
+other. 
+
+4.1.3. Noisy and harmonically distorted sine-waves 
+Fig. 7 shows the MSEs of the considered frequency estimators 
+returned by both theory ( eqs. (16) and (25) ) and simulations ver- 
+¦Í when considering a noisy and 
+sus the number of acquired cycles 
+harmonically distorted sine-wave. The SNR equal to 60 dB, while 
+the Total Harmonic Distortion ( THD ), equal to 5%, is due to the 
+2nd, 3rd, and 4th harmonics with amplitudes in the ratios 4:2:1 
+( Fig. 7 (a)) or 2:4:1 ( Fig. 7 (b)), respectively. The simulation condi- 
+tions are the same as in Fig. 4 , except that the signal is corrupted 
+by both wideband noise and harmonics. The related single tone 
+CRLB for unbiased estimators is also shown in Fig. 7 . 
+In the considered examples the contribution of harmonics gen- 
+erally prevails over those due to the fundamental image compo- 
+nent and wideband noise since their effect on the estimated fre- 
+quency is not effectively rejected by the algorithms. As expected, 
+
+214 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+¦Í . Noisy and 
+Fig. 7. MSE of the frequency estimates returned by the e-IpDFT and the IpDFT-EIF algorithms based on the Hann window and the theoretical CRLB versus 
+harmonically distorted sine-waves with SNR 
+ 60 dB and THD 
+ 5% due to 2nd, 3rd, and 4th harmonics, with amplitudes in the ratios 4:2:1 (a) and 2:4:1 (b). Values returned 
+by (16) and (25) , and simulation results are reported. 
+
+=
+
+=
+
+<
+
+<
+
++
+
+ l 
+
+<
+
++
+
++
+
+ l 
+
+<
+
+¦Í <
+
+<
+
+¦Í <
+
+¦Í <
+
+¦Í <
+
+¦Í <
+
+¦Í >
+
+Fig. 7 shows that the IpDFT-EIF algorithm outperforms the e-IpDFT 
+algorithm when 0.5 
+ 1.5 cycles. Also, the IpDFT-EIF algorithm 
+MSEs returned by theory and simulations are very close to each 
+¦Í , while theory explains the e- 
+other for all considered values of 
+IpDFT algorithm MSEs only when 
+ 1.5 cycles. When the 2nd 
+harmonic prevails ( Fig. 7 (a)), the same behavior as in Fig. 2 (a) 
+is achieved. Thus, the e-IpDFT frequency estimator outperforms 
+the IpDFT-EIF one for 
+ 3 cycles, except when 2 
+ 2.5 cycles, 
+where both estimators exhibit almost the same accuracy. When 
+3 
+ 6 cycles the e-IpDFT estimator provides better accuracy in 
+the intervals l 
+ 0.5 
+ 1, l integer, while the IpDFT-EIF esti- 
+mator is more accurate when l 
+ 0.5. It is worth noticing 
+that due to the smaller contribution of the 3rd and 4th harmon- 
+ics behaviors very similar to those reported in Fig. 7 (a) are ob- 
+tained when the signal THD is due only a 2nd harmonic of am- 
+plitude 0.05. The MSE behavior reported in Fig. 7 (b) is the same as 
+in Fig. 7 (a), even though the third harmonic overcomes the second 
+one. Indeed, the 2nd harmonic contribution dominates due to its 
+closeness to the fundamental component. 
+Many other simulations have been performed for different THD 
+values. MSE behaviors very similar to those reported in Fig. 7 have 
+been observed as long as the harmonic contribution overcomes the 
+effect of wideband noise. Conversely, when wideband noise pre- 
+vails, behaviors like those reported in Fig. 5 have been obtained. 
+
+¦Í <
+
+4.2. Experimental results 
+
+=
+
+=
+
+Sine-waves were generated by an Agilent 33220A signal gen- 
+erator, which was used as arbitrary waveform generator through 
+the Waveform Editor software. The generated waveforms were ac- 
+quired by means of an NI6023E acquisition board with sampling 
+rate f s 
+ 100 kHz and Full Scale Range FSR 
+ 10 V. The sine-wave 
+amplitude was set to 2 V and the frequencies were varied in the 
+range [300, 580] Hz with a step of 20 Hz. Since records of M 
+ 512 
+samples were acquired, the number of analyzed sine-wave cycles 
+varied in the range (1.5, 3.0) cycles. For each frequency value 10 0 0 
+subsequent runs were analyzed with initial phases varying at ran- 
+dom. Three kinds of test signals were considered. The rst test 
+signal was a sine-wave with a SIgnal-to-Noise And Distortion ra- 
+tio SINAD of about 52 dB. Noisy and harmonically distorted sine- 
+waves were then obtained by adding to that sine-wave a 2nd, 
+3rd, and 4th harmonics with amplitudes in the ratios of about 
+
+=
+
+Fig. 8. Standard deviation of the frequency estimates returned by the e-IpDFT and 
+the IpDFT-EIF algorithms based on the Hann window and the estimated square root 
+of the CRLB versus 
+¦Í . Real noisy sine-waves with SINAD 
+ 52 dB. Sine-wave fre- 
+quency in the range [300, 580] Hz. 
+
+=
+
+4:2:1 or 2:4:1 and chosen in such a way that the signal THD was 
+about 5%. In the case of noisy sine-waves, frequency, and SINAD 
+parameters were estimated by means of the four-parameter sine- 
+t (4PSF) algorithm [26] . When considering noisy and harmonically 
+distorted sine-waves the multi-harmonic sine-t (MHSF) algorithm 
+was used to estimate frequency, fundamental component and har- 
+monic phases, SINAD , and THD parameters [27] . Six iterations were 
+performed in both sine-t algorithms. They were adopted since 
+they provide the maximum likelihood estimators (MLEs) when the 
+input signal is corrupted by additive white Gaussian noise, so en- 
+suring estimator variances very close to the CRLB [28] . 
+Fig. 8 shows the standard deviations of the frequency estimates 
+returned by the e-IpDFT and the IpDFT-EIF algorithms and the 
+square root of the estimated CRLB as a function of the number 
+¦Í in the case of noisy sine-waves. The value 
+of analyzed cycles 
+of 
+¦Í was determined as the sample mean of 10 0 0 frequency esti- 
+mates returned by the 4PSF algorithm. The square root of the CRLB 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+215 
+
+Fig. 9. Standard deviation of the frequency estimates returned by the e-IpDFT and the IpDFT-EIF algorithms based on the Hann window and the estimated square root of 
+¦Í . Real noisy and harmonically distorted sine-waves with SINAD 
+the CRLB versus 
+ 52 dB and THD 
+ 5%; 2nd, 3rd, and 4th harmonics, with amplitudes in the ratios of about 
+4:2:1 (a) and 2:4:1 (b). Sine-wave frequency in the range [300, 580] Hz. 
+
+=
+
+=
+
+<
+
+¦Í <
+
+was evaluated by considering the standard deviations of these es- 
+timates. 
+Fig. 8 shows that the e-IpDFT frequency estimator outper- 
+¦Í is close to 1.5 cycles and 
+forms the IpDFT-EIF algorithm when 
+2 
+ 2.7 cycles. For the remaining values of 
+¦Í , the IpDFT-EIF 
+frequency estimator outperforms the e-IpDFT frequency estimator. 
+That behavior almost agrees with simulation results reported in 
+Fig. 5 . Also, the variances of both analyzed frequency estimators 
+are greater than the related CRLB, mainly due to windowing. 
+Fig. 9 shows the standard deviations of the frequency estimates 
+returned by the considered algorithms and the estimated square 
+¦Í in the case of noisy and har- 
+root of the CRLB as a function of 
+monically distorted sine-waves. The value of 
+¦Í was determined as 
+the sample mean of 10 0 0 estimates returned by the MHSF algo- 
+rithm and the square root of the CRLB was evaluated by consider- 
+ing the standard deviations of these estimates. 
+Fig. 9 shows that the e-IpDFT frequency estimator outper- 
+forms the IpDFT-EIF algorithm in most considered situations, ex- 
+cept when 2 
+ 2.5 cycles, where the latter estimator performs 
+slightly better. Also, the standard deviations reported in Fig. 9 (b) 
+are smaller than those in Fig. 9 (a) due to the smaller amplitude 
+of the 2nd harmonic of the test signal. Moreover, as expected, the 
+variances of both the e-IpDFT and the IpDFT-EIF frequency estima- 
+tors are higher than the related CRLB even in this case. Observe 
+also that the above results are very similar to those returned by 
+simulations and reported in Fig. 7 . 
+
+¦Í <
+
+<
+
+4.3. Processing times 
+
+The processing times required by the considered frequency es- 
+timators when implemented in Matlab 7.1 environment were com- 
+pared to each other. The DFT was implemented using the dening 
+formula (direct implementation) and the location of the DFT spec- 
+trum peak was assumed a priori known. The programs were run- 
+ning on a portable computer provided with a 2.6 GHz processor, 4 
+GB RAM memory, equipped with a Microsoft Windows 8.1 operat- 
+ing system. The average processing times required to obtain 10,0 0 0 
+frequency estimates were 0.27 ms or 0.25 ms when using the e- 
+IpDFT algorithm implemented with two iterations or the IpDFT-EIF 
+algorithm, respectively. Thus, the analyzed frequency estimators re- 
+quire comparable processing effort s. 
+
+5. Conclusions 
+
+<
+
+<
+
+¦Í <
+
+¦Í >
+
+¦Í <
+
+This paper analyzes the accuracies of the e-IpDFT [8] and the 
+IpDFT-EIF [16] frequency estimators through theoretical, simula- 
+tion, and experimental results in the case when few signal cy- 
+cles of ideal, noisy, and noisy and harmonically distorted sine- 
+waves are acquired. Novel analytical expressions for the contri- 
+bution of both harmonics and wideband noise to the estimator 
+MSEs have been derived. It has been shown that when 0.5 
+ 1.5 
+signal cycles are observed, the IpDFT-EIF estimator provides a 
+much better accuracy than the e-IpDFT estimator. For 
+ 1.5 cy- 
+cles, when the effect of harmonics prevails over the fundamen- 
+tal image component and wideband noise, the e-IpDFT estimator 
+outperforms the IpDFT-EIF one almost everywhere in the range 
+1.5 
+ 3 cycles when the fractional part of the observed signal 
+cycles is negative, while the IpDFT-EIF provides slightly better ac- 
+curacy in the remaining situations. Thus, even though the IpDFT- 
+EIF algorithm eliminates the contribution of the fundamental im- 
+age component it does not consistently outperform the e-IpDFT al- 
+gorithm, mainly because the higher number of points used in the 
+frequency-domain interpolation. When the contribution of wide- 
+band noise overcomes the effects of the fundamental image com- 
+ponent and harmonics, the e-IpDFT frequency estimator outper- 
+forms the IpDFT-EIF algorithm, except in quasi-coherent sampling 
+conditions, where the IpDFT-EIF estimator provides better accuracy. 
+It has also been shown that the processing times of both the e- 
+IpDFT algorithm implemented with two iterations and the IpDFT- 
+EIF frequency estimator are very close to each other. The obtained 
+theoretical results have been conrmed through simulation and 
+experimental results. 
+The MSE expressions derived in this work allow the selection of 
+the best sine-wave frequency estimator among the e-IpDFT and the 
+IpDFT-EIF algorithms when signal-to-noise-ratio, harmonic content 
+and number of acquired signal cycles are given or can be esti- 
+mated. 
+
+Appendix 
+
+Derivation of the expression for MSE [  
+From (5) the following equalities can be established: 
+
+¦Í3 p ] 
+
+216 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+W (
+
+1 
+
+ ¦Á
+
+k 
+
+)
+
+=
+
+¦Á
+
+k 
+
+ H 
+W (
+ 1 
+ H 
+W (
+ 1)
+where 
+ (k 
+ k¦Ä,
+The contribution due to the harmonic images is negligible as 
+compared to the other terms due to their greater frequency dis- 
+tance from the DFT samples considered by the algorithms. Thus, 
+from (3) and the equalities ( A.1 ) after some algebra we achieve: 
+ 2 l )
+ 1)
+H (H 
+ 2 H (H 
+ 1)(
+¦Ä 2 +
+2 H (2 H 
+ 2 l¦Ä )
+2 j 
+H 
+ 1)(
+2 H (2 H 
+2 j 
+(2 l 
+¦Ä )
+ 1)(¦Á 2 
+2 H (2 H 
+ H 
+2 j 
+ 2 l )
++ 2 H (H 
+ 1)
+ H (H 
+
++
+
+ 1 
+ H 
+ H 
+
+¦Á
+
+k 
+
++
+
+¦Á
+
+k 
+
+)
+
+,
+
+W (
+
+ 1 
+
+ ¦Á
+
+k 
+
+)
+
+=
+
+¦Á
+
+k 
+
++
+
+¦Á
+
+k 
+
+¦Á
+
+k 
+
+)
+
+,
+
+(A.1) 
+
+¦Á
+
+k 
+
+=
+
+ l 
+
++
+
+ k 
+
+=
+
+ 1 
+ 2 
+
+,
+
+,
+
+.
+
+.
+
+.
+
+,
+ K.
+
+ Y w 
+
+(1)
+
++
+
+ Y w 
+
+(0)
+
++
+
+ H (H 
+
++
+
+ 2 l )
+
+ Y w 
+
+(1)
+
+=
+
+ A 1 
+
+2  ¦Ä 2 
+
+W 
+
+(¦Ä )
+
+ e 
+
+j 
+
+¦Õ1 
+
+ A 1 
+K (cid:2)
+A k 
+=2 
+k 
+
+¦Ä 2 +
+
+ 2 l¦Ä )
+
++
+
+2  H 
+2 
+
+W 
+(2 l 
+
++
+
+¦Ä )
+
+ e 
+
+ j 
+
+¦Õ1 
+
++
+
+k 
+2 
+
++
+
+ 2 l 
+
+¦Á
+
+k 
+
+)
+
+¦Á 2 
+k 
+
+W 
+
+(¦Á
+
+k 
+
+)
++ H (H 
++ 2 l )
+
+ e 
+
+¦Õ
+j 
+
+k 
+
++
+
+ E w 
+
+(1)
+
+ E w 
+
+(0)
+
+ E w 
+
+(1)
+
+,
+
+ (A.2) 
+
+and 
+
+ 2 Y w 
+Y w 
+(1)
+(0)
+ A 1 
+2  ¦Ä 2 
+K (cid:2)
+A k 
+=2 
+k 
+
++
+
+ Y w 
+
+(1)
+
+=
+
+1)
+2 H (2 H 
+2 j 
+H 
+
+W 
+ 1)
+2 H (2 H 
+ H 
+2 j 
+
+(¦Ä )
+
+ e 
+
+¦Õ1  A 1 
+j 
+
+1)
+2 H (2 H 
+(2 l + ¦Ä )
+2 j 
+
+2  H 
+2 
+ 2 E w 
+(0)
+
+W 
+(2 l 
+
++
+
+¦Ä )
+
+ e 
+
+ j 
+
+¦Õ1 
+
++
+
+¦Á 2 
+k 
+
+2 
+
+W 
+
+(¦Á
+
+k 
+
+)
+
+ e 
+
+¦Õ
+j 
+
+k +
+
+ E w 
+
+(1)
+
++
+
+ E w 
+
+(1)
+
+.
+
+(A.3) 
+
+Since 
+
+|
+
+(cid:16)
+
+ K 
+
+=2 
+k 
+
+2 ¦Ä 2 
+A k 
+A 1 
+¦Á2 
+2 
+k 
+
+H 
+H 
+
+(¦Á
+W 
+)
+(¦Ä )
+W 
+
+k 
+
+e 
+
+j¦Õ
+
+k +
+
+(2 l+
+W 
+¦Ä )
+(¦Ä )
+W 
+
+e 
+ ¦Õ1 , and using 
+
+ j2 
+¦Õ
+
+1 
+
+ E w 
+2 E w 
+(1)
+1)
+(0)
+H 
+(2 H 
+j A 1 
+2 ¦Ä2 
+H 
+
++
+
+ E w 
+
+(1)
+¦Õ
+¦Í 2 e 
+j 
+1 
+
+(¦Ä )
+W 
+
+|
+
+<<
+
+ 1 , where 
+
+¦Õ
+
+k 
+
+=
+
+ ¦Õ
+
+k 
+
+ x 
+(1 
+)
+the relationship 
+between ( A.2 ) and ( A.3 ) becomes: 
+
+1 =
+
+ 1 
+
++
+
+ x,
+
+ when | x | 
+
+<<
+
+ 1, the ratio 
+
+H (H 2 l )
+
+ Y w 
+
+(1)
+(1)
+Y w 
+
++
+
+ 2 H (H 1)
+
+ Y w 
+ Y w 
+
+(0)
+
++
+
+ H (H +
+ 2 l )
+
+ Y w 
+
+(1)
+
+2 Y w 
+(0)
+
++
+
+(1)
+
+= 
+
+(cid:10)
+
+¦Ä 2 +
+ 2 l¦Ä +
+
+(
+
+¦Ä 2 +
+ 2 l¦Ä )
+
+W 
+(2 l 
+¦Ä )
+(¦Ä )
+W 
+
++
+
+e 
+
+ j2 
+¦Õ
+1 
+
++
+
+K (cid:2)
+2  ¦Ä 2 
+A k 
+=2 
+A 1 
+¦Á 2 
+2 
+k 
+k 
+
+H 
+
+ H 
+ 2 l )
+H (H 
+
+(¦Á 2 
+ 2 l 
+¦Á
+
+k 
+
+k 
+
+)
+
+(¦Á
+W 
+)
+(¦Ä )
+W 
++ 2 H (H 
+ 1)
++ H (H 
++ 2 l )
+(¦Ä )
+W 
+
+k 
+
+e 
+
+j¦Õ
+k 
+
++
+
+ E w 
+
+(1)
+1)
+H 
+(2 H 
+j A 1 
+2 ¦Ä2 
+H 
+
+ E w 
+
+(0)
+¦Í 2 e 
+j 
+¦Õ
+K (cid:2)
+1 
+2  ¦Ä 2 
+A k 
+A 1 
+¦Á 2 
+2 
+=2 
+k 
+k 
+
+ E w 
+
+(1)
+
+(cid:17)
+
+¡Á
+
+(cid:18)
+
+ W 
+(2 l 
+¦Ä )
+(¦Ä )
+1 
+W 
+
++
+
+e 
+
+ j2 
+1 +
+¦Õ
+
+H 
+
+ H 
+
+(¦Á
+W 
+)
+(¦Ä )
+W 
+
+k 
+
+e 
+
+j¦Õ
+k 
+
+ 2 E w 
+ E w 
+(1)
+(0)
+1)
+j A 1 
+H 
+(2 H 
+2 ¦Ä2 
+H 
+
++
+
+ E w 
+
+(1)
+¦Õ
+¦Í 2 e 
+j 
+1 
+
+(¦Ä )
+W 
+
+(cid:17)
+
+= 
+
+ 2 l¦Ä  K (cid:2)
+¦Ä 2 +
+2  1)
+(H + ¦Ä )(H  ¦Ä 2 l )
+
+=2 
+k 
+
+(
+
+ k 
+
+2  ¦Ä 2 
+¦Í 2 
+A k 
+A 1 
+¦Á 2 
+2 
+k 
+2 +
+1)
+j A 1 
+H 
+(2 H 
+2 ¦Ä2 
+H 
+
+H 
+
+(¦Á
+W 
+)
+ H 
+(¦Ä )
+W 
+¦Ä 2 H +2 l¦Ä )
+(¦Ä )
+W 
+
+k 
+
+e 
+
+j¦Õ
+k 
+
++
+
+ E w 
+
+(1)
+
++2(
+
+ H 
+
+ E w 
+ e 
+
+(0)
+
++ (H  ¦Ä )(H + ¦Ä +2 l )
+
+ E w 
+
+(1)
+
+¦Õ
+j 
+1 
+
+,
+
+(A.4) 
+
+where in the last expression only the most signicant terms are 
+considered. 
+By replacing (A.4 ) in (19) we achieve: 
+
+ 
+
+¦Í3 p 
+
+=
+
+¦Í
+
+(cid:19)
+
+ Re 
+1 
+
+(cid:20)
+
+K (cid:2)
+=2 
+k 
+
+(
+
+ k 
+
+2  1)
+
+2  ¦Ä 2 
+A k 
+A 1 
+¦Á 2 
+2 
+k 
+
+H 
+
+W 
+ H 
+W 
++ 2(
+
+(¦Á
+)
+(¦Ä )
+
+k 
+
+e 
+
+j¦Õ
+
+k 
+
+(cid:21)
+
++
+
+ Re 
+
+(cid:20)
+
+(H 
+
++
+
+ ¦Ä  2 l )
+¦Ä )(H 
+
+ E w 
+
+(1)
+
+ H 
+
+2 +
+1)
+H 
+(2 H 
+j A 1 
+H 
+
+¦Ä 2  H 
++ 2 l¦Ä )
+(¦Ä )
+
+ E w 
+
+(0)
+
++ (H 
+ ¦Ä )(H 
++ ¦Ä + 2 l )
+
+ E w 
+
+(1)
+
+2 ¦Ä 2 W 
+
+¦Í 2 e 
+j 
+
+¦Õ1 
+
+(cid:21)
+(cid:22)
+
+ 1 
+ 2 
+
+/
+
+.
+
+(A.5) 
+
+Remembering that 
+
+¡Ì
+
+1 
+
++
+
+ x 
+
+= 1 
+
++
+
+ x/
+
+ 2 
+
+,
+
+ when | x | 
+
+<<
+
+ 1, we obtain: 
+
+¦Í3 p 
+
+=
+
+  
+
+¦Í3 p 
+
+ ¦Í =
+
+ ¦Í
+
+Re 
+2 
+
+(cid:20)
+
+K (cid:2)
+=2 
+k 
+
+(
+
+ k 
+
+2  1)
+
+2  ¦Ä 2 
+A k 
+A 1 
+¦Á 2 
+2 
+k 
+
+H 
+
+ H 
++ 2(
+
+W 
+W 
+
+(¦Á
+)
+(¦Ä )
+
+k 
+
+e 
+
+j¦Õ
+
+k 
+
+(cid:21)
+
++
+
+1 
+¦Í Re 
+2 
+
+(cid:20)
+
+(H 
+
++
+
+ ¦Ä  2 l )
+¦Ä )(H 
+
+ E w 
+
+(1)
+
+ H 
+
+2 +
+1)
+H 
+(2 H 
+j A 1 
+H 
+
+¦Ä 2  H 
++ 2 l¦Ä )
+(¦Ä )
+
+ E w 
+ e 
+
+(0)
+
++ (H 
+ ¦Ä )(H 
++ ¦Ä + 2 l )
+
+ E w 
+
+(1)
+
+2 ¦Ä 2 W 
+
+j 
+
+¦Õ1 
+
+(cid:21)
+
+.
+
+(A.6) 
+
+The rst and second term in ( A.6 ) are the frequency estimation 
+errors due to harmonics and wideband noise, respectively, i.e.: 
+
+¦Í
+
+3 p, h 
+
+=
+
+ ¦Í
+
+Re 
+2 
+
+(cid:20)
+
+K (cid:2)
+=2 
+k 
+
+(
+
+ k 
+
+2  1)
+
+2  ¦Ä 2 
+A k 
+A 1 
+¦Á 2 
+2 
+k 
+
+H 
+
+ H 
+
+W 
+W 
+
+(¦Á
+)
+(¦Ä )
+
+k 
+
+e 
+
+j¦Õ
+
+k 
+
+(cid:21)
+
+,
+
+(A.7) 
+
+and 
+
+¦Í3 p, n 
+
+=
+
+1 
+¦Í Re 
+2 
+
+(cid:20)
+
+(H 
+
++
+
+ ¦Ä  2 l )
+¦Ä )(H 
+
+ E w 
+
+(1)
+
++ 2(
+
+ H 
+
+2 +
+1)
+H 
+(2 H 
+j A 1 
+H 
+
+¦Ä 2  H 
++ 2 l¦Ä )
+(¦Ä )
+
+ E w 
+ e 
+
+(0)
+
++ (H 
+ ¦Ä )(H 
++ ¦Ä + 2 l )
+
+ E w 
+
+(1)
+
+2 ¦Ä 2 W 
+
+j 
+
+¦Õ1 
+
+(cid:21)
+
+.
+
+(A.8) 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+217 
+
+ 1)
+ 1)
+(¦Õ
+¦Ð (k 
+(¦Õ
+¦Ð (l 
+¦Ä )] is equal to 
+Since E [ cos 
+ cos 
+0.5 when k 
+ l and null otherwise, by applying the expectation op- 
+erator to 
+from ( A.7 ) it follows that: 
+
+k 
+K (cid:2)
+¦Í 2 
+¦Ñ 2 
+3 p 
+=2 
+k 
+
++
+
+¦Ä )
+
+l 
+
++
+
+=
+
+2 ¦Í
+
+3 p, h 
+
+E [2 ¦Í
+
+3 p, h 
+
+] 
+
+=
+
+ 0 
+ 5 
+
+.
+
+(k 
+)
+
+,
+
+(A.9) 
+
+where 
+
+¦Ñ3 p 
+
+(k 
+)
+
+=
+
+k 
+
+2  1 
+2  ¦Ä 2 
+A k 
+A 1 
+¦Á 2 
+2 
+k 
+
+2 
+
+H 
+
+ H 
+The performed simulations showed that the estimation bias 
+is negligible as compared to the standard deviation as soon 
+as the frequency-domain SNR is high enough (e.g. time-domain 
+¡Ý 256). Thus, by applying the law of uncertainty 
+SNR 
+ 0 dB and M 
+propagation [25] to ( A.8 ) we achieve: 
+
+|
+|
+
+ W 
+ W 
+
+(¦Á
+)
+(¦Ä )
+
+k 
+
+ |
+ |
+
+.
+
+(A.10) 
+
+>
+
+E 
+
+(cid:5)
+
+2 ¦Í3 p,n 
+
+(cid:6) =
+=
+
+¦Ò 2 
+ 
+
+¦Í3 p 
+
+(cid:8)
+
+H 
+
+2  ¦Ä 2 
+2 (
+
+(cid:9)
+
+2 
+
+4 A 
+
+2 
+1 
+
+H 
+
+2 (
+
+ 2 H 
+
+ 1 )
+¦Ä )
+ ¦Ä  2 l )
+2 var 
+¦Ä 2  H 
+
+ l 
+
++
+
+2 
+
+1 
+
+|
+
+ W (
+
+¦Ä )
+
+|
+
+2 
+
+¡Á
++
++
+
+(cid:23)
+
+(
+
+ H 
+
++
+
+¦Ä )
+
+2 (
+
+ H 
+
+(cid:5)
+(cid:5)
+(cid:5)
+
+Re 
+
+(cid:24)
+(cid:24)
+(cid:24)
+(cid:25)(cid:6)
+(cid:5)
+(cid:8)
+(cid:24)
+
+E w (
+1 )
+
+(cid:25)(cid:6)
+(cid:25)(cid:6)
+(cid:25)(cid:6)
+(cid:5)
+(cid:9)
+(cid:24)
+
+ 4 
+
+(cid:8)
+
+H 
+
+2 +
+
++
+¦Ä +
+
+ 2 l¦Ä
+
+(cid:9)
+(cid:8)
+
+2 var 
+ 2 l )
+2 var 
+ ¦Ä  2 l )
+std 
+Re 
+¦Ä 2  H 
+std 
+
+Re 
+
+E w (
+ 0 )
+
+ (
++4 (
+¡Á std 
+¡Á Re 
+
+ H 
+
+ ¦Ä )
+¦Ä )
+
+2 (
+
+ H 
+
++
+
+Re 
+¦Ä 2  H 
+corr 
+ 2 l¦Ä
+
+E w (
+ 1 )
+
+ H 
+
++
+
+(
+
+ H 
+
+H 
+
+2 +
+
++
+
+ 2 l¦Ä
+
+(cid:9)
+
+(cid:5)
+(cid:24)
+(cid:5)
+
+Re 
+
+(cid:24)
+
+E w (
+1 )
+
+(cid:25)(cid:6)
+(cid:8)
+(cid:5)
+
+(cid:5)
+(cid:24)
+(cid:24)
+(cid:5)
+
+(cid:24)
+
+E w (
+ 0 )
+
+Re 
+
+(cid:24)
+
+E w (
+1 )
+
+(cid:25)
+
+,
+
+E w (
+ 0 )
+
+(cid:25)(cid:6)
+
++
+
+ 4 
+
+H 
+
+2 +
+
++
+
+(
+
+ H 
+
+ ¦Ä )
+
+¡Á (
+
+ H 
+
++
+
+¦Ä +
+
+ 2 l )
+ std 
+
+Re 
+
+E w (
+ 0 )
+
+(cid:25)(cid:6)
+(cid:25)(cid:6)
+
+Re 
+
+E w (
+ 1 )
+2  ¦Ä 2 
+E w (
+1 )
+
+(cid:25)(cid:6)
+(cid:9)
+(cid:25)(cid:6)
+(cid:25)(cid:6)(cid:26)
+
+¡Á corr 
+Re 
+ ¦Ä  2 l )
+¡Ástd 
+
+(cid:24)
+
+E w (
+ 0 )
+
+(cid:25)
+(cid:25)(cid:6)
+
+,
+
+ Re 
+
+E w (
+ 1 )
+
++
+
+ 2 
+
+H 
+
+¡Á (
+
+ H 
+
+(
+
+ H 
+
++
+
+¦Ä +
+
+ 2 l )
+ std 
+
+(cid:5)
+
+Re 
+
+(cid:5)
+
+Re 
+
+(cid:24)
+
+E w (
+ 1 )
+
+corr 
+
+Re 
+
+(cid:24)
+
+E w (
+1 )
+
+(cid:25)
+
+,
+
+ Re 
+
+(cid:24)
+
+E w (
+ 1 )
+
+.
+
+ (A.11) 
+
+In ( A.11 ): 
+
+var [ Re 
+
+{
+
+ E w 
+
+(1)
+¦Ò 2 
+
+}
+
+ ] 
+
+=
+
+ var [ Re 
+
+{
+
+ E w 
+
+(0)
+
+}
+
+ ] 
+
+=
+
+ var [ Re 
+
+{
+
+ E w 
+
+(1)
+
+}
+
+ ] 
+
+=
+
+¦Ò 2 
+
+X w 
+
+,
+
+(A.12) 
+
+in which 
+
+X w 
+
+is the variance of the DFT samples, given by [23,24] : 
+
+¦Ò 2 
+
+X w 
+
+=
+
+M 
+N N P G 
+2 
+where NNPG is the window Normalized Noise Power Gain [20] , 
+given by [6] : 
+
+¦Ò 2 ,
+
+(A.13) 
+
+N N P G 
+
+=
+
+ a 
+
+2 
+0 
+
++
+
+ 0 
+ 5 
+
+.
+
+H1 (cid:2)
+=1 
+h 
+
+a 
+
+2 
+h 
+
+=
+
+C 
+
+2 H2 
+4 H4 
+4 H4 
+
+2 
+
+,
+
+(A.14) 
+
+Moreover: 
+
+cor r [ Re 
+
+{
+
+ E w 
+
+(1)
+
+}
+
+,
+
+ Re 
+
+{
+
+ E w 
+
+(0)
+
+}
+
+ ] 
+
+=
+
+ cor r [ Re 
+
+{
+
+ E w 
+
+(0)
+
+}
+
+,
+
+ Re 
+
+{
+
+ E w 
+
+(1)
+
+}
+
+ ] 
+
+=
+
+¦Ã1 
+
+,
+
+(A.15) 
+
+is the correlation coecient between two DFT spectral samples lo- 
+cated one bin apart, given by [6] : 
+ 2 
+ 2 H 
+ 1 
+2 H 
+
+¦Ã1 
+
+=
+
+,
+
+(A.16) 
+
+while 
+
+cor r [ Re 
+
+{
+
+ E w 
+
+(1)
+
+}
+
+,
+
+ Re 
+
+{
+
+ E w 
+
+(1)
+
+}
+
+ ] 
+
+=
+
+¦Ã2 
+
+,
+
+(A.17) 
+
+is the correlation coecient between two DFT spectral samples lo- 
+cated two bins apart, given by [22] : 
+ 3)(2 H 
+ 2)
+(2 H 
+ 1)
+2 H (2 H 
+
+¦Ã2 
+
+=
+
+.
+
+(A.18) 
+
+It is worth noticing that the correlation coecient ( A.16 ) is neg- 
+ative since the real-part of E w ( 
+has alternating 
+signs at adjacent frequency bins. 
+Using ( A .12 )¨C( A .18 ), after some algebra we obtain: 
+
+1) 
+, E w (0) 
+, and E w (1) 
+
+E 
+
+(cid:5)
+
+2 ¦Í3 p,n 
+
+(cid:6) =
+=
+
+¦Ò 2 
+ 
+
+¦Í3 p 
+
+(cid:8)
+(cid:5)
+(cid:5)
+
+H 
+
+2  ¦Ä 2 
+2 (
+
+(cid:9)
+
+2 
+
+4 A 
+
+2 
+1 
+
+H 
+
+ 2 H 
+
+ 1 )
+ 2 l )
+ 2 l )
+
+2 ¦Í 2 
+2 +
+
+1 
+ W (
+
+|
+
+¦Ä )
+
+|
+
+2 
+
+(cid:23)
+ (cid:5)
+
+H 
+ 2 )
+¦Ä (
+
+2 +
+
+¦Ä (
+
+¦Ä +
+
+ 2 l )
+
+(cid:6)
+
+2 
+
++
++
++
+
+ 2 [ H 
+
+ ¦Ä (
+2  ¦Ä (
+H 
+2  (
+H 
+
+¦Ä +
+¦Ä +
+¦Ä +
+
+ ] 
+
+ 2 H 
+
+3 (
+2  H 
+2  ¦Ä 2 
+¦Ã2 
+
+ H 
+
++
+¦Ä +
+
+ 4 l 
+
+2 H 
+2 
+¦Ã1 
+
+ 4 
+
+(cid:6)(cid:5)
+(cid:6)(cid:8)
+
+H 
+
++
+
+ 2 l )
+¡¤ NNPG 
+M 
+
+(cid:6)
+
+ 2 l )
+
+2 
+
+H 
+
+(cid:9)
+
+(cid:25)
+
+¡¤ ¦Ò 2 .
+
+(A.19) 
+
+which can be expressed as: 
+
+E [2 ¦Í3 p, n 
+
+] 
+
+= 
+=
+
+¦Ò 2 
+ 
+
+¦Í3 p 
+
+(
+
+ H 
+
+2  ¦Ä 2 )
+2 
+2 (2 H 
+3 (H 
+2 H 
+
+8 H 
+
+1)
+ 2)
+¦Ä (¦Ä +
+
+2 ¦Í 2 
+
+{
+
+ [ H 
+
+2 +
+2 +
+2 H 
+¦Ã1 
+
+¦Ä (¦Ä +
+2  ¦Ä (¦Ä +
+2  (¦Ä +
+
+ 2 l )] 
+
+2 +
+
+ 2 [ H 
+
+ ¦Ä (¦Ä +
+
+ 2 l )] 
+
+2 
+
++
+
+ 2 H 
+
++
+
+ 4 l 
+
+ 4[ H 
+
+ 2 l )] 
+ 2 l )
+2 ](
+
+¡Á [ H 
+¡Á ENBW 
+S L 
+2 (¦Ä )
+
++
+
+ 2 l )] 
+¡¤ SNR 
+1 
+M 
+
++
+
+ [ H 
+
+ H 
+
+2  ¦Ä 2 )
+
+¦Ã2 
+
+}
+
+.
+
+(A.20) 
+
+where: 
+
+SL (
+
+¦Ä )
+
+=
+
+|
+
+ W (
+¦Ä )
+W 
+(0)
+
+|
+
+=
+
+sin 
+
+(¦Ð ¦Ä )
+¦Ð ¦Ä
+
+ 1)
+[(H 
+(
+
+ !] 
+
+2 
+2  ¦Ä 2 )
+
+H1 (cid:7)
+=1 
+h 
+
+ h 
+
+,
+
+(A.21) 
+
+is the window Scalloping Loss (SL) [6, 20] , 
+
+EN BW 
+
+=
+
+N N P G 
+ N P SG )
+
+(
+
+2 
+
+=
+
+C 
+
+2 H2 
+4 H4 
+H1 
+2 H2 
+2 
+
+(cid:8)
+
+C 
+
+(cid:9)
+
+,
+
+(A.22) 
+
+is the Equivalent Noise BandWidth (ENBW) [6, 20] , 
+
+NP SG 
+
+=
+
+1 
+M 
+
+M1 (cid:2)
+m 
+=0 
+
+w 
+(m 
+)
+
+=
+
+W 
+(0)
+M 
+
+=
+
+ a 0 
+
+=
+
+C 
+
+H1 
+2 H2 
+2 H2 
+
+2 
+
+.
+
+(A.23) 
+
+is the window Normalized Power Signal Gain [6,20] and the Signal- 
+¦Ò 2 )
+(2 
+
+to-Noise Ratio ( SNR ) is dened as SNR 
+
+=
+
+ A 
+
+2 
+1 
+
+/
+
+ . 
+
+References 
+
+[1] S.L. Marple , Digital Spectral Analysis, Prentice-Hall, Englewood Cliffs, 1987 . 
+[2] D.C. Rife , G.A. Vincent , Use of the discrete Fourier transform in the measure- 
+ment of frequencies and levels of tones, Bell Syst. Tech. J. 49 (1970) 197¨C228 . 
+[3] B.G. Quinn , Estimation of frequency, amplitude, and phase from the DFT of a 
+time series, IEEE Trans. Signal Process 45 (3) (1997) 814¨C817 . 
+[4] C. Offelli , D. Petri , Interpolation techniques for real-time multifrequency anal- 
+ysis, IEEE Trans. Instrum. Meas 39 (1) (1990) 106¨C111 . 
+[5] C. Offelli , D. Petri , The inuence of windowing on the accuracy of multifre- 
+quency signal parameter estimation, IEEE Trans. Instrum. Meas 41 (2) (1992) 
+256¨C261 . 
+[6] D. Belega , D. Dallet , Multifrequency signal analysis by interpolated DFT method 
+with maximum sidelobe decay windows, Meas 42 (3) (2009) 420¨C426 . 
+[7] D. Belega , D. Petri , D. Dallet , Impact of harmonics on the interpolated DFT fre- 
+quency estimator, Mech. Syst. Signal Process. 66-67 (2016) 349¨C360 . 
+[8] P. Romano , M. Paolone , Enhanced interpolated-DFT for synchrophasor estima- 
+tion in FPGAs: theory, implementation, and validation of a PMU prototype, 
+IEEE Trans. Instrum. Meas. 63 (12) (2014) 2824¨C2836 . 
+[9] C. Liguori , A. Paolillo , A. Pignotti , Estimation of signal parameters in the fre- 
+quency domain in the presence of harmonic interference: a comparative anal- 
+ysis, IEEE Trans. Instrum. Meas. 55 (2) (2006) 562¨C569 . 
+[10] P. Carbone , E. Nunzi , D. Petri , Frequency-domain-based least-squares estima- 
+tion of multifrequency signal parameters, IEEE Trans. Instrum. Meas 49 (3) 
+(20 0 0) 555¨C558 . 
+[11] E. Aboutanios , B. Mulgrew , Iterative frequency estimation by interpolation on 
+Fourier coecients, IEEE Trans. Signal Process 53 (4) (2005) 1237¨C1241 . 
+[12] A.H. Nuttall , Some windows with very good sidelobe behavior, IEEE Trans. 
+Acoust., Speech, Signal Proces. 29 (1) (1981) 84¨C91 . 
+
+218 
+
+D. Belega, D. Petri / Signal Processing 140 (2017) 207¨C218 
+
+[13] C. Candan , A method for ne resolution frequency estimation from three DFT 
+samples, IEEE Signal Process. Lett. 18 (6) (2011) 351¨C354 . 
+[14] D. Agre, Dynamic of frequency estimation in the frequency domain, IEEE 
+Trans. Instrum. Meas 56 (6) (2007) 2111¨C2118 . 
+[15] D. Belega , D. Dallet , D. Petri , Accuracy of sine-wave frequency estimation 
+by multipoint interpolated DFT approach, IEEE Trans. Instrum. Meas 59 (11) 
+(2010) 2808¨C2815 . 
+[16] J. Borkowski , D. Kania , J. Mroczka , Interpolated-DFT-based fast and accurate 
+frequency estimation for the control of power, IEEE Trans. Ind. Electron 61 (12) 
+(2014) 7026¨C7034 . 
+[17] J. Borkowski , D. Kania , Interpolated DFT-based fast and accurate amplitude and 
+phase estimation for the control of power, Metrol. Meas. Syst. 23 (1) (2016) 
+13¨C26 . 
+[18] J. Borkowski , D. Kania , J. Mroczka , Inuence of the A/D quantization in interpo- 
+lated-DFT-based system of power control with small delay, Metrol. Meas. Syst. 
+21 (3) (2014) 423¨C432 . 
+[19] Y. Wang , W. Wei , J. Xiang , Multipoint interpolated DFT for sine waves in short 
+records with dc components, Signal Process 131 (2017) 161¨C170 . 
+[20] F.J. Harris , On the use of windows for harmonic analysis with the discrete 
+Fourier transform, Proc. of the IEEE 66 (1) (1978) 51¨C83 . 
+
+[21] M.F. Wagdy , W.-M. Ng , Validity of uniform quantization error model for sinu- 
+soidal signals without and with dither, IEEE Trans. Instrum. Meas 38 (3) (1989) 
+718¨C722 . 
+[22] D. Belega , D. Petri , Frequency estimation by two- or three-point interpo- 
+lated Fourier algorithms based on cosine windows, Signal Process 114 (2015) 
+115¨C125 . 
+[23] C. Offelli , D. Petri , Weighting effect on the discrete time Fourier transform of 
+noisy signals, IEEE Trans. Instrum. Meas 40 (6) (1991) 972¨C978 . 
+[24] M. Novotn, D. Slepi ¡¦cka , M. Sedl¨¢ ¡¦cek , Uncertainty analysis of the RMS value 
+and phase in frequency domain by noncoherent sampling, IEEE Trans. Instrum. 
+Meas 56 (3) (2007) 983¨C989 . 
+[25] Guide for the expression of uncertainty in measurement (GUM), International 
+Organization for Standardization, Switzerland, 2nd ed., 1995. 
+[26] IEEE Standard for Digitizing Waveform Recorders, IEEE Std. 1057¨C2007, 2007. 
+[27] P.M. Ramos , M.F. da Silva , R.C. Martins , A.M. Cruz Serra , Simulation and ex- 
+perimental results of multiharmonic least-squares tting algorithms applied to 
+periodic signals, IEEE Trans. Instrum. Meas. 55 (2) (2006) 646¨C651 . 
+[28] S.M. Kay , Fundamentals of Statistical Signal Processing: Estimation Theory, 
+Prentice-Hall, Upper Saddle River, NJ, 1993 . 
+

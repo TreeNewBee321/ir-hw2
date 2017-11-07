@@ -1,0 +1,5282 @@
+Robust stochastic integration ltering for nonlinear systems under multivariate t -distributed uncertainties 
+
+Syed Safwan Khalid 
+a , Naveed Ur Rehman 
+a , Shafayat Abrar 
+
+b , 
+
+
+
+a COMSATS Institute of Information Technology, Islamabad 440 0 0, Pakistan 
+b School of Science and Engineering, Habib University, Karachi 75290, Pakistan 
+
+article
+
+info
+
+
+
+Article history: 
+Received 8 November 2016 
+Revised 1 May 2017 
+Accepted 5 May 2017 
+Available online 6 May 2017 
+
+Keywords: 
+Nonlinear ltering 
+Robust ltering 
+Stochastic integration 
+Heavy-tailed noise 
+Student t -distribution 
+
+
+abstract
+
+Bayesian ltering solutions that are developed under the assumption of heavy-tailed uncertainties are 
+more robust to outliers than the standard Gaussian ones. In this work, we consider robust nonlinear 
+Bayesian ltering in the presence of multivariate t -distributed process and measurement noises. We de- 
+velop a robust stochastic integration lter (RSIF) based on stochastic spherical-radial integration rule that 
+achieves asymptotically exact evaluations of multivariate t -weighted integrals of nonlinear functions that 
+arise in nonlinear Bayesian ltering framework. The superiority of the proposed scheme is demonstrated 
+by comparing its performance against the cubature Kalman lter (CKF), a robust CKF, and the standard 
+SIF in a representative example concerning bearings-only target tracking. 
+
+ 2017 Elsevier B.V. All rights reserved. 
+
+1. Introduction 
+
+Bayesian ltering provides a theoretical framework for recursive 
+estimation of unknown dynamic state vectors in linear/nonlinear 
+ltering applications. In Bayesian paradigm, the posterior proba- 
+bility of the state vector given the noisy observations is recur- 
+sively updated, at each instant, using a process and a measure- 
+ment model. However, in general, the evaluation of the posterior 
+probability is analytically intractable, and hence only approximate 
+solutions are available [1] . A widely used approximation utilizes 
+the assumption that the required posterior distribution is Gaussian 
+and the corresponding lters are termed as the Gaussian assump- 
+tion (GA) lters [2] . In Table 1 , we list a number of important GA 
+lters available in the literature. The Gaussian assumption, how- 
+ever, is frequently violated in practice. For instance, the occurrence 
+of outliers is a type of non-Gaussian phenomenon which is found 
+in many applications of practical interest [3] . Consequently, lters 
+based on the Gaussian assumption perform poorly in the presence 
+of outliers. 
+A lter can be made robust to outliers by incorporating heavy- 
+tailed uncertainties in the process and measurement models. A 
+popular choice in literature is the use of multivariate generaliza- 
+tion of Student t -distribution [2,4每6] ; hereafter, referred to as t - 
+distribution. In Table 2 , we list a number of robust lters that 
+rely on the assumption of t -distributed uncertainties. An early at- 
+tempt to incorporate t -distribution in the Kalman ltering frame- 
+work was discussed in [7] ; however, the approach is purely one di- 
+mensional and cannot be extended to multivariate case. In [3,5,8] , 
+t -distributed uncertainties have been incorporated in the Bayesian 
+ltering framework using the variational Bayes (VB) approach. In 
+VB method, a solution is developed by converting the intractable 
+posterior probability density function into a tractable factored 
+form. The resulting factors are, however, coupled and the proce- 
+dure requires a number of xed-point iterations to obtain an ad- 
+missible solution. A more direct approach has appeared in [4] , 
+where an approximate closed-form solution has been developed 
+for systems under t -distributed process and measurement noise; 
+however, the solution is valid for linear systems only. 
+In [2,6] , the Student t -lter of Roth et al. [4] is extended to 
+nonlinear systems using sigma-point methods that employed de- 
+terministic cubature rules to evaluate multivariate t -weighted non- 
+linear integrals. Such deterministic cubature rules, though compu- 
+tationally ecient, lead to approximate integral evaluations. Conse- 
+quently, they perform inadequately in problems involving nonlin- 
+earities with large uncertainties [9,10] . On the other hand, numeri- 
+cal integration based on stochastic methods can achieve asymptot- 
+ically exact evaluations [10每12] . The motivation behind our work 
+is to employ the stochastic integration methods in the develop- 
+ment of a robust nonlinear Bayesian lter assuming t -distributed 
+process and measurement noises. We rst describe stochastic in- 
+
+Table 1 
+Traditional lters based on Gaussian distribution. 
+
+Filters based on deterministic rules 
+
+Remarks 
+
+Cubature Kalman Filter (CKF) [15] 
+
+Based on third-degree cubature 
+rule. 
+Variants of Kalman lters robust to 
+modelling uncertainties. 
+Based on unscented transformation. 
+More accurate than CKF at the cost 
+of computations. 
+A Low-cost variant of GHQ. 
+Based on embedded cubature rule. 
+
+Smooth Variable Structure Filters 
+[16,17] 
+Unscented Kalman Filter (UKF) [18] 
+Gauss-Hermite Quadrature (GHQ) 
+Filter [13] 
+Sparse-Grid Quadrature Filter [19] 
+Embedded CKF [20] 
+
+Based on stochastic rules 
+Monte-Carlo Kalman Filter (MKF) 
+[21] 
+Stochastic Integration Filter (SIF) 
+[10] 
+
+Based on Mote-Carlo integration. 
+
+Asymptotically exact integration; 
+faster convergence than 
+Monte-Carlo rule. 
+
+Table 2 
+Robust lters based on t -distribution. 
+
+Filters based on deterministic 
+rules 
+
+Remarks 
+
+Poly- t robust Kalman lter [7] 
+
+For single dimension, not extendable to 
+multivariate case. 
+Posterior is approximated using variational 
+Bayes (VB). 
+VB based xed-interval smoother. 
+Approximate recursive closed-form 
+solution for linear systems. 
+Extension of [4] to nonlinear systems 
+using deterministic cubature rules. 
+
+VB based robust lter [3,5] 
+
+VB based smoother [8] 
+t -distributed Kalman lter [4] 
+
+Robust CKF [2,6] 
+
+Based on stochastic rules 
+Our proposed work in this 
+paper. 
+
+Degree-three stochastic integration rule. 
+
+tegration rules of an arbitrary degree to evaluate multivariate 
+t -weighted nonlinear integrals, and then proceed to develop a 
+third-degree robust stochastic integration lter (RSIF). 
+This paper is organized as follows: Section 2 describes briey 
+the existing statistical linear regression based Bayesian ltering 
+under t -distributed uncertainties [2,5,13,14] . Section 3 describes 
+generic stochastic evaluation rules for t -weighted spherical-radial 
+integrals, and obtains a third-degree t -weighted stochastic in- 
+tegration rule. Section 4 obtains a robust Bayesian lter based 
+on the third-degree integration rule as developed in Section 3 . 
+Section 5 presents simulation results, and Section 6 draws conclu- 
+sions. 
+
+1.1. Notations 
+
+Scalars are represented by small letters, and matrices are rep- 
+resented by capital letters. Bold-faced small letters are used for 
+column vectors that represent states and measurements; whereas, 
+bold-faced capital letters are used to represent a set of column vec- 
+tors. We use superscript T to represent transpose of a matrix. No- 
+ St( 
+tations x 
+米, 
+ , 
+灰) denote that x is distributed according to 
+the generalized multivariate Student t -distribution, i.e., 
+
+p(
+
+ x 
+
+)
+
+=
+
+ ((
+)
+ (灰/
+ 2)
+(灰羽 )
+ 米)
+
+灰 +
+
+ d 
+
+/
+
+ 2)
+
+1 
+
+d/
+T 1 (
+
+ 2 
+
+﹟
+
+ 
+ 米)
+
+(cid:2)
+
+1 
+
++
+
+汛 2 (
+灰
+
+ x 
+
+)
+
+(cid:3)(
+
+灰+
+
+ d 
+
+)
+
+/
+
+ 2 
+
+,
+
+汛 2 (
+)
+(
+(
+)
+米 represents the 
+where 
+ dim 
+灰 is the degree-of-freedom parameter, and 
+mean, 
+ is the covari- 
+ance matrix parameter of the t -distribution. 
+
+ x 
+
+=
+
+ x 
+
+ x 
+
+,
+
+ d 
+
+=
+
+ x 
+
+,
+
+灰 is also referred to as the shape parame- 
+Remark 1. Note that 
+ter of p ( x ) [22] and determines its tail-behavior, i.e., increasingly 
+heavier tails are obtained as 
+灰 decreases towards one. Conversely, 
+
+灰 tends to innity, p ( x ) approaches the standard Gaussian dis- 
+as 
+tribution. Also note that for 
+ 2, the resulting distribution has 
+innite variance. Since our work relies on propagation of rst and 
+second order moments, therefore, we consider the cases for which 
+ St( 
+米, 
+ , 
+灰) is equal to 
+
+ 2. The covariance matrix of x 
+for 
+ 2. Note that multivariate t -distributions appear in various 
+different forms in literature [22,23] . The denition, we have con- 
+sidered here, constrains the multivariate t -distribution to be an el- 
+liptic distribution, and this is the most common denition available 
+in literature. 
+
+灰 <
+
+灰 >
+灰 >
+
+灰
+灰2 
+
+2. Bayesian ltering under t -distributed uncertainties 
+
+Consider a representative nonlinear system: 
+
+x k 
+
+=
+=
+
+ f (
+
+ x k 
+
+1 
+
+)
+
++
+
+ w k 
+
+1 
+
+,
+
+(1a) 
+
+y k 
+
+ h 
+
+(
+
+ x k 
+
+)
+
++
+
+ v k 
+
+,
+
+(1b) 
+
+where x k 
+m are the state and the observation vec- 
+﹞) and the observation model 
+tors, respectively. The system model f ( 
+﹞) are nonlinear functions. The noise processes w k 
+h ( 
+and v k 
+rep- 
+resent the uncertainties. To incorporate the effect of possible out- 
+liers w k 
+and v k 
+are modeled as independent t -distributed pro- 
+ St 
+ St( 0 , R k 
+cesses, i.e., w k 
+(
+, 
+灰). Also, the 
+noise sequences, { w k 
+} and { v k 
+}, are assumed to be independent 
+and identically distributed. Let Y k 
+ be the set of 
+all available observations up until the k th instant. The aim of the 
+ltering process is to provide an estimate of the state vector given 
+. We know that the optimal Bayesian estimate, in terms of min- 
+imum mean square error, is given by 
+] 
+ i.e., 
+p(
+)
+. The required probability p ( x k 
+) is evaluated us- 
+ing a time-update and a measurement-update . Before we develop 
+the expressions for these updates, we list two important properties 
+of t -distribution that are utilized in the subsequent derivations; re- 
+fer to [24] for proof. 
+ St 
+P1 : Let x 
+(
+ ,
+ and z be an ane transformation, i.e., 
+z 
+ where A and b are deterministic matrix and vector 
+of appropriate dimensions. Then, z is t -distributed with density 
+St 
+(A 
+A 
+P2 : Let x 1 
+
+﹋
+
+R
+
+n and y k 
+
+﹋
+
+R
+
+1 
+
+1 
+
+1 
+
+ 0 
+ Q k 
+
+,
+
+1 
+
+,
+
+灰 )
+
+ and v k 
+
+=
+
+{
+
+ y 0 
+ y 1 
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ y k 
+
+}
+
+Y k 
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+=
+
+ E[ x k 
+| Y k 
+
+|
+
+ Y k 
+
+,
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+=
+
+(cid:5)
+
+x k 
+
+ x k 
+ Y k 
+
+|
+
+ d x k 
+
+(cid:4)
+
+ x 
+
+,
+
+灰 )
+
+=
+
+ A x 
+
++
+
+ b 
+
+,
+
+(cid:4)
+
+ x 
+
++
+
+ b 
+ A 
+
+,
+
+T ,
+
+灰 )
+
+ . 
+
+,
+
+ x 2 
+
+﹋
+
+ x 1 (cid:4)
+R
+
+n be jointly t -distributed, i.e., 
+
+p(
+
+ x 1 
+ x 2 
+
+,
+
+)
+
+=
+
+ St 
+
+(cid:2)(cid:6)(cid:4)
+
+ x 2 
+
+(cid:7)
+
+,
+
+(cid:6)
+
+11 
+ T 
+12 
+
+12 
+22 
+
+(cid:7)
+
+,
+
+灰
+
+(cid:3)
+
+Then, the conditional distribution p ( x 1 
+(
+
+ 灰 )
+St 
+ where 
+and 
+
+| x 2 
+
+) is given as p(
+1 
+
+(
+
+ x 1 
+ x 2 
+ x 2 
+
+|
+
+)
+
+=
+
+(cid:4)
+
+ x 1 
+ 2 
+
+|
+
+,
+
+1 
+
+|
+
+ 2 
+
+,
+
+(cid:8)
+
+,
+
+(cid:8)
+
+ 灰 =
+
+灰 +
+
+ n,
+
+(cid:4)
+
+ x 1 
+ 2 
+
+|
+
+=
+
+(cid:4)
+
+ x 1 
+
++
+
+1 
+
+|
+
+ 2 
+
+22 
+
+ (cid:4) x 2 
+
+)
+
+
+
+1 
+
+|
+
+ 2 
+
+=
+
+灰 +
+
+(
+
+ x 2 
+
+ (cid:4) x 2 
+
+)
+
+T  1 
+22 
+
+(
+
+ x 2 
+
+ (cid:4) x 2 
+
+)
+
+灰 +
+
+ n 
+
+ 12 
+(11 
+
+ 1 
+
+ T 
+22 
+12 
+
+)
+
+.
+
+In the following, we re-visit the Bayesian formulation of t - 
+distributed estimation problem as advocated in [4,6] . 
+
+2.1. Time-update 
+
+We assume 
+is 
+t -distributed, 
+p(
+)
+ St 
+(
+ . To evaluate p(
+we linearize (1a) using the statistical linear regression (SLR) 
+approximation [6,13,14,25] : 
+
+that p(
+
+
+ x k 
+
+1 
+1 
+k 
+
+|
+
+ Y k 
+ k 
+
+1 
+1 
+
+)
+灰 )
+
+i.e., 
+)
+
+ x k 
+
+1 
+
+|
+
+ Y k 
+
+1 
+
+=
+
+(cid:4)
+
+ x k 
+
+1 
+
+|
+
+ k 
+
+1 
+
+,
+
+|
+
+,
+
+ x k 
+ Y k 
+
+|
+
+1 
+
+,
+
+＞ F k 
+x k 
+1 x k 
+1 
+
++
+
+ b k 
+
+1 
+
++
+
+ e 
+
+f 
+1 
+k 
+
++
+
+ w k 
+
+1 
+
+,
+
+(2) 
+
+where F k 
+n and e 
+n are to be determined. 
+Taking the conditional mean of both sides of f (
+)
+ we obtain the value of b k 
+as follows: 
+
+1 
+
+﹋
+
+R
+
+n 
+
+℅n ,
+
+ b k 
+
+1 
+
+﹋
+
+R
+
+f 
+1 
+k 
+
+﹋
+
+R
+
+ x k 
+
+1 
+
+＞ F k 
+1 
+x k 
+1 
+
++
+
+b k 
+1 
+1 
+b k 
+
++
+
+ e 
+
+f 
+1 
+k 
+
+,
+
+1 
+
+=
+
+ E[( f (
+
+ x k 
+
+1 
+
+)
+
+ F k 
+1 x k 
+1 
+
+)
+
+|
+
+ Y k 
+
+1 ] 
+
+=
+
+(cid:8)
+
+ x k 
+ k 
+
+|
+
+ F k 
+1 
+1 
+
+(cid:4)
+
+ x k 
+
+1 
+
+|
+
+ k 
+
+1 
+
+(3) 
+
+S.S. Khalid et al. / Signal Processing 140 (2017) 53每59 
+
+55 
+
+where 
+1 :=
+
+(cid:8)
+
+ x k 
+ k 
+
+|
+
+(cid:9)
+
+f (
+
+ x k 
+
+1 
+
+)
+
+ p(
+
+ x k 
+
+1 
+
+|
+
+ Y k 
+
+1 
+
+)
+
+ d x k 
+
+1 
+
+(4) 
+
+Note that, for a linear system, b k 
+ The value of F k 
+is evalu- 
+ated by minimizing the mean square linearization error, i.e., 
+
+1 
+
+=
+
+ 0 
+
+.
+
+1 
+
+F 
+
+ 
+1 
+k 
+
+=
+
+ argmin 
+E[( f (
+℅ ( f (
+
+F 
+
+ x k 
+
+ F k 
+ b k 
+1 
+1 x k 
+1 
+1 
+ F k 
+ b k 
+1 x k 
+1 
+1 
+1 ] 
+
+)
+
+)
+
+T 
+
+ x k 
+
+1 
+
+)
+
+)
+
+|
+
+ Y k 
+
+.
+
+(5) 
+
+The closed-form solution is: F k 
+(P 
+)
+
+
+is as specied in p(
+
+1 
+ (cid:8) x k 
+f 
+1 
+k 
+
+=
+
+x f 
+1 
+k 
+
+1 
+T P 
+1 
+k 
+
+|
+
+ k 
+ x k 
+
+1 
+1 
+
+,
+
+ where 
+)
+
+P k 
+1 
+
+|
+
+ k 
+
+1 
+
+=
+
+灰
+灰2 
+
+1 
+1 
+ (cid:4) x k 
+k 
+1 
+1 
+
+|
+
+ k 
+
+,
+
+1 
+k 
+
+|
+
+ k 
+
+1 
+
+|
+
+ Y k 
+
+1 
+
+,
+
+and 
+
+P 
+
+x f 
+1 
+k 
+
+:=
+
+ E[(
+
+ x k 
+
+|
+
+ k 
+
+1 
+
+)( f (
+
+ x k 
+
+1 
+
+)
+
+|
+
+ k 
+
+1 
+
+)
+
+T |
+
+ Y k 
+
+1 ] 
+
+.
+
+(6) 
+
+Note that the linearization error e 
+ in the SLR framework, is 
+generally assumed to be Gaussian distributed. In our case, how- 
+ever, we require it to be t -distributed to develop an approximate 
+closed-form solution, i.e., e 
+is assumed to be distributed in 
+St 
+(
+
+,
+
+f 
+1 
+k 
+
+ 0 
+
+,
+
+灰2 
+灰  f 
+1 
+k 
+f 
+1 
+k 
+
+,
+
+灰 )
+ . Using the expression for F k 
+＞ f (
+)
+is evaluated as 
+
+1 
+
+,
+
+ the covariance 
+
+matrix of e 
+
+ x k 
+
+1 
+
+ F k 
+ b k 
+1 
+x k 
+1 
+1 
+ F k 
+f f 
+1 
+1 P k 
+1 
+k 
+(cid:8) x k 
+
+ f 
+1 
+k 
+
+:=
+
+ E[ e 
+
+f 
+1 
+k 
+
+(
+
+ e 
+
+f 
+1 
+T ] 
+k 
+(cid:8) x k 
+
+)
+
+=
+
+ P 
+
+|
+
+ k 
+
+1 F 
+T 
+1 
+k 
+
+(7) 
+
+where 
+
+P 
+
+f f 
+1 
+k 
+
+:=
+
+(cid:9)
+
+( f (
+
+ x k 
+
+1 
+
+)
+
+|
+
+ k 
+
+1 
+
+)
+
+( f (
+
+ x k 
+
+1 
+
+)
+
+|
+
+ k 
+
+1 
+
+)
+
+T p(
+
+ x k 
+
+1 
+
+|
+
+ Y k 
+
+1 
+
+)
+
+ d x k 
+
+1 
+
+.
+
+(8) 
+
+We note that x k 
+and w k 
+are uncorrelated t - 
+distributed variables with same degrees of freedom. There- 
+fore, as suggested in [4] , we assume that the joint- 
+distribution p(
+)
+ is also t -distributed with density 
+St 
+([ 
+ diag 
+ [
+] 
+1 From (2) , 
+we note that, after the linearization, we may write 
+
+1 
+
+,
+
+ e 
+
+f 
+1 
+k 
+
+1 
+
+ x k 
+ 0 
+ 0 ] 
+
+1 
+T ,
+
+,
+
+ e 
+
+f 
+1 
+k 
+
+,
+
+ w k 
+
+1 
+1 
+1 
+k 
+
+(cid:4)
+
+ x k 
+
+1 
+
+|
+
+ k 
+
+1 
+
+,
+
+,
+
+{
+
+|
+
+ k 
+
+,
+
+灰2 
+灰  f 
+1 
+k 
+
+,
+
+ Q k 
+
+1 
+
+}
+
+,
+
+灰 )
+
+ . 
+
+x k 
+
+=
+
+ [ F k 
+
+1 I I] 
+
+
+ 
+ 
+
+x k 
+1 
+f 
+1 
+k 
+w k 
+1 
+
+e 
+
+
+ 
+ 
+
++
+
+ b k 
+
+1 
+
+,
+
+(9) 
+
+and using P1 , we can write p(
+where 
+
+ x k 
+ Y k 
+
+|
+
+1 
+
+)
+
+=
+
+ St 
+(
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+1 
+
+,
+
+
+
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+灰 )
+
+,
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+1 
+
+=
+=
+
+ E[ x k 
+1 
+
+|
+
+ Y k 
+ x k 
+
+1 ] 
+1 
+1 
+
+=
++
+
+ F k 
+ x k 
+ k 
+
+1 
+1 
+1 
+ F k 
+1 
+1 
+
+(cid:4)
+
+ x k 
+
+|
+
+ k 
+
++
+
+ b k 
+ x k 
+
+ F k 
+
+(cid:4)
+
+|
+
+ k 
+
+(cid:8)
+
+|
+
+(cid:4)
+
+1 
+
+|
+
+ k 
+
+1 
+
+=
+
+(cid:8)
+
+ x k 
+ k 
+
+|
+
+1 
+
+.
+
+(10) 
+
+and 
+
+
+
+k 
+
+|
+
+ k 
+
+1 
+
+=
+
+灰  2 
+灰
+灰  2 
+灰
+灰  2 
+灰
+
+﹞ cov [ x k 
+
+|
+
+ Y k 
+
+1 ] 
+
+=
+
+﹞
+
+(cid:16)
+
+F k 
+1 P k 
+1 
+
+|
+
+ k 
+
+1 F 
+T 
+1 
+k 
+
++
+
+ f 
+1 
+k 
+
++
+
+灰
+灰  2 
+
+Q k 
+1 
+
+(cid:17)
+
+=
+
+﹞ P 
+
+f f 
+1 
+k 
+
++
+
+ Q k 
+
+1 
+
+(11) 
+
+Expressions (10) and (11) dictate that the evaluation of expression 
+(or P 
+) is not required. 
+
+F k 
+1 
+
+x f 
+1 
+k 
+
+1 Note that uncorrelated random variables with joint t -elliptic distribution are in 
+general ＆not independent＊ [4] ; however, despite this limitation, they have been suc- 
+cessfully employed in the development of robust ltering solutions in a number of 
+works in literature [2,6,24] . 
+
+2.2. Measurement-update 
+
+Following the steps provided in Section 2.1 , we linearize mea- 
+surement Eq. (1b) as follows: 
+
+＞ H k x k 
+y k 
+
++
+
+ c k 
+
++
+
+ e 
+
+h 
+k 
+
++
+
+ v k 
+
+,
+
+(12) 
+
+where, 
+
+H k 
+灰2 
+灰 h 
+k 
+h 
+k 
+
+=
+
+(P 
+
+xh 
+k 
+
+)
+
+1 
+T P 
+1 
+k 
+1 
+
+|
+
+ k 
+
+,
+
+c k 
+灰
+灰2 
+
+=
+
+(cid:4)
+
+ y k 
+ k 
+
+|
+
+ H k 
+1 
+1 
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+1 
+
+,
+
+e 
+
+h 
+k 
+
+
+
+St 
+(
+
+ 0 
+
+,
+
+,
+
+灰 )
+
+,
+
+ where P k 
+is expressed as: 
+
+|
+
+ k 
+
+=
+
+
+
+k 
+
+|
+
+ k 
+
+and the covariance 
+
+matrix of e 
+
+h 
+k 
+
+:=
+
+ E[ e 
+
+h 
+k 
+
+(
+
+ e 
+
+h 
+k 
+
+)
+
+T ] 
+
+=
+
+ P 
+
+ H k P k 
+hh 
+k 
+
+|
+
+ k 
+
+1 H 
+T 
+k 
+
+.
+
+(13) 
+
+Again, the linearization error e 
+has been assumed to be t - 
+distributed to facilitate obtaining a closed-form solution for 
+as 
+
+h 
+k 
+
+(cid:4)
+
+ x k 
+ k 
+ P 
+
+|
+
+described in the sequel. Further, the expressions for 
+
+(cid:4)
+
+ y k 
+ k 
+
+|
+
+1 
+
+,
+
+xh 
+k 
+
+and 
+
+P 
+
+hh 
+k 
+
+are given as follows: 
+
+(cid:4)
+
+ y k 
+ k 
+
+|
+
+1 
+
+=
+
+(cid:9)
+
+h 
+(
+
+ x k 
+
+)
+
+ p(
+
+ x k 
+ Y k 
+
+|
+
+1 
+
+)
+
+ d x k 
+
+,
+
+(14) 
+
+P 
+
+xh 
+k 
+
+=
+
+(cid:9)
+(cid:9)
+
+(
+
+ x k 
+
+ (cid:4) x k 
+ (cid:4) y k 
+1 
+
+|
+
+ k 
+
+)(h 
+(
+
+ x k 
+
+)
+
+ (cid:4) y k 
+ (cid:4) y k 
+1 
+
+|
+
+ k 
+
+)
+
+T p(
+
+ x k 
+ Y k 
+
+|
+
+1 
+
+)
+
+ d x k 
+
+,
+
+(15) 
+
+P 
+
+hh 
+k 
+
+=
+
+(h 
+(
+
+ x k 
+
+)
+
+|
+
+ k 
+
+1 
+
+)(h 
+(
+
+ x k 
+
+)
+
+|
+
+ k 
+
+1 
+
+)
+
+T p(
+
+ x k 
+ Y k 
+
+|
+
+1 
+
+)
+
+ d x k 
+
+.
+
+(16) 
+
+Again we assume that e 
+and v k 
+are distributed such that 
+is jointly t -distributed, i.e., p(
+)
+ [
+ diag 
+] 
+ . Using 
+
+h 
+k 
+
+[ x k 
+
+,
+
+ e 
+
+h 
+k 
+
+,
+
+ v k 
+ 0 
+ 0 ] 
+
+] 
+
+T 
+
+ x k 
+ e 
+
+,
+
+h 
+k 
+
+,
+
+ v k 
+ Y k 
+
+|
+
+1 
+
+=
+
+St 
+([ 
+can write 
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+1 
+
+,
+
+,
+
+T ,
+
+{
+
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+灰2 
+灰 h 
+k 
+
+,
+
+ R k 
+
+}
+
+,
+
+灰 )
+
+(12) , we 
+
+(cid:6)
+
+x k 
+y k 
+
+(cid:7)
+
+=
+
+(cid:6)
+
+I 
+
+0 0 
+I 
+I 
+
+H k 
+
+(cid:7)(cid:18)
+
+ x k 
+
+e 
+
+h 
+k v k 
+
+(cid:19)
+
+.
+
+(17) 
+
+Exploiting P1 , the joint probability of x k 
+
+and y k 
+
+is given as 
+
+p(
+
+ x k 
+ y k 
+ Y k 
+
+,
+
+|
+
+1 
+
+)
+
+=
+
+ St 
+
+(cid:2)(cid:6)
+
+(cid:4)
+(cid:4)
+
+ x k 
+ k 
+ x k 
+ k 
+
+|
+
+1 
+1 
+
+H k 
+
+|
+
++
+
+ c k 
+
+(cid:7)
+
+,
+
+(cid:6)
+
+
+
+
+1 
+k 
+1 
+H k 
+k 
+灰2 
+灰 h 
+k 
+
+|
+
+ k 
+
+
+
+1 H 
+T 
+k 
+k 
+S k 
+
+|
+
+ k 
+
+|
+
+ k 
+
+(cid:7)
+
+,
+
+灰
+
+(cid:3)
+
+,
+
+(18) 
+
+(灰  2)
+/灰 ﹞ P 
+where S k 
+H 
+thermore, we note that H k 
+and 
+
+H 
+/灰 ﹞ P 
+2)
+. Finally, using P2 , the conditional probability of p ( x k 
+can be written as p(
+)
+ St 
+(
+ 
+ 灰 )
+ where 
+
+=
+
+ H k 
+
+
+
+k 
+
+|
+
+ k 
+
+1 
+
+T 
+k 
+
++
+
+ R k 
+ x k 
+ k 
+
++
+
+=
+
+hh 
+k 
+1 
+
++
+
+ R k 
+
+. Fur- 
+
+(cid:4)
+
+|
+
+1 
+
++
+
+ c k 
+
+=
+
+(cid:8)
+
+ y k 
+ k 
+
+|
+
+1 
+
+k 
+
+|
+
+ k 
+
+T 
+k 
+
+=
+
+(灰 
+
+xh 
+k 
+
+| Y k 
+
+) 
+
+ x k 
+ Y k 
+
+|
+
+=
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+,
+
+(cid:4)
+
+k 
+
+|
+
+ k 
+
+,
+
+(cid:8)
+
+,
+
+(cid:8)
+(cid:4)
+(cid:4)
+
+ 灰 =
+
+灰 +
+=
+
+ m,
+
+(19a) 
+
+ x k 
+ k 
+
+|
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+1 
+
++
+
+ K k 
+
+(
+
+ y k 
+
+ (cid:4) y k 
+1 
+ K k H k 
+1 
+k 
+
+|
+
+ k 
+
+)
+
+,
+
+(19b) 
+
+ 
+
+k 
+
+|
+
+ k 
+
+=
+
+灰 +
+灰 +
+
+汛 2 
+k 
+
+(
+
+ y k 
+ m 
+
+)
+
+(I 
+
+)
+
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+(19c) 
+
+where K k 
+H 
+S 
+and 
+)
+ . Note that, after the measurement-update, we have 
+灰; 
+ 灰 to be equal to 
+灰 to facilitate the time- 
+however, we require 
+update step in the next iteration. To resolve this, owing to Dunik 
+＞ St 
+et al. [24] , we adopt p(
+)
+(
+
+ where 
+
+is 
+scaled appropriately by matching moments as follows: 
+
+=
+
+
+
+k 
+
+|
+
+ k 
+
+1 
+
+T 
+k 
+
+汛 2 
+k 
+
+(
+
+ y k 
+
+)
+
+=
+
+(
+
+ y k 
+
+ (cid:4) y k 
+
+|
+
+ k 
+
+1 
+
+)
+
+1 
+T S 
+k 
+
+(
+
+ y k 
+
+
+
+(cid:4)
+
+ y k 
+ k 
+
+|
+
+1 
+
+(cid:8)
+
+ 灰 >
+
+(cid:8)
+
+ x k 
+ Y k 
+
+|
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+,
+
+k 
+
+|
+
+ k 
+
+,
+
+灰 )
+
+,
+
+k | k 
+
+
+
+k 
+
+|
+
+ k 
+
+=
+
+(cid:16) (cid:8)
+
+ 灰(cid:8)
+
+ 灰  2 
+
+(cid:17)(cid:16)
+
+灰  2 
+灰
+
+(cid:17) (cid:4)
+
+ 
+
+k 
+
+|
+
+ k 
+
+.
+
+(20) 
+
+3. Stochastic integration method 
+
+Note that the Bayesian ltering process described above re- 
+quires the evaluation of Student t -weighted integrals of the form 
+I (s 
+)
+s 
+(
+)
+ St 
+(
+ ,
+ d x in (4), (8) and (14) 每(16) . These integrals, 
+
+=
+
+(cid:5)
+
+ x 
+
+(cid:4)
+
+ x 
+
+,
+
+灰 )
+
+56 
+
+S.S. Khalid et al. / Signal Processing 140 (2017) 53每59 
+
+in general, do not admit closed-form solutions. In contrast to con- 
+ventional sigma-point methods, here, in this work, we suggest to 
+apply stochastic integration methods [11] for an approximate yet 
+accurate evaluation of I ( s ). 
+First, we transform x 
+ where 
+T and 
+ 1/2 is a lower triangular matrix stemming from the Cholesky 
+ . Accordingly, the Student t -weighted inte- 
+decomposition of 
+=: 
+gral is written as 
+s 
+(
+)
+ St 
+(
+g(
+)
+ St 
+(
+ :=
+I (g)
+ where g(
+)
+)
+ . Secondly, we introduce a change 
+of variable to convert the multi-variate integral into a radial- 
+spherical form [11] , i.e., we let c 
+ with z z 
+ and 
+ :=
+
+=
+
+(cid:4)
+
+ x 
+
++
+
+ 1 
+
+/
+
+ 2 c 
+
+,
+
+ =
+
+ 1 
+ 2 ( 1 
+ 2 )
+
+/
+
+/
+
+(cid:5)
+
+(cid:4)
+(cid:4)
+
+ x 
+ s 
+ x 
+
++
++
+
+ 1 
+ 1 
+
+/
+
+ 2 c 
+ 2 c 
+
+ 0 
+
+,
+ I,
+
+灰 )
+
+ d c 
+
+=
+
+(cid:5)
+
+ c 
+
+ 0 
+
+,
+ I,
+
+灰 )
+
+ d c 
+
+,
+
+ c 
+
+(
+
+/
+
+=
+
+ r z 
+
+,
+
+T =
+
+ 1 
+ r 
+
+,
+
+2 =
+
+ c 
+
+T c 
+
+,
+
+w 
+
+(||
+
+ c 
+
+||
+
+)
+
+ (
+ (
+
+灰+
+
+ n 
+
+2 
+灰
+2 
+
+)
+
+)
+
+1 
+
+(灰羽 )
+
+n/
+
+ 2 
+
+(cid:16)
+
+1 
+
++
+
+c 
+
+T c 
+
+灰
+
+(cid:17)(
+
+灰+
+
+ n 
+
+)
+
+/
+
+ 2 
+
+which facilitates us to obtain 
+1 g(r z 
+)
+
+I (g)
+
+=
+
+(cid:9)
+
+(cid:7)
+
+ z 
+
+(cid:7)
+
+=1 
+
+(cid:9)
+
+ ﹢
+
+0 
+
+w 
+(r 
+)
+
+ r 
+
+n 
+
+ d r d z 
+
+=
+
+1 
+2 
+
+(cid:9)
+
+(cid:7)
+
+ z 
+
+(cid:7)
+
+=1 
+
+(cid:9)
+
+ ﹢
+
+﹢
+
+w 
+(r 
+)
+
+|
+
+ r 
+
+|
+
+n 
+
+1 g(r z 
+)
+
+ d r d z 
+
+,
+
+(21) 
+
+We approximate the radial integral stochastically as follows: 
+
+I r 
+
+(g)
+
+=
+
+(cid:9)
+
+ ﹢
+
+﹢
+
+w 
+(r 
+)
+
+|
+
+ r 
+
+|
+
+1)
+(n 
+
+ g(r 
+)
+
+ d r 
+
+(22a) 
+
+＞ N r (cid:20)
+=0 
+i 
+
+
+
+ r,i 
+
+(cid:6)
+
+g(老i 
+)
+
++
+
+ g(老i 
+)
+2 
+
+(cid:7)
+
+,
+
+(22b) 
+
+where the weights { 
+} with a set of random points { 
+} are se- 
+lected such that (22b) becomes a d th-degree integration rule for 
+(22a) . Similarly, we have a spherical rule 
+
+
+
+r, i 
+＞ N s (cid:20)
+j=0 
+
+老
+
+i 
+
+I z 
+
+(g)
+
+=
+
+(cid:9)
+
+(cid:7)
+
+ z 
+
+(cid:7)
+
+=1 
+
+g(
+
+ z 
+
+)
+
+ d z 
+
+
+
+ s, j g(Q
+
+ z j 
+
+)
+
+.
+
+(23) 
+
+Combining (22b) and (23) , a product stochastic spherical-radial 
+rule is obtained to approximate I ( g ) as follows: 
+ g(老i 
+2 
+
+I (g)
+
+＞ 1 
+2 
+
+N s (cid:20)
+
+j=0 
+
+
+
+ s, j 
+
+N r (cid:20)
+
+=0 
+i 
+
+
+
+ r,i 
+
+(cid:6)
+
+g(老i 
+
+Q
+
+ z j 
+
+)
+
++
+
+Q
+
+ z j 
+
+)
+
+(cid:7)
+
+.
+
+(24) 
+
+where { 
+
+
+
+s, j 
+
+} are random weights, and 
+
+Q
+
+ is an orthogonal matrix. 
+
+Remark 2. The spherical-radial rule in (24) is a d th-degree rule if 
+a) it is exact for a g ( x ) that can be described by a linear combina- 
+tion of monomials up to degree d . b) It is not exact for at least one 
+monomial of degree d 
+ 1 . Moreover, if the radial rule in (22b) and 
+the spherical rule in (23) are both d th-degree, then the resulting 
+spherical-radial rule in (24) is d th-degree as well [9] . 
+
++
+
+3.1. Stochastic radial rule 
+
+To realize the radial rule (22b) , we have a proposition: 
+
+Proposition 1. [11] : If weights 
+
+
+
+r, i 
+
+in (22b) are dened by 
+
+
+
+ r,i 
+
+=
+
+ I r 
+
+(cid:21)
+
+N r (cid:22)
+
+=0 
+k 
+
+,k 
+
+=
+
+ i 
+
+r 
+
+2  老 2 
+k 
+老 2 
+i 
+
+ 老 2 
+
+k 
+
+(cid:23)
+
+,
+
+(25) 
+
+where 
+ 0 and { 
+} are distinct non-negative real numbers 
+chosen from a distribution proportional to p(老1 
+)
+w 
+)
+)
+2 (老
+)
+ then (22b) is an unbiased 
+degree 2 N r 
+ 1 integration rule for I r ( g ) . 
+
+老0 
++1 
+=1 
+老 n 
+i 
+i 
+
+=
+
+老
+
+i 
+
+,
+
+老2 
+
+,
+
+﹞ ﹞ ﹞ ,
+
+老N r 
+
+=
+
+(cid:24)
+
+ N r 
+
+(老
+
+i 
+
+(cid:24)
+
+ i 
+
+1 
+=1 
+k 
+
+(老
+
+i 
+
+ 老
+
+k 
+
+i 
+
++
+
+老
+
+k 
+
+,
+
++
+
+3.2. Stochastic spherical rule 
+
+A stochastic spherical rule can be developed by modifying a 
+given deterministic rule; we have the following proposition: 
+
+Proposition 2. [11] : Let S(g)
+of degree d for the integral I z ( g ) . If 
+orthogonal matrix, then S Q
+(g)
+integration rule of degree d for I z ( g ) . 
+
+=
+
+(cid:25)
+(cid:25)
+
+ N s 
+
+j=0 
+
+
+
+ s, j 
+
+g(
+ be an integration rule 
+℅ n 
+ is a uniformly chosen n 
+g(Q
+)
+ is also an unbiased 
+
+ z j 
+
+)
+
+Q
+
+=
+
+ N s 
+
+j=0 
+
+
+
+ s, j 
+
+ z j 
+
+Remark 3. We can develop a stochastic spherical rule of an arbi- 
+trary degree using Proposition 2 and any of the various determin- 
+istic rules available in the literature [9,26] . The standard method 
+for generating 
+ is to set it equal to the Q matrix of the QR - 
+℅ n random matrix X , where each entry of 
+factorization of an n 
+(0 
+ 1)
+X is independent and distributed in 
+ . More ecient meth- 
+ods can be found in [27] . 
+
+Q
+
+N
+
+,
+
+3.3. Third-degree stochastic spherical radial rule 
+
+To develop a third-degree stochastic radial rule ( N r 
+note from Proposition 1 that the corresponding weights 
+are evaluated as follows: 
+老 2  r 
+
+=
+
+ 1 ), we 
+and 
+
+
+
+r , 0 
+
+
+
+r , 1 
+
+
+
+ r,
+
+ 0 
+
+=
+
+ I r 
+
+(cid:2)
+(cid:2)
+
+2 
+
+老 2 
+
+(cid:3)
+
+=
+
+(cid:2)
+
+1 
+
+
+
+n灰
+(灰  2)
+
+老 2 
+
+(cid:3)
+
+T 
+
+(26a) 
+
+
+
+ r,
+
+ 1 
+
+=
+
+ I r 
+
+r 
+
+2 
+
+老 2 
+
+(cid:3)
+
+=
+
+n灰
+(灰  2)
+
+老 2 
+
+T 
+
+,
+
+(26b) 
+
+where T 
+ 2)
+ . To generate 
+老 , we note from 
++1 (1 
+Proposition 1 that we need to sample from p(老 )
+老 2 /灰 )
+ 2 . While p ( 
+老 ) is not a standard distribution; however, 
+it can be sampled using a Beta distribution with an appropriate 
+transformation as dictated by the following proposition: 
+ Beta 
+ 1 
+(灰/
+Proposition 3. Let y 
+ y 
+negative real number, 
+ 灰 (1 
+)
+
+=
+
+羽 n/
+
+ 2  (n/
+
+≦
+
+老 n 
+
++
+
+(
+
+ n 
+
++
+
+灰 )
+
+/
+
+ 2 
+
+,
+ n/
+/y 
+,
+
+ 2 
+
++
+
+ 1)
+ and let 
+汎 be a non- 
+汎 ) 
+老 ) . 
+ then p ( 
+
+汎 =
+
+(cid:26)
+
+≦
+
+ p ( 
+
+Proof. Considering p(汎 )
+
+=
+
+ p(y 
+)
+ where 
+(1 
+ 2 is found to be proportional to 
+老 . The positive constant K is evaluated 
+
+|
+
+dy 
+d汎
+
+|
+
+(cid:27)(cid:27)
+
+y 
+
+=
+
+(cid:4)
+
+ y 
+
+,
+
+(cid:4)
+
+ y 
+
+=
+
++
+
+汎 2 /灰 )
+
+1 ; 
+
+p(汎 )
+老 ) if 
+p ( 
+as K 
+
+=
+
++1 
+1 
+汎 n 
+K 
+
+(cid:28)
+
+1 
+汎 is replaced with 
+
++
+
+汎 2 /灰
+
+(cid:29)(
+
+ n 
+
++
+
+灰 )
+
+/
+
+=
+
+1) (n/
+ 2+1)
+ (灰/
+1 
+ 2+
+2 
+ (灰/
+ 2)
+
+ 2 
+
+ n/
+
++2)
+灰 (n 
+
+/
+
+ 2 . 
+
+Note that the mentioning of the Beta distribution appears 
+lightly in [11, p. 9] without any discussion of the required transfor- 
+mation. Accordingly, to generate 
+老 , we choose y from Beta 
+(灰/
+ y 
+ 1)
+ 灰 (1 
+)
+1 
+ and then apply the transformation 
+For the third-degree stochastic spherical rule, we rst employ 
+the simple deterministic rule given as 
+ g(e j 
+＞ 2 
+)
+T 
+2 
+
+ 2 
+
+
+
+,
+ n/
+
+ 2 
+
++
+
+老 =
+
+(cid:26)
+
+/y . 
+
+I z 
+
+(g)
+
+
+
+ s 
+
+n (cid:20)
+j=1 
+
+(cid:6)
+
+g(
+
+ e j 
+
+)
+
++
+
+(cid:7)
+
+,
+
+(27) 
+
+where 2/ T is the surface area of unit sphere, e j 
+is a unit vec- 
+tor in the j th coordinate and 
+. We then make use of 
+Proposition 2 to convert it into a stochastic rule. Finally, using 
+(24) 每(27) , the integral I ( g ) in (21) can be approximated using the 
+stochastic spherical-radial rule as follows: 
+
+
+
+ s 
+
+=
+
+1 
+n 
+
+I (g)
+
+＞ 
+
+ s 
+
+T 
+
+n (cid:20)
+j=1 
+
+[ 
+
+
+
+ r,
+
+ 0 g(
+
+ 0 
+
+)
+
++
+
+
+
+ r,
+
+ g 
+ 1 
+
+(cid:8)
+(cid:8)
+
+(老Q
+
+ e j 
+
+)] 
+
+=
+
+
+
+ 0 g(
+
+ 0 
+
+)
+
++
+
+灰
+(灰  2)
+ n灰/
+灰  2)
+
+n (cid:20)
+老 2 
+j=1 
+
+ g 
+
+(老Q
+
+ e j 
+
+)
+
+,
+
+(28) 
+
+where 
+
+
+
+ 0 
+
+=
+
+ 1 
+
+(
+
+(
+
+老 2 )
+
+,
+
+ and 
+
+(cid:8)
+
+ g 
+ x 
+
+(
+
+)
+
+=
+
+1 
+2 
+
+(g(
+
+ x 
+
+)
+
++
+
+ g(
+
+x 
+))
+
+ . 
+
+(cid:2)
+
+S.S. Khalid et al. / Signal Processing 140 (2017) 53每59 
+
+57 
+
+Remark 4. To achieve global convergence, the stochastic integra- 
+tion is evaluated N m times and averaged. For each evaluation, in- 
+老 and 
+dependent realizations of random entities 
+ are consid- 
+ered. From (28) , we note that each iteration operates for 2 n 
+points. Hence, the total number of function evaluations required 
+is 
+(2 n 
+ 1)
+ N m . Note that the CKF [15] requires 2 n function eval- 
+uations; consequently, the complexity of the proposed scheme is 
+approximately N m times greater than that of CKF lter. 
+
+Q
+
++
+
+ 1 
+
++
+
+4. Stochastic integration ltering 
+
+Here, we describe the procedure to recursively estimate 
+using the stochastic rule described in Section 3.3 . The lter is 
+(灰  2)
+
+/灰E [(
+)(
+initialized with 
+ E[ x 0 ] and 
+)
+T ] . The ltering procedure is carried out by repeating the fol- 
+lowing steps for each instance k . 
+For the time-update, we set 
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+(cid:4)
+
+ x 0 
+ 0 
+
+|
+
+=
+
+0 
+
+|
+
+ 0 
+
+=
+
+ x 0 
+
+ (cid:4) x 0 
+
+|
+
+ 0 
+
+ x 0 
+
+
+
+(cid:4) x 0 
+
+|
+
+ 0 
+
+米 =
+
+(cid:4)
+
+ x k 
+
+1 
+
+|
+
+ k 
+
+1 
+
+,
+
+ =
+=
+
+
+
+1 
+k 
+
+|
+
+ k 
+ 1 
+ 2 
+
+1 
+
+and 
+
+generate independent realizations of 
+and 
+l for l 
+Then, for each l , we generate the following set of sigma-points: 
+≒ n.
+(
+)
+
+老 l 
+1 
+
+Q
+
+,
+
+,
+
+﹞ ﹞ ﹞ ,
+
+ N m . 
+
+X 
+
+l 
+i 
+
+=
+
+米 +
+
+ 2 老 l Q
+ 1 
+
+/
+
+l e i 
+
+0 
+
+<
+
+ i 
+
+(29) 
+(x 
+ f (
+ and 
+)
+ 2 . Then, using (28) , the integral in (8) are approximated 
+
+Let f 1 
+(
+for i 
+as (cid:4)
+
+ x 
+ 1 
+
+)
+
+=
+
+ x 
+
+)
+
+,
+
+ f 2 
+
+(
+
+ x 
+
+)
+
+=
+
+ f 
+
+(
+
+ x 
+
+)
+
+ f 
+
+ x 
+
+T ,
+
+(cid:8)
+
+ f i 
+ x 
+
+(
+
+)
+
+=
+
+1 
+2 
+
+(
+
+ f i 
+
+(
+
+ x 
+
+)
+
++
+
+ f i 
+
+)
+
+=
+
+,
+
+ x k 
+ k 
+
+|
+
+1 
+
+=
+
+(cid:8)
+
+ x k 
+ k 
+
+|
+
+1 
+
+＞ 1 
+
+N m 
+
+N m (cid:20)
+
+l=1 
+
+(cid:6)
+
+f 1 
+
+(
+
+米)
+
+
+
+l 
+0 
+
++
+
+灰
+(灰  2)(老 l )
+
+n (cid:20)
+2 
+j=1 
+
+(cid:8)
+
+ f 1 
+
+(
+
+ X 
+
+l 
+i 
+
+)
+
+(cid:7)
+
+,
+
+(30a) 
+
+P 
+
+f f 
+1 
+k 
+
+＞ 1 
+
+ (cid:4) x k 
+N m 
+l=1 
+1 
+
+N m (cid:20)
+
+(cid:6)
+
+f 2 
+
+(
+
+米)
+
+T 
+
+l 
+0 
+
++
+
+灰
+(灰  2)(老 l )
+
+n (cid:20)
+2 
+j=1 
+
+(cid:8)
+
+ f 2 
+
+(
+
+ X 
+
+l 
+i 
+
+)
+
+(cid:7)
+
+|
+
+ k 
+
+(cid:4)
+
+ x 
+
+T 
+k 
+
+|
+
+ k 
+
+1 
+
+.
+
+(30b) 
+
+Finally, we evaluate 
+. For the 
+
+measurement-update, we set 
+and gen- 
+erate a new set of sigma-points using (29) . Let h 1 
+(
+)
+(
+)
+(x 
+(
+)
+(
+)
+(
+)
+(
+)
+(
+)
+T and 
+(
+)
+(
+)
+))
+i 
+ 3 . Now using (28) , the integrals in (14), (15) and (16) are 
+approximated as 
+＞ 1 
+
+
+
+k 
+
+|
+
+ k 
+
+1 
+
+=
+米 =
+
+灰2 
+1 
+
+灰 ﹞ P 
+
++ Q k 
+f f 
+1 
+1 
+k 
+1 
+k 
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+,
+
+ =
+=
+
+|
+
+ k 
+
+ x 
+ h i 
+
+=
+
+ h 
+
+ x 
+
+,
+,
+
+h 2 
+
+ x 
+ x h 
+ 1 
+ 2 
+
+=
+
+ x 
+
+T ,
+
+ h 3 
+
+ x 
+
+=
+
+ h 
+
+ x 
+
+ h 
+
+ x 
+
+(cid:8)
+
+ h i 
+
+ x 
+
+1 
+(h i 
+2 
+
+ x 
+
++
+
+=
+
+,
+
+,
+
+(cid:4)
+
+ y k 
+ k 
+
+|
+
+1 
+
+N m 
+
+N m (cid:20)
+N m (cid:20)
+
+l=1 
+
+(cid:6)
+
+h 1 
+
+(
+
+米)
+
+
+
+l 
+0 
+
++
+
+灰
+(灰  2)(老 l )
+
+n (cid:20)
+2 
+n (cid:20)
+j=1 
+2 
+j=1 
+n (cid:20)
+2 
+j=1 
+
+(cid:8)
+(cid:8)
+
+ h 1 
+
+(
+
+ X 
+
+l 
+i 
+
+)
+
+(cid:7)
+(cid:7)
+
+,
+
+(31a) 
+
+P 
+
+xh 
+k 
+
+＞ 1 
+
+ (cid:4) x k 
+N m 
+l=1 
+1 
+
+(cid:6)
+
+h 2 
+
+(
+
+米)
+
+T 
+
+l 
+0 
+
++
+
+灰
+(灰  2)(老 l )
+
+ h 2 
+
+(
+
+ X 
+
+l 
+i 
+
+)
+
+|
+
+ k 
+
+(cid:4)
+
+ y 
+
+T 
+k 
+
+|
+
+ k 
+
+1 
+
+,
+
+(31b) 
+
+P 
+
+hh 
+k 
+
+＞ 1 
+
+ (cid:4) y k 
+N m 
+l=1 
+1 
+
+N m (cid:20)
+
+(cid:6)
+
+h 3 
+
+(
+
+米)
+
+T 
+
+l 
+0 
+
++
+
+灰
+(灰  2)(老 l )
+
+(cid:8)
+
+ h 3 
+
+(
+
+ X 
+
+l 
+i 
+
+)
+
+(cid:7)
+
+|
+
+ k 
+
+(cid:4)
+
+ y 
+
+T 
+k 
+
+|
+
+ k 
+
+1 
+
+.
+
+(31c) 
+
+Finally, 
+tively. 
+
+(cid:4)
+
+ x k 
+ k 
+
+|
+
+and
+
+(cid:4)
+
+ 
+
+k 
+
+|
+
+ k 
+
+are evaluated using (19) and (20) , respec- 
+
+5. Simulation results 
+
+In this section, we compare the performance of the proposed 
+lter with the conventional CKF [15] , the SIF [10] and a recently 
+developed robust CKF (RCKF) lter [2,6] which is a multivariate t - 
+lter. We consider a benchmark scenario of tracking a target using 
+bearings-only measurements [10,28] . The target is observed from a 
+
+0
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+Time (min)
+
+R
+
+M
+
+P
+E
+S
+
+o
+
+s
+
+i
+
+t
+
+i
+
+n
+o
+
+(
+
+K
+
+m
+
+)
+
+CKF
+RCKF
+SIF
+Proposed
+
+Fig. 1. Comparison of position RMSE of the proposed lter RSIF with CKF, SIF and 
+RCKF for jointly t -distributed process and measurement noises. 
+
+maneuvering platform and the angle between the target and the 
+platform is measured at each instance k . We assume a nearly con- 
+stant velocity motion for the target, i.e., the process model is de- 
+scribed as follows [28] : 
+
+x k 
+
+=
+
+ F x k 
+
+1 
+
++
+
+ w k 
+
+1 
+
+,
+
+(32) 
+
+步 汎
+where x k 
+] 
+, 
+ordinates of the target; whereas, 
+and 步 
+ directions, respectively. We have F 1 
+pling time T is set to 1 min. The measurement model is describes 
+as 
+
+=
+
+ [ 
+
+汎
+
+k 
+
+,
+
+k 
+
+,
+
+
+
+k 
+
+,
+
+ 步 
+
+
+
+k 
+
+T ,
+
+ F 
+
+=
+
+ F 1 
+
+(cid:2) I 2 
+
+,
+
+ [ 
+
+汎
+
+k 
+
+
+
+k 
+
+] are the position co- 
+are the velocities in 汎
+
+步 汎
+
+k 
+
+
+
+k 
+
+and 
+
+=
+
+(cid:30)
+
+1 
+0 
+
+T 
+1 
+
+(cid:31)
+
+and the sam- 
+
+y k 
+
+=
+
+ tan 
+
+1 
+
+(cid:2)
+
+
+汎
+
+k 
+
+ 
+ 汎
+
+p,k 
+
+k 
+
+p,k 
+
+(cid:3)
+
++
+
+ v k 
+
+,
+
+(33) 
+
+where [ 
+, 
+] 
+T are the coordinates of the platform and are as- 
+2.36 rad at 
+sumed to be known. The object follows a course of 
+a constant speed of 27.7 Km/h, i.e., 15 knots. The platform follows 
+1.39 rad at a constant speed of 9.26 Km/h. The plat- 
+a course of 
+form undergoes a maneuver after 15 min after which it follows a 
+course of 2.54 rad. The platform starts from the origin; whereas, 
+the initial position of the target is set to [7 Km, 7 Km]. The initial 
+error covariance matrix P 0|0 
+is set to diag([40 0 m, 4 m/s,40 0 m, 
+4 m/s]). The total simulation time is set to 100 min. The ltering 
+灰 are set to 100 and 4, respectively. 
+parameters N m and 
+
+汎
+
+p, k 
+
+
+
+p, k 
+
+5.1. Experiment No. 1 
+
+In the rst experiment, we generate the uncertainties w k 
+and 
+ St( 0 , Q, 
+using t -distributed random processes, i.e., w k 
+灰) and 
+ St 
+(
+)
+℅ 10 
+3 and 
+1 
+. We compare the performances using 
+root-mean-square-error (RMSE) values of positions and velocities 
+that are computed by taking the average of 10 0 0 Monte-Carlo runs. 
+The results are depicted in Figs. 1 and 2 . We note that the l- 
+ters utilizing t -distributed process and measurement noise, i.e., the 
+RCKF and the proposed RSIF signicantly outperform the standard 
+Gaussian assumption based CKF and SIF. Furthermore, we observe 
+that the proposed RSIF performs better than robust CKF lter in 
+terms of peak RMSE; however, RCKF performs slightly better than 
+the proposed scheme during the transition period and both lters 
+show similar performance in steady-state. 
+
+v k 
+v k 
+
+ 0 
+
+,
+
+考 2 牟
+6 m 
+2 /
+
+,
+
+灰 )
+
+,
+
+ where Q 
+
+=
+
+(Q 1 
+(cid:2) I 2 
+
+考 2 
+w 
+
+,
+
+ Q 1 
+
+=
+
+(cid:30)
+
+T 
+T 
+
+3 
+
+/
+
+ 2 
+
+T 
+T 
+
+2 
+
+/
+
+ 2 
+
+2 
+
+/
+
+ 2 
+
+(cid:31)
+
+,
+
+考 2 
+w 
+
+=
+
+ s 
+
+考牟 =
+
+ 2 
+
+
+
+58 
+
+S.S. Khalid et al. / Signal Processing 140 (2017) 53每59 
+
+0
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+Time (min)
+
+R
+
+M
+
+V
+E
+S
+
+o
+e
+
+l
+
+c
+
+i
+
+t
+
+y
+
+(
+
+m
+
+/
+
+s
+
+)
+
+CKF
+RCKF
+SIF
+Proposed
+
+Fig. 2. Comparison of velocity RMSE of the proposed lter RSIF with CKF, SIF and 
+RCKF for jointly t -distributed process and measurement noises. 
+
+0
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+Time (min)
+
+R
+
+M
+
+P
+E
+S
+
+o
+
+s
+
+i
+
+t
+
+i
+
+n
+o
+
+(
+
+K
+
+m
+
+)
+
+CKF
+RCKF
+SIF
+Proposed
+
+Fig. 3. Comparison of position RMSE of the proposed lter RSIF with CKF, SIF and 
+RCKF for outliers contaminated noise generated using (34) . 
+
+5.2. Experiment No. 2 
+
+In the second experiment, we use a standard model, as sug- 
+gested in [2,4,6] , to simulate the outliers contaminated noise pro- 
+cesses, i.e., w k 
+and v k 
+are generated according to the following 
+probability scheme: (below w.p. stands for ＆with probability＊) 
+
+w k 
+
+
+
+N
+N
+
+(
+(
+
+ 0 
+ 0 
+
+,
+,
+
+ Q )
+ 10 Q )
+
+w.p. 0 
+ 95 
+ w.p. 0 
+ 05 
+
+.
+.
+
+v k 
+
+
+
+ N
+
+(
+
+ 0 
+
+,
+
+考 2 牟
+
+)
+
+w.p. 0 
+ 95 
+
+.
+
+N
+
+(
+考牟 =
+
+ 0 
+
+,
+
+ 100 
+
+考 2 牟
+
+)
+
+ w.p. 0 
+ 05 
+
+.
+
+(34) 
+
+where 
+ 17 
+ 5 mrad . 
+The RMSE values are depicted in Figs. 3 and 4 . We note that the 
+proposed scheme outperforms all other lters in both position and 
+velocity RMSE values. In Table 3 , we depict the values of the posi- 
+tion and velocity RMSE averaged over the entire simulation range. 
+We note that the position estimates of the proposed lter show an 
+improvement of around 68.1%, 67.1% and 61% as compared to CKF, 
+SIF and RCKF, respectively. Similarly, the velocity RMSE of the pro- 
+
+ 1 
+
+ =
+
+.
+
+0
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+Time (min)
+
+R
+
+M
+
+V
+E
+S
+
+o
+e
+
+l
+
+c
+
+i
+
+t
+
+y
+
+(
+
+m
+
+/
+
+s
+
+)
+
+CKF
+RCKF
+SIF
+Proposed
+
+Fig. 4. Comparison of velocity RMSE of the proposed lter RSIF with CKF, SIF and 
+RCKF for outliers contaminated noise generated using (34) . 
+
+Table 3 
+RMSE values of the proposed RSIF lter, CKF, SIF and RCKF. 
+
+Filter 
+
+Position (Km) 
+
+Velocity (m/s) 
+
+Cubature Kalman Filter (CKF) 
+Stochastic Integration Filter (SIF) 
+Robust CKF 
+Proposed (Robust SIF) 
+
+4.27 
+4.14 
+3.5 
+1.36 
+
+2.07 
+2.09 
+2.1 
+1.02 
+
+posed lter is lesser by 50.7%, 51.2% and 51.4% when compared to 
+CKF, SIF and RCKF, respectively. Thus, under heavy-tailed uncertain- 
+ties, the proposed lter seems to be quite a promising substitute 
+for the traditional counterparts. 
+
+6. Conclusions 
+
+In this work, we discussed the utilization of spherical-radial 
+stochastic integration rules for nonlinear Bayesian ltering in the 
+presence of multivariate t -distributed uncertainties. We specically 
+developed a robust third-degree stochastic integration lter (RSIF) 
+for the estimation of state variables under heavy-tailed uncertain- 
+ties. Under the inuence of outliers, the performance of the pro- 
+posed lter was compared with the standard cubature Kalman l- 
+ter (CKF), the stochastic integration lter (SIF), and a robust vari- 
+ant of CKF in a nonlinear tracking scenario. It is observed that the 
+proposed lter is highly robust to the presence of heavy-tailed un- 
+certainties, and can outperform a number of existing solutions. 
+
+References 
+
+[1] A. Haug , Bayesian Estimation and Tracking: A Practical Guide, John Wiley and 
+Sons, 2012 . 
+[2] Y. Huang , Y. Zhang , N. Li , S. Naqvi , J. Chambers , A robust student t -based cu- 
+bature lter, in: 19th International Conference on Information Fusion, 2016, 
+pp. 9每16 . 
+[3] G. Agamennoni , J. Nieto , E. Nebot , Approximate inference in state-space models 
+with heavy-tailed noise, IEEE Trans. Signal Process. 60 (10) (2012) 5024每5037 . 
+[4] M. Roth , E. zkan , F. Gustafsson , A student t -lter for heavy tailed process and 
+measurement noise, in: IEEE Intl. Conference on Acoustics, Speech and Signal 
+Processing, 2013, pp. 5770每5774 . 
+[5] R. Pich谷, S. Srkk, J. Hartikainen , Recursive outlier-robust ltering and 
+smoothing for nonlinear systems using the multivariate Student t -distribution, 
+in: IEEE Intl. Workshop on Machine Learning for Signal Processing, 2012, 
+pp. 1每6 . 
+[6] F. Tronarp , R. Hostettler , S. Srkk, Sigma-point ltering for nonlinear systems 
+with non-additive heavy-tailed noise, in: 19th International Conference on In- 
+formation Fusion, 2016, pp. 1859每1866 . 
+[7] R. Meinhold , N. Singpurwalla , Robustication of Kalman lter models, J. Am. 
+Statis. Assoc. 84 (406) (1989) 479每486 . 
+
+S.S. Khalid et al. / Signal Processing 140 (2017) 53每59 
+
+59 
+
+[8] Y. Huang , Y. Zhang , N. Li , J. Chambers , A robust Gaussian approximate xed-in- 
+terval smoother for nonlinear systems with heavy-tailed process and measure- 
+ment noises, IEEE Signal Process. Lett. 23 (4) (2016) 468每472 . 
+[9] B. Jia , M. Xin , Y. Cheng , High-degree cubature Kalman lter, Automatica 49 (2) 
+(2013) 510每518 . 
+[10] J. Dun赤k , O. Straka , M. imandl , Stochastic integration lter, IEEE Trans. Autom. 
+Contr. 58 (6) (2013) 1561每1566 . 
+[11] A. Genz , J. Monahan , Stochastic integration rules for innite regions, SIAM J. 
+Sci. Comput. 19 (2) (1998) 426每439 . 
+[12] S. Khalid, N. Rehman, S. Abrar, Higher-degree stochastic integration ltering, 
+in: arXiv preprint, available at: arxiv.org/abs/1608.00337, 2016, pp. 1每5. 
+[13] I. Arasaratnam , S. Haykin , R. Elliott , Discrete-time nonlinear ltering algorithms 
+using Gauss每Hermite quadrature, Proc. IEEE 95 (5) (2007) 953每977 . 
+[14] A. Garc赤a-Fern芍ndez , L. Svensson , M. Morelande , S. Srkk, Posterior lineariza- 
+tion lter: principles and implementation using sigma points, IEEE Trans. Sig- 
+nal Process. 63 (20) (2015) 5561每5573 . 
+[15] I. Arasaratnam , S. Haykin , Cubature Kalman lters, IEEE Trans. Autom. Contr. 
+54 (6) (2009) 1254每1269 . 
+[16] M. Al-Shabi , S. Gadsden , S. Habibi , Kalman ltering strategies utilizing the 
+chattering effects of the smooth variable structure lter, Signal Process. 93 (2) 
+(2013) 420每431 . 
+[17] S. Gadsden , M. Al-Shabi , I. Arasaratnam , S. Habibi , Combined cubature Kalman 
+and smooth variable structure ltering: a robust nonlinear estimation strategy, 
+Signal Process. 96 (2014) 290每299 . 
+[18] S. Julier , J. Uhlmann , Unscented ltering and nonlinear estimation, Proc. IEEE 
+92 (3) (2004) 401每422 . 
+
+[19] B. Jia , M. Xin , Y. Cheng , Sparse每grid quadrature nonlinear ltering, Automatica 
+48 (2) (2012) 327每341 . 
+[20] Y. Zhang , Y. Huang , N. Li , L. Zhao , Embedded cubature Kalman lter with adap- 
+tive setting of free parameter, Signal Process. 114 (2015) 112每116 . 
+[21] J. Dunik , O. Straka , M. Simandl , E. Blasch , Random每point-based lters: analysis 
+and comparison in target tracking, IEEE Trans. Aerosp. Electron. Syst. 51 (2) 
+(2015) 1403每1421 . 
+[22] S. Kotz , S. Nadarajah , Multivariate t -Distributions and Their Applications, Cam- 
+bridge University Press, 2004 . 
+[23] W. Shaw , K. Lee , Bivariate student t -distributions with variable marginal 
+degrees of freedom and independence, J. Multivariate Anal. 99 (6) (2008) 
+1276每1287 . 
+[24] M. Roth , Kalman Filters for Nonlinear Systems and Heavy-Tailed Noise, Division 
+of Automatic Control, Department of Electrical Engineering, Linkping Univer- 
+sity, SE-581 83 Linkping, Sweden, 2013 Ph.D. thesis . 
+[25] T. Lefebvre , H. Bruyninckx , J. De Schuller , Comment on ※a new method for the 
+nonlinear transformation of means and covariances in lters and estimators§
+[with authors＊ reply], IEEE Trans. Autom. Contr. 47 (8) (2002) 1406每1409 . 
+[26] A. Genz , Fully symmetric interpolatory rules for multiple integrals over hyper- 
+-spherical surfaces, J. Comput. Appl. Math. 157 (1) (2003) 187每195 . 
+[27] A. Genz , Methods for generating random orthogonal matrices, Monte Carlo and 
+Quasi-Monte Carlo Methods (1998) 199每213 . 
+[28] P. Leong , S. Arulampalam , T. Lamahewa , T. Abhayapala , A Gaussian-sum based 
+cubature Kalman lter for bearings-only tracking, IEEE Trans. Aerosp. Electron. 
+Syst. 49 (2) (2013) 1161每1176 . 
+

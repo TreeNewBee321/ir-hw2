@@ -1,0 +1,1363 @@
+Atomic force microscopy study of the biofouling and mechanical properties of virgin and industrially fouled reverse osmosis membranes
+
+L.C. Powell a, N. Hilal b, C.J. Wright a,
+
+a Biomaterials, Biofouling and Biolms Engineering Laboratory (B3EL), The Systems and Process Engineering Centre (SPEC) College of Engineering, Swansea University, Fabian Way, Swansea, UK
+b Centre for Water Advanced Technologies and Environmental Research (CWATER), College of Engineering, Swansea University, Fabian Way, Swansea SA1 8EN, UK
+
+H I G H L I G H T S
+
+ Atomic force microscopy (AFM) imaging of industrially fouled reverse osmosis membranes
+ AFM force spectroscopy measured the Young's modulus of virgin and fouled membranes.
+ pH inuenced the mechanical properties of virgin and fouled membranes.
+ AFM force spectroscopy of membranes extended to measure energy of adhesion.
+ Signicant difference in mechanical properties between fouled and virgin membranes
+
+article
+
+info
+
+
+Article history:
+Received 13 June 2016
+Received in revised form 27 October 2016
+Accepted 5 November 2016
+Available online 23 November 2016
+
+Keywords:
+Membrane
+Reverse osmosis
+Biofouling
+Biolm
+Atomic force microscopy
+
+abctract
+
+The mechanical properties of virgin and industrially fouled reverse osmosis membranes (composite polyamide)
+used for the purication and desalination of seawater in desalination processes were characterised using novel
+atomic force microscopy (AFM) methods. Polymeric surface elasticity has previously been demonstrated to
+strongly affect the adhesion of bacteria; hence the study examined membrane surface elasticity to demonstrate
+how AFM can be used to assess the bio-fouling potential of membranes. An AFM colloid probe technique was
+used to determine the mechanical properties of the membrane, the adhesion forces and the work of adhesion
+at the membrane surfaces. The mean values of Young's modulus for the virgin membrane decreased in magni-
+tude with increasing pH values, where these values were signicantly different (p b 0.017) between both pH 3
+(1450 kPa), pH 7 (1327 kPa) and pH 9 (788 kPa). These differences were attributed to differences in membrane
+swelling and indicate possible control parameters that could be exploited to improve membrane cleaning re-
+gimes. A membrane with a higher modulus will be stronger and potentially more resistant to chemical and phys-
+ical processes during operation and cleaning. Signicant differences (p b 0.017) in force measurements were also
+found between different electrolytic conditions for each of the membranes, where for the virgin membrane the
+adhesion force values were 6.00 nN at pH 3, 1.77 nN at pH 7 and 0.98 N at pH 9, and also the work of adhesion
+were 153.6 nJ at pH 3, 22.8nJ at pH 7 and 9.9 nJ at pH 9 in 0.6 M NaCl. These observations further conrm the im-
+portance of the electrolytic environment on the nanoscale interactions of the membrane which should be consid-
+ered to control fouling during operation and cleaning cycles. AFM images and streaming potential measurements
+of virgin and fouled membranes were also obtained to aid analysis of the industrial membrane system. The novel
+application of AFM to membranes to measure Young's moduli and work of adhesion is a new addition to the AFM
+tools that can be used to unravel separation processes at the membrane surface. In addition, this study further
+demonstrates that AFM force spectroscopy can be used as part of a sophisticated membrane autopsy procedure
+for the elucidation of the mechanisms involved in membrane fouling.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+Membrane separation is now an established technology that has
+been applied for the production of ultra-pure water by the purication
+and desalination of seawater using reverse osmosis (RO) membranes.
+However, membrane ltration processes are commonly impeded by
+membrane fouling, which leads to considerable technical problems,
+such as reduction in water product quality and requirement for higher
+pressure. The life span of the membrane is also shortened by fouling
+and the subsequent need for cleaning processes [1,2]. A major contrib-
+uting factor to membrane fouling within industry is the formation of
+microbial biolms at the surface of the membrane [3,4]. Desalination
+plants can use a number of strategies for the prevention and control of
+membrane fouling, which include the use of pre-treatment units for
+the removal of organic and inorganic dissolved substances and the
+cleaning of the membrane by either back-washing or chemical wash
+[5]. To augment these strategies many studies have focussed on the
+membrane fabrication stage to reduce fouling and optimise the mem-
+brane processes [6,7]. Thus, a greater understanding of the physical,
+chemical and biological processes regulating biolm formation and de-
+velopment is required to aid in developing new strategies to inhibit or
+control the biolm membrane fouling.
+Atomic force microscopy (AFM) has become an essential tool for the
+membrane technologist optimising separation processes through greater
+understanding of fouling mechanisms [8每10]. This versatile instrument
+not only produces high resolution images of the membrane surface in
+process relevant environments but can also be used to quantify the forces
+acting at a membrane surface which govern fouling processes. Force is
+measured as a function of distance when a probe attached to the apex
+of the AFM cantilever, approaches the sample, makes contact and then re-
+tracts away from the sample. The displacement is varied using the exten-
+sion and retraction of a piezoelectric crystal. The deection of the
+cantilever is monitored and converted into values of force using Hooke's
+Law, calibration of the spring constant and deection sensitivity [11].
+Force measurement data presented in the form of a force-distance
+curve, as shown in Fig. 1, can provide valuable information on interactions
+forces and local material properties such as elasticity, hardness, adhesion
+and surface charge densities. Fig. 1 presents typical AFM measurements
+made at virgin and fouled membranes within an aqueous environment.
+The local mechanical properties of a membrane or fouling layer indicate
+the resilience of the material to chemical and physical processes. For poly-
+mer membranes a harder surface may have reduced wear compared to
+softer membranes during operation and cleaning cycles [12]. A foulant
+layer which has low mechanical robustness will be more susceptible to
+hydrodynamic shear applied during cleaning procedures. The mechanical
+properties of a membrane or a thin lm can be studied by measuring
+force-distance curves obtained by AFM and then analysing force data
+through a chosen mechanical theory which considers the contact and in-
+dentation of two surfaces to obtain a value of Young's modulus. AFM im-
+aging can be used to identify changes in nanoscale morphology and
+surface roughness when a foulant layer forms on a membrane surfaces.
+AFM force-distance curves can be used to measure changes in the me-
+chanical properties at the membrane surface when the membrane-foul-
+ing layer system forms.
+AFM imaging has been used to study the surface roughness and pore
+size distribution of many types of membrane, the distribution of fouling
+materials at a membrane surface before and after cleaning processes
+[13,14] and also to study the early bacterial colonisation events that
+lead to biolm formation at nanoltration membranes [15]. The AFM
+force-measurement capability has been used to study interactions that
+govern separation processes including particle/bubble interactions
+[16] and particle/membrane interactions to provide an assessment of
+the fouling potential of membranes [17,18]. The bulk mechanical prop-
+erties of membranes, such as polybenzimidazole (PBI), have been inves-
+tigated for the determination of tensile strength, storage modulus and
+Young's modulus, using techniques such as dynamic mechanical analy-
+sis (DMA) [19,20]. However, the local mechanical properties of the poly-
+mer, at the membrane surface, vary from the bulk of the polymer, and it
+is the local properties that act at the commensurate size of microbes
+which will inuence the microbial attachment. The AFM nano-indenta-
+tion technique allows for a simple, convenient measurement of local
+Young's modulus of membranes. Franceschini and Corti [21] deter-
+mined the elastic moduli of naon, PBI and poly [2,5-benzimidazole]
+membranes, both undoped and phosphoric acid doped, using AFM
+force spectroscopy. AFM nano-indentation has also been used to mea-
+sure the Young's modulus and hardness of various polymers, such as
+polyethylene, polyvinyl alcohol, polyvinyl chloride, polycarbonate,
+
+Fig. 1. Force-distance measurement curves: (a) Annotated AFM force curve typically
+measured over 1 米m, (b) typical AFM force curve measured within liquid at a virgin
+membrane and (c) typical AFM force curve measured within liquid at a fouled membrane.
+
+Nylon6, poly(methyl methacrylate), polystyrene and polyacrylic acid
+[22,23]. However, there is a limited literature on the membrane elastic-
+ity of commercially available membranes, and it is only recently that
+Chung et al. [24] reported the rst measurement of the Young's modu-
+lus of the active layer of RO membrane using a combined wrinkling-
+cracking methodology.
+
+L.C. Powell et al. / Desalination 404 (2017) 313每321
+
+315
+
+Many studies that have used AFM to characterise virgin and fouled
+membrane surfaces have only measured adhesive forces and have
+been limited as they have used small numbers of AFM force-distance
+measurements to characterise the surfaces. Recent developments in
+AFM technology and its associated data capture now permit the mea-
+surement of multiple force measurements across a surface and the cre-
+ation of force measurement distributions. This has enabled statistical
+analysis and improved comparison between different surface systems
+including fouled membranes [13,25].
+AFM has been used extensively for the study of bacteria but only a
+few researchers have used this technique to study biolms [26,27].
+AFM imaging has provided high resolution images of the bacterial cell
+surface and AFM force measurement has been used to quantify bacterial
+cell-surface adhesion. The AFM nanoindentation technique allows the
+measurement of substrate elasticity and is being used to unravel the fun-
+damental processes involved in the attachment of cells and bacteria to
+elastic surfaces. Recently substrate elasticity has emerged as an impor-
+tant physical factor in the response of many cell types to surfaces.
+Some research groups consider that the elasticity of a substrate will
+have an effect on the cell rigidity; therefore the stiffness of a substrate
+is intrinsic to the cells response of attachment and growth [28每30]. A
+few studies were performed on the mechanical properties of bacterial
+cells grown on soft elastic surfaces. Bakker et al. [28] investigated the de-
+position of three marine strains, Halomonas pacica, Marinobacter
+hydrocarbonoclasticus and Psychrobacter sp. onto polyurethane coated
+glass with varying elastic modulus in a stagnation point ow chamber.
+It was shown that the bacteria adhered in higher numbers to hard sur-
+faces compared to that at surface coatings of lower elastic moduli. Lichter
+et al. [30], engineered weak polyelectrolyte multilayered (PEM) thin
+lms within the elasticity range 1 MPa b E b 100 MPa to investigate if sur-
+face elasticity affects bacterial adhesion. The adhesion of viable Staphylo-
+coccus epidermidis and Eschericia coli was found to correlate positively
+with increasing elastic modulus of PEM, independently of surface rough-
+ness, surface interaction energy and surface charge density of the surface.
+These studies demonstrate that the stiffness of nanoscale polymeric sub-
+strata can strongly affect the adhesion of bacteria from aqueous suspen-
+sions and that the measurement of local mechanical properties of a
+substrate and bacterial cells are required for the understanding of cell re-
+sponses on surfaces [29]. Oh et al. [31] have also observed that the forma-
+tion of a bio-fouling layer (biolm) is strongly dependent on the
+mechanical characteristics of the solid substrate. Therefore, membrane
+elasticity is a key factor in bacterial cell attachment and hence biolm
+formation, where force measurements could provide an assessment of
+membrane bio-fouling potential within process environments. There-
+fore, in the present study a comprehensive AFM force measurement in-
+vestigation was performed on both virgin and industrially fouled
+commercial RO membrane surfaces; the membrane samples were re-
+moved from a desalination plant, for pre-treated seawater, that was
+experiencing fouling. This was to determine the micromechanical prop-
+erties of the systems as indicators of their propensity for biofouling and
+also for the development of fouling control regimes for optimisation of
+membrane processes and water treatment. This was achieved through
+obtaining Young's modulus values, adhesion force and work of adhesion
+at different pH values and in media containing the salt content of seawa-
+ter. Surface charge measurements were also performed on the mem-
+branes surfaces to further examine the processes of adhesion. It is the
+rst time, to the author's knowledge, that AFM nanoindentation experi-
+ments have been performed on RO membranes and on industrially
+fouled membranes for the measurement of elasticity properties.
+
+2. Materials and methods
+
+2.1. Membrane preparation
+
+The membrane element, SWC3 +, used was obtained from Hydra-
+nautics (Nitto Denko Company). The membrane polymer is composite
+
+polyamide and has a nominal salt rejection of 99.8%. An industrially fouled
+section of the membrane element, SWC3+, was obtained from the Fujai-
+rah Water and Power plant, located in the United Arab Emirates (UAE).
+The fouling was known to be bacterial in origin; a culture independent
+method based on the 16S rDNA sequence and constructed gene libraries
+for the identication of the microbial diversity was used to identify the
+most signicant bacteria responsible for biolm formation and biofouling
+at the industrial RO membrane system of the present study [3].
+Proteobacteria was determined to be the most abundant identied
+group, with 污-Proteobacteria being the most predominant class within
+the phylum. The next most abundant grouping was the Bacterioidetes
+and Plantomycetes. The fouled membrane section was stored at  20 ～C
+until used. Storage may impact on the structure of the foulant layer, this
+is a problem that is innate to all such studies which remove bio-fouled
+samples from a process environment to facilitate membrane study. How-
+ever, in this case the thin foulant lm may be protected by the underlying
+substrate membrane. Prior to AFM analysis, the virgin and industrially
+fouled membrane samples were soaked in deionised water at 4 ～C for
+24 h, taking care not to disrupt the foulant layer present on the industri-
+ally fouled membrane. In preparation for imaging after 24 h of initial
+soaking, the virgin and industrially fouled membrane samples were left
+to dry then cut into small sections of 15 mm2 within a sterile environment
+and attached to one side of a glass cover slip using double sided adhesive
+tape.
+In preparation for AFM force measurements, the virgin and industri-
+ally fouled membrane samples were cut into small sections within a
+sterile environment and attached to one side of a 25 mm2 circular
+glass cover slip using double sided adhesive tape. A circular 25 mm2
+plastic uid cell was then placed over the cover slip and secured in
+place with silica gel. 3 ml of the liquid of varying pH and salt concentra-
+tion was placed carefully into the uid cell and left for 20 min for the
+system to stabilise.
+In preparation for streaming potential measurements, the virgin and
+industrially fouled membrane samples were cut using provided tem-
+plates (Anton Paar) into two rectangular shaped pieces with specic
+holes for liquid ow, which would t the rectangular uid cell of the
+instrument.
+
+2.2. Membrane AFM images
+
+A Dimension 3100 AFM (Bruker) was used for membrane imaging.
+Noncontact cantilevers were used for imaging (OTESPA, Bruker). The
+membrane images were achieved using tapping mode within an air en-
+vironment of 21 ～C and a relative humidity of 40%. Tapping mode AFM
+has been used extensively to image membranes and microbial surfaces
+[8,9,11]. Tapping mode in air was used and not imaging in liquid, the lat-
+ter is experimentally demanding and risks imaging artefacts by damag-
+ing diffuse foulant layers if present. A scan rate of 0.4 Hz was used for
+most images, however for the largest scan size of 100 米m ℅ 100 米m, a
+scan rate of 0.2 Hz was used to achieve a higher quality image. The im-
+ages were analysed through the AFM Nanoscope software to obtain
+peak to valley and surface roughness measurements for both the virgin
+and fouled membranes at each scan size.
+
+2.3. Force spectrometry measurement of local elastic properties
+
+The NanoWizard II BioAFM with top view optics (JPK Instruments)
+was used for the force measurements on all membrane surfaces. AFM
+colloid probes were made using a micromanipulator (Singer Instru-
+ments). In this technique a silica sphere of 3 米m radius was attached
+to the apex of a tipless cantilever using glass bond glue. Only AFM col-
+loid probes of radius 3 米m were used in experimentation to standardise
+the contact area between the probe and the surface. The colloid probe's
+cantilever spring constant was measured via the thermal tune method.
+The silica colloid probe was chosen for indentation studies of the mem-
+branes due to its well dened shape and larger tip radius when
+
+316
+
+L.C. Powell et al. / Desalination 404 (2017) 313每321
+
+compared to manufactured silicon nitride sharp tips [32]. This means
+that on a soft surface, the silica colloid probe will more likely compress
+the surface, unlike sharp tips which could puncture and disrupt the sur-
+face as sharp tips induce local strains that can far exceed the linear ma-
+terial regime. 50 force curves were measured across the membrane
+surfaces at randomly chosen locations in each experimental system.
+
+2.4. Streaming potential of the membranes
+
+The Electro Kinetic Analyzer (Anton Paar) was used to determine the
+streaming potential of virgin and industrial fouled membranes at 0.1 M
+NaCl concentration and pH values 3每9. The cut membrane sample
+pieces were clamped between two measuring cell parts separated by a
+dened streaming channel within the rectangular uid cell. Once the
+preliminary rinse cycles were performed, the pH of the salt solution
+was adjusted and the zeta potential measurements were repeated
+three times for each pH value in each direction of uid ow. Zeta poten-
+tial of the membrane surfaces was calculated from the measured
+streaming potential using the Helmholtz-Smoluchowski equation with
+the Fairbrother-Mastin approach.
+
+3. Data analysis
+
+The AFM force data was analysed to determine values of maximum
+adhesion force, work of adhesion and the Hertz model was used to cal-
+culate Young's Modulus values. The value of force is calculated from the
+deection of the cantilever using Hooke's law. The force as a function of
+the piezo scanner displacement is sufcient to calculate the parameters
+and no further manipulation of the piezo scanner displacement data is
+required. The contact region of the approach curve is compared to that
+measured at a hard un-deformable surface to calculate the indentation
+depth (h) when a force (F) was applied [27]. The value of adhesion is de-
+termined from the minimum point of the retraction curve. The contact
+point was dened as the height where the cantilever deection begins
+to leave the horizontal axis on the deection vs. sample height curve
+[33]. The work of adhesion was determined from the area between
+the retraction curve and the x axis (Fig. 1) applying the trapezoidal
+rule to integrate.
+The equation widely used to calculate the force on the cantilever
+F(h) by using Hertz mechanisms is [11]:
+
+p
+
+F h   4 R
+3
+
+
+E
+
+h3 =
+
+2
+
+The tip is approximated by a sphere with the radius R. E is known as
+the effective modulus of a system tip-sample. The material of the tip is
+considerably harder than the sample, thus the following equation was
+used:
+
+E  ＞ Esample
+sample
+
+1耒2
+
+where Esample and 耒sample are the denotations for the Young's Modulus
+and the Poisson ratio for the materials of the sample, respectively.
+Through the substitution of the above equations into the Hertz equation
+and analysis of the data from the force-distance curves, the Young's
+Modulus of the sample was determined.
+
+Young's modulus between virgin and fouled membranes. Due to multi-
+ple testing, a Bonferroni correction was applied for each analysis.
+
+4. Results and discussion
+
+4.1. High resolution images
+
+Atomic force microscopy imaging elucidated the morphology of the
+fouling layers at the industrial fouled RO membranes. Fig. 2 presents
+high resolution 10 ℅ 10 米m and 100 ℅ 100 米m AFM topographical im-
+ages of virgin and process fouled SWC 3 + RO membranes. The virgin
+membrane images clearly show the structure of the RO membrane sur-
+face, where the structural surface of the membrane is composed from
+peaks and valleys. A similar RO surface topography was observed in an
+AFM and SEM study by Kwak and Ihm [34]. The fouled membrane im-
+ages clearly show the relatively non-uniform distribution of fouling
+present on the RO surface, where the structure of the RO membrane
+can be seen in gaps within the fouling layer (Fig. 2B). The high resolu-
+tion images of the fouled membranes suggested the presence of a bacte-
+rial biolm, with the presence of particles of commensurate size of
+bacteria embedded in a loose lm like structure. The presence of the
+bacterial biolm was further supported by previous work that used
+standard DNA techniques to identify the key bacterial species involved
+in the industrial fouling of the membrane of this study [3]. AFM technol-
+ogy has previously been utilized for the low resolution imaging of
+foulant layers formed on process membranes [35,36].
+The surface roughness and peak to valley measurements are shown
+in Table 1, where the root mean square (RMS) surface roughness of the
+virgin RO membrane was 174 ㊣ 26 nm and the peak to valley measure-
+ment of 1975 ㊣ 757 nm and the RMS surface roughness of the fouled
+membrane was 297 ㊣ 44 nm and peak to valley measurement of
+3837 ㊣ 1013 nm measured from the 100 ℅ 100 米m images. The results
+also show that as the scan size increases from 1 to 100 米m2, the values of
+surface roughness and peak to valley increase for both the virgin and
+fouled membranes. The current results agree with the work of Boussu
+et al. [37] which found that surface roughness increases with scan
+area from 0.5 米m2 to 10 米m2 with different NF membranes, where an ex-
+planation is that when the scan size is changed, it is possible to get a dif-
+ferent surface topography, therefore resulting in a different roughness
+value [37]. From Table 1, it can also be seen that the fouled membrane
+surface has the largest surface roughness and peak to valley measure-
+ments for all scan sizes when compared to the virgin membrane, apart
+from the surface roughness values measured from the 10 ℅ 10 米m
+image, where the fouled membrane surface is smoother than the virgin
+membrane. The smoother surface could be due to the presence of a co-
+hesive fouling layer, which may have been facilitated by bacterial foul-
+ing producing extracellular polymeric substance (EPS) within the
+foulant layer. Previous research has found that surface roughness mea-
+surements of similar, virgin RO membranes were 66 nm [38] (from
+4 ℅ 4 米m) and 50 nm [34] (from 10 ℅ 10 米m) and the corresponding
+peak to valley measurements were 560 nm [38] and 400 nm [34]. The
+range of these values conrm with current ndings of surface roughness
+and peak-to-valley measurements of virgin RO membranes at small
+scan sizes (Table 1). The topography, surface roughness and peak to val-
+ley measurements show that the virgin RO membranes could be suscep-
+tible to biofouling, as the rough surface topography, with valleys of size
+commensurate with that of bacteria, could facilitate attachment of bac-
+terial cells and shield the attached bacteria from the shear ow.
+
+3.1. Statistical analysis
+
+4.2. Young's modulus measurement by force spectrometry analysis
+
+All data are expressed as mean ㊣ standard deviation. The statistical
+analysis was performed using MiniTab Software, where normal distri-
+bution of variables was assessed using the Krustill Wallis test. The
+non-parametric Mann-Whitney U test for independent samples was
+used to compare mean values of adhesion force, work of adhesion and
+
+The mean Young's modulus values were determined from force
+measurements achieved at virgin and fouled membranes in 0.6 M
+NaCl at pH values of 3, 7 and 9 (Table 2). The distribution of Young's
+modulus values from the virgin membrane and fouled membranes are
+summarized using boxplots shown in Fig. 3, where the distribution of
+
+L.C. Powell et al. / Desalination 404 (2017) 313每321
+
+317
+
+A.
+
+C.
+
+B.
+
+D.
+
+Fig. 2. Tapping mode AFM topographic images of virgin and fouled SWC 3+ RO membrane. A and C images show the topography of virgin SWC 3+ membrane at 10 米m ℅ 10 米m and
+100 米m ℅ 100 米m, respectively, while B and D images show the topography of fouled SWC 3+ membrane at 10 米m ℅ 10 米m and 100 米m ℅ 100 米m respectively. The arrow in image B
+is suggested to be a cluster of bacterial cells. Z range in all images is 2.0 米m.
+
+all variables were non-parametric. The mean values of Young's modulus
+for the virgin membrane decreased in magnitude with increasing pH
+values, where these values were signicantly different (p b 0.017) be-
+tween pH 3 (1.45 MPa) and pH 9 (0.79 MPa) and pH 7 (1.33 MPa)
+and pH 9. The change in Young's modulus values with pH could be
+due to polymer expansion. Elliott et al. [39] has shown that expansion
+of the ionic polymer lm was related to the solution pH. Yang et al.
+[40] also demonstrated that the ionization of functional groups through
+pH change plays a key role in the expansion of the membrane, where for
+certain membranes the higher the pH above the IEP in terms of zeta po-
+tential can lead to favourable polar interactions with the surrounding
+solution so that the foulant compounds are more extended. The IEP of
+the polyamide membrane in this study is at low pH (Section 4.5).
+Thus, the higher Young＊ Modulus at lower pH coincides with a mem-
+brane that has a denser polymeric structure. These results indicate
+that the electrolytic environment is a potential control parameter that
+could be exploited to improve the mechanical robustness of a polymer
+membrane, where at pH 3 the surface is at its most robust with the
+highest Young's modulus measured for all electrolytic environments
+
+tested (1.45 MPa). These results could provide the membrane technol-
+ogist with a method to improve the maintenance of membrane struc-
+ture during the chemical and physical challenges of operation and
+cleaning.
+The mean values of Young's modulus for the fouled membrane in-
+creased from pH 3 to pH 7 and then decreased in magnitude from
+pH 7 to pH 9, where these values were only signicantly different
+(p b 0.017) from pH 7 (93.8 kPa) to pH 9 (48.0 kPa). The mechanical
+properties of the fouling layer present on RO membrane surface will af-
+fect the shape and stability of the layer and therefore can determine the
+failure and detachment of the fouling layer in reaction to a physical force
+such as uid-induced shear and also the accumulation of such fouling
+layers in industrial environments [41]. The dependence of the mem-
+brane foulant layer Young's modulus on pH could be due to the nature
+of the different foulant materials within the biolm and their difference
+response to the environmental conditions. Therefore the elasticity of the
+foulant surface present on the membrane surface could vary with indus-
+trial conditions. This suggests that optimum electrolytic conditions
+could be determined where the elasticity of the foulant layer is at its
+
+Table 1
+Surface roughness measurements from the virgin and process fouled membrane.
+
+Membrane size (米m)
+
+1 ℅ 1
+10 ℅ 10
+100 ℅ 100
+
+RMS (nm)
+
+Virgin
+
+69.7 ㊣ 13.7
+107.9 ㊣ 9.68
+173.7 ㊣ 25.9
+
+Process fouled
+
+87.5 ㊣ 11.2
+99.6 ㊣ 14.3
+297.7 ㊣ 44.2
+
+Peak to valley (nm)
+
+Virgin
+
+444.3 ㊣ 112.1
+786.0 ㊣ 116.6
+1974.7 ㊣ 756.8
+
+Process fouled
+
+490.2 ㊣ 109.6
+824.3 ㊣ 112.5
+3837.0 ㊣ 1013.3
+
+318
+
+L.C. Powell et al. / Desalination 404 (2017) 313每321
+
+Table 2
+Mean values of Young's modulus, adhesion force and work of adhesion achieved from both virgin and fouled membranes at various pH values.
+
+Mean Young's modulus (kPa)
+
+Mean adhesion force (nN)
+
+Mean work of adhesion (nJ)
+
+pH 3
+pH 7
+pH 9
+
+Virgin
+
+1450 ㊣ 986
+1327 ㊣ 947
+788 ㊣ 432
+
+Fouled
+
+70.9 ㊣ 36.3
+93.8 ㊣ 55.1
+48.1 ㊣ 26.4
+
+Virgin
+
+6.00 ㊣ 4.02
+1.77 ㊣ 1.14
+0.98 ㊣ 0.72
+
+Fouled
+
+0.73 ㊣ 0.90
+0.85 ㊣ 0.96
+0.84 ㊣ 0.85
+
+Virgin
+
+153.6 ㊣ 89.8
+22.8 ㊣ 28.6
+9.9 ㊣ 10.2
+
+Fouled
+
+16.2 ㊣ 48.4
+13.4 ㊣ 23.9
+12.9 ㊣ 21.9
+
+lowest, rendering cleaning regimes, such as cross-ow, more effective
+in removing and breaking up the foulant biolm.
+The comparison between the values of Young's modulus achieved
+from the virgin and fouled membrane at each pH value showed that
+all the values of Young's modulus of the virgin were signicantly differ-
+ent from the Young's modulus of the fouled membrane (p b 0.017),
+where the values of Young's modulus were greater in magnitude for
+the virgin membrane (1450 kPa at pH 3) than that for the fouled mem-
+brane (70.9 kPa at pH 3). The measurement of Young's modulus can be
+used to compare the fouling within different process conditions for op-
+timisation, in that lowering the mechanical robustness of the fouling
+layer and/or raising that of the membrane surface will enable the
+cleaning regime to be more effective.
+Franceschini and Corti [21] performed AFM force measurements to
+determine the elastic moduli of nonhydrated naon, PBI and poly [2,5-
+benzimidazole] membranes, using a sharp contact tip in a N2 environ-
+ment, where the elasticity values measured for the different mem-
+branes ranged from 0.104 ㊣ 0.036 to 6.17 ㊣ 0.93 GPa. Chung et al.
+[24] reported the rst measure of Young's modulus of the active layer
+of RO membrane, both in a dry (1.40 ㊣ 0.53 GPa) and hydrated state
+(0.36 ㊣ 0.14 GPa), using a combined wrinkling-cracking methodology.
+The difference between these values and those measured in this study
+are due to the environment in which the measurements were taken
+and the level of membrane hydration. The indentation experiments in
+the present study are performed in a liquid environment, as would be
+in the industrial process, and a colloid probe was used which could
+also account for this difference in elasticity values; measurements
+made using a sharp AFM tip will be based on material rupture during
+layer penetration rather than compression by the colloid sphere. In ad-
+dition, the studies performed here are industrially relevant with ionic
+concentrations which would be present within the desalination process,
+unlike other studies.
+
+4.3. Adhesion force
+
+The mean adhesion force values were determined from force mea-
+surements achieved at virgin and fouled membranes in 0.6 M NaCl at
+pH 3, 7 and 9, where the data is shown in Table 2. NaCl was chosen
+for the electrolytic media to keep the experimental environment simple,
+
+however the lack of divalent and trivalent ions, which can inuence col-
+loidal interaction, may limit extension of the results to seawater. The
+distribution of adhesion force values from virgin and fouled membranes
+are summarized using boxplots shown in Fig. 4, where the distribution
+of all variables were non-parametric. The mean values of adhesion force
+for the virgin membrane revealed a high adhesion force of 6.0 nN at
+pH 3, where the values of adhesion force decreased with increasing
+pH, as measurements of 1.8 nN at pH 7 and 1.0 nN at pH 9 were obtain-
+ed. The mean adhesion force values were signicantly different
+(p b 0.017) between all pH values. The differences in adhesion force
+values could be due to the charge held by the membrane surface in var-
+ious electrolytic environments (see Section 4.5). The material that will
+foul a reverse osmosis membrane will be highly heterogeneous contain-
+ing materials that are biological in origin including humic acids (a natu-
+rally occurring breakdown product of organic matter) and biolm
+materials such as xanthan, hyaluronan and dextran. Thus, there will
+be a range of interactions occurring between fouling material, mem-
+brane and the silica probe, including electrostatic, van der Waals and
+hydrophobic. The amount of information that can be inferred from the
+measurement of adhesion of an inorganic silica particle at a membrane
+surface is limited as reverse osmosis membrane fouling is a multi-com-
+ponent process, however the interaction of the colloid probe can be
+used as an indicator of the degree of particle interaction with that sur-
+face. This will be more relevant to the surface interaction with inorganic
+particles rather than biological particles where specic macromolecular
+interactions may dominate. It should be noted that many bacteria have a
+negative charge similar to that of a silica colloid. Thus, the signicant dif-
+ferences (p b 0.017) in adhesion at the virgin membrane surface as the
+pH is changed demonstrates that some fouling could be reduced at this
+membrane surface by controlling the pH. However, this should be con-
+sidered with reference to pH tolerance of the membrane material and
+how the electrolytic environment affects the mechanical properties of
+the membrane (as discussed in Section 4.2) as previous research has ob-
+served the bacteria adhere to harder surfaces [28].
+The average values of adhesion force for the fouled membrane
+showed very little variation between the different pH values, where
+the adhesion force value at pH 3 was 0.7 nN. The mean values were
+not signicantly different (p N 0.017) between all pH values, so it was
+concluded that pH did not have a measurable inuence on the values
+
+(a)
+
+)
+
+a
+
+P
+k
+
+(
+
+s
+
+l
+
+u
+u
+d
+o
+
+m
+
+s
+
+'
+
+g
+n
+u
+o
+
+Y
+
+5000
+
+4000
+
+3000
+
+2000
+
+1000
+
+0
+
+pH 3
+
+pH 7
+
+pH 9
+
+(b)
+
+)
+
+a
+
+P
+k
+
+(
+
+s
+
+u
+
+l
+
+u
+d
+o
+
+m
+
+s
+
+'
+
+g
+n
+u
+o
+
+Y
+
+250
+
+200
+
+150
+
+100
+
+50
+
+0
+
+pH 3
+
+pH 7
+
+pH 9
+
+Fig. 3. Variation of Young's modulus of (a) virgin and (b) fouled membranes between different pH values shown in boxblot forms.
+
+L.C. Powell et al. / Desalination 404 (2017) 313每321
+
+319
+
+(a)
+
+)
+
+N
+
+n
+
+(
+
+e
+c
+r
+o
+
+F
+n
+o
+
+i
+
+s
+e
+
+h
+d
+
+A
+
+20
+
+15
+
+10
+
+5
+
+0
+
+pH 3
+
+pH 7
+
+pH 9
+
+(b)
+
+)
+
+N
+
+n
+
+(
+
+e
+c
+r
+o
+
+F
+n
+o
+
+i
+
+s
+e
+
+h
+d
+
+A
+
+4
+
+3
+
+2
+
+1
+
+0
+
+pH 3
+
+pH 7
+
+pH9
+
+Fig. 4. Variation of adhesion force of (a) virgin and (b) fouled membranes between different pH values shown in boxplot forms.
+
+of adhesion force. This was expected, the chemical heterogeneity of the
+fouling material will mean that different chemical groups will be ionised
+to different degrees within the different pH environments, thus there
+will be no net change in the interactivity of the fouling lm. The extent
+of electrostatic interactions will be reduced within the high ionic
+strength environment of the present research, thus another explanation
+for the consistency of adhesive force measured at the different pHs
+could be the dominance of hydrophobicity on the interaction of the col-
+loid probe and the fouled surface.
+The comparison between the values of adhesion force achieved from
+the virgin and fouled membrane at each pH value revealed that the
+values of adhesion force of the virgin membrane at pH 3 (6.0 nN) and
+pH 7 (1.8 nN) were signicantly different from the adhesion measured
+at the fouled membrane at pH 3 (0.7 nN) and 7 (0.9 nN) (p b 0.017),
+apart from the adhesion force values at pH 9 which were not signicant-
+ly different (p N 0.017). The values of adhesion force achieved from the
+virgin membrane at pH values of 3 and 7 were greater in magnitude
+than that obtained for the fouled membrane. The differences in adhe-
+sion forces observed between the fouled and virgin membrane indicate
+that the surfaces are chemically different and conrm that the presence
+of a fouling layer will alter the nanoscale interactions of the membrane
+surface with potential compromise of the separation process.
+Previous adhesion force measurement studies were performed by
+Bowen and Doneva [38] on a virgin RO membrane using silica colloid
+probes with a maximum loading force of 120 nN每140 nN, where force
+measurements were performed in 101 M and at pH 9. The force mea-
+surements performed on peaks of the membrane revealed an adhesion
+of 2.3 ㊣ 0.48 mN/m and those performed within the membrane valleys,
+the adhesion was 8.7 ㊣ 4.0 mN/m. The results obtained at 0.6 M NaCl at
+pH 9 in the present study revealed adhesion force values of 0.98 nN,
+which when normalized for colloid radius of 3 米m the adhesion value
+is 0.33 mN/m, where the differences between the adhesion forces mea-
+sured by the studies could be due to the very high loading force used by
+Bowen and Doneva [38]. The colloid would have indented the sample to
+a greater extent than the present study, hence more surface area contact
+would have occurred between the sample and the colloid. In addition,
+the measurements in the present study were at random positions across
+the membrane surface, with no separation of measurements from peaks
+and valleys.
+
+4.4. Work of adhesion
+
+The measurement of adhesion from the retraction force curve mini-
+ma does not account for the mechanisms involved in adhesion (Fig. 1). It
+is the shape of the force curve adhesion component, which can be de-
+scribed by the work of adhesion, that provides information on interac-
+tion mechanisms such as ligand-receptor peeling. The work of
+adhesion is the work which must be done to separate two adjacent
+
+phases, liquid-liquid or liquid-solid phase as in the case here. The
+mean work of adhesion values were determined from force measure-
+ments at virgin and fouled membranes in 0.6 M NaCl at pH 3, 7 and 9,
+where the data is shown in Table 2. The distribution of work of adhesion
+values from the virgin and fouled membranes were summarized using
+boxplots shown in Fig. 5, where the distribution of all variables were
+non-parametric. The average values of work of adhesion from the virgin
+membrane revealed a high adhesion energy at pH 3 (153.6 nJ), which
+decreased in magnitude at pH 7 (22.8 nJ) and then again at pH 9
+(9.9 nJ). The mean work of adhesion values were signicantly different
+(p b 0.017) between all pH values. The differences in work of adhesion
+values could be due to the charge held by the membrane surface in var-
+ious electrolytic environments (see Section 4.5). The average values of
+work of adhesion for the fouled membrane showed very little variation
+between the different pH values, for example at pH 3 the work of adhe-
+sion was 16.2 nJ. The mean values were not signicantly difference
+(p b 0.017), so it was concluded that pH did not have a measurable in-
+uence on the values of work of adhesion obtained from the fouled
+membrane.
+The comparison between the values of work of adhesion achieved
+from the virgin and fouled membrane at each pH value showed that
+the values of work of adhesion of the virgin membrane at pH 3 and 7
+were signicantly different and greater in magnitude from that for the
+fouled membrane (p b 0.017). The work of adhesion values at pH 9
+were not signicantly different (p N 0.017).
+The work of adhesion and the adhesive force determined from a
+force measurement are closely linked. However, the adhesive force
+gives no indication as to how the AFM probe attaches and detaches
+from a surface. This can be dramatically different when the minimum
+force recorded in force curves, the adhesive force, is the same. If defor-
+mation occurs when the AFM probe interacts with the surface, during
+the approach and retraction phases of the force measurement, then
+the work of adhesion will be greater. In addition, another contribution
+to an increase in the work of adhesion could be an increase in the re-
+cruitment of ligands to the interactions, so that the probe has to peel
+away from the surface and break more bonds. In the present study the
+high work of adhesion measured at the virgin membrane at pH 3
+could be due to the deformation of the surface and/or the increased
+number of bonds involved in the interaction. This argument demon-
+strates the potential that AFM force measurement offers the membrane
+technologist to unravel the processes operating during the formation of
+fouling layers. In the past this has been restricted by using only AFM ad-
+hesive force measurements.
+
+4.5. Streaming potential
+
+The results of zeta potential versus pH for the virgin and process
+fouled RO membrane at 0.1 M NaCl concentrations are shown in Fig. 6.
+
+320
+
+L.C. Powell et al. / Desalination 404 (2017) 313每321
+
+(a)
+
+)
+
+J
+n
+
+(
+
+n
+o
+
+i
+
+s
+e
+
+h
+d
+
+A
+
+f
+
+o
+k
+
+r
+o
+
+W
+
+400
+
+300
+
+200
+
+100
+
+0
+
+pH 3
+
+pH 7
+
+pH 9
+
+(b)
+
+)
+
+J
+n
+
+(
+
+n
+o
+
+i
+
+s
+e
+
+h
+d
+
+A
+
+f
+
+o
+k
+
+r
+o
+
+W
+
+50
+
+40
+
+30
+
+20
+
+10
+
+0
+
+pH 3
+
+pH 7
+
+pH 9
+
+Fig. 5. Variation of work of adhesion for (a) virgin and (b) fouled membranes between different pH values shown in boxplot forms.
+
+The streaming potential equipment was only designed to be operated at
+low salt concentrations therefore a maximum salt concentration of
+0.1 M was used to provide an indication of the surface charge of the
+membrane. The virgin membrane was positively charged or had no
+charge at low pH (pH 4, 0 ㊣ 2 mV) and negatively charged at high pH
+(pH 9,  5.8 ㊣ 3.5 mV), where the IEP was determined to be pH 4.0
+for 0.1 M NaCl. The fouled membrane was entirely negatively charged
+over the pH range, where at pH 3 the zeta potential was  2.3 ㊣
+1.7 mV and at pH 9 was  11.3 ㊣ 3.5 mV and therefore no IEP could
+be determined.
+This differences in AFM force measurements obtained using AFM as
+a function of pH could be attributed to the change in the ionization state
+of the membrane surface. The present study measured greatest adhe-
+sion and work of adhesion at pH 3, 6.0 nN and153.6 nJ respectively at
+0.6 M NaCl, however there is a suggested agreement with the streaming
+potential study that indicated that a positive or neutral charge was mea-
+sured at lower pH. Thus, at pH 3 the membrane would be exhibiting a
+charge that would not tend to repel the AFM colloid probe and so adhe-
+sion parameters would be at their highest. At low pH, the surface charge
+of the membrane may be positively charged at 0.6 M NaCl and close to
+the IEP of the membrane where the electric double layer is relatively
+thin, as shown in Fig. 6 for the virgin membrane at 0.1 M NaCl [42]. As
+the pH is increased, the membrane may become negatively charged,
+where the silica colloid is also negatively charged at high pH values
+[42,43] so as the colloid approaches the membrane surface in these con-
+ditions, the colloid could experience increasing electrostatic double-
+layer repulsive force which opposes the motion of the colloid. Due to
+the repulsive force, the particle may be prevented from coming into in-
+timate contact with the membrane surface, which leads to a lower ad-
+hesion force and work of adhesion.
+For the fouled membrane, the adhesion force and work of adhesion
+values revealed no signicant differences as a function of pH. The reason
+could be the surface charge of the membrane being negative over all pH
+
+)
+
+V
+m
+
+(
+
+l
+
+a
+
+i
+t
+
+n
+e
+
+t
+
+o
+P
+
+a
+
+t
+
+e
+
+Z
+
+15
+
+10
+
+5
+
+0
+
+-5
+
+-10
+
+-15
+
+-20
+
+-25
+
+Clean
+
+fouled
+
+3
+
+4
+
+5
+
+7
+
+8
+
+9
+
+6
+
+pH
+
+Fig. 6. Zeta potential measurements of virgin and fouled RO membrane at 0.1 M NaCl.
+
+values (Fig. 6) which means that the colloid experiences a repulsive
+force over all pH values which could explain why there was no signi-
+cant difference of adhesion force and work of adhesion between pH
+values [44].
+Previous research by Al-Amoudi et al. [45] investigated the zeta po-
+tential of three virgin and one fouled NF membrane at different pH
+values and the results agree with our current ndings for RO mem-
+branes, as the study concluded that the fouled DK (GE Osmonics) mem-
+brane were almost negatively charged with no IEP over a range of pH
+values when compared to a virgin DK membrane.
+
+5. Conclusions
+
+Mechanical measurements obtained from AFM force-distance mea-
+surements can provide an assessment of the fouling potential of the
+membranes by the elucidation of mechanical factors that affect mem-
+brane fouling, which has the potential to reduce commissioning studies
+and optimise process operation. In this study a novel and comprehen-
+sive AFM characterisation of the mechanical properties of virgin and in-
+dustrially fouled membranes was achieved, which detected differences
+between the virgin and fouled membranes in different electrolyte con-
+ditions. The results of the paper suggest that pH control could be inves-
+tigated to strengthen membranes against chemical and physical
+challenges, where the increased Young's modulus measured at pH 3 of
+the virgin membrane indicate, for example, that cleaning at a low pH
+may be advantageous for the protection of the membrane. A careful bal-
+ance could be considered by the membrane technologist, which during
+a cleaning process uses an electrolytic environment that renders the
+membrane at its strongest, while the biofouling layer could be at its
+weakest, with the caveat that disruption of the chemical properties of
+the membrane material are kept to a minimum.
+Recent studies have indicated that the mechanical properties of nano-
+scale polymeric substrata can strongly inuence the adhesion of bacteria
+in aqueous suspensions [30]. However, there are limited examples within
+the literature on the use of nano-indentation and measurement of the
+mechanical properties of commercially available membranes and biolm.
+Therefore, the mechanical measurements at virgin and biofouled mem-
+branes of the present study are extremely timely and such AFM charac-
+terisation is a novel technique, when applied to RO membranes, which
+holds promise for further elucidation of the mechanisms involved in
+membrane fouling. The present study on industrially fouled membranes
+has shown that the analysis of AFM force-distance data can be extended
+beyond simple adhesion measurements to aid diagnosis of processes
+problems such as fouling, as part of industrial membrane autopsies. It is
+hoped that this encompassing research study within an industrial context
+will aid in developing a rational strategy for the prevention of biofouling
+and biolm formation, with economic and effective cleaning within
+
+L.C. Powell et al. / Desalination 404 (2017) 313每321
+
+321
+
+desalination processes, which will maintain efcient membrane opera-
+tion and prolong membrane life.
+
+Acknowledgments
+
+The authors would like to thank Youngpil Chun and In Seop Chang of
+the Department of Environmental Science and Engineering, Gwangju
+Institute of Science and Technology (GIST), Gwangju, South Korea for
+the supply of fouled membranes. The authors would like to acknowl-
+edge the British Council for Research Co-operation Funding and the
+funding to start this project. Finally we thank Dr. Bob Lovitt of Swansea
+University for his discussion.
+
+References
+
+[1] J. Landaburu-Aguirre, R. Garc赤a-Pacheco, S. Molina, L. Rodr赤guez-S芍ez, J. Rabad芍n, E.
+Garc赤a-Calvo, Fouling prevention, preparing for re-use and membrane recycling. To-
+wards circular economy in RO desalination, Desalination 393 (2016) 16每30.
+[2] Y. Wyart, G. Georges, C. Deumie, C. Amra, P. Moulin, Membrane characterization by
+microscope methods: multiscale structure, J. Membr. Sci. 315 (2008) 82每92.
+[3] Y. Chun, P.T. Ha, L. Powell, J. Lee, D. Kim, D. Choi, R.W. Lovitt, I.S. Kim, S.S. Mitra, I.S.
+Chang, Exploring microbial communities and differences of cartridge lters (CFs)
+and reverse osmosis (RO) membranes for seawater desalination processes, Desali-
+nation 298 (2012) 85每92.
+[4] V.M. Kochkodan, N. Hilal, V.V. Goncharuk, L. Al-Khatib, T.I. Levadna, Effect of the sur-
+face modication of polymer membranes on their microbiological fouling, Colloid J.
+68 (3) (2006) 267每273.
+[5] J. Zhang, K. Northcott, M. Duke, P. Scales, S.R. Gray, Inuence of pre-treatment com-
+binations on RO membrane fouling, Desalination 393 (2016) 120每126.
+[6] M.N. Abu Seman, M. Khayet, Z.I. Bin Ali, N. Hilal, Reduction of nanoltration mem-
+brane fouling by UV-initiated graft polymerization technique, J. Membr. Sci. 355
+(1每2) (2010) 133每141.
+[7] M. Khayet, M.N.A. Seman, N. Hilal, Response surface modeling and optimization of
+composite nanoltration modied membranes, J. Membr. Sci. 349 (1每2) (2010)
+113每122.
+[8] W.R. Bowen, N. Hilal, R.W. Lovitt, P.M. Williams, Atomic force microscope studies of
+membranes: surface pore structures of Diao ultraltration membranes, J. Colloid
+Interface Sci. 180 (2) (1996) 350每359.
+[9] W.R. Bowen, N. Hilal, R.W. Lovitt, A.O. Sharif, P.M. Williams, Atomic force micro-
+scope studies of membranes: force measurement and imaging in electrolyte solu-
+tions, J. Membr. Sci. 126 (1) (1997) 77每89.
+[10] N. Hilal, H. Al-Zoubi, N.A. Darwish, A.W. Mohammad, M. Abu Arabi, A comprehen-
+sive review of nanoltration membranes: treatment, pretreatment, modelling, and
+atomic force microscopy, Desalination 170 (3) (2004) 281每308.
+[11] C.J. Wright, I. Armstrong, The application of atomic force microscopy force measure-
+ments to the characterization of microbial surfaces, Surf. Interface Anal. 38 (2006)
+1419每1428.
+[12] I.J. Roh, J.-J. Kim, S.Y. Park, Mechanical properties and reverse osmosis performance
+of interfacially polymerized polyamide thin lms , J. Membr. Sci. 197 (2002)
+199每210.
+[13] P.J. Evans, M.R. Bird, D. Rogers, C.J. Wright, Measurement of polyphenol-membrane
+interaction forces during the ultraltration of black tea liquor, Colloids Surf. A
+Physicochem. Eng. Asp. 335 (1每3) (2009) 148每153.
+[14] J.-Y. Tian, Z.-L. Chen, Y.-L. Yang, H. Liang, J. Nan, G.-B. Li, Consecutive chemical
+cleaning of fouled PVC membrane using NaOH and ethanol during ultraltration
+of river water, Water Res. 44 (1) (2010) 59每68.
+[15] H. Ivnitsky, I. Katz, D. Minz, G. Volvovic, E. Shimoni, E. Kesselman, R. Semiat, C.G.
+Dosoretz, Bacterial community composition and structure of biolms developing
+on nanoltration membranes applied to wastewater treatment, Water Res. 41
+(17) (2007) 3924每3935.
+[16] D.J. Johnson, N.J. Miles, N. Hilal, Quantication of particle-bubble interactions using
+atomic force microscopy: a review, Adv. Colloid Interf. Sci. 127 (2) (2006) 67每81.
+[17] W.R. Bowen, N. Hilal, R.W. Lovitt, C.J. Wright, A new technique for membrane char-
+acterisation: direct measurement of force of adhesion of a single particle using an
+atomic force microscope, J. Membr. Sci. 139 (1998) 269每274.
+[18] W.R. Bowen, N. Hilal, R.W. Lovitt, C.J. Wright, Characterisation of membrane sur-
+faces: direct measurement of biological adhesion using an atomic force microscope,
+J. Membr. Sci. 154 (1999) 205每212.
+
+[19] L. Zhang, Q.-Q. Ni, T. Natsuki, Mechanical properties of polybenzimidazole rein-
+forced by carbon nanobers, Adv. Mater. Res. 47每50 (2008) 302每305.
+[20] H. Xu, K. Chen, X. Guo,
+J. Fang,
+J. Yin, Synthesis of hyperbranched
+polybenzimidazoles and their membrane formation, J. Membr. Sci. 288 (2007)
+255每260.
+[21] E.A. Franceschini, H.R. Corti, Elastic properties of naon, polybenzimidazole and poly
+[2,5-benzimidazole] membranes determined by AFM tip nano-indentation, J. Power
+Sources 188 (2009) 379每386.
+[22] A.-Y. Jee, M. Lee, Comparative analysis on the nanoindentation of polymers using
+atomic force microscopy, Polym. Test. 29 (2010) 95每99.
+[23] T.-H. Fang, W.-J. Chang, S.-L. Tsai, Nanomechanical characterisation of polymer using
+atomic force microscopy and nanoindentation, Microchem. J. 36 (2005) 55每59.
+[24] J.Y. Chung, J.-H. Lee, K.L. Beers, C.M. Stafford, Stiffness, strength and ductility of nano-
+scale thin lms and membranes: a combined wrinkling-cracking methodology,
+Nano Lett. 11 (2011) 3361每3365.
+[25] J. Llanos, P.M. Williams, S. Cheng, D. Rogers, C. Wright, A. Perez, P. Canizares, Char-
+acterization of a ceramic ultraltration membrane in different operational states
+after its use in a heavy-metal ion removal process, Water Res. 44 (2010) 3522每3530.
+[26] L.C. Powell, A. Sowedan, S. Khan, C.J. Wright, K. Hawkins, E. Onsyen, R. Myrvold,
+K.E. Hill, D.W. Thomas, The effect of alginate oligosaccharides on the mechanical
+properties of Gram-negative biolms, Biofouling 29 (4) (2013) 413每421.
+[27] C.J. Wright, M.K. Shah, L.C. Powell, I. Armstrong, Application of AFM from microbial
+cell to biolm, Scanning 32 (2010) 134每149.
+[28] D.P. Bakker, F.M. Huijs, J. de Vries, J.W. Klijnstra, H.J. Busscher, H.C. van der Mei, Bac-
+terial deposition to uoridated and non-uoridated polyurethane coatings with dif-
+ferent elastic modulus and surface tension in a parallel plate and a stagnation point
+ow chamber, Colloids Surf. B Biointerfaces 32 (2003) 179每190.
+[29] S. Lee, M. Elimelech, Relating organic fouling of reverse osmosis membranes to in-
+termolecular adhesion forces, Environ. Sci. Technol. 40 (2006) 980每987.
+[30] J.A. Lichter, M.T. Thompson, M. Delgadillo, T. Nishikawa, M.F. Rubner, K.J. Van Vliet,
+Substrata mechanical stiffness can regulate adhesion of viable bacteria,
+Biomacromolecules 9 (2008) 1571每1578.
+[31] Y.J. Oh, N.R. Lee, W. Jo, W.K. Jung, J.S. Lim, Effects of substrates on biolm formation
+observed by atomic force microscopy, Ultramicroscopy 109 (2009) 874每880.
+[32] W.A. Ducker, T.J. Senden, R.M. Pashley, Direct measurement of colloidal forces using
+an atomic force microscope, Nature 353 (1991) 239每241.
+[33] A. Touhami, B. Nysten, Y.F. Dufrene, Nanoscale mapping of the elasticity of microbial
+cells by atomic force microscopy, Langmuir 19 (2003) 4539每4543.
+[34] S.-Y. Kwak, D.W. Ihm, Use of atomic force microscopy and solid-state NMR spectros-
+copy to characterise structure-property-performance correlation in high ux re-
+verse osmosis (RO) membranes, J. Membr. Sci. 158 (1999) 143每153.
+[35] M. Karime, S. Bouguecha, B. Hamrouni, RO membrane autopsy of Zarzis brackish
+water desalination plant, Desalination 220 (2008) 258每266.
+[36] E.O. Mohamedou, D.B.P. Surarez, F. Vince, P. Jaouen, M. Pontie, New lives for old re-
+verse osmosis (RO) membranes, Desalination 53 (2010) 62每70.
+[37] K. Bousso, B. Van der Bruggen, A. Volodin, J. Snauwaert, C. Van Hasendonck, C.
+Vandecasteele, Roughness and hydrophobicity studies of nanolitration mem-
+branes using different modes of AFM, J. Colloid Interface Sci. 286 (2005) 632每638.
+[38] W.R. Bowen, T.A. Doneva, Atomic force microscopy studies of membranes: effect of
+surface roughness on double-layer interactions and particle adhesion, J. Colloid In-
+terface Sci. 229 (2000) 544每549.
+[39] J.E. Elliott, M. Macdonald, J. Nie, C.N. Bowman, Structure and swelling of poly (acrylic
+acid) hydrogels: effect of pH, ionic strength, and dilution on the crosslinked polymer
+structure, Polymer 45 (2004) 1503每1510.
+[40] J. Yang, S. Lee, E. Lee, J. Lee, S. Hong, Effect of solution chemistry on the surface prop-
+erty of reverse osmosis membranes under seawater conditions, Desalination 249
+(2009) 148每161.
+[41] A. Hourai, J. Picard, H. Habarou, L. Galas, H. Vaudry, V. Heim, P. Di Martino, Rheology
+of biolms formed at the surface of NF membranes in a drinking water production
+unit, Biofouling 24 (4) (2008) 235每240.
+[42] E.M. Vrijenhoek, S. Hong, M. Elimelech, Inuence of membrane surface properties
+on initial rate of colloidal fouling of reverse osmosis and nanoltration membranes,
+J. Membr. Sci. 188 (2001) 115每128.
+[43] X. Sheng, Y.P. Ting, S.O. Pehkonen, The inuence of ionic strength, nutrients and pH
+on bacterial adhesion to metals, J. Colloid Interface Sci. 321 (2008) 256每264.
+[44] D. Elzo, I. Huisman, E. Middlelink, V. Gekas, Charge effects on inorganic membrane
+performance in a cross-ow microltration process, Colloids Surf. A Physicochem.
+Eng. Asp. 138 (1998) 145每159.
+[45] A. Al-Amoudi, P. Williams, S. Mandale, R.W. Lovitt, Cleaning results of new and
+fouled nanoltration membrane characterized by zeta potential and permeability,
+Sep. Purif. Technol. 54 (2007) 234每240.
+

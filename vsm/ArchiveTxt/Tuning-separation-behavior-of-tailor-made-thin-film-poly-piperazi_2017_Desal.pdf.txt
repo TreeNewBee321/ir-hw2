@@ -1,0 +1,1097 @@
+Tuning separation behavior of tailor-made thin lm poly(piperazine-amide) composite membranes for pesticides and salts from water
+
+Romil Mehta a, H. Brahmbhatt b, M. Mukherjee c, A. Bhattacharya a,
+
+a Reverse Osmosis Division, CSIR-Central Salt and Marine Chemicals Research Institute (CSIR-CSMCRI), Council of Scientic & Industrial Research (CSIR), G. B. Marg, Bhavnagar 364002, Gujarat,
+India
+b Analytical Division and Centralized Instrument Facility, CSIR-Central Salt and Marine Chemicals Research Institute (CSIR-CSMCRI), Council of Scientic & Industrial Research (CSIR), G. B. Marg,
+Bhavnagar 364002, Gujarat, India
+c Saha Institute of Nuclear Physics, 1/AF Bidhannagar, Kolkata 700064, West Bengal, India
+
+H I G H L I G H T S
+
+ Tailor-made thin lm poly(piperizinamide) composite membrane.
+ Membrane selectivity depends on the medium of interfacial polymerization.
+ Partition co-efcient of piperazine in different medium supports the selectivity of the membrane.
+ pH dependence of separation behavior of salts.
+ Separation behavior of pesticides depends on the nature of molecules and pH of the feed.
+
+article
+
+info
+
+
+Article history:
+Received 19 May 2016
+Received in revised form 5 October 2016
+Accepted 8 November 2016
+Available online 22 November 2016
+
+Keywords:
+Thin lm poly(piperazine-amide) composite
+membrane
+Interfacial polymerization
+Acetonitrile
+Separation
+Pesticides
+
+abstract
+
+The present study describes some appealing results concerning the TFC membrane performances prepared by
+varying the solvents of piperizine (viz. water, acetonitrile and water-acetonitrile). The membrane selectivity of
+bivalent over mono-valent anions reduces from water N acetonitrile-water N acetonitrile (i.e. Memb-I N Memb-
+II N Memb-III). The partition co-efcient values support the trend. The retention order of salts is
+Na2SO4 N MgSO4 N MgCl2 N CaCl2 N NaCl. pH dependence separation study shows different behaviors for NaCl,
+Na2SO4 and MgSO4. Memb-I and II show minimum NaCl separation at pH 7 whereas in acidic and alkaline medi-
+um it is increasing trend, but Memb-III shows differences in alkaline pH. On the contrary Memb-I and II show im-
+provement in retention with pH for Na2SO4 and MgSO4, whereas Memb-III shows the fall in retention at alkaline
+pH. The separation performance of diuron and isoproturon follows order Risoproturon(90.95%) N Rdiuron(79.34%) for
+Memb-II at pH 7. The separation performances follow the trend Memb-II N Memb-I N Memb-III. It reects that
+acetonitrile-water mixture for piperizine optimizes maximum permeability as well as a charge of the membrane.
+The higher retention of isoproturon at alkaline pH is explained by higher molecular size and low polarity com-
+pared to diuron. The low separation trend of diuron at higher pH may be explained by relatively more polarity
+and low molecular size.
+
+ 2016 Elsevier B.V. All rights reserved.
+
+1. Introduction
+
+The growing global need for water and waste water treatment has
+driven the widespread development of membrane ltration processes.
+The membrane is not new to the step of availability of fresh water.
+The enormous history of membranes and made to order different
+ltration set up. Fast forward to present era. From ever-evolving orders
+for desalination to waste water treatment, the membranes take the
+footsteps.
+The potential ability of these membranes to remove pesticides is dic-
+tated by ＆water reuse＊ strategy. Water contamination occurs generally
+occurs as a consequence of using herbicides in agricultural activities.
+Much advancement of technological efforts has been taking place in
+the agricultural world. The adverse effects on human health are serious
+concern. Since water is one of the vehicles to transport in the food chain,
+scientists and technologists have the target to purify water from it.
+
+For the last few decades, scientists have explored simple methodol-
+ogies to transform available polymers into materials with excellent
+properties and applications. In this regard ＆Thin lm composite＊ mem-
+brane is a milestone in separation science [1,2].
+Thin lm composite membranes are a class of macromolecular fea-
+tures formed by the interfacial polymerization on the asymmetric mem-
+brane support. The attractiveness of selected ＆thin lm composite
+membrane＊ system stems from several factors. The most important
+one is undoubtedly the chemical and thermal stabilities of these relative
+to other conventional polymers; the simple preparation and the possi-
+bility to prepare categories which have a range of appealing perfor-
+mances. Many signicant developments have been taken place in the
+past few decades regarding the preparation of thin lm composite
+membranes in the world. The beauty of this technique is that it occurs
+at low temperature and does not require a catalyst. There are two
+main controlling steps in this particular membrane formation viz. prep-
+aration of asymmetric polysulfone membranes, polyamide formation
+through interfacial polymerization. Research works have been carried
+out by varying conditions (viz. Varying different amine, pH of amine so-
+lution, coating conditions, mixing of additives, solvents of acid chloride)
+to prepare tailor made membranes [3每9]. Reports are also available in
+terms of addition of different solvents (viz. dimethyl formamide, di-
+methyl sulfoxide) to the aqueous amine system to modify the cross-
+linked structure of m-phenylne diamine and trimesoyl chloride [7,10,
+11].
+In our study, an interfacial polymerization reaction has been used to
+prepare poly(piperazine-amide) (polyamide) membrane formation on
+Polysulfone support. The interfacial polymerization in our study was
+performed on water/acetonitrile- hexane interface. The technique can
+synthesize and attach functional materials on to Polysulfone surfaces
+by the polymerization reaction between hydrophilic piperizine
+(C4N2H12), a secondary amine and N-heterocyclic one and hydrophobic
+1,3,5 trimesoyl chloride (C9H3Cl3O3), multifunctional monomer at
+water/acetonitrile-hexane interface. The unique feature of
+the
+poly(piperazine-amide) membrane membranes is that it can provide
+more free volume to the skin, poly(piperazine-amide) layer because of
+its low energy of its chair conformation [12]. Thus it can be suitable
+for organics separation.
+With the aim of observing the effect of partition coefcient for the
+interfacial polymerization the experiment is carried out by adopting a
+single strategy. The diamine is interfacially polymerized to polyamide,
+by changing its solvent, i.e. water, acetonitrile and a mixture of acetoni-
+trile/water. This paper investigates the use of acetonitrile in the interfa-
+cial polymerization of cross-linked polyamide. The separation proles in
+terms of salt and organic markers are also descriptors for the mem-
+branes. The selectivity of bivalent over monovalent ratios is interesting
+for poly(piperazine-amide) membrane. It is our study to compare the
+separation performance study of all tailor-made membranes of bivalent
+salts over monovalent ones [13]
+
+282
+
+R. Mehta et al. / Desalination 404 (2017) 280每290
+
+Fig. 1. Schematic diagram of proto-type casting machine for preparation of polysulfone support membrane. A. Mounting roll, B. Speed control sensor, C. Casting blade, D. Micrometer, E.
+Gelation bath, F. Non-solvent water, G. Receiving roller, H. Speed control device, I. Dehumidier.
+
+reaction is preferably at the hexane phase because of the low availability
+in aqueous phase similar to 1.3 phenylene diamine - trimesoyl chloride
+studied earlier [16]. The polyamide was cured at 100 ～C for 4 min. The
+same reaction was also conducted using piperizine in acetonitrile-
+water (1:1) mixture and acetonitrile. The membrane is termed as
+Memb-I, Memb-II and Memb-III as in Table 2.
+Thus three layer thin lm composites were prepared. The schematic
+diagram is presented in Fig. 2. The top ultrathin layer is responsible for
+ion/molecule selectivity. Below the top ultrathin layer, the porous sub
+layer asymmetric in nature controls the feed ow as well as provided
+surface which accommodate polyamide thin layer. The macrovoid po-
+rous sublayer increases the mass transfer [17]. The third layer is a
+non-woven polyester fabric which holds the mechanical strength of
+the whole membrane.
+
+2.4. Permeability studies
+
+Permeation experiments were carried out by crossow ltration
+technique at 1.034 MPa pressure. The cross-ow ltration setup is
+shown in our previous study [18]. Four pressure cells made of SS-316
+are in a series. There was perforated support on which membrane was
+placed. TFC membrane was compacted 1 h before taking separation
+data. The effective membrane surface area in each cell was
+0.00152 m2. The salt (viz. NaCl, Na2SO4, MgSO4, CaCl2, and MgCl2) con-
+centrations were kept at 1000 mg/L. The molecular descriptors (viz. glu-
+cose, sucrose) were prepared (500 mg/L). The synthetic waste water
+was prepared with herbicides (viz. diuron, isoproturon) (2 mg/L). All
+the experiments are carried out in deionized water.
+The permeate ux (Jv) was calculated by.
+
+J v  V
+A t
+
+where Jv is expressed in lm 2 h 1, V (in litre) is the permeate volume,
+A(m 2) is the membrane area and t (in hr) is the permeation time.
+
+Table 2
+Membrane preparation medium during interfacial polymerization and physical parameters.
+
+
+
+
+
+The separation (R%) is denoted by
+
+R %
+  1 Cp
+C f
+
+ 100
+
+where Cp and Cf is the concentration (mg/L) of feed and permeate.
+
+2.5. Analytical methods
+
+The chemical structures of the membranes were analyzed by Fourier
+Transform Infrared Spectroscopy using attenuated total reectance at-
+tachment (FTIR-ATR, Perkin Elmer Spectrum GX, Norwalk,CT with reso-
+lution of ㊣ 4 cm 1). The powder samples with KBr crystal (1:50) were
+taken for the measurements. The crosslinked polyamide powder sam-
+ples were obtained by dipping crosslinked poly(piperazine-amide)
+membranes into NN dimethyl formamide. The polysulfone was dis-
+solved in the solvent and poly(piperazine-amide) was separated out.
+The polyamide was then centrifuged and collected for the analysis. Con-
+tact angle of the membranes were carried out by sessile drop method
+(DSA 100, KRUSS, Germany) at 25 ～C. The capture of water contact
+angle was 15 s. The zeta potential (汎) was determined with the electro-
+kinetic analyzer (Zeta-CAD, France (version 1.04) based on the stream-
+ing potential method using at sheet's of the membrane material
+(5 ℅ 3 cm) in a commercial plate taking 1 mM KCl as background elec-
+trolyte. X-ray diffractometer (PANalytical Empyrean), Cu K 汐 radiation
+as monochromator was used to prove the changes the relative amor-
+phous character for polyamide powders from the respective mem-
+branes. Scanning Electron Microscope (SEM) images of the samples
+were taken using JSM-7100 F. Atomic force microscopy (AFM) images
+of the samples were acquired using NT-MDT, Russia AFM instrument.
+XPS core-level spectra were taken with an Omicron Multiprobe (Omi-
+cron NanoTechnology GmbH, UK) spectrometer tted with an EA125
+hemispherical analyzer. A monochromated Al K汐 X-ray source operated
+at 150 W was used for the experiments. The analyzer pass energy was
+kept xed at 40 eV for all the scans. As the samples are insulating in na-
+ture, a low energy electron gun (SL1000, Omicron) with a large spot size
+was used to neutralize the samples. The potential of the electron gun
+
+Membrane
+
+Interfacial polymerization medium
+
+Contact angle (牟～)
+
+Surface roughness, Sa
+
+PS
+Memb I
+Memb II
+Memb III
+
+每
+Water/hexane
+Water:acetonitrile (1:1)/hexane
+Acetonitrile/hexane
+
+L
+
+75.12 ㊣ 1.77
+32.35 ㊣ 3.01
+24.6 ㊣ 2.58
+每
+
+R
+
+76.48 ㊣ 1.99
+33.55 ㊣ 1.52
+26.64 ㊣ 1.95
+每
+
+0.00508
+0.0123
+0.0139
+0.0233
+
+was kept xed at  3 eV for all the samples with respect to the ground.
+The binding energy of the peaks was corrected by considering the C1s
+peak of C
+
+500 ml different sealed bottles. The bottle was shaken for 3 h at 100 rpm
+and settled for 15 min. The medium was separated and total organics
+analyzed in aqueous systems.
+
+3. Results and discussion
+
+In our experiment of wet phase separation process N,N-dimethyl
+formamide-water and polysulfone-N,N-dimethyl formamide dimixing
+in polysulfone/N,N-dimethyl formamide/water plays the key role in
+thin skin layer formation supported by porous structure. The phase sep-
+aration occurs due to lowering of Gibbs free energy mixing because of
+the diffusion exchange of N,N-dimethyl formamide (solvent) and
+water (nonsolvent) across the interface of the casting solution [19每21].
+The interfacial polymerization occurs on the asymmetric
+polysulfone support. The adsorption of diamine from its solution is be-
+cause of the afnity of polysulfone towards diamine. This may be polar-
+ity due to the presence of
+
+R. Mehta et al. / Desalination 404 (2017) 280每290
+
+285
+
+Fig. 6. Scanning electron microscopic images. A. top surface view and B. cross section view of polysulfone and TFC membranes.
+
+286
+
+R. Mehta et al. / Desalination 404 (2017) 280每290
+
+Fig. 7. AFM images of polysulfone and TFC membranes.
+
+membranes (Memb-I,
+II and III) as well as virgin asymmetric
+Polysulfone membranes (PS), which is quite smooth. The polyamide
+shows like to disperse particles over the surface from Memb-I to
+Memb-III. The behavior is prominent from Memb-I to Mem-III. More-
+over, the dispersed particles are in accumulated form in Memb-III. The
+cross-section view is also interesting. The asymmetric structure is well
+reected in Polysulfone (B). The asymmetric structure is rather com-
+pressed from Memb-I to Memb-III. The growth of nodular shaped on
+the surface is seen in the Mem-III. These results are consistent in rough-
+ness parameters from Atomic Force Micrograph (Table 1). The micro-
+graphs are in the ensemble (Fig. 7). There is quite an appreciable
+difference in roughness between Memb-I and Memb-III.
+Fig. 8 shows that Polysulfone is amorphous in character and presents
+one wide, weak broad peak at around 18～ and similar to report by Ionita
+et al. [30].
+The polyamides prepared from piperizine and trimesoyl chloride
+shows less amorphous character compared to polysulfone. The pattern
+is the signature of the amorphous character of polyamides. Though
+there is not prominent difference, the relative amorphous character of
+polyamide powder is Memb-I N Memb-II N Memb-III.
+Contact angle studies (Table 2) show that Polysulfone membrane is
+hydrophobic. The polyamide coating on the polysulfone membrane
+makes them hydrophilic. The hydrophilicity trend is Memb-
+
+III N Memb-II N Memb-I. The contact angle of Memb-III is not measur-
+able. It shows spreading of water droplets over the membrane surface.
+
+3.1. Separation of electrolytes
+
+The performance of salt separation depends on the charge bears
+with membrane. The separation of electrolytes is discussed through dif-
+ferent models [31]. The selectivity of bivalent over monovalent salts for
+poly(piperazine-amide) thin lm composite membrane is already re-
+ported and explained in our report by density functional theory exper-
+iment [2,13,32].
+The most promising model concept is based on Nernst Planck Equa-
+tion, in which the total separation of electrolytes contribution attributed
+to electrical, diffusion and convection forces.
+It is understood that when electrolyte is in contact with 每vely
+charged membrane, the counter ions are in the vicinity of the mem-
+brane which forms the Donnan potential between the concentration
+difference of ions at the boundary between the membrane and bulk so-
+lution. Because of the Donnan potential the counter ions is attracted to-
+wards the membrane where as co-ions rejection takes place. Higher
+Donnan potential reects higher salt rejection of the membrane [33,34].
+The separation contribution comes from the hindrance of mem-
+branes to diffuse the ionic solute and solvent through it. In case of
+
+R. Mehta et al. / Desalination 404 (2017) 280每290
+
+287
+
+1200
+
+y
+
+t
+
+i
+
+s
+
+n
+e
+n
+
+t
+
+I
+
+900
+
+600
+
+300
+
+0
+
+900
+
+600
+
+300
+
+0
+
+780
+
+520
+
+260
+
+0
+
+990
+
+660
+
+330
+
+0
+
+Memb III
+
+Memb II
+
+Memb I
+
+PS
+
+5 10 15 20 25 30 35 40 45 50 55 60 65 70
+
+2牟 (Diffraction angle)
+
+Fig. 8. X-ray diffraction pattern of polysulfone and polyamide powders from their
+respective membranes.
+
+pore dimensions are of similar order to that of the solute molecule, the
+apparent diffusion co-efcient of the solute is much lower than that in
+bulk solution [31,35] whereas the convective hindrance to ow through
+it depends on the ionic radius and pore size.
+The separations of different electrolytes are also in ensemble (Fig. 9
+and Table 4). The charge, lower diffusion co-efcient, higher size (SO4
+1.06 ℅ 10 9 m2/s, 0.23 nm) (Cl 2.01 ℅ 10 9 m2/s, 0.12 nm) play role
+in case of Na2SO4 N NaCl and MgSO4 N MgCl2 separation. The higher dif-
+fusivity and lower size facilitates the permeation of Na+ and thus the
+
+=
+
+100
+
+%
+
+R
+
+90
+
+80
+
+70
+
+60
+
+50
+
+40
+
+Memb I
+Memb II
+Memb III
+
+NaCl
+
+Na2SO4
+
+MgSO4 MgCl2 CaCl2
+
+Fig. 9. Separation of salts of three TFC membranes.
+
+2+) 0.35 nm N rs (Na
+
+rejection of NaCl is lowest. On the other hand low diffusivity and higher
+size of Mg2+ added the contribution of rejection of MgCl2 and thus the
+ratio of Na2SO4/NaCl is higher than MgSO4/MgCl2 [34,36每38]. The hy-
+drated size factor of the cations also plays the role in case of
+MgCl2 N CaCl2. It is well understood that the high retention of salts (bi-
+valent co-ion + monovalent counter ion) and the lower retention of
+salts (bivalent counter ion + monovalent co-ion) from the Donnan ex-
+clusion model. The order of rejection of all the studied salts is
+Na2SO4 N MgSO4 N MgCl2 N CaCl2 N NaCl. The same trend was observed
+for different commercial membranes reported by researchers [36,39].
+The adsorption of Mg2+ on the membrane lowers the zeta potential of
+the membrane and thus the order suggests MgCl2 N NaCl. Similar behav-
+ior was also seen in literature [16,37,39,40]. The diffusivity and size fac-
+tor supports the order. (DMgCl2: 1.24 ℅ 10 9 m2/s b DNaCl:
+1.6 ℅ 10 9 m2/s) and (rs (Mg
+) 0.18 nm). All the rejec-
+tion trend of salts is similar to all the three membranes. The selectivity
+of bivalent to monovalent salts (SO4
+=/Cl) decreases from Membrane I
+(1.95) to Membrane III (1.35). It can correlate with the decrease in
+zeta potential of the membranes. With the acetonitrile system, it dimin-
+ishes the selectivity ratio as well as ux compared to aqueous one.
+Regarding cationic separation of membranes, the cations with low
+diffusivities and higher pore size have the better rejection. In this regard
+the general retention order is Mg2+ N Ca2+ N Na+. The Mg2 + (in
+MgSO4) has better permeation than Mg2+ (in MgCl2). Na+ (in
+Na2SO4) has better permeation than Na+ (in NaCl). In the 每vely charged
+nanoltration membrane the repulsive force acts on the co-ions (anion)
+and attractive force acts on counter-ions (cations). Divalent anion (SO4
+=)
+shows the higher charge effect compared to monovalent anion (Cl)
+and they are unable to pass through the membrane. But the oppositely
+charged divalent counter ions have no difculty in passing through the
+membrane.
+The zeta potential (汎) varies with pH (Fig. 3). The pH dependence of
+the zeta potential gives information on the acidic and basic strength of
+the surface charge groups. In the alkaline range it shows negative plateu
+for the membranes I, II and III. This is due to the dissociation of acidic
+( COOH) surface groups. The repulsive force between the 每ve charge
+and the co-ion results higher rejection. At acidic pH (pH 3.5), the
+amino group being protonated and generates a positive charge on the
+membrane as the zeta potential suggests. The repulsive force between
+the Na+ and membrane shows the higher rejection compared to neutral
+pH. This trend is same for Memb-I and Memb-II. Though the charged
+membranes repel co-ions (i.e. same sign of charge as the membrane
+charge) by the electric repulsive force, the cations couldn't be in the
+feed side independently, it will be there maintaining electro neutrality.
+Fig. 10 show the performance variation with pH. In case of Na2SO4,
+the pH effect is same for Memb-I and Memb-II in the alkaline range as
+NaCl. Only the extent is small, as the retention has already reached
+95% at normal pH. In acidic condition, the pH effect shows opposite
+with respect to NaCl rejection. It may be a higher anionic charge pos-
+sessed by SO4
+=. Thus the repulsive force between membrane and SO4
+operates unlike in NaCl. The same trend is observed for MgSO4 for the
+two membranes Memb-I and Memb-II.
+But for Memb-III the opposite effect is observed in the alkaline pH
+region in all three salts (NaCl, Na2SO4, MgSO4). The lower rejection of
+co-ion may be due to the excess counter-ion (viz. Na+, Mg2+) in the vi-
+cinity of the membrane which may lower the negative charge on it. At
+alkaline pH, OH retention is much more (salt rejection is less). Thus
+the H + concentration in the permeate is much more and pH will be
+less. The pH changed to 8.5 from feed pH 9.51 for NaCl. The variation
+is not so much prominent with respect to three membranes. The reec-
+tion is a little bit more in case of other two salts (viz. 8.3 from pH 9.51 for
+Na2SO4 and MgSO4).
+In acidic condition nitrogen being protonated on the membrane,
+there is the possibility of electrostatic repulsion between the positive
+charge on the membrane and H+ in the feed and results shrinkage of
+pores. Results showed that there is no signicant variation in ux. In
+
++
+
+=
+
+acidic pH, the protonated amino group takes the initiative. It repels H+
+in the feed. Thus permeate pH will be enhanced (3.51 to 5.95 for NaCl in
+case of Memb-I). For Memb-II and III the effect will slightly different be-
+cause of the variation of the amino group present on the membrane. It
+follows the same trend in the case of other two salts.
+
+3.2. Separation of organics
+
+Thin lm polyamide composite membranes become increasingly
+popular in organic separation from water. Glucose, sucrose is taken as
+
+molecular descriptors. Molecular weight is primarily used parameter
+reecting molecular size, although it is not a direct measure of molecu-
+lar size. The separation study shows that Rsucrose N Rglucose. Fig. 11 shows
+the effect of pH in terms of separation performance for the membranes.
+At high pH condition the membranes are more negatively charged as
+the zeta potential value suggests and glucose in glucosate form [41].
+The electrostatic repulsion between membrane and the ions in-
+creases and it leads to shrinkage of pores. It results higher retention
+and lower ux in alkaline pH. In acidic pH, the membranes are showing
+lower zeta potential because of the undissociated carboxyl groups as
+well as adsorption of protons [42].
+Thus, the shrinkage occurs of the nodule entity of the polymeric in-
+built structure and shows enlargement of pores. It results low retention.
+The separation performances for three membranes are compared and
+follows the trend Memb-II N Memb-III N Memb-I. The acetonitrile-
+water (1:1) mixture of piperizine in the interfacial polymerization reac-
+tion optimizes the permeability as well as the charge factor of Memb-II.
+Fig. 12 shows the variation of separation performance with pH. The
+trend shows that isoproturon have higher separation data with respect
+to diuron. These ndings can be explained from the molecular size as
+well as polarity, ensemble in Table 1. The lower molecular size as well
+as relatively high polarity facilitates diuron to pass through all the
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+45
+
+50
+
+55
+
+60
+
+65
+
+70
+
+75
+
+80
+
+85
+
+NaCl
+
+R
+
+%
+
+pH
+
+Memb I
+Memb II
+Memb III
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+100
+
+NaCl
+
+J
+
+(
+V
+
+L
+
+M
+
+H
+
+)
+
+pH
+
+Memb I
+Memb II
+Memb III
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+70
+
+75
+
+80
+
+85
+
+90
+
+95
+
+100
+
+105
+
+110
+
+Na2SO4
+
+pH
+
+R
+
+%
+
+Memb I
+Memb II
+Memb III
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+Na2SO4
+
+pH
+
+J
+
+(
+V
+
+L
+
+M
+
+H
+
+)
+
+Memb I
+Memb II
+Memb III
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+60
+
+65
+
+70
+
+75
+
+80
+
+85
+
+90
+
+95
+
+100
+
+105
+
+pH
+
+MgSO4
+
+R
+
+%
+
+Memb I
+Memb II
+Memb III
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+100
+
+pH
+
+J
+
+V
+
+)
+
+H
+
+M
+
+L
+
+(
+
+MgSO4
+
+Memb I
+Memb II
+Memb III
+
+Fig. 10. Variation of rejection performances of salts with pH.
+
+Table 4
+Volume ux (Jv) of different salts.
+
+JV (LMH)
+
+Memb I
+
+Memb II
+
+Memb III
+
+NaCl
+Na2SO4
+MgSO4
+MgCl2
+CaCl2
+
+88.2 ㊣ 1.80
+83.2 ㊣ 0.80
+84.7 ㊣ 2.77
+83.16 ㊣ 1.14
+82.67 ㊣ 0.57
+
+34.11 ㊣ 2.77
+33.27 ㊣ 2.22
+33.17 ㊣ 2.49
+34.89 ㊣ 0.49
+35.64 ㊣ 1.14
+
+38.41 ㊣ 1.63
+38.41 ㊣ 2.06
+38.61 ㊣ 1.98
+43.06 ㊣ 1.27
+41.82 ㊣ 1.48
+
+288
+
+R. Mehta et al. / Desalination 404 (2017) 280每290
+
+R. Mehta et al. / Desalination 404 (2017) 280每290
+
+289
+
+Fig. 11. Variation of separation performances of glucose and sucrose with pH.
+
+charged membranes. Similar separation performance order for three
+membranes is Memb-II N Memb-III N Memb-I. The maximum rejection
+of diuron for our membrane (Memb-II, having 68.7% NaCl rejection) is
+79.34% compared to Film tech (Dow) membrane, having 75% NaCl re-
+jection which shows 87% rejection almost same pressure [43].
+The separation performance of diuron (having relatively higher di-
+pole moment) in higher pH decreases, as there are the possibilities to
+pass through the membranes having zeta potential relatively more neg-
+ative. The statistical population of polar molecules near the vicinity of
+charged membrane increases and thus there are the chances to pass
+through the membranes [44]. The rejection difference is not very
+much reected for Memb-I, which is more porous, reected from its
+ux. The relatively low polarity of isoproturon as well as higher molec-
+ular size follows the reverse trend, i.e. at higher pH the separation
+increases.
+In acidic pH these two urea herbicides exist as cationic species
+(DH+) as shown [45] and the membranes show positively charged as
+zeta potential suggests. The repulsive interactions for higher size
+isoproturon may be the possible explanation for the increase in separa-
+tion. But, in case of diuron may be widening of pores in acidic condition
+is the reason for decrement in separation.
+
+4. Conclusions
+
+Thin lm polyamide composite membranes were prepared through
+interfacial polymerization varying piperizine solvent (viz. water, acetoni-
+trile-water, acetonitrile) with trimesoyl chloride in hexane. The difference
+is due to the partition co-efcient of piperizine in these solvents with hex-
+ane. Though the separation of salts follows the order Memb-III to Memb-I,
+the selectivity of bivalent to monovalent salts (SO4
+=/Cl) decreases from
+Memb-I to Memb-III i.e. varying solvents water N acetonitrile-water N
+acetonitrile. The pH dependence salt separation effect is quite different
+for three membranes. The separation at its minimum for NaCl at pH 7,
+whereas it show an increasing trend in acidic as well as alkaline pH. All
+
+three membranes show decreasing trend for Na2SO4 and MgSO4 separa-
+tion in acidic pH. Memb-III shows detrimental effect in alkaline pH may
+be due to counter-ion effect as well as competitive OH effect.
+The organics separation performance order for the three membranes
+is Memb-II N Memb-I N Memb-III. The physical properties of the feed or-
+ganics also show their order (Rsucrose N Rglucose) (Risoproturon N Rdiuron) for
+the same membranes. The difference in pH effect is because of the polar-
+ity and molecular size difference along with the nature of the mem-
+branes. The isoproturon separation is in increasing trend in high and
+low pH where as diuron suffers a detrimental effect for Memb-II and
+Memb-III.
+
+Acknowledgement
+
+Authors are grateful to SERB, Department of Science and Technology,
+India for research funding and Mr. Goutam Sarkar, Saha Institute of Nu-
+clear Physics for his technical help.
+
+References
+
+[1] J.E. Cadotte, R.J. Petersen, Thin-Film Composite Reverse-Osmosis Membranes, Ori-
+gin, Development, and Recent Advances [Water Purication], in: ACS Symposium
+Series (USA), American Chemical Society, 1981.
+[2] R.J. Petersen, Composite reverse osmosis and nanoltration membranes, J. Membr.
+Sci. 83 (1993) 81每150.
+[3] A.P. Rao, S. Joshi, J. Trivedi, C. Devmurari, V. Shah, Structure每performance correlation
+of polyamide thin lm composite membranes: effect of coating conditions on lm
+formation, J. Membr. Sci. 211 (2003) 13每24.
+[4] W.E. Mickols, Composite membrane and method for making the same, in, (US Pat-
+ent 6,337,018), 2002.
+[5] J.E. Tomaschke, Amine monomers and their use in preparing interfacially synthe-
+sized membranes for reverse osmosis and nanoltration,
+in, (US Patent
+5,922,203), 1999.
+[6] A. Ahmad, B. Ooi, Properties每performance of thin lm composites membrane: study
+on trimesoyl chloride content and polymerization time, J. Membr. Sci. 255 (2005)
+67每77.
+[7] M.M. Chau, W.G. Light, X.A. Swamikannu, Chlorine-tolerant, thin-lm composite
+membrane, in, (US Patent 5,271,843), 1993.
+
+Fig. 12. Variation of separation performances of diuron and isoproturon with pH.
+
+290
+
+R. Mehta et al. / Desalination 404 (2017) 280每290
+
+[8] H. Hachisuka, K. Ikeda, Reverse osmosis composite membrane and reverse osmosis
+treatment method for water using the same, in, (US Patent 6,413,425), 2002.
+[9] S. Verissimo, K.-V. Peinemann, J. Bordado, Thin-lm composite hollow ber mem-
+branes: an optimized manufacturing method, J. Membr. Sci. 264 (2005) 48每55.
+[10] S.H. Kim, S.-Y. Kwak, T. Suzuki, Positron annihilation spectroscopic evidence to dem-
+onstrate the ux-enhancement mechanism in morphology-controlled thin-lm-
+composite (TFC) membrane, Environ. Sci. Technol. 39 (2005) 1764每1770.
+[11] S.-Y. Kwak, S.G. Jung, S.H. Kim, Structure-motion-performance relationship of ux-
+enhanced reverse osmosis (RO) membranes composed of aromatic polyamide
+thin lms, Environ. Sci. Technol. 35 (2001) 4334每4340.
+[12] J. Jegal, S.G. Min, K.H. Lee, Factors affecting the interfacial polymerization of polyam-
+ide active layers for the formation of polyamide composite membranes, J. Appl.
+Polym. Sci. 86 (2002) 2781每2787.
+[13] R. Lo, A. Bhattacharya, B. Ganguly, Probing the selective salt rejection behavior of
+thin lm composite membranes: a DFT study, J. Membr. Sci. 436 (2013) 90每96.
+[14] F.J. Benitez, J.L. Acero, F.J. Real, C. Garcia, Removal of phenyl-urea herbicides in ultra-
+pure water by ultraltration and nanoltration processes, Water Res. 43 (2009)
+267每276.
+[15] V. Ermatchkov, . P谷rez-Salado Kamps, D. Speyer, G. Maurer, Solubility of carbon di-
+oxide in aqueous solutions of piperazine in the low gas loading region, J. Chem. Eng.
+Data 51 (2006) 1788每1796.
+[16] P. Manna, H. Brahmbhatt, D. Sahu, B. Ganguly, A. Bhattacharya, On the differences of
+separation of hazardous catechol and resorcinol through tailor-made thin lm com-
+posite (TFC) membranes, J. Environ. Chem. Eng. 3 (2015) 1758每1768.
+[17] B.S. Lalia, V. Kochkodan, R. Hashaikeh, N. Hilal, A review on membrane fabrication:
+structure, properties and performance relationship, Desalination 326 (2013) 77每95.
+[18] R. Mehta, H. Brahmbhatt, N. Saha, A. Bhattacharya, Removal of substituted phenyl
+urea pesticides by reverse osmosis membranes: laboratory scale study for eld
+water application, Desalination 358 (2015) 69每75.
+[19] S. Asai, S. Majumdar, A. Gupta, K. Kargupta, S. Ganguly, Dynamics and pattern for-
+mation in thermally induced phase separation of polymer每solvent system, Comput.
+Mater. Sci. 47 (2009) 193每205.
+[20] W. Zhao, Y. Su, C. Li, Q. Shi, X. Ning, Z. Jiang, Fabrication of antifouling polyethersul-
+fone ultraltration membranes using Pluronic F127 as both surface modier and
+pore-forming agent, J. Membr. Sci. 318 (2008) 405每412.
+[21] G. Kapantaidakis, G. Koops, M. Wessling, Effect of spinning conditions on the struc-
+ture and the gas permeation properties of high ux polyethersulfone〞polyimide
+blend hollow bers, Desalination 144 (2002) 121每125.
+[22] F. Khalili, A. Henni, A.L. East, pKa values of some piperazines at (298, 303, 313, and
+323) K, J. Chem. Eng. Data 54 (2009) 2914每2917.
+[23] L.G. Gagliardi, C.B. Castells, C. Rafols, M. Ros谷s, E. Bosch, Static dielectric constants of
+acetonitrile/water mixtures at different temperatures and Debye-H邦ckel a and a 0 B
+parameters for activity coefcients, J. Chem. Eng. Data 52 (2007) 1103每1107.
+[24] B.J. Herbert, J.G. Dorsey, n-Octanol-water partition coefcient estimation by micellar
+electrokinetic capillary chromatography, Anal. Chem. 67 (1995) 744每749.
+[25] M. Fontyn, K. van't Riet, B. Bijsterbosch, Surface spectroscopic studies of pristine and
+fouled membranes part 1. Method development and pristine membrane character-
+ization, Colloids Surf. 54 (1991) 331每347.
+[26] S. Belfer, R. Fainchtain, Y. Purinson, O. Kedem, Surface characterization by FTIR-ATR
+spectroscopy of polyethersulfone membranes-unmodied, modied and protein
+fouled, J. Membr. Sci. 172 (2000) 113每124.
+[27] N. Misdan, W.J. Lau, A.F. Ismail, T. Matsuura, D. Rana, Study on the thin lm compos-
+ite poly (piperazine-amide) nanoltration membrane: impacts of physicochemical
+
+properties of substrate on interfacial polymerization formation, Desalination 344
+(2014) 198每205.
+[28] Y. Liu, S. Zhang, Z. Zhou, J. Ren, Z. Geng, J. Luan, G. Wang, Novel sulfonated thin-lm
+composite nanoltration membranes with improved water ux for treatment of
+dye solutions, J. Membr. Sci. 394 (2012) 218每229.
+[29] V.T. Do, C.Y. Tang, M. Reinhard, J.O. Leckie, Degradation of polyamide nanoltration
+and reverse osmosis membranes by hypochlorite, Environ. Sci. Technol. 46 (2012)
+852每859.
+[30] M. Ionita, A.M. Pandele, L.E. Crica, A.C. Obreja, Preparation and characterization of
+polysulfone/ammonia-functionalized graphene oxide composite membrane materi-
+al, High Perfor. Polym. 1-8 (2015).
+[31] A. Bhattacharya, P. Ghosh, Nanoltration and reverse osmosis membranes: theory
+and application in separation of electrolytes, Rev. Chem. Eng. 20 (2004) 111每173.
+[32] V. Freger, Nanoscale heterogeneity of polyamide membranes formed by interfacial
+polymerization, Langmuir 19 (2003) 4791每4797.
+[33] C. Bartels, R. Franks, S. Rybar, M. Schierach, M. Wilf, The effect of feed ionic strength
+on salt passage through reverse osmosis membranes, Desalination 184 (2005)
+185每195.
+[34] J. Peeters, J. Boom, M. Mulder, H. Strathmann, Retention measurements of
+nanoltration membranes with electrolyte solutions, J. Membr. Sci. 145 (1998)
+199每209.
+[35] W. Deen, Hindered transport of large molecules in liquid-lled pores, AICHE J. 33
+(1987) 1409每1425.
+[36] A. Ahmad, B. Ooi, A.W. Mohammad, J. Choudhury, Composite nanoltration polyam-
+ide membrane: a study on the diamine ratio and its performance evaluation, Ind.
+Eng. Chem. Res. 43 (2004) 8074每8082.
+[37] W.R. Bowen, A.W. Mohammad, N. Hilal, Characterisation of nanoltration mem-
+branes for predictive purposes〞use of salts, uncharged solutes and atomic force mi-
+croscopy, J. Membr. Sci. 126 (1997) 91每105.
+[38] C. Labbez, P. Fievet, A. Szymczyk, A. Vidonne, A. Foissy, J. Pagetti, Retention of min-
+eral salts by a polyamide nanoltration membrane, Sep. Purif. Technol. 30 (2003)
+47每55.
+[39] J. Schaep, C. Vandecasteele, A.W. Mohammad, W.R. Bowen, Modelling the retention
+of ionic components for different nanoltration membranes, Sep. Purif. Technol. 22
+(2001) 169每179.
+[40] X.-L. Wang, T. Tsuru, M. Togoh, S.-i. Nakao, S. Kimura, Evaluation of pore structure
+and electrical properties of nanoltration membranes, J. Chem. Eng. Jpn 28 (1995)
+186每192.
+[41] G. Kilde, W. Wynne-Jones, The mutarotation and electrolytic dissociation of glucose
+in alkaline solution, Trans. Faraday Soc. 49 (1953) 243每251.
+[42] M. Ernst, A. Bismarck, J. Springer, M. Jekel, Zeta-potential and rejection rates of a pol-
+yethersulfone nanoltration membrane in single salt solutions, J. Membr. Sci. 165
+(2000) 251每259.
+[43] I. Musbah, D. Cic谷ron, A. Saboni, S. Alexandrova, Retention of pesticides and metab-
+olites by nanoltration by effects of size and dipole moment, Desalination 313
+(2013) 51每56.
+[44] A. Bhattacharya, Remediation of pesticide-polluted waters through membranes,
+Sep. Purif. Rev. 35 (2006) 1每38.
+[45] M. Fontecha-C芍mara, M. L車pez-Ram車n, M. Alvarez-Merino, C. Moreno-Castilla, Ef-
+fect of surface chemistry, solution pH, and ionic strength on the removal of herbi-
+cides diuron and amitrole from water by an activated carbon ber, Langmuir 23
+(2007) 1242每1247.
+
